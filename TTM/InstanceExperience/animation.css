@@ -1,0 +1,81 @@
+/***Mensaje Envío*/
+*{
+    box-sizing: border-box;
+}
+.header{
+    background-image: none;
+    background-color: #80C6BE;
+  }
+  .header1{
+    background-image: none;
+  }
+  .message{
+    text-align: center;
+    margin-top: 200px;
+    margin-left: 800px;
+    margin-right: 100px;
+    font-family: sans-serif;
+  }
+  .message h2{
+    font-family: sans-serif;
+    font-size: 4em;
+    text-shadow: 2px 2px 5px #DD6A67;
+    color: #2F3239;
+  }
+  .message a{
+    font-family: sans-serif;
+    font-size: 2em;
+    text-decoration: none;
+    color: #2F3239;
+  }
+  .personaje{
+    margin: 0px 0px 0px;
+    padding: 20px;
+    float: left;
+    width: 50%;
+  }
+  #Capa_1{
+    height: 450px;
+    margin-left: 20px;
+    margin-right: 60px;
+    vertical-align: text-top;
+  }
+  .pinata{
+    margin: 0px 0px 0px;
+    padding: 20px;
+    float: right;
+    width: 40%;
+    margin-top: -500px;
+  }
+  #Capa_2{
+    height: 800px;
+    margin: 0;
+    vertical-align: text-top;
+  }
+  .other-side{
+    padding: 20px;
+    float: right;
+    width: 20%;
+  }
+@keyframes balanceo_pinata{
+    0%{
+        transform: rotate(60deg);
+    }
+    50%{
+        transform: rotate(-60deg);
+    }
+    100%{
+        transform: rotate(60deg);
+    }
+}
+@keyframes balanceo_pinata{
+    0%{
+        transform: rotate(40deg);
+    }
+    50%{
+        transform: rotate(-600deg);
+    }
+    100%{
+        transform: rotate(40deg);
+    }
+}
