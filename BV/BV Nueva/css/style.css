@@ -1,0 +1,465 @@
+@font-face{
+    font-family: "Din-Condence-Bold";
+    src: url("fonts/DINCondensed-Bold.ttf");
+    font-display: swap;
+}
+@font-face{
+    font-family: "Broetown";
+    src: url("fonts/Broetown\ Signature.ttf");
+    font-display: swap;
+}
+h1, h3{
+    font-family: "Din-Condence-Bold";
+    color: #3f4c72;
+}
+.texto-header{
+    color: white;
+    font-size: 6.5em;
+    text-align: left;
+    text-shadow: 2px 2px black;
+}
+#text-cel{
+    padding: 10px 10px 10px 10px;
+}
+#texto-header h1{
+    color: white;
+    font-size: 1em;
+}
+.navbar-text h6{
+    font-size: 1.8em;
+    text-align: right;
+}
+.navbar-text{
+    margin-left: 45px;
+}
+.navbar-text, span h6{
+    color: #3f4c72;
+}
+.navbar-nav, ul {
+    align-items: center;
+}
+.bg-light{
+    background-color: white!important;
+}
+.fondo{
+    background: #F4F4F4;
+}
+#texto{
+   padding-bottom: 20px;
+}
+p{
+    font-family: 'Oswald', sans-serif;
+    color: #1F1F1F;
+}
+footer{
+    background: #F4F4F4;
+    text-align: center;
+    
+}
+.terms a{
+    color: #83bc9e;
+    
+}
+.copy p{
+    color: #3f4c72;
+}
+.contact p{
+    color: #3f4c72;
+}
+.pagos{
+    padding-bottom: 80px;
+    
+}
+#afilliations h2{
+    font-size: 1.5em;
+
+}
+#afilliations img{
+    width: 40px;
+}
+#Credit-Cards h2{
+    font-size: 1.5em;
+
+}
+#Credit-Cards img{
+    width: 30px;
+}
+#texto-header{
+    color: white;
+    margin-top: 100px;
+    font-size: 8.5em;
+    text-shadow: 2px 2px black;
+    overflow: hidden;
+    resize: both;
+   
+}
+#imagen-header{
+    overflow: hidden;
+    resize: both;
+}
+#text-header h1{
+    text-align: right;
+    padding: 10px 30px 10px 10px;
+    color: white;
+    margin-top: 130px;
+    font-size: 8.5em;
+    text-shadow: 2px 2px black;
+}
+#text-thank h1{
+    text-align: center;
+    color: white;
+    margin-top: -130px;
+    font-size: 8.5em;
+    text-shadow: 2px 2px black;
+}
+.dropdown{
+    color: #3f4c72
+}
+/*.Vallarta{
+    background-image: url("../img/BV_head_vallarta.png");
+    height: 80vh;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+.Cabo{
+    background-image: url("../img/BV_head_cabo.jpg");
+    height: 80vh;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+.Cancun{
+    background-image: url("../img/BV_Headers-06\ copy.jpg");
+    height: 80vh;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+.Loreto{
+    background-image: url("../img/BV_head_loreto.png");
+    height: 80vh;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}*/
+.Faqs{
+    background-image: url("../img/BV-PuertoVallarta.jpg");
+    height: 70vh;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+.thank{
+    background-image: url("../img/BV_head_cancun.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+.terms-{
+    background-image: url("../img/BV-PuertoVallarta2.jpg");
+    height: 70vh;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+.request{
+    background-image: url("../img/BV-Cancun.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+.Privacy{
+    background-image: url("../img/BV_head_cabo.jpg");
+    height: 80vh;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+#header-terms h1{
+    color: white;
+    font-size: 10vh;
+    padding: 50px 5px 10px 15px;
+}
+.text-muted{
+    color: white!important;
+}
+.terminos- p, h1{
+    padding: 10px 5px 10px 10px;
+}
+.terminos-{
+    font-family: 'Oswald', sans-serif;   
+}
+#Container-faqs{
+    background-color: transparent;
+    align-items: center;
+    max-width: 1500px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    font-family: 'Oswald', sans-serif;
+
+  }
+  .faq{
+    background-color: transparent;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    border: white;
+    font-family: 'Oswald', sans-serif;
+  }
+  .title{
+    color: #02C0D1;
+    font-size: 3em;
+    margin-bottom: 20px;
+    font-family: "Oh Golds";
+  }
+  @media(max-width:767px){
+    .title{
+        font-size: 1.5em;
+    }
+}
+.collapsible {
+    background-color: #dea32a;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    font-family: 'Oswald', sans-serif; 
+  }
+  .collapsible:after {
+    content: '\002B';
+    color: white;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+    font-family: 'Oswald', sans-serif;
+  }
+  .content {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color:white;
+    font-family: 'Oswald', sans-serif;
+  }
+  .content p{
+      margin-top: 10px;
+      color: #1F1F1F;
+      font-family: 'Oswald', sans-serif;
+  }
+  .content a{
+      text-decoration: none;
+      color: #83bc9e;
+      font-family: 'Oswald', sans-serif;
+  }
+  .col-8{
+    border-radius: 10px;
+    font-family: 'Oswald', sans-serif; 
+  }
+  #clima{
+      padding: 25px 25px 25px 25px;
+  }
+ 
+  #clima h3{
+      text-align: center;
+      font-size: 3.5em;
+  }
+  #clima h6{
+    color: #1F1F1F;
+    font-size: 0.8em;
+  }
+  #barraInicio{
+      color: #3f4c72;
+      background: white;
+      border-radius: 20px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: bold;
+      padding: 20px 10px 10px 10px;
+      text-align: left;
+  }
+  #barraInicio input{
+      background: none;
+      border: none;
+      font-size: 0.8em;
+  }
+input #disabled{
+    color: #3f4c72;
+    font-weight: bold;
+}
+  #barraInicio select{
+    color: #1F1F1F;
+      background: none;
+      border: none;
+      font-family: 'Montserrat', sans-serif;
+  }
+  #search{
+    background: linear-gradient(rgba(28, 49, 79), rgba(136, 103, 189));
+    font-family: 'Montserrat', sans-serif;
+    padding: 5px 20px 10px 10px;
+    border-radius: 10px;
+  }
+
+  #search i{
+    padding-left: 20px;
+  }
+  .btn-primary {
+    background: linear-gradient(rgba(222, 163, 42), rgba(228, 186, 110));
+    border: #dea32a;
+    font-family: 'Oswald', sans-serif; 
+  }
+/*DESTINOS INDEX*/  
+.card img{
+    padding: 0px -10px 20px 10px;
+}
+.card{
+    box-shadow: 10px 10px 5px #aaaaaa;
+    border-radius: 15px;
+    border: none;
+}
+
+/*VIDEO*/
+.video-bg_video{
+    width: 100%;
+    border-radius: 20px;
+    padding: 10px 10px 10px 10px;
+    border: none;
+
+}
+  /*Modal*/
+.modal{
+    color: #2F2F2F;
+    border: none;
+}
+@media(max-width:366px){
+    .modal{
+        width: 366px;
+    }
+}
+.modal-header{
+    background: linear-gradient(rgba(222, 163, 42), rgba(228, 186, 110));
+    color: white;
+    border-radius: 10px;
+}
+.modal-footer button{
+    width: 200px;
+    background: linear-gradient(rgba(222, 163, 42), rgba(228, 186, 110));
+    border: #dea32a;
+
+}
+.modal-footer button:hover{
+    background: #83bc9e;
+    border: #83bc9e;
+}
+.btn-close{
+    background: transparent;
+    border: none;
+}
+#desc p{
+    text-align: justify;
+}
+.desc p{
+    padding: 15px 15px 15px 15px;
+}
+
+#Loreto img{
+    border-radius: 20px 20px 0px 0px;
+}
+#Vallarta img{
+    border-radius: 20px 20px 0px 0px;
+}
+#Cancun img{
+    border-radius: 20px 20px 0px 0px;
+}
+#Cabo img{
+    border-radius: 20px 20px 0px 0px;
+}
+.card-title{
+    padding: 0px 15px 0px 25px;
+}
+.card-text{
+    padding: 0px 15px 5px 30px;
+}
+.what{
+    margin-top: -80px;
+    padding: 30px 30px 30px 30px;
+}
+
+.different h6{
+    color: #1F1F1F;
+}
+
+#carrousel img{
+    border-radius: 30px;
+    
+}
+.tailor img{
+    max-width: 350px;
+    box-shadow: 10px 10px 5px #aaaaaa;
+    border-radius: 15px;
+}
+.tailor{
+    padding: 10px 15px 10px 10px;
+}
+.raya{
+    border-left: 1px solid #aaaaaa;
+}
+#destinations- select{
+    margin-left: -10px;
+}
+#destinations-{
+    margin-left: -10px;
+}
+#boton{
+    padding-left: 60px;
+    margin-top: 10px;
+}
+@media(max-width:1680px){
+    
+}
+/*Logo BV en SVG*/
+#Logo-BV{
+    max-width: 400px;
+}
+.st0{
+  fill: transparent;
+  stroke:white;
+  stroke-dasharray: 1700;
+  stroke-dashoffset: 0;
+  animation: logo 10s linear forwards;
+}
+/*  fill:#EAB13C;*/
+@keyframes logo{
+    from{
+        stroke-dashoffset: 1700;
+        fill: transparent;
+    }
+    to{
+        stroke-dashoffset: 0;
+        fill: white;
+    }
+}
+#thank a{
+    text-decoration: none;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+}
+#thank{
+    margin-bottom: 50px;
+}
+#customized p{
+    color: white;
+    padding: 10px 10px 10px 10px;
+}
+.do h3{
+    color: #dea32a;
+}
+#request{
+    color: white;
+    font-family: 'Oswald', sans-serif;
+    margin-bottom: 50px;
+}
+
