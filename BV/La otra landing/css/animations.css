@@ -1,0 +1,257 @@
+/*BEACH VACATIONS MEXICO*/
+#Logo-BVM{
+    height: 200px;
+    margin-left: 800px;
+    margin-right: 60px;
+    margin-top: 300px;
+}
+.cls-1,.cls-2,.cls-3,.cls-4,.cls-5{
+    fill:none
+}
+.cls-2,.cls-3,.cls-4,.cls-5{
+    stroke-miterlimit:10;
+    stroke-width:2px
+}
+
+.cls-1{ /*Mexico*/
+    fill:transparent;
+    stroke: #000;
+    stroke-dasharray: 200;
+    stroke-dashoffset: 0;
+    animation: mexico 5s linear forwards;
+   
+}
+.cls-2{ /*Linea*/
+    fill: transparent;
+    stroke:#8abcb0;
+    stroke-dasharray: 500;
+    stroke-dashoffset: 0;
+    animation: linea 5s linear forwards;
+    
+}
+.cls-3{ /*Beach*/
+    fill:transparent;
+    stroke:#eab13c;
+    stroke-dasharray: 800;
+    stroke-dashoffset: 0;
+    animation: beach 5s linear forwards;
+
+}
+.cls-4{ /*Vacations*/
+    fill:transparent;
+    stroke:#1b314f;
+    stroke-dasharray: 900;
+    stroke-dashoffset: 0;
+    animation: vacations 5s linear forwards;
+
+    
+}
+.cls-5{ /*Circulo*/
+    fill: transparent;
+    stroke:#384e77;
+    stroke-dasharray: 2200;
+    stroke-dashoffset: 0;
+    animation: circulo 5s linear forwards;
+
+}
+/*ANIMACIONES BVM*/
+@keyframes circulo{
+    from{
+        stroke-dashoffset: 2200;
+        fill: transparent;
+    }
+    to{
+        stroke-dashoffset: 0;
+        fill: #384e77;
+    }
+}
+@keyframes beach
+{
+    from{
+        stroke-dashoffset: 800;
+        fill: transparent;
+    }
+    to 
+	{
+        stroke-dashoffset:0;
+        fill:  #eab13c;
+    }  
+}
+@keyframes vacations
+{
+    from{
+        stroke-dashoffset: 900;
+        fill: transparent;
+    }
+    to 
+	{
+        stroke-dashoffset:0;
+        fill: #1b314f;
+    } 
+}
+@keyframes linea
+{
+    from{
+        stroke-dashoffset: 500;
+        fill: transparent;
+    }
+    to 
+	{
+        stroke-dashoffset:0;
+        fill: #8abcb0;
+    }   
+}
+@keyframes mexico
+{
+    from{
+        stroke-dashoffset: 200;
+        fill: transparent;
+    }
+    to 
+	{
+        stroke-dashoffset:0;
+        fill: #8abcb0;
+    }   
+}
+/*BEACH VIBES*/
+#Logo-BV{
+    height: 200px;
+    margin-left: 800px;
+    margin-right: 60px;
+    margin-top: 200px;
+}
+.cls-6,.cls-7{
+    fill:none;
+    stroke-miterlimit:10
+}
+.cls-6{/*LETRAS*/
+    fill: transparent;
+    stroke:#41aaaa;
+    stroke-width:4px;
+    stroke-dasharray: 980;
+    stroke-dashoffset: 0;
+    animation: letras 5s linear forwards;
+}
+.cls-7{/*SILLA*/
+    fill: transparent;
+    stroke:#f78a1c;
+    stroke-dasharray: 2000;
+    stroke-dashoffset: 0;
+    stroke-width:3px;
+    animation: silla 5s linear forwards;
+}
+/*ANIMACIONES BV*/
+@keyframes letras{
+    from{
+        stroke-dashoffset: 980;
+        fill: transparent;
+    }
+    to{
+        stroke-dashoffset: 0;
+        fill: #41aaaa;
+    }
+}
+@keyframes silla{
+    from{
+        stroke-dashoffset: 2000;
+        fill: transparent;
+    }
+    to{
+        stroke-dashoffset: 0;
+        fill:#f78a1c;
+    }
+}
+/*SUN AND SAND*/
+#LOGO-SNS{
+    height: 400px;
+    margin-left: 800px;
+    margin-right: 60px;
+    margin-top: 300px;
+}
+.cls-8,.cls-9{/*LETRAS*/
+    fill:transparent;
+    stroke-miterlimit:10;
+    stroke:#0087d3;
+    stroke-dasharray: 1680;
+    stroke-dashoffset: 0;
+    animation: animacion 5s ease-in-out forwards;
+}
+.cls-8{/*LETRAS Y RAYA*/
+    stroke-width:2px;
+    stroke-dashoffset: 0;
+    animation: animacion 5s ease-in-out forwards;
+}
+#luna-grande{ /*LOGO*/
+    fill: transparent;
+    stroke-dasharray: 2135;
+    stroke-dashoffset: 0;
+    animation: luna-grande 5s ease-in-out forwards;
+}
+#luna-mediana{
+    fill: transparent;
+    stroke-dasharray: 1550;
+    stroke-dashoffset: 0;
+    animation: luna-mediana 5s ease-in-out forwards;
+}
+#luna-chica1{
+    fill: transparent;
+    stroke-dasharray: 1070;
+    stroke-dashoffset: 0;
+    animation: luna-chica1 5s ease-in-out forwards;
+}
+#luna-chica2{
+    fill: transparent;
+    stroke-dasharray: 730;
+    stroke-dashoffset: 0;
+    animation: luna-chica2 5s ease-in-out forwards;
+}
+@keyframes animacion{
+    from{
+        stroke-dashoffset: 1680;
+        fill: transparent;
+    }
+    to{
+        stroke-dashoffset: 0;
+        fill: #0087d3;
+    }
+}
+@keyframes luna-grande{
+    from{
+        stroke-dashoffset: 2135;
+        fill: transparent;
+    }
+    to{
+        stroke-dashoffset: 0;
+        fill:#0087d3;
+    }
+}
+@keyframes luna-mediana{
+    from{
+        stroke-dashoffset: 1550;
+        fill: transparent;
+    }
+    to{
+        stroke-dashoffset: 0;
+        fill:#50ADE1;
+    }
+}
+@keyframes luna-chica1{
+    from{
+        stroke-dashoffset: 1070;
+        fill: transparent;
+    }
+    to{
+        stroke-dashoffset: 0;
+        fill:#FFCC5F;
+    }
+}
+@keyframes luna-chica2{
+    from{
+        stroke-dashoffset: 730;
+        fill: transparent;
+    }
+    to{
+        stroke-dashoffset: 0;
+        fill:#E7AA1B
+    }
+}
