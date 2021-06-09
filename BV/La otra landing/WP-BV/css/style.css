@@ -1,0 +1,1266 @@
+/*EFECTO ZOOM EN IMAGENES*/
+img.zoom {
+    width: 100px;
+    height: 100px;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+}
+ 
+.transition {
+    -webkit-transform: scale(1.1); 
+    -moz-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    transform: scale(1.1);
+}
+#scaled{
+    animation: crescendo 1.5s alternate infinite linear;
+}
+
+@keyframes crescendo{
+
+    80%{
+        transform: scale(1.1);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+a{
+    text-decoration: none;
+}
+@font-face{
+    font-family: "Oh Golds";
+    src: url("fonts/Oh!\ golds\ DEMO.ttf");
+}
+@font-face{
+    font-family: "Sans Serif";
+    src: url("fonts/Sanseriffic.otf");
+}
+@font-face{
+    font-family: "Painting With Chocolate";
+    src: url("fonts/Painting_With_Chocolate.ttf");
+}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,500&display=swap');
+.navbar-text h6{
+    font-size: 0.9em;
+    text-align: right;
+}
+.header-edit h1{
+    color: white;
+    font-size: 9.5em;
+}
+.titulo-cabecera{
+    font-size: 10.5vw;
+    color: white;
+    margin-top: 400px;
+}
+@media(max-width:667px){
+    .titulo-cabecera{
+        margin-top: 200px;
+        font-size: 8.5em;
+    }
+}
+@media(max-width:366px){
+    .titulo-cabecera{
+        margin-top: 200px;
+        font-size: 5.5em;
+    }
+}
+h1{
+    color: #38658C;
+    text-align: center;
+    font-family: "Oh Golds";
+}
+p{
+    font-family: 'Montserrat', sans-serif; 
+}
+.navbar-text, span h6{
+    color: #38658C;
+}
+.navbar-text, span h2{
+    color: #B4C52B;
+}
+.navbar-nav, ul {
+    align-items: center;
+}
+.destinations{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.destinations a{
+    color: white;
+    text-decoration: none;
+}
+.looking h1{
+    font-size: 3.5em;
+}
+.looking p{
+    text-align: center;
+}
+#azul{
+    color: #38658C;
+    margin-bottom: 40px;
+}
+@media(max-width:366px){
+    .looking h1{
+        font-size: 2em;
+    } 
+    .destinations h1{
+        text-align: center;
+        margin-top: 50px;
+    }
+}
+
+.book img{
+    max-width: 100px;
+}
+@media(max-width:667px){
+    #tit-book{
+        position: absolute;
+        width: 100%;
+        font-size: 2.5em;
+    }
+    .book{
+        display: flex;
+        margin-top: 1300px;
+    }
+}
+@media(max-width:366px){
+    #tit-book{
+        position: absolute;
+        width: 100%;
+        font-size: 2.5em;
+    }
+}
+/*BOOK DE PESTAÑAS POR DESTINO*/
+.book_1 img{
+    max-width: 100px;
+}
+@media(max-width:667px){
+    #tit-book{
+        position: absolute;
+        width: 100%;
+        font-size: 2.5em;
+    }
+}
+@media(max-width:366px){
+    #tit-book{
+        position: absolute;
+        width: 100%;
+        font-size: 2.5em;
+    }
+    .book_1{
+        display: flex;
+    }
+}
+.fondo-verde{
+    background: #8AE7D4;
+    height: auto;
+}
+@media(max-width:366px){
+    .mapa{
+        margin-top: 50px;
+    }
+}
+#why{
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;    
+}
+#why h6{
+    padding: 10px 0px 0px 0px;
+}
+/*FOOTER*/
+footer{
+    background-image: url("../img/AM_Footer-01.png");
+}
+.terms p, a, u{
+    color: #8AE7D4;
+    padding: 50px 10px 0px 10px;
+
+}
+.contact p{
+    padding: 50px 10px 0px 10px;
+}
+.copy p{
+    color: white;
+    padding: 50px 10px 0px 10px;
+
+}
+.redes img{
+    max-width: 80px;
+    padding: 50px 10px 0px 10px;
+}
+.pagos h2{
+    color: #B4C52B;
+    font-size: 1.5em;
+    font-family: 'Montserrat', sans-serif; 
+}
+.pagos img{
+    max-width: 70px;
+}
+/*Best Deals*/
+.best-deals{
+    background: #8AE7D4;
+}
+.best-deals h4{
+    color: #8AE7D4;
+}
+/*OFERTA DE HOTELES*/
+.price{
+    padding: 15px 0px 0px 10px;
+}.price-1{
+    padding: 250px 0px 0px 10px;
+}
+#Hotel-1{
+    background: linear-gradient(rgba(66, 65, 65, 0), rgba(0, 101, 129)),  url("../img/Villa-Del-Palmar.png") center right/cover no-repeat;
+    min-height: calc(330px + 10vmin);
+    font-family: 'Montserrat', sans-serif; 
+    margin-bottom: 50px;
+    border-style: solid;
+    border-color: white;
+    border-width: thick;
+    
+}
+#Hotel-1 a{
+    color: white;
+    text-decoration: none;
+}
+#Hotel-1 h2, h3, h4{
+    font-family: 'Montserrat', sans-serif;
+    padding: 0px 0px 0px 5px;
+}
+#Hotel-2{
+    background: linear-gradient(rgba(0, 0, 0,0), rgba(56, 101, 140)), url("../img/Ocean-Rivera.png") center right/cover no-repeat;
+    min-height: calc(330px + 10vmin);
+    font-family: 'Montserrat', sans-serif; 
+    border-style: solid;
+    border-color: white;
+    border-width: thick;
+   
+}
+#Hotel-2 a{
+    color: white;
+    text-decoration: none;
+}
+#Hotel-2 h2, h3, h4{
+    font-family: 'Montserrat', sans-serif;
+    padding: 0px 0px 0px 5px;
+}
+#Hotel-3{
+    background: linear-gradient(rgba(0, 0, 0,0), rgba(56, 101, 140)), url("../img/Las-Palmas.png") center right/cover no-repeat;
+    min-height: calc(330px + 10vmin);
+    font-family: 'Montserrat', sans-serif;
+    border-style: solid;
+    border-color: white; 
+    border-width: thick;
+}
+#Hotel-3 a{
+    color: white;
+    text-decoration: none;
+
+}
+#Hotel-3 h2, h3, h4{
+    font-family: 'Montserrat', sans-serif;
+    padding: 0px 0px 0px 5px;
+}
+.tit-H3{
+    margin-top: 220px;
+    
+}
+#Hotel-4{
+    background: linear-gradient(rgba(0, 0, 0,0), rgba(56, 101, 140)), url("../img/Barcelo-Gran-Farp.png") center right/cover no-repeat;
+    min-height: calc(330px + 10vmin);
+    font-family: 'Montserrat', sans-serif; 
+    border-style: solid;
+    border-color: white;
+    border-width: thick;
+    margin-bottom: 20px;
+}
+#Hotel-4 a{
+    color: white;
+    text-decoration: none;
+}
+#Hotel-4 h2, h3, h4{
+    font-family: 'Montserrat', sans-serif;
+    padding: 0px 0px 0px 5px;
+}
+#Hotel-5{
+    background: linear-gradient(rgba(66, 65, 65, 0), rgba(0, 101, 129)),  url("../img/Oasis-Pal-Lite.png") center right/cover no-repeat;
+    min-height: calc(330px + 10vmin);
+    font-family: 'Montserrat', sans-serif; 
+    margin-bottom: 50px;
+    border-style: solid;
+    border-color: white;
+    border-width: thick;
+    
+}
+#Hotel-5 a{
+    color: white;
+    text-decoration: none;
+}
+#Hotel-5 h2, h3, h4{
+    font-family: 'Montserrat', sans-serif;
+    padding: 0px 0px 0px 5px;
+}
+#Hotel-6{
+    background: linear-gradient(rgba(66, 65, 65, 0), rgba(0, 101, 129)),  url("../img/Bluebay-Gran-Esmeralda.png") center right/cover no-repeat;
+    min-height: calc(330px + 10vmin);
+    font-family: 'Montserrat', sans-serif; 
+    margin-bottom: 50px;
+    border-style: solid;
+    border-color: white;
+    border-width: thick;
+    
+}
+#Hotel-6 a{
+    color: white;
+    text-decoration: none;
+}
+#Hotel-6 h2, h3, h4{
+    font-family: 'Montserrat', sans-serif;
+    padding: 0px 0px 0px 5px;
+}
+#Hotel-7{
+    background: linear-gradient(rgba(66, 65, 65, 0), rgba(0, 101, 129)),  url("../img/Buenaventura-Grand.png") center right/cover no-repeat;
+    min-height: calc(330px + 10vmin);
+    font-family: 'Montserrat', sans-serif; 
+    margin-bottom: 50px;
+    border-style: solid;
+    border-color: white;
+    border-width: thick;
+    
+}
+#Hotel-7 a{
+    color: white;
+    text-decoration: none;
+}
+#Hotel-7 h2, h3, h4{
+    font-family: 'Montserrat', sans-serif;
+    padding: 0px 0px 0px 5px;
+}
+#Hotel-8{
+    background: linear-gradient(rgba(66, 65, 65, 0), rgba(0, 101, 129)),  url("../img/Krystal-Grand.png") center right/cover no-repeat;
+    min-height: calc(330px + 10vmin);
+    font-family: 'Montserrat', sans-serif; 
+    margin-bottom: 50px;
+    border-style: solid;
+    border-color: white;
+    border-width: thick;
+    
+}
+#Hotel-8 a{
+    color: white;
+    text-decoration: none;
+}
+#Hotel-8 h2, h3, h4{
+    font-family: 'Montserrat', sans-serif;
+    padding: 0px 0px 0px 5px;
+}
+#Hotel-9{
+    background: linear-gradient(rgba(66, 65, 65, 0), rgba(0, 101, 129)),  url("../img/Grand-Oasis-Palm.png") center right/cover no-repeat;
+    min-height: calc(330px + 10vmin);
+    font-family: 'Montserrat', sans-serif; 
+    margin-bottom: 50px;
+    border-style: solid;
+    border-color: white;
+    border-width: thick;
+    
+}
+#Hotel-9 a{
+    color: white;
+    text-decoration: none;
+}
+#Hotel-9 h2, h3, h4{
+    font-family: 'Montserrat', sans-serif;
+    padding: 0px 0px 0px 5px;
+}
+#Hotel-10{
+    background: linear-gradient(rgba(66, 65, 65, 0), rgba(0, 101, 129)),  url("../img/Barcelo-Misma-Loya.png") center right/cover no-repeat;
+    min-height: calc(330px + 10vmin);
+    font-family: 'Montserrat', sans-serif; 
+    margin-bottom: 50px;
+    border-style: solid;
+    border-color: white;
+    border-width: thick;
+    
+}
+#Hotel-10 a{
+    color: white;
+    text-decoration: none;
+}
+#Hotel-10 h2, h3, h4{
+    font-family: 'Montserrat', sans-serif;
+    padding: 0px 0px 0px 5px;
+}
+#Hotel-11{
+    background: linear-gradient(rgba(66, 65, 65, 0), rgba(0, 101, 129)),  url("../img/Grand-Oasis.png") center right/cover no-repeat;
+    min-height: calc(330px + 10vmin);
+    font-family: 'Montserrat', sans-serif; 
+    margin-bottom: 50px;
+    border-style: solid;
+    border-color: white;
+    border-width: thick;
+    
+}
+#Hotel-11 a{
+    color: white;
+    text-decoration: none;
+}
+#Hotel-11 h2, h3, h4{
+    font-family: 'Montserrat', sans-serif;
+    padding: 0px 0px 0px 5px;
+}
+#Hotel-12{
+    background: linear-gradient(rgba(66, 65, 65, 0), rgba(0, 101, 129)),  url("../img/Melia.png") center right/cover no-repeat;
+    min-height: calc(330px + 10vmin);
+    font-family: 'Montserrat', sans-serif; 
+    margin-bottom: 50px;
+    border-style: solid;
+    border-color: white;
+    border-width: thick;
+    
+}
+#Hotel-12 a{
+    color: white;
+    text-decoration: none;
+}
+#Hotel-12 h2, h3, h4{
+    font-family: 'Montserrat', sans-serif;
+    padding: 0px 0px 0px 5px;
+}
+@media(max-width:375px){
+    .tit-H3{
+        margin-top: 200px;
+    }
+    #Hotel-4{
+        margin-bottom: 30px;
+    } 
+}
+/*Destinations*/
+#PV{
+    background: url("../img/DJI_0757.png") center right/cover no-repeat;
+    min-height: calc(490px + 10vmin);
+}
+#PV h2{
+    color: white;
+    font-family: "Oh Golds";
+    text-align: center;
+    margin-top: 450px;
+}
+#PV button{
+    background: #B4C52B;
+    border: #B4C52B;
+    font-family: 'Montserrat', sans-serif; 
+}
+@media(max-width:667px){
+    #PV h2{
+        margin-top: 400px;
+        font-size: 3.5em;
+    }
+}
+@media(max-width:372px){
+    #PV h2{
+        margin-top: 300px;
+        font-size: 3.5em;
+    }
+    #PV button{
+        margin-bottom: 10px;
+    }
+}
+#Cabo{
+    background: url("../img/cabo2.png") center right/cover no-repeat;
+    min-height: calc(490px + 10vmin);
+}
+
+#Cabo h2{
+    color: white;
+    font-family: "Oh Golds";
+    text-align: center;
+    margin-top: 450px;
+}
+#Cabo button{
+    background: #B4C52B;
+    border: #B4C52B;
+    font-family: 'Montserrat', sans-serif; 
+}
+@media(max-width:667px){
+    #Cabo h2{
+        margin-top: 400px;
+        font-size: 3.5em;
+    }
+}
+@media(max-width:372px){
+    #Cabo h2{
+        margin-top: 320px;
+        font-size: 3.5em;
+    }
+    #Cabo button{
+        margin-bottom: 10px;
+    }
+}
+#Cancun{
+    background: url("../img/CANCUN.png") center right/cover no-repeat;
+    min-height: calc(490px + 10vmin);
+}
+
+#Cancun h2{
+    color: white;
+    font-family: "Oh Golds";
+    text-align: center;
+    margin-top: 450px;
+}
+#Cancun button{
+    background: #B4C52B;
+    border: #B4C52B;
+    font-family: 'Montserrat', sans-serif; 
+}
+@media(max-width:667px){
+    #Cancun h2{
+        margin-top: 400px;
+        font-size: 4.5em;
+    }
+}
+@media(max-width:372px){
+    #Cancun h2{
+        margin-top: 350px;
+        font-size: 4.5em;
+    }
+    #Cancun button{
+        margin-bottom: 10px;
+    }
+}
+#RM{
+    background: url("../img/Rivera-Maya.png") center right/cover no-repeat;
+    min-height: calc(490px + 10vmin);
+}
+#RM h2{
+    color: white;
+    font-family: "Oh Golds";
+    text-align: center;
+    margin-top: 450px;
+}
+#RM button{
+    background: #B4C52B;
+    border: #B4C52B;
+    font-family: 'Montserrat', sans-serif; 
+}
+@media(max-width:667px){
+    #RM h2{
+        margin-top: 400px;
+        font-size: 4.5em;
+    }
+}
+@media(max-width:372px){
+    #RM h2{
+        margin-top: 280px;
+        font-size: 4.5em;
+    }
+    #RM button{
+        margin-bottom: 10px;
+    }
+}
+
+/*MORE ABOUT HOW AMAZING MEXICO IS*/
+
+.img-more1{
+    background: linear-gradient(rgba(0, 0, 0,0), rgba(0, 0, 0, 0.7)), url("../img/cff7b5a9_z.png") center right/cover no-repeat;
+    min-height: calc(330px + 10vmin);
+    font-family: 'Montserrat', sans-serif;
+    color: white; 
+    margin-right: -20px;
+}
+.img-more1 a{
+    color: white;
+}
+.img-more1 h4{
+    padding: 0px 0px 0px 10px;
+}
+.img-more1 h2{
+    padding: 110px 0px 0px 10px;
+    font-size: 1.8em;
+}
+.img-more2{
+    background: linear-gradient(rgba(0, 0, 0,0), rgba(0, 0, 0, 0.7)), url("../img/cff7b5a9_z.png") center right/cover no-repeat;
+    min-height: calc(130px + 8vmin);
+    font-family: 'Montserrat', sans-serif; 
+    color: white;
+    margin-bottom: 6px;
+    margin-right: -20px;
+}
+.img-more2 a{
+    color: white;
+}
+.img-more2 h2{
+    font-size: 1.8em;
+    padding: 0px 0px 0px 10px;
+}
+.img-more2 h4{
+    padding: 0px 0px 0px 10px;
+}
+.img-more3{
+    background: linear-gradient(rgba(0, 0, 0,0), rgba(0, 0, 0, 0.7)), url("../img/cff7b5a9_z.png") center right/cover no-repeat;
+    min-height: calc(130px + 8vmin);
+    font-family: 'Montserrat', sans-serif; 
+    color: white;
+    margin-right: -20px;
+}
+.img-more3 a{
+    color: white;
+}
+.img-more3 h2{
+    padding: 0px 0px 0px 10px;
+    font-size: 1.8em;
+}
+.img-more3 h4{
+    padding: 0px 0px 0px 10px;
+}
+.img-more4{
+    background: linear-gradient(rgba(0, 0, 0,0), rgba(0, 0, 0, 0.7)), url("../img/cff7b5a9_z.png") center right/cover no-repeat;
+    min-height: calc(330px + 10vmin);
+    font-family: 'Montserrat', sans-serif; 
+    color: white;
+    margin-right: -20px;
+}
+.img-more4 a{
+    color: white;
+}
+.img-more4 h4{
+    padding: 0px 0px 0px 10px;
+}
+.img-more4 h2{
+    padding: 110px 0px 0px 10px;
+    font-size: 1.8em;
+}
+.img-more5{
+    background: linear-gradient(rgba(0, 0, 0,0), rgba(0, 0, 0, 0.7)), url("../img/cff7b5a9_z.png") center right/cover no-repeat;
+    min-height: calc(330px + 10vmin);
+    font-family: 'Montserrat', sans-serif; 
+    color: white;
+    margin-right: -15px;
+}
+.img-more5 a{
+    color: white;
+}
+.img-more5 h4{
+    padding: 0px 0px 0px 10px;
+}
+.img-more5 h2{
+    padding: 110px 0px 0px 10px;
+    font-size: 1.8em;
+}
+/*PUERTO VALLARTA*/
+.header-PV{
+    background-image: url("../img/sculpture-2084271_1920.png");
+    height: 100vh;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+.titulo-cabecera-PV{
+    font-size: 10.5em;
+    color: white;
+    margin-top: 400px;
+}
+.titulo-cabecera-faqs{
+    font-size: 10.5em;
+    color: white;
+    text-align: center;
+    padding-top: 200px;
+}
+.image-cabecera-faqs{
+    padding-top: 200px;
+}
+.best-dest h4{
+    color: #8AE7D4;
+}
+@media(max-width:667px){
+    .titulo-cabecera-PV{
+        margin-top: 200px;
+        font-size: 6.5em;
+    }
+}
+@media(max-width:366px){
+    .titulo-cabecera-PV{
+        margin-top: 200px;
+        font-size: 5.5em;
+    }
+    .image-cabecera-PV{
+        margin-left: 10px;
+        margin-top: 20px;
+        width: 350px;
+    }
+    .header-PV{
+        background-image: url("../img/AM_Mobile-Header-02.png");
+        height: 100vh;
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
+    }
+}
+
+/*FORMULARIO*/
+.formulario label{
+    font-family: 'Montserrat', sans-serif;
+}
+.formulario input{
+    font-family: 'Montserrat', sans-serif;
+}
+.tit-forms{
+    background: #02C0D1;
+    height: 150px;
+    font-family: 'Montserrat', sans-serif; 
+    color: white; 
+}
+.tit-forms h1{
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5em;
+    margin-left: 20px;
+}
+.submit{
+    background: #B4C52B;
+    border: #B4C52B;
+    font-family: 'Montserrat', sans-serif;
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+/*CARD NAVIGATION*/
+#tabs{
+    padding: 5px 0px 5px 0px;
+}
+#tab1 h1{
+    text-align: left;
+}
+#tab2 h1{
+    text-align: left;
+}
+#tab3 h1{
+    text-align: left;
+}
+#tab4 h1{
+    text-align: left;
+}
+#tab5 h1{
+    text-align: left;
+}
+#tab6 h1{
+    text-align: left;
+}
+.nav-pills{
+    background: #E5EEE9;
+    border-radius: 10px;
+}
+ul li a{
+    color: #38658C;
+    text-decoration: none;
+    font-size: 16px;
+    text-align: center;
+    display: block;
+    padding: 10px 0px;
+    font-family: 'Montserrat', sans-serif; 
+}
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+    background: #B4C52B;
+    border-radius: 10px;
+}
+.apartado{
+    padding: 0px 40px 0px 10px;
+}
+.apartados{
+    padding: 0px 10px 0px 10px;
+}
+.secciones{
+    width: 100%;
+}
+.secciones article{
+    padding: 30px;
+}
+.secciones article p{
+    text-align: justify;
+    font-family: 'Montserrat', sans-serif; 
+}
+@media screen and (max-width:700px){
+    ul.tabs li{
+        width: none;
+        flex-basis: 0;
+        flex-grow: 1;
+    }
+}
+@media screen and (max-width:450px){
+    .secciones article{
+        padding: 20px;
+    }
+}
+
+.table thead{
+    background: #006581;
+    color: white;
+}
+
+.requests{
+    background: #B4C52B;
+    border: #B4C52B;
+
+}
+@media(max-width:366px){
+    .requests{
+        margin-left: 40px;
+    }
+}
+.requests:hover{
+    background: #006581;
+}
+.card{
+    margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif; 
+}
+.card-header{
+    background: #006581;
+    color: white;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif; 
+}
+/*VIDEO*/
+.video-bg_video {
+    width: 100%;
+  }
+
+/*CANCUN*/
+.header-Cancun{
+    background-image: url("../img/Cancun-header.png");
+    height: 100vh;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+.titulo-cabecera-Cancun{
+    font-size: 10.5em;
+    color: white;
+    margin-top: 400px;
+}
+@media(max-width:667px){
+    .titulo-cabecera-Cancun{
+        margin-top: 200px;
+        font-size: 6.5em;
+    }
+}
+
+/*CABOS*/
+.header-Cabos{
+    background-image: url("../img/Cabos.png");
+    height: 100vh;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+.titulo-cabecera-Cabos{
+    font-size: 10.5em;
+    color: white;
+    margin-top: 400px;
+}
+@media(max-width:667px){
+    .titulo-cabecera-Cabos{
+        margin-top: 200px;
+        font-size: 6.5em;
+    }
+}
+
+/*RIVERA*/
+.header-RM{
+    background-image: url("../img/Mayan-Riviera.png");
+    height: 100vh;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+.titulo-cabecera-RM{
+    font-size: 10.5em;
+    color: white;
+    margin-top: 400px;
+}
+@media(max-width:667px){
+    .titulo-cabecera-RM{
+        margin-top: 200px;
+        font-size: 6.5em;
+    }
+}
+
+/*BLOG*/
+#post{
+    margin-top: 50px;
+    font-family: 'Montserrat', sans-serif; 
+}
+#buscador{
+    margin-bottom: 25px;
+    font-family: 'Montserrat', sans-serif; 
+}
+#columna-2{
+    margin-top: 50px;
+    font-family: 'Montserrat', sans-serif; 
+}
+#columna-3{
+    margin-top: 50px;
+    font-family: 'Montserrat', sans-serif; 
+}
+#columna-4{
+    margin-top: 50px;
+    font-family: 'Montserrat', sans-serif; 
+}
+#columna-5{
+    margin-top: 50px;
+    font-family: 'Montserrat', sans-serif; 
+}
+.read{
+    background: #B4C52B;
+    border: #B4C52B;
+    color: white;
+}
+.read a{
+    text-decoration: none;
+    color: white;
+}
+.read:hover{
+    background: #02C0D1;
+}
+.Archives h2{
+    color: #02C0D1;
+    font-family: 'Montserrat', sans-serif; 
+}
+.Archives a{
+  color: #0081DF; 
+  font-family: 'Montserrat', sans-serif;  
+}
+.recent-post h2{
+    color: #02C0D1;
+    font-family: 'Montserrat', sans-serif; 
+}
+.recent-post a{
+    color: #0081DF;  
+    font-family: 'Montserrat', sans-serif; 
+  }
+.antes, .despues{
+      background: #B4C52B;
+}
+.antes span{
+    color: white;
+    font-family: 'Montserrat', sans-serif; 
+}
+.despues span{
+    color: white;
+    font-family: 'Montserrat', sans-serif; 
+}
+.pag{
+    background: #E5EEE9;
+    color: #0081DF;
+    font-family: 'Montserrat', sans-serif;  
+}
+@media(max-width:366px){
+    #carrousel{
+        width: 360px;
+    }
+    #post{
+        width: 360px;
+    }
+}
+/*POST*/
+#pagination a{
+    font-size: 0.8em;
+}
+@media(max-width:366px){
+    #pagination a{
+        font-size: 0.6em;
+    }
+    #antes{
+        width: 40px;
+    }
+    #antes a{
+        height: 50px;
+    }
+    #despues{
+        width: 40px;
+    }
+    #despues a{
+        height: 50px;
+    }
+}
+/*FAQS*/
+.img-faqs{
+    background-image: url("../img/shutterstock_257688022.png");
+    height: 50vh;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+#boton{
+    padding: 50px 5px 50px 5px;
+}
+.request-faq{
+    background: #B4C52B;
+    border: #B4C52B;
+    color: white;
+    width: 300px;
+
+}
+.request-faq:hover{
+    background: #02C0D1;
+}
+#Container-faqs{
+    background-color: transparent;
+    align-items: center;
+    max-width: 1000px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    font-family: 'Montserrat', sans-serif; 
+
+  }
+  .faq{
+    background-color: transparent;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    border: white;
+    font-family: 'Montserrat', sans-serif; 
+  }
+  .title{
+    color: #02C0D1;
+    font-size: 3em;
+    margin-bottom: 20px;
+    font-family: "Oh Golds";
+  }
+  @media(max-width:767px){
+    .title{
+        font-size: 1.5em;
+    }
+}
+.collapsible {
+    background-color: #B4C52B;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif; 
+  }
+  .collapsible:after {
+    content: '\002B';
+    color: white;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+    font-family: 'Montserrat', sans-serif; 
+  }
+  .content {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color:white;
+    font-family: 'Montserrat', sans-serif; 
+  }
+  .content p{
+      margin-top: 10px;
+      color: black;
+      font-family: 'Montserrat', sans-serif; 
+  }
+  .col-8{
+    border-radius: 10px;
+    font-family: 'Montserrat', sans-serif; 
+  }
+/*PAQUETES*/
+.paquete1{
+    background-image: url("../img/Paq-Villa-Del-Palmar.png");
+    height: 80vh;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+.paquete2{
+    background-image: url("../img/Paq-Ocean-Rivera.png");
+    height: 80vh;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+.paquete3{
+    background-image: url("../img/Paq-Las-Palmas.png");
+    height: 80vh;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+.paquete4{
+    background-image: url("../img/Paq-Barcelo-Gran-Faro.png");
+    height: 80vh;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+.paquete5{
+    background-image: url("../img/Paq-Oasis-Palm-Lite.png");
+    height: 80vh;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+.paquete6{
+    background-image: url("../img/Paq-Bluebay-Gran-Esmeralda.png");
+    height: 80vh;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+.paquete7{
+    background-image: url("../img/Paq-Buenaventura-Grand.png");
+    height: 80vh;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+.paquete8{
+    background-image: url("../img/Paq-Krystal-Grand.png");
+    height: 80vh;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+.paquete9{
+    background-image: url("../img/Paq-Grand-Oasis-Palm.png");
+    height: 80vh;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+.paquete10{
+    background-image: url("../img/Paq-Barcelo-Misma-Loya.png");
+    height: 80vh;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+.paquete11{
+    background-image: url("../img/Paq-Gran-Oasis.png");
+    height: 80vh;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+.paquete12{
+    background-image: url("../img/Paq-Melia.png");
+    height: 80vh;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+.text-paq{
+    color: white;
+    font-family: 'Montserrat', sans-serif; 
+    text-align: right;
+    padding: 60px 60px 20px 10px;
+}
+.terms{
+    color: #006581;
+}
+#paq{
+    background: #02C0D1;
+    border-radius: 20px 20px 0px 0px;
+    font-family: 'Montserrat', sans-serif; 
+    color: white;
+    padding: 50px 0px 50px 10px;
+}
+#card{
+    border: none;
+}
+#paq{
+    font-family: 'Montserrat', sans-serif; 
+    color: white;
+    font-size: 1.3em;
+    text-align: left;
+    
+}
+#paq_body{
+    background: #E5EEE9;
+    border-radius: 0px 0px 10px 10px;
+    font-family: 'Montserrat', sans-serif; 
+}
+#paq_body h1{
+    font-size: 1.5em;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif; 
+    color: #006581;
+}
+.imagen-hotel{
+    background: linear-gradient(rgba(0, 0, 0,0), rgba(56, 101, 140)), url("../img/cff7b5a9_z.png") center right/cover no-repeat;
+    min-height: calc(130px + 10vmin);
+    font-family: 'Montserrat', sans-serif;
+   
+}
+.imagen-hotel h4{
+    color: #8AE7D4;
+    font-family: 'Montserrat', sans-serif; 
+}
+.imagen-hotel a{
+    color: white;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif; 
+}
+.tabla{
+    background: #E5EEE9;
+    border: #2F2F2F;
+    color: #006581;
+}
+.bordes{
+    border: 2px 2px 2px 2px #2F2F2F;
+    
+}
+#gale{
+    margin-top: 30px;
+    color: #006581;
+}
+#gale h3{
+    color: #006581;
+    font-family: "Oh Golds";
+}
+#gale h4{
+    font-size: 0.9em;
+    font-family: 'Montserrat', sans-serif; 
+}
+#galle-1{
+    background:  url("../img/Room-1.png") center right/cover no-repeat;
+    min-height: calc(330px + 10vmin);
+    font-family: 'Montserrat', sans-serif; 
+}
+#galle-2{
+    background:  url("../img/Room-2.png") center right/cover no-repeat;
+    min-height: calc(330px + 10vmin);
+    font-family: 'Montserrat', sans-serif; 
+}
+#galle-3{
+    background:  url("../img/Room-3.png") center right/cover no-repeat;
+    min-height: calc(330px + 10vmin);
+    font-family: 'Montserrat', sans-serif; 
+}
+/*Modal*/
+.modal{
+    color: #2F2F2F;
+}
+.modal-header{
+    background: #02C0D1;
+    color: white;
+}
+.modal-footer button{
+    margin-right: 450px;
+    width: 200px;
+    background: #B4C52B;
+    border: #B4C52B;
+
+}
+.modal-footer button:hover{
+    background: #02C0D1;
+    border: #02C0D1;
+}
