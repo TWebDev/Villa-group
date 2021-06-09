@@ -1,0 +1,372 @@
+<!-- Beach Vibes Signup Form HTML Code -->
+<head> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+</head>
+ <style> 
+div#sib_embed_signup .needsfilled input {
+border-color: #B94A48 !important; color: #B94A48 !important;
+} 
+div#sib_embed_signup .needsfilled {
+ color: #B94A48 !important;
+}
+div#sib_embed_signup input[type="text"] {
+border: 1px solid #CCCCCC;
+border-radius: 4px;
+-moz-border-radius: 4px;
+-webkit-border-radius: 4px;
+} 
+div#sib_embed_signup input[type=number]::-webkit-inner-spin-button, div#sib_embed_signup input[type=number]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+-moz-appearance: none;
+margin:0; 
+}
+div#sib_embed_signup input[type=number] {
+-moz-appearance: textfield;
+} 
+div#sib_embed_signup div.message_area {
+ position: relative;padding: 10px 30px 10px 10px; 
+margin: 0px 0px 10px 0px;
+font-size:14px; 
+border-radius: 5px;
+-webkit-border-radius: 5px; 
+-moz-border-radius: 5px;
+box-sizing: border-box;
+}
+div#sib_embed_signup div.message_area button.close {
+position: absolute;
+right: 8px;top: 8px;
+color: inherit;
+background: 0 0;
+border: 0;
+padding: 0px;
+-webkit-appearance: none;
+cursor: pointer;font-weight: bold;
+font-size: 14px;
+}
+.tipicon{
+cursor: pointer;
+padding: 3px 7px;
+font-size: 12px;
+font-weight: bold;
+line-height: 1.2;
+color: #fff;
+text-align: center;
+vertical-align: baseline;
+background-color: #999;
+border-radius: 10px;
+text-decoration: none;
+}
+.tooltip{
+display: inline;
+position: absolute;
+left: 97%;
+}
+.tooltip:hover:after{
+background: #333;
+background: rgba(0,0,0,.8);
+border-radius: 5px;
+color: #fff;
+content: attr(data-title);
+right: -2px;
+bottom: 26px;
+padding: 5px 15px;
+position: absolute;
+z-index: 98;width: 220px;
+}
+.tooltip_small:hover:after{
+padding: 5px 5px; 
+width: 150px;
+} 
+.tooltip:hover:before{
+border: solid;
+border-color: #333 transparent;
+border-width: 6px 6px 0 6px;
+bottom: 20px;content: "";
+left: 1px;
+position: absolute;
+z-index: 99;
+}
+.sib-dropdown-menu.flag-icon {
+display: none;
+height: 100px;
+overflow-x: inherit;
+min-width: 230px;
+font-size: 13px;
+list-style: none;
+padding-left:14px;
+border:1px solid rgba(0,0,0,.15);
+background: white;
+border-radius: 4px;
+margin-top:10px;
+}
+.sib-dropdown-menu.flag-icon li {
+margin-bottom: 1px;
+}
+.sib-dropdown-menu.flag-icon li a{
+display: inline-flex;
+white-space: nowrap;
+text-decoration: none;
+color: rgba(0,0,0,0.87);
+box-shadow: none;
+}
+.sms_field .country-block{
+margin-right: 3px !important;
+float: left;
+width: 68px !important;
+}
+.icon-arrow{
+display: inline-block;
+width:0px;height: 0px;
+margin-left:2px;
+margin-top:15px;
+border-top:4px dashed;
+border-right:4px solid transparent;
+border-left:4px solid transparent;
+vertical-align: middle;
+}
+.sib-dropdown-toggle.country-flg{
+display: inline-block;font-size: 13px;
+}
+#sms_prefix {
+font-size: 11px !important;
+}
+body {
+background-Image: url('');
+}
+body {
+background-color: #dcdcdc;
+}
+div#sib_embed_signup .sib-container {
+background: rgba(252,252,252,1);
+}
+div#sib_embed_signup .sib-container h1 {
+font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+div#sib_embed_signup h1.title {
+font-size: 45px;
+}
+div#sib_embed_signup .sib-container .forms-builder-footer, div#sib_embed_signup .sib-container .description, div#sib_embed_signup .sib-container .fake-label, div#sib_embed_signup .sib-container .row, div#sib_embed_signup .sib-container #company-name{
+font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+ div#sib_embed_signup .forms-builder-footer,div#sib_embed_signup div.description,div#sib_embed_signup .fake-label,div#sib_embed_signup .row {
+font-size: 17px;
+}
+div#sib_embed_signup .sib-container .button {
+font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+div#sib_embed_signup .button{
+font-size: 14px;
+}
+div#sib_embed_signup .sib-containter h1 {
+color: #232323;
+}
+div#sib_embed_signup .sib-container {
+color: #343434;
+}
+div#sib_embed_signup .sib-container .button{
+color: #ffffff;
+}
+div#sib_embed_signup .sib-container .button{
+background: #050505;
+}
+div#sib_embed_signup .forms-builder-wrapper{
+max-width: 540px;
+}
+div#sib_embed_signup .sib-container{
+padding: 40px 20px 20px;
+}
+div#sib_embed_signup .header{
+padding: 0 20px;
+}
+div#sib_embed_signup h1.title{ 
+lineHeight: 50px;
+}
+div#sib_embed_signup h3.company-name{
+lineHeight: 35px;
+}
+div#sib_embed_signup div.description{
+  padding: 0 20px 15px;
+}
+ div#sib_embed_signup div.row{ 
+  padding:10px 20px;
+ }
+div#sib_embed_signup input[type=text]{ 
+  padding: 10px 4px;
+ width:100% !important;
+box-sizing: border-box;
+} 
+div#sib_embed_signup input[type=number]{ 
+   padding: 10px 4px;
+width:100% !important;
+ box-sizing: border-box;
+} 
+div#sib_embed_signup #SMS{
+    width:72% !important; 
+    display:inline-block;}
+    div#sib_embed_signup #sms_prefix{
+    width:13% !important; 
+    display:inline-block;
+} 
+</style>
+<link rel="stylesheet" href="https://sendinblue.amazing-mexico.com/public/theme/version4/assets/styles/style.css" /> 
+<div id="sib_embed_signup" style="padding: 10px;">
+     <div class="forms-builder-wrapper" style="position:relative;margin-left: auto;margin-right: auto;">
+          <input type="hidden" id="sib_embed_signup_lang" value="en"> <input type="hidden" id="sib_embed_invalid_email_message" value="That email address is not valid. Please try again.">
+          <input type="hidden" name="primary_type" id="primary_type" value="email"> 
+          <div id="sib_loading_gif_area" style="position: absolute;z-index: 9999;display: none;">
+               <img src="https://sendinblue.amazing-mexico.com/public/theme/version4/assets/images/loader_sblue.gif" style="display: block;margin-left: auto;margin-right: auto;position: relative;top: 40%;">
+             </div>
+              <form class="description" id="theform" name="theform" action="https://sendinblue.amazing-mexico.com/users/subscribeembed/js_id/6gb4/id/1" onsubmit="return false;">
+                 <input type="hidden" name="js_id" id="js_id" value="6gb4">
+                 <input type="hidden" name="from_url" id="from_url" value="yes">
+                 <input type="hidden" name="hdn_email_txt" id="hdn_email_txt" value="">
+                  <div class="sib-container rounded ui-sortable" style="border-radius: 4px; position: relative; margin: 0px; text-align: left; background: rgb(252, 252, 252); padding: 40px 20px 20px; border-width: 0px !important; border-color: transparent !important;"> 
+                      <input type="hidden" name="req_hid" id="req_hid" value="~LASTNAME~FIRSTNAME~SMS" style="font-size: 13px;">
+                       <div class="header" style="padding:0 20px;">
+                            <h1 class="title editable" data-editfield="newsletter_name" style="font-weight: normal; text-align: left; font-size: 45px; margin-bottom: 2px; padding: 0px; margin-top: 0px; font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; color: rgb(35, 35, 35);">
+                                $499 per Couple</h1>
+                                 <h3 id="company-name" style="font-weight: normal; text-align: left; font-size: 25px; margin-bottom: 12px; padding: 0px; margin-top: 0px; font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; color: rgb(52, 52, 52);">
+                                    By Beach Vibes</h3>
+                                 </div>
+                                  <div class="description editable" data-editfield="newsletter_description" style="padding: 0px 20px 15px; border-bottom: 1px solid rgb(204, 204, 204); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; color: rgb(52, 52, 52); font-size: 17px;">
+                                    What type of content do you plan to share with your subscribers? 
+                                </div> 
+                                <div class="view-messages" style=" margin:5px 0;">
+                                 </div> 
+                                 <!-- an email as primary -->
+                                  <div class="primary-group email-group forms-builder-group ui-sortable" style="">
+                                       <div class="row" style="padding:10px 20px; font-size:17px; position:relative; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color:#343434;">
+                                        <div class="lbl-tinyltr" style="clear:both; float:none;">
+                                            Last Name
+                                            <red style="color:#ff0000;">*</red>
+                                        </div> 
+                                        <input type="text" name="LASTNAME" id="LASTNAME" value="" style="display:block; float:left; margin-right:3%; min-width:auto; width:90%; padding:10px 2%; border:1px solid #ccc; -moz-border-radius:4px; border-radius:4px; -webkit-border-radius:4px; font-size:13px;"> 
+                                        <div class="clear" style="clear:both;">
+                                        </div> 
+                                        <div class="hidden-btns"> 
+                                            <a class="btn move" href="#">
+                                                <i class="fa fa-arrows"></i>
+                                            </a>
+                                            <br>
+                                             <a class="btn btn-danger delete" href="#">
+                                                 <i class="fa fa-trash-o fa-inverse"></i>
+                                                </a>
+                                             </div>
+                                             </div>
+                                             <div class="row" style="padding:10px 20px; font-size:17px; position:relative; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color:#343434;">
+                                                <div class="lbl-tinyltr" style="clear:both; float:none;">
+                                                    First Name
+                                                    <red style="color:#ff0000;">*</red>
+                                                </div> 
+                                                <input type="text" name="FIRSTNAME" id="FIRSTNAME" value="" style="display:block; float:left; margin-right:3%; min-width:auto; width:90%; padding:10px 2%; border:1px solid #ccc; -moz-border-radius:4px; border-radius:4px; -webkit-border-radius:4px; font-size:13px;"> 
+                                                <div class="clear" style="clear:both;"></div> 
+                                                <div class="hidden-btns">
+                                                     <a class="btn move" href="#">
+                                                         <i class="fa fa-arrows"></i>
+                                                        </a>
+                                                        <br>
+                                                         <a class="btn btn-danger delete" href="#">
+                                                             <i class="fa fa-trash-o fa-inverse"></i>
+                                                            </a>
+                                                         </div> 
+                                                        </div>
+                                                        <div class="row mandatory-email" style="padding: 10px 20px; position: relative; font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; color: rgb(52, 52, 52); font-size: 17px; left: 0px; top: 0px;"> 
+                                                            <div class="lbl-tinyltr" style="clear: both; float: none; font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;">
+                                                                Enter your email address to subscribe. 
+                                                                <red style="color:#ff0000;">*</red>
+                                                            </div> 
+                                                            <input type="text" name="email" id="email" value="" style="padding: 10px 2%; width: 90%; min-width: auto;">
+                                                             <div style="clear:both;"></div>
+                                                              <div class="hidden-btns"> 
+                                                                  <a class="btn move" href="#">
+                                                                      <i class="fa fa-arrows"></i>
+                                                                    </a>
+                                                                    <br>
+                                                                     <!--<a class="btn btn-danger delete" href="#"><i class="fa fa-trash-o fa-inverse"></i></a>--> 
+                                                                    </div>
+                                                                 </div>
+                                                                 <div class="row" style="padding:10px 20px; font-size:17px; position:relative; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color:#343434;">
+                                                                    <div class="lbl-tinyltr" style="clear:both; float:none;">
+                                                                        phone
+                                                                        <red style="color:#ff0000;">*</red>
+                                                                    </div>
+                                                                     <div class="sms_field" style="position: relative;">
+                                                                         <div class="country-block" style="width:68px;">
+                                                                             <div class="sib-dropdown-toggle country-flg" style="padding: 0px 10px;">
+                                                                                <div class="cflags FR"></div>
+                                                                                <div class="icon-arrow"></div>
+                                                                            </div>
+                                                                             <ul class="sib-dropdown-menu flag-icon" style="display: none;">
+                                                                                <li>
+                                                                                    <a href="#" data-code="93" data-c_code="AF">
+                                                                                         <span class="cflags AF"></span
+                                                                                            ><span class="country-name ng-binding">Afghanistan +93</span>
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <a href="#" data-code="358" data-c_code="AX">
+                                                                                             <span class="cflags AX"></span>
+                                                                                             <span class="country-name ng-binding">Aland Islands +358</span>
+                                                                                            </a>
+                                                                                        </li>
+                                                                                        <li>
+                                                                                            <a href="#" data-code="355" data-c_code="AL">
+                                                                                                 <span class="cflags AL"></span><span class="country-name ng-binding">Albania +355</span>
+                                                                                                </a>
+                                                                                            </li>
+                                                                                            <li>
+                                                                                                <a href="#" data-code="213" data-c_code="DZ">
+                                                                                                     <span class="cflags DZ"></span>
+                                                                                                     <span class="country-name ng-binding">Algeria +213</span>
+                                                                                                    </a>
+                                                                                                </li>
+                                                                                                <li>
+                                                                                                    <a href="#" data-code="1684" data-c_code="AS">
+                                                                                                         <span class="cflags AS"></span>
+                                                                                                         <span class="country-name ng-binding">American Samoa +1684</span>
+                                                                                                        </a>
+                                                                                                    </li>
+                                                                                                    <li>
+                                                                                                        <a href="#" data-code="376" data-c_code="AD"> 
+                                                                                                            <span class="cflags AD"></span>
+                                                                                                            <span class="country-name ng-binding">Andorra +376</span>
+                                                                                                        </a>
+                                                                                                    </li>
+                                                                                                    <li>
+                                                                                                        <a href="#" data-code="244" data-c_code="AO"> 
+                                                                                                            <span class="cflags AO"></span>
+                                                                                                            <span class="country-name ng-binding">Angola +244</span>
+                                                                                                        </a>
+                                                                                                    </li>
+                                                                                                    <li>
+                                                                                                        <a href="#" data-code="1264" data-c_code="AI">
+                                                                                                             <span class="cflags AI"></span>
+                                                                                                             <span class="country-name ng-binding">Anguilla +1264</span>
+                                                                                                            </a>
+                                                                                                        </li>
+                                                                                                        <li>
+                                                                                                            <a href="#" data-code="672" data-c_code="AQ">
+                                                                                                                 <span class="cflags AQ"></span>
+                                                                                                                 <span class="country-name ng-binding">Antarctica +672</span>
+                                                                                                                </a>
+                                                                                                            </li>
+                                                                                                            <li>
+                                                                                                                <a href="#" data-code="1268" data-c_code="AG"> 
+                                                                                                                    <span class="cflags AG"></span>
+                                                                                                                    <span class="country-name ng-binding">Antigua and Barbuda +1268</span>
+                                                                                                                </a>
+                                                                                                            </li>
+                                                                                                            <li>
+                                                                                                                <a href="#" data-code="54" data-c_code="AR"> 
+                                                                                                                    <span class="cflags AR"></span>
+                                                                                                                    <span class="country-name ng-binding">Argentina +54</span>
+                                                                                                                </a>
+                                                                                                            </li>
+                                                                                                            <li>
+                                                                                                                <a href="#" data-code="374" data-c_code="AM">
+                                                                                                                     <span class="cflags AM"></span>
+                                                                                                                     <span class="country-name ng-binding">Armenia +374</span>
+                                                                                                                    </a></li><li><a href="#" data-code="297" data-c_code="AW"> <span class="cflags AW"></span><span class="country-name ng-binding">Aruba +297</span></a></li><li><a href="#" data-code="61" data-c_code="AU"> <span class="cflags AU"></span><span class="country-name ng-binding">Australia +61</span></a></li><li><a href="#" data-code="43" data-c_code="AT"> <span class="cflags AT"></span><span class="country-name ng-binding">Austria +43</span></a></li><li><a href="#" data-code="994" data-c_code="AZ"> <span class="cflags AZ"></span><span class="country-name ng-binding">Azerbaijan +994</span></a></li><li><a href="#" data-code="1242" data-c_code="BS"> <span class="cflags BS"></span><span class="country-name ng-binding">Bahamas +1242</span></a></li><li><a href="#" data-code="973" data-c_code="BH"> <span class="cflags BH"></span><span class="country-name ng-binding">Bahrain +973</span></a></li><li><a href="#" data-code="880" data-c_code="BD"> <span class="cflags BD"></span><span class="country-name ng-binding">Bangladesh +880</span></a></li><li><a href="#" data-code="1246" data-c_code="BB"> <span class="cflags BB"></span><span class="country-name ng-binding">Barbados +1246</span></a></li><li><a href="#" data-code="375" data-c_code="BY"> <span class="cflags BY"></span><span class="country-name ng-binding">Belarus +375</span></a></li><li><a href="#" data-code="32" data-c_code="BE"> <span class="cflags BE"></span><span class="country-name ng-binding">Belgium +32</span></a></li><li><a href="#" data-code="501" data-c_code="BZ"> <span class="cflags BZ"></span><span class="country-name ng-binding">Belize +501</span></a></li><li><a href="#" data-code="229" data-c_code="BJ"> <span class="cflags BJ"></span><span class="country-name ng-binding">Benin +229</span></a></li><li><a href="#" data-code="1441" data-c_code="BM"> <span class="cflags BM"></span><span class="country-name ng-binding">Bermuda +1441</span></a></li><li><a href="#" data-code="975" data-c_code="BT"> <span class="cflags BT"></span><span class="country-name ng-binding">Bhutan +975</span></a></li><li><a href="#" data-code="591" data-c_code="BO"> <span class="cflags BO"></span><span class="country-name ng-binding">Bolivia, Plurinational State of +591</span></a></li><li><a href="#" data-code="599" data-c_code="BQ"> <span class="cflags BQ"></span><span class="country-name ng-binding">Bonaire, Sint Eustatius and Saba +599</span></a></li><li><a href="#" data-code="387" data-c_code="BA"> <span class="cflags BA"></span><span class="country-name ng-binding">Bosnia and Herzegovina +387</span></a></li><li><a href="#" data-code="267" data-c_code="BW"> <span class="cflags BW"></span><span class="country-name ng-binding">Botswana +267</span></a></li><li><a href="#" data-code="47" data-c_code="BV"> <span class="cflags BV"></span><span class="country-name ng-binding">Bouvet Island +47</span></a></li><li><a href="#" data-code="55" data-c_code="BR"> <span class="cflags BR"></span><span class="country-name ng-binding">Brazil +55</span></a></li><li><a href="#" data-code="246" data-c_code="IO"> <span class="cflags IO"></span><span class="country-name ng-binding">British Indian Ocean Territory +246</span></a></li><li><a href="#" data-code="673" data-c_code="BN"> <span class="cflags BN"></span><span class="country-name ng-binding">Brunei Darussalam +673</span></a></li><li><a href="#" data-code="359" data-c_code="BG"> <span class="cflags BG"></span><span class="country-name ng-binding">Bulgaria +359</span></a></li><li><a href="#" data-code="226" data-c_code="BF"> <span class="cflags BF"></span><span class="country-name ng-binding">Burkina Faso +226</span></a></li><li><a href="#" data-code="257" data-c_code="BI"> <span class="cflags BI"></span><span class="country-name ng-binding">Burundi +257</span></a></li><li><a href="#" data-code="855" data-c_code="KH"> <span class="cflags KH"></span><span class="country-name ng-binding">Cambodia +855</span></a></li><li><a href="#" data-code="237" data-c_code="CM"> <span class="cflags CM"></span><span class="country-name ng-binding">Cameroon +237</span></a></li><li><a href="#" data-code="1" data-c_code="CA"> <span class="cflags CA">
+
+                            </span><span class="country-name ng-binding">Canada +1</span></a></li><li><a href="#" data-code="238" data-c_code="CV"> <span class="cflags CV"></span><span class="country-name ng-binding">Cape Verde +238</span></a></li><li><a href="#" data-code="1345" data-c_code="KY"> <span class="cflags KY"></span><span class="country-name ng-binding">Cayman Islands +1345</span></a></li><li><a href="#" data-code="236" data-c_code="CF"> <span class="cflags CF"></span><span class="country-name ng-binding">Central African Republic +236</span></a></li><li><a href="#" data-code="235" data-c_code="TD"> <span class="cflags TD"></span><span class="country-name ng-binding">Chad +235</span></a></li><li><a href="#" data-code="56" data-c_code="CL"> <span class="cflags CL"></span><span class="country-name ng-binding">Chile +56</span></a></li><li><a href="#" data-code="86" data-c_code="CN"> <span class="cflags CN"></span><span class="country-name ng-binding">China +86</span></a></li><li><a href="#" data-code="61" data-c_code="CX"> <span class="cflags CX"></span><span class="country-name ng-binding">Christmas Island +61</span></a></li><li><a href="#" data-code="61" data-c_code="CC"> <span class="cflags CC"></span><span class="country-name ng-binding">Cocos (Keeling) Islands +61</span></a></li><li><a href="#" data-code="57" data-c_code="CO"> <span class="cflags CO"></span><span class="country-name ng-binding">Colombia +57</span></a></li><li><a href="#" data-code="269" data-c_code="KM"> <span class="cflags KM"></span><span class="country-name ng-binding">Comoros +269</span></a></li><li><a href="#" data-code="242" data-c_code="CG"> <span class="cflags CG"></span><span class="country-name ng-binding">Congo +242</span></a></li><li><a href="#" data-code="243" data-c_code="CD"> <span class="cflags CD"></span><span class="country-name ng-binding">Congo, the Democratic Republic of the +243</span></a></li><li><a href="#" data-code="682" data-c_code="CK"> <span class="cflags CK"></span><span class="country-name ng-binding">Cook Islands +682</span></a></li><li><a href="#" data-code="506" data-c_code="CR"> <span class="cflags CR"></span><span class="country-name ng-binding">Costa Rica +506</span></a></li><li><a href="#" data-code="225" data-c_code="CI"> <span class="cflags CI"></span><span class="country-name ng-binding">Cote d'Ivoire +225</span></a></li><li><a href="#" data-code="385" data-c_code="HR"> <span class="cflags HR"></span><span class="country-name ng-binding">Croatia +385</span></a></li><li><a href="#" data-code="53" data-c_code="CU"> <span class="cflags CU"></span><span class="country-name ng-binding">Cuba +53</span></a></li><li><a href="#" data-code="599" data-c_code="CW"> <span class="cflags CW"></span><span class="country-name ng-binding">Curacao +599</span></a></li><li><a href="#" data-code="357" data-c_code="CY"> <span class="cflags CY"></span><span class="country-name ng-binding">Cyprus +357</span></a></li><li><a href="#" data-code="420" data-c_code="CZ"> <span class="cflags CZ"></span><span class="country-name ng-binding">Czech Republic +420</span></a></li><li><a href="#" data-code="45" data-c_code="DK"> <span class="cflags DK"></span><span class="country-name ng-binding">Denmark +45</span></a></li><li><a href="#" data-code="253" data-c_code="DJ"> <span class="cflags DJ"></span><span class="country-name ng-binding">Djibouti +253</span></a></li><li><a href="#" data-code="1767" data-c_code="DM"> <span class="cflags DM"></span><span class="country-name ng-binding">Dominica +1767</span></a></li><li><a href="#" data-code="1809" data-c_code="DO"> <span class="cflags DO"></span><span class="country-name ng-binding">Dominican Republic +1809</span></a></li><li><a href="#" data-code="593" data-c_code="EC"> <span class="cflags EC"></span><span class="country-name ng-binding">Ecuador +593</span></a></li><li><a href="#" data-code="20" data-c_code="EG"> <span class="cflags EG"></span><span class="country-name ng-binding">Egypt +20</span></a></li><li><a href="#" data-code="503" data-c_code="SV"> <span class="cflags SV"></span><span class="country-name ng-binding">El Salvador +503</span></a></li><li><a href="#" data-code="240" data-c_code="GQ"> <span class="cflags GQ"></span><span class="country-name ng-binding">Equatorial Guinea +240</span></a></li><li><a href="#" data-code="291" data-c_code="ER"> <span class="cflags ER"></span><span class="country-name ng-binding">Eritrea +291</span></a></li><li><a href="#" data-code="372" data-c_code="EE"> <span class="cflags EE"></span><span class="country-name ng-binding">Estonia +372</span></a></li><li><a href="#" data-code="251" data-c_code="ET"> <span class="cflags ET"></span><span class="country-name ng-binding">Ethiopia +251</span></a></li><li><a href="#" data-code="500" data-c_code="FK"> <span class="cflags FK"></span><span class="country-name ng-binding">Falkland Islands (Malvinas) +500</span></a></li><li><a href="#" data-code="298" data-c_code="FO"> <span class="cflags FO"></span><span class="country-name ng-binding">Faroe Islands +298</span></a></li><li><a href="#" data-code="679" data-c_code="FJ"> <span class="cflags FJ"></span><span class="country-name ng-binding">Fiji +679</span></a></li><li><a href="#" data-code="358" data-c_code="FI"> <span class="cflags FI"></span><span class="country-name ng-binding">Finland +358</span></a></li><li><a href="#" data-code="33" data-c_code="FR"> <span class="cflags FR"></span><span class="country-name ng-binding">France +33</span></a></li><li><a href="#" data-code="594" data-c_code="GF"> <span class="cflags GF"></span><span class="country-name ng-binding">French Guiana +594</span></a></li><li><a href="#" data-code="689" data-c_code="PF"> <span class="cflags PF"></span><span class="country-name ng-binding">French Polynesia +689</span></a></li><li><a href="#" data-code="262" data-c_code="TF"> <span class="cflags TF"></span><span class="country-name ng-binding">French Southern Territories +262</span></a></li><li><a href="#" data-code="241" data-c_code="GA"> <span class="cflags GA"></span><span class="country-name ng-binding">Gabon +241</span></a></li><li><a href="#" data-code="220" data-c_code="GM"> <span class="cflags GM"></span><span class="country-name ng-binding">Gambia +220</span></a></li><li><a href="#" data-code="995" data-c_code="GE"> <span class="cflags GE"></span><span class="country-name ng-binding">Georgia +995</span></a></li><li><a href="#" data-code="49" data-c_code="DE"> <span class="cflags DE"></span><span class="country-name ng-binding">Germany +49</span></a></li><li><a href="#" data-code="233" data-c_code="GH"> <span class="cflags GH"></span><span class="country-name ng-binding">Ghana +233</span></a></li><li><a href="#" data-code="350" data-c_code="GI"> <span class="cflags GI"></span><span class="country-name ng-binding">Gibraltar +350</span></a></li><li><a href="#" data-code="30" data-c_code="GR"> <span class="cflags GR"></span><span class="country-name ng-binding">Greece +30</span></a></li><li><a href="#" data-code="299" data-c_code="GL"> <span class="cflags GL"></span><span class="country-name ng-binding">Greenland +299</span></a></li><li><a href="#" data-code="1473" data-c_code="GD"> <span class="cflags GD"></span><span class="country-name ng-binding">Grenada +1473</span></a></li><li><a href="#" data-code="590" data-c_code="GP"> <span class="cflags GP"></span><span class="country-name ng-binding">Guadeloupe +590</span></a></li><li><a href="#" data-code="1671" data-c_code="GU"> <span class="cflags GU"></span><span class="country-name ng-binding">Guam +1671</span></a></li><li><a href="#" data-code="502" data-c_code="GT"> <span class="cflags GT"></span><span class="country-name ng-binding">Guatemala +502</span></a></li><li><a href="#" data-code="44" data-c_code="GG"> <span class="cflags GG"></span><span class="country-name ng-binding">Guernsey +44</span></a></li><li><a href="#" data-code="224" data-c_code="GN"> <span class="cflags GN"></span><span class="country-name ng-binding">Guinea +224</span></a></li><li><a href="#" data-code="245" data-c_code="GW"> <span class="cflags GW"></span><span class="country-name ng-binding">Guinea-Bissau +245</span></a></li><li><a href="#" data-code="592" data-c_code="GY"> <span class="cflags GY"></span><span class="country-name ng-binding">Guyana +592</span></a></li><li><a href="#" data-code="509" data-c_code="HT"> <span class="cflags HT"></span><span class="country-name ng-binding">Haiti +509</span></a></li><li><a href="#" data-code="672" data-c_code="HM"> <span class="cflags HM"></span><span class="country-name ng-binding">Heard Island and McDonald Islands +672</span></a></li><li><a href="#" data-code="379" data-c_code="VA"> <span class="cflags VA"></span><span class="country-name ng-binding">Holy See (Vatican City State) +379</span></a></li><li><a href="#" data-code="504" data-c_code="HN"> <span class="cflags HN"></span><span class="country-name ng-binding">Honduras +504</span></a></li><li><a href="#" data-code="852" data-c_code="HK"> <span class="cflags HK"></span><span class="country-name ng-binding">Hong Kong +852</span></a></li><li><a href="#" data-code="36" data-c_code="HU"> <span class="cflags HU"></span><span class="country-name ng-binding">Hungary +36</span></a></li><li><a href="#" data-code="354" data-c_code="IS"> <span class="cflags IS"></span><span class="country-name ng-binding">Iceland +354</span></a></li><li><a href="#" data-code="91" data-c_code="IN"> <span class="cflags IN"></span><span class="country-name ng-binding">India +91</span></a></li><li><a href="#" data-code="62" data-c_code="ID"> <span class="cflags ID"></span><span class="country-name ng-binding">Indonesia +62</span></a></li><li><a href="#" data-code="98" data-c_code="IR"> <span class="cflags IR"></span><span class="country-name ng-binding">Iran, Islamic Republic of +98</span></a></li><li><a href="#" data-code="964" data-c_code="IQ"> <span class="cflags IQ"></span><span class="country-name ng-binding">Iraq +964</span></a></li><li><a href="#" data-code="353" data-c_code="IE"> <span class="cflags IE"></span><span class="country-name ng-binding">Ireland +353</span></a></li><li><a href="#" data-code="44" data-c_code="IM"> <span class="cflags IM"></span><span class="country-name ng-binding">Isle of Man +44</span></a></li><li><a href="#" data-code="972" data-c_code="IL"> <span class="cflags IL"></span><span class="country-name ng-binding">Israel +972</span></a></li><li><a href="#" data-code="39" data-c_code="IT"> <span class="cflags IT"></span><span class="country-name ng-binding">Italy +39</span></a></li><li><a href="#" data-code="1876" data-c_code="JM"> <span class="cflags JM"></span><span class="country-name ng-binding">Jamaica +1876</span></a></li><li><a href="#" data-code="81" data-c_code="JP"> <span class="cflags JP"></span><span class="country-name ng-binding">Japan +81</span></a></li><li><a href="#" data-code="44" data-c_code="JE"> <span class="cflags JE"></span><span class="country-name ng-binding">Jersey +44</span></a></li><li><a href="#" data-code="962" data-c_code="JO"> <span class="cflags JO"></span><span class="country-name ng-binding">Jordan +962</span></a></li><li><a href="#" data-code="7" data-c_code="KZ"> <span class="cflags KZ"></span><span class="country-name ng-binding">Kazakhstan +7</span></a></li><li><a href="#" data-code="254" data-c_code="KE"> <span class="cflags KE"></span><span class="country-name ng-binding">Kenya +254</span></a></li><li><a href="#" data-code="686" data-c_code="KI"> <span class="cflags KI"></span><span class="country-name ng-binding">Kiribati +686</span></a></li><li><a href="#" data-code="850" data-c_code="KP"> <span class="cflags KP"></span><span class="country-name ng-binding">Korea, Democratic People's Republic of +850</span></a></li><li><a href="#" data-code="82" data-c_code="KR"> <span class="cflags KR"></span><span class="country-name ng-binding">Korea, Republic of +82</span></a></li><li><a href="#" data-code="965" data-c_code="KW"> <span class="cflags KW"></span><span class="country-name ng-binding">Kuwait +965</span></a></li><li><a href="#" data-code="996" data-c_code="KG"> <span class="cflags KG"></span><span class="country-name ng-binding">Kyrgyzstan +996</span></a></li><li><a href="#" data-code="856" data-c_code="LA"> <span class="cflags LA"></span><span class="country-name ng-binding">Lao People's Democratic Republic +856</span></a></li><li><a href="#" data-code="371" data-c_code="LV"> <span class="cflags LV"></span><span class="country-name ng-binding">Latvia +371</span></a></li><li><a href="#" data-code="961" data-c_code="LB"> <span class="cflags LB"></span><span class="country-name ng-binding">Lebanon +961</span></a></li><li><a href="#" data-code="266" data-c_code="LS"> <span class="cflags LS"></span><span class="country-name ng-binding">Lesotho +266</span></a></li><li><a href="#" data-code="231" data-c_code="LR"> <span class="cflags LR"></span><span class="country-name ng-binding">Liberia +231</span></a></li><li><a href="#" data-code="218" data-c_code="LY"> <span class="cflags LY"></span><span class="country-name ng-binding">Libya +218</span></a></li><li><a href="#" data-code="423" data-c_code="LI"> <span class="cflags LI"></span><span class="country-name ng-binding">Liechtenstein +423</span></a></li><li><a href="#" data-code="370" data-c_code="LT"> <span class="cflags LT"></span><span class="country-name ng-binding">Lithuania +370</span></a></li><li><a href="#" data-code="352" data-c_code="LU"> <span class="cflags LU"></span><span class="country-name ng-binding">Luxembourg +352</span></a></li><li><a href="#" data-code="853" data-c_code="MO"> <span class="cflags MO"></span><span class="country-name ng-binding">Macao +853</span></a></li><li><a href="#" data-code="389" data-c_code="MK"> <span class="cflags MK"></span><span class="country-name ng-binding">Macedonia, the Former Yugoslav Republic of +389</span></a></li><li><a href="#" data-code="261" data-c_code="MG"> <span class="cflags MG"></span><span class="country-name ng-binding">Madagascar +261</span></a></li><li><a href="#" data-code="265" data-c_code="MW"> <span class="cflags MW"></span><span class="country-name ng-binding">Malawi +265</span></a></li><li><a href="#" data-code="60" data-c_code="MY"> <span class="cflags MY"></span><span class="country-name ng-binding">Malaysia +60</span></a></li><li><a href="#" data-code="960" data-c_code="MV"> <span class="cflags MV"></span><span class="country-name ng-binding">Maldives +960</span></a></li><li><a href="#" data-code="223" data-c_code="ML"> <span class="cflags ML"></span><span class="country-name ng-binding">Mali +223</span></a></li><li><a href="#" data-code="356" data-c_code="MT"> <span class="cflags MT"></span><span class="country-name ng-binding">Malta +356</span></a></li><li><a href="#" data-code="692" data-c_code="MH"> <span class="cflags MH"></span><span class="country-name ng-binding">Marshall Islands +692</span></a></li><li><a href="#" data-code="596" data-c_code="MQ"> <span class="cflags MQ"></span><span class="country-name ng-binding">Martinique +596</span></a></li><li><a href="#" data-code="222" data-c_code="MR"> <span class="cflags MR"></span><span class="country-name ng-binding">Mauritania +222</span></a></li><li><a href="#" data-code="230" data-c_code="MU"> <span class="cflags MU"></span><span class="country-name ng-binding">Mauritius +230</span></a></li><li><a href="#" data-code="262" data-c_code="YT"> <span class="cflags YT"></span><span class="country-name ng-binding">Mayotte +262</span></a></li><li><a href="#" data-code="52" data-c_code="MX"> <span class="cflags MX"></span><span class="country-name ng-binding">Mexico +52</span></a></li><li><a href="#" data-code="691" data-c_code="FM"> <span class="cflags FM"></span><span class="country-name ng-binding">Micronesia, Federated States of +691</span></a></li><li><a href="#" data-code="373" data-c_code="MD"> <span class="cflags MD"></span><span class="country-name ng-binding">Moldova, Republic of +373</span></a></li><li><a href="#" data-code="377" data-c_code="MC"> <span class="cflags MC"></span><span class="country-name ng-binding">Monaco +377</span></a></li><li><a href="#" data-code="976" data-c_code="MN"> <span class="cflags MN"></span><span class="country-name ng-binding">Mongolia +976</span></a></li><li><a href="#" data-code="382" data-c_code="ME"> <span class="cflags ME"></span><span class="country-name ng-binding">Montenegro +382</span></a></li><li><a href="#" data-code="1664" data-c_code="MS"> <span class="cflags MS"></span><span class="country-name ng-binding">Montserrat +1664</span></a></li><li><a href="#" data-code="212" data-c_code="MA"> <span class="cflags MA"></span><span class="country-name ng-binding">Morocco +212</span></a></li><li><a href="#" data-code="258" data-c_code="MZ"> <span class="cflags MZ"></span><span class="country-name ng-binding">Mozambique +258</span></a></li><li><a href="#" data-code="95" data-c_code="MM"> <span class="cflags MM"></span><span class="country-name ng-binding">Myanmar +95</span></a></li><li><a href="#" data-code="264" data-c_code="NA"> <span class="cflags NA"></span><span class="country-name ng-binding">Namibia +264</span></a></li><li><a href="#" data-code="674" data-c_code="NR"> <span class="cflags NR"></span><span class="country-name ng-binding">Nauru +674</span></a></li><li><a href="#" data-code="977" data-c_code="NP"> <span class="cflags NP"></span><span class="country-name ng-binding">Nepal +977</span></a></li><li><a href="#" data-code="31" data-c_code="NL"> <span class="cflags NL"></span><span class="country-name ng-binding">Netherlands +31</span></a></li><li><a href="#" data-code="687" data-c_code="NC"> <span class="cflags NC"></span><span class="country-name ng-binding">New Caledonia +687</span></a></li><li><a href="#" data-code="64" data-c_code="NZ"> <span class="cflags NZ"></span><span class="country-name ng-binding">New Zealand +64</span></a></li><li><a href="#" data-code="505" data-c_code="NI"> <span class="cflags NI"></span><span class="country-name ng-binding">Nicaragua +505</span></a></li><li><a href="#" data-code="227" data-c_code="NE"> <span class="cflags NE"></span><span class="country-name ng-binding">Niger +227</span></a></li><li><a href="#" data-code="234" data-c_code="NG"> <span class="cflags NG"></span><span class="country-name ng-binding">Nigeria +234</span></a></li><li><a href="#" data-code="683" data-c_code="NU"> <span class="cflags NU"></span><span class="country-name ng-binding">Niue +683</span></a></li><li><a href="#" data-code="672" data-c_code="NF"> <span class="cflags NF"></span><span class="country-name ng-binding">Norfolk Island +672</span></a></li><li><a href="#" data-code="1670" data-c_code="MP"> <span class="cflags MP"></span><span class="country-name ng-binding">Northern Mariana Islands +1670</span></a></li><li><a href="#" data-code="47" data-c_code="NO"> <span class="cflags NO"></span><span class="country-name ng-binding">Norway +47</span></a></li><li><a href="#" data-code="968" data-c_code="OM"> <span class="cflags OM"></span><span class="country-name ng-binding">Oman +968</span></a></li><li><a href="#" data-code="92" data-c_code="PK"> <span class="cflags PK"></span><span class="country-name ng-binding">Pakistan +92</span></a></li><li><a href="#" data-code="680" data-c_code="PW"> <span class="cflags PW"></span><span class="country-name ng-binding">Palau +680</span></a></li><li><a href="#" data-code="970" data-c_code="PS"> <span class="cflags PS"></span><span class="country-name ng-binding">Palestine, State of +970</span></a></li><li><a href="#" data-code="507" data-c_code="PA"> <span class="cflags PA"></span><span class="country-name ng-binding">Panama +507</span></a></li><li><a href="#" data-code="675" data-c_code="PG"> <span class="cflags PG"></span><span class="country-name ng-binding">Papua New Guinea +675</span></a></li><li><a href="#" data-code="595" data-c_code="PY"> <span class="cflags PY"></span><span class="country-name ng-binding">Paraguay +595</span></a></li><li><a href="#" data-code="51" data-c_code="PE"> <span class="cflags PE"></span><span class="country-name ng-binding">Peru +51</span></a></li><li><a href="#" data-code="63" data-c_code="PH"> <span class="cflags PH"></span><span class="country-name ng-binding">Philippines +63</span></a></li><li><a href="#" data-code="64" data-c_code="PN"> <span class="cflags PN"></span><span class="country-name ng-binding">Pitcairn +64</span></a></li><li><a href="#" data-code="48" data-c_code="PL"> <span class="cflags PL"></span><span class="country-name ng-binding">Poland +48</span></a></li><li><a href="#" data-code="351" data-c_code="PT"> <span class="cflags PT"></span><span class="country-name ng-binding">Portugal +351</span></a></li><li><a href="#" data-code="1787" data-c_code="PR"> <span class="cflags PR"></span><span class="country-name ng-binding">Puerto Rico +1787</span></a></li><li><a href="#" data-code="974" data-c_code="QA"> <span class="cflags QA"></span><span class="country-name ng-binding">Qatar +974</span></a></li><li><a href="#" data-code="383" data-c_code="XK"> <span class="cflags XK"></span><span class="country-name ng-binding">Republic of Kosovo +383</span></a></li><li><a href="#" data-code="262" data-c_code="RE"> <span class="cflags RE"></span><span class="country-name ng-binding">Reunion +262</span></a></li><li><a href="#" data-code="40" data-c_code="RO"> <span class="cflags RO"></span><span class="country-name ng-binding">Romania +40</span></a></li><li><a href="#" data-code="7" data-c_code="RU"> <span class="cflags RU"></span><span class="country-name ng-binding">Russian Federation +7</span></a></li><li><a href="#" data-code="250" data-c_code="RW"> <span class="cflags RW"></span><span class="country-name ng-binding">Rwanda +250</span></a></li><li><a href="#" data-code="590" data-c_code="BL"> <span class="cflags BL"></span><span class="country-name ng-binding">Saint Barthelemy +590</span></a></li><li><a href="#" data-code="290" data-c_code="SH"> <span class="cflags SH"></span><span class="country-name ng-binding">Saint Helena, Ascension and Tristan da Cunha +290</span></a></li><li><a href="#" data-code="1869" data-c_code="KN"> <span class="cflags KN"></span><span class="country-name ng-binding">Saint Kitts and Nevis +1869</span></a></li><li><a href="#" data-code="1758" data-c_code="LC"> <span class="cflags LC"></span><span class="country-name ng-binding">Saint Lucia +1758</span></a></li><li><a href="#" data-code="599" data-c_code="MF"> <span class="cflags MF"></span><span class="country-name ng-binding">Saint Martin (French part) +599</span></a></li><li><a href="#" data-code="508" data-c_code="PM"> <span class="cflags PM"></span><span class="country-name ng-binding">Saint Pierre and Miquelon +508</span></a></li><li><a href="#" data-code="1784" data-c_code="VC"> <span class="cflags VC"></span><span class="country-name ng-binding">Saint Vincent and the Grenadines +1784</span></a></li><li><a href="#" data-code="685" data-c_code="WS"> <span class="cflags WS"></span><span class="country-name ng-binding">Samoa +685</span></a></li><li><a href="#" data-code="378" data-c_code="SM"> <span class="cflags SM"></span><span class="country-name ng-binding">San Marino +378</span></a></li><li><a href="#" data-code="239" data-c_code="ST"> <span class="cflags ST"></span><span class="country-name ng-binding">Sao Tome and Principe +239</span></a></li><li><a href="#" data-code="966" data-c_code="SA"> <span class="cflags SA"></span><span class="country-name ng-binding">Saudi Arabia +966</span></a></li><li><a href="#" data-code="221" data-c_code="SN"> <span class="cflags SN"></span><span class="country-name ng-binding">Senegal +221</span></a></li><li><a href="#" data-code="381" data-c_code="RS"> <span class="cflags RS"></span><span class="country-name ng-binding">Serbia +381</span></a></li><li><a href="#" data-code="248" data-c_code="SC"> <span class="cflags SC"></span><span class="country-name ng-binding">Seychelles +248</span></a></li><li><a href="#" data-code="232" data-c_code="SL"> <span class="cflags SL"></span><span class="country-name ng-binding">Sierra Leone +232</span></a></li><li><a href="#" data-code="65" data-c_code="SG"> <span class="cflags SG"></span><span class="country-name ng-binding">Singapore +65</span></a></li><li><a href="#" data-code="599" data-c_code="SX"> <span class="cflags SX"></span><span class="country-name ng-binding">Sint Maarten (Dutch part) +599</span></a></li><li><a href="#" data-code="421" data-c_code="SK"> <span class="cflags SK"></span><span class="country-name ng-binding">Slovakia +421</span></a></li><li><a href="#" data-code="386" data-c_code="SI"> <span class="cflags SI"></span><span class="country-name ng-binding">Slovenia +386</span></a></li><li><a href="#" data-code="677" data-c_code="SB"> <span class="cflags SB"></span><span class="country-name ng-binding">Solomon Islands +677</span></a></li><li><a href="#" data-code="252" data-c_code="SO"> <span class="cflags SO"></span><span class="country-name ng-binding">Somalia +252</span></a></li><li><a href="#" data-code="27" data-c_code="ZA"> <span class="cflags ZA"></span><span class="country-name ng-binding">South Africa +27</span></a></li><li><a href="#" data-code="500" data-c_code="GS"> <span class="cflags GS"></span><span class="country-name ng-binding">South Georgia and the South Sandwich Islands +500</span></a></li><li><a href="#" data-code="211" data-c_code="SS"> <span class="cflags SS"></span><span class="country-name ng-binding">South Sudan +211</span></a></li><li><a href="#" data-code="34" data-c_code="ES"> <span class="cflags ES"></span><span class="country-name ng-binding">Spain +34</span></a></li><li><a href="#" data-code="94" data-c_code="LK"> <span class="cflags LK"></span><span class="country-name ng-binding">Sri Lanka +94</span></a></li><li><a href="#" data-code="249" data-c_code="SD"> <span class="cflags SD"></span><span class="country-name ng-binding">Sudan +249</span></a></li><li><a href="#" data-code="597" data-c_code="SR"> <span class="cflags SR"></span><span class="country-name ng-binding">Suriname +597</span></a></li><li><a href="#" data-code="47" data-c_code="SJ"> <span class="cflags SJ"></span><span class="country-name ng-binding">Svalbard and Jan Mayen +47</span></a></li><li><a href="#" data-code="268" data-c_code="SZ"> <span class="cflags SZ"></span><span class="country-name ng-binding">Swaziland +268</span></a></li><li><a href="#" data-code="46" data-c_code="SE"> <span class="cflags SE"></span><span class="country-name ng-binding">Sweden +46</span></a></li><li><a href="#" data-code="41" data-c_code="CH"> <span class="cflags CH"></span><span class="country-name ng-binding">Switzerland +41</span></a></li><li><a href="#" data-code="963" data-c_code="SY"> <span class="cflags SY"></span><span class="country-name ng-binding">Syrian Arab Republic +963</span></a></li><li><a href="#" data-code="886" data-c_code="TW"> <span class="cflags TW"></span><span class="country-name ng-binding">Taiwan, Province of China +886</span></a></li><li><a href="#" data-code="992" data-c_code="TJ"> <span class="cflags TJ"></span><span class="country-name ng-binding">Tajikistan +992</span></a></li><li><a href="#" data-code="255" data-c_code="TZ"> <span class="cflags TZ"></span><span class="country-name ng-binding">Tanzania, United Republic of +255</span></a></li><li><a href="#" data-code="66" data-c_code="TH"> <span class="cflags TH"></span><span class="country-name ng-binding">Thailand +66</span></a></li><li><a href="#" data-code="670" data-c_code="TL"> <span class="cflags TL"></span><span class="country-name ng-binding">Timor-Leste +670</span></a></li><li><a href="#" data-code="228" data-c_code="TG"> <span class="cflags TG"></span><span class="country-name ng-binding">Togo +228</span></a></li><li><a href="#" data-code="690" data-c_code="TK"> <span class="cflags TK"></span><span class="country-name ng-binding">Tokelau +690</span></a></li><li><a href="#" data-code="676" data-c_code="TO"> <span class="cflags TO"></span><span class="country-name ng-binding">Tonga +676</span></a></li><li><a href="#" data-code="1868" data-c_code="TT"> <span class="cflags TT"></span><span class="country-name ng-binding">Trinidad and Tobago +1868</span></a></li><li><a href="#" data-code="216" data-c_code="TN"> <span class="cflags TN"></span><span class="country-name ng-binding">Tunisia +216</span></a></li><li><a href="#" data-code="90" data-c_code="TR"> <span class="cflags TR"></span><span class="country-name ng-binding">Turkey +90</span></a></li><li><a href="#" data-code="993" data-c_code="TM"> <span class="cflags TM"></span><span class="country-name ng-binding">Turkmenistan +993</span></a></li><li><a href="#" data-code="1649" data-c_code="TC"> <span class="cflags TC"></span><span class="country-name ng-binding">Turks and Caicos Islands +1649</span></a></li><li><a href="#" data-code="688" data-c_code="TV"> <span class="cflags TV"></span><span class="country-name ng-binding">Tuvalu +688</span></a></li><li><a href="#" data-code="256" data-c_code="UG"> <span class="cflags UG"></span><span class="country-name ng-binding">Uganda +256</span></a></li><li><a href="#" data-code="380" data-c_code="UA"> <span class="cflags UA"></span><span class="country-name ng-binding">Ukraine +380</span></a></li><li><a href="#" data-code="971" data-c_code="AE"> <span class="cflags AE"></span><span class="country-name ng-binding">United Arab Emirates +971</span></a></li><li><a href="#" data-code="44" data-c_code="GB"> <span class="cflags GB"></span><span class="country-name ng-binding">United Kingdom +44</span></a></li><li><a href="#" data-code="1" data-c_code="US"> <span class="cflags US"></span><span class="country-name ng-binding">United States +1</span></a></li><li><a href="#" data-code="246" data-c_code="UM"> <span class="cflags UM"></span><span class="country-name ng-binding">United States Minor Outlying Islands +246</span></a></li><li><a href="#" data-code="598" data-c_code="UY"> <span class="cflags UY"></span><span class="country-name ng-binding">Uruguay +598</span></a></li><li><a href="#" data-code="998" data-c_code="UZ"> <span class="cflags UZ"></span><span class="country-name ng-binding">Uzbekistan +998</span></a></li><li><a href="#" data-code="678" data-c_code="VU"> <span class="cflags VU"></span><span class="country-name ng-binding">Vanuatu +678</span></a></li><li><a href="#" data-code="58" data-c_code="VE"> <span class="cflags VE"></span><span class="country-name ng-binding">Venezuela, Bolivarian Republic of +58</span></a></li><li><a href="#" data-code="84" data-c_code="VN"> <span class="cflags VN"></span><span class="country-name ng-binding">Viet Nam +84</span></a></li><li><a href="#" data-code="1284" data-c_code="VG"> <span class="cflags VG"></span><span class="country-name ng-binding">Virgin Islands, British +1284</span></a></li><li><a href="#" data-code="1340" data-c_code="VI"> <span class="cflags VI"></span><span class="country-name ng-binding">Virgin Islands, U.S. +1340</span></a></li><li><a href="#" data-code="681" data-c_code="WF"> <span class="cflags WF"></span><span class="country-name ng-binding">Wallis and Futuna +681</span></a></li><li><a href="#" data-code="212" data-c_code="EH"> <span class="cflags EH"></span><span class="country-name ng-binding">Western Sahara +212</span></a></li><li><a href="#" data-code="967" data-c_code="YE"> <span class="cflags YE"></span><span class="country-name ng-binding">Yemen +967</span></a></li><li><a href="#" data-code="260" data-c_code="ZM"> <span class="cflags ZM"></span><span class="country-name ng-binding">Zambia +260</span></a></li><li><a href="#" data-code="263" data-c_code="ZW"> <span class="cflags ZW"></span><span class="country-name ng-binding">Zimbabwe +263</span></a></li></ul></div> <input type="text" name="sms_prefix" id="sms_prefix" value="+33" style="width: 10%; padding: 10px 5px; font-size: 11px;margin-right: -5px; border-right: none; background-color: rgb(234,234,234);-webkit-border-radius: ;-moz-border-radius: ;border-radius: 4px 0px 0px 4px;;" required="" readonly=""><input type="text" name="SMS" id="SMS" value="" style="width:63%; padding:10px 4px; min-width: auto; border-radius: 0px;display: inline-block;"><a href="#" data-title="The SMS field must contain between 6 and 19 digits and include the country code without using +/0 (e.g. 1xxxxxxxxxx for the United States)." class="tooltip tipicon" style="padding: 3px 7px; left: 95%; font-size: 12px; bottom: 9px;">?</a> </div> <div class="clear" style="clear:both;"></div> <div class="hidden-btns"> <a class="btn move" href="#"><i class="icon-move"></i></a><br> <a class="btn btn-danger delete" href="#"><i class="icon-white icon-trash"></i></a> </div> </div></div> <!-- end of primary --> <div class="byline" style="font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; color: rgb(52, 52, 52); font-weight: bold; font-size: 16px; text-align: center; display: block;"> <button class="button editable " type="submit" data-editfield="subscribe" style="font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; color: rgb(255, 255, 255); background: rgb(5, 5, 5); display: inline-block; white-space: nowrap; min-height: 40px; margin: 0px 5px 0px 0px; padding: 0px 22px; text-decoration: none; text-transform: uppercase; text-align: center; font-weight: bold; font-style: normal; font-size: 14px; cursor: pointer; border: 0px; border-radius: 4px; vertical-align: top; height: auto; line-height: 150%;">Subscribe</button></div> <div style="clear:both;"></div> <div class="row forms-builder-group" style="padding:10px 20px; font-size:17px; position:relative; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color:#343434;"><div class="lbl-tinyltr" id="sib_gdpr" style="clear:both; float:none; word-wrap: break-word;">Your e-mail address is only used to send you our newsletter and information about the activities of The Company. You can always use the unsubscribe link included in the newsletter.</div> <div class="clear" style="clear:both;"></div> <div class="hidden-btns"> <a class="btn move" href="#"><i class="fa fa-arrows"></i></a><br> <a class="btn btn-danger delete" href="#"><i class="fa fa-trash-o fa-inverse"></i></a> </div> </div></div> </form> </div> </div> <script type="text/javascript"> var sib_prefix = 'sib'; var sib_dateformat = 'dd-mm-yyyy'; </script> <script type='text/javascript' src='https://sendinblue.amazing-mexico.com/public/theme/version4/assets/js/src/subscribe-validate.js?v=1601471385'></script> <!-- End : Beach Vibes Signup Form HTML Code -->
