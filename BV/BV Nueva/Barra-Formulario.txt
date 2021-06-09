@@ -1,0 +1,127 @@
+<form method="POST" id="barraInicio" name="mc-embedded-subscribe-form " class="validate" target="_blank" novalidate>
+
+                    <div class="form-row">
+                      <div class="container-fluid" >
+                      <div class="row justify-content-center">
+                        <div class="col-md-3 mb-2" id="destinations-">
+                          <label for="" >DESTINATION</label> <br>
+                          <select name="" id="mce-MMERGE7">
+                            <option selected>Where are you traveling?</option>
+                            <option value="Loreto">Loreto</option>
+                            <option value="Cabo San Lucas">Cabo San Lucas</option>
+                            <option value="Puerto Vallarta">Puerto Vallarta</option>
+                            <option value="Cancun">Cancun</option>
+                          </select>
+                         
+                        </div>
+                          <div class="col-md-2 mb-2 raya">
+                              <label for="" >CHECK-IN</label>
+                              <input type="date" class="form-control" placeholder="Add Dates" id="mce-MMERGE8">
+                          </div>
+                            <div class="col-md-2 mb-2">
+                                <label for="">CHECK-OUT</label>
+                                <input type="date" class="form-control" placeholder="Add Dates" id="mce-MMERGE9">
+                            </div>
+                            <div class="col-md-1 mb-2 raya">
+                              <label >ADULTS</label>
+                                <select name="" id="mce-MMERGE5" >
+                                  <option selected>Number</option>
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                  <option value="4">4</option>
+                                </select>
+                                
+                            </div>
+                            <div class="col-md-1 mb-2">
+                              <label>KIDS</label>
+                                <select name="" id="mce-MMERGE6">
+                                  <option selected>Number</option>
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                  <option value="4">4</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 raya  " id="boton" >
+                              <button type="submit" class="btn btn-primary d-block mx-auto" id="search"  data-bs-toggle="modal" data-bs-target="#exampleModal">Search <i class="fas fa-search"></i></button>
+                            </div>
+                          
+                          </div>
+              
+                        </div>
+                      </div>
+                    </form>
+
+
+
+
+
+
+
+
+
+
+
+
+ <!--Barra en celular-->
+          <div class="d-block d-sm-block d-md-none">
+            <form  action="https://gmail.us3.list-manage.com/subscribe/post?u=6664ffc26dd54812c983929d9&amp;id=ce3407d758" method="POST" id="barraInicio" name="mc-embedded-subscribe-form " class="validate " target="_blank" novalidate >
+              <div class="form-row">
+                <div class="container-fluid" >
+                <div class="row justify-content-center">
+                  <div class=" col-md-2 mb-2">
+                    <label for="" >DESTINATION</label>
+                    <select name="" id="mce-MMERGE7">
+                      <option selected>where are you traveling?</option>
+                      <option value="Loreto">Loreto</option>
+                      <option value="Cabo San Lucas">Cabo San Lucas</option>
+                      <option value="Puerto Vallarta">Puerto Vallarta</option>
+                      <option value="Cancun">Cancun</option>
+                    </select>
+                   
+                  </div>
+                    <div class=" col-md-2 mb-2 ">
+                        <label for="" >CHECK-IN</label>
+                        <input type="date" class="form-control" placeholder="Add Dates" id="mce-MMERGE8">
+                    </div>
+                      <div class=" col-md-2 mb-2">
+                          <label for="">CHECK-OUT</label>
+                          <input type="date" class="form-control" placeholder="Add Dates" id="mce-MMERGE9">
+                      </div>
+                      <div class=" col-md-2 mb-2 ">
+                        <label >ADULTS</label>
+                        <select name="" id="mce-MMERGE5" >
+                          <option selected>Number</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                        </select>
+                      </div>
+                      <div class=" col-md-2 mb-2">
+                        <label>KIDS</label>
+                        <select name="" id="mce-MMERGE6">
+                          <option selected>Number</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                        </select>
+                      </div>
+                      <div class=" col-md-2 " >
+                        <button class="btn btn-primary" id="search" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal">Search <i class="fas fa-search"></i></button>
+                      </div>
+                    
+                    </div>
+        
+                  </div>
+                </div>
+              </form>
+          </div>
+         <!--Termina barra celular-->
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
