@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'LoveloBlack';
+  src: url('LoveloBlack.eot');
+  src: url('LoveloBlack.eot?#iefix') format('embedded-opentype'),
+       url('LoveloBlack.svg#LoveloBlack') format('svg'),
+       url('LoveloBlack.ttf') format('truetype'),
+       url('LoveloBlack.woff') format('woff'),
+       url('LoveloBlack.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
