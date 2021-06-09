@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+    <title></title>
+
+    <style>
+        p, li, ul{
+            font-family: 'Raleway', sans-serif;
+        }
+        h2, h1, .banda{
+            font-family: 'Rubik', sans-serif;
+        }
+        .banda{
+            color: white;
+            background-color: #2682BF;
+            width: 400px;
+            height: 40px;
+            text-align: right;
+            font-size: 2em;
+           
+        }
+    </style>
+</head>
+<body>
+    <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" >
+        <!--SALUDO-->
+        <tr>
+            <td align="center" style="padding: 40px 0 30px 0;">
+                <img style="max-width: 100px;" src="https://i.postimg.cc/fLBgf2fm/SNV-Mail-Personalizado-Octo-2020-01.png" alt="Save'n Vacations">
+                <h1 style="color: #000000; display: inline-block; font-size: 3em;">Hello <strong>Mrs. Sharon,</strong></h1>
+                <!--Nombre del Agente-->
+                <p style="margin: 0; padding: 0; font-size: 10pt; overflow-wrap: break-word; text-align: center; font-family: 'Raleway', sans-serif; color: #695B68;"></p>
+                    This is <strong>Pablo</strong> your travel advisor for Cancun &amp; Villa del Palmar, enjoy our special promotion staying for
+                    <p style="color: #2682BF; display: inline-block; font-size: 2em; "> <b> 5 days and 4 nights in any of our 5 stars resorts.</b> </p> </p>
+            </td>
+        </tr>
+        <!--PROMOTION DETAILS & BENEFITS-->
+        <tr>
+            <td>
+                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                        <td>
+                            <div class="banda" style="width: 500px;"> <h1 style="font-size: 0.7em; margin-right: 20px;">PROMOTION DETAILS & BENEFITS:</h1></div>
+                                    <p style="margin: 0; padding: 0; font-family: arial; font-size: 10pt; overflow-wrap: break-word; color: #695B68;" ></p> </p>
+                                    <div class="promotion">
+                                    <ul style="list-style-type: circle; text-align: left; color: #000000;">
+                                    <li>Stay 5 days &amp; 4 nights in a 5 stars resort.</li>
+                                    <li>All inclusive: meals, beverages &amp; entretainment plan included.</li>
+                                    <li>Transportation airport to resort included.</li>
+                                    <li>Special price includes 2 adults &amp;2 kids.</li>
+                                    <li>If you haven't decide a date you can have an open dated certificate with <br /> an extended guarantee to travel for the next 18 months.</li>
+                                    <li>Every change in your dates is free, no extra charges.</li>
+                                    </ul>
+                                    </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <!--Take a look at your next Vacations-->
+        <tr>
+            <td>
+                <h2 style="color: #FFC34A; text-shadow: 3px 3px #2682BF;" align="center" >TAKE A LOOK AT YOUR NEXT VACATIONS</h2>
+        <a href="">
+        <img src="https://i.postimg.cc/TwQ6bPD2/STT-Mail-Personalizado-Octo-2020-09.png" style="max-width: 600px;" alt="We are ready for you"> </a>
+        <div class="youtube" style="background: #2682BF;">
+            <h1 style="color: #FFC34A; display: inline-block; background: #2682BF;">VIRTUAL TOUR → </h1>
+            <a href="https://youtu.be/a40mRSY3_RA" style="color: white; background: #2682BF;" > <span> </span> https://youtu.be/a40mRSY3_RA</a> 
+        </div>
+       
+            </td>
+        </tr>
+        <tr>
+            <td style="padding: 25px 0 0 0;">
+                &nbsp;
+            </td>
+        </tr>
+        <!--General Features-->
+        
+        <tr>
+            <td>
+                <div class="banda">
+                    <h1 style="font-size: 0.7em; margin-right: 20px;"> GENERA FEATURES:</h1>
+                   
+                </div>
+                <br>
+                <div class="general">
+                    <ul style= "list-style-type: circle; color: #000000;">
+                        <li>Luxury & elegant family resort. </li>
+                        <li>Category 5 stars 4 diamonds (certified by AAA)</li>
+                        <li>All inclusive. </li>
+                        <li>Facing the sea.</li>
+                        <li>6 restaurants.</li>
+                        <li>6 bars.</li>
+                        <li>5 pools.</li>
+                        <li>Excursions (not included)</li>
+                      </ul>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="banda">
+                    <h1 style="font-size: 0.7em; margin-right: 20px;"> MORE OPTIONS...</h1>
+                </div>
+                <br>
+                <!--Hoteles-->
+                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                        <td width="260" valing="top">
+                            <img class="img-container" style="max-width: 180px;"  src="https://i.postimg.cc/L5bFy0Dr/STT-Mail-Personalizado-Octo-2020-10.png"  alt="Krystal Grand">
+                            <h2 style="color: #2682BF;">Krystal Grand</h2>
+                            <p style=" font-family: 'Raleway', sans-serif; color: #000000;"> In our hotel you will find 429 rooms and suites to rest after your unforgettable adventures in
+                                Los Cabos. Most rooms at the Reflect Los Cabos Resort & Spa have full or partial ocean
+                                views.</p>
+                        </td>
+                        <td style="font-size: 0; line-height: 0; width: 10;">
+                            &nbsp;
+                        </td>
+                        <td width="260" valing="top">
+                            <img  style="max-width: 180px; margin-top: 55px;"  src="https://i.postimg.cc/tgTQyD4M/shutterstock-599070119-square-1.jpg" alt="Barcelo San José del Cabo">
+                            <h2  style="color: #2682BF;">Barcelo San José del Cabo</h2>
+                            <p  style=" font-family: 'Raleway', sans-serif; color: #000000;">A Premium-level resort complex located overlooking the impressive waters of the Gulf of
+                                California. It is a perfect hotel for enjoying peace and quiet, thanks to its exclusive
+                                location 2.5 km away from San José, a colonial town famous for its cultural ambience
+                                and cuisine.</p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <!--Footer-->
+        <tr>
+            <td bgcolor="#2682BF" style="padding: 30px 30px 30px 30px; color: white;">
+               <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                   <tr>
+                       <td>
+                        Plaza Genovesa <br>
+                        Local 40-A <br>
+                        48290 <br>
+                        Puerto Vallarta, <br>
+                        Jalisco, Mexico <br>
+                        http://savenvacations.com/
+
+                       </td>
+                       <td align="center">
+                           <img src="https://i.postimg.cc/fLBgf2fm/SNV-Mail-Personalizado-Octo-2020-01.png" alt="Save'n Vacations" style="margin-right: 50px;">
+                       </td>
+                       <td align="rigth">
+                           <table border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td>
+                                    <img src="https://i.postimg.cc/Bvfd287k/SNV-Mail-Personalizado-Octo-2020-02.png" alt="Facebook" width="38" height="38" style="display: block;" border="0">
+                                </td>
+                                <td style="font-size: 0; line-height: 0;" width="20">&nbsp;</td>
+                                <td>
+                                    <img src="https://i.postimg.cc/282Q4gcD/SNV-Mail-Personalizado-Octo-2020-03.png" alt="Instagram" width="38" height="38" style="display: block;" border="0">
+                                </td>
+                            </tr>
+                           </table>
+                       </td>
+                   </tr>
+
+               </table>
+            </td>
+        </tr>
+
+    </table>
+</body>
+</html>
