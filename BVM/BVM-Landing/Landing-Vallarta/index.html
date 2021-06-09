@@ -1,0 +1,613 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> beachvacations.com | All Inclusive 5-day/4-Night Vacation to México </title>
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.3/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+    <script src="plugins/OwlCarousel2-2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Roboto:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link href="plugins/OwlCarousel2-2.3.4/assets/owl.carousel.min.css" rel="stylesheet" />
+    <link href="plugins/OwlCarousel2-2.3.4/assets/owl.theme.default.min.css" rel="stylesheet" />
+
+    <link href="styles/main.css?v=5" rel="stylesheet" />
+    <!-- Facebook Pixel Code -->
+    <script>
+        ! function(f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function() {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window,
+            document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '618206492218446'); // Insert your pixel ID here.
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=183928535453921&ev=PageView&noscript=1"
+/></noscript>
+    <!-- DO NOT MODIFY -->
+    <!-- End Facebook Pixel Code -->
+</head>
+
+<body>
+    <div id="fb-root"></div>
+    <section>
+        <div style="background-color: #384E77;" class=" text-white text-center p-2">
+            SAVE NOW. TRAVEL LATER!
+            <img src="images/save_now_alert_icon_small.png" />
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row my-3">
+                <div class="col">
+                    <img src="images/logoPVO.png" style="width:100px;" />
+                </div>
+                <div class="col text-right">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="timer" class="bg-2">
+        <div class="container">
+            <div class="row py-1 text-white">
+                <div class="col text-center">
+                    <span class="icon-flash">
+                        <span id="bolt-group">
+                            <svg class="bolt-regular" viewBox="0.045 0 18.515 24.689">
+                                <path fill="rgba(255,255,255,1)" id="bolt_regular" d="M 18.2604808807373 8.096325874328613 C 17.86506652832031 7.406763076782227 17.14657211303711 6.992062091827393 16.35092353820801 6.992062091827393 L 11.79885292053223 6.992062091827393 L 13.18279838562012 2.772714138031006 C 13.36121654510498 2.107262849807739 13.22137546539307 1.408056616783142 12.80185222625732 0.8583358526229858 C 12.37750625610352 0.3134372532367706 11.73616504669189 0 11.04660320281982 0 L 4.753747463226318 0 C 3.654306173324585 0 2.71399450302124 0.8245810866355896 2.593441724777222 1.789003491401672 L 0.06665509939193726 12.02152442932129 C -0.02496502548456192 12.68697547912598 0.1727415770292282 13.35724925994873 0.6115536689758301 13.86357116699219 C 1.050365805625916 14.36989307403564 1.686884641647339 14.65921974182129 2.357158184051514 14.65921974182129 L 7.087649822235107 14.65921974182129 L 5.404732704162598 21.97436332702637 C 5.250425815582275 22.6349925994873 5.399910449981689 23.31973266601562 5.81943416595459 23.85016441345215 C 6.23895788192749 24.38541793823242 6.870654582977295 24.68921279907227 7.550572872161865 24.68921279907227 C 8.336577415466309 24.68921279907227 9.069539070129395 24.26486587524414 9.421552658081055 23.64763641357422 L 18.25565910339355 10.30485153198242 C 18.66071701049805 9.615289688110352 18.66071701049805 8.785886764526367 18.26048278808594 8.09632396697998 Z M 7.762745380401611 22.05633926391602 L 9.995383262634277 12.34460639953613 L 2.33304762840271 12.34460639953613 L 4.753747463226318 2.314613580703735 L 10.90676212310791 2.271214723587036 L 8.60179328918457 9.306675910949707 L 16.14839744567871 9.306675910949707 L 7.762745380401611 22.05633926391602 Z">
+                                </path>
+                            </svg>
+                        </span>
+                    </span>
+                    FLASH SALE ENDS:
+                    <span class="timer-counters">
+                        <span class="timer-group">
+                            <span id="horas" class="timer-counter">00</span>
+                    <small class="timer-names">HRS</small>
+                    </span>
+                    <span class="timer-group">
+                            <span id="minutos" class="timer-counter">00</span>
+                    <small class="timer-names">MIN</small>
+                    </span>
+                    <span class="timer-group">
+                            <span id="segundos" class="timer-counter">00</span>
+                    <small class="timer-names">SEC</small>
+                    </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="site-hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 pt-3">
+                    <div class="cancun">
+                        <div class="mtop">
+                            PUERTO VALLARTA
+                        </div>
+                        <div class="mtop2">
+                            $499
+                        </div>
+                        <div class="percouple">
+                            2 ADULTS & 2 KIDS
+                        </div>
+                    </div>
+
+                    <div class="d-block d-sm-none text-center" style="padding-top: 300px;">
+                        <button class="btn btn-large rounded-pill bg-1 w-100 text-white" onclick="Landing.mostrarFormulario()"><span>RESERVE IT NOW!</span></button>
+                        <p class="text-white mt-3"><strong>All-Inclusive Mexico Getaway | Ultimate Luxury</strong></p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mt-3 card-form" id="cardForm" style="z-index: 2;">
+                        <div class="card-body">
+                            <span class="text-2 font-weight-bold">
+                                Luxury 5 Days & 4 Nights 2 adults & 2 kids
+                                Getaway
+                            </span>
+                            <div class="mt-3">
+                                <div class="package-price-only d-inline-block align-top">
+                                    <div class="bg-2 text-right text-white pr-3 py-2" style="margin-left: -20px; background-color: #EAB13C;">ONLY</div>
+                                </div>
+                                <div class="package-price text-1 d-inline-block align-top">
+                                    <span class="display-4 font-weight-bold" style="line-height: .7em;">
+                                        <span class="h2 align-top">$</span> 499
+                                    </span>
+                                </div>
+                                <div class="package-price-couple d-inline-block align-top">
+                                    <small class="d-inline-block align-top"><br /> PER 2 ADULTS & 2 KIDS</small>
+                                    <img src="images/save_now_alert_icon_large.png" class="save-now d-none d-sm-block" />
+                                </div>
+                            </div>
+                            <p class="text-2">
+                                <small>
+                                    <strong>
+                                        Take this offer NOW & travel in the next 24 months
+                                    </strong>
+                                </small>
+                            </p>
+                            <div class="border rounded py-2 px-3">
+                                <span class="float-right">
+                                    <svg class="lightbulb_on_light" viewBox="0 0 34.81 27.848">
+                                        <path fill="rgba(93,93,93,1)" id="lightbulb_on_light" d="M 2.273499727249146 18.17389297485352 C 2.065238952636719 18.29397773742676 1.993866801261902 18.56022071838379 2.114137411117554 18.76837539672852 L 2.549256801605225 19.5222225189209 C 2.669342279434204 19.73048210144043 2.935586214065552 19.80185508728027 3.143739223480225 19.68158531188965 L 8.540309906005859 16.56612205505371 C 8.175897598266602 16.10544013977051 7.845206737518311 15.62571620941162 7.560747623443604 15.12206649780273 L 2.273499727249146 18.17389297485352 Z M 6.109623908996582 9.572649002075195 L 0.4351195693016052 9.572649002075195 C 0.1947160214185715 9.572649002075195 0 9.767364501953125 0 10.00776958465576 L 0 10.87801074981689 C 0 11.11841583251953 0.1947160214185715 11.31313133239746 0.4351195693016052 11.31313133239746 L 6.228737354278564 11.31313133239746 C 6.14008092880249 10.74094772338867 6.110710620880127 10.1584300994873 6.109622955322266 9.572649002075195 Z M 2.273499727249146 2.711344003677368 L 6.905348300933838 5.385702610015869 C 7.121277332305908 4.841258525848389 7.37962818145752 4.320745468139648 7.676053524017334 3.820900917053223 L 3.143739223480225 1.204195737838745 C 2.935586214065552 1.083925843238831 2.669341564178467 1.155297994613647 2.549257040023804 1.363558769226074 L 2.114137172698975 2.117404699325562 C 1.993935585021973 2.325174808502197 2.065186023712158 2.591142177581787 2.273499727249146 2.711344003677368 Z M 32.53606796264648 2.711344003677368 C 32.74432754516602 2.591259241104126 32.81570434570312 2.32501482963562 32.69543838500977 2.116861343383789 L 32.26031112670898 1.363014698028564 C 32.14022827148438 1.154754519462585 31.87398338317871 1.083383917808533 31.66583442687988 1.203653216362 L 27.13079071044922 3.821989059448242 C 27.42667961120605 4.320745944976807 27.68774795532227 4.840714931488037 27.90530776977539 5.384615898132324 L 32.53606796264648 2.711344003677368 Z M 34.37445068359375 9.572649002075195 L 28.7178897857666 9.572649002075195 C 28.7178897857666 10.16006278991699 28.64990425109863 10.7393159866333 28.56015968322754 11.31313133239746 L 34.37445068359375 11.31313133239746 C 34.61485290527344 11.31313133239746 34.8095703125 11.11841583251953 34.8095703125 10.87801074981689 L 34.8095703125 10.00776958465576 C 34.8095703125 9.767364501953125 34.61485290527344 9.572649002075195 34.37445068359375 9.572649002075195 Z M 32.53606796264648 18.17389297485352 L 27.23902702331543 15.1155424118042 C 26.95348167419434 15.62136840820312 26.61626434326172 16.09619140625 26.2529411315918 16.55578994750977 L 31.66583442687988 19.6810417175293 C 31.8741455078125 19.80124473571777 32.14010620117188 19.7299919128418 32.26031112670898 19.52167892456055 L 32.69542694091797 18.76783180236816 C 32.81563568115234 18.5600643157959 32.744384765625 18.29409599304199 32.53606796264648 18.17389297485352 Z M 17.40478515625 3.480962991714478 C 14.04620361328125 3.480962991714478 11.31310939788818 6.214064121246338 11.31310939788818 9.572649002075195 C 11.31310939788818 10.05345726013184 11.70254325866699 10.44289016723633 12.18334770202637 10.44289016723633 C 12.66415596008301 10.44289016723633 13.05358791351318 10.05345726013184 13.05358791351318 9.572649002075195 C 13.05358791351318 7.173503875732422 15.00509929656982 5.221445083618164 17.40478515625 5.221445083618164 C 17.88559150695801 5.221445083618164 18.27502250671387 4.832012176513672 18.27502250671387 4.351203918457031 C 18.27502250671387 3.869852304458618 17.88559150695801 3.480962991714478 17.40478515625 3.480962991714478 Z M 17.40478515625 0 C 11.80533790588379 0 7.825625896453857 4.543744564056396 7.832151889801025 9.585704803466797 C 7.835415840148926 11.99409484863281 8.729586601257324 14.19091033935547 10.20137977600098 15.86993026733398 C 11.59648036956787 17.46138381958008 12.93665027618408 20.05306816101074 13.05358791351318 20.88578033447266 L 13.05685138702393 24.97482681274414 C 13.05685138702393 25.14615440368652 13.10797882080078 25.31312942504883 13.20261478424072 25.45563125610352 L 14.5357141494751 27.4593620300293 C 14.69724941253662 27.70193862915039 14.96920108795166 27.84770393371582 15.26018714904785 27.84770393371582 L 19.5488395690918 27.84770393371582 C 19.84036445617676 27.84770393371582 20.11231422424316 27.70194625854492 20.27331161499023 27.4593620300293 L 21.60640716552734 25.45563125610352 C 21.70104789733887 25.31312942504883 21.75163459777832 25.14560699462891 21.75217247009277 24.97482681274414 L 21.75597953796387 20.88578033447266 C 21.87890243530273 20.03076934814453 23.22396469116211 17.44887351989746 24.60818862915039 15.86993026733398 C 26.08270263671875 14.18764686584473 26.97741508483887 11.98593521118164 26.97741508483887 9.572649002075195 C 26.97741508483887 4.28593635559082 22.69148826599121 0 17.40478515625 0 Z M 20.01223754882812 24.70994567871094 L 19.08271408081055 26.10722732543945 L 15.72631072998047 26.10722732543945 L 14.79678440093994 24.70994567871094 L 14.79624080657959 24.36674308776855 L 20.01223754882812 24.36674308776855 L 20.01223754882812 24.70994567871094 Z M 20.01441383361816 22.62626266479492 L 14.79461193084717 22.62626266479492 L 14.79080104827881 20.88578033447266 L 20.0165901184082 20.88578033447266 L 20.01441383361816 22.62626266479492 Z M 23.2995662689209 14.72230052947998 C 22.53865051269531 15.59036540985107 21.32357978820801 17.33846092224121 20.54852294921875 19.14475440979004 L 14.26158905029297 19.14475440979004 C 13.48598766326904 17.33791732788086 12.27146053314209 15.59036540985107 11.51054382324219 14.72230052947998 C 10.2525053024292 13.28748989105225 9.57970142364502 11.4675989151001 9.575349807739258 9.572649002075195 C 9.565560340881348 5.385159492492676 12.85941600799561 1.740481495857239 17.40478515625 1.740481495857239 C 21.72334671020508 1.740481495857239 25.2369384765625 5.25407886505127 25.2369384765625 9.572649002075195 C 25.2369384765625 11.46814346313477 24.54890823364258 13.29728221893311 23.2995662689209 14.72230052947998 Z">
+                                        </path>
+                                    </svg>
+                                </span>
+                                <small class="text-2">
+                                    This offer is getting a lot of attention.<br />
+                                    Viewed <span class="font-weight-bold" id="contador">000</span> times in the past hour!
+                                </small>
+                            </div>
+                            <div class="py-2 px-3 text-white bg-2 mt-4 text-center rounded step" style="background-color: #EAB13C">
+                                Step 1 - General Information
+                            </div>
+                            <form id="formulario" action="" method="post" class="needs-validation" novalidate>
+                                <div class="form-group mt-2 mb-1">
+                                    <input type="hidden" id="hdnConfirmation" value="/5-4-vallarta-all-inclusive-fba-confirmation/" />
+                                    <input type="hidden" id="hdnFormID" value="3a26813f-0c1c-639f-b393-2ca86e07fef3" />
+                                    <input type="text" class="form-control" placeholder="First Name*" value="" id="firstName" required />
+                                </div>
+                                <div class="form-group mb-1">
+                                    <input type="text" class="form-control" placeholder="Last Name*" value="" id="lastName" required />
+                                </div>
+                                <div class="form-group mb-1">
+                                    <input type="email" class="form-control" placeholder="Email*" value="" id="email" required />
+                                </div>
+                                <div class="form-group mb-1">
+                                    <input type="text" class="form-control" placeholder="Phone*" value="" id="phone" required />
+                                </div>
+                                <div class="form-group mt-2">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="chkAgree" onclick="Landing.verificarValidacion()">
+                                        <label class="custom-control-label" for="chkAgree">I agree to the <a data-toggle="modal" data-target="#termsModal" href="#terms-and-conditions">Terms & Conditions</a></label>
+                                    </div>
+                                    <div id="lblMustAgree" class="alert alert-warning mt-2 d-none"><small>In order to continue, you have to read and accept Terms and Conditions.</small></div>
+                                </div>
+                                <div class="form-group">
+
+                                    <button type="submit" class="btn bg-1 text-white rounded-pill w-100" style="background-color: #EAB13C ;">
+                                        <span>SAVE MY DEAL NOW!</span>
+                                    </button>
+
+                                    <div id="lblWait" class="alert alert-warning mt-2 text-center d-none">
+                                        <div class="spinner-border spinner-border-sm" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                        Wait please...
+                                    </div>
+
+                                </div>
+                            </form>
+                            <div class="form-group text-center">
+                                <svg class="lock" viewBox="0 0 12.138 13.872">
+                                    <path fill="rgba(0,0,0,1)" id="lock" d="M 10.83765125274658 6.069084644317627 L 10.18739223480225 6.069084644317627 L 10.18739223480225 4.118307113647461 C 10.18739223480225 1.847818732261658 8.339572906494141 -6.430211101360328e-07 6.069085121154785 -6.430211101360328e-07 C 3.79859733581543 -6.430211101360328e-07 1.950777173042297 1.847818732261658 1.950777173042297 4.118307113647461 L 1.950777173042297 6.069084644317627 L 1.300518274307251 6.069084644317627 C 0.5825237631797791 6.069084644317627 0 6.651607990264893 0 7.369602203369141 L 0 12.57167530059814 C 0 13.28966999053955 0.5825237631797791 13.87219333648682 1.300518274307251 13.87219333648682 L 10.83765125274658 13.87219333648682 C 11.55564594268799 13.87219333648682 12.13817024230957 13.28966999053955 12.13817024230957 12.57167530059814 L 12.13817024230957 7.369602203369141 C 12.13817024230957 6.651607990264893 11.55564594268799 6.069084644317627 10.83765125274658 6.069084644317627 Z M 8.019862174987793 6.069084644317627 L 4.118307590484619 6.069084644317627 L 4.118307590484619 4.118307113647461 C 4.118307590484619 3.042670249938965 4.993448257446289 2.167529582977295 6.069085121154785 2.167529582977295 C 7.144721984863281 2.167529582977295 8.019862174987793 3.042670249938965 8.019862174987793 4.118307113647461 L 8.019862174987793 6.069084644317627 Z">
+                                    </path>
+                                </svg> Your Information is Secure
+                            </div>
+                            <img src="images/secured_seals@2x.png" class="img-fluid" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="d-block d-sm-none" style="height:570px;"></section>
+    <section>
+        <div class="owl-carousel owl-theme mt-2">
+            <div class="item">
+                <img src="images/Vallarta2.jpg?mode=crop&width=650&height=340&quality=50" />
+            </div>
+            <div class="item">
+                <img src="images/Vallarta4.jpg?mode=crop&width=650&height=340&quality=50" />
+            </div>
+            <div class="item">
+                <img src="images/Vallarta5.jpg?mode=crop&width=650&height=340&quality=50" />
+            </div>
+            <div class="item">
+                <img src="images/Vallarta6.jpg?mode=crop&width=650&height=340&quality=50" />
+            </div>
+            <div class="item">
+                <img src="images/Vallarta7.jpg?mode=crop&width=650&height=340&quality=50" />
+            </div>
+            <div class="item">
+                <img src="images/Vallarta8.jpg?mode=crop&width=650&height=340&quality=50" />
+            </div>
+            <div class="item">
+                <img src="images/Vallarta20.jpg?mode=crop&width=650&height=340&quality=50" />
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container my-5">
+            <div class="row">
+                <div class="col text-center">
+                    <h2 class="text-1 mb-4">What You Get & Why You Get It</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="py-2 text-center bg-1 text-white mb-4">
+                        <h4 class="mb-0">What You Get</h4>
+                    </div>
+                    <p>
+                        <i class="fas fa-check text-4"></i>
+                        <strong>5 Days and 4 Nights</strong> at our Luxury Oceanfront Resort in Puerto Vallarta, Mexico.
+                    </p>
+                    <p>
+                        <i class="fas fa-check text-4"></i>
+                        <strong>Free ground transportation</strong> from the airport to our resort.
+                    </p>
+                    <p>
+                        <i class="fas fa-check text-4"></i>
+                        <strong>All-Inclusive:</strong> With unlimited à la carte and buffet-style dining, a wide variety of cocktails and international beverages, nightly entertainment, and daily entertainment.
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <div class="py-2 text-center bg-4 text-white mb-4">
+                        <h4 class="mb-0">Why You Get It</h4>
+                    </div>
+                    <p>
+                        <i class="fas fa-check text-1"></i>
+                        <strong>Resort Tour:</strong> You and your spouse or partner will attend a two-hour tour of our resort. In this casual, relaxed presentation, you’ll learn about our amenities and the benefits of our vacation ownership program.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button type="button" class="btn btn-large bg-1 text-white rounded-pill w-100 save-deal mt-4" style="background-color: #EAB13C ;" onclick="Landing.mostrarFormulario()">
+                        <span>
+                            SAVE MY DEAL NOW!
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="luxury text-center">
+        <div class="container">
+            <div class="row pt-5">
+                <div class="col" style="color: white;">
+                    <h4>Getaway for 5 Days and 4 Nights</h4>
+                    <h2>Luxury Oceanfront Resort</h2>
+
+                    <img src="images/cancun-circles.png" alt="" class="img-fluid" style="width: 295px; margin-top:300px;">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="experience">
+        <div class="container">
+            <div class="row pb-5">
+                <div class="col-1"></div>
+                <div class="col">
+                    <h4 class="text-center">
+                        Getaway for 5 Days and 4 Nights
+                    </h4>
+                    <h2 class="text-center">
+                        Our Puerto Vallarta luxury resort are waiting for you.
+
+                    </h2>
+                    <p>Experience the ultimate vacation at our Luxury Mexico Resort. Dive into one of our 3 refreshing pools, enjoy our non-motorized water sports equipment, or walk just minutes to feel the sand between your toes at one of Puerto Vallarta's
+                        most beautiful beaches! Our all-inclusive vacation experience offers the height of luxury without any of the hassle of planning dinners and activities for just $499 Per 2 adults & 2 kids!</p>
+                </div>
+                <div class="col-1"></div>
+            </div>
+            <div class="row mb-5">
+                <div class="col">
+                    <button type="button" class="btn btn-large bg-1 text-white rounded-pill w-100 save-deal mt-2" style="background-color: #EAB13C ;" onclick="Landing.mostrarFormulario()">
+                        <span>
+                            SAVE MY DEAL NOW!
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="mb-3">Guest Reviews</h2>
+                    <img src="images/Vallarta17.jpg" class="img-fluid rounded" />
+                    <h4 class="mt-2">Luxury Mexico Resort</h4>
+                    <p class="mb-4">
+                        Over 8,763 People Have Purchased This Product
+                    </p>
+                    <div class="alert bg-trip py-2 px-3">
+                        <div class="row">
+                            <div class="col">
+                                <img src="images/tripadvisor-s.png" class="mt-2" style="width:90px;" />
+                            </div>
+                            <div class="col text-right">
+                                <div class="btn btn-sm rounded-pill dark-shadow">Puerto Vallarta</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title mb-2">aldamaria</h5>
+                            <span class="text-trip">
+                                <i class="fas fa-check"></i> Verified Guest
+                            </span>
+                            <div class="great-comment">
+
+                                Relaxing time at Villa Del Palmar
+                            </div>
+                            <p class="mt-2">We spent 2 weeks at Villa del Palmar. Everyone was very helpful and accomadating especially Vanesa, Monse and Ignacio. The room was comfortable and clean.Villa Del Palmar is close to downtown and walking distance to Soriana
+                                grocery store.
+                            </p>
+                            <span class="float-right">
+                                <img src="images/tripadvisor.png" style="width:90px;" />
+                            </span>
+                            <img src="images/rate-5.png" style="width:133px;" /><br />
+                            <small>Reviewed <span class="text-trip"></span> March 2020</small>
+                        </div>
+                    </div>
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title mb-2">Sonia C</h5>
+                            <span class="text-trip">
+                                <i class="fas fa-check"></i> Verified Guest
+                            </span>
+                            <div class="great-comment">
+                                Family vacation
+                            </div>
+                            <p class="mt-2">Having a great time and enjoying our time. Rooms are great and clean and personal is very helpful and good service. Luis y Diego from concierge department were really nice guys. Thank you so much for everything. ever.
+                            </p>
+                            <span class="float-right">
+                                <img src="images/tripadvisor.png" style="width:90px;" />
+                            </span>
+                            <img src="images/rate-5.png" style="width:133px;" /><br />
+                            <small>Reviewed <span class="text-trip"></span> February 2020</small>
+                        </div>
+                    </div>
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title mb-2">Tonya P</h5>
+                            <span class="text-trip">
+                                <i class="fas fa-check"></i>Verified Guest
+                            </span>
+                            <div class="great-comment">
+                                Love it here
+                            </div>
+                            <p class="mt-2">We love coming to Villa Del Palmar in Puerto Vallarta. We have been coming here for 8 or 9 years. Mago from concierge department is very helpful and speaks really good English. The people are very nice!
+                            </p>
+                            <span class="float-right">
+                                <img src="images/tripadvisor.png" style="width:90px;" />
+                            </span>
+                            <img src="images/rate-5.png" style="width:133px;" /><br />
+                            <small>Reviewed <span class="text-trip"></span></span> March 2020</small>
+                        </div>
+                    </div>
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title mb-2">HappyVegan123</h5>
+                            <span class="text-trip">
+                                <i class="fas fa-check"></i>Verified Guest
+                            </span>
+                            <div class="great-comment">
+                                Wonderful place, wonderful staff!
+                            </div>
+                            <p class="mt-2">We had the joy of staying here for our special holiday at the start of this year. Such a beautiful place to stay, very accommodating hotel and cannot sing high enough praises for the concierge staff Vanesa and Ramon! They ensured
+                                we had help with anything we needed and made us feel very welcome and at home for our stay! Can’t recommend enough and we can’t wait to return and hopefully see Vanesa and Ramon again!
+                            </p>
+                            <span class="float-right">
+                                <img src="images/tripadvisor.png" style="width:90px;" />
+                            </span>
+                            <img src="images/rate-5.png" style="width:133px;" /><br />
+                            <small>Reviewed <span class="text-trip"></span></span> March 2020</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <img src="images/Vallarta10.jpg" class="img-fluid rounded mb-3" />
+                    <img src="images/Vallarta11.jpg" class="img-fluid rounded mb-3" />
+                    <img src="images/Vallarta14.jpg" class="img-fluid rounded mb-3" />
+                    <img src="images/Vallarta1.jpg" class="img-fluid rounded mb-3" />
+                    <img src="images/Vallarta16.jpg" class="img-fluid rounded mb-3" />
+                    <img src="images/Vallarta18.jpg" class="img-fluid rounded mb-3" />
+
+                </div>
+            </div>
+            <div class="row mt-3 mb-5">
+                <div class="col">
+                    <button type="button" class="btn btn-large bg-1 text-white rounded-pill w-100 save-deal mt-2" onclick="Landing.mostrarFormulario()">
+                        <span>
+                            SAVE MY DEAL NOW!
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="all-inclusive">
+        <div class="container">
+            <div class="row py-5">
+                <div class="col text-center" style="color:white">
+                    <h2>All-Inclusive</h2>
+                    <h4>This Exclusive Offer is HOT, and it WON’T last long!</h4>
+                </div>
+            </div>
+            <div class="row mt-3 my-5">
+                <div class="col">
+                    <button type="button" class="btn btn-large bg-1 text-white rounded-pill w-100 save-deal mt-2" style="background-color: #EAB13C ;" onclick="Landing.mostrarFormulario()">
+                        <span>
+                            SAVE MY DEAL NOW!
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row py-4">
+                <div class="col-1"></div>
+                <div class="col text-center">
+                    <p class="mb-0"><em>*This FLASH SALE includes a 5-day/4-night 2 adults & 2 kids getaway at our Luxury Puerto Vallarta Resort. Go ahead and confirm your dates to secure this amazing deal.</em></p>
+                </div>
+                <div class="col-1"></div>
+            </div>
+        </div>
+    </section>
+    <section class="bg-black">
+        <div class="container">
+            <div class="row py-4">
+                <div class="col text-center">
+                    <img src="images/bbb-logo.png" style="width: 70px;" />
+                    <p class="text-white mt-3 mb-0">Beach Vacations Mexico | Copyright © 2020 | All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal fade" id="termsModal" tabindex="-1" role="dialog" aria-labelledby="termsModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="termsModalTitle">Terms & Conditions</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>The Villa Group Resorts is making this vacation package offer available to you. Besides meeting the qualifications and attending the Vacation Ownership presentation, there are no other obligations. Come enjoy your stay with us and
+                        learn about the benefits of Vacation Ownership!</p>
+
+                    <p>Primary Travelers must meet all of the Resort's Qualifications below.</p>
+
+                    <p>Resort Fees (if applicable) are collected during your verification call. This fee is a reservation processing fee.</p>
+
+                    <h5 class="mt-4 text-1">Credit Card</h5>
+                    <p>
+                        The qualifying single person, OR one of the spouses in a legally married couple must bring with them and present to the hostess during check in for the presentation:
+                    </p>
+                    <p>
+                        At least one Major Credit Card in the name of the qualified person(s). We DO NOT accept Debit Cards, Check Cards or Business Account Cards. We do not accept credit cards in the name of a non-qualifying person or in the name of a corporation.
+                    </p>
+                    <p>
+                        WE ONLY ACCEPT VISA, MASTERCARD, DISCOVER or AMERICAN EXPRESS that are NOT associated with your bank accounts.
+                    </p>
+                    <p>
+                        Expired credit cards DO NOT QUALIFY.
+                    </p>
+                    <h5 class="mt-4 text-1">Presentation</h5>
+                    <p>
+                        Attendance to a 90 minute vacation ownership presentation at The Villa Group Resort the day after arrival to Mexico is required.
+                    </p>
+                    <p>
+                        You may not attend another vacation ownership presentation during your visit to the destination.
+                    </p>
+                    <p>
+                        You are not eligible if you have previously toured any of The Villa Group resorts within 6 months of your arrival, or if you have already used a marketing promotion with Villa Group Resorts twice.
+                    </p>
+                    <h5 class="mt-4 text-1">
+                        Age Qualification
+                    </h5>
+                    <p>
+                        Married couples - at least one person must be between the ages of 30 and 70
+                    </p>
+                    <p>
+                        Legally single women - between 30 to 70 years of age.
+                    </p>
+                    <p>
+                        Legally single men - between 35 and 59 years of age.
+                    </p>
+                    <p>
+                        YOU MAY BE ASKED TO PROVIDE COPIES OF ID AS PROOF.
+                    </p>
+                    <h5 class="mt-4 text-1">Income</h5>
+                    <p>
+                        Minimum $50,000 Annual Income (singles must meet this qualification on their own, or combined income for legally married couples).
+                    </p>
+                    <p>
+                        Must be employed full time or fully retired - part time employment does not qualify.
+                    </p>
+                    <p>
+                        Must not be a full time student.
+                    </p>
+                    <h5 class="mt-4 text-1">Language</h5>
+                    <p>
+                        Both qualified participants must be fluent in either English or Spanish.
+                    </p>
+                    <h5 class="mt-4 text-1">Identification</h5>
+                    <p>
+                        The qualified person(s) must present a major credit card and government issued photo ID at the tour reception desk.
+                    </p>
+                    <p>
+                        Married couples may be asked to show proof of such (Government issued picture ID with matching addresses, and/or marriage certificate. Both spouses must bring ID.
+                    </p>
+                    <h5 class="mt-4 text-1">Marital Status</h5>
+                    <p>
+                        Offer is valid for legally married couples and legally single women or men.
+                    </p>
+                    <p>
+                        All guests must attend the presentation, including all children in the reservation.
+                    </p>
+                    <h5 class="mt-4 text-1">Countries</h5>
+                    <p>
+                        Offer is valid only for residents of the USA or Canada who meet all other qualifications. Valid USA or Canadian government issued ID must be presented by all guests. Non-citizens must have been residents for a minimum of 5 years and present USA or Canadian
+                        government issued ID.
+                    </p>
+                    <h5 class="mt-4 text-1">
+                        Group Travel
+                    </h5>
+                    <p>
+                        Maximum of 8 people per tour between adults and children. Specifically in a ratio of 4 adults and 4 children/teenagers.
+                    </p>
+                    <p>
+                        Only one package purchase per friends or couple is allowed for this or any similar promotion. If friends and/or couple staying at the same resort during the same or similar dates occupies two rooms, a higher rate must be paid for the 2nd room.
+                    </p>
+                    <h5 class="mt-4 text-1">
+                        Additional Terms
+                    </h5>
+                    <p>
+                        Relatives of timeshare industry employees and timeshare industry related individuals, Universal Vacation Club members, property owners in Los Cabos, Puerto Vallarta, Loreto or Cancun do not qualify for this promotion.
+                    </p>
+                    <p>
+                        To receive this significantly discounted package you are obligated to participate in the 90 minute informative tour and presentation at the resort sponsoring your vacation, on the morning after your arrival to Mexico. You are required to keep this day
+                        free of other obligations.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
