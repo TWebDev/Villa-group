@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TRAVEL TO MEXICO</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  
+  
+</head>
+<body>
+  <header>
+    <!--CABECERA-->
+    
+      <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="navbar">
+        <a class="navbar-brand" href="#"> <img src="img/TM_Piñatas-04.png" alt="TRAVEL TO MEXICO"> </a>
+        </button>
+        <div class="container">
+          <div class="navegacion navbar-collapse collapse show" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active facebook">
+                <a href="#"> <img src="img/TM_Piñatas-05.png" alt="Facebook TTM"></a>
+              </li>
+              <li class="nav-item instagram">
+                <a href="#"> <img src="img/TM_Piñatas-06.png" alt="Instagram TTM"></a>
+              </li>
+            </ul>
+
+          </div>
+        </div>
+        
+      </nav>
+    
+
+    <!---FORMULARIO-->
+    <form action="validar.php" method="POST" class="formulario" >
+      <div class="container form">
+        <h2 class="titulo1">REGISTER TO GET AN</h2>
+        <h1 class="titulo">EXCLUSIVE</h1>
+        <h1 class="titulo">OFFER</h1>
+        <label for="fname">FIRST NAME:</label><br>
+        <input type="text" id="fname" name="fname" required><br>
+        <label for="lname">LAST NAME:</label><br>
+        <input type="text" id="lname" name="lname" required><br>
+        <label for="fname">PHONE:</label><br>
+        <input type="text" id="phone" name="phone" required><br>
+        <label for="lname">EMAIL:</label><br>
+        <input type="email" id="email" name="email" required>
+        <br>
+        <br>
+        <button type="submit" class="btn" id="register" name="register"> <b>REGISTER</b> </button>
+      </div>
+    </form>
+
+  </header>
+  <!--DESTINOS-->
+      <div class="row row-cols-1 row-cols-sm-4" id="container" >
+        <div class="col sm-2" id="cancun">
+            <img class="img-container" src="img/TM_Fotos Landing Piñatas_Cancun.png" class="card-img-top" alt="CANCUN">
+            <div class="desc">
+              <h2 class="cancun_t">CANCUN</h2>
+                Cancun is a mesmerizing blend between a tropical beach and prehispanic cultures. 
+                In every corner, you will find Mayan art and traditions 
+                blended with the gorgeous jungle.
+              </div>
+              <button type="button" class="btn" id="btn-des"> <b>GET YOUR TREAT</b> </button>
+        </div>
+        <div class="col sm-2" id="rivera">
+            <img class="img-container" src="img/TM_Fotos Landing Piñatas_Riviera.png" class="card-img-top" alt="RIVERA MAYA">
+            <div class="desc">
+              <h2 class="rivera_t">RIVERA MAYA</h2>
+                Located approximately 30 km south of Cancun, 
+                is a world-class destination that includes the coasts 
+                between Puerto Morelos and Punta Allen, Playa del Carmen being 
+                it's most important.
+              </div>
+              <button type="button" class="btn" id="btn-des"> <b>GET YOUR TREAT</b> </button>
+        </div>
+        <div class="col sm-2" id="puerto">
+            <img class="img-container" src="img/TM_Fotos Landing Piñatas_Puerto Vallarta.png" class="card-img-top" alt="PUERTO VALLARTA">
+            <div class="desc">
+              <h2 class="puerto_t">PUERTO VALLARTA</h2>
+              Known for being a small city surrounded by mountains and tropical beaches, 
+              Puerto Vallarta is full of Huichol art. <br> If you want to enjoy a relaxing time, <br>
+              this is the place for you.
+              </div>
+              <button type="button" class="btn" id="btn-des"> <b>GET YOUR TREAT</b></button>
+        </div>
+        <div class="col sm-2" id="cabos">
+            <img class="img-container" src="img/TM_Fotos Landing Piñatas_Cabo.png" class="card-img-top" alt="LOS CABOS">
+            <div class="desc">
+              <h2 class="cabos_t">LOS CABOS</h2>
+                If you are intrigued by a beach or desert Los Cabos is perfect for you, 
+                located between two seas, this is a place where luxury, relaxation, a
+                nd adventure is possible in the same place.
+              </div>
+              <button type="button" class="btn" id="btn-des"><b> GET YOUR TREAT </b></button>
+        </div>
+      </div>
+  
+
+
+
+
+
+
+
+  
+</body>
+<!--FOOTER--->
+<footer class="footer">
+  <div class="left">
+    <p>
+      Local #40-A 48333 
+      Puerto Vallarta, Mexico
+      reservations@traveltomexico.com.mx
+    </p>
+  </div>
+  <div class="main">
+    <img src="img/TM_Piñatas-07.png" alt="TRAVEL TO MEXICO">
+  </div>
+  <div class="right">
+    <img src="img/TM_Piñatas-12.png" alt="Facebook">
+    <img src="img/TM_Piñatas-13.png" alt="Instagram">
+  </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+</footer>
+</html>
