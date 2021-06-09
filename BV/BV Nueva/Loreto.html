@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="shortcut icon" href="img/favicon.ico"/>
+    <script src="https://kit.fontawesome.com/90fc3b9ab7.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet"/>
+    <title>Beach Vibes | Loreto</title>
+     <!--Precarga de elementos-->
+     <link rel="preload" href="vid/BV-destino-Loreto-1.mp4" as="video" type="video/mp4"/>
+     <link rel="preload" href="css/style.css" as="style"/>
+     <link rel="preload" href="js/formValidation.js" as="script"/> 
+     <link rel="preload" href="js/main.js"/>
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+  (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+  m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+  (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+  ym(72354061, "init", {
+       clickmap:true,
+       trackLinks:true,
+       accurateTrackBounce:true,
+       webvisor:true
+  });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/72354061" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+
+</head>
+<body>
+    <header >
+        <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+            <div class="container">
+              <a class="navbar-brand " href="index.html"><img src="img/BV_logo.png" alt="Beach Vibes" id="logo"/></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation" onclick="ocultarimagen();">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav ml-auto mb-2 mb-lg-0 ">
+                  <li class="nav-item">
+                    <a class="nav-link" href="index.html" style="color: #3f4c72">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="Loreto.html" style="color: #3f4c72">Loreto</a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" aria-current="page" href="Vallarta.html" style="color:#3f4c72;">Puerto Vallarta</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="Cabo.html" style="color: #3f4c72">Cabo San Lucas</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="Cancun.html" style="color: #3f4c72">Cancun</a>
+                  </li>
+
+                 <!-- <li class="nav-item">
+                    <a class="nav-link" href="https://blog.beachvibesclub.com" style="color: #3f4c72">Blog</a>
+                  </li>-->
+                  <li class="nav-item">
+                    <a class="nav-link" href="Faqs.html" style="color: #3f4c72">FAQS</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link " aria-current="page" href="" style="color: #9dc4b5" data-bs-toggle="modal" data-bs-target="#exampleModal"><b>Request a Quote</b> </a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <img src="img/BV_Phone.png" alt="Phone"/>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <a class="dropdown-item" href="tel:18002694366">México: 1 800 269 4366</a>
+                      <a class="dropdown-item" href="tel:+18774982416">US/CAN: +1 877 498 2416</a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+          <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+              <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+              <li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
+h
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="img/BV_LOR1.jpg" class="d-block w-100" alt="BEACH VIBES" />
+                <div class="carousel-caption d-none d-md-block">
+                  <h1 id="texto-header" style="font-family: 'Broetown';"><b style="font-family: 'Din-Condence-Bold';">Loreto</b> </h1>
+                  <a href="tel:+18774982416">
+                    <img src="img/Call-now.png" alt="CALL NOW +1 877 498 2416" id="imagen"/></a>
+                </div>
+              </div>
+              <!--segundo-->
+              <div class="carousel-item">
+                <img src="img/BV_LOR2.jpg" class="d-block w-100" alt="BEACH VIBES"/ >
+                <div class="carousel-caption d-none d-md-block">
+                <h1 id="texto-header" style="font-family: 'Broetown';"><b style="font-family: 'Din-Condence-Bold';">Loreto</b></h1>
+                <a href="tel:+18774982416">
+                  <img src="img/Call-now.png" alt="CALL NOW +1 877 498 2416" id="imagen"/></a>
+                 
+                </div>
+              </div>
+              <!--tercero-->
+              <div class="carousel-item">
+                <img src="img/Header-Loreto-3.jpg" class="d-block w-100" alt="BEACH VIBES" />
+                <div class="carousel-caption d-none d-md-block">
+                  <h1 id="texto-header" style="font-family: 'Broetown';"><b style="font-family: 'Din-Condence-Bold';">Loreto</b></h1>
+                  <a href="tel:+18774982416">
+                    <img src="img/Call-now.png" alt="CALL NOW +1 877 498 2416" id="imagen"/></a>
+                </div>
+              </div>
+               <!--cuarto-->
+               <div class="carousel-item">
+                <img src="img/BV_LOR3.jpg" class="d-block w-100" alt="BEACH VIBES" />
+                <div class="carousel-caption d-none d-md-block">
+                  <h1 id="texto-header" style="font-family: 'Broetown';"><b style="font-family: 'Din-Condence-Bold';">Loreto</b></h1>
+                  <a href="tel:+18774982416">
+                    <img src="img/Call-now.png" alt="CALL NOW +1 877 498 2416" id="imagen"/></a>
+                </div>
+              </div>
+            
+            
+             
+             
+             
+              
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+    </header>
+  <!--texto y video-->
+    <div class="container pt-5 desc">
+        <div class="row d-flex justify-content-center">
+            <p>Come Visit the Magical Islands of Loreto and truly have the most relaxing and peaceful vacation of all time while being pampered like a <br>
+              celebrity! <br> <br>
+              In the Sea of Cortez in Mexico lies an amazing jewel is known as Loreto, a colonial city 300 years old, where five islands surround an <br>
+              ecological reserve, virtually untouched. Loreto is a little-known Mexican resort town, offering quiet beaches, scenic views, rich history, and <br>
+              stunning natural habitats. <br> <br>
+              It’s the kind of place for eco-travelers, who love to explore the beauty of Mother Nature. If you want to experience the unique combination <br>
+              of desert landscape, mountains, and sea, Loreto is like no other place you have visited. Take a day trip through the past with a visit to the <br>
+              historic San Javier Mission, or a boat tour to Coronado Island, a paradise for divers, snorkelers, and kayakers. <br> <br>
+              Come and discover for yourself an untouched paradise in Baja California Sur!
+              </p>
+
+        </div>
+       
+    </div>
+    <div class="container">
+      <div class="row d-flex justify-content-center">
+        <video loop muted autoplay poster="#" class="video-bg_video" >
+          <source src="vid/BV-destino-Loreto-1.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  
+    <!--Carrousel-->
+    <div class="container what pt-5">
+        <div class="row d-flex justify-content-center pt-5">
+            <h1>What to do in Loreto?</h1> 
+           
+        </div>
+        <div class="row d-flex justify-content-center">
+          <h6 class="pt-3">Looking for activity and adventure or just to relax? The list goes on and on – this is a couple's haven. Come celebrate your anniversary in our amazing spa, enjoy tropical drinks by our beautiful pools, or enjoy the tranquil beach where you will be guaranteed to marvel in the natural preservation of the sea life. 
+            For the ones craving an action-packed vacation – Snorkel, dive, mountain bike, ATV, go on an adventure to other islands, or check out our Danzante Bay Golf Course. We have something to please everyone’s appetite. 
+            Check out available tours <a href="myloretoexperience.com">myloretoexperience.com</a> </h6>
+        </div>
+        <div class="row pt-3 " id="carrouesel">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
+                </ol>
+                <div class="carousel-inner">
+                  <div class="carousel-item active" id="carrousel">
+                    <img src="img/BV_Actividades-destino_loreto_1.png" class="d-block w-100" alt="Beach Vibes"/>
+                  </div>
+                  <div class="carousel-item" id="carrousel">
+                    <img src="img/BV_Actividades-destino_loreto_2.png" class="d-block w-100" alt="Beach Vibes"/>
+                  </div>
+                  <div class="carousel-item" id="carrousel">
+                    <img src="img/BV_Actividades-destino_loreto_3.png" class="d-block w-100" alt="Beach Vibes"/>
+                  </div>
+                  <div class="carousel-item" id="carrousel">
+                    <img src="img/BV_Actividades-destino_loreto_4.jpg" class="d-block w-100" alt="Beach Vibes"/>
+                  </div>
+                  <div class="carousel-item" id="carrousel">
+                    <img src="img/BV_Actividades-destino_loreto_5.png" class="d-block w-100" alt="Beach Vibes"/>
+                  </div>
+                  <div class="carousel-item" id="carrousel">
+                    <img src="img/BV_Actividades-destino_loreto_6.png" class="d-block w-100" alt="Beach Vibes"/>
+                  </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
+             
+        </div>
+        <div class="d-flex justify-content-center pt-5">
+            <button type="submit" class="btn btn-primary requests d-block mx-auto" data-bs-toggle="modal" data-bs-target="#exampleModal">Request a Quote</button>
+          </div>
+    </div>
+
+    <!--clima-->
+    <div class="container pt-5" id="clima">
+        <div class="row d-flex justify-content-center">
+            <h1>Weather/Season</h1>
+        </div>
+    </div>
+   <div class="container-fluid">
+     <div class="row">
+      <img src="img/WM_LORETO-WIDE.jpg" alt="Loreto" class="img-fluid"/>
+     </div>
+   </div>
+   <div class="d-flex justify-content-center pt-3">
+    <button type="submit" class="btn btn-primary requests d-block mx-auto" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-bottom: 50px;">Request a Quote</button>
+  </div>
+
+
+
+<!--footer-->
+
+
+
+      <footer>
+        <div class="container">
+            <div class="row d-flex justify-content-center pt-5" id="foot"> 
+                <div class="col-md-3 pt-5 terms">
+                    <p>
+                      <a href="Terms.html"><u>TERMS & CONDITIONS</u></a>
+                        <br>
+                        <a href="Privacy.html"><u>PRIVACY POLICY</u></a>
+                        
+                    </p>
+
+                </div>
+                <div class="col-md-4 pt-5 contact">
+                   
+                    <p >
+                        <a href="tel:+18774982416" style="color: #3f4c72">P: US/CAN: +1 877-498-2416</a>   <br>
+                        <a href="tel:18002694366" style="color: #3f4c72">P: México: 1-800-269-4366</a> <br>
+                        <a href="mailto:tony@beachvibesclub.com?Subject=Request%20a%20Quote" style="color: #3f4c72">E: tony@beachvibesclub.com </a>  <br>
+                        <a href="https://beachvibesclub.com/" style="color: #3f4c72">W: www.beachvibesclub.com</a>
+                    </p>
+                </div>
+                <div class="col-md-3 copy pt-5">
+                    <p>Copyright © 2021 Beach<br>
+                    Vibes. All Rights Reserved.</p>
+                </div>
+                <div class="col-md-2 redes pt-5">
+                  <a href="https://www.facebook.com/beachvibesclub"><img src="img/FB.png" alt="Beach Vibes"></a>
+                  <a href="https://www.instagram.com/vibes.beach1/"><img src="img/IG.png" alt="@beachvibesclub/"></a>
+                    
+                </div>
+                
+            </div>
+            <div class="d-none d-sm-none d-md-block">
+              <div class="row pagos ">
+                <div class="col-md-4 pt-5 ">
+                    <h2>Afilliations</h2>
+                    <img src="img/Grupo-234.jpg" alt="ADEPROTUR"/>
+                    <img src="img/asudestico.png" alt="ASUDESTICO"/>
+                    <img src="img/bbb.png" alt="BBB"/>
+                </div>
+                <div class="col-md-6 pt-5">
+                    <h2>Accepted Credit Cards</h2>
+                    <img src="img/visa.png" alt="VISA">
+                    <img src="img/amex.png" alt="AMERICAN EXPRESS"/>
+                    <img src="img/discover-network.png" alt="DISCOVER NETWORK"/>
+                    <img src="img/master card.png" alt="MASTER CARD"/>
+                </div>
+            </div>
+            </div>
+          <!--Vista celular-->
+          <div class="row pagos d-block d-sm-block d-md-none">
+            <div class="col-md-4 pt-5" id="afilliations">
+              <h2>Afilliations</h2>
+              <img src="img/Grupo-234.jpg" alt="ADEPROTUR"/>
+              <img src="img/asudestico.png" alt="ASUDESTICO"/>
+              <img src="img/bbb.png" alt="BBB">
+          </div>
+          <div class="col-md-6 pt-5" id="Credit-Cards">
+              <h2>Accepted Credit Cards</h2>
+              <img src="img/visa.png" alt="VISA"/>
+              <img src="img/amex.png" alt="AMERICAN EXPRESS"/>
+              <img src="img/discover-network.png" alt="DISCOVER NETWORK"/>
+              <img src="img/master card.png" alt="MASTER CARD"/>
+          </div>
+          </div>
+        </div>
+    
+        
+    </footer>
+
+<!--MODAL-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl ">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"> Quote Request Form</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><img src="img/BV_Cruz-01.png" alt="Close"/></button>
+        </div>
+        <div class="modal-body">
+          <h3>Its time to start packing for your next vacation!</h3>
+          <p>Choose between Loreto, Puerto Vallarta, Cabo San Lucas, or Cancun and get ready to enjoy a once in a lifetime Mexican Holiday.
+            </p>
+
+                <div class="container">
+                    <form action="https://gmail.us3.list-manage.com/subscribe/post?u=6664ffc26dd54812c983929d9&amp;id=ce3407d758" method="POST" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                        <!--ROW 1-->
+                    <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">First Name</label>
+                                    <input  type="text"  name="FNAME" id="mce-FNAME"  class="form-control"  placeholder="First Name">
+                                  </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Last Name</label>
+                                    <input  type="text" name="LNAME" id="mce-LNAME" class="form-control"  placeholder="Last Name">
+                                  </div>
+                            </div>
+                    </div>
+                    <!--ROW 2-->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="exampleInputEmail1">Your Email</label>
+                            <input type="email" class="form-control" name="EMAIL" id="mce-EMAIL" aria-describedby="emailHelp" placeholder="email@domain">
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Your Phone</label>
+                                <input type="text" name="PHONE"  id="mce-PHONE"  class="form-control"placeholder="Phone">
+                              </div>
+                        </div>
+                    </div>
+
+                   <!--ROW 7-->
+                   <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Comments</label>
+                            <input type="text" name="MMERGE3" id="mce-MMERGE3" class="form-control" >
+                          </div>
+                    </div>
+                   </div>
+                  
+              
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary" id="mc-embedded-subscribe" onclick="sendToEplat()">Submit</button>
+          </div>
+        </form>
+      </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>                 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/formValidation.js"></script>
+</body>
+</html>
