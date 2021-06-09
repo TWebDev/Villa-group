@@ -1,0 +1,112 @@
+<!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Baskervville&display=swap" rel="stylesheet">
+</head>
+<body>
+    <table align="center" cellpadding="0" cellspacing="0" width="600">
+        <tr>    
+            <td>   
+                <img src="https://i.postimg.cc/0QB8dBnT/VLE-Email-Assets-Dic-2020-Recovered-09.png" style="max-width: 600px;">
+               
+            </td>   
+            </tr>  
+            <tr>
+                <td> 
+                   <h1 style="color: #4A4A4A; font-family: 'Lato', sans-serif; text-align: center; font-size: 1.5em;">Choose Award Winning</h1>
+                   <h1 style="color: #CC9C42; font-family: 'Lato', sans-serif; text-align: center; font-size: 1.5em;">“Villa La Estancia Residences Luxury Resort”</h1>
+                   <p style="color: #4A4A4A; font-family: 'Baskervville', serif; text-align: justify;  padding: 0 50px 0 50px;"> <b style="color: #CC9C42; font-family: 'Baskervville', serif; ">Hi, my name is Nilo Lucas,</b>  and I am your personal real estate consultant. I have been assigned to
+                    answer any questions you may have about deeded Real Estate ownership Program at Villa La
+                    Estancia Residences Resort. </p>
+                </td>  
+            </tr>  
+            <tr>  
+                <td > 
+                    <img src="https://i.postimg.cc/NMB0Zd0P/VLE-Email-Assets-Dic-2020-Recovered-02.png"style="max-width: 500px; margin-left: 50px;"> 
+                    <p style="color: #4A4A4A; font-family: 'Baskervville', serif; text-align: justify;  margin: 0 50px 0 50px;">Villa La Estancia is a great investment tool while you are still in your working years AND a wonderful
+                        place to retire later in life. Here is what Villa La Estancia offers:</p>  
+                </td>   
+            </tr>
+            <tr>
+                <td>
+                    <ul>
+                        <li style="color: #4A4A4A; font-family: 'Baskervville', serif; "><b style="color: #CC9C42;">Elegantly furnished 2 & 3 bedrooms villas,</b> Ocean-front homes and Penthouses</li>
+                        <li style="color: #4A4A4A; font-family: 'Baskervville', serif; "><b style="color: #CC9C42;">Easy Developer financing</b> on Fractional and Full Ownership Real Estate purchase</li>
+                        <li style="color: #4A4A4A; font-family: 'Baskervville', serif; "><b style="color: #CC9C42;">Trade privileges</b> with first class resorts around the world</li>
+                        <li style="color: #4A4A4A; font-family: 'Baskervville', serif; "><b style="color: #CC9C42;">Discounted Golf fees</b> at selected courses</li>
+                        <li style="color: #4A4A4A; font-family: 'Baskervville', serif; "><b style="color: #CC9C42;">Gym</b> with personal trainer</li>
+                        <li style="color: #CC9C42; font-family: 'Baskervville', serif; "><b style="color: #4A4A4A;">24 hrs</b> Concierge Services</li>
+                        <li style="color: #CC9C42; font-family: 'Baskervville', serif; "><b style="color: #4A4A4A;">24 hrs</b> Security</li>
+                        <li style="color: #CC9C42; font-family: 'Baskervville', serif; "> <b>And much much more!</b> </li>
+                    </ul>
+                </td>
+            </tr> 
+            <tr>
+                <td>
+                    <table  cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                        <td width="260" valign="top">
+                            <img src="https://i.postimg.cc/MGLyJc4Q/VLE-Email-Assets-Dic-2020-Recovered-03.png" alt="" style="max-width: 250px; padding: 0 0 0 40px;" >   
+                        </td>
+                        <td style="font-size: 0; line-height: 0;" width="10">
+                            &nbsp;
+                        </td>
+                        <td width="260" valign="top">
+                            <img src="https://i.postimg.cc/65hn5bgw/VLE-Email-Assets-Dic-2020-Recovered-04.png" alt="" style="max-width: 250px; padding: 0 40px 0 0;">
+                        </td>
+                        </tr>
+                       </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p style="color: #4A4A4A; font-family: 'Baskervville', serif;  margin: 0 40px 0 40px;">Please take a moment and reply to this email and let me know what questions you have about
+                        owning real estate in Mexico</p>
+                        <p style="color: #CC9C42; font-family: 'Baskervville', serif;  margin: 0 40px 0 40px; ">I look forward to your response.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="telefono:3227799583" style="text-decoration: none;">
+                    <h1 style="background: #CC9C42; color: white; width: 200px; text-align: center; margin-left: 200px; font-family: 'Lato', sans-serif; margin-bottom: 10px;">Contact me</h1>
+                </a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="https://i.postimg.cc/gjWLG3Kn/VLE-Email-Assets-Dic-2020-Recovered-05.png" alt="" style="max-width: 500px; margin-left: 50px;">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="https://i.postimg.cc/Bnk6qxS4/VLE-Email-Assets-Dic-2020-Recovered-06.png"  style="max-width: 50px; margin-left: 270px;">
+                    <h1 style="color: #CC9C42;text-align: center; font-family: 'Baskervville', serif; font-size: 1.5em;">Nilo Lucas</h1>
+                    <h4 style="text-align: center; font-family: 'Baskervville', serif;">nilonv@villalaestancia.com</h4>
+                    <h4 style="color: #CC9C42; text-align: center; font-family: 'Baskervville', serif;">Cell: 52-322-779-9583 <b>or</b> Office: 52-322-297-5560</h4>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                 <table  cellpadding="0" cellspacing="0" width="100%">
+                     <tr style="background: #4A4A4A;">
+                         <td>    
+                             <img src="https://i.postimg.cc/7Yv1s28G/VLE-Email-Assets-Dic-2020-Recovered-07.png" alt="" style="max-width: 150px; margin-left: 50px;">  
+                         </td>   
+                         <td>
+                             <a href="https://www.facebook.com/VillaLaEstanciaNayarit">
+                             <img src="https://i.postimg.cc/yNSYbkzx/VLE-Email-Assets-Dic-2020-Recovered-08.png" alt="" style="max-width: 50px;">
+                            </a>
+                         </td>
+                     </tr>
+                    </table>
+                </td>
+             </tr>
+       </table>
+</body>
+</html>

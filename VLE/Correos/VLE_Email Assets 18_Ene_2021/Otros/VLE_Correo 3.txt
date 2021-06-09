@@ -1,0 +1,101 @@
+<!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Baskervville&display=swap" rel="stylesheet">
+    </head>
+<body>
+    <table align="center" cellpadding="0" cellspacing="0" width="600">
+ 
+        <tr>
+            <td>
+                <img src="https://i.postimg.cc/gjt6hsLj/VLE-Email-Assets-Dic-2020-Recovered-10.png" style="max-width: 600px;">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h2 style="color:#CC9C42; margin-left: 50px; font-family: 'Lato', sans-serif; font-size: 1.5em;">My name is Nilo Lucas,</h2>
+                <h2 style="color: #4A4A4A; margin-left: 50px; font-family: 'Lato', sans-serif; font-size: 1.2em;">the Real Estate Sales Director at Villa La Estancia Riviera Nayarit.</h2>
+                <img src="https://i.postimg.cc/NMB0Zd0P/VLE-Email-Assets-Dic-2020-Recovered-02.png"style="max-width: 500px; margin-left: 50px;">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p style="font-family: 'Baskervville', serif; color: #4A4A4A; margin: 0 40px 0 40px;">I see you have an interest in getting some information regarding Real Estate in Mexico. I would like
+                    to confirm a few things, according to the info. </p>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table  cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                    <td width="260" valign="top">
+                        <img src="https://i.postimg.cc/MGLyJc4Q/VLE-Email-Assets-Dic-2020-Recovered-03.png" alt="" style="max-width: 250px; padding: 0 0 0 40px;" >
+                        <h1 style="color: #CC9C42; font-size: 1em; font-family: 'Lato', sans-serif; margin-left: 45px;"> Are you familiar with the area?</h1>
+                    </td>
+                    <td style="font-size: 0; line-height: 0;" width="10">
+                        &nbsp;
+                    </td>
+                    <td width="260" valign="top">
+                        <img src="https://i.postimg.cc/65hn5bgw/VLE-Email-Assets-Dic-2020-Recovered-04.png" alt="" style="max-width: 250px; padding: 0 40px 0 0;">
+                        <h1 style="color: #CC9C42; font-size: 1em; font-family: 'Lato', sans-serif; margin-left: 20px;">What size are you looking for?</h1>
+                    </td>
+                    </tr>
+                   </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="https://i.postimg.cc/gjWLG3Kn/VLE-Email-Assets-Dic-2020-Recovered-05.png" alt="" style="max-width: 500px; margin-left: 50px;">
+                <p style="color: #CC9C42; text-align: justify; font-family: 'Baskervville', serif; margin: 0 40px 0 40px;">I would love to give you a quick call this week to get to know in a better way your needs. When does
+                    that work for you? </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h1 style="color: #CC9C42; text-align: center; font-family: 'Lato', sans-serif; font-size: 1em;" >I would love to give you a quick call this week to get to <br>
+                    know in a better way your needs.</h1>
+                    <h5 style="color: #CC9C42; text-align: center; font-family: 'Lato', sans-serif;">Please feel free to call, text, or email me anytime, my contact information is: </h5>
+                    <a href="telefono:3227799583" style="text-decoration: none;">
+                    <h5 style="color: #F0BA60; text-align: center; font-family: 'Lato', sans-serif;"> <b style="color: black;">Mobile: </b> (322) 779 95 83</h5>
+                </a>
+                    <h5 style="color: #F0BA60; text-align: center; font-family: 'Lato', sans-serif;"><b style="color: black;">Email: </b> nilonv@villalaestancia.com</h5>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h1 style="color: #CC9C42; text-align: center; font-family: 'Baskervville', serif; font-size: 1.5em;">I hope you have a great day!</h1>
+                <img src="https://i.postimg.cc/Bnk6qxS4/VLE-Email-Assets-Dic-2020-Recovered-06.png"  style="max-width: 50px; margin-left: 270px;">
+                <h1 style="color: #CC9C42;text-align: center; font-family: 'Baskervville', serif; font-size: 1.5em;">Nilo Lucas</h1>
+                <h4 style="text-align: center; font-family: 'Baskervville', serif; margin-top: -10px;">nilonv@villalaestancia.com</h4>
+                <h4 style="color: #CC9C42; text-align: center; font-family: 'Baskervville', serif; margin-top: -10px;">Cell: 52-322-779-9583 <b>or</b> Office: 52-322-297-5560</h4>
+            </td>
+        </tr>
+        <tr>
+           <td>
+            <table  cellpadding="0" cellspacing="0" width="100%">
+                <tr style="background: #4A4A4A;">
+                    <td>    
+                        <img src="https://i.postimg.cc/7Yv1s28G/VLE-Email-Assets-Dic-2020-Recovered-07.png" alt="" style="max-width: 150px; margin-left: 50px;">  
+                    </td>   
+                    <td>
+                        <a href="https://www.facebook.com/VillaLaEstanciaNayarit">
+                        <img src="https://i.postimg.cc/yNSYbkzx/VLE-Email-Assets-Dic-2020-Recovered-08.png" alt="" style="max-width: 50px;">
+                    </a>
+                    </td>
+                </tr>
+               </table>
+           </td>
+        </tr>
+        
+
+       </table>
+       
+</body>
+</html>
