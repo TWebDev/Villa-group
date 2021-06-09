@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'LoveloLineBold';
+  src: url('LoveloLineBold.eot');
+  src: url('LoveloLineBold.eot?#iefix') format('embedded-opentype'),
+       url('LoveloLineBold.svg#LoveloLineBold') format('svg'),
+       url('LoveloLineBold.ttf') format('truetype'),
+       url('LoveloLineBold.woff') format('woff'),
+       url('LoveloLineBold.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
