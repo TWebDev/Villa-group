@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+</head>
+<body>
+    <table align="center" cellpadding="0" cellspacing="0" width="600">
+        <tr>
+            <td>
+                <img src="https://i.postimg.cc/VvxBbnSL/BVM-Email-Assets-01.png" alt="HAPPY HOLIDAYS" style="max-width: 600px;">
+                <p style="text-align: justify; font-family: 'Lato', sans-serif; color: #1B314F ;">This year has certainly tested us all why not look forward to a healing 2021! Give your family
+                    the most amazing holiday present this year. <b style="color: #EAB13C; font-family: 'Lato', sans-serif;" > A beautiful gift that will help your family create
+                    memories that will last a lifetime!</b>
+                </p>
+            </td>
+         </tr>
+         <tr>
+             <td>
+                <img src="https://i.postimg.cc/44DSc9R9/BVM-Email-Assets-02.png" alt="HAPPY HOLIDAYS" style="max-width: 600px;"> 
+             </td>
+         </tr>
+        <tr>
+            <td>
+                <a href="tel:18774982416" style="text-decoration: none;">
+                <h1 style="background-color: #EAB13C; font-size: 1.5em; width: 240px; margin-left: 180px; text-align: center; color: white; border-radius: 20px;  display: inline-block; font-family: 'Oswald', sans-serif;">
+                    <img src="https://i.postimg.cc/gksGw077/BVM-Mail-Assets-Black-Friday-phone.png" alt="BEACH VACATIONS MEXICO" aling="left" style="max-width: 30px; "></a>
+                    CALL NOW!</h1>
+                
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p style="text-align: justify; font-family: 'Lato', sans-serif; color: #1B314F ;">An unforgettable stay at our <b style="color: #EAB13C; font-family: 'Lato', sans-serif;">Luxurious 5-star </b> oceanfront Resort and Spa, The Villa del Palmar.
+                    Your vacation package will include 5 days and 4 nights’ accommodation for two qualified
+                    adults, all your meals – breakfast, lunch, dinner, pool side and beach side service, all your
+                    beverages, both alcoholic and non-alcoholic, our themed nightly entertainment shows and all
+                    your non-motorized activities on the beach.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h1 style="color: #EAB13C; font-size: 1.2em; font-family: 'Oswald', sans-serif; text-align: center;">In most destinations we will include 2 childrenunder 12 years for free</h1>
+                <img src="https://i.postimg.cc/Nj6qFxyF/BVM-Email-Assets-03.png" alt="PUERTO VALLARTA" style="max-width: 500px; margin-bottom: 10px; margin-left: 50px;">
+                <p style="text-align: justify; font-family: 'Lato', sans-serif; color: #1B314F; ">With the purchase of this certificate you will receive 18 months available for use in one of 3
+                    gorgeous locations in the beautiful Riviera Maya Mexican destinations – Puerto Vallarta, Cabo
+                    San Lucas, and The Islands of Loreto, ask me about Cancun!
+                    </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table  cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                        <td width="180" valign="top">
+                        <img src="https://i.postimg.cc/MTbmjv7y/BVM-Email-Assets-06.png" alt="BEACH VACATIONS MEXICO" style="max-width: 180px; ">
+                        </td>
+                        <td style="font-size: 0; line-height: 0;" width="10">
+                         &nbsp;
+                        </td>
+                        <td width="180" valign="top">
+                            <img src="https://i.postimg.cc/63wdwtkT/BVM-Email-Assets-07.png" alt="Facebook" style="max-width: 180px; ">
+                        </td>
+                        <td style="font-size: 0; line-height: 0;" width="10">
+                            &nbsp;
+                           </td>
+                           <td width="180" valign="top">
+                            <img src="https://i.postimg.cc/vBQ6kXnV/BVM-Email-Assets-08.png" alt="BEACH VACATIONS MEXICO" style="max-width: 180px; ">
+                           </td>
+                         </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h2 style="color: #1B314F; text-align: center; font-family: 'Oswald', sans-serif;">From our Family to yours </h2>
+                <h1 style="color: #8ABCB0; text-align: center; margin-top: -10px; font-family: 'Oswald', sans-serif;">wishing you a beautiful Holiday Season!</h1>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h2 style="color: #1B314F; text-align: center; font-family: 'Oswald', sans-serif;">Call us now to find out all details </h2>
+                <a href="tel:18774982416" style="text-decoration: none;">
+                <h1 style="text-align: center; color: white; background: #EAB13C; border-radius: 15px; width: 250px; margin-left: 180px; font-family: 'Oswald', sans-serif;">1-877-498-2416</h1> </a>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h1 style=" color: #1B314F;  text-align: center; font-family: 'Lato', sans-serif; font-size: 1em;">Please note we have daily live promotions withs pecials, extras and super
+                    Holiday bonuses for you and your family´s dream vacation.</h1>
+                <h6 style="text-align: center; font-family: 'Lato', sans-serif;">*Some Qualifications are required * Limited time offer* only while supplies last*</h6>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table  cellpadding="0" cellspacing="0" width="100%" >
+                    <tr style="background:#1B314F;">    
+                        <td width="400" valign="top">
+                        </td>
+                        <td style="font-size: 0; line-height: 0;" width="20"> 
+                            &nbsp;
+                        </td>
+                        <td width="400" valign="top">
+                            <img src="https://i.postimg.cc/cJG4Cmd5/BVM-Email-Assets-09.png"  style="max-width: 200px; margin-top: 10px; margin-bottom: -15px;" > <br>
+                            <h5 style="color: white; font-family: 'Lato', sans-serif; margin-left: 80px; font-size: 0.5;">by</h5>
+                            <img src="https://i.postimg.cc/qBDJy0kK/BVM-Email-Assets-10.png"  style="max-width: 100px; margin-left: 40px; margin-top: -20px;">
+                        </td>
+                        <td style="font-size: 0; line-height: 0;" width="20"> 
+                            &nbsp;
+                        </td>
+
+                        <td width="120" valign="top">
+                            <a href=""> <img src="https://i.postimg.cc/jdV7PzqP/BVM-Email-Assets-05.png" alt="Facebook" style="max-width: 35px; margin-top: 20px;"></a>
+                            <a href=""><img src="https://i.postimg.cc/8CCJN4wQ/BVM-Email-Assets-04.png" alt="Instagram" style="max-width: 35px;"></a>
+                            
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+       </table>
+</body>
+</html>
