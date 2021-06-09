@@ -1,0 +1,53 @@
+﻿@model ePlatBack.Models.ViewModels.GuestExperienceViewModel.SearchFilters
+
+
+@using (Ajax.BeginForm("GetArrivals", "GuestExperience", new AjaxOptions
+{
+    OnBegin = "GEM.startSearch()",
+    OnSuccess = "GEM.setSearchResults(data)"
+},
+        new { id = "frmGEMSearch" }))
+{
+    <div class="card search-card" v-show="UIData.showSearchCard">
+        <div class="card-body">
+            <h5 class="card-title">Search Filters</h5>
+            <div class="form-row">
+                <div class="form-group col-md-3 col-lg-2">
+                    @Html.HiddenFor(model => model.Search_FrontOfficeResortID, new { v_model = "SearchFilters.Search_FrontOfficeResortID" })
+                    @Html.LabelFor(model => model.Search_FromDate, new { @class = "text-truncate d-block" })
+                    @Html.TextBoxFor(model => model.Search_FromDate, new { @class = "form-control datetimepicker-input", placeholder = "yyyy-mm-dd", data_toggle = "datetimepicker", data_target = "#Search_FromDate", v_model = "SearchFilters.Search_FromDate" })
+                </div>
+                <div class="form-group col-md-3 col-lg-2">
+                    @Html.LabelFor(model => model.Search_ToDate)
+                    @Html.TextBoxFor(model => model.Search_ToDate, new { @class = "form-control datetimepicker-input", placeholder = "yyyy-mm-dd", data_toggle = "datetimepicker", data_target = "#Search_ToDate", v_model = "SearchFilters.Search_ToDate" })
+                </div>
+                <div class="form-group col-md-3 col-lg-2">
+                    @Html.LabelFor(model => model.Search_Preferences)
+                    <select id="Search_Preferences" name="Search_Preferences" class="form-control" multiple="multiple">
+                        <optgroup v-for="preferenceType in Preferences" v-bind:label="preferenceType.PreferenceTypeShortName">
+                            <option v-for="preference in preferenceType.Preferences" v-bind:value="preference.PreferenceID">{{ preference.PreferenceShortName }}</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <div class="form-group col-md-3 col-lg-2">
+                    @Html.LabelFor(model => model.Search_GuestName)
+                    @Html.TextBoxFor(model => model.Search_GuestName, new { @class = "form-control" })
+                </div>
+                <div class="form-group col-md-3 col-lg-2">
+                    @Html.LabelFor(model => model.Search_ConfirmationNumber)
+                    @Html.TextBoxFor(model => model.Search_ConfirmationNumber, new { @class = "form-control" })
+                </div>
+                <div class="form-group col-md-3 col-lg-2">
+                    @Html.LabelFor(model => model.Search_Crs)
+                    @Html.TextBoxFor(model => model.Search_Crs, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="text-right col">
+                    <input type="reset" class="btn" value="Clear" />
+                    <input type="submit" id="btnSearchBanks" class="btn btn-primary" value="Search" />
+                </div>
+            </div>
+        </div>
+    </div>
+}

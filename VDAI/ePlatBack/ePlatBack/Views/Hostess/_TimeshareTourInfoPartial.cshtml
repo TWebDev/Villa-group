@@ -1,0 +1,82 @@
+﻿@model ePlatBack.Models.ViewModels.ArrivalsViewModel.TourInfo
+
+<div id="divTourInfo" @*style="display:none;"*@>
+    <h4>Tour Info</h4>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TourDate)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.TourDate, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SalesCenter)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.SalesCenter, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TourSource)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.TourSource, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SourceGroup)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.SourceGroup, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SourceItem)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.SourceItem, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Qualification)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Qualification, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TourContractNumber)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.TourContractNumber, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Volume)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Volume, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+        </div>
+    </div>
+
+    <h4>Legal Names</h4>
+
+    <table id="tblLegalNames" class="table half-width">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Date of Birth</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>

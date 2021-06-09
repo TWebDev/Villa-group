@@ -1,0 +1,32 @@
+﻿@model ePlatBack.Models.ViewModels.SurveyViewModel.SurveyModel
+
+<div id="pnlDocument">
+    <div id="blocked" style="display:none;"></div>
+    <div id="paperSheet">
+        <div class="paper-75">
+            <input id="SurveyName" type="text" placeholder="Survey Name" class="design-mode big-input-1" />
+            <div id="pnlInfoFields"></div>
+            <div id="paramsInfoField" style="display:none;">
+                @Html.Partial("_InfoFieldPartial", Model.SurveyInfoField)
+            </div>
+            <input type="button" id="btnInformativeField" value="+ INFORMATIVE FIELD" class="mini-button button-centered" />
+        </div>
+        <div class="paper-25"><div class="survey-logo"><input type="button" value="+ LOGO" class="mini-button button-centered" style="margin-top: 45px;" /></div></div>
+        <textarea id="Instructions" placeholder="Type the instructions to fill the Survey" class="design-mode"></textarea>
+        <div id="pnlFormFields"></div>
+        <div id="paramsFormField" style="display:none;">
+            @Html.Partial("_FormFieldPartial", Model.SurveyFormField)
+        </div>
+        <input type="button" id="btnFormField" value="+ FORM FIELD" class="mini-button button-centered" />
+        <hr />
+@using (Ajax.BeginForm("SaveSurvey", "Surveys", new AjaxOptions { OnSuccess = "Survey.saved();" }, new { id = "frmSaveSurvey" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+    <input type="hidden" id="model" name="model" />
+    <input type="submit" class="submit right" value="SAVE SURVEY" />
+}
+        
+    </div>
+</div>

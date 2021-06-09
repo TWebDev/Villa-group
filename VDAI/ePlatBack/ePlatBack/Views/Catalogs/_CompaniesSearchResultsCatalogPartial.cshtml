@@ -1,0 +1,40 @@
+﻿@model ePlatBack.Models.ViewModels.CompaniesModel.SearchCompaniesModel
+
+<table id="tblSearchCompaniesResults" class="dataTable table search-results">
+            <thead>
+                <tr>
+                    <th>Company</th>
+                    <th>Short Name</th>
+                    <th>Country</th>
+                    <th>ZipCode</th>
+                    <th>RFC</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.ListCompanies != null)
+                {
+                    foreach (var i in Model.ListCompanies)
+                    {
+                        var id = "company_" + i.CompanyInfo_CompanyID;
+                        <tr id="@id">
+                            <td>
+                                @Html.DisplayFor(model => i.CompanyInfo_Company)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.CompanyInfo_ShortName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.CompanyInfo_CountryText)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.CompanyInfo_ZipCode)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.CompanyInfo_RFC)
+                                <img src="/Content/themes/base/images/cross.png" class="right delete-item" />
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>

@@ -1,0 +1,48 @@
+﻿@model ePlatBack.Models.ViewModels.DestinationInfoModel
+
+<fieldset id="fdsDestinationsInfo">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" alt="" class="fieldset-indicator fds-indicator-separator">
+            Destination Info
+	</legend>
+    <div style="display:none" class="align-from-top">
+    @using (Ajax.BeginForm("SaveDestination", "Places", new AjaxOptions { OnSuccess = "PLACE.saveDestinationSuccess(data)" }, new { id = "frmDestinationInfo", onSubmit = "return UI.showValidationSummary(this.id);" }))
+    {
+    <div id="frmDestinationInfo_ErrorMessages" style="display:none">
+        @Html.ValidationMessageFor(model => model.DestinationInfo_Destination)
+    </div>
+    <div id="gMap2">
+          Loading Map....
+    </div>
+    <div class="editor-alignment">
+    <div class="editor-label">
+        @Html.LabelFor(model => model.DestinationInfo_Destination)
+        @Html.HiddenFor(model => model.DestinationInfo_DestinationID, new { @class = "secondary-selected-row-dependent" })
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.DestinationInfo_Destination)
+    </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DestinationInfo_Latitude)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.DestinationInfo_Latitude)
+        </div>
+    </div>
+     <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DestinationInfo_Longitude)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.DestinationInfo_Longitude)
+        </div>
+    </div>
+    <div class="editor-alignment full-width">
+        <input type="submit" class="submit right" value="Save" id="btnSaveDestination"/>
+    </div>
+    }
+    </div>
+</fieldset>
+                 

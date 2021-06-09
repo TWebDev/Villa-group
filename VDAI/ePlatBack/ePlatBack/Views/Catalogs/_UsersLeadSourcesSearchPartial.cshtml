@@ -1,0 +1,69 @@
+﻿@model ePlatBack.Models.ViewModels.UsersLeadSources.SearchUserLeadSources
+
+<fieldset id="fdsUserLeadSourceManagement">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        User-LeadSource Management
+    </legend>
+    <div class="align-from-top">
+        <div class="full-width">
+            <input type="button" id="btnNewUserLeadSourceInfo" class="submit fieldset-expander right" value="new"/>
+        </div>
+        @using (Ajax.BeginForm("SearchUsersLeadSources", "Catalogs", new AjaxOptions { OnSuccess = "CATALOG.usersLeadSourcesResultsTable(data);CATALOG.makeTblUserLeadSourcesSelectable();", UpdateTargetId = "divTblUserLeadSources" }, new { }))
+        {
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Search_Users)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.Search_Users, Model.ListUsers, new { multiple = "multiple" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Search_LeadSources)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.Search_LeadSources, Model.ListLeadSources, new { multiple = "multiple" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Search_Resorts)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.Search_Resorts, Model.ListResorts, new { multiple = "multiple" })
+                </div>
+            </div>
+            <div class="editor-alignment align-from-top">
+                <div class="editor-field">
+                    <input type="submit" class="button search" value="search" />
+                </div>
+            </div>
+            <div id="divTblUserLeadSources" class="align-from-top">
+                <table id="tblUserLeadSourcesResults" class="dataTable table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Agent
+                            </th>
+                            <th>
+                                Resort
+                            </th>
+                            <th>
+                                Lead Source
+                            </th>
+                            <th>
+                                Vigency
+                            </th>
+                            <th>
+                                Saved/Modified By
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        }
+        @Html.Action("RenderUsersLeadSources", "Catalogs")
+    </div>
+</fieldset>

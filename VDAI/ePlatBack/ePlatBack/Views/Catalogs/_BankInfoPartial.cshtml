@@ -1,0 +1,55 @@
+﻿@model ePlatBack.Models.ViewModels.Banks.BankItem
+
+<div id="divBankInfo" class="card mt-3 mb-3" v-bind:class="{ 'd-none' : !showBankInfo }">
+    <div class="card-body">
+        <h5 class="card-title">Bank Info</h5>
+
+        @using (Ajax.BeginForm("SaveBank", "Catalogs",
+            new AjaxOptions { OnSuccess = "Banks.bankSaved(data)" },
+            new
+            {
+                id = "frmBankInfo",
+                onSubmit = "return Banks.Forms().showValidationSummary(this.id);"
+            }))
+        {
+            <div class="form-row d-none" id="frmBankInfo_ErrorMessages">
+                @Html.ValidationMessageFor(model => model.BankName)
+                @Html.ValidationMessageFor(model => model.FromDate)
+                @Html.ValidationMessageFor(model => model.TerminalID)
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3 col-lg-2">
+                    @Html.HiddenFor(model => model.BankID)
+                    @Html.LabelFor(model => model.BankName)
+                    @Html.TextBoxFor(model => model.BankName, new { @class = "form-control", v_model = "Bank.BankName" })
+                </div>
+                <div class="form-group col-md-3 col-lg-2">
+                    @Html.LabelFor(model => model.CveSat)
+                    @Html.TextBoxFor(model => model.CveSat, new { @class = "form-control", v_model = "Bank.CveSat" })
+                </div>
+                <div class="form-group col-md-3 col-lg-2">
+                    @Html.LabelFor(model => model.FromDate)
+                    @Html.TextBoxFor(model => model.FromDate, new { @class = "form-control datetimepicker-input", placeholder = "yyyy-mm-dd", data_toggle = "datetimepicker", data_target = "#FromDate", v_model = "FromDateYYYYMMDD" })
+                </div>
+                <div class="form-group col-md-3 col-lg-2">
+                    @Html.LabelFor(model => model.ToDate)
+                    @Html.TextBoxFor(model => model.ToDate, new { @class = "form-control datetimepicker-input", placeholder = "yyyy-mm-dd", data_toggle = "datetimepicker", data_target = "#ToDate", v_model = "ToDateYYYYMMDD"  })
+                </div>
+                <div class="form-group col-md-3 col-lg-2">
+                    @Html.LabelFor(model => model.Terminal)
+                    <select id="TerminalID" name="TerminalID" class="form-control" data-val-required="Terminal is required." v-model="Bank.TerminalID">
+                        <option value="">Select one...</option>
+                        <option v-for="t in Shared.Session.TerminalsList" v-bind:value="t.value">{{ t.label }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="text-right col">
+                    <input type="button" class="btn" value="Cancel" v-on:click="hideBankInfo()" />
+                    <input id="btnSaveBankInfo" type="submit" class="btn btn-primary" value="Save" />
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

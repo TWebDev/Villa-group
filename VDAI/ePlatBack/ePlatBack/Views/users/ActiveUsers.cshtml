@@ -1,0 +1,72 @@
+﻿@model ePlatBack.Models.ViewModels.ActiveUsers
+@{
+    Layout = "~/Views/Shared/_Layout2Anonymous.cshtml";
+}
+
+@section Head {
+    <script>
+    window.Users = JSON.parse('@Html.Raw(Model.Users)');
+    </script>
+}
+
+@section Scripts{
+
+    <script src="~/ViewModels/eplat.local.public.activeusers.js"></script>
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <main id="main" role="main" class="col pt-3 px-4">
+            <h1 class="h2">Active Users</h1>
+
+            <div class="row mt-3 mb-4">
+                <div class="col"></div>
+                <div class="col">
+                    <div class="input-group">
+                        <input type="text" class="form-control" v-model="filter" placeholder="Search...">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button" v-bind:disabled="!filter" v-on:click="filter = ''">
+                                <i class="material-icons">close</i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>
+
+            <b-table id="tblUsers" responsive
+                     v-bind:items="Users"
+                     v-bind:fields="UsersDataTable.fields"
+                     v-bind:bordered="UsersDataTable.bordered"
+                     v-bind:striped="UsersDataTable.striped"
+                     v-bind:hover="UsersDataTable.hover"
+                     v-bind:sort-by.sync="UsersDataTable.sortBy"
+                     v-bind:sort-desc.sync="UsersDataTable.sortDesc"
+                     v-bind:current-page="UsersDataTable.currentPage"
+                     v-bind:per-page="UsersDataTable.perPage"
+                     v-bind:filter="filter"
+                     v-on:filtered="onFiltered"
+                     head-variant="dark"
+                     v-if="Users.length > 0">
+                <template slot="FirstName" slot-scope="row">
+                    <span v-bind:data-id="row.item.UserID">{{ row.item.FirstName }}</span>
+                </template>
+                <template slot="Username" slot-scope="row">
+                    <span class="d-block">{{ row.item.Username }}</span>
+                    <span class="d-block" v-if="row.item.Username != row.item.Email">{{ row.item.Email }}</span>
+                </template>
+                <template slot="Terminals" slot-scope="data">
+                    <span class="d-block" v-for="t in data.value">{{ t }}</span>
+                </template>
+            </b-table>
+            <div class="row my-3">
+                <div class="col md-6">
+                    <b-pagination v-bind:total-rows="UsersDataTable.totalRows" v-bind:per-page="UsersDataTable.perPage" v-model="UsersDataTable.currentPage" class="my-0" />
+                </div>
+                <div class="col text-right">
+                    <span class="h3 font-weight-normal">{{ UsersDataTable.totalRows }} Users</span>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>

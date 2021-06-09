@@ -1,0 +1,535 @@
+﻿@model ePlatBack.Models.ViewModels.IncomePolicyModel
+
+<div class="table-div">
+    <div class="table-row">
+        <div class="table-cell">
+            Date<br />
+            @Model.Date
+        </div>
+        <div class="table-cell">
+            Points of Sale<br />
+            @Html.Raw(Model.PointOfSale)
+        </div>
+        @if (Model.AccountingAccounts != null)
+        {
+            <div class="table-cell">
+                Accounting Accounts<br />
+                @Html.Raw(Model.AccountingAccounts)
+            </div>
+        }
+    </div>
+</div>
+
+@if (Model.Incomes != null)
+{
+    <h3>Incomes</h3>
+
+    <table class="table no-plugin" style="width: 100%">
+        <thead>
+            <tr>
+                <th>Accounting Account</th>
+                <th>Activity</th>
+                @foreach (var type in Model.PriceTypes.OrderBy(x => x.Order))
+                {
+                    <th colspan="2">
+                        @type.Type
+                    </th>
+                }
+                <th colspan="2">Activity Total</th>
+                <th colspan="2">Account Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var account in Model.Incomes)
+            {
+                <tr>
+                    <td rowspan="@account.Services.Count()">
+                        @account.Account
+                        <br />
+                        @account.AccountName
+                    </td>
+                    <td>@account.Services.First().Service</td>
+                    @foreach (var s in account.Services.First().SalesPerPrice)
+                    {
+                        foreach (var t in s.Sales)
+                        {
+                            <td class="text-right show-detail">
+                                <span data-format="currency">@t.Amount @t.Currency</span>
+                                @if (s.Coupons.Where(x => x.Total.Currency == @t.Currency).Count() > 0)
+                                {
+                                    <div class="cell-detail" style="display: none;">
+                                        <table style="width: 1000px;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Folio</th>
+                                                    <th>Customer</th>
+                                                    <th>Confirmation Date</th>
+                                                    <th>PoS</th>
+                                                    <th>Sales Agent</th>
+                                                    <th>Status</th>
+                                                    <th>Promo</th>
+                                                    <th>Total</th>
+                                                    <th>Total No IVA</th>
+                                                    <th>Transaction</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var c in s.Coupons.Where(x => x.Total.Currency == @t.Currency))
+                                                {
+                                                    <tr>
+                                                        <td><a href="/crm/masterchart#purchaseid=@c.PurchaseID" target="_blank">@c.Folio</a></td>
+                                                        <td>@c.Customer</td>
+                                                        <td>@c.ConfirmationDate</td>
+                                                        <td>@c.PointOfSale</td>
+                                                        <td>@c.SalesAgent</td>
+                                                        <td>@c.Status</td>
+                                                        <td>@c.Promo</td>
+                                                        <td>
+                                                            <span data-format="currency">@c.Total.Amount @c.Total.Currency</span>
+                                                        </td>
+                                                        <td>
+                                                            <span data-format="currency">@c.TotalNoIVA.Amount @c.TotalNoIVA.Currency</span>
+                                                        </td>
+                                                        <td>@c.AuthCode</td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                }
+                            </td>
+                        }
+                    }
+                    @foreach (var st in account.Services.First().SalesTotal)
+                    {
+                        <td>
+                            <span data-format="currency">@st.Amount @st.Currency</span>
+                        </td>
+                    }
+                    @foreach (var t in account.Total)
+                    {
+                        <td rowspan="@account.Services.Count()">
+                            <span data-format="currency">@t.Amount @t.Currency</span>
+                        </td>
+                    }
+                </tr>
+                    var index = 1;
+                    foreach (var service in account.Services)
+                    {
+                        if (index > 1)
+                        {
+                            <tr>
+                                <td>@service.Service</td>
+                                @foreach (var s in service.SalesPerPrice)
+                                {
+                                    foreach (var t in s.Sales)
+                                    {
+                                        <td class="text-right show-detail">
+                                            <span data-format="currency">@t.Amount @t.Currency</span>
+                                            @if (s.Coupons.Where(x => x.Total.Currency == @t.Currency).Count() > 0)
+                                            {
+                                                <div class="cell-detail" style="display: none;">
+                                                    <table style="width: 1000px;">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Folio</th>
+                                                                <th>Customer</th>
+                                                                <th>Confirmation Date</th>
+                                                                <th>PoS</th>
+                                                                <th>Sales Agent</th>
+                                                                <th>Status</th>
+                                                                <th>Promo</th>
+                                                                <th>Total</th>
+                                                                <th>Total No IVA</th>
+                                                                <th>Transaction</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach (var c in s.Coupons.Where(x => x.Total.Currency == @t.Currency))
+                                                            {
+                                                                <tr>
+                                                                    <td><a href="/crm/masterchart#purchaseid=@c.PurchaseID" target="_blank">@c.Folio</a></td>
+                                                                    <td>@c.Customer</td>
+                                                                    <td>@c.ConfirmationDate</td>
+                                                                    <td>@c.PointOfSale</td>
+                                                                    <td>@c.SalesAgent</td>
+                                                                    <td>@c.Status</td>
+                                                                    <td>@c.Promo</td>
+                                                                    <td>
+                                                                        <span data-format="currency">@c.Total.Amount @c.Total.Currency</span>
+                                                                    </td>
+                                                                    <td>
+                                                                        <span data-format="currency">@c.TotalNoIVA.Amount @c.TotalNoIVA.Currency</span>
+                                                                    </td>
+                                                                    <td>@c.AuthCode</td>
+                                                                </tr>
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            }
+                                        </td>
+                                    }
+                                }
+                                @foreach (var st in service.SalesTotal)
+                                {
+                                    <td>
+                                        <span data-format="currency">@st.Amount @st.Currency</span>
+                                    </td>
+                                }
+                            </tr>
+                        }
+                        index++;
+                    }
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>*Prices after IVA</td>
+                <td></td>
+                @foreach (var s in Model.IncomesTotalPerPrice)
+                {
+                    foreach (var t in s.Sales)
+                    {
+                        <td class="text-right show-detail">
+                            <span data-format="currency">@t.Amount @t.Currency</span>
+                            @if (s.Coupons.Where(x => x.Total.Currency == @t.Currency).Count() > 0)
+                            {
+                                <div class="cell-detail" style="display: none;">
+                                    <table style="width: 1000px;">
+                                        <thead>
+                                            <tr>
+                                                <th>Folio</th>
+                                                <th>Customer</th>
+                                                <th>Confirmation Date</th>
+                                                <th>PoS</th>
+                                                <th>Sales Agent</th>
+                                                <th>Status</th>
+                                                <th>Promo</th>
+                                                <th>Total</th>
+                                                <th>Total No IVA</th>
+                                                <th>Transaction</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var c in s.Coupons.Where(x => x.Total.Currency == @t.Currency))
+                                            {
+                                                <tr>
+                                                    <td><a href="/crm/masterchart#purchaseid=@c.PurchaseID" target="_blank">@c.Folio</a></td>
+                                                    <td>@c.Customer</td>
+                                                    <td>@c.ConfirmationDate</td>
+                                                    <td>@c.PointOfSale</td>
+                                                    <td>@c.SalesAgent</td>
+                                                    <td>@c.Status</td>
+                                                    <td>@c.Promo</td>
+                                                    <td>
+                                                        <span data-format="currency">@c.Total.Amount @c.Total.Currency</span>
+                                                    </td>
+                                                    <td>
+                                                        <span data-format="currency">@c.TotalNoIVA.Amount @c.TotalNoIVA.Currency</span>
+                                                    </td>
+                                                    <td>@c.AuthCode</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            }
+                        </td>
+                    }
+                }
+                <td colspan="2" class="text-right">Incomes Total</td>
+                @foreach (var m in Model.IncomesTotal)
+                {
+                    <td class="text-right">
+                        <strong>
+                            <span data-format="currency">@m.Amount @m.Currency</span>
+                        </strong>
+                    </td>
+                }
+            </tr>
+            <tr>
+                <td colspan="@(Model.PriceTypes.Count() * 2 + 4)" class="text-right">IVA</td>
+                @foreach (var it in Model.IncomesIVATotal)
+                {
+                    <td class="text-right">
+                        <span data-format="currency">@it.Amount @it.Currency</span>
+                    </td>
+                }
+            </tr>
+        </tfoot>
+    </table>
+}
+else
+{
+    <h3>It seems like there is not Close Out for current parameters.</h3>
+}
+
+@if (Model.Refunds != null)
+{
+    <h3>Refunds</h3>
+
+    <table class="table no-plugin" style="width: 100%">
+        <thead>
+            <tr>
+                <th>Accounting Account</th>
+                <th>Activity</th>
+                @foreach (var type in Model.PriceTypes.OrderBy(x => x.Order))
+                {
+                    <th colspan="2">
+                        @type.Type
+                    </th>
+                }
+                <th colspan="2">Activity Total</th>
+                <th colspan="2">Account Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var account in Model.Refunds)
+            {
+                <tr>
+                    <td rowspan="@account.Services.Count()">
+                        @account.Account
+                        <br />
+                        @account.AccountName
+                    </td>
+                    <td>@account.Services.First().Service</td>
+                    @foreach (var s in account.Services.First().SalesPerPrice)
+                    {
+                        foreach (var t in s.Sales)
+                        {
+                            <td class="text-right show-detail">
+                                <span data-format="currency">@t.Amount @t.Currency</span>
+                                @if (s.Coupons.Where(x => x.Total.Currency == @t.Currency).Count() > 0)
+                                {
+                                    <div class="cell-detail" style="display: none;">
+                                        <table style="width: 1000px;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Folio</th>
+                                                    <th>Customer</th>
+                                                    <th>Confirmation Date</th>
+                                                    <th>PoS</th>
+                                                    <th>Sales Agent</th>
+                                                    <th>Status</th>
+                                                    <th>Promo</th>
+                                                    <th>Total</th>
+                                                    <th>Total No IVA</th>
+                                                    <th>Transaction</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var c in s.Coupons.Where(x => x.Total.Currency == @t.Currency))
+                                                {
+                                                    <tr>
+                                                        <td><a href="/crm/masterchart#purchaseid=@c.PurchaseID" target="_blank">@c.Folio</a></td>
+                                                        <td>@c.Customer</td>
+                                                        <td>@c.ConfirmationDate</td>
+                                                        <td>@c.PointOfSale</td>
+                                                        <td>@c.SalesAgent</td>
+                                                        <td>@c.Status</td>
+                                                        <td>@c.Promo</td>
+                                                        <td>
+                                                            <span data-format="currency">@c.Total.Amount @c.Total.Currency</span>
+                                                        </td>
+                                                        <td>
+                                                            <span data-format="currency">@c.TotalNoIVA.Amount @c.TotalNoIVA.Currency</span>
+                                                        </td>
+                                                        <td>@c.AuthCode</td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                }
+                            </td>
+                        }
+                    }
+                    @foreach (var st in account.Services.First().SalesTotal)
+                    {
+                        <td>
+                            <span data-format="currency">@st.Amount @st.Currency</span>
+                        </td>
+                    }
+                    @foreach (var t in account.Total)
+                    {
+                        <td rowspan="@account.Services.Count()">
+                            <span data-format="currency">@t.Amount @t.Currency</span>
+                        </td>
+                    }
+                </tr>
+                    var index = 1;
+                    foreach (var service in account.Services)
+                    {
+                        if (index > 1)
+                        {
+                            <tr>
+                                <td>@service.Service</td>
+                                @foreach (var s in service.SalesPerPrice)
+                                {
+                                    foreach (var t in s.Sales)
+                                    {
+                                        <td class="text-right show-detail">
+                                            <span data-format="currency">@t.Amount @t.Currency</span>
+                                            @if (s.Coupons.Where(x => x.Total.Currency == @t.Currency).Count() > 0)
+                                            {
+                                                <div class="cell-detail" style="display: none;">
+                                                    <table style="width: 1000px;">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Folio</th>
+                                                                <th>Customer</th>
+                                                                <th>Confirmation Date</th>
+                                                                <th>PoS</th>
+                                                                <th>Sales Agent</th>
+                                                                <th>Status</th>
+                                                                <th>Promo</th>
+                                                                <th>Total</th>
+                                                                <th>Total No IVA</th>
+                                                                <th>Transaction</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach (var c in s.Coupons.Where(x => x.Total.Currency == @t.Currency))
+                                                            {
+                                                                <tr>
+                                                                    <td><a href="/crm/masterchart#purchaseid=@c.PurchaseID" target="_blank">@c.Folio</a></td>
+                                                                    <td>@c.Customer</td>
+                                                                    <td>@c.ConfirmationDate</td>
+                                                                    <td>@c.PointOfSale</td>
+                                                                    <td>@c.SalesAgent</td>
+                                                                    <td>@c.Status</td>
+                                                                    <td>@c.Promo</td>
+                                                                    <td>
+                                                                        <span data-format="currency">@c.Total.Amount @c.Total.Currency</span>
+                                                                    </td>
+                                                                    <td>
+                                                                        <span data-format="currency">@c.TotalNoIVA.Amount @c.TotalNoIVA.Currency</span>
+                                                                    </td>
+                                                                    <td>@c.AuthCode</td>
+                                                                </tr>
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            }
+                                        </td>
+                                    }
+                                }
+                                @foreach (var st in service.SalesTotal)
+                                {
+                                    <td>
+                                        <span data-format="currency">@st.Amount @st.Currency</span>
+                                    </td>
+                                }
+                            </tr>
+                        }
+                        index++;
+                    }
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>*Prices after IVA</td>
+                <td></td>
+                @foreach (var s in Model.RefundsTotalPerPrice)
+                {
+                    foreach (var t in s.Sales)
+                    {
+                        <td class="text-right show-detail">
+                            <span data-format="currency">@t.Amount @t.Currency</span>
+                            @if (s.Coupons.Where(x => x.Total.Currency == @t.Currency).Count() > 0)
+                            {
+                                <div class="cell-detail" style="display: none;">
+                                    <table style="width: 1000px;">
+                                        <thead>
+                                            <tr>
+                                                <th>Folio</th>
+                                                <th>Customer</th>
+                                                <th>Confirmation Date</th>
+                                                <th>PoS</th>
+                                                <th>Sales Agent</th>
+                                                <th>Status</th>
+                                                <th>Promo</th>
+                                                <th>Total</th>
+                                                <th>Total No IVA</th>
+                                                <th>Transaction</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var c in s.Coupons.Where(x => x.Total.Currency == @t.Currency))
+                                            {
+                                                <tr>
+                                                    <td><a href="/crm/masterchart#purchaseid=@c.PurchaseID" target="_blank">@c.Folio</a></td>
+                                                    <td>@c.Customer</td>
+                                                    <td>@c.ConfirmationDate</td>
+                                                    <td>@c.PointOfSale</td>
+                                                    <td>@c.SalesAgent</td>
+                                                    <td>@c.Status</td>
+                                                    <td>@c.Promo</td>
+                                                    <td>
+                                                        <span data-format="currency">@c.Total.Amount @c.Total.Currency</span>
+                                                    </td>
+                                                    <td>
+                                                        <span data-format="currency">@c.TotalNoIVA.Amount @c.TotalNoIVA.Currency</span>
+                                                    </td>
+                                                    <td>@c.AuthCode</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            }
+                        </td>
+                    }
+                }
+                <td colspan="2" class="text-right">Refunds Total</td>
+                @foreach (var m in Model.RefundsTotal)
+                {
+                    <td class="text-right">
+                        <strong>
+                            <span data-format="currency">@m.Amount @m.Currency</span>
+                        </strong>
+                    </td>
+                }
+            </tr>
+            <tr>
+                <td colspan="@(Model.PriceTypes.Count() * 2 + 4)" class="text-right">IVA</td>
+                @foreach (var it in Model.RefundsIVATotal)
+                {
+                    <td class="text-right">
+                        <span data-format="currency">@it.Amount @it.Currency</span>
+                    </td>
+                }
+            </tr>
+        </tfoot>
+    </table>
+}
+
+<h3>Totals</h3>
+    <table class="right">
+        <tfoot>
+            <tr>
+                <td class="text-right"><span class="block" style="width: 100px;">Grand Total</span></td>
+                @foreach (var m in Model.GrandTotal)
+                {
+                    <td class="text-right">
+                        <strong>
+                            <span data-format="currency">@m.Amount @m.Currency</span>
+                        </strong>
+                    </td>
+                }
+            </tr>
+            <tr>
+                <td class="text-right">IVA Total</td>
+                @foreach (var m in Model.GrandIVATotal)
+                {
+                    <td class="text-right">
+                        <strong>
+                            <span data-format="currency">@m.Amount @m.Currency</span>
+                        </strong>
+                    </td>
+                }
+            </tr>
+        </tfoot>
+    </table>

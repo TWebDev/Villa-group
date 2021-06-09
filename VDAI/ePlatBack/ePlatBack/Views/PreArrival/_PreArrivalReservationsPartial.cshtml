@@ -1,0 +1,365 @@
+﻿@model ePlatBack.Models.ViewModels.PreArrivalReservationsModel
+
+@{
+    var Privileges = Model.Privileges;
+}
+@if (Privileges.Count(m => m.Component == "fdsReservationInfo") > 0 && Privileges.FirstOrDefault(m => m.Component == "fdsReservationInfo").View)
+{
+    <fieldset id="fdsReservationInfo" class="primary-selected-row-dependent">
+        <legend>
+            <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+            Reservation Info
+        </legend>
+        <div class="align-from-top" style="display:none">
+            @*<section class="full-width editor-alignment" style="border-top:1px solid #dddddd;margin-top:20px;">
+                <h3>Reservations</h3>*@
+            <section class="full-width editor-aligment fds-active">
+                <div style="text-align:right">
+                    <span class="block">
+                        @*<input type="button" id="btnNewReservationInfo" class="submit clear-form" value="new reservation" />*@
+                        <input type="button" id="btnNewReservationInfo" class="submit" value="new reservation" />
+                    </span>
+                </div>
+                <div class="align-from-top align-from-bottom full-width" style="margin-bottom:20px">
+                    <table id="tblReservationsResults" class="dataTable table">
+                        <thead>
+                            <tr>
+                                <th>Hotel Confirmation Number</th>
+                                <th>Certificate Number</th>
+                                <th>Arrival Date</th>
+                                <th>Destination</th>
+                                <th>Distinctives</th>
+                                <th>Reservation Status</th>
+                                <th>Options Sold</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody class="primary-selected-row-dependent"></tbody>
+                    </table>
+                </div>
+                @if (Privileges.Count(m => m.Component == "frmReservationInfo") > 0 && Privileges.FirstOrDefault(m => m.Component == "frmReservationInfo").View)
+                {
+                    using (Ajax.BeginForm("SaveReservation", "PreArrival", new AjaxOptions { OnSuccess = "PREARRIVAL.saveReservationSuccess(data)" }, new { id = "frmReservationInfo" }))
+                    {
+                        if (Privileges.Count(m => m.Component == "UnloadReservation") > 0 && Privileges.FirstOrDefault(m => m.Component == "UnloadReservation").View)
+                        {
+                            <i class="material-icons right unload-reservation" data-reference-id="ReservationInfo_ReservationID" title="unload">archive</i>
+                        }
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ReservationInfo_Destination)
+                                @Html.HiddenFor(model => model.ReservationInfo_LeadID, new { @class = "primary-selected-row-dependent", data_keep_value = "" })
+                                @Html.HiddenFor(model => model.ReservationInfo_ReservationID, new { @class = "secondary-selected-row-dependent" })
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.ReservationInfo_Destination, new List<SelectListItem>())
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ReservationInfo_Place)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.ReservationInfo_Place, new List<SelectListItem>())
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ReservationInfo_RoomType)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.ReservationInfo_RoomType, new List<SelectListItem>())
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ReservationInfo_RoomNumber)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ReservationInfo_RoomNumber)
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ReservationInfo_ReservationStatus)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.ReservationInfo_ReservationStatus, Model.ReservationInfo_DrpReservationStatus, new { disabled = "disabled", @class = "field-disabled" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ReservationInfo_FrontOfficeAgencyName)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ReservationInfo_FrontOfficeAgencyName, new { disabled = "disabled", @class = "field-disabled" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ReservationInfo_HotelConfirmationNumber)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ReservationInfo_HotelConfirmationNumber)
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ReservationInfo_ArrivalDate)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ReservationInfo_ArrivalDate, new { data_uses_date_picker = "true" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ReservationInfo_DepartureDate)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ReservationInfo_DepartureDate, new { data_uses_date_picker = "true" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ReservationInfo_NumberAdults)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ReservationInfo_NumberAdults, new { @class = "numeric-field" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ReservationInfo_NumberChildren)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ReservationInfo_NumberChildren, new { @class = "numeric-field" })
+                            </div>
+                        </div>
+                        if (Privileges.Count(m => m.Component == "ReservationInfo_PlanType") > 0 && Privileges.FirstOrDefault(m => m.Component == "ReservationInfo_PlanType").View)
+                        {
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.ReservationInfo_PlanType)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.DropDownListFor(model => model.ReservationInfo_PlanType, Model.PlanTypes)
+                                </div>
+                            </div>
+                        }
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ReservationInfo_FrontPlanType)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ReservationInfo_FrontPlanType, new { @class = "field-disabled", @readonly = "readonly", disabled = "disabled" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ReservationInfo_FrontContractNumber)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ReservationInfo_FrontContractNumber, new { @class = "field-disabled", @readonly = "readonly", disabled = "disabled" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ReservationInfo_FrontCertificateNumber)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ReservationInfo_FrontCertificateNumber, new { @class = "field-disabled", @readonly = "readonly", disabled = "disabled" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ReservationInfo_TotalNights)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ReservationInfo_TotalNights, new { @class = "numeric-field" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ReservationInfo_TotalPaid)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ReservationInfo_TotalPaid, new { @class = "numeric-field" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ReservationInfo_ConfirmedTotalPaid)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ReservationInfo_ConfirmedTotalPaid, new { @class = "numeric-field" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ReservationInfo_DiamanteTotalPaid)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ReservationInfo_DiamanteTotalPaid, new { @class = "numeric-field" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ReservationInfo_GreetingRep)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.ReservationInfo_GreetingRep, Model.GreetingReps)
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ReservationInfo_IsSpecialOcassion)
+                            </div>
+                            <div class="editor-field">
+                                <label for="ReservationInfo_IsSpecialOcassion">Yes</label>
+                                @Html.RadioButtonFor(model => model.ReservationInfo_IsSpecialOcassion, true, new { data_kee_value = "" })
+                                <label for="ReservationInfo_ISSpecialOcassion">No</label>
+                                @Html.RadioButtonFor(model => model.ReservationInfo_IsSpecialOcassion, false, new { data_keep_value = "" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ReservationInfo_SpecialOcassionComments)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextAreaFor(model => model.ReservationInfo_SpecialOcassionComments, new { cols = "50", rows = "9" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ReservationInfo_ConciergeComments)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextAreaFor(model => model.ReservationInfo_ConciergeComments, new { cols = "50", rows = "9" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ReservationInfo_FrontComments)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextAreaFor(model => model.ReservationInfo_FrontComments, new { @readonly = "readonly", cols = "25", rows = "2" })
+                                @Html.TextAreaFor(model => model.ReservationInfo_ReservationComments, new { placeholder = "add comments to front" })
+                            </div>
+                        </div>
+                        @*<div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.ReservationInfo_ReservationComments)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextAreaFor(model => model.ReservationInfo_ReservationComments)
+                                </div>
+                            </div>*@
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ReservationInfo_ResortConnectReservationComments)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextAreaFor(model => model.ReservationInfo_ResortConnectReservationComments, new { disabled = "disabled", @class = "field-disabled" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ReservationInfo_GuestsNames)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextAreaFor(model => model.ReservationInfo_GuestsNames, new { cols = "50", rows = "9" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ReservationInfo_RoomUpgraded)
+                            </div>
+                            <div class="editor-field">
+                                @Html.CheckBoxFor(model => model.ReservationInfo_RoomUpgraded)
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ReservationInfo_PreCheckIn)
+                            </div>
+                            <div class="editor-field">
+                                @Html.CheckBoxFor(model => model.ReservationInfo_PreCheckIn)
+                            </div>
+                        </div>
+                        if (Privileges.Count(m => m.Component == "btnSaveReservation") > 0 && Privileges.FirstOrDefault(m => m.Component == "btnSaveReservation").View)
+                        {
+                            <div class="editor-alignment align-from-top full-width">
+                                <div class="editor-field">
+                                    <input type="submit" id="btnSaveReservation" class="submit right" value="save" />
+                                </div>
+                            </div>
+                        }
+                    }
+                }
+                @Html.Partial("_PreArrivalPresentationPartial", Model.PreArrivalPresentationsModel)
+                @Html.Partial("_PreArrivalOptionsPartial", Model.PreArrivalOptionsSoldModel)
+                @Html.Partial("_PreArrivalFlightsPartial", Model.PreArrivalFlightsModel)
+                @Html.Partial("_PreArrivalPaymentsPartial", Model.PreArrivalPaymentsModel)
+                @if (Privileges.Count(m => m.Component == "Section_RescomLetters") > 0 && Privileges.FirstOrDefault(m => m.Component == "Section_RescomLetters").View)
+                {
+                    <section id="Section_PreArrivalLetters" class="editor-alignment full-width fds-active" style="border-top:1px solid #dddddd;margin-top:20px;text-align:center;">
+                        @*<input id="btnSaveReservation" type="submit" class="submit right marg-left" value="Save Reservation" />*@
+                        <div class="editor-alignment full-width" style="text-align:center">
+                            <span class="editor-label" style="text-transform:uppercase">Confirmation Letters</span>
+                            <div class="editor-field">
+                                <input type="button" id="btnMemberConfirmation" class="button send-confirmation" data-sysevent="13" value="member update" />
+                                <input type="button" id="btnGuestConfirmation" class="button send-confirmation" data-sysevent="14" value="guest member" />
+                                <input type="button" id="btnExchangeConfirmation" class="button send-confirmation" data-sysevent="15" value="exchange tour" />
+                                @if (Privileges.FirstOrDefault(m => m.Component == "btnDiamanteEmail") != null && Privileges.FirstOrDefault(m => m.Component == "btnDiamanteEmail").View == true)
+                                {
+                                    <input type="button" id="btnDiamanteConfirmation" class="button send-confirmation" data-sysevent="27" value="diamante guest" />
+                                }
+                            </div>
+                        </div>
+                        <div class="editor-alignment full-width" style="text-align:center">
+                            <div class="editor-alignment">
+                                <div class="editor-label"></div>
+                                <div class="editor-field">
+                                    <a class="fake-button options-conf" target="_blank">Options Confirmation</a>
+                                </div>
+                            </div>
+                            <div class="editor-alignment">
+                                <div class="editor-label"></div>
+                                <div class="editor-field">
+                                    <a class="fake-button transportation-conf" target="_blank">transportation Confirmation</a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                }
+                @if (Privileges.Count(m => m.Component == "Section_PreArrivalLetters") > 0 && Privileges.FirstOrDefault(m => m.Component == "Section_PreArrivalLetters").View)
+                {
+                    <section id="Section_PreArrivalLetters" class="full-width editor-aligment fds-active" style="border-top:1px solid #dddddd;margin-top:20px;text-align:center;">
+                        <h3>Letters</h3>
+                        <div class="align-from-top align-from-bottom full-width" style="margin-bottom:20px">
+                            <table id="tblAvailableLetters" class="table" style="margin: 10px auto !important; width:auto !important;">
+                                <thead>
+                                    <tr>
+                                        <th>Letter</th>
+                                        <th>Sent</th>
+                                        <th>Read</th>
+                                        <th>Signed</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="secondary-selected-row-dependent"></tbody>
+                            </table>
+                        </div>
+                        @*<div class="editor-field">
+                                <input type="button" class="button send-confirmation" data-sysevent="" value="PC & Signature" />
+                                <input type="button" class="button send-confirmation" data-sysevent="" value="PC & 15 days handover" />
+                                <input type="button" class="button send-confirmation" data-sysevent="" value="15 days effort" />
+                                <input type="button" class="button send-confirmation" data-sysevent="" value="PC Last Minute" />
+                            </div>*@
+                    </section>
+                }
+            </section>
+
+        </div>
+    </fieldset>
+}

@@ -1,0 +1,81 @@
+﻿@model ePlatBack.Models.ViewModels.ReviewListItem
+
+@using (Ajax.BeginForm("ReviewSave", new { Controller = "Controls" }, new AjaxOptions { OnBegin = "UI.Controls.blockForm('divSubmitReview','Saving Information...')", OnSuccess = "UI.Controls.Reviews.onSuccess(data)", OnFailure = "UI.Controls.showMessage({ResponseType : -1, ResponseMessage : '" + ePlatFront.Resources.Views.Home.FreeVacationStrings.Failure + "'},'divSubmitReview')" }, new { id = "ReviewForm" }))
+{
+    <div class="modal-content">
+        <h4>@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Share_your_Experience</h4>
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <div class="row">
+            @Html.HiddenFor(model => model.ReviewItemTypeID)
+            @Html.HiddenFor(model => model.ReviewItemID)
+            <div class="col s12">
+                <p>@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Enter_Payment_Confirmation</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m6">
+                <div class="input-field">
+                    @Html.TextBoxFor(model => model.AuthCode)
+                    @Html.ValidationMessageFor(model => model.AuthCode)
+                    @Html.LabelFor(model => model.AuthCode)
+                </div>
+            </div>
+            <div class="input-field col s12 m6" style="margin-top: -10px;">
+                @Html.LabelFor(model => model.Rating)
+                <br /><br />
+                <div id="divRating">
+                    <img class="answer-button" data-value="1" src="~/Content/themes/mex/images/icon_star_empty.png" />
+                    <img class="answer-button" data-value="2" src="~/Content/themes/mex/images/icon_star_empty.png" />
+                    <img class="answer-button" data-value="3" src="~/Content/themes/mex/images/icon_star_empty.png" />
+                    <img class="answer-button" data-value="4" src="~/Content/themes/mex/images/icon_star_empty.png" />
+                    <img class="answer-button" data-value="5" src="~/Content/themes/mex/images/icon_star_empty.png" />
+                    <div style="position:absolute; width:0; height:0; overflow:hidden;">
+                        @Html.TextBoxFor(model => model.Rating)
+                        @Html.ValidationMessageFor(model => model.Rating)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12 m6">
+                @Html.TextBoxFor(model => model.Author)
+                @Html.ValidationMessageFor(model => model.Author)
+                @Html.LabelFor(model => model.Author)
+            </div>
+            <div class="input-field col s12 m6">
+                @Html.TextBoxFor(model => model.From)
+                @Html.ValidationMessageFor(model => model.From)
+                @Html.LabelFor(model => model.From)
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                @Html.TextAreaFor(model => model.Review, new { @class = "materialize-textarea" })
+                @Html.ValidationMessageFor(model => model.Review)
+                @Html.LabelFor(model => model.Review)
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <div class="status-bar">
+            <div class="preloader-wrapper small interaction-loading">
+                <div class="spinner-layer spinner-green-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="interaction-message"></div>
+        </div>
+        <input type="submit" value="@ePlatFront.Resources.Views.Shared.SharedStrings.Publish" class="modal-action waves-effect waves-white btn-flat amber black-text" href="#!" />
+        <a class="modal-action modal-close waves-effect waves-green btn-flat">@ePlatFront.Resources.Views.Shared.SharedStrings.Cancel</a>
+        <div class="interaction-message"></div>
+    </div>
+}

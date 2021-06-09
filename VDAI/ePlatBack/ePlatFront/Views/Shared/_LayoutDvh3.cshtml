@@ -1,0 +1,217 @@
+﻿<!DOCTYPE html>
+<html lang="@ViewBag.Culture">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+    <meta name="google-site-verification" content="IoFe3y2AupVOpWUdX6BHg83Puy6RqxXM-35Z_T8em6o" />
+    <link href="~/content/themes/dvh/images/dvh3.png" rel="shortcut icon" type="image/x-icon" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="keywords" content="@ViewBag.Keywords">
+    <meta name="description" content="@ViewBag.Description">
+    <meta name="robots" content="@ViewBag.Index, @ViewBag.Follow">
+    <!--[if lt IE 9]>
+        <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="~/Content/themes/dvh/css/main3.css?v=191114" rel="stylesheet" />
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+    <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.sync.bootstrap.min.js"></script>
+
+    @Styles.Render("~/Content/themes/base/datepicker")
+    <link href="~/Content/plugins/vegas2/vegas.css" rel="stylesheet" />
+    <link href="~/Content/plugins/wow/animate.css" rel="stylesheet" />
+    @RenderSection("header", required: false)
+
+    @*<script src="//cdn.letspin.io/js/main/19a5a8e190fb931f16a05ffb248d49df.js"></script>*@
+</head>
+<body>
+    @*onload="_googWcmGet('phone-desktop', '855-475-0126'); _googWcmGet('phone-mobile', '888-588-9705');"*@
+    @RenderSection("afterBody", required: false)
+    <header class="navbar navbar-default navbar-fixed-top">
+        <div class="whatsapp" style="right: -172px;">
+            <img src="/Content/themes/dvh/images/whatsapp.png" width="40">
+            <span class="whatsapp-number hidden-xs">
+                +52 1 322 149 3855
+            </span>
+            <a href="whatsapp://send?phone=5213221493855" class="visible-xs-inline-block hidden-sm whatsapp-number">
+                +52 1 322 149 3855
+            </a>
+        </div>
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @{if (ViewBag.Culture == "en")
+                    {
+                        <a href="/" class="navbar-brand">
+                            <img src="@ViewBag.Logo" class="logo-image" width="150" height="50" alt="DiscountVacationHotels.com" />
+                        </a>
+                    }
+                    else
+                    {
+                        <img src="@ViewBag.Logo" class="logo-image" width="150" height="50" alt="DiscountVacationHotels.com" />
+                    }
+                }
+            </div>
+            <nav id="bs-navbar" class="collapse navbar-collapse">
+                <div class="nav navbar-right hidden-xs">
+                    @Html.Raw(@ViewBag.Header)
+                </div>
+                <ul class="nav navbar-nav">
+                    <li><a href="/packages/puerto-vallarta" title="Puerto Vallarta Vacation Packages">Puerto Vallarta</a></li>
+                    <li><a href="/packages/cabo-san-lucas" title="Cabo San Lucas Vacation Packages">Cabo San Lucas</a></li>
+                    <li><a href="/packages/cancun" title="Cancun Vacation Packages">Cancun</a></li>
+                    <li><a href="/packages/riviera-maya" title="Riviera Maya Vacation Packages">Riviera Maya</a></li>
+                    <li><a href="/packages/loreto" title="Loreto Vacation Packages">Loreto</a></li>
+                    <li><a href="/blog" title="Blog">Blog</a></li>
+                    <li><a id="aQuoteRequest" title="Request a Quote" data-toggle="modal" data-target="#quoteRequest" class="btn-menu-2" style="margin-right: 3px;">@ePlatFront.Resources.Views.Shared.SharedStrings.Request_a_Quote</a></li>
+                    <li><a id="aRedeemMyPackage" title="Redeem My Package" data-toggle="modal" data-target="#redeemMyPackage" class="btn-menu-2">Redeem My Package</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    @RenderSection("featured", required: false)
+    @*<img src="/content/themes/dvh/images/black-friday-sello.png" class="hidden-sm hidden-xs" style=" position: absolute; margin: -60px 120px 0 0; right: 0;">*@
+    <div class="banners">
+        <div class="row">
+            <div class="container">
+                <div class="text-center">
+                    <span class="tile-button banner-free-getaway" title="Get a Free Getaway">
+                        Register now to<br />
+                        Receive a Free Getaway
+                    </span>
+                    @*<span class="tile-button" id="bfcd2018" title="Black Friday 2018" style="background-color: #eb363b; width: 183px; box-shadow: 0 0 6px #eb363b; display: none;">
+                            Black Friday Sale!!!
+                            <span class="bfcd-countdown" style="display: block">
+                                <span class="bfcd-day">00</span>d
+                                <span class="bfcd-hour">00</span>h
+                                <span class="bfcd-minute">00</span>m
+                                <span class="bfcd-second">00</span>s
+                            </span>
+                        </span>*@
+                    <span class="tile-button banner-quote-request" title="Request a Quote" style="margin-left:2px;" data-toggle="modal" data-target="#quoteRequest">
+                        Need a special Package?<br />
+                        Request your Quote Now
+                    </span>
+                </div>
+                <span id="spnCloseFreeGetaway">&times;</span>
+                <img id="imgFreeGetaway" class="banner-popup img-responsive" data-toggle="modal" data-target="#freeGetaway" src="~/Content/themes/dvh/images/banner-getaway.jpg" />
+            </div>
+        </div>
+    </div>
+    <div id="body">
+        @RenderBody()
+    </div>
+    <div class="controls">
+        @RenderSection("controls", required: false)
+    </div>
+    <div class="hidden-sm hidden-md hidden-lg phone-box">
+        <span class="phone-box-call">
+            <span class="phone-box-t1">Book Today</span>
+            <span class="phone-box-t2">Decide your dates later</span>
+        </span>
+        @Html.Raw(@ViewBag.Header)
+    </div>
+    <section id="whyToBook" class="blue-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Why book with us?</h2>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="container">
+                    <div class="col-sm-6 col-md-3">
+                        <img src="~/Content/themes/dvh/images/icon_best_price.jpg" class="icon-features" width="60" />
+                        <h4>Best Price Guarantee</h4>
+                        <p>You will save up to 80% of your expenses with our vacation packages. If you find a better deal online, we will match it.</p>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <img src="~/Content/themes/dvh/images/icon_secure_reansactions.jpg" class="icon-features" width="60" />
+                        <h4>Secure Transactions</h4>
+                        <p>Our verifications department require your digital signature to complete the process and you can choose your secure payment method.</p>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <img src="~/Content/themes/dvh/images/icon_directly_resort.jpg" class="icon-features" width="60" />
+                        <h4>Directly with the Resort</h4>
+                        <p>We work directly with the resorts that we promote to ensure you won't have any problem with your reservation.</p>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <img src="~/Content/themes/dvh/images/icon_exclusive_agency.jpg" class="icon-features" width="60" />
+                        <h4>Exclusive Agency</h4>
+                        <p>We are an exclusive agency for The Villa Group Resorts Vacation Ownership Club.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-3">
+                    <h4>
+                        <a href="/terms-and-conditions">TERMS &amp; CONDITIONS</a>
+                    </h4>
+                    <h4>
+                        <a href="/privacy-policy">PRIVACY POLICY</a>
+                    </h4>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <h4>ADDRESS</h4>
+                    <address>
+                        Boulevard Francisco Medina Ascencio KM 2.5,<br />
+                        Zona Hotelera Norte,<br />
+                        Puerto Vallarta, Jalisco
+                    </address>
+                    <abbr title="Phone">P:</abbr><span class="phone-desktop">1 877 606 0014 x 274</span><br />
+                    <abbr title="Email">E:</abbr> <span>jessica@discountvacationhotels.com</span><br />
+                    <abbr title="Website">W:</abbr> <a href="https://www.discountvacationhotels.com">www.discountvacationhotels.com</a>
+                </div>
+                <div class="col-md-6">
+                    <h4>Affiliations</h4>
+                    <img src="~/Content/themes/dvh/images/logo-adeprotur.png" alt="Adeprotur" />
+                    <img src="~/Content/themes/dvh/images/logo-asudestico.png" alt="Asudestico" />
+                    <a href="https://www.bbb.org/mexico/business-reviews/hotels-reservations/vg-vacation-services-in-puerto-vallarta-ja-332" target="_blank">
+                        <img src="/images/ab-seal-horizontal-large.jpg?w=100" alt="Better Business Bureau" style="border:none;" />
+                    </a>
+                    <h4>ACCEPTED CREDIT CARDS</h4>
+                    <img src="~/Content/themes/dvh/images/creditcards.png" />
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-6">Copyright &copy; @DateTime.Now.Year Discount Vacation Hotels. @ePlatFront.Resources.Views.Shared.SharedStrings.All_Rights_Reserved.</div>
+                    <div class="col-xs-6">
+                        @*<img alt="Mother's Day Weekend Bonus!" src="~/Content/themes/dvh/images/mothers/mothers-day.jpg" class="presidents-tag" />*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    @*@Scripts.Render("~/bundles/modernizr")*@
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery.json-2.3.min.js"></script>
+    <script src="~/Scripts/controls.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="~/Content/plugins/vegas2/vegas.min.js"></script>
+    <script src="~/Content/plugins/wow/wow.min.js"></script>
+    <script src="~/Content/themes/dvh/js/dvh-ui3.js?v=191114"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

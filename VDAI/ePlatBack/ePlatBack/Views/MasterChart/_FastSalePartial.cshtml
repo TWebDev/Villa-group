@@ -1,0 +1,169 @@
+﻿@model ePlatBack.Models.ViewModels.FastSaleModel.FastSaleInfoModel
+@{
+    var Privileges = Model.Privileges;
+    //var Privileges = ViewData["Privileges"] as List<ePlatBack.Models.ViewModels.SysComponentsPrivilegesModel>;
+}
+<div id="fastSaleFieldset" style="margin:10px" class="non-printable">
+    <div class="full-width align-from-bottom text-font-14" style="text-align:left">
+        <div class="right">
+            @*<span class="manifest-related" style="display:none">
+                    <span style="font-size: .7em;">
+                        last update: <span id="displayLastUpdate"></span>
+                        @Html.TextBoxFor(model => model.ManifestSearch_Date, new { data_uses_date_picker = "true", data_keep_value = "" })
+                        <button id="btnGetManifest" style="vertical-align: bottom;width: 48px;height: 31px;padding: 0 9px 0 0;" class="button">
+                            <i class="material-icons sm" title="refresh manifest results" style="margin-top:5px;">refresh</i>
+                        </button>
+                    </span>
+                </span>*@
+            <span>
+                <input type="button" class="button" value="reset defaults" id="btnResetCounters" />
+            </span>
+            @*<span>
+                    <input type="button" class="button" style="margin-top:5px;" value="show manifest" id="btnShowManifest" />
+                </span>*@
+        </div>
+        <span>Sale For: </span><span id="spanFirstName"></span><span> </span><span id="spanLastName"></span>
+    </div>
+    @Html.Action("RenderAgencyManifest", "SPI")
+   
+    <div id="frmFastSale_ErrorMessages" style="display:none">
+        @Html.ValidationMessageFor(model => model.FastSaleInfo_FirstName)
+        @Html.ValidationMessageFor(model => model.FastSaleInfo_LastName)
+        @Html.ValidationMessageFor(model => model.FastSaleInfo_Phone)
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FastSaleInfo_Language)
+            @Html.HiddenFor(model => model.CustomerID)
+            @Html.HiddenFor(model => model.Country)
+            @Html.HiddenFor(model => model.MarketingProgram)
+            @Html.HiddenFor(model => model.Subdivision)
+            @Html.HiddenFor(model => model.Source)
+            @Html.HiddenFor(model => model.OPCID)
+            @Html.HiddenFor(model => model.OPC)
+            @Html.HiddenFor(model => model.FrontOfficeGuestID)
+            @Html.HiddenFor(model => model.FrontOfficeResortID)
+            @Html.HiddenFor(model => model.TourID)
+            @Html.HiddenFor(model => model.TourDate)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.FastSaleInfo_Language, Model.FastSaleInfo_DrpLanguages)
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FastSaleInfo_Title)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.FastSaleInfo_Title, Model.FastSaleInfo_DrpTitles)
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FastSaleInfo_FirstName)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.FastSaleInfo_FirstName)
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FastSaleInfo_LastName)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.FastSaleInfo_LastName)
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FastSaleInfo_Email)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.FastSaleInfo_Email, new { data_format = "lower-case" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FastSaleInfo_Phone)
+        </div>
+        <div class="editor-field">
+            @*@Html.TextBoxFor(model => model.FastSaleInfo_Phone, new { data_format = "phone" })*@
+            @Html.TextBoxFor(model => model.FastSaleInfo_Phone, new { data_format = "number" })
+        </div>
+    </div>
+    <div style="text-transform:uppercase;margin-top:20px">Additional Parameters</div>
+    <div style="border-top: 1px solid #DDDDDD">
+        <div id="divTerminal" class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.FastSaleInfo_Terminal)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.FastSaleInfo_Terminal, Model.FastSaleInfo_DrpTerminals)
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.FastSaleInfo_PointOfSale)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.FastSaleInfo_PointOfSale, Model.FastSaleInfo_DrpPointsOfSale)
+            </div>
+        </div>
+        @if (Privileges.Count(m => m.Component == "FastSaleInfo_Location") > 0 && Privileges.FirstOrDefault(m => m.Component == "FastSaleInfo_Location").View)
+        {
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.FastSaleInfo_Location)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.FastSaleInfo_Location, Model.FastSaleInfo_DrpLocations)
+                </div>
+            </div>
+        }
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.FastSaleInfo_Currency)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.FastSaleInfo_Currency, Model.FastSaleInfo_DrpCurrencies)
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.FastSaleInfo_StayingAtPlace)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.FastSaleInfo_StayingAtPlace, Model.FastSaleInfo_DrpPlaces)
+            </div>
+        </div>
+        <div id="divStayingAtOtherPlace" class="editor-alignment" style="display:none">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.FastSaleInfo_StayingAtOhterPlace)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.FastSaleInfo_StayingAtOhterPlace)
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.FastSaleInfo_RoomNumber)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.FastSaleInfo_RoomNumber)
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.FastSaleInfo_LeadSource)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.FastSaleInfo_LeadSource, Model.FastSaleInfo_DrpLeadSourcesPerSysWorkGroup)
+            </div>
+        </div>
+    </div>
+    <div class="full-width align-from-top">
+        <input id="btnResetQuickSale" type="button" class="button right marg-left" value="reset form" />
+        <input id="btnCancelFastSale" type="button" class="button right marg-left" value="cancel" />
+        <input id="btnSaveFastSale" type="button" class="submit right alert-dblclick" value="save & continue" />
+    </div>
+</div>

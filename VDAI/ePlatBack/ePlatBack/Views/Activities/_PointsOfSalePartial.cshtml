@@ -1,0 +1,50 @@
+﻿@model ePlatBack.Models.ViewModels.ActivityPointsOfSaleModel
+
+<p class="full-width align-from-bottom">
+    <input type="button" id="btnNewPointOfSaleInfo" class="submit fieldset-expander right" value="new" />
+</p>
+<div id="divTblExistingPointsOfSale"></div>
+<fieldset id="fdsPointOfSaleInfo" data-close-siblings="true">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        Point Of Sale Info
+    </legend>
+    <div style="display: none">
+        @using (Ajax.BeginForm("SavePointOfSale", "Activities", new AjaxOptions { OnSuccess = "ACTIVITY.savePointOfSaleSuccess(data)" }, new { id = "frmPointOfSaleInfo", onSubmit = "return UI.showValidationSummary(this.id);" }))
+        {
+            <div id="frmPointOfSaleInfo_ErrorMessages" style="display:none">
+                @Html.ValidationMessageFor(model => model.PointsOfSaleInfo_PointOfSale)
+                @Html.ValidationMessageFor(model => model.PointsOfSaleInfo_ShortName)
+                @Html.ValidationMessageFor(model => model.PointsOfSaleInfo_Place)
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PointsOfSaleInfo_PointOfSale)
+                    @Html.HiddenFor(model => model.PointsOfSaleInfo_PointOfSaleID, new { @class = "secondary-selected-row-dependent" })
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.PointsOfSaleInfo_PointOfSale)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PointsOfSaleInfo_ShortName)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.PointsOfSaleInfo_ShortName)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PointsOfSaleInfo_Place)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.PointsOfSaleInfo_Place, Model.PointsOfSaleInfo_DrpPlaces)
+                </div>
+            </div>
+            <div class="editor-alignment full-width">
+                <input type="submit" id="btnSavePointOfSaleInfo" class="submit right" value="save" />
+            </div>
+        }
+    </div>
+</fieldset>

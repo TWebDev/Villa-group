@@ -1,0 +1,77 @@
+﻿@*@model ePlatBack.Models.ViewModels.AccountancyModel*@
+@model ePlatBack.Models.ViewModels.TimeShareViewModel
+
+@{
+    var Privileges = ViewData["Privileges"] as List<ePlatBack.Models.ViewModels.SysComponentsPrivilegesModel>;
+}
+@*@if (new ePlatBack.Models.ViewModels.LeadModel.Views.Search().ShowServices == true)*@
+@if (Privileges.FirstOrDefault(m => m.Component == "fdsAccountancyManagement") != null && Privileges.FirstOrDefault(m => m.Component == "fdsAccountancyManagement").View)
+{
+    <fieldset id="fdsAccountancyManagement" class="non-printable">
+        <legend>
+            <img src="/Content/themes/base/images/eplat_hide.jpg" class="fieldset-indicator fds-indicator-separator" />
+            Timeshare Operations
+        </legend>
+        <div class="align-from-top">
+            <div id="divFundsBalance" class="editor-alignment table-div terminal-dependent-list execute-callback" data-callback="ACCOUNT.getFundsBalance()" style="font-size:14pt">
+            </div>
+            @Html.Action("RenderAgencyManifest", "SPI")
+            @if (Privileges.FirstOrDefault(m => m.Component == "fdsEgresses") != null && Privileges.FirstOrDefault(m => m.Component == "fdsEgresses").View)
+            {
+                <fieldset id="fdsEgresses">
+                    <legend>
+                        <img src="/Content/themes/base/images/eplat_hide.jpg" class="fieldset-indicator fds-indicator-separator" />
+                        Gifting Charges
+                    </legend>
+                    <div class="align-from-top">
+                        @Html.Partial("_EgressesSearchPartial", Model.AccountancyModel_OutcomeSearchModel)
+                        @Html.Partial("_EgressesInfoPartial", Model.AccountancyModel_OutcomeInfoModel)
+                    </div>
+                </fieldset>
+            }
+            @if (Privileges.FirstOrDefault(m => m.Component == "fdsIncomes") != null && Privileges.FirstOrDefault(m => m.Component == "fdsIncomes").View)
+            {
+                <fieldset id="fdsIncomes">
+                    <legend>
+                        <img src="/Content/themes/base/images/eplat_hide.jpg" class="fieldset-indicator fds-indicator-separator" />
+                        Petty Cash
+                    </legend>
+                    <div class="align-from-top">
+                        @Html.Partial("_IncomesSearchPartial", Model.AccountancyModel_IncomeSearchModel)
+                        @Html.Partial("_IncomesInfoPartial", Model.AccountancyModel_IncomeInfoModel)
+                    </div>
+                </fieldset>
+            }
+        </div>
+    </fieldset>
+
+    <div id="divEgressTicket" class="printable full-width container" style="display:none">
+        <p class="cash-out cash-gift refundable-deposit burned-invitation title full-width"><span class="cash-out cash-gift refundable-deposit burned-invitation" id="ticketConcept"></span></p>
+        <p class="cash-out cash-gift refundable-deposit burned-invitation full-width"><span class="cash-out cash-gift refundable-deposit burned-invitation print-label">Folio: </span><span class="cash-out cash-gift refundable-deposit burned-invitation" id="egressFolio">1234</span></p>
+        <p class="cash-out cash-gift refundable-deposit full-width"><span class="cash-out cash-gift refundable-deposit print-label">Location: </span><span class="cash-out cash-gift refundable-deposit" id="egressLocation"></span></p>
+        <p class="cash-out cash-gift refundable-deposit burned-invitation full-width"><span class="cash-out cash-gift refundable-deposit print-label">Agent: </span><span class="burned-invitation print-label">Sales Person: </span><span class="cash-out cash-gift refundable-deposit burned-invitation" id="egressSalesAgent"></span></p>
+        <p class="cash-out cash-gift refundable-deposit burned-invitation full-width"><span class="cash-out cash-gift refundable-deposit burned-invitation print-label">Date: </span><span class="cash-out cash-gift refundable-deposit burned-invitation" id="egressDate"></span></p>
+        <p class="cash-out cash-gift refundable-deposit burned-invitation full-width"><span class="cash-out cash-gift refundable-deposit print-label">Refund To: </span><span class="burned-invitation print-label">Client Name: </span><span class="cash-out cash-gift refundable-deposit burned-invitation" id="egressClient"></span></p>
+        <p class="burned-invitation full-width"><span class="burned-invitation print-label">Amount Of Sale: </span><span class="burned-invitation" id="egressSaleAmount" data-format="currency"></span></p>
+        <p class="cash-out cash-gift refundable-deposit burned-invitation full-width"><span class="cash-out cash-gift refundable-deposit print-label">Amount: </span><span class="burned-invitation print-label">Amount Of Burn: </span><span class="cash-out cash-gift refundable-deposit burned-invitation" id="egressBurnAmount" data-format="currency"></span></p>
+        <p class="cash-out cash-gift refundable-deposit full-width"><span class="cash-out cash-gift refundable-deposit print-label">OPC: </span><span class="cash-out cash-gift refundable-deposit" id="egressOPC"></span></p>
+        <p class="burned-invitation full-width"><span class="burned-invitation print-label">Authorized By: </span><span class="burned-invitation" id="egressAuthorizedBy"></span></p>
+        <p class="cash-out cash-gift refundable-deposit full-width"><span class="cash-out cash-gift refundable-deposit print-label">Received By: </span><span class="cash-out cash-gift refundable-deposit" id="egressReceivedBy"></span></p>
+        <p class="cash-out cash-gift refundable-deposit full-width signature-line "><span class="cash-out cash-gift refundable-deposit print-label">Client's Signature </span><span class="cash-out cash-gift refundable-deposit" id="egressSignature"></span></p>
+    </div>
+
+    @*<div id="divEgressTicket" class="printable full-width container" style="display:none">
+            <p class="cash-out cash-gift refundable-deposit burned-invitation title full-width"><span id="ticketConcept"></span></p>
+            <p class="cash-out cash-gift refundable-deposit burned-invitation full-width"><span class="cash-out cash-gift refundable-deposit burned-invitation print-label">Folio: </span><span id="egressFolio">1234</span></p>
+            <p class="cash-out cash-gift refundable-deposit full-width"><span class="cash-out cash-gift refundable-deposit print-label">Location: </span><span id="egressLocation"></span></p>
+            <p class="cash-out cash-gift refundable-deposit burned-invitation full-width"><span class="cash-out cash-gift refundable-deposit print-label">Agent: </span><span class="burned-invitation print-label">Sales Person: </span><span id="egressSalesAgent"></span></p>
+            <p class="cash-out cash-gift refundable-deposit burned-invitation full-width"><span class="cash-out cash-gift refundable-deposit burned-invitation print-label">Date: </span><span id="egressDate"></span></p>
+            <p class="cash-out cash-gift refundable-deposit burned-invitation full-width"><span class="cash-out cash-gift refundable-deposit print-label">Refund To: </span><span class="burned-invitation print-label">Client Name: </span><span id="egressClient"></span></p>
+            <p class="burned-invitation full-width"><span class="burned-invitation print-label">Amount Of Sale: </span><span id="egressSaleAmount" data-format="currency"></span></p>
+            <p class="cash-out cash-gift refundable-deposit burned-invitation full-width"><span class="cash-out cash-gift refundable-deposit print-label">Amount: </span><span class="burned-invitation print-label">Amount Of Burn: </span><span id="egressBurnAmount" data-format="currency"></span></p>
+            <p class="cash-out cash-gift refundable-deposit full-width"><span class="cash-out cash-gift refundable-deposit print-label">OPC: </span><span id="egressOPC"></span></p>
+            <p class="burned-invitation full-width"><span class="burned-invitation print-label">Authorized By: </span><span id="egressAuthorizedBy"></span></p>
+            <p class="cash-out cash-gift refundable-deposit full-width"><span class="cash-out cash-gift refundable-deposit print-label">Received By: </span><span id="egressReceivedBy"></span></p>
+            <p class="cash-out cash-gift refundable-deposit full-width signature-line "><span class="cash-out cash-gift refundable-deposit print-label">Client's Signature </span><span id="egressSignature"></span></p>
+        </div>*@
+}

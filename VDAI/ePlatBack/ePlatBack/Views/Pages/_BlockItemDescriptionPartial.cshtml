@@ -1,0 +1,43 @@
+﻿@model ePlatBack.Models.ViewModels.BlockDescription
+
+<fieldset id="fdsBlockDescriptionItem">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" alt="" class="fieldset-indicator fds-indicator-separator">
+        Block Description Info
+    </legend>
+    <div class="align-from-top" style="display:none;">
+
+@using (Ajax.BeginForm("SaveBlockDescription", "Pages", new AjaxOptions { OnSuccess = "BLOCK.saveBlockDescriptionSuccess(data)" }, new { id = "frmBlockDescriptionItem", onSubmit = "return UI.showValidationSummary(this.id);" }))
+        {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+    @Html.HiddenFor(model => model.BlockDescription_ID)
+    @Html.HiddenFor(model => model.BlockDescription_BlockID, new { data_keep_value = "" })
+       
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BlockDescription_Culture)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.BlockDescription_Culture, Model.Cultures)
+            @Html.ValidationMessageFor(model => model.BlockDescription_Culture)
+        </div>
+    </div>
+    
+    <div class="editor-alignment full-width">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BlockDescription_Content)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.BlockDescription_Content)
+            @Html.ValidationMessageFor(model => model.BlockDescription_Content)
+        </div>
+    </div>
+    <div class="editor-alignment full-width">
+        <input type="submit" class="submit right" value="Save">
+    </div>
+}
+
+    </div>
+</fieldset>

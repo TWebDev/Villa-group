@@ -1,0 +1,95 @@
+﻿@model ePlatBack.Models.ViewModels.PreferenceRegistrationModel
+           
+
+@using (Ajax.BeginForm("SavePreference", "Hub", new AjaxOptions { OnSuccess = "SP.preferenceSaved(data)", OnComplete = "", UpdateTargetId = "" }, new { id = "" }))
+{
+
+
+
+    <br /><br />
+        <div class="editor-alignment">
+            <p class="editor-label">
+                <b> @Html.LabelFor(model => model.PreferenceType_Value)</b>
+            </p>
+            <p class="editor-field">
+                @Html.DropDownListFor(model => model.PreferenceType_Value, Model.PreferenceTypesList)
+            </p>
+        </div>
+
+
+        <div class="editor-alignment" id="PreferenceRegistrationID">
+            <p class="editor-label">
+                <b>  @Html.LabelFor(model => model.PreferenceValue)</b>
+            </p>
+            <p class="editor-field">
+                @Html.DropDownListFor(model => model.PreferenceValue, Model.PreferencesList)
+            </p>
+        </div>
+
+    <div class="editor-alignment" id="EventPreferenceRegistrationID">
+        <p class="editor-label">
+           <b> @Html.LabelFor(model => model.SpecialDateName)</b>
+        </p>
+        <p class="editor-field">
+            @Html.TextBoxFor(model => model.SpecialDateName)
+
+        </p>
+    </div>
+
+
+    <div class="editor-alignment" id="DayPreferenceRegistrationID">
+        <p class="editor-label">
+            <b> @Html.LabelFor(model => model.DayValue)</b>
+        </p>
+        <p class="editor-field">
+            @Html.DropDownListFor(model => model.DayValue, Model.DayList)
+
+        </p>
+    </div>
+    
+    
+    <div class="editor-alignment" id="MonthPreferenceRegistrationID">
+        <p class="editor-label">
+            <b> @Html.LabelFor(model => model.MonthValue)</b>
+        </p>
+        <p class="editor-field">
+            @Html.DropDownListFor(model => model.MonthValue, Model.MonthList)
+
+        </p>
+    </div>
+
+    
+
+
+    <div class="editor-alignment" id="YearPreferenceRegistrationID">
+        <p class="editor-label">
+            <b>  @Html.LabelFor(model => model.YearValue)</b>
+        </p>
+        <p class="editor-field">
+            @Html.DropDownListFor(model => model.YearValue, Model.YearList)
+
+        </p>
+    </div>
+
+    
+    
+    <div class="editor-field ">
+        <input type="submit" class="submit right" value="ADD" />
+    </div>
+    
+    
+    
+    
+    <div class="editor-alignment">
+        <p class="editor-label">
+        <p class="editor-field">
+            @Html.HiddenFor(model => model.GuestHubID)
+            </p>
+        </p>
+        <p class="editor-field">
+            @Html.HiddenFor(model => model.GuestHubID, new { id = "GuestHubIDPreference" })
+        </p>
+
+    </div>
+}
+

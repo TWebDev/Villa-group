@@ -1,0 +1,70 @@
+﻿@model ePlatBack.Models.ViewModels.IncomeSearchModel
+@{
+    var Privileges = ViewData["Privileges"] as List<ePlatBack.Models.ViewModels.SysComponentsPrivilegesModel>;
+}
+<span class="full-width">
+    <input type="button" id="btnNewIncomeInfo" class="submit right fieldset-expander" value="new" data-trigger-change-on-clear="true" />
+</span>
+@if (Privileges.FirstOrDefault(m => m.Component == "frmSearchIncomes") != null && Privileges.FirstOrDefault(m => m.Component == "frmSearchIncomes").View)
+{
+    using (Ajax.BeginForm("SearchIncomes", "TimeShare", new AjaxOptions { OnSuccess = "ACCOUNT.searchIncomeResultsTable(data)", OnComplete = "ACCOUNT.makeTableIncomesRowsSelectable()", UpdateTargetId = "divTblIncomesSearchResults" }, new { id = "frmSearchIncomes" }))
+    {
+        if (Privileges.FirstOrDefault(m => m.Component == "IncomeSearch_Date") != null && Privileges.FirstOrDefault(m => m.Component == "IncomeSearch_Date").View)
+        {
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.IncomeSearch_I_Date)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.IncomeSearch_I_Date, new { data_uses_date_picker = "true" })
+                    @Html.TextBoxFor(model => model.IncomeSearch_F_Date, new { data_uses_date_picker = "true" })
+                </div>
+            </div>
+        }
+        if (Privileges.FirstOrDefault(m => m.Component == "IncomeSearch_Company") != null && Privileges.FirstOrDefault(m => m.Component == "IncomeSearch_Company").View)
+        {
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.IncomeSearch_Company)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.IncomeSearch_Company, Model.IncomeSearch_DrpCompanies, new { multiple = "multiple", @class = "terminal-dependent-list", data_route = "/crm/TimeShare/GetDDLData", data_route_parameter = "companiesPerSelectedTerminals" })
+                </div>
+            </div>
+        }
+        if (Privileges.FirstOrDefault(m => m.Component == "IncomeSearch_Receiver") != null && Privileges.FirstOrDefault(m => m.Component == "IncomeSearch_Receiver").View)
+        {
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.IncomeSearch_Receiver)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.IncomeSearch_Receiver, Model.IncomeSearch_DrpReceivers, new { multiple = "multiple" })
+                </div>
+            </div>
+        }
+        <div class="editor-alignment">
+            <span class="editor-label">&nbsp;</span>
+            <div class="editor-field">
+                <input type="submit" class="button" value="search" />
+            </div>
+        </div>
+        if (Privileges.FirstOrDefault(m => m.Component == "tblIncomesSearchResults") != null && Privileges.FirstOrDefault(m => m.Component == "tblIncomesSearchResults").View)
+        {
+            <div id="divTblIncomesSearchResults" class="align-from-top">
+                <table id="tblIncomesSearchResults" class="dataTable table">
+                    <thead>
+                        <tr>
+                            <th>Date Saved</th>
+                            <th>Company</th>
+                            <th>Amount</th>
+                            <th>Receiver</th>
+                            <th>Concept</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        }
+    }
+}

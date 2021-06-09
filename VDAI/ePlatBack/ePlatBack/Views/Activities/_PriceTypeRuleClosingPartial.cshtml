@@ -1,0 +1,22 @@
+﻿@model ePlatBack.Models.ViewModels.PriceTypeRulesInfoModel
+@{ 
+    var minDate = DateTime.Today.ToString("yyyy-MM-dd");
+}
+<div class="non-printable">
+    <section>
+        <h3>Select the termination date for the selected rule</h3>
+    </section>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PriceTypeRulesInfo_ToDate)
+            @Html.HiddenFor(model => model.PriceTypeRulesInfo_PriceTypeRuleID)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.PriceTypeRulesInfo_ToDate, new { placeholder = "empty = now", type="date", min=minDate })
+        </div>
+    </div>
+    <div class="full-width align-from-top">
+        <input id="btnCancelClosing" type="button" class="button right marg-left" value="cancel" />
+        <input id="btnCloseRule" type="button" class="submit right alert-dblclick" value="save & continue" />
+    </div>
+</div>

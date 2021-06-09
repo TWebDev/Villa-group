@@ -1,0 +1,44 @@
+﻿@model ePlatBack.Models.ViewModels.PointsOfSaleModel.SearchPointsOfSaleModel
+
+<div class="full-width">
+    <input type="button" id="btnNewPointOfSaleInfo" class="submit fieldset-expander right" value="new" />
+</div>
+@using (Ajax.BeginForm("SearchPointsOfSale", "PointsOfSale", new AjaxOptions { OnSuccess = "CATALOG.pointsOfSaleResultsTable(data)", OnComplete = "CATALOG.makePointsOfSaleSelectable()", UpdateTargetId = "divTblExistingPointsOfSale" }, new { id = "frmPointsOfSaleSearch" }))
+{
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SearchPointsOfSale_PointOfSale)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.SearchPointsOfSale_PointOfSale)
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SearchPointsOfSale_Places)
+        </div>
+        <div class="editor-field">
+            @Html.ListBoxFor(model => model.SearchPointsOfSale_Places, Model.SearchPointsOfSale_DrpPlaces, new { style = "height:68px", @class = "terminal-dependent-list", data_route = "/Catalogs/GetDDLData", data_route_parameter = "place" })
+        </div>
+    </div>
+    <div class="editor-alignment align-from-top">
+                <div class="editor-field">
+                    <input type="submit" class="button search" value="search" />
+                </div>
+            </div>
+    <div id="divTblExistingPointsOfSale" class="align-from-top">
+        <table id="tblSearchPointsOfSaleResults" class="dataTable table search-results">
+            <thead>
+                <tr>
+                    <th>Point Of Sale</th>
+                    <th>Short Name</th>
+                    <th>Terminal</th>
+                    <th>Place</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+}
+

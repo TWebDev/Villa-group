@@ -1,0 +1,98 @@
+﻿@model IEnumerable<ePlatBack.Models.ViewModels.GuestReservationModel>
+
+<fieldset id="fdsGuestReservations" class="primary-selected-row-dependent">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        Reservations History
+    </legend>
+
+    <table id="tblSearchGuestHistoryReservations" class="table">
+
+
+        <thead>
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Destination)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Nights)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().ArrivalDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().RoomType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().RoomNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Adults)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Childrens)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().AgencyName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Source)
+                </th>
+                <!--<th>
+                    @*@Html.DisplayNameFor(model => model.FirstOrDefault().PlanType)*@
+                </th>-->
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Total)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr id="@item.ArrivalID">
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Destination)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nights)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ArrivalDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RoomType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RoomNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Adults)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Childrens)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AgencyName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Source)
+                    </td>
+                    <!--<td>
+                        @*@Html.DisplayFor(modelItem => item.PlanType)*@
+                    </td>-->
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Total)
+                    </td>
+
+
+
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</fieldset>
+

@@ -1,0 +1,44 @@
+﻿@model ePlatBack.Models.ViewModels.PromosModel.PromoSearchModel
+
+<div id="divTblExistingPromos" class="align-from-top">
+    <table id="tblSearchPromosResults" class="dataTable table search-results">
+        <thead>
+            <tr>
+                <th>Promo Code</th>
+                <th>Promo</th>
+                <th>BW Dates</th>
+                <th>TW Dates</th>
+                <th>Publish</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.ListPromos != null)
+            {
+                foreach (var i in Model.ListPromos)
+                {
+                    var id = "promo_" + i.PromoInfo_PromoID;
+                    var bwdates = i.PromoInfo_FromDateBW + " - " + i.PromoInfo_ToDateBW;
+                    var twdates = i.PromoInfo_FromDateTW + " - " + i.PromoInfo_ToDateTW;
+                    
+                    <tr id="@id">
+                        <td>
+                            @Html.DisplayFor(model => i.PromoInfo_PromoCode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => i.PromoInfo_Promo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => bwdates)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => twdates)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => i.PromoInfo_Publish)
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

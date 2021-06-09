@@ -1,0 +1,69 @@
+﻿@model ePlatBack.Models.ViewModels.ActivityCategoryInfoModel
+@{
+    var Privileges = ViewData["Privileges"] as List<ePlatBack.Models.ViewModels.SysComponentsPrivilegesModel>;
+}
+@if (Privileges.FirstOrDefault(m => m.Component == "fdsActivityCategories") == null || Privileges.FirstOrDefault(m => m.Component == "fdsActivityCategories").View)
+{
+    <fieldset class="view-restricted" data-close-siblings="true" id="fdsActivityCategories" style="display: none">
+        <legend>
+            <img src="/Content/themes/base/images/eplat_show.jpg" alt="" class="fieldset-indicator fds-indicator-separator">
+            Activity Categories
+        </legend>
+        <div style="display: none">
+            @if (Privileges.FirstOrDefault(m => m.Component == "frmActivityCategory") == null || Privileges.FirstOrDefault(m => m.Component == "frmActivityCategory").View)
+            {
+                using (Ajax.BeginForm("SaveCategoriesToActivity", "Activities", new AjaxOptions { OnSuccess = "ACTIVITY.saveCategoriesToActivitySuccess(data)" }, new { id = "frmActivityCategory", onSubmit = "return UI.showValidationSummary(this.id);" }))
+                {
+                    <div id="frmActivityCategory_ErrorMessages" style="display: none">
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.ActivityCategoryInfo_Terminal)
+                            @Html.HiddenFor(model => model.ActivityCategoryInfo_ActivityID)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.ActivityCategoryInfo_Terminal, Model.ActivityCategoryInfo_DrpTerminals, new { @class = "terminal-dependent-list", data_route = "/Activities/GetDDLData", data_route_parameter = "activeTerminals" })
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.ActivityCategoryInfo_Catalog)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.ActivityCategoryInfo_Catalog, Model.ActivityCategoryInfo_DrpCatalogs)
+                        </div>
+                    </div>
+                    <div class="editor-alignment select-add-button">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.ActivityCategoryInfo_Category)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.ActivityCategoryInfo_Category, Model.ActivityCategoryInfo_DrpCategories)
+                            <input type="button" id="btnAddCategory" class="button" value="add" />
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        @Html.HiddenFor(model => model.ActivityCategoryInfo_Categories)
+                        @if (Privileges.FirstOrDefault(m => m.Component == "tblCategoiesSelected") == null || Privileges.FirstOrDefault(m => m.Component == "tblCategoriesSelected").View)
+                        {
+                            <table id="tblCategoriesSelected" class="table non-editable non-stripable" style="display: none">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2">Categories Selected</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="primary-selected-row-dependent"></tbody>
+                            </table>
+                        }
+                    </div>
+                    if (Privileges.FirstOrDefault(m => m.Component == "btnSaveActivityCategory") == null || Privileges.FirstOrDefault(m => m.Component == "btnSaveActivityCategory").View)
+                    {
+                        <div class="align-from-top full-width">
+                            <input type="button" class="submit right" id="btnSaveActivityCategory" value="save">
+                        </div>
+                    }
+                }
+            }
+        </div>
+    </fieldset>
+}

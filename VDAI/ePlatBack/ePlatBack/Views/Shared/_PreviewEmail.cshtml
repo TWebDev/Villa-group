@@ -1,0 +1,37 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutPublic.cshtml";
+}
+@section Scripts{
+    <script src="/ViewModels/eplat.local.public.preview.js?ts=@DateTime.Now" type="text/javascript"></script>
+}
+
+<div class="row">
+    <div class="col"></div>
+    <div class="col-lg-8 col-12">
+        <div class="text-center mt-3" style="color:white;">
+            <h4>Email Preview</h4>
+        </div>
+        <div class="card mt-3">
+            <div>
+                <div class="card-header">
+                    <p>From: {{preview.FromAlias}} < {{preview.FromAddress}} ></p>
+                    <p v-if="preview.Transaction == null">To: <input v-model="preview.To" class="w-75"/></p>
+                    <p v-else>To: {{preview.To}}</p>
+                    <p>Reply To: {{preview.ReplyTo}}</p>
+                    <p v-if="preview.Transaction == null">CC: <input v-model="preview.CC" placeholder="split with comma (,)" class="w-75"/></p>
+                    <p v-else>CC: {{preview.CC}}</p>
+                    <p v-if="preview.Transaction == null">Subject: <input v-model="preview.Subject" class="w-75"/></p>
+                    <p v-else>Subject: {{preview.Subject}}</p>
+                </div>
+                <div class="card-body p-5" v-html="preview.Body">
+                </div>
+                <div class="card-footer text-right" v-if="preview.Transaction == null">
+                    <span>If all information is correct proceed to send it by pressing the send button</span>
+                    <input type="button" class="btn-primary ml-4 send" value="send" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col"></div>
+</div>

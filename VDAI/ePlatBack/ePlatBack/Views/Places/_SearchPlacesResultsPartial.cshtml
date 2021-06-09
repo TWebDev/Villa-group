@@ -1,0 +1,44 @@
+﻿@model ePlatBack.Models.ViewModels.PlaceViewModel
+
+<table id="tblSearchPlacesResults" class="table exportable">
+	<thead>
+		<tr>
+			<th>Place</th>
+			<th>Label</th>
+			<th>Destination</th>
+			<th>Zone</th>
+			<th>Place Type</th>
+            <th></th>
+		</tr>
+	</thead>
+	<tbody>
+        @if (Model.SearchResults != null)
+        {
+            foreach (var i in Model.SearchResults)
+            {
+                var trID = "trPlace" + i.PlaceID;
+                var tdID = "delP" + i.PlaceID;
+                <tr id="@trID" >
+                    <td>
+                        @Html.DisplayFor(model => i.Place)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.PlaceLabel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.Destination)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.Zone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.PlaceType)
+                    </td>
+                    <td class="tds">
+                        <i class="material-icons" id="@tdID">delete</i>
+                    </td>
+                </tr>
+            }
+        }
+	</tbody>
+</table>

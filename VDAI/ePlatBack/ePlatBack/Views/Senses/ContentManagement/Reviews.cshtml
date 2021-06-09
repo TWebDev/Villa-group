@@ -1,0 +1,17 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    Random rand = new Random();
+}
+
+
+
+<div id="app">
+    <transition :duration="{ enter: 100, leave: 100 }" name="fade" mode="out-in">
+        <component :is="currentreviews"></component>
+    </transition>
+</div>
+
+@section Scripts
+{
+    <script src="~/ViewModels/Components/reviews.js?_=@rand.Next()"></script>
+}

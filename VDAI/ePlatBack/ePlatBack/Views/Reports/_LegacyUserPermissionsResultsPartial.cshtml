@@ -1,0 +1,65 @@
+﻿@model ePlatBack.Models.ViewModels.LegacyUserPermissionsModel
+
+<h3>User Permissions</h3>
+<table class="table no-plugin non-editable">
+    <thead>
+        <tr>
+            <th style="height: 290px;"></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            @foreach (var sc in Model.SysComponents)
+            {
+                <th rowspan="2"><span class="vertical">@sc.SysComponent</span></th>
+            }
+        </tr>
+        <tr>
+            <th>User Name</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th>Locked</th>
+            <th>Last Login Date</th>
+            <th>Terminals</th>
+            <th>Role</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var u in Model.Users)
+        {
+            <tr>
+                <td rowspan="@u.AccessProfiles.Count()"><span class="span-100">@u.Username</span></td>
+                <td rowspan="@u.AccessProfiles.Count()">@u.Email</td>
+                <td rowspan="@u.AccessProfiles.Count()">@u.Status</td>
+                <td rowspan="@u.AccessProfiles.Count()">@u.Locked</td>
+                <td rowspan="@u.AccessProfiles.Count()"><span class="span-70">@u.LastActivityDate.ToString("yyyy-MM-dd")</span></td>
+                <td rowspan="@u.AccessProfiles.Count()"><span class="span-200">@u.Terminals</span></td>
+                @if (u.AccessProfiles.Count() > 0)
+                {
+                    <td><span class="span-200">@u.AccessProfiles.FirstOrDefault().Role</span></td>
+                    foreach (var p in u.AccessProfiles.FirstOrDefault().Permissions)
+                    {
+                        <td class="@(p.Read ? "cell-active" : "")">@(p.Read ? "Yes" : "")</td>
+                    }
+                }
+            </tr>
+                int i = 0;
+                foreach (var ap in u.AccessProfiles)
+                {
+                    if (i > 0)
+                    {
+                        <tr>
+                            <td>@ap.Role</td>
+                            @foreach (var p in ap.Permissions)
+                            {
+                                <td class="@(p.Read ? "cell-active" : "")">@(p.Read ? "Yes" : "")</td>
+                            }
+                        </tr>
+                    }
+                    i++;
+                }
+        }
+    </tbody>
+</table>

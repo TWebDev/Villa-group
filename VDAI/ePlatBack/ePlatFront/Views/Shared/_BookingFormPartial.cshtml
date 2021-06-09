@@ -1,0 +1,121 @@
+﻿@model ePlatBack.Models.ViewModels.QuoteRequestViewModel
+
+@using (Ajax.BeginForm("QuoteRequestSave", new { Controller = "Controls" }, new AjaxOptions { OnBegin = "Controls.sendingInfo('QuoteRequestForm')", OnSuccess = "Controls.showMessage(data,'QuoteRequestForm', false, 4)", OnFailure = "Controls.showMessage({ResponseType : -1, ResponseMessage : 'Failure trying to send the information to the server, please try again.'},'QuoteRequestForm')" }, new { id = "QuoteRequestForm" }))
+{
+    <div class="classic-form">
+    <fieldset>
+        <legend>QuoteRequestViewModel</legend>
+            
+        <div class="editor-item">
+            @Html.LabelFor(model => model.QuoteRequest_FirstName)
+            <div class="editor-field">
+                @Html.EditorFor(model => model.QuoteRequest_FirstName)
+                @Html.ValidationMessageFor(model => model.QuoteRequest_FirstName)
+            </div>
+        </div>
+        <div class="editor-item">
+            @Html.LabelFor(model => model.QuoteRequest_LastName)
+
+            <div class="editor-field">
+                @Html.EditorFor(model => model.QuoteRequest_LastName)
+                @Html.ValidationMessageFor(model => model.QuoteRequest_LastName)
+            </div>
+        </div>
+        <div class="editor-item">
+            @Html.LabelFor(model => model.QuoteRequest_Email)
+
+            <div class="editor-field">
+                @Html.EditorFor(model => model.QuoteRequest_Email)
+                @Html.ValidationMessageFor(model => model.QuoteRequest_Email)
+            </div>
+        </div>
+        <div class="editor-item">
+            @Html.LabelFor(model => model.QuoteRequest_Phone)
+
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.QuoteRequest_Phone, new { data_format = "phone" })
+                @Html.ValidationMessageFor(model => model.QuoteRequest_Phone)
+            </div>
+        </div>
+        <div class="editor-item">
+            @Html.LabelFor(model => model.QuoteRequest_Destination)
+
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.QuoteRequest_Destination, Model.Destinations)
+                @Html.ValidationMessageFor(model => model.QuoteRequest_Destination)
+            </div>
+        </div>
+        <div class="editor-item">
+            @Html.LabelFor(model => model.QuoteRequest_Resort)
+
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.QuoteRequest_Resort,Model.Resorts)
+                @Html.ValidationMessageFor(model => model.QuoteRequest_Resort)
+            </div>
+        </div>
+        <div class="editor-item">
+            @Html.LabelFor(model => model.QuoteRequest_Arrival)
+
+            <div class="editor-field">
+                @Html.EditorFor(model => model.QuoteRequest_Arrival)
+                @Html.ValidationMessageFor(model => model.QuoteRequest_Arrival)
+            </div>
+        </div>
+        <div class="editor-item">
+            @Html.LabelFor(model => model.QuoteRequest_Departure)
+
+            <div class="editor-field">
+                @Html.EditorFor(model => model.QuoteRequest_Departure)
+                @Html.ValidationMessageFor(model => model.QuoteRequest_Departure)
+            </div>
+        </div>
+        <div class="editor-item">
+            @Html.LabelFor(model => model.QuoteRequest_Adults)
+
+            <div class="editor-field">
+                @Html.EditorFor(model => model.QuoteRequest_Adults)
+                @Html.ValidationMessageFor(model => model.QuoteRequest_Adults)
+            </div>
+        </div>
+        <div class="editor-item">
+            @Html.LabelFor(model => model.QuoteRequest_Children)
+
+            <div class="editor-field">
+                @Html.EditorFor(model => model.QuoteRequest_Children)
+                @Html.ValidationMessageFor(model => model.QuoteRequest_Children)
+            </div>
+        </div>
+        <div class="editor-item">
+            @Html.LabelFor(model => model.QuoteRequest_TimeToReach)
+            <div class="editor-field">
+                @Html.EditorFor(model => model.QuoteRequest_TimeToReach)
+                @Html.ValidationMessageFor(model => model.QuoteRequest_TimeToReach)
+            </div>
+        </div>
+        <div class="editor-item-area" style="display:none;">
+            @Html.LabelFor(model => model.QuoteRequest_Comments)
+
+            <div class="editor-field">
+                @Html.TextAreaFor(model => model.QuoteRequest_Comments)
+                @Html.ValidationMessageFor(model => model.QuoteRequest_Comments)
+            </div>
+        </div>
+        <label>Please type the text below</label>
+        @ReCaptcha.GetHtml(theme:"white")
+        <div class="validation-errors">
+            @Html.ValidationSummary(true)
+            
+        </div>
+        <div class="interaction-message"></div>
+        <input type="submit" value="FINISH" />        
+    </fieldset>
+    </div>
+}
+
+<div id="formConfirmation" style="display:none;">
+    <h3>Booking Confirmation</h3>
+    <br />
+    <p>
+        Thank you for booking with My Vacation to Mexico. One of our representatives will be in contact with you soon, to confirm your reservation info and make sure that you match with the Terms and Conditions of this offer. Once the information is verified, the representative will proceed to cover the package fee.
+    </p>
+</div>

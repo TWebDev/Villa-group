@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html lang="@ViewBag.Culture">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title</title>
+        <link href="~/content/themes/tga/images/tga.png" rel="shortcut icon" type="image/x-icon" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="keywords" content="@ViewBag.Keywords">
+        <meta name="description" content="@ViewBag.Description">
+        <meta name="robots" content="@ViewBag.Index, @ViewBag.Follow">
+        <meta name="google-site-verification" content="76MR5W7IaEZt_Oams-6M7BeaE46rZPmOHypMNZ73pHY" />
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        @Styles.Render("//fonts.googleapis.com/css?family=Open+Sans:400,700")
+        @Styles.Render("~/themes/tga")
+        @Styles.Render("~/Content/themes/base/datepicker")
+        @RenderSection("header", required: false)
+    </head>
+    <body>
+        @RenderSection("afterBody", required: false)
+        <header>
+            <div class="content-wrapper">
+                <div class="float-right">
+                    <section id="login">
+                        @*@Html.Partial("_LoginPartial")*@
+                        @Html.Raw(@ViewBag.Header)
+                    </section>
+                </div>
+                <div>
+                    <p class="site-title">
+                        <a href="/">
+                            <img src="@ViewBag.Logo" class="logo-image" width="150" height="62" />
+                        </a>
+                    </p>
+                </div>
+                    <nav>
+                        <ul id="menu">
+                            @if (ViewBag.Culture == "en")
+                            {
+                                <li><a href="/packages/puerto-vallarta">@ePlatFront.Resources.Views.Shared.SharedStrings.Puerto_Vallarta_Packages</a></li>
+                                <li><a href="/packages/cabo-san-lucas">@ePlatFront.Resources.Views.Shared.SharedStrings.Cabo_San_Lucas_Packages</a></li>
+                                <li><a href="/packages/cancun">@ePlatFront.Resources.Views.Shared.SharedStrings.Cancun_Packages</a></li>
+                                <li><a href="/packages/loreto">@ePlatFront.Resources.Views.Shared.SharedStrings.Loreto_Packages</a></li>
+                                <li><a href="/packages/orlando">@ePlatFront.Resources.Views.Shared.SharedStrings.Orlando_Packages</a></li>
+                                <li><a class="fancybox" href="#quoteRequest">@ePlatFront.Resources.Views.Shared.SharedStrings.Request_a_Quote</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="/paquetes/puerto-vallarta">Paquetes a Puerto Vallarta</a></li>
+                                <li><a href="/paquetes/cabo-san-lucas">Paquetes a Cabo San Lucas</a></li>
+                                <li><a href="/paquetes/loreto">Paquetes a Loreto</a></li>
+                            }
+                        </ul>
+                        <div id="showMenu"><img src="~/Content/themes/tga/images/down.png" width="13" height="6" /></div>
+                    </nav>
+            </div>
+        </header>
+        <div id="body">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+            @RenderSection("controls", required: false)
+        </div>
+        <footer>
+            
+            <div class="book-with-us">
+@Html.Raw(ePlatFront.Resources.Views.Shared.SharedStrings.Why_book_with_us)
+            </div>
+            <div class="content-wrapper">
+                <div style="float:right; margin-right:40px;">
+                    <img src="/images/ab-seal-horizontal-large.jpg?w=100" alt="Better Business Bureau" style="border:none;" />
+                </div>
+                <div class="float-left">
+                    <p>Copyright &copy; @DateTime.Now.Year Today Getaway. @ePlatFront.Resources.Views.Shared.SharedStrings.All_Rights_Reserved.<br /> <span class="footer-terms">@Html.Raw(@ViewBag.Footer)</span></p>
+                </div>
+            </div>
+        </footer>
+        @Html.Partial("_SpecialPromoForCity")
+
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryui")
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/dvh")
+        <script src="~/Content/plugins/ebcaptchaword/jquery.ebcaptchaword.js"></script>
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

@@ -1,0 +1,86 @@
+﻿@model ePlatBack.Models.ViewModels.TrialsViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    ViewData["Privileges"] = Model.Privileges;
+}
+
+@section Head {
+<script>
+    window.AgentsList = JSON.parse('@Html.Raw(Model.AgentsList)');
+    window.BookingStatusList = JSON.parse('@Html.Raw(Model.BookingStatusList)');
+</script>
+}
+
+@section Scripts{
+    <script src="~/ViewModels/eplat.global.components.interactions.js"></script>
+    <script src="~/ViewModels/eplat.local.crm.trials.js"></script>
+}
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 border-bottom">
+    <h1 class="h2">Trials</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+@if (Model.Privileges.FirstOrDefault(m => m.Component == "btnImportTrials") != null && Model.Privileges.FirstOrDefault(m => m.Component == "btnImportTrials").View)
+        {
+        <button type="button" class="btn btn-sm mr-2 btn-outline-secondary" id="btnSearchLeads" v-on:click="toggleImportCard()" data-toggle="tooltip" data-placement="top" title="Import Trials">
+            <i class="material-icons">arrow_downward</i>
+        </button>
+}
+        <button type="button" class="btn btn-sm mr-2 btn-outline-secondary" id="btnSearchLeads" v-on:click="UI().showSearchCard()" data-toggle="tooltip" data-placement="top" title="Search Trials">
+            <i class="material-icons">search</i>
+        </button>
+    </div>
+</div>
+
+@if (Model.Privileges.FirstOrDefault(m => m.Component == "Import Trials") != null && Model.Privileges.FirstOrDefault(m => m.Component == "Import Trials").View)
+        {
+<div class="card mb-2 search-card" v-bind:class="{ 'd-none' : !showTrialsImport }">
+    <div class="card-body">
+        <h5 class="card-title">Import Trials</h5>
+        <div class="form-row import-1">
+            <div class="form-group col">
+                <textarea class="form-control" style="height: 300px" v-model="importInput"></textarea>
+            </div>
+        </div>
+        <div class="form-row import-1">
+            <div class="text-right col">
+                <input class="btn btn-primary" value="Next" v-on:click="generateImportCollection()" />
+            </div>
+        </div>
+        <div class="import-2 d-none">
+            <b-table id="tblImportTrials" responsive
+                     v-bind:items="ImportCollection"
+                     v-bind:fields="ImportDataTable.fields"
+                     v-bind:bordered="ImportDataTable.bordered"
+                     v-bind:striped="ImportDataTable.striped"
+                     v-bind:hover="ImportDataTable.hover"
+                     v-bind:sort-by.sync="ImportDataTable.sortBy"
+                     v-bind:sort-desc.sync="ImportDataTable.sortDesc"
+                     v-bind:current-page="ImportDataTable.currentPage"
+                     v-bind:per-page="ImportDataTable.perPage"
+                     v-if="ImportCollection.length > 0">
+                <template slot="Volume" slot-scope="data">
+                    {{ data.value | currency }}
+                </template>
+                <template slot="AssignedToUserID" slot-scope="row">
+                    <select class="form-control" v-bind:class="{ 'is-invalid': !row.item.AssignedToUserID }" v-model="row.item.AssignedToUserID">
+                        <option value="">Not Assigned</option>
+                        <option v-for="u in row.item.AgentsList" v-bind:value="u.Value">{{ u.Text }}</option>
+                    </select>
+                </template>
+            </b-table>
+            <div class="row">
+                <div class="col md-6">
+                    <b-pagination v-bind:total-rows="ImportCollection.length" v-bind:per-page="ImportDataTable.perPage" v-model="ImportDataTable.currentPage" class="my-0" />
+                </div>
+                <div class="col md-6 text-right">
+                    <input type="button" class="btn btn-primary" v-on:click="proceedToImport()" value="Proceed to Import" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}
+
+@Html.Partial("_TrialSearchPartial", Model.Search)
+@Html.Partial("_TrialInfoPartial", Model.Info)

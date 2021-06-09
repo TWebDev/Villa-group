@@ -1,0 +1,30 @@
+﻿@model ePlatBack.Models.ViewModels.PriceClasificationsSearchModel
+
+<div class="full-width">
+    <input type="button" id="btnNewPriceClasificationInfo" class="submit fieldset-expander right" value="New">
+</div>
+@using (Ajax.BeginForm("SearchPriceClasifications", "Prices", new AjaxOptions { OnSuccess = "PRICE.searchPriceClasificationSuccess(data)" }, new { }))
+{
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Search_PriceClasifications)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Search_PriceClasifications)
+        </div>
+    </div>
+    <div class="editor-alignment align-from-top">
+        <input type="submit" id="btnSearchPriceClasifications" class="button" value="Search" />
+    </div>
+    <div id="divSearchPriceClasificationsResults">
+        <table id="tblSearchPriceClasificationsResults" class="table">
+            <thead>
+                <tr>
+                    <th colspan="2">Price Clasification</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+}

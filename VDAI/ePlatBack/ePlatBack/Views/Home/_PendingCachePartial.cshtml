@@ -1,0 +1,32 @@
+﻿@model ePlatBack.Models.ViewModels.PendingCache
+
+<div class="dashboard-panel">
+    <span style="padding: 3px 3px 0 0; float: right;">
+        <span id="spnCachePercentage"></span>
+        <input type="button" class="mini-button" value="RUN" id="btnRunCache" />
+    </span>
+    <input type="hidden" id="hdnPSIDs" value="@Model.Purchase_ServiceIDs" />
+    <h3 class="title">Pending Cache</h3>
+    <div class="content">
+        @foreach (var terminal in Model.PendingCacheTerminals)
+        {
+            <div class="content-item">
+                <div style="margin-bottom: 5px; font-weight: bold;">@terminal.Terminal</div>
+                @foreach (var co in terminal.PendingCloseOuts)
+                {
+                    <div style="margin-bottom: 5px;">
+                        <span style="font-size: 1.2em;">@co.CloseOutDate.ToString("yyyy-MM-dd") @co.PointOfSale</span><br />
+                        @if (@co.NotCachedCoupons > 0)
+                        {
+                            <span style="color:red;">@co.NotCachedCoupons Not Cached Coupons</span><br />
+                        }
+                        @if (co.OutOfDateCoupons > 0)
+                        {
+                            <span>@co.OutOfDateCoupons Outdated Cached Coupons </span>
+                        }
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>

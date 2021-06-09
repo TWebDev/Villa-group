@@ -1,0 +1,94 @@
+﻿@model ePlatBack.Models.ViewModels.ProfileInfoModel
+
+<div class="container" id="divElementsContainer" style="width:90%">
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProfileInfo_WorkGroup)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.ProfileInfo_WorkGroup, Model.ProfileInfo_DrpWorkGroups, new { @class = "item-profile" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProfileInfo_Role)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.ProfileInfo_Role, Model.ProfileInfo_DrpRoles, new { @class = "item-profile" })
+        </div>
+    </div>
+    <div class="editor-alignment btn-clone-profile" style="display:none">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProfileInfo_TargetWorkGroup)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.ProfileInfo_TargetWorkGroup, Model.ProfileInfo_DrpWorkGroups)
+        </div>
+    </div>
+    <div class="editor-alignment btn-clone-profile" style="display:none">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProfileInfo_TargetRole)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.ProfileInfo_TargetRole, Model.ProfileInfo_DrpRoles)
+        </div>
+    </div>
+    <div class="editor-alignment align-from-top">
+        <div class="editor-field">
+            <input type="button" id="btnCloneProfile" value="Clone Profile" class="button btn-clone-profile" />
+            <input type="button" id="btnSaveClone" value="Save Clone" class="submit btn-clone-profile" style="display:none" />
+            <input type="button" id="btnCancelClone" value="cancel" class="button btn-clone-profile" style="display:none" />
+        </div>
+    </div>
+    <div id="divComponentsListContainer" class="full-width dd">
+        <ul id="ulComponentsList" class="sortable dd-list">
+            <li id="liNoComponents">Select WorkGroup and Role to visualize information</li>
+        </ul>
+    </div>
+    <div id="divProfileResortAssignation" class="full-width">
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ProfileInfo_Destination)
+                @Html.HiddenFor(model => model.ProfileInfo_ProfileID)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.ProfileInfo_Destination, Model.ProfileInfo_DrpDestinations)
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ProfileInfo_Resorts)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.ProfileInfo_Resorts, Model.ProfileInfo_DrpResorts)
+                <input type="button" class="button" id="btnAddResortToTable" value="add" style="display:none" />
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <table id="tblProfileResorts" class="table">
+                <thead>
+                    <tr>
+                        <th colspan="2">Resorts</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div id="divButtonsContainer" class="align-from-left">
+    <div id="divActionButtons" style="display: none">
+        <div class="editor-field ">
+            <input type="button" id="btnCreateComponent" class="button" value="New">
+        </div>
+        <div class="editor-field align-from-top">
+            <input type="button" id="btnEditComponent" class="button" value="Edit">
+        </div>
+        <div class="editor-field align-from-top">
+            <input type="button" id="btnRemoveComponent" class="button" value="Remove">
+        </div>
+        <div class="editor-field align-from-top">
+            <input type="button" id="btnSaveProfile" style="display: none" class="submit" value="Save Profile" />
+        </div>
+    </div>
+</div>

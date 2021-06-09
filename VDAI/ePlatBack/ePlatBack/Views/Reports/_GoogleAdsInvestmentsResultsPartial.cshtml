@@ -1,0 +1,60 @@
+﻿@model ePlatBack.Models.ViewModels.GoogleAdsViewModel.Reports.AdsInvestmentReport
+
+@foreach (var account in Model.Accounts)
+{
+    <h5>@account.AccountName</h5>
+
+    <table style="width: 100%">
+        <thead>
+            <tr>
+                <th style="width:73px;">Date</th>
+                <th>Destination</th>
+                <th>Clicks</th>
+                <th>Impr</th>
+                <th>Cost MXN</th>
+                <th>CTR</th>
+                <th>Cost USD</th>
+                <th>CPC</th>
+                <th>Device</th>
+                <th>Language</th>
+                <th>Channel</th>
+                <th>Campaign Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var campaign in account.Campaigns)
+            {
+            <tr>
+                <td>@campaign.Date.ToString("yyyy-MM-dd")</td>
+                <td>@campaign.Destination</td>
+                <td class="text-center">@campaign.Clicks</td>
+                <td class="text-center">@campaign.Impressions</td>
+                <td class="text-right">$@campaign.CostMXN</td>
+                <td>@campaign.Ctr</td>
+                <td class="text-right">$@campaign.CostUSD</td>
+                <td>$@campaign.CPC</td>
+                <td>@campaign.Device</td>
+                <td>@campaign.Language</td>
+                <td>@campaign.Channel</td>
+                <td>@campaign.CampaignName</td>
+            </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td class="text-center">@account.Totals.Clicks</td>
+                <td class="text-center">@account.Totals.Impressions</td>
+                <td class="text-right">$@account.Totals.CostMXN</td>
+                <td>@account.Totals.Ctr</td>
+                <td class="text-right">$@account.Totals.CostUSD</td>
+                <td>$@account.Totals.CPC</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+}

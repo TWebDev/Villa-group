@@ -1,0 +1,32 @@
+﻿@model ePlatBack.Models.ViewModels.WorkGroupSearchModel
+
+<div class="full-width">
+    <input type="button" id="btnNewWorkGroupsInfo" class="submit fieldset-expander right" value="new" />
+</div>
+@using (Ajax.BeginForm("SearchWorkGroups", "Admin", new AjaxOptions { OnSuccess = "SM.searchWorkGroupsSuccess(data)", UpdateTargetId = "tblSearchWorkGroupsResults" }, new { id = "frmWorkGroupsSearch" }))
+{
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.WorkGroupSearch_WorkGroup)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.WorkGroupSearch_WorkGroup)
+        </div>
+    </div>
+    <div class="editor-alignment align-from-top">
+        <div class="editor-field">
+            <input id="btnSearchWorkGroups" type="button" class="button" value="search" />
+        </div>
+    </div>
+    <div id="divTblExistingWorkGroups">
+        <table id="tblSearchWorkGroupsResults" class="table">
+            <thead>
+                <tr>
+                    <th colspan="2">WorkGroups</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+}

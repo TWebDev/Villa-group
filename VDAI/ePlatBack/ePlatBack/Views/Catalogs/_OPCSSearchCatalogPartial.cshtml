@@ -1,0 +1,100 @@
+﻿@model ePlatBack.Models.ViewModels.OPCSModel.SearchOPCSModel
+
+<fieldset id="fdsOpcsManagement">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        OPCS Management
+    </legend>
+    <div class="align-from-top">
+        <div class="full-width" style="text-align:right;">
+            <input type="button" id="btnDownloadOPCSList" class="button" value="Download List" />
+            <input type="button" id="btnDownloadHistory" class="button" value="Download History" />
+            <input type="button" id="btnNotifyChanges" class="button" value="Notify Changes" />
+            <input type="button" id="btnNewOPCSInfo" class="submit fieldset-expander" value="new" />
+        </div>
+        @using (Ajax.BeginForm("SearchOPCS", "Catalogs", new AjaxOptions { OnSuccess = "CATALOG.OPCSResultsTable(data)", OnComplete = "CATALOG.makeOPCSSelectable()", UpdateTargetId = "divTblExistingOPCS" }, new { id = "frmOPCSSearch" }))
+        {
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SearchOPCS_OPC)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.SearchOPCS_OPC)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SearchOPCS_LegacyKey)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.SearchOPCS_LegacyKey)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SearchOPCS_AvanceID)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.SearchOPCS_AvanceID)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SearchOPCS_Companies)
+                </div>
+                <div class="editor-field">
+                    @Html.ListBoxFor(model => model.SearchOPCS_Companies, Model.SearchOPCS_DrpCompanies, new { @class = "mktCompanySearch-dependent-list terminal-dependent-list", style = "height:68px", data_route = "/Catalogs/GetDDLData", data_route_parameter = "mktCompanySearch" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SearchOPCS_PromotionTeam)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.SearchOPCS_PromotionTeam, Model.SearchOPCS_DrpPromotionTeams, new { @class = "promotionTeam-dependent-list terminal-dependent-list", data_route = "/Catalogs/GetDDLData", data_route_parameter = "promotionTeam", multiple = "multiple" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Search_OPCS_JobPosition)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.Search_OPCS_JobPosition, Model.SearchOPCS_DrpJobPositions, new { @class = "jobPosition-dependent-list", multiple = "multiple" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SearchOPCS_PayingCompany)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.SearchOPCS_PayingCompany, Model.SearchOPCS_DrpPayingCompanies, new { @class = "terminal-dependent-list", data_route = "/Catalogs/GetDDLData", data_route_parameter = "payingCompany", multiple = "multiple" })
+                </div>
+            </div>
+            <div class="editor-alignment align-from-top">
+                <div class="editor-field">
+                    <input type="submit" class="button search" value="search" />
+                </div>
+            </div>
+            <div id="divTblExistingOPCS" class="align-from-top">
+                @*<table id="tblOPCSResults" class="dataTable table search-results">
+                    <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>Credential Number</th>
+                            <th>Full Name</th>
+                            <th>Job Position</th>
+                            <th>Phone</th>
+                            <th>Enlist Date</th>
+                            <th>Paying Company</th>
+                            <th>Marketing Company</th>
+                            <th>Legacy Key</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>*@
+            </div>
+        }
+
+        @Html.Action("RenderOpcsManagement", "Catalogs")
+    </div>
+</fieldset>

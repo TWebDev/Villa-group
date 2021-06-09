@@ -1,0 +1,70 @@
+﻿@model ePlatBack.Models.ViewModels.PreArrivalReport.SearchPreArrivalReport
+
+@using (Ajax.BeginForm("SearchPreArrivalInvoices", "Reports", new AjaxOptions { OnBegin= "REPORT.clearTable('tblPreArrivalInvoices');", OnSuccess = "REPORT.searchResultsTable(data);REPORT.addExtras();", UpdateTargetId = "divTblInvoicesResults" }, new { id = "frmSearchPreArrivalInvoices", onSubmit = "return UI.showValidationSummary(this.id);" }))
+{
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Search_I_ArrivalDate)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Search_I_ArrivalDate, new { data_uses_date_picker = "true" })
+            @Html.TextBoxFor(model => model.Search_F_ArrivalDate, new { data_uses_date_picker = "true" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Search_I_PurchaseDate)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Search_I_PurchaseDate, new { data_uses_date_picker = "true" })
+            @Html.TextBoxFor(model => model.Search_F_PurchaseDate, new { data_uses_date_picker = "true" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Search_Resorts)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Search_Resorts, Model.Search_DrpResorts, new { multiple = "multiple" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Search_MerchantAccount)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Search_MerchantAccount, Model.Search_MerchantAccounts, new { multiple = "multiple" })
+        </div>
+    </div>
+    <div class="editor-alignment align-from-top">
+        <div class="editor-field">
+            <input type="submit" class="button" value="search" />
+            <input type="reset" class="button" value="reset" />
+        </div>
+    </div>
+
+    <div id="divTblInvoicesResults" class="align-from-top">
+        <table id="tblPreArrivalInvoices" class="table">
+            <thead>
+                <tr>
+                    <th>Merchant Account</th>
+                    <th>Payment Type</th>
+                    <th>Invoice Number</th>
+                    <th>Purchase Date</th>
+                    <th>Travelers</th>
+                    <th>Resort</th>
+                    <th>Arrival Date</th>
+                    <th>Departure Date</th>
+                    <th>Confirmation Number</th>
+                    <th>Certificate Number</th>
+                    <th>Assigned To</th>
+                    <th>Charged By</th>
+                    <th>Member Number</th>
+                    <th>Amount</th>
+                    <th>Reference</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+}

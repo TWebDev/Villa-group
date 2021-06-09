@@ -1,0 +1,104 @@
+﻿@model ePlatBack.Models.ViewModels.PricesModel.SearchPricesModel
+
+@using (Ajax.BeginForm("SearchPricesReport", "Reports", new AjaxOptions { OnSuccess = "REPORT.Prices.pricesLoaded();", UpdateTargetId = "divTblPrices" }, new { id = "frmSearchActivityPrices" }))
+{
+    <div class="non-printable search-params">
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SearchPrices_Date)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.SearchPrices_Date, new { data_uses_date_picker = "true", @class = "normal-width" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SearchPrices_BookingDate)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.SearchPrices_BookingDate, new { data_uses_date_picker = "true", @class = "normal-width" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_TerminalID)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Search_TerminalID, Model.Search_Terminals, new { @class = "onchange terminal-dependent-list", data_route = "/crm/Reports/GetDDLData", data_onchange_route_parameter = "provider,activityesByTerminal,pointOfSale", data_dependent_list = "Search_Provider,Search_Activity,Search_PointOfSaleID", data_route_parameter = "selectedTerminals" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_Provider)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Search_Provider, Model.Search_DrpProviders, new { @class = "onchange", data_route = "/crm/Reports/GetDDLData", data_onchange_route_parameter = "activitiesByProvider", data_dependent_list = "Search_Activity" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_Activity)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Search_Activity, Model.Search_DrpActivities)
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_Currency)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Search_Currency, Model.Search_DrpCurrencies)
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_Culture)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Search_Culture, Model.Search_DrpCultures)
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_PointOfSaleID)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Search_PointOfSaleID, Model.Search_DrpPointsOfSale)
+            </div>
+        </div>
+        <div class="editor-alignment align-from-top">
+            <div class="editor-field">
+                @Html.HiddenFor(model => model.Search_UpdateCache)
+                <input type="submit" class="button" value="Search" />
+            </div>
+        </div>
+    </div>
+    <div class="align-from-top" id="divTblPrices">
+        @*<table id="tblPricesReport" class="table">
+            <thead>
+                <tr>
+                    <th colspan="3"></th>
+                    <th colspan="4" style="text-align:center; background-color:#5c5c5c">USD</th>
+                    <th colspan="4" style="text-align:center;">MXN</th>
+                </tr>
+                <tr>
+                    <th>Provider</th>
+                    <th>Activity</th>
+                    <th>Unit</th>
+                    <th>Public</th>
+                    <th>Gold Card</th>
+                    <th>Online</th>
+                    <th>Charge Back</th>
+                    <th>Cost</th>
+                    <th>Public</th>
+                    <th>Gold Card</th>
+                    <th>Online</th>
+                    <th>Charge Back</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>*@
+    </div>
+}
+

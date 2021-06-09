@@ -1,0 +1,28 @@
+﻿@model ePlatBack.Models.ViewModels.PriceClasificationInfoModel
+
+<fieldset id="fdsPricesClasificationInfo">
+    <legend>
+        <img class="fieldset-indicator fds-indicator-separator" src="/Content/themes/base/images/eplat_show.jpg"/>
+        Price Clasification Info
+    </legend>
+    <div style="display: none">
+        @using (Ajax.BeginForm("SavePriceClasification", "Prices", new AjaxOptions { OnSuccess = "PRICE.savePriceClasificationSuccess(data)" }, new { id = "frmPriceClasification", onSubmit = "return UI.showValidationSummary(this.id);" }))
+        {
+            <div id="frmPriceClasification_ErrorMessages" style="display: none">
+                @Html.ValidationMessageFor(model => model.PriceClasification_PriceClasification)
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PriceClasification_PriceClasification)
+                    @Html.HiddenFor(model => model.PriceClasification_PriceClasificationID, new { @class = "secondary-selected-row-dependent", data_keep_value="" })
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.PriceClasification_PriceClasification)
+                </div>
+            </div>
+            <div class="full-width">
+                <input type="submit" id="btnSavePriceClasification" class="submit right" value="Save"/>
+            </div>
+        }
+    </div>
+</fieldset>

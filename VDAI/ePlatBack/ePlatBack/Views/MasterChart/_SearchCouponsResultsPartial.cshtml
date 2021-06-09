@@ -1,0 +1,52 @@
+﻿@model ePlatBack.Models.ViewModels.PurchasesModel
+
+<input type="hidden" id="jsonCoupons" value="@Model.JsonRecentCoupons"/>
+<table id="tblSearchCouponsResults" class="table dataTable">
+    <thead>
+        <tr>
+            <th class="hidden-cell">LeadID</th>
+            <th class="hidden-cell">PurchaseID</th>
+            <th>Folio</th>
+            <th>Customer</th>
+            <th>Coupon Status</th>
+            <th>Coupon Total</th>
+            <th>Coupon Date Saved</th>
+            <th>Service Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ListRecentCoupons != null)
+        {
+            foreach (var i in Model.ListRecentCoupons)
+            {
+                var _id = i.RecentCoupon_LeadID;
+                <tr id="@_id">
+                    <td>
+                        @Html.DisplayFor(model => i.RecentCoupon_LeadID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.RecentCoupon_PurchaseID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.RecentCoupon_Coupon)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.RecentCoupon_FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.RecentCoupon_ServiceStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.RecentCoupon_Total)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.RecentCoupon_DateSaved)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.RecentCoupon_ServiceDate)
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

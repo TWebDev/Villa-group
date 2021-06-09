@@ -1,0 +1,210 @@
+﻿@model ePlatBack.Models.ViewModels.PackageDetailViewModel
+
+@{
+    ViewBag.Culture = Model.Culture;
+    ViewBag.Title = Model.Seo_Title;
+    ViewBag.Keywords = Model.Seo_Keywords;
+    ViewBag.Description = Model.Seo_Description;
+    ViewBag.Index = Model.Seo_Index;
+    ViewBag.Follow = Model.Seo_Follow;
+
+    ViewBag.Header = Model.Template_Header;
+    ViewBag.Footer = ePlatFront.Resources.Views.Shared.SharedStrings.To_See_Terms + " <a href=\"#terms\" class=\"fancybox\">" + ePlatFront.Resources.Views.Shared.SharedStrings.Click_Here + "</a><div id=\"terms\" style=\"display:none;\"><h2>" + ePlatFront.Resources.Views.Shared.SharedStrings.Terms_and_Conditions + "</h2><br />" + Model.Terms + "</div>" + Model.Template_Footer;
+    ViewBag.Logo = Model.Template_Logo;
+}
+
+@section header{
+    @Html.Raw(Model.Scripts_Header)
+}
+
+@section afterBody{
+    @Html.Raw(Model.Scripts_AfterBody)
+}
+
+@section scripts{
+    @Html.Raw(Model.Scripts_Footer)
+    <script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=false"></script>
+    @Scripts.Render("~/Content/plugins/gmap/gmap.js")
+    <script type="text/javascript">
+        UI.nights = @Model.Nights;
+        Gmap.init('mapContainer');
+        $('#mapContainer').on('loaded', function(){
+            Gmap.resize();
+            Gmap.moveMarker(@Model.Resort_Location_Lat, @Model.Resort_Location_Lng, '@Model.Resort');
+        });
+        
+        $(function(){
+            $('#QuoteRequest_Destination').val('@Model.Destination');
+            $('#QuoteRequest_Destination').trigger('change');
+        });
+    </script>
+}
+
+@section controls{
+    
+}
+
+<div id="slidesGallery" class="slide-container">
+        @if (Model.Pictures != null)
+        {
+            <div id="sliderPicturesContainer">
+            @{
+                int j = 0;
+                foreach (var item in Model.Pictures)
+                {
+                    <img src="@item.Picture_Url" alt="@item.Picture_Alt" class="slide-picture" style="@(j==0 ? "display:inline-block;" : "display:none;")" />
+                    j++;
+                }
+            }
+            </div>
+            <div class="slider-pager">
+                <div id="pagerRow" class="slider-pager-row">
+                @{
+                    int i = 0;
+                    
+                foreach (var item in Model.Pictures)
+                {
+                    <div class="slide-button @(i==0 ? "slide-button-selected" : "")"  onclick="Slider.play(@i)" style="background-image:url(@item.Picture_Url?height=60)"></div>
+                    i++;
+                }
+                }
+                </div>
+            </div>
+        }
+    </div>
+<div class="content">
+    <section id="left-column">
+        <nav id="submenu">
+            <ul>
+                <li class="selected">Package</li>
+                <li>What is included?</li>
+                <li>The Resort</li>
+                <li>Your Room</li>
+                <li>FAQ</li>
+                <li>Map</li>
+                <li>Reviews</li>
+            </ul>
+        </nav>
+        <div id="package" class="content-cell" itemscope itemtype="http://schema.org/Product">
+            <span class="stars">
+                @for(var r=0;r<Model.Rating;r++){
+                <img src="/content/themes/base/images/star2.jpg" />
+                }
+            </span>
+            <h1 itemprop="name">@Html.DisplayFor(model => model.Package)</h1>
+            <div class="package-description" itemprop="description">
+                Get @Html.DisplayFor(model => model.Stay)<br />
+                For @Html.DisplayFor(model => model.Adults) and up to @Html.DisplayFor(model => model.Children) children<br />
+                In an amazing beach front resort
+            </div>
+             <div itemprop="aggregateRating" style="display:none" itemscope itemtype="http://schema.org/AggregateRating"> Rated <span itemprop="ratingValue">@Html.Raw(Model.Rating)</span>/5 based on <span itemprop="reviewCount">@Html.Raw(Model.Reviews.Count())</span> customer reviews</div>
+        </div>
+        <div class="content-cell">
+            <h2>What is included?</h2>
+            @Html.Raw(Model.Description)
+        </div>
+        <div class="content-cell">
+            @*<h2>@Html.DisplayFor(model => model.Resort)</h2>
+            <h3>@Html.DisplayFor(model => model.Resort_Label)</h3>*@
+            <h2>The Resort</h2>
+            <br />
+            <div class="content-left-secondary">
+                    @foreach (var item in Model.Resort_Pictures)
+                    {
+                         <img src="@item.Picture_Url?width=240" alt="@item.Picture_Description" /><br /><br />
+                    }
+            </div>
+            <div class="content-right-main">
+                @Html.Raw(Model.Resort_Description)
+                <h3>Amenities</h3>
+                @Html.Raw(Model.Resort_Amenities)
+            </div>
+        </div>
+        <div class="content-cell">
+                @foreach (var room in Model.Rooms)
+                {
+                    <h2>@room.Room - $@room.Price</h2><br />
+                    <div class="content-left-secondary">
+                        <img src="@room.PictureUrl?width=240" alt="" />                   
+                    </div><div class="content-right-main">
+                        @Html.Raw(room.Description)
+                    </div>
+                }
+        </div>
+        <div class="content-cell">
+                <h2>@ePlatFront.Resources.Views.Packages.PackagesStrings.FAQ</h2>
+                @Html.Raw(Model.Resort_FAQ)
+            </div>
+        <div class="content-cell">
+                <h2>@ePlatFront.Resources.Views.Packages.PackagesStrings.Map</h2>
+                <div id="mapContainer"></div>
+            </div>
+        <div class="content-cell">
+                <h2>@ePlatFront.Resources.Views.Packages.PackagesStrings.Reviews</h2>
+                @foreach (var review in Model.Reviews)
+                {
+                    <div class="review" itemprop="review" itemscope itemtype="http://schema.org/Review">
+                        <span itemprop="description">
+                        @Html.Raw(review.Review)
+                        </span>
+                        <span class="author">
+                        <span itemprop="author">@review.Author</span>, @review.From
+                        </span>
+                        <div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+                            <meta itemprop="worstRating" content = "1">
+                            <span itemprop="ratingValue">5</span>/<span itemprop="bestRating">5</span> stars
+                        </div>
+                    </div>
+                }
+            </div>
+    </section>
+    <section id="right-column">
+        <div id="booknow">
+            <a id="btnGotoOptions"><span></span></a>
+            <div id="bookingOptions">
+                <div class="booking-container">
+                    <span class="booking-options">
+                        <a id="bookingOptionsTerms">Read Terms and Conditions</a> | <a id="bookingOptionsClose"> Close this Box</a>
+                    </span>
+                    <h2 id="bookingTitle">You have 2 options to book</h2>
+                    <div id="bookingStream">
+                        <div class="option option-one">
+                            <h3>Option 1</h3>
+                            Book Online<br />
+                            <i>Click the button below to start booking.</i>
+                            <div id="btnStartBooking" class="secondary-button">
+                                START BOOKING YOUR PACKAGE ONLINE
+                            </div>
+                        </div>
+                        <div class="option option-two">
+                            <h3>Option 2</h3>
+                            Book thru a Reservations Agent<br />
+                            @*i>Click the next button & get a Free Number.</i>*@
+                            <i>Toll Free to the next Phone Number</i>
+                            <div id="showPhone" class="secondary-button" style="display:none;">
+                                GET YOUR FREE PHONE NUMBER
+                            </div>
+                            <div id="phoneNumber" >
+                                @Model.Template_Phone_Desktop
+                            </div>
+                        </div>
+                        <div class="booking-step">
+                            @Html.Action("BookingForm", "Controls")
+                        </div>
+                        <div id="terms" class="booking-step">
+                            @Html.Raw(@Model.Terms)
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="white-box" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                <meta itemprop="priceCurrency" content="USD" />
+                <span class="little-label">GET THIS AMAZING PACKAGE FOR ONLY</span>
+                <span class="price" itemprop="price">$@Html.DisplayFor(model => model.PackagePrice)</span>
+            </div>
+            <div class="aqua-box" id="bookNowButton">BOOK NOW</div>
+            <div class="go-top"><div></div></div>
+        </div>
+    </section>
+</div>

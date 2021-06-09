@@ -1,0 +1,487 @@
+﻿@model ePlatBack.Models.ViewModels.PackageDetailViewModel
+
+@{
+    long terminalID = ePlatBack.Models.Utils.GeneralFunctions.GetTerminalID();
+    ViewBag.Culture = Model.Culture;
+    ViewBag.Title = Model.Seo_Title;
+    ViewBag.Keywords = Model.Seo_Keywords;
+    ViewBag.Description = Model.Seo_Description;
+    ViewBag.Index = Model.Seo_Index;
+    ViewBag.Follow = Model.Seo_Follow;
+
+    ViewBag.Header = Model.Template_Header;
+    //ViewBag.Footer = ePlatFront.Resources.Views.Shared.SharedStrings.To_See_Terms + " <a data-toggle=\"modal\" data-target=\"#terms\" title=\"Terms and Conditions\">" + ePlatFront.Resources.Views.Shared.SharedStrings.Click_Here + "</a><div id=\"terms\" class=\"modal fade in\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"termsLabel\"><div class=\"modal-dialog\" role=\"document\"><div class=\"modal-content\"><div class=\"modal-header\"><button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" id=\"btnCloseTerms\"><span aria-hidden=\"true\">×</span></button><h2 id=\"termsLabel\" class=\"modal-title\">" + ePlatFront.Resources.Views.Shared.SharedStrings.Terms_and_Conditions + "</h2></div><div class=\"modal-body\">" + Model.Terms + "</div></div></div></div>" + Model.Template_Footer;
+    ViewBag.Footer = Model.Template_Footer;
+    ViewBag.Logo = Model.Template_Logo;
+}
+
+
+@section header{
+    @Html.Raw(Model.Scripts_Header)
+}
+
+@section afterBody{
+    @Html.Raw(Model.Scripts_AfterBody)
+}
+
+@section scripts{
+    @Html.Raw(Model.Scripts_Footer)
+    @Scripts.Render("~/Content/plugins/lwtcountdown/jquery.lwtCountdown-1.0.js")
+    @*@Scripts.Render("~/bundles/dvh/slider")*@
+    @*@Scripts.Render("~/bundles/dvh/detail")*@
+    <script src="~/Content/themes/dvh/js/dvh-slider2.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            Slider.play();
+            if (window.location.href.indexOf('/packages/loreto/all-inclusive-package') >= 0) {
+                $('.call-us').css('padding', '0').html('<img src="/content/themes/dvh/images/loreto-award.jpg" class="img-responsive" />')
+            } else {
+                $('.call-us span').eq(1).html('Decide dates later.<br> Our toll free number is');
+                $('.call-us small').remove();
+            }
+        });
+    </script>
+    @*<script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=false"></script>*@
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAK4f6_68EBekX36U4YLNhvzrK531D9vUw&callback=initMap" async defer></script>
+    @Scripts.Render("~/Content/plugins/gmap/gmap.js")
+    <script type="text/javascript">
+        //$(function(){
+            //$('#countdown_dashboard').countDown({
+            //    targetDate: {
+            //        'day': @Model.ExpirationDate.Day,
+            //        'month': @Model.ExpirationDate.Month,
+            //        'year': @Model.ExpirationDate.Year,
+            //        'hour': @Model.ExpirationDate.Hour,
+            //        'min': @Model.ExpirationDate.Minute,
+            //        'sec': @Model.ExpirationDate.Second
+            //        },
+            //    omitWeeks: true
+            //});
+        function initMap() {
+            Gmap.init('mapContainer');
+            $('#navTabs li').on('click', function () {
+                if ($(this).index() == 5) {
+                    $('#mapContainer').trigger('loaded');
+                }
+            });
+            $('#mapContainer').on('loaded', function () {
+                setTimeout(function () {
+                    Gmap.resize();
+                    Gmap.moveMarker(@Model.Resort_Location_Lat, @Model.Resort_Location_Lng, '@Model.Resort');
+                }, 500);
+            });
+        }
+       //});
+    </script>
+}
+
+@section controls{
+    <div id="quoteRequest" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="quoteRequestLabel">@Html.Partial("_QuoteRequestPartialV2", Model.QuoteRequestControl)</div>
+}
+
+@section featured {
+    <div class="featured @Model.Destination.ToLower().Replace(" ","-")">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 col-md-8 col-sm-8">
+                    <div id="slidesGallery" class="slide-container">
+                        @if (Model.Pictures != null)
+                        {
+                            <div id="sliderPicturesContainer">
+                                @{
+                                    int j = 0;
+                                    foreach (var item in Model.Pictures)
+                                    {
+                                        <img src="@item.Picture_Url" alt="@item.Picture_Alt" class="slide-picture img-responsive" style="@(j==0 ? "display:inline-block;" : "display:none;")" />
+                                        j++;
+                                    }
+                                }
+                            </div>
+                            <div class="slider-pager">
+                                <div id="pagerRow" class="slider-pager-row">
+                                    @{
+                                        int i = 0;
+
+                                        foreach (var item in Model.Pictures)
+                                        {
+                                            <div class="slide-button @(i==0 ? "slide-button-selected" : "")" onclick="Slider.play(@i)" style="background-image:url(@item.Picture_Url?height=40)"></div>
+                                            i++;
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div id="slidesGalleryCaption" class="hidden-xs">
+                        <span class="destination">
+                            @Html.DisplayFor(model => model.Destination), @Html.DisplayFor(model => model.Country)
+                        </span>
+                        <span class="rating hidden-sm">
+                            @for (var r = 0; r < Model.Resort_Stars; r++)
+                            {
+                                <img src="/content/themes/base/images/star1.png" />
+                            }
+                        </span>
+                    </div>
+                </div>
+                <aside class="col-lg-3 col-md-4 col-sm-4">
+                    <div class="slider-info @Model.Destination.ToLower().Replace(" ","-") package-summary">
+                        <h3 class="package">@Html.DisplayFor(model => model.Package)</h3>
+
+                        <span class="stay">
+                            @Html.DisplayFor(model => model.Stay)
+                        </span>
+                        <span class="guests">
+                            @Html.DisplayFor(model => model.Guests)
+                        </span>
+                        <span class="plan">
+                            @Html.DisplayFor(model => model.PlanType)
+                        </span>
+                        @*<span class="resort">
+                                    @Html.DisplayFor(model => model.Resort)
+                                </span>
+                            <span class="resort-label">
+                                @Html.DisplayFor(model => model.Resort_Label)
+                            </span>*@
+                        <span class="price">
+                            $@Html.DisplayFor(model => model.PackagePrice)
+                        </span>
+                        <span class="price-savings">
+                            @ePlatFront.Resources.Views.Packages.PackagesStrings.RETAIL_PRICE<br />
+                            <span class="retail">
+                                $@Html.DisplayFor(model => model.RetailPrice)
+                            </span><br />
+                            @ePlatFront.Resources.Views.Packages.PackagesStrings.SAVE <span class="save">@(100 - (Model.PackagePrice * 100 / Model.RetailPrice))</span>%
+                        </span>
+                        <span class="note hidden-sm">@ePlatFront.Resources.Views.Packages.PackagesStrings.Package_Price_Terms</span>
+                    </div>
+                    <div class="slider-banner hidden-md hidden-sm hidden-xs">
+                        @{
+                            var weekDate = DateTime.Today.AddDays(1);
+                        }
+                        <span class="call-to-action">Worry Free Booking</span>
+                        <span class="text">Book Now, decide dates later.<br />Free Cancellation before @weekDate.DayOfWeek, @weekDate.ToString("MMMM dd, yyyy")</span>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+
+}
+@Html.HiddenFor(model => model.PackageID)
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-9 col-md-8 col-sm-8">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" id="navTabs" role="tablist">
+                @if (Model.Resort_Description != null)
+                {
+                    <li role="presentation" class="active">
+                        <a href="#offer" aria-controls="offer" role="tab" data-toggle="tab">
+                            @ePlatFront.Resources.Views.Packages.PackagesStrings.Offer
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#resort" aria-controls="resort" role="tab" data-toggle="tab">
+                            @ePlatFront.Resources.Views.Packages.PackagesStrings.The_Resort
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#room" aria-controls="room" role="tab" data-toggle="tab">
+                            @ePlatFront.Resources.Views.Packages.PackagesStrings.Your_Room
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#amenities" aria-controls="amenities" role="tab" data-toggle="tab">
+                            @ePlatFront.Resources.Views.Packages.PackagesStrings.Amenities
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#faq" aria-controls="faq" role="tab" data-toggle="tab">
+                            @ePlatFront.Resources.Views.Packages.PackagesStrings.FAQ
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#map" aria-controls="map" role="tab" data-toggle="tab">
+                            @ePlatFront.Resources.Views.Packages.PackagesStrings.Map
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab">
+                            @ePlatFront.Resources.Views.Packages.PackagesStrings.Reviews
+                        </a>
+                    </li>
+                }
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="offer">
+                    <div class="row">
+                        <div class="col-lg-9 col-md-9 col-sm-8">
+                            <h1 itemprop="name">@Html.DisplayFor(model => model.Package)</h1>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-4 package-rating">
+                            <span>Package Rating</span><br />
+                            @for (var r = 0; r < Model.Rating; r++)
+                            {
+                                <img src="/content/themes/base/images/star2.jpg" />
+                            }
+                            <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"> Rated <span itemprop="ratingValue">@Html.Raw(Model.Rating)</span>/5 based on <span itemprop="reviewCount">@Html.Raw(Model.Reviews.Count())</span> customer reviews</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="right package-info">
+                                @Html.DisplayFor(model => model.Nights) @ePlatFront.Resources.Views.Packages.PackagesStrings.nights<br />
+                                @Html.DisplayFor(model => model.Guests)<br />
+                                @ePlatFront.Resources.Views.Packages.PackagesStrings.for_only <span class="price">$@Html.DisplayFor(model => model.PackagePrice)</span>
+                                <span class="retail">
+                                    @ePlatFront.Resources.Views.Packages.PackagesStrings.RETAIL_PRICE <span class="price">$@Html.DisplayFor(model => model.RetailPrice)</span>
+                                </span>
+                            </div>
+                            @Html.Raw(Model.Description)
+                            @if (Model.Reviews.Count() > 0)
+                            {
+                                <div class="review alert alert-warning" role="alert">
+                                    @Html.Raw(Model.Reviews.First().Review)
+                                    <span class="author">
+                                        @Model.Reviews.First().Author, @Model.Reviews.First().From
+                                    </span>
+                                </div>
+                            }
+                            <div class="row">
+                                @if (Model.Reviews.Count() > 1)
+                                {
+                                    <div class="col-lg-3 col-md-3 col-sm-6">
+                                        <a href="Javascript: $('#navTabs a:last').tab('show');">+ Read More Reviews</a>
+                                    </div>
+                                }
+                                @if (@Model.PlanType == "All Inclusive" && Model.Resort_Description != null)
+                                {
+                                    <div class="col-lg-3 col-md-3 col-sm-6">
+                                        <a class="interlinks" data-toggle="modal" data-target="#infoAllInclusive" title="What All Inclusive means">+ @ePlatFront.Resources.Views.Packages.PackagesStrings.All_Inclusive_Meaning</a>
+                                    </div>
+                                }
+                                @if (Model.Resort_Description != null)
+                                {
+                                    <div class="col-lg-3 col-md-3 col-sm-6">
+                                        <a class="interlinks" href="javascript: $('#navTabs a[href=#resort]').tab('show')"> + @ePlatFront.Resources.Views.Packages.PackagesStrings.About_the_Resort</a>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6">
+                                        <a class="interlinks" href="javascript: $('#navTabs a[href=#faq]').tab('show')"> + @ePlatFront.Resources.Views.Packages.PackagesStrings.Any_doubt</a>
+                                    </div>
+                                }
+                                <div style="display:none;" id="infoAllInclusive" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="infoAllInclusiveLabel">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseAllInclusive"><span aria-hidden="true">×</span></button>
+                                                <h2 id="infoAllInclusiveLabel" class="modal-title">
+                                                    @ePlatFront.Resources.Views.Packages.PackagesStrings.All_Inclusive_Meaning
+                                                </h2>
+                                            </div>
+                                            <div class="modal-body">
+                                                @Html.Raw(Model.Resort_AllInclusive)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @Html.Raw(Model.Options)
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="resort">
+                    <div class="row">
+                        <div class="col-lg-9 col-md-8 col-sm-8">
+                            @*<h2 style="display:none;">@Html.DisplayFor(model => model.Resort)</h2>
+                                <h3 style="display:none;">@Html.DisplayFor(model => model.Resort_Label)</h3>*@
+                            @Html.Raw(Model.Resort_Description)
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-4">
+                            @foreach (var item in Model.Resort_Pictures)
+                            {
+                                <img src="@item.Picture_Url?width=480" alt="@item.Picture_Description" class="img-responsive img-thumbnail" />
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="room">
+                    @foreach (var room in Model.Rooms)
+                    {
+                        <div class="row">
+                            <div class="col-lg-9 col-md-8 col-sm-8">
+                                <h2>@room.Room - $@room.Price</h2>
+                                @Html.Raw(room.Description)
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-4">
+                                <img src="@room.PictureUrl?width=240" class="img-responsive img-thumbnail" alt="" />
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="amenities">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h2>@ePlatFront.Resources.Views.Packages.PackagesStrings.Amenities</h2>
+                            @Html.Raw(Model.Resort_Amenities)
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="faq">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h2>@ePlatFront.Resources.Views.Packages.PackagesStrings.FAQ</h2><br />
+                            @Html.Raw(Model.Resort_FAQ)
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="map">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h2>@ePlatFront.Resources.Views.Packages.PackagesStrings.Map</h2><br />
+                            <div id="mapContainer"></div>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="reviews">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h2>@ePlatFront.Resources.Views.Packages.PackagesStrings.Reviews</h2><br />
+                            @foreach (var review in Model.Reviews)
+                            {
+                                <div class="review alert alert-warning" itemprop="review" itemscope itemtype="http://schema.org/Review">
+                                    <div itemprop="description">
+                                        @Html.Raw(review.Review)
+                                    </div>
+                                    @for (var r = 0; r < review.Rating; r++)
+                                    {
+                                        <img src="/content/themes/base/images/star2.jpg" />
+                                    }
+                                    <div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating" style="display:none;">
+                                        <meta itemprop="worstRating" content="1">
+                                        <span itemprop="ratingValue">@review.Rating</span> /
+                                        <span itemprop="bestRating">5</span>stars
+                                    </div>
+
+                                    <span class="author">
+                                        <span itemprop="author">@review.Author</span>, @review.From
+                                        @if (review.Date != "")
+                                        {
+                                            <br />
+                                            <span>Written on @review.Date</span>
+                                        }
+                                        <input type="hidden" value="@review.Resort" />
+                                    </span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <aside class="col-lg-3 col-md-4 col-sm-4">
+            <div class="timer">
+                <span class="spnOffer"></span>
+                <div id="timer">
+                    <div id="countdown_dashboard">
+                        <div class="dash days_dash">
+                            <div class="digit">
+                                <div class="top" style="display: none;">0</div>
+                                <div class="bottom" style="display: block;">0</div>
+                            </div>
+                            <div class="digit">
+                                <div class="top" style="display: none;">0</div>
+                                <div class="bottom" style="display: block;">0</div>
+                            </div>
+                            <span class="dash_title">D</span>
+                        </div>
+
+                        <div class="dash hours_dash">
+                            <div class="digit">
+                                <div class="top" style="display: none;">0</div>
+                                <div class="bottom" style="display: block;">0</div>
+                            </div>
+                            <div class="digit">
+                                <div class="top" style="display: none;">0</div>
+                                <div class="bottom" style="display: block;">0</div>
+                            </div>
+                            <span class="dash_title">H</span>
+                        </div>
+
+                        <div class="dash minutes_dash">
+                            <div class="digit">
+                                <div class="top" style="display: none;">0</div>
+                                <div class="bottom" style="display: block;">0</div>
+                            </div>
+                            <div class="digit">
+                                <div class="top" style="display: none;">0</div>
+                                <div class="bottom" style="display: block;">0</div>
+                            </div>
+                            <span class="dash_title">M</span>
+                        </div>
+
+                        <div class="dash seconds_dash">
+                            <div class="digit">
+                                <div class="top" style="display: none;">0</div>
+                                <div class="bottom" style="display: block;">0</div>
+                            </div>
+                            <div class="digit">
+                                <div class="top" style="display: none;">0</div>
+                                <div class="bottom" style="display: block;">0</div>
+                            </div>
+                            <span class="dash_title">S</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*<img src="~/Content/themes/pvo/images/easter/easter-deals.png" style="width:262px; height:175px; margin-top: 30px; margin-bottom: 30px;" />*@
+            <div class="call-us">
+                <span class="action">@ePlatFront.Resources.Views.Packages.PackagesStrings.Call_Now!</span><br />
+                <strong>@ePlatFront.Resources.Views.Packages.PackagesStrings.Book_Today</strong><br />
+                <span>We have an amaizing Special Gift to pamper you if you are traveling in October, ask for our</span><br />
+                <small><em>RELAX SPECIAL</em></small>
+                <span class="phone-number phone-desktop hidden-xs hidden-sm">@Model.Template_Phone_Desktop</span>
+                <span class="phone-number phone-mobile hidden-md hidden-lg">@Model.Template_Phone_Mobile</span>
+            </div>
+            @if (Model.Packages != null)
+            {
+                <div class="secondary-box">
+                    <h3>More Packages in @Html.DisplayFor(model => model.Destination)</h3>
+                    @foreach (var item in Model.Packages.Take(1))
+                    {
+                        <figure class="tile-package">
+                            <a href="@item.Url" title="@item.Package">
+                                <img class="tile-image img-responsive" src="@item.PictureUrl?width=320" width="320" height="147" alt="@item.Package" />
+                            </a>
+                            <figcaption class="tile-text">
+                                <a href="@item.Url" title="@item.Package">
+                                    <h2>@Html.DisplayFor(modelItem => item.Package)</h2>
+                                    <span class="price">
+                                        $@Html.DisplayFor(modelItem => item.Price)
+
+                                    </span>
+                                    @Html.DisplayFor(modelItem => item.Stay)<br />@ePlatFront.Resources.Views.Shared.SharedStrings._for @Html.DisplayFor(modelItem => item.Guests)
+                                    <div class="tile-button">MORE DETAILS</div>
+                                </a>
+                            </figcaption>
+                        </figure>
+                    }
+                </div>
+            }
+            @*@Html.Partial("_FreeVacationPartial", Model.FreeVacationControl)*@
+            <div class="right-panel">
+                <a href="http://www.bbb.org/mexico/business-reviews/hotels-reservations/vg-vacation-services-in-puerto-vallarta-ja-332" target="_blank">
+                    <img src="/images/ab-seal-horizontal-large.jpg?w=200" alt="Better Business Bureau" style="border:none; width:200px;" />
+                </a>
+            </div>
+            @*<div class="right-panel">
+                    <div class="trustpilot-widget" data-locale="en-US" data-template-id="5613c9cde69ddc09340c6beb" data-businessunit-id="560185cf0000ff00058398a0" data-style-height="100%" data-style-width="100%" data-theme="light">
+                        <a href="https://www.trustpilot.com/review/discountvacationhotels.com" target="_blank">Trustpilot</a>
+                    </div>
+                </div>*@
+        </aside>
+    </div>
+</div>

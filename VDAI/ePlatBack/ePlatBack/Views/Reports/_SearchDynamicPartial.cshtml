@@ -1,0 +1,71 @@
+﻿@model ePlatBack.Models.ViewModels.DynamicModel.SearchDynamicModel
+@*@using (Ajax.BeginForm("SearchDynamic", "Reports", new AjaxOptions { OnSuccess = "REPORT.dynamicResults(data)", UpdateTargetId = "divTblDynamicResults" }, new { id = "frmSearchDynamic" }))*@
+@using (Ajax.BeginForm("SearchDynamic", "Reports", new AjaxOptions { OnSuccess = "REPORT.searchResultsTable(data)", UpdateTargetId = "divTblDynamicResults" }, new { id = "frmSearchDynamic" }))
+{
+    <div class="dynamic-fields-container">
+        <div class="editor-alignment align-from-bottom">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SearchDynamic_SearchFilters)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.SearchDynamic_SearchFilters, new { placeholder = "type filter name" })
+            </div>
+        </div>
+        <div id="divSearchFiltersContainer" class="full-width align-from-top dynamic-fields-separator">
+        </div>
+        @using (Ajax.BeginForm("SaveLayout", "Reports", new AjaxOptions { }, new { id = "frmReportLayout" }))
+        {
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SearchDynamic_ReportLayout)
+                    @Html.HiddenFor(model => model.SearchDynamic_ReportLayoutID)
+                    @Html.HiddenFor(model => model.SearchDynamic_Fields)
+                    @Html.HiddenFor(model => model.SearchDynamic_LayoutType)
+                    @Html.HiddenFor(model => model.SearchDynamic_SysComponentID)
+                    @Html.HiddenFor(model => model.SearchDynamic_Columns)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.SearchDynamic_ReportLayout)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SearchDynamic_Public)
+                </div>
+                <div class="editor-field">
+                    <label for="SearchDynamic_PublicTrue">Yes</label>
+                    @Html.RadioButtonFor(model => model.SearchDynamic_Public, true)
+                    <label for="SearchDynamic_PublicFalse">No</label>
+                    @Html.RadioButtonFor(model => model.SearchDynamic_Public, false)
+                </div>
+            </div>
+            <div class="editor-alignment full-width">
+                <div class="editor-field">
+                    <input type="button" id="btnSaveLayout" class="button right" />
+                </div>
+            </div>
+        }
+    </div>
+    <div class="align-from-top dynamic-fields-container" style="margin-top: 20px">
+        <div class="editor-alignment full-width align-from-bottom">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SearchDynamic_ColumnHeaders)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.SearchDynamic_ColumnHeaders, new { placeholder = "type column name" })
+            </div>
+        </div>
+        <div id="divColumnHeadersContainer" class="full-width align-from-top dynamic-fields-separator">
+        </div>
+    </div>
+    <div class="editor-alignment align-from-top full-width">
+        <div class="editor-field">
+            <input type="button" id="btnSearchDynamic" class="button right" value="search" />
+        </div>
+    </div>
+@*<div id="divDynamicResultsButtons" class="align-from-top half-width" style="display:none">
+        <a href="/Content/files/data/Dynamic_Search_Results.csv" target="_blank">Download As File</a>
+    </div>*@
+    <div id="divTblDynamicResults" class="align-from-top">
+    </div>
+}

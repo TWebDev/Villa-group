@@ -1,0 +1,39 @@
+﻿@model ePlatBack.Models.ViewModels.ZoneInfoModel
+
+<fieldset id="fdsZonesInfo">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" alt="" class="fieldset-indicator fds-indicator-separator">
+        Zone Info
+    </legend>
+
+    <div style="display: none" class="align-from-top">
+        @using (Ajax.BeginForm("SaveZone", "Places", new AjaxOptions { OnSuccess = "PLACE.saveZoneSuccess(data)" }, new { id = "frmZoneInfo", onSubmit = "return UI.showValidationSummary(this.id);" }))
+        {
+            <div id="frmZoneInfo_ErrorMessages" style="display: none">
+                @Html.ValidationMessageFor(model => model.ZoneInfo_Zone)
+                @Html.ValidationMessageFor(model => model.ZoneInfo_Destination)
+                @*@Html.ValidationSummary(true)*@
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.ZoneInfo_Zone)
+                    @Html.HiddenFor(model => model.ZoneInfo_ZoneID, new { @class = "secondary-selected-row-dependent" })
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.ZoneInfo_Zone)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.ZoneInfo_Destination)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.ZoneInfo_Destination, Model.ZoneInfo_DrpDestinations)
+                </div>
+            </div>
+            <div class="editor-alignment full-width">
+                <input type="submit" class="submit right" value="Save" id="btnSaveZone"/>
+            </div>
+        }
+    </div>
+</fieldset>

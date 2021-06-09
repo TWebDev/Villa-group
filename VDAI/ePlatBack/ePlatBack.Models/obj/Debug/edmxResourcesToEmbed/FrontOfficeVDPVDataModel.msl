@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FrontOfficeVDPVModelStoreContainer" CdmEntityContainer="FrontOfficeVDPVEntities">
+    <FunctionImportMapping FunctionImportName="spLlegadas" FunctionName="FrontOfficeVDPVModel.Store.spLlegadas">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FrontOfficeVDPVModel.spLlegadas_Result">
+          <ScalarProperty Name="idReservacion" ColumnName="idReservacion" />
+          <ScalarProperty Name="CuartosNoche" ColumnName="CuartosNoche" />
+          <ScalarProperty Name="TipoHab" ColumnName="TipoHab" />
+          <ScalarProperty Name="llegada" ColumnName="llegada" />
+          <ScalarProperty Name="salida" ColumnName="salida" />
+          <ScalarProperty Name="NumHab" ColumnName="NumHab" />
+          <ScalarProperty Name="numconfirmacion" ColumnName="numconfirmacion" />
+          <ScalarProperty Name="Procedencia" ColumnName="Procedencia" />
+          <ScalarProperty Name="CodigoMerc" ColumnName="CodigoMerc" />
+          <ScalarProperty Name="idresort" ColumnName="idresort" />
+          <ScalarProperty Name="Split" ColumnName="Split" />
+          <ScalarProperty Name="CRS" ColumnName="CRS" />
+          <ScalarProperty Name="codeagencia" ColumnName="codeagencia" />
+          <ScalarProperty Name="nameagencia" ColumnName="nameagencia" />
+          <ScalarProperty Name="Huesped" ColumnName="Huesped" />
+          <ScalarProperty Name="cuartos" ColumnName="cuartos" />
+          <ScalarProperty Name="Adultos" ColumnName="Adultos" />
+          <ScalarProperty Name="Ninos" ColumnName="Ninos" />
+          <ScalarProperty Name="apellidopaterno" ColumnName="apellidopaterno" />
+          <ScalarProperty Name="apellidomaterno" ColumnName="apellidomaterno" />
+          <ScalarProperty Name="nombres" ColumnName="nombres" />
+          <ScalarProperty Name="codepais" ColumnName="codepais" />
+          <ScalarProperty Name="namepais" ColumnName="namepais" />
+          <ScalarProperty Name="codigostatusreservacion" ColumnName="codigostatusreservacion" />
+          <ScalarProperty Name="X" ColumnName="X" />
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="Infantes" ColumnName="Infantes" />
+          <ScalarProperty Name="HLlegada" ColumnName="HLlegada" />
+          <ScalarProperty Name="HSalida" ColumnName="HSalida" />
+          <ScalarProperty Name="idhuesped" ColumnName="idhuesped" />
+          <ScalarProperty Name="DistintivoPrecheckin" ColumnName="DistintivoPrecheckin" />
+          <ScalarProperty Name="FechaHoraCheckin" ColumnName="FechaHoraCheckin" />
+          <ScalarProperty Name="Contrato" ColumnName="Contrato" />
+          <ScalarProperty Name="TipoPlan" ColumnName="TipoPlan" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

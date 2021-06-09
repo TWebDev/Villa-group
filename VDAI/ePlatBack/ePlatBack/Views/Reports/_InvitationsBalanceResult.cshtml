@@ -1,0 +1,248 @@
+﻿@model ePlatBack.Models.ViewModels.InvitationBalance
+
+<table id="tblInvitationsBalance" class="dataTable table table-bordered exportable">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Invitation #</th>
+            <th>OPC</th>
+            <th>Guest</th>
+            <th>Deposit Amount</th>
+            <th colspan="2">Applied to</th>
+            <th>Balance</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var invitations in Model.balance)
+        {
+              int cont = 0;
+              int totalRow = invitations.coupons.Count() + invitations.egresses.Count();
+                  
+                    @:<tr id="@invitations.invitationID">
+                        @:<td rowspan="@totalRow">@invitations.date.ToString("yyyy-MM-dd")</td>
+                        @:<td rowspan="@totalRow">@invitations.invitationNumber</td>
+                        @:<td rowspan="@totalRow">@invitations.opcName</td>
+                        @:<td rowspan="@totalRow">@invitations.guest</td>
+
+                        if (invitations.depositCurrency == "MXN")
+                        {
+                            @:<td rowspan="@totalRow" class="money-currency">$ @invitations.depositAmount.Amount MXN</td>
+                        }
+                        else
+                        {
+                            @:<td rowspan="@totalRow" class="money-currency">$ @invitations.depositAmount.Amount USD</td>
+                        }
+           
+                    if(invitations.coupons.Count() != 0)
+                    {
+                    foreach(var coupon in invitations.coupons)
+                    {
+                        if(cont == 0  && invitations.coupons.Count() != 0)
+                        {
+                            @:<td id="@coupon.couponID">
+                                @:Coupon
+                                <br />
+                                @coupon.coupon
+                                <br />
+                                @coupon.user
+                            @:</td>
+                           if (coupon.total.Currency == "MXN")
+                           { 
+                             @:<td>$ @coupon.total.Amount MXN 
+                                    if(coupon.exchangeRateCoupon!=null)
+                                    {
+                                        <br /> @coupon.exchangeRateCoupon<title>@coupon.exchangeRateIDCoupon</title>
+                                    }
+                               @:</td>
+                           }
+                           else
+                           {
+                             @:<td>$ @coupon.total.Amount USD 
+                                     if (coupon.exchangeRateCoupon != null)
+                                     {
+                                        <br /> @coupon.exchangeRateCoupon<title>@coupon.exchangeRateIDCoupon</title>
+                                     }
+                               @:</td>  
+                           }
+                             if (invitations.balance.Currency == "MXN")
+                             {   
+                                @:<td rowspan="@totalRow" class="money-currency">$ @invitations.balance.Amount MXN</td>
+                             }
+                             else
+                             {
+                                @:<td rowspan="@totalRow" class="money-currency">$ @invitations.balance.Amount USD</td>
+                             }
+                        } 
+                        else if( cont != invitations.coupons.Count())
+                        {
+                            @:<tr>
+                                @:<td id="@coupon.couponID">
+                                    @:Coupon
+                                    <br />
+                                    @coupon.coupon
+                                    <br />
+                                    @coupon.user
+                                @:</td>
+                                if(coupon.total.Currency == "MXN")
+                                {
+                                    @:<td>$ @coupon.total.Amount MXN 
+                                         if (coupon.exchangeRateCoupon != null)
+                                         {
+                                            <br /> @coupon.exchangeRateCoupon
+                                         }
+                                      @:</td>
+                                }
+                                else
+                                {
+                                    @:<td>$ @coupon.total.Amount USD 
+                                             if (coupon.exchangeRateCoupon != null)
+                                             {
+                                                <br /> @coupon.exchangeRateCoupon
+                                             }
+                                    @:</td>
+                                }
+                            @:</tr>
+                        }
+                        else
+                        {
+                            @:<td id="@coupon.couponID">
+                                    @:Coupon
+                                    <br />
+                                    @coupon.coupon
+                                    <br />
+                                    @coupon.user
+                                @:</td>
+                                if(coupon.total.Currency == "MXN")
+                                { 
+                                    @:<td>$ @coupon.total.Amount MXN
+                                         if (coupon.exchangeRateCoupon != null)
+                                         {
+                                            <br /> @coupon.exchangeRateCoupon
+                                         }
+                                    @:</td>
+                                }
+                                else
+                                {
+                                    @:<td>$ @coupon.total.Amount USD
+                                             if (coupon.exchangeRateCoupon != null)
+                                             {
+                                                <br /> @coupon.exchangeRateCoupon
+                                             }
+                                    @:</td>
+                                }
+                            @:</tr>
+                        }
+                        cont++;
+                    }
+                }            
+                
+                if(invitations.egresses.Count()>0)
+                {
+                    foreach(var egress in invitations.egresses)
+                    {
+                        if(cont == 0 && invitations.egresses.Count() != 0)
+                        {
+                            @:<td id="@egress.egressID">
+                                @:Egresses
+                                <br />
+                                @egress.egressConcept
+                                <br />
+                                @egress.opcName
+                            @:</td>
+                            if(egress.amount.Currency == "MXN")
+                            { 
+                                @:<td>$ @egress.amount.Amount MXN
+                                      if(egress.exchangeRateEgress!= null)
+                                      {
+                                          <br /> @egress.exchangeRateEgress
+                                      }
+                                  @:</td>
+                            }
+                            else
+                            {
+                                @:<td>$ @egress.amount.Amount USD
+                                      if(egress.exchangeRateEgress!= null)
+                                      {
+                                          <br /> @egress.exchangeRateEgress
+                                      }
+                                 @:</td>
+                            }
+                            if (invitations.balance.Currency == "MXN")
+                            {
+                                @:
+                                <td rowspan="@totalRow" class="money-currency">$ @invitations.balance.Amount MXN</td>
+                             }
+                            else
+                            {
+                                @:
+                                <td rowspan="@totalRow" class="money-currency">$ @invitations.balance.Amount USD</td>
+                             }
+                            @:</tr>
+                        }
+                        else if(cont != invitations.egresses.Count())
+                        {
+                            @:<tr>
+                                @:<td id="@egress.egressID">
+                                    @:Egresses
+                                    <br />
+                                    @egress.egressConcept
+                                    <br />
+                                    @egress.opcName
+                                @:</td>
+                                if(egress.amount.Currency == "MXN")
+                                { 
+                                    @:<td>$ @egress.amount.Amount MXN
+                                        if (egress.exchangeRateEgress != null)
+                                        {
+                                            <br /> @egress.exchangeRateEgress
+                                        }
+                                      @:</td>
+                                }
+                                else
+                                {
+                                    @:<td>$ @egress.amount.Amount USD
+                                            if (egress.exchangeRateEgress != null)
+                                            {
+                                                <br /> @egress.exchangeRateEgress
+                                            }
+                                      @:</td>
+                                }
+                            @:</tr>
+                        }
+                        else
+                        {
+                            @:<td id="@egress.egressID">
+                                @:Egresses
+                                <br />
+                                @egress.egressConcept
+                                <br />
+                                @egress.opcName
+                            @:</td>
+                            if(egress.amount.Currency == "MXN")
+                            {
+                                @:<td>$ @egress.amount.Amount MXN
+                                if (egress.exchangeRateEgress != null)
+                                {
+                                    <br /> @egress.exchangeRateEgress
+                                }
+                                @:</td>
+                            }
+                            else
+                            {
+                                @:<td>$ @egress.amount.Amount USD
+                                if (egress.exchangeRateEgress != null)
+                                {
+                                    <br /> @egress.exchangeRateEgress
+                                }
+                                @:</td>
+                            }  
+                            @:</tr>                      
+                        }
+                        cont++;
+                    }
+                }
+            }       
+        </tbody>
+        <tfoot>
+        </tfoot>
+   </table>

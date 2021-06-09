@@ -1,0 +1,308 @@
+﻿@model ePlatBack.Models.ViewModels.PreArrivalInfoModel
+
+@{
+    var Privileges = Model.Privileges;
+    var showContactInfo = Privileges.Count(m => m.Component == "showContactInfo") > 0 && Privileges.FirstOrDefault(m => m.Component == "showContactInfo").View ? "True" : "False";
+}
+@Html.HiddenFor(model => showContactInfo)
+<fieldset id="fdsPreArrivalInfo" class="primary-selected-row-dependent">
+    <legend>
+        <i class="material-icons fieldset-indicator fds-indicator-separator">add_circle_outline</i>
+        Pre Arrival Info
+    </legend>
+    <div class="align-from-top" style="display:none">
+        @using (Ajax.BeginForm("SaveLead", "PreArrival", new AjaxOptions { OnSuccess = "PREARRIVAL.saveLeadSuccess(data)" }, new { id = "frmPreArrival", onSumbit = "return UI.showValidationSummary(this.id);" }))
+        {
+            <div id="frmPreArrival_ErrorMessages" style="display:none">
+
+            </div>
+            <section class="full-width editor-alignment" style="border-top:1px solid #dddddd;margin-top:20px;">
+                <div class="full-width">
+                    <i class="material-icons right align-from-left get-history" data-reference-id="Info_LeadID" title="get history">history</i>
+                    <i class="material-icons right align-from-left click-to-call" data-reference-id="Info_LeadID" title="click to call">phone</i>
+                    <i class="material-icons right align-from-left get-from-rc" data-reference-id="Info_LeadID" title="update">cached</i>
+                    @if (Privileges.Count(m => m.Component == "UnloadLead") > 0 && Privileges.FirstOrDefault(m => m.Component == "UnloadLead").View)
+                    {
+                        <i class="material-icons right unload-lead" data-reference-id="Info_LeadID" title="unload">archive</i>
+                    }
+                </div>
+                <h3>General Information</h3>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Info_FirstName)
+                        @Html.HiddenFor(model => model.Info_LeadID, new { @class = "primary-selected-row-dependent" })
+                        @Html.HiddenFor(model => model.Info_DuplicateLead)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.Info_FirstName, new { data_id = (Privileges.FirstOrDefault(m => m.Component == "Info_FirstName") != null ? Privileges.FirstOrDefault(m => m.Component == "Info_FirstName").ComponentID : 0) })
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Info_LastName)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.Info_LastName)
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Info_Terminal)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.Info_Terminal, Model.Terminals)
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Info_LeadStatus)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.Info_LeadStatus, new List<SelectListItem>())
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Info_LeadStatusDescription)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.Info_LeadStatusDescription)
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Info_LeadSource)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.Info_LeadSource, new List<SelectListItem>())
+                    </div>
+                </div>
+                @if (Privileges.Count(m => m.Component == "Info_CallClasification") > 0 && Privileges.FirstOrDefault(m => m.Component == "Info_CallClasification").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Info_CallClasification)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.Info_CallClasification, Model.CallClasifications)
+                        </div>
+                    </div>
+                }
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Info_TimeZone)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.Info_TimeZone, Model.TimeZones)
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Info_Address)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.Info_Address)
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Info_City)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.Info_City)
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Info_State)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.Info_State)
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Info_ZipCode)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.Info_ZipCode)
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Info_Country)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.Info_Country, Model.Countries)
+                    </div>
+                </div>
+            </section>
+
+            <section class="full-width editor-alignment" style="border-top:1px solid #dddddd;margin-top:20px;">
+                @if (Privileges.Count(m => m.Component == "Section_PhoneInfo") > 0 && Privileges.FirstOrDefault(m => m.Component == "Section_PhoneInfo").View && (Privileges.Count(m => m.Component == "onlyIndexedIP") == 0 || Privileges.FirstOrDefault(m => m.Component == "onlyIndexedIP").View))
+                {
+                    <div id="Section_PhoneInfo" class="editor-alignment">
+                        <h3>Phones</h3>
+                        @Html.HiddenFor(model => model.PreArrivalPhones)
+                        <table id="tblPreArrivalPhones" class="table dataTable non-editable" style="margin:10px auto !important;width:auto !important">
+                            <thead>
+                                <tr>
+                                    <th style="display:none"></th>
+                                    <th>Phone Type</th>
+                                    <th>Phone Number</th>
+                                    <th>Extension</th>
+                                    <th>Do Not Call</th>
+                                    <th>Main</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody class="primary-selected-row-dependent"></tbody>
+                            <tfoot>
+                                <tr>
+                                    <td style="display:none">
+                                        @Html.HiddenFor(model => model.PreArrivalPhonesInfoModel.PhonesInfo_LeadPhoneID)
+                                    </td>
+                                    <td>
+                                        @Html.DropDownListFor(model => model.PreArrivalPhonesInfoModel.PhonesInfo_PhoneType, Model.PreArrivalPhonesInfoModel.PhoneTypes)
+                                    </td>
+                                    <td>
+                                        @Html.TextBoxFor(model => model.PreArrivalPhonesInfoModel.PhonesInfo_PhoneNumber)
+                                    </td>
+                                    <td>
+                                        @Html.TextBoxFor(model => model.PreArrivalPhonesInfoModel.PhonesInfo_ExtensionNumber, new { @class = "half-width" })
+                                    </td>
+                                    <td>
+                                        @Html.CheckBoxFor(model => model.PreArrivalPhonesInfoModel.PhonesInfo_DoNotCall)
+                                    </td>
+                                    <td>
+                                        @Html.CheckBoxFor(model => model.PreArrivalPhonesInfoModel.PhonesInfo_Main)
+                                    </td>
+                                    <td>
+                                        <i class="material-icons phone-add item-edition">add_box</i>
+                                        <i class="material-icons phone-edit item-edition" style="display:none">check</i>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                }
+                @if (Privileges.Count(m => m.Component == "Section_EmailInfo") > 0 && Privileges.FirstOrDefault(m => m.Component == "Section_EmailInfo").View && (Privileges.Count(m => m.Component == "onlyIndexedIP") == 0 || Privileges.FirstOrDefault(m => m.Component == "onlyIndexedIP").View))
+                {
+                    <div id="Section_EmailInfo" class="editor-alignment align-from-left">
+                        <h3>Email Addresses</h3>
+                        @Html.HiddenFor(model => model.PreArrivalEmails)
+                        <table id="tblPreArrivalEmails" class="table dataTable non-editable" style="margin:10px auto !important;width:auto !important">
+                            <thead>
+                                <tr>
+                                    <th style="display:none"></th>
+                                    <th>Email</th>
+                                    <th>Main</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody class="primary-selected-row-dependent"></tbody>
+                            <tfoot>
+                                <tr>
+                                    <td style="display:none">
+                                        @Html.HiddenFor(model => model.PreArrivalEmailsInfoModel.EmailsInfo_LeadEmailID)
+                                    </td>
+                                    <td>
+                                        @Html.TextBoxFor(model => model.PreArrivalEmailsInfoModel.EmailsInfo_Email)
+                                    </td>
+                                    <td>
+                                        @Html.CheckBoxFor(model => model.PreArrivalEmailsInfoModel.EmailsInfo_Main)
+                                    </td>
+                                    <td>
+                                        <i class="material-icons email-add item-edition">add_box</i>
+                                        <i class="material-icons email-edit item-edition" style="display:none">check</i>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                }
+            </section>
+
+            if (Privileges.Count(m => m.Component == "Section_MemberInfo") > 0 && Privileges.FirstOrDefault(m => m.Component == "Section_MemberInfo").View)
+            {
+                <section id="Section_MemberInfo" class="full-width editor-alignment" style="border-top:1px solid #dddddd;margin-top:20px;">
+                    <div>
+                        <h3>Member Information</h3>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.PreArrivalMemberInfoModel.MemberInfo_ClubType)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.PreArrivalMemberInfoModel.MemberInfo_ClubType)
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.PreArrivalMemberInfoModel.MemberInfo_CoOwner)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.PreArrivalMemberInfoModel.MemberInfo_CoOwner)
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.PreArrivalMemberInfoModel.MemberInfo_MemberNumber)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.PreArrivalMemberInfoModel.MemberInfo_MemberNumber)
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.PreArrivalMemberInfoModel.MemberInfo_MemberName)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.PreArrivalMemberInfoModel.MemberInfo_MemberName)
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.PreArrivalMemberInfoModel.MemberInfo_ContractNumber)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.PreArrivalMemberInfoModel.MemberInfo_ContractNumber)
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            }
+            <div class="editor-alignment align-from-top full-width">
+                <div class="editor-field">
+                    @if (Privileges.Count(m => m.Component == "btnDuplicateLead") > 0 && Privileges.FirstOrDefault(m => m.Component == "btnDuplicateLead").View)
+                    {
+                        <input type="button" id="btnDuplicateLead" class="submit right" style="margin-left:5px;" value="duplicate lead" />
+                    }
+                    @if (Privileges.Count(m => m.Component == "btnSaveLead") > 0 && Privileges.FirstOrDefault(m => m.Component == "btnSaveLead").View)
+                    {
+                        <input type="submit" id="btnSaveLead" class="submit right" value="save lead info" />
+                        if (Privileges.Count(m => m.Component == "btnSaveContinueLead") > 0 && Privileges.FirstOrDefault(m => m.Component == "btnSaveContinueLead").View)
+                        {
+                            <input type="button" id="btnSaveContinueLead" class="submit right" style="margin-right:5px;" value="save & continue" />
+                        }
+                    }
+
+                </div>
+            </div>
+        }
+        @Html.Partial("_PreArrivalBillingsPartial", Model.PreArrivalBillingModel)
+        @Html.Partial("_PreArrivalInteractionsPartial", Model.PreArrivalInteractionsInfoModel)
+        @Html.Partial("_PreArrivalReservationsPartial", Model.PreArrivalReservationsModel)
+        @if (Privileges.Count(m => m.Component == "btnResetAppVar") > 0 && Privileges.FirstOrDefault(m => m.Component == "btnResetAppVar").View)
+        {
+            <input type="button" id="btnResetVar" value="reset var" />
+        }
+        @Html.Partial("_LeadMassiveUpdatePartial", Model.MassUpdateModel)
+    </div>
+</fieldset>
+<div id="divImportFromFront" style="display:none">
+    @*@Html.Partial("_ImportFromFrontPartial", Model.SearchToImportModel)*@
+    @*@Html.Action("RenderImport", Model.SearchToImportModel)*@
+</div>
+
+
+

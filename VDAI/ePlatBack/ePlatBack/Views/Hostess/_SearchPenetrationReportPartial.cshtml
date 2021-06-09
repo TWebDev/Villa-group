@@ -1,0 +1,34 @@
+﻿@model ePlatBack.Models.ViewModels.ArrivalsViewModel.SearchPenetrationReport
+
+@using (Ajax.BeginForm("SearchPenetrationReport", "Hostess", new AjaxOptions { UpdateTargetId = "divPenetrationResults", OnSuccess="UI.exportToExcel(\"Penetration Report\")" }, new { id = "frmSearchPenetrationReport" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="non-printable search-params">
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SearchPenetration_I_ArrivalDate)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.SearchPenetration_I_ArrivalDate, new { data_uses_date_picker = "true" })
+                @Html.TextBoxFor(model => model.SearchPenetration_F_ArrivalDate, new { data_uses_date_picker = "true" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SearchPenetration_ProgramID)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.SearchPenetration_ProgramID, Model.Programs, new { multiple = "multiple" })
+            </div>
+        </div>
+        <div class="editor-alignment align-from-top">
+            <div class="editor-field">
+                <input type="submit" class="button" id="btnGetPenetration" value="get" />
+            </div>
+        </div>
+    </div>
+    <div id="divPenetrationResults" class="align-from-top">
+    </div>
+}

@@ -1,0 +1,119 @@
+﻿@model IEnumerable<ePlatBack.Models.ViewModels.UserSearchItemModel>
+
+<table id="tblSearchUsersResults" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().JobPosition)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().WorkGroup)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Role)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Company)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Departament)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().DepartamentPhone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().PhoneEXT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().PersonalPhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Language)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().OPC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().IsApproved)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().IsLocked)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().LastActivityDate)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr id="@item.UserID">
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JobPosition)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WorkGroup)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Role)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Company)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Departament)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DepartamentPhone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneEXT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PersonalPhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Language)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OPC)
+                </td>
+                <td>
+                    @Html.DisplayTextFor(modelItem => item.IsApproved)
+                </td>
+                <td>
+                    @Html.DisplayTextFor(modelItem => item.IsLocked)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastActivityDate)
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>

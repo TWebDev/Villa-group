@@ -1,0 +1,41 @@
+﻿@model ePlatBack.Models.ViewModels.ZonesModel.SearchZonesModel
+
+<fieldset id="fdsZonesManagement">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        Zones Management
+    </legend>
+    <div class="align-from-top">
+        <div class="full-width">
+            <input type="button" id="btnNewZonesInfo" class="submit fieldset-expander right" value="New">
+        </div>
+        @using (Ajax.BeginForm("SearchZones", "Catalogs", new AjaxOptions { OnSuccess = "CATALOG.zonesResultsTable(data)", OnComplete = "CATALOG.makeZonesSelectable()", UpdateTargetId = "divTblExistingZones" }, new { id = "frmZonesSearch" }))
+        {
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Search_Zones)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Search_Zones)
+                </div>
+            </div>
+            <div class="editor-alignment align-from-top">
+                <div class="editor-field">
+                    <input type="submit" id="btnSearchZones" class="button search" value="Search" />
+                </div>
+            </div>
+            <div id="divTblExistingZones" class="align-from-top">
+                <table id="tblSearchZonesResults" class="dataTable table search-results">
+                    <thead>
+                        <tr>
+                            <th>Zone</th>
+                            <th>Destination</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        }
+        @Html.Action("RenderZonesManagement", "Catalogs")
+    </div>
+</fieldset>

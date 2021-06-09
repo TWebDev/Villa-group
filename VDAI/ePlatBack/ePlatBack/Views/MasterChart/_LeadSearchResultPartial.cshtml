@@ -1,0 +1,219 @@
+﻿@model ePlatBack.Models.ViewModels.LeadModel.Items.Search
+
+@Html.HiddenFor(model => model.Coincidences)
+<table id="tblSearchResult_Leads" class="table">
+    <thead>
+        <tr>
+            <th id="leadSelection" style="width: 105px" class="reservation-info">
+                @{
+                    int coincidences = 0;
+                    
+                    if (Model.SearchResults.Count() > 0)
+                    {
+                        //coincidences = Model.SearchResults.FirstOrDefault().TotalCoincidences;
+                        coincidences = Model.Coincidences!= null ? Model.Coincidences.Split(',').Count() : 0;
+                    }
+                }
+                <label id="lblAll">Select All (@coincidences)</label>
+                <br />
+                <label>
+                    Select:
+                    <input type="text" id="txtSelect" class="order" /></label>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SearchResults.FirstOrDefault().FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SearchResults.FirstOrDefault().LastName)
+            </th>
+            @*<th class="reservation-info">
+                @Html.DisplayNameFor(model => model.SearchResults.FirstOrDefault().Email)
+            </th>
+            <th class="reservation-info">
+                @Html.DisplayNameFor(model => model.SearchResults.FirstOrDefault().Phone)
+            </th>*@
+            <th class="reservation-info">
+                @Html.DisplayNameFor(model => model.SearchResults.FirstOrDefault().BookingStatus)
+            </th>
+            <th class="reservation-info">
+                @Html.DisplayNameFor(model => model.SearchResults.FirstOrDefault().LeadStatus)
+            </th>
+            <th class="reservation-info">
+                @Html.DisplayNameFor(model => model.SearchResults.FirstOrDefault().LeadSource)
+            </th>
+            <th class="reservation-info">
+                @Html.DisplayNameFor(model => model.SearchResults.FirstOrDefault().ArrivalDate)
+            </th>
+            <th class="reservation-info">
+                @Html.DisplayNameFor(model => model.SearchResults.FirstOrDefault().AssignedTo)
+            </th>
+            <th class="reservation-info">
+                @Html.DisplayNameFor(model => model.SearchResults.FirstOrDefault().AssignationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SearchResults.FirstOrDefault().Resort)
+            </th>
+            <th class="reservation-info">
+                @Html.DisplayNameFor(model => model.SearchResults.FirstOrDefault().InputDateTime)
+            </th>
+            <th class="reservation-info">
+                @Html.DisplayNameFor(model => model.SearchResults.FirstOrDefault().InputByUser)
+            </th>
+            <th class="reservation-info">
+                @Html.DisplayNameFor(model => model.SearchResults.FirstOrDefault().LastModificationDate)
+            </th>
+            <th class="reservation-info">
+                @Html.DisplayNameFor(model => model.SearchResults.FirstOrDefault().PresentationDateTime)
+            </th>
+            @*<th class="reservation-info">
+                @Html.DisplayNameFor(model => model.SearchResults.FirstOrDefault().LeadComments)
+            </th>*@
+            <th class="reservation-info">
+                @Html.DisplayNameFor(model => model.SearchResults.FirstOrDefault().TotalPaid)
+            </th>
+            <th class="reservation-info">
+                @Html.DisplayNameFor(model => model.SearchResults.FirstOrDefault().MemberAccount)
+            </th>
+            <th class="services-info">
+                @Html.DisplayNameFor(model => model.SearchResults.FirstOrDefault().PurchaseInfo_PurchaseStatus)
+            </th>
+            <th class="services-info">
+                @Html.DisplayNameFor(model => model.SearchResults.FirstOrDefault().PurchaseInfo_PurchaseDateTime)
+            </th>
+            <th class="services-info">
+                @Html.DisplayNameFor(model => model.SearchResults.FirstOrDefault().PurchaseInfo_Total)
+            </th>
+            @*<th class="services-info">
+                @Html.DisplayNameFor(model => model.SearchResults.FirstOrDefault().PurchaseInfo_Currency)
+            </th>*@
+            <th class="services-info">
+                @Html.DisplayNameFor(model => model.SearchResults.FirstOrDefault().PurchaseInfo_Paid)
+            </th>
+            <th class="services-info">
+                @Html.DisplayNameFor(model => model.SearchResults.FirstOrDefault().PurchaseInfo_PointOfSale)
+            </th>
+            <th class="services-info">
+                @Html.DisplayNameFor(model => model.SearchResults.FirstOrDefault().PurchaseInfo_Terminal)
+            </th>
+            <th class="services-info">
+                @Html.DisplayNameFor(model => model.SearchResults.FirstOrDefault().Purchase_CountDown)
+            </th>
+            <th class="services-info"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.SearchResults)
+        {
+            <tr id="@item.LeadID" tabindex="0">
+                <td style="width: 105px">
+                    @Html.CheckBox("chkLead", new { @class = "lead-selection" })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LeadStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LeadSource)
+                    @*</td>
+                <td style="width: 20px">*@
+                    @*<a class="right" href="javascript:REQUEST_HANDLERS.deleteLead('@item.LeadID','@item.FirstName @item.LastName')" title="Delete '@item.FirstName @item.LastName'">
+                        <img src="/Content/themes/base/images/cross.png" alt="Delete '@item.FirstName @item.LastName'">
+                    </a>*@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArrivalDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AssignedTo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AssignationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Resort)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InputDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InputByUser)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastModificationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PresentationDateTime)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.LeadComments)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalPaid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelIem => item.MemberAccount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PurchaseInfo_PurchaseStatusString)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PurchaseInfo_PurchaseDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PurchaseInfo_Total)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.PurchaseInfo_Currency)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.PurchaseInfo_Paid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PurchaseInfo_PointOfSaleString)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PurchaseInfo_TerminalString)
+                </td>
+                @if (item.Purchase_CountDownString != null && item.Purchase_CountDownString != "" && int.Parse(item.Purchase_CountDownString) > 0)
+                {
+                    var style = "";
+                    if (int.Parse(item.Purchase_CountDownString) <= 5)
+                    {
+                        style += "color: red";
+                    }
+                    <td style="@style">
+                        @Html.DisplayFor(modelItem => item.Purchase_CountDownString)
+                    </td>
+                }
+                else{
+                    <td></td>
+                }
+                <td class="comments">
+                    @if (item.Purchase_CustomerRequests != null && item.Purchase_CustomerRequests != "")
+                    {
+                        <div class="comment-square"></div>
+                        <div class="comment-triangle"></div>
+                        <span class="comment">
+                            @Html.DisplayFor(modelItem => item.Purchase_CustomerRequests)
+                        </span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

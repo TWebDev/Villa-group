@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+@section scripts{
+<script src="~/Scripts/surveyengine-1.0.js"></script>
+}
+
+<div id="pnlDocument">
+    <div id="blocked" style="display:none;"></div>
+    <div id="paperSheet">
+        <div class="paper-75">
+            <h1 id="SurveyName" class="big-input-1"></h1>
+            <div id="pnlInfoFields"></div>
+        </div>
+        <div class="paper-25"><div class="survey-logo"></div></div>
+        <span id="Instructions"></span>
+        <div id="pnlFormFields"></div>
+        @using (Ajax.BeginForm("SaveSurvey", "Survey", new AjaxOptions { OnSuccess = "Survey.saved(data)", OnBegin = "Survey.saving()" }, new { id = "frmSaveSurvey" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <div class="div-submit" style="display:none;">
+                <input type="hidden" id="model" name="model" />
+                <input type="submit" class="submit" value="SUBMIT MY ANSWERS" />
+            </div>
+        }
+
+    </div>
+</div>

@@ -1,0 +1,56 @@
+﻿@model ePlatBack.Models.ViewModels.SearchPreArrivalWeeklyReportModel
+
+@*@using (Ajax.BeginForm("SearchPreArrivalWeeklyReport", "Reports", new AjaxOptions { OnSuccess = "REPORT.searchResultsTable(data)", OnComplete = "UI.applyFormat('currency');UI.applyFormat('percentage')", UpdateTargetId = "divPreArrivalWeeklyResults" }, new { id = "frmSearchPreArrivalWeekly", onSubmit = "return UI.showValidationSummary(this.id);" }))*@
+@using (Ajax.BeginForm("SearchPreArrivalReportingReport", "Reports", new AjaxOptions { OnBegin = "REPORT.clearTable('tblReportingResultsTable')", OnComplete = "UI.applyFormat('currency');UI.applyFormat('percentage')", UpdateTargetId = "divPreArrivalWeeklyResults" }, new { id = "frmSearchPreArrivalWeekly", onSubmit = "return UI.showValidationSummary(this.id);" }))
+{
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Search_I_ArrivalDate)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Search_I_ArrivalDate, new { data_uses_date_picker = "true" })
+            @Html.TextBoxFor(model => model.Search_F_ArrivalDate, new { data_uses_date_picker = "true" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Search_Resorts)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Search_Resorts, Model.Search_DrpResorts, new { multiple = "multiple" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Search_LeadSources)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Search_LeadSources, Model.Search_DrpLeadSources, new { multiple = "multiple" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Search_Expanded)
+        </div>
+        <div class="editor-field">
+            <label for="Search_Expanded">Yes</label>
+            @Html.RadioButtonFor(model => model.Search_Expanded, true)
+            <label for="Search_Expanded">No</label>
+            @Html.RadioButtonFor(model => model.Search_Expanded, false)
+        </div>
+    </div>
+    <div class="editor-alignment align-from-top">
+        <div class="editor-field">
+            <input type="submit" class="button" value="search" />
+        </div>
+    </div>
+    <div id="divPreArrivalWeeklyResults" class="align-from-top">
+        <table id="tblReportingResultsTable" class="table">
+            <thead>
+                <tr>
+                    <th></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+}

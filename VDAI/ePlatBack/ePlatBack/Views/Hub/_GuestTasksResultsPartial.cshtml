@@ -1,0 +1,53 @@
+﻿@model IEnumerable<ePlatBack.Models.ViewModels.GuestTasksModel>
+
+<table id="tblGuestTasks" class="table">
+
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().taskID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().task)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().subTask)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().date.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().room)
+            </th>
+            
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr id="@item.GuestHubID">
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.taskID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.task)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.subTask)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.room)
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+</table>
+

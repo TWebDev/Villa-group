@@ -1,0 +1,39 @@
+﻿@if (Request.IsAuthenticated)
+{
+    <div id="menuOpener">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    var name = User.Identity.Name.IndexOf('@') > 0 ? User.Identity.Name.Substring(0, User.Identity.Name.IndexOf('@')) : User.Identity.Name;
+    var session = new ePlatBack.Models.UserSession();
+    var ufirstname = @session.User != null ? @session.User.Split(' ')[0] : "";
+    var ulastname = session.User != null ? session.User.Split(' ')[1] : "";
+    var uid = session.UserID;
+    var uservices = session.Services;
+    <span class="user-name"><strong>@name</strong></span>
+    <span class="user-icon">
+        <span class="user-icon-head"></span>
+        <span class="user-icon-body"></span>
+    </span>
+    <div class="wiki-icon" data-for="header">?</div>
+    <span class="logout">
+        @*@Html.ActionLink("Log Off", "LogOff", "Account")*@
+        <a href="/crm/Account/LogOff">
+            <span class="logout-circle">
+                <span class="logout-bar">
+                    <span></span>
+                </span>
+            </span>
+        </a>
+    </span>
+    <input type="hidden" id="uid" value="@uid" />
+    <input type="hidden" id="ufirstname" value="@ufirstname" />
+    <input type="hidden" id="ulastname" value="@ulastname" />
+    <input type="hidden" id="uservices" value="@uservices" />
+}
+else
+{
+    <span class="logout"></span>
+    <input type="hidden" id="uid" value="" />
+}

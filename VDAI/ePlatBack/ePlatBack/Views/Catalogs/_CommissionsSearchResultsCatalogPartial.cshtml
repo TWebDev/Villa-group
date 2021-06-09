@@ -1,0 +1,79 @@
+﻿@model ePlatBack.Models.ViewModels.CommissionsModel.SearchCommissionsModel
+
+<table id="tblSearchCommissionsResults" class="table dataTable search-results">
+            <thead>
+                <tr>
+                    <th>Terminal</th>
+                    <th>Job Position</th>
+                    <th>Type</th>
+                    <th>Point(s) Of Sale</th>
+                    <th>Commission %</th>
+                    <th>Price Type</th>
+                    <th>Is Override</th>
+                    <th>Min Volume</th>
+                    <th>Max Volume</th>
+                    <th>Min Profit</th>
+                    <th>Max Profit</th>
+                    <th>Vigency</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.ListCommissions != null)
+                {
+                    foreach (var i in Model.ListCommissions)
+                    {
+                        var id = "commission_" + i.CommissionsInfo_CommissionID;
+                        var pos = string.Join(", ", i.CommissionsInfo_PointsOfSale);
+                        var amount = i.CommissionsInfo_CommissionPercentage != 0 ? i.CommissionsInfo_CommissionPercentage + " %" : i.CommissionsInfo_CommissionAmount + " " + i.CommissionsInfo_CommissionCurrency;
+                        <tr id="@id">
+                            <td>
+                                @Html.DisplayFor(model => i.CommissionsInfo_TerminalText)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.CommissionsInfo_JobPositionText)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.CommissionsInfo_CommissionType)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => pos)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => amount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.CommissionsInfo_PriceTypeText)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.CommissionsInfo_IsOverride)
+                            </td>
+                            <td>
+                                $ @i.CommissionsInfo_MinVolume @i.CommissionsInfo_VolumeCurrencyCode
+                            </td>
+                            <td>
+                                @if (i.CommissionsInfo_MaxVolume != null && i.CommissionsInfo_MaxVolume != "")
+                                {
+                                    <span>$ @i.CommissionsInfo_MaxVolume @i.CommissionsInfo_VolumeCurrencyCode</span>
+                                }
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(model => i.CommissionsInfo_MinProfit)%
+                            </td>
+                            <td>
+                                @if (i.CommissionsInfo_MaxProfit != null && i.CommissionsInfo_MaxProfit != "")
+                                {
+                                    <span>@Html.DisplayFor(model => i.CommissionsInfo_MaxProfit)%</span>
+                                }                                
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(model => i.CommissionsInfo_FromDate) / @(i.CommissionsInfo_IsPermanent ? "Permanent" : i.CommissionsInfo_ToDate)
+                            </td>
+                            <td><img src="/Content/themes/base/images/trash.png" class="right delete-item"></td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>

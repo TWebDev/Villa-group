@@ -1,0 +1,1094 @@
+﻿@model ePlatBack.Models.ViewModels.CloseOutModel
+
+<input id="hdnCloseOutModel" type="hidden" value="@Html.Raw(Json.Encode(Model).Replace("\"","&quot;"))" />
+<input id="hdnCloseOutID" type="hidden" value="@Model.CloseOutID" />
+
+<div class="table-div">
+    <div class="table-row">
+        <div class="table-cell">
+            Agency<br />
+            @Model.Company
+        </div>
+        <div class="table-cell">
+            Point of Sale<br />
+            @Model.PointOfSale
+        </div>
+        <div class="table-cell">
+            Agent<br />
+            @Model.Agent
+        </div>
+        <div class="table-cell">
+            Date<br />
+            @Model.Date
+        </div>
+        <div class="table-cell">
+            Exchange Rate<br />
+            @Model.ExchangeRate
+        </div>
+        <div class="table-cell">
+            Coupons<br />
+            @Model.Totals.Coupons
+        </div>
+    </div>
+</div>
+
+@{
+    bool valid = true;
+}
+
+@if (Model.ListSales.Count() > 0)
+{
+    <h3>Sales</h3>
+
+    <table id="tblNewCloseOutSalesReport" class="table no-plugin exportable non-editable non-stripable" style="width: 100%;">
+        <thead>
+            <tr>
+                <th rowspan="2">Guest Name</th>
+                <th colspan="9">Coupons</th>
+                <th rowspan="2">Sale Total</th>
+                <th colspan="@((Model.ChargeBackConcepts != null ? Model.ChargeBackConcepts.Count() : 0) + 6)">Payments</th>
+            </tr>
+            <tr>
+                <th style="min-width: 90px;">Saved on</th>
+                <th style="min-width: 90px;">Confirmed on</th>
+                <th>Coupon</th>
+                <th>Activity</th>
+                <th>Sales Agent</th>
+                <th style="width: 100px;">Units</th>
+                <th>Price</th>
+                <th>Price Type</th>
+                <th>Status</th>
+                <th>Cash</th>
+                <th>Credit Card</th>
+                <th>Charge Back <span class="cb-btn">...</span></th>
+                @if (Model.ChargeBackConcepts != null)
+                {
+                    foreach (var concept in Model.ChargeBackConcepts)
+                    {
+                        <th class="cb-detail">@concept.Concept</th>
+                    }
+                }
+                <th>Resort Credit</th>
+                <th>Wire Transfers</th>
+                <th>Certificates</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var row in Model.ListSales)
+            {
+                <tr>
+                    <td rowspan="@(row.Coupons.Count() > 1 ? row.Coupons.Count() : 1)">
+                        <a target="_blank" href="/crm/masterchart#purchaseid=@row.PurchaseID">@row.Title @row.FirstName @row.LastName</a>
+                        @if (row.AssignationStatus != null)
+                        {
+                            <span class="@(!row.AssignationStatus && row.Diagnosis != null ? "mb-error" : "mb-confirmation")" title="@(!row.AssignationStatus && row.Diagnosis != null ?  "Error: " : "OK") @(row.Diagnosis != null ? row.Diagnosis : "")" style="font-size: .7em;"><i>Diagnosis</i></span>
+                            if (!row.AssignationStatus)
+                            {
+                                valid = false;
+                            }
+                        }
+                    </td>
+
+                    @if (row.Coupons.Count() > 0)
+                    {
+                        <td>
+                            @row.Coupons.FirstOrDefault().DateTime
+                        </td>
+                        <td>
+                            @row.Coupons.FirstOrDefault().DateTimeConfirmed
+                        </td>
+                        <td>
+                            <span id="@row.Coupons.FirstOrDefault().Purchase_ServiceID">
+                                @row.Coupons.FirstOrDefault().Coupon
+                                @if (row.Coupons.FirstOrDefault().CouponReference != null)
+                                {
+                                    <span>[@row.Coupons.FirstOrDefault().CouponReference]</span>
+                                }
+                            </span>
+                        </td>
+                        <td>
+                            @row.Coupons.FirstOrDefault().Activity
+                        </td>
+                        <td>@row.Coupons.FirstOrDefault().SalesAgent</td>
+                        <td>
+                            @Html.Raw(row.Coupons.FirstOrDefault().Units.Replace(".00", ""))
+                        </td>
+                        <td class="text-right">
+                            <span data-format="currency">@row.Coupons.FirstOrDefault().Total @row.Coupons.FirstOrDefault().Currency</span>
+                        </td>
+                        <td>@row.Coupons.FirstOrDefault().PriceType</td>
+                        <td>
+                            @if (@row.Coupons.FirstOrDefault().Status == "Booking")
+                            {
+                                valid = false;
+                                <span class="mb-error">
+                                    @Html.Raw(row.Coupons.FirstOrDefault().Status)
+                                </span>
+                            }
+                            else if (@row.Coupons.FirstOrDefault().Status == "Canceled" || @row.Coupons.FirstOrDefault().Status == "Refund")
+                            {
+                                <span class="mb-warning">
+                                    @Html.Raw(row.Coupons.FirstOrDefault().Status)
+                                </span>
+                            }
+                            else
+                            {
+                                <span>
+                                    @Html.Raw(row.Coupons.FirstOrDefault().Status)
+                                </span>
+                            }
+                        </td>
+                    }
+                    else
+                    {
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    }
+
+                    <td class="text-right" rowspan="@(row.Coupons.Count() > 1 ? row.Coupons.Count() : 1)">
+                        <span data-format="currency">@row.CouponsTotal @row.Currency</span>
+                    </td>
+                    <td class="text-right" rowspan="@(row.Coupons.Count() > 1 ? row.Coupons.Count() : 1)">
+                        @foreach (var cash in row.Cash)
+                        {
+                            <span class="block" data-format="currency">@cash.Amount @cash.Currency</span>
+                        }
+                    </td>
+                    <td class="text-right" rowspan="@(row.Coupons.Count() > 1 ? row.Coupons.Count() : 1)">
+                        @foreach (var card in row.CreditCard)
+                        {
+                            <span class="block" data-format="currency">@card.Amount @card.Currency</span>
+                        }
+                    </td>
+                    <td class="text-right" rowspan="@(row.Coupons.Count() > 1 ? row.Coupons.Count() : 1)">
+                        @foreach (var charge in row.ChargeBack)
+                        {
+                            <span class="block" data-format="currency">@charge.Amount @charge.Currency</span>
+                        }
+                    </td>
+                    @if (@row.CBSubtotals != null)
+                    {
+                        foreach (var concept in @row.CBSubtotals)
+                        {
+                            <td class="cb-detail" rowspan="@(row.Coupons.Count() > 1 ? row.Coupons.Count() : 1)">
+                                @foreach (var cb in concept.SubtotalWithBudget)
+                                {
+                                    <span class="block"><span data-format="currency">@cb.Amount @cb.Currency</span>@cb.Budget</span>
+                                }
+                            </td>
+                        }
+                    }
+                    <td class="text-right" rowspan="@(row.Coupons.Count() > 1 ? row.Coupons.Count() : 1)">
+                        @foreach (var check in row.TravelerCheck)
+                        {
+                            <span class="block" data-format="currency">@check.Amount @check.Currency</span>
+                        }
+                    </td>
+                    <td class="text-right" rowspan="@(row.Coupons.Count() > 1 ? row.Coupons.Count() : 1)">
+                        @foreach (var transfer in row.WireTransfers)
+                        {
+                            <span class="block" data-format="currency">@transfer.Amount @transfer.Currency</span>
+                        }
+                    </td>
+                    <td class="text-right" rowspan="@(row.Coupons.Count() > 1 ? row.Coupons.Count() : 1)">
+                        @if (row.Certificate != null)
+                        {
+                            foreach (var certificate in row.Certificate)
+                            {
+                                <span class="block" data-format="currency">@certificate.Amount @certificate.Currency</span>
+                            }
+                        }
+                    </td>
+                </tr>
+                        int c = 1;
+                        foreach (var coupon in row.Coupons)
+                        {
+                            if (c > 1)
+                            {
+                                <tr>
+                                    <td>
+                                        @coupon.DateTime
+                                    </td>
+                                    <td>
+                                        @coupon.DateTimeConfirmed
+                                    </td>
+                                    <td>
+                                        <span id="@coupon.Purchase_ServiceID">
+                                            @coupon.Coupon
+                                            @if (coupon.CouponReference != null)
+                                            {
+                                                <span>[@coupon.CouponReference]</span>
+                                            }
+                                        </span>
+                                    </td>
+                                    <td>
+                                        @coupon.Activity
+                                    </td>
+                                    <td>@coupon.SalesAgent</td>
+                                    <td>
+                                        @Html.Raw(coupon.Units.Replace(".00", ""))
+                                    </td>
+                                    <td class="text-right">
+                                        <span data-format="currency">@coupon.Total @coupon.Currency</span>
+                                    </td>
+                                    <td>
+                                        @coupon.PriceType
+                                    </td>
+                                    <td>
+                                        @if (@coupon.Status == "Booking")
+                                        {
+                                            valid = false;
+                                            <span class="mb-error">
+                                                @Html.Raw(coupon.Status)
+                                            </span>
+                                        }
+                                        else if (@coupon.Status == "Canceled" || @coupon.Status == "Refund")
+                                        {
+                                            <span class="mb-warning">
+                                                @Html.Raw(coupon.Status)
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span>
+                                                @Html.Raw(coupon.Status)
+                                            </span>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                            c++;
+                        }
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="10"></td>
+                <td class="th-footer">Sales Total</td>
+                <td class="th-footer">Cash</td>
+                <td class="th-footer">Credit Card</td>
+                <td class="th-footer">Charge Back</td>
+                @if (Model.ChargeBackConcepts != null)
+                {
+                    foreach (var c in Model.ChargeBackConcepts)
+                    {
+                        <td class="th-footer cb-detail"></td>
+                    }
+                }
+                <td class="th-footer">Traveler Checks</td>
+                <td class="th-footer">Wire Transfers</td>
+                <td class="th-footer">Certificates</td>
+            </tr>
+            <tr>
+                <td colspan="10"></td>
+                <td class="text-right">
+                    @foreach (var total in Model.ListSalesSubtotal.CouponsTotal)
+                    {
+                        <span class="block" data-format="currency"><strong>@total.Amount @total.Currency</strong></span>
+                    }
+                </td>
+                <td class="text-right">
+                    @foreach (var cash in Model.ListSalesSubtotal.Cash)
+                    {
+                        <span class="block" data-format="currency">@cash.Amount @cash.Currency</span>
+                    }
+                </td>
+                <td class="text-right">
+                    @foreach (var card in Model.ListSalesSubtotal.CreditCard)
+                    {
+                        <span class="block" data-format="currency">@card.Amount @card.Currency</span>
+                    }
+                </td>
+                <td class="text-right">
+                    @foreach (var charge in Model.ListSalesSubtotal.ChargeBack)
+                    {
+                        <span class="block" data-format="currency">@charge.Amount @charge.Currency</span>
+                    }
+                </td>
+                @if (Model.ChargeBackConcepts != null)
+                {
+                    foreach (var c in Model.ChargeBackConcepts)
+                    {
+                        <td class="cb-detail"></td>
+                    }
+                }
+                <td class="text-right">
+                    @foreach (var check in Model.ListSalesSubtotal.TravelerCheck)
+                    {
+                        <span class="block" data-format="currency">@check.Amount @check.Currency</span>
+                    }
+                </td>
+                <td class="text-right">
+                    @foreach (var transfer in Model.ListSalesSubtotal.WireTransfer)
+                    {
+                        <span class="block" data-format="currency">@transfer.Amount @transfer.Currency</span>
+                    }
+                </td>
+                <td class="text-right">
+                    @if (Model.ListSalesSubtotal.Certificate != null)
+                    {
+                        foreach (var certificate in Model.ListSalesSubtotal.Certificate)
+                        {
+                            <span class="block" data-format="currency">@certificate.Amount @certificate.Currency</span>
+                        }
+                    }
+                </td>
+            </tr>
+            @if (Model.TotalToPay > Model.TotalPaid + decimal.Parse(".99"))
+            {
+                if ((Model.TotalToPay - Model.TotalPaid) * -1 == (Model.TotalToRefund - Model.TotalRefunded) || (Model.TotalToRefund - Model.TotalRefunded) - ((Model.TotalToPay - Model.TotalPaid) * -1) <= decimal.Parse("0.99")) //.05
+                {
+                    <tr>
+                        <td colspan="10" class="text-right mb-confirmation">
+                            Virtual Balance applied
+                        </td>
+                        <td>
+                            <span class="block text-right">
+                                Total to Pay
+                            </span>
+                            <span class="block mb-confirmation text-right" data-format="currency">@Model.TotalToPay MXN</span>
+                        </td>
+                        <td>
+                            Total Paid
+                            <span class="block mb-confirmation" data-format="currency">@Model.TotalPaid MXN</span><span class="block mb-confirmation" style="text-align:center;"><b> + </b></span><span class="block mb-confirmation" data-format="currency">@(Model.TotalToPay - Model.TotalPaid) MXN</span>
+                        </td>
+                        <td colspan="@((Model.ChargeBackConcepts != null ? Model.ChargeBackConcepts.Count() : 0) + 5)"></td>
+                    </tr>
+                }
+                else
+                {
+                    if (Model.ListSalesSubtotal.CouponsTotal[0].Amount == Model.Totals.Sales[0].Amount && Model.ListSalesSubtotal.CouponsTotal[1].Amount == Model.Totals.Sales[1].Amount && Model.ListSalesSubtotal.CouponsTotal[2].Amount == Model.Totals.Sales[2].Amount)
+                    {
+                        <tr>
+                            <td colspan="10"></td>
+                            <td>
+                                <span class="block text-right">
+                                    Total to Pay
+                                </span>
+                                <span class="block mb-confirmation text-right" data-format="currency">@Model.TotalToPay MXN</span>
+                            </td>
+                            <td>
+                                Total Paid
+                                <span class="block mb-confirmation" data-format="currency">@Model.TotalPaid MXN</span>
+                            </td>
+                            <td colspan="@((Model.ChargeBackConcepts != null ? Model.ChargeBackConcepts.Count() : 0) + 5)"></td>
+                        </tr>
+                    }
+                    else
+                    {
+                        valid = false;
+                        <tr>
+                            <td colspan="10" class="text-right mb-error">
+                                Total Paid is smaller than Total to Pay
+                            </td>
+                            <td>
+                                <span class="block text-right">
+                                    Total to Pay
+                                </span>
+                                <span class="block mb-error text-right" data-format="currency">@Model.TotalToPay MXN</span>
+                            </td>
+                            <td>
+                                Total Paid
+                                <span class="block mb-error" data-format="currency">@Model.TotalPaid MXN</span>
+                            </td>
+                            <td colspan="@((Model.ChargeBackConcepts != null ? Model.ChargeBackConcepts.Count() : 0) + 5)"></td>
+                        </tr>
+                    }
+                }
+            }
+            else if (Model.TotalPaid > Model.TotalToPay + 15)
+            {
+                if (Model.TotalToPay >= 0)
+                {
+                    if (Model.ListSalesSubtotal.CouponsTotal[0].Amount == Model.Totals.Sales[0].Amount && Model.ListSalesSubtotal.CouponsTotal[1].Amount == Model.Totals.Sales[1].Amount && Model.ListSalesSubtotal.CouponsTotal[2].Amount == Model.Totals.Sales[2].Amount)
+                    {
+                        <tr>
+                            <td colspan="10"></td>
+                            <td>
+                                <span class="block text-right">
+                                    Total to Pay
+                                </span>
+                                <span class="block mb-confirmation text-right" data-format="currency">@Model.TotalToPay MXN</span>
+                            </td>
+                            <td>
+                                Total Paid
+                                <span class="block mb-confirmation" data-format="currency">@Model.TotalPaid MXN</span>
+                            </td>
+                            <td colspan="@((Model.ChargeBackConcepts != null ? Model.ChargeBackConcepts.Count() : 0) + 5)"></td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="10" class="text-right mb-warning">
+                                Total Paid is an excessive amount
+                            </td>
+                            <td>
+                                <span class="block text-right">
+                                    Total to Pay
+                                </span>
+                                <span class="block mb-warning text-right" data-format="currency">@Model.TotalToPay MXN</span>
+                            </td>
+                            <td>
+                                Total Paid
+                                <span class="block mb-warning" data-format="currency">@Model.TotalPaid MXN</span>
+                            </td>
+                            <td colspan="@((Model.ChargeBackConcepts != null ? Model.ChargeBackConcepts.Count() : 0) + 5)"></td>
+                        </tr>
+                    }
+
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="10" class="text-right mb-warning">
+                            You have a negative amount to be refunded
+                        </td>
+                        <td>
+                            <span class="block text-right">
+                                Total to Pay
+                            </span>
+                            <span class="block mb-warning text-right" data-format="currency">@Model.TotalToPay MXN</span>
+                        </td>
+                        <td>
+                            Total Paid
+                            <span class="block mb-warning" data-format="currency">@Model.TotalPaid MXN</span>
+                        </td>
+                        <td colspan="@((Model.ChargeBackConcepts != null ? Model.ChargeBackConcepts.Count() : 0) + 5)"></td>
+                    </tr>
+                }
+
+            }
+            else
+            {
+                <tr>
+                    <td colspan="10"></td>
+                    <td>
+                        <span class="block text-right">
+                            Total to Pay
+                        </span>
+                        <span class="block mb-confirmation text-right" data-format="currency">@Model.TotalToPay MXN</span>
+                    </td>
+                    <td>
+                        Total Paid
+                        <span class="block mb-confirmation" data-format="currency">@Model.TotalPaid MXN</span>
+                    </td>
+                    <td colspan="@((Model.ChargeBackConcepts != null ? Model.ChargeBackConcepts.Count() : 0) + 5)"></td>
+                </tr>
+            }
+        </tfoot>
+    </table>
+}
+
+@if (Model.ListCancelations.Count() > 0)
+{
+    <h3>Cancelations & Refunds</h3>
+    <table id="tblNewCloseOutCancelationsReport" class="table no-plugin exportable non-editable non-stripable" style="width: 100%;">
+        <thead>
+            <tr>
+                <th rowspan="2">Guest Name</th>
+                <th colspan="10">Coupons</th>
+                <th rowspan="2">Sales to Refund</th>
+                <th colspan="6">Refunds</th>
+            </tr>
+            <tr>
+                <th style="min-width: 90px;">
+                    Confirmed on
+                </th>
+                <th style="min-width: 90px;">
+                    Canceled on
+                </th>
+                <th>Coupon</th>
+                <th>Activity</th>
+                <th>Sales Agent</th>
+                <th>Canceled or Refunded By</th>
+                <th style="width: 100px;">Units</th>
+                <th>Price</th>
+                <th>Price Type</th>
+                <th>Status</th>
+                <th>Cash</th>
+                <th>Credit Card</th>
+                <th>Charge Back</th>
+                <th>Resort Credit</th>
+                <th>Wire Transfers</th>
+                <th>Certificates</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var row in Model.ListCancelations)
+            {
+                <tr>
+                    <td rowspan="@(row.Coupons.Count() > 1 ? row.Coupons.Count() : 1)">
+                        <a target="_blank" href="/crm/masterchart#purchaseid=@row.PurchaseID">@row.Title @row.FirstName @row.LastName</a>
+                        @if (row.AssignationStatus != null)
+                        {
+                            <span class="@(!row.AssignationStatus && row.Diagnosis != null ? "mb-error" : "mb-confirmation")" title="@(!row.AssignationStatus && row.Diagnosis != null ?  "Error: " : "OK") @(row.Diagnosis != null ? row.Diagnosis : "")" style="font-size: .7em;"><i>Diagnosis</i></span>
+                            if (!row.AssignationStatus)
+                            {
+                                valid = false;
+                            }
+                        }
+                    </td>
+                    @if (row.Coupons.Count() > 0)
+                    {
+                        <td>
+                            @Html.Raw(row.Coupons.FirstOrDefault().DateTimeConfirmed)
+                        </td>
+                        <td>
+                            @Html.Raw(row.Coupons.FirstOrDefault().DateTimeCanceled)
+                        </td>
+    <td>
+        @row.Coupons.FirstOrDefault().Coupon
+        @if (row.Coupons.FirstOrDefault().CouponReference != null)
+        {
+            <span>[@row.Coupons.FirstOrDefault().CouponReference]</span>
+        }
+    </td>
+                        <td>
+                            @row.Coupons.FirstOrDefault().Activity
+                        </td>
+                        <td>@row.Coupons.FirstOrDefault().SalesAgent</td>
+                        <td>@row.Coupons.FirstOrDefault().CancelationAgent</td>
+                        <td>
+                            @Html.Raw(row.Coupons.FirstOrDefault().Units.Replace(".00", ""))
+                        </td>
+                        <td class="text-right">
+                            <span data-format="currency">@row.Coupons.FirstOrDefault().Total @row.Coupons.FirstOrDefault().Currency</span>
+                        </td>
+                        <td>@row.Coupons.FirstOrDefault().PriceType</td>
+                        <td>
+                            @if (row.Coupons.FirstOrDefault().Status.IndexOf("Canceled") >= 0 && row.Coupons.FirstOrDefault().Total < 0)
+                            {
+                                valid = false;
+                                <span class="mb-warning">@Html.Raw(row.Coupons.FirstOrDefault().Status)</span>
+                                <span class="mb-error">The status of this coupon should be Refund</span>
+                            }
+                            else
+                            {
+                                <span class="mb-warning">@Html.Raw(row.Coupons.FirstOrDefault().Status)</span>
+                            }
+                        </td>
+                    }
+                    else
+                    {
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    }
+
+                    <td class="text-right" rowspan="@(row.Coupons.Count() > 1 ? row.Coupons.Count() : 1)">
+                        <span data-format="currency">@row.CouponsTotal @row.Currency</span>
+                    </td>
+                    <td class="text-right" rowspan="@(row.Coupons.Count() > 1 ? row.Coupons.Count() : 1)">
+                        @foreach (var cash in row.Cash)
+                        {
+                            <span class="block" data-format="currency">@cash.Amount @cash.Currency</span>
+                        }
+                    </td>
+                    <td class="text-right" rowspan="@(row.Coupons.Count() > 1 ? row.Coupons.Count() : 1)">
+                        @foreach (var card in row.CreditCard)
+                        {
+                            <span class="block" data-format="currency">@card.Amount @card.Currency</span>
+                        }
+                    </td>
+                    <td class="text-right" rowspan="@(row.Coupons.Count() > 1 ? row.Coupons.Count() : 1)">
+                        @foreach (var charge in row.ChargeBack)
+                        {
+                            <span class="block" data-format="currency">@charge.Amount @charge.Currency</span>
+                        }
+                    </td>
+                    <td class="text-right" rowspan="@(row.Coupons.Count() > 1 ? row.Coupons.Count() : 1)">
+                        @foreach (var check in row.TravelerCheck)
+                        {
+                            <span class="block" data-format="currency">@check.Amount @check.Currency</span>
+                        }
+                    </td>
+                    <td class="text-right" rowspan="@(row.Coupons.Count() > 1 ? row.Coupons.Count() : 1)">
+                        @foreach (var transfer in row.WireTransfers)
+                        {
+                            <span class="block" data-format="currency">@transfer.Amount @transfer.Currency</span>
+                        }
+                    </td>
+                    <td class="text-right" rowspan="@(row.Coupons.Count() > 1 ? row.Coupons.Count() : 1)">
+                        @if (row.Certificate != null)
+                        {
+                            foreach (var certificate in row.Certificate)
+                            {
+                                <span class="block" data-format="currency">@certificate.Amount @certificate.Currency</span>
+                            }
+                        }
+                    </td>
+                </tr>
+                        int c = 1;
+                        foreach (var coupon in row.Coupons)
+                        {
+                            if (c > 1)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.Raw(coupon.DateTimeConfirmed)
+                                    </td>
+                                    <td>
+                                        @Html.Raw(coupon.DateTimeCanceled)
+                                    </td>
+                                    <td>
+                                        @coupon.Coupon
+                                        @if (coupon.CouponReference != null)
+                                        {
+                                            <span>[@coupon.CouponReference]</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @coupon.Activity
+                                    </td>
+                                    <td>@coupon.SalesAgent</td>
+                                    <td>@coupon.CancelationAgent</td>
+                                    <td>
+                                        @Html.Raw(coupon.Units.Replace(".00", ""))
+                                    </td>
+                                    <td class="text-right">
+                                        <span data-format="currency">@coupon.Total @coupon.Currency</span>
+                                    </td>
+                                    <td>@coupon.PriceType</td>
+                                    <td>
+                                        @if (coupon.Status.IndexOf("Canceled") >= 0 && coupon.Total < 0)
+                                        {
+                                            valid = false;
+                                            <span class="mb-warning">@Html.Raw(coupon.Status)</span>
+                                            <span class="mb-error">The status of this coupon should be Refund</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="mb-warning">@Html.Raw(coupon.Status)</span>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                            c++;
+                        }
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="11"></td>
+                <td class="text-right">
+                    @foreach (var total in Model.ListRefundsSubtotal.CouponsTotal)
+                    {
+                        <strong><span class="block mb-warning" data-format="currency">@total.Amount @total.Currency</span></strong>
+                    }
+                </td>
+                <td class="text-right">
+                    @foreach (var cash in Model.ListRefundsSubtotal.Cash)
+                    {
+                        <span class="block" data-format="currency">@cash.Amount @cash.Currency</span>
+                    }
+                </td>
+                <td class="text-right">
+                    @foreach (var card in Model.ListRefundsSubtotal.CreditCard)
+                    {
+                        <span class="block" data-format="currency">@card.Amount @card.Currency</span>
+                    }
+                </td>
+                <td class="text-right">
+                    @foreach (var charge in Model.ListRefundsSubtotal.ChargeBack)
+                    {
+                        <span class="block" data-format="currency">@charge.Amount @charge.Currency</span>
+                    }
+                </td>
+                <td class="text-right">
+                    @foreach (var check in Model.ListRefundsSubtotal.TravelerCheck)
+                    {
+                        <span class="block" data-format="currency">@check.Amount @check.Currency</span>
+                    }
+                </td>
+                <td class="text-right">
+                    @foreach (var transfer in Model.ListRefundsSubtotal.WireTransfer)
+                    {
+                        <span class="block" data-format="currency">@transfer.Amount @transfer.Currency</span>
+                    }
+                </td>
+                <td class="text-right">
+                    @if (Model.ListRefundsSubtotal.Certificate != null)
+                    {
+                        foreach (var certificate in Model.ListRefundsSubtotal.Certificate)
+                        {
+                            <span class="block" data-format="currency">@certificate.Amount @certificate.Currency</span>
+                        }
+                    }
+                </td>
+            </tr>
+            @if (Model.TotalExtraPaid > 0)
+            {
+                decimal diff = ((Model.GrandTotalToRefund * -1) + Model.TotalRefunded);
+                if (diff < 0)
+                {
+                    diff = diff * -1;
+                }
+
+                if (Model.GrandTotalToRefund == Model.TotalRefunded || diff < 1)
+                {
+                    <tr>
+                        <td colspan="11"></td>
+                        <td colspan="2">
+                            <span class="block text-right">Total to Refund</span>
+                            <span class="block text-right" data-format="currency">@Model.TotalToRefund MXN</span>
+                            <span class="block text-right">Extra Payments to Refund</span>
+                            <span class="block text-right" data-format="currency">-@Model.TotalExtraPaid MXN</span>
+                            <span class="block text-right">Grand Total to Refund</span>
+                            <span class="block mb-confirmation text-right" data-format="currency">@Model.GrandTotalToRefund MXN</span>
+                        </td>
+                        <td>
+                            Total Refunded
+                            <span class="block mb-confirmation" data-format="currency">@Model.TotalRefunded MXN</span>
+                        </td>
+                        <td colspan="5"></td>
+                    </tr>
+                }
+                else if (Model.GrandTotalToRefund < Model.TotalRefunded)
+                {
+
+                    if (Model.ListRefundsSubtotal.CouponsTotal[0].Amount == Model.Totals.Refunds[0].Amount && Model.ListRefundsSubtotal.CouponsTotal[1].Amount == Model.Totals.Refunds[1].Amount && Model.ListRefundsSubtotal.CouponsTotal[2].Amount == Model.Totals.Refunds[2].Amount)
+                    {
+                        <tr>
+                            <td colspan="11"></td>
+                            <td>
+                                <span class="block text-right">
+                                    Total to Refund
+                                </span>
+                                <span class="block mb-confirmation text-right" data-format="currency">@Model.TotalToRefund MXN</span>
+                            </td>
+                            <td>
+                                Total Refunded
+                                <span class="block mb-confirmation" data-format="currency">@Model.TotalRefunded MXN</span>
+                            </td>
+                            <td colspan="5"></td>
+                        </tr>
+                    }
+                    else
+                    {
+                        valid = false;
+                        <tr>
+                            <td colspan="11" class="text-right mb-error">
+                                Total Refunded is smaller than Total to Refund
+                            </td>
+                            <td colspan="2">
+                                <span class="block text-right">Total to Refund</span>
+                                <span class="block text-right" data-format="currency">@Model.TotalToRefund MXN</span>
+                                <span class="block text-right">Extra Payments to Refund</span>
+                                <span class="block text-right" data-format="currency">-@Model.TotalExtraPaid MXN</span>
+                                <span class="block text-right">Grand Total to Refund</span>
+                                <span class="block text-right mb-error" data-format="currency">@Model.GrandTotalToRefund MXN</span>
+                            </td>
+                            <td>
+                                Total Refunded
+                                <span class="block mb-error" data-format="currency">@Model.TotalRefunded MXN</span>
+                            </td>
+                            <td colspan="5"></td>
+                        </tr>
+                    }
+                }
+                else if (Model.GrandTotalToRefund < (Model.TotalRefunded - 10))
+                {
+                    valid = false;
+                    <tr>
+                        <td colspan="11" class="text-right mb-error">
+                            Total Refunded is an excessive amount
+                        </td>
+                        <td colspan="2">
+                            <span class="block text-right">Total to Refund</span>
+                            <span class="block text-right" data-format="currency">@Model.TotalToRefund MXN</span>
+                            <span class="block text-right">Extra Payments to Refund</span>
+                            <span class="block text-right" data-format="currency">-@Model.TotalExtraPaid MXN</span>
+                            <span class="block text-right">Grand Total to Refund</span>
+                            <span class="block text-right mb-warning" data-format="currency">@Model.GrandTotalToRefund MXN</span>
+                        </td>
+                        <td>
+                            Total Refunded
+                            <span class="block mb-warning" data-format="currency">@Model.TotalRefunded MXN</span>
+                        </td>
+                        <td colspan="5"></td>
+                    </tr>
+                }
+                else if (Model.GrandTotalToRefund > (Model.TotalRefunded - 10) && Model.GrandTotalToRefund < Model.TotalRefunded)
+                {
+                    <tr>
+                        <td colspan="11" class="text-right mb-warning">
+                            It seems like there is a difference related to Exchange Rate.
+                        </td>
+                        <td colspan="2">
+                            <span class="block text-right">Total to Refund</span>
+                            <span class="block text-right" data-format="currency">@Model.TotalToRefund MXN</span>
+                            <span class="block text-right">Extra Payments to Refund</span>
+                            <span class="block text-right" data-format="currency">-@Model.TotalExtraPaid MXN</span>
+                            <span class="block text-right">Grand Total to Refund</span>
+                            <span class="block text-right mb-warning" data-format="currency">@Model.GrandTotalToRefund MXN</span>
+                        </td>
+                        <td>
+                            Total Refunded
+                            <span class="block mb-warning" data-format="currency">@Model.TotalRefunded MXN</span>
+                        </td>
+                        <td colspan="5"></td>
+                    </tr>
+                }
+                else
+                {
+                    valid = false;
+                    <tr>
+                        <td colspan="11" class="text-right mb-error">
+                            Total Refunded and Total to Refund don't match
+                        </td>
+                        <td colspan="2">
+                            <span class="block text-right">Total to Refund</span>
+                            <span class="block text-right" data-format="currency">@Model.TotalToRefund MXN</span>
+                            <span class="block text-right">Extra Payments to Refund</span>
+                            <span class="block text-right" data-format="currency">-@Model.TotalExtraPaid MXN</span>
+                            <span class="block text-right">Grand Total to Refund</span>
+                            <span class="block text-right mb-warning" data-format="currency">@Model.GrandTotalToRefund MXN</span>
+                        </td>
+                        <td>
+                            Total Refunded
+                            <span class="block mb-warning" data-format="currency">@Model.TotalRefunded MXN</span>
+                        </td>
+                        <td colspan="5"></td>
+                    </tr>
+                }
+            }
+            else
+            {
+                if (Model.TotalToRefund < Model.TotalRefunded - decimal.Parse(".99"))
+                {
+                    if ((Model.TotalToPay - Model.TotalPaid) != 0 && ((Model.TotalToPay - Model.TotalPaid) * -1 == (Model.TotalToRefund - Model.TotalRefunded) || (Model.TotalToRefund - Model.TotalRefunded) - ((Model.TotalToPay - Model.TotalPaid) * -1) <= decimal.Parse("0.99")))//.05
+                    {
+                        <tr>
+                            <td colspan="11" class="text-right mb-confirmation">
+                                Virtual Balance applied
+                            </td>
+                            <td>
+                                <span class="block text-right">
+                                    Total to Refund
+                                </span>
+                                <span class="block mb-confirmation text-right" data-format="currency">@Model.TotalToRefund MXN</span>
+                            </td>
+                            <td>
+                                Total Refunded
+                                <span class="block mb-confirmation" data-format="currency">@Model.TotalRefunded MXN</span><span class="block mb-confirmation" style="text-align: center;"><b>+</b></span><span class="block mb-confirmation" data-format="currency">@((Model.TotalToPay - Model.TotalPaid) * -1) MXN</span>
+                            </td>
+                            <td colspan="5"></td>
+                        </tr>
+                    }
+                    else
+                    {
+                        valid = false;
+                        <tr>
+                            <td colspan="11" class="text-right mb-error">
+                                Total Refunded is smaller than Total to Refund
+                            </td>
+                            <td>
+                                <span class="block text-right">
+                                    Total to Refund
+                                </span>
+                                <span class="block mb-error text-right" data-format="currency">@Model.TotalToRefund MXN</span>
+                            </td>
+                            <td>
+                                Total Refunded
+
+                                <span class="block mb-error" data-format="currency">@Model.TotalRefunded MXN</span>
+                            </td>
+                            <td colspan="5"></td>
+                        </tr>
+                    }
+                }
+                else if (Model.TotalRefunded < Model.TotalToRefund - 1)
+                {
+                    valid = false;
+                    <tr>
+                        <td colspan="11" class="text-right mb-error">
+                            Total Refunded is bigger than Total to Refund.
+                        </td>
+                        <td>
+                            <span class="block text-right">
+                                Total to Refund
+                            </span>
+                            <span class="block mb-warning text-right" data-format="currency">@Model.TotalToRefund MXN</span>
+                        </td>
+                        <td>
+                            Total Refunded
+                            <span class="block mb-warning" data-format="currency">@Model.TotalRefunded MXN</span>
+                        </td>
+                        <td colspan="5"></td>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="11"></td>
+                        <td>
+                            <span class="block text-right">
+                                Total to Refund
+                            </span>
+                            <span class="block mb-confirmation text-right" data-format="currency">@Model.TotalToRefund MXN</span>
+                        </td>
+                        <td>
+                            Total Refunded
+                            <span class="block mb-confirmation" data-format="currency">@Model.TotalRefunded MXN</span>
+                        </td>
+                        <td colspan="5"></td>
+                    </tr>
+                }
+            }
+        </tfoot>
+    </table>
+}
+
+<h3>Totals</h3>
+<div class="table-div">
+    <div class="table-row">
+        <div class="table-cell">
+            Sales<br />
+            @foreach (var total in Model.Totals.Sales)
+            {
+                <span class="block" data-format="currency">@total.Amount @total.Currency</span>
+            }
+        </div>
+        <div class="table-cell">
+            Refunds<br />
+            @foreach (var total in Model.Totals.Refunds)
+            {
+                <span class="block mb-warning" data-format="currency">@total.Amount @total.Currency</span>
+            }
+        </div>
+        <div class="table-cell">
+            Grand Total<br />
+            @foreach (var total in Model.Totals.GrandTotal)
+            {
+                <strong><span class="block" data-format="currency">@total.Amount @total.Currency</span></strong>
+            }
+        </div>
+        @if (Model.Totals.GrandTotalMXN != null)
+        {
+            <div class="table-cell">
+                Totals in MXN
+                @foreach (var total in Model.Totals.GrandTotalMXN)
+                {
+                    <strong><span class="block" data-format="currency">@total.Amount MXN</span></strong>
+                }
+            </div>
+        }
+        <div class="table-cell">
+            Cash<br />
+            @foreach (var total in Model.Totals.Cash)
+            {
+                <span class="block" data-format="currency">@total.Amount @total.Currency</span>
+            }
+        </div>
+        <div class="table-cell">
+            Credit Card<br />
+            @foreach (var total in Model.Totals.CreditCard)
+            {
+                <span class="block" data-format="currency">@total.Amount @total.Currency</span>
+            }
+        </div>
+        <div class="table-cell">
+            Charge Back<br />
+            @foreach (var total in Model.Totals.ChargeBack)
+            {
+                <span class="block" data-format="currency">@total.Amount @total.Currency</span>
+            }
+        </div>
+        <div class="table-cell">
+            Resort Credit<br />
+            @foreach (var total in Model.Totals.TravelerCheck)
+            {
+                <span class="block" data-format="currency">@total.Amount @total.Currency</span>
+            }
+        </div>
+        <div class="table-cell">
+            Wire Transfers<br />
+            @foreach (var total in Model.Totals.WireTransfer)
+            {
+                <span class="block" data-format="currency">@total.Amount @total.Currency</span>
+            }
+        </div>
+        @if (Model.Totals.Certificate != null)
+        {
+            <div class="table-cell">
+                Certificates<br />
+                @foreach (var total in Model.Totals.Certificate)
+                {
+                    <span class="block" data-format="currency">@total.Amount @total.Currency</span>
+                }
+            </div>
+        }
+        @if (Model.Totals.BankCommissions != null)
+        {
+            <div class="table-cell">
+                CC Commissions<br />
+                @foreach (var total in Model.Totals.BankCommissions)
+                {
+                    <span class="block" data-format="currency">@total.Amount @total.Currency</span>
+                }
+            </div>
+        }
+    </div>
+</div>
+
+@if (Model.CloseOutID != null)
+{
+    if (@Model.Deletable == true)
+    {
+        <input type="button" id="btnDeleteCloseOut" class="button right non-printable" value="Delete" />
+    }
+    <input type="button" onclick="window.print()" class="submit right non-printable" style="margin-right:5px;" value="Print" />
+    <div class="editor-alignment double-width">
+        <div class="editor-label">
+            <h3>Notes</h3>
+        </div>
+        <div class="editor-field">
+            @Html.Raw(Model.Notes)
+        </div>
+    </div>
+}
+else
+{
+    if (valid)
+    {
+        <input type="button" id="btnPrintCloseOut" onclick="REPORT.CloseOut.submit()" class="submit right non-printable" value="Save and Print" />
+        <span id="afterSave" style="display:none;">
+            <input type="button" id="btnDeleteCloseOut" class="button right non-printable" value="Delete" />
+            <input type="button" onclick="window.print()" class="submit right non-printable" style="margin-right:5px;" value="Print" />
+        </span>
+    }
+    else
+    {
+        <span class="right mb-error">There are some Errors to fix<br />before saving your Close Out.</span>
+        <div style="display:none;">
+            <input type="button" id="btnPrintCloseOut" onclick="REPORT.CloseOut.submit()" class="submit right non-printable" value="Save and Print" />
+            <span id="afterSave" style="display:none;">
+                <input type="button" id="btnDeleteCloseOut" class="button right non-printable" value="Delete" />
+                <input type="button" onclick="window.print()" class="submit right non-printable" style="margin-right:5px;" value="Print" />
+            </span>
+        </div>
+    }
+    <div class="editor-alignment double-width">
+        <div class="editor-label">
+            <h3>Notes</h3>
+        </div>
+        <div class="editor-field non-printable">
+            <textarea id="txtNotes">@Html.Raw(Model.Notes)</textarea>
+        </div>
+        <div class="editor-field printable" id="divNotes"></div>
+    </div>
+}

@@ -1,0 +1,51 @@
+﻿@model ePlatBack.Models.ViewModels.LocationsModel.LocationInfoModel
+
+<fieldset id="fdsLocationInfo" class="primary-selected-row-dependent">
+    <legend>
+        <img src="~/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        Location Info
+    </legend>
+    <div style="display:none" class="align-from-top">
+        @using (Ajax.BeginForm("SaveLocation", "Catalogs", new AjaxOptions { OnSuccess = "CATALOG.saveLocationSuccess(data)" }, new { id = "frmLocationInfo", onSubmit = "return UI.showValidationSummary(this.id);" }))
+        {
+            <div id="frmLocationInfo_ErrorMessages" style="display:none">
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.LocationInfo_Terminal)
+                    @Html.HiddenFor(model => model.LocationInfo_LocationID, new { @class = "secondary-selected-row-dependent" })
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.LocationInfo_Terminal, Model.LocationInfo_DrpTerminals, new { @class = "terminal-dependent-list", data_route = "/Catalogs/GetDDLData", data_route_parameter = "selectedTerminals" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.LocationInfo_Location)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.LocationInfo_Location)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.LocationInfo_LocationCode)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.LocationInfo_LocationCode)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.LocationInfo_Destination)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.LocationInfo_Destination, Model.LocationInfo_DrpDestinations)
+                </div>
+            </div>
+            <div class="editor-alignment full-width">
+                <input type="submit" class="submit right" value="save" id="btnSaveLocation" />
+            </div>
+        }
+    </div>
+</fieldset>

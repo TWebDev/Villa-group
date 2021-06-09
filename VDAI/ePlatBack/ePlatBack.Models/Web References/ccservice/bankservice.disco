@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="https://www.resortcom.com/ccservice/bankservice.asmx?wsdl" docRef="https://www.resortcom.com/ccservice/bankservice.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="https://www.resortcom.com/ccservice/bankservice.asmx" xmlns:q1="https://resortcom.com/ccservice" binding="q1:BankServiceSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="https://www.resortcom.com/ccservice/bankservice.asmx" xmlns:q2="https://resortcom.com/ccservice" binding="q2:BankServiceSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

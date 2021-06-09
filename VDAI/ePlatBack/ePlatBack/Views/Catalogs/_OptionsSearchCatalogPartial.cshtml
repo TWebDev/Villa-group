@@ -1,0 +1,60 @@
+﻿@model ePlatBack.Models.ViewModels.OptionsModel.OptionsSearchModel
+           @{
+               var Privileges = new ePlatBack.Models.ViewModels.OptionsModel();
+           }
+<fieldset id="fdsOptionsManagement">
+<legend>
+    <img src="/content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+    Options Management
+</legend>
+    <div class="align-from-top">
+        <div class="full-width">
+            <input type="button" id="btnNewOptionsInfo" class="submit fieldset-expander right" value="new" />
+        </div>
+        @using (Ajax.BeginForm("SearchOptions", "Catalogs", new AjaxOptions { OnSuccess = "CATALOG.optionsResultsTable(data)", OnComplete = "CATALOG.makeOptionsSelectable", UpdateTargetId = "divTblExistingOptions" }, new { id = "frmOptionsSearch" }))
+        {
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.OptionsSearch_OptionName)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.OptionsSearch_OptionName)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.OptionsSearch_OptionType)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.OptionsSearch_OptionType, Model.OptionsSearch_DrpOptionTypes, new { multiple = "multiple" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.OptionsSearch_Place)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.OptionsSearch_Place, Model.OptionsSearch_DrpPlaces, new { multiple = "multiple" })
+                </div>
+            </div>
+            <div class="full-width editor-alignment align-from-top">
+                <input type="submit" class="button marg-left right" value="search" />
+            </div>
+            <div id="divTblExistingOptions" class="align-from-top">
+                <table id="tblOptionsResults" class="dataTable table search-results">
+                    <thead>
+                        <tr>
+                            <th>Option Name</th>
+                            <th>Option Type</th>
+                            <th>Place</th>
+                            <th>Gold Card Price</th>
+                            <th>Resort Credit</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        }
+        @Html.Action("RenderOptionsManagement", "Catalogs")
+    </div>
+</fieldset>

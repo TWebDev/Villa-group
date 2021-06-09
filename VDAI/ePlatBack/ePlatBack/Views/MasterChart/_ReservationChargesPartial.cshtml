@@ -1,0 +1,272 @@
+﻿@model ePlatBack.Models.ViewModels.LeadModel.Views.ReservationCharges
+@{
+    var Privileges = ViewData["Privileges"] as List<ePlatBack.Models.ViewModels.SysComponentsPrivilegesModel>;
+}
+
+@if (Privileges.FirstOrDefault(m => m.Component == "frmCharges") != null && Privileges.FirstOrDefault(m => m.Component == "frmCharges").View)
+{
+    using (
+    Ajax.BeginForm(
+        "MakeCharge",
+        "CRM/Masterchart",
+        new AjaxOptions { OnSuccess = "BILLING_INFO.RESPONSE_HANDLERS.saveBillingInfo(data);" },
+
+        new
+        {
+            id = "frmCharges",
+            onsubmit = "return COMMON.beforeSubmit(this.id,event);",
+            style = "display:none",
+            data_related_to_form_id = "frmLeadGeneralInformation",
+            data_items_name = "ChargesInfo",
+            data_on_show = "CHARGES_INFO.show",
+            data_relationships = "{ \"ChargesInfo_LeadID\":\"GeneralInformation_LeadID\"}",
+            @class = "non-printable"
+
+        }
+    )
+)
+    { 
+
+    <fieldset data-on-collapse="closeSiblings" data-on-expand="closeBrothers" id="fdsChargesInfo">
+        <legend><a href="javascript:void(0)" class="legendLink">
+            <img class="fieldset-indicator" border="0" src="/Content/themes/base/images/eplat_show.jpg" />
+            Charges</a>
+        </legend>
+        <div style="display: none">
+            <input hidden id="CHARGES_INFO_LeadID" />
+            @if (Privileges.FirstOrDefault(m => m.Component == "tblCharges_BillingInfo") == null || Privileges.FirstOrDefault(m => m.Component == "tblCharges_BillingInfo").View)
+            {
+                <table id="tblCharges_BillingInfo"
+                    class="table"
+                    data-selected-row-index=""
+                    data-items-name="billingInfo"
+                    data-table-properties='{
+                                    "allowDuplicates":false                        
+                                }'
+                    data-rows-properties='{
+                                    "showRemoveIcon":false,
+                                    "showEditIcon":true                                    
+                                }'>
+                    <caption style="text-align: left">Select the Billing Info to be used in this charge.</caption>
+                    <thead>
+                        <tr class="trheader">
+                            <th colspan="4">
+                                <label for="tblBillingInfo">CURRENT BILLING INFO</label></th>
+                        </tr>
+                        <tr data-row-type="columns">
+                            <th style="display: none" data-column-type="data"
+                                data-column-visible="false"
+                                data-column-properties='{
+                                    "name":"BillingInfoID",
+                                    "allowEmptyValues":true
+                                }'>BillingInfoID
+                            </th>
+                            <th
+                                style="width: 200px"
+                                data-column-type="data"
+                                data-column-properties='{
+                                    "name":"CardHolderName",
+                                    "allowEmptyValues":false
+                                }'>Card Holder Name
+                            </th>
+                            <th
+                                style="width: 200px"
+                                data-column-type="data"
+                                data-column-properties='{
+                                    "name":"CardNumber",
+                                    "allowEmptyValues":false
+                                }'>Card Number
+                            </th>
+                            <th
+                                style="width: 200px"
+                                data-column-type="data"
+                                data-column-properties='{
+                                    "name":"CardExpiry",
+                                    "allowEmptyValues":false
+                                }'>Card Expiry
+                            </th>
+                            <th
+                                style="width: 200px"
+                                data-column-type="data"
+                                data-column-properties='{
+                                    "name":"CardCVV",
+                                    "allowEmptyValues":false
+                                }'>Card CVV
+                            </th>
+                            @*<th data-column-type="action"
+                                            data-action-type="remove"></th>*@
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            }
+            <br />
+            @if (Privileges.FirstOrDefault(m => m.Component == "tblCharges_ReservationPayments") == null || Privileges.FirstOrDefault(m => m.Component == "tblCharges_ReservationPayments").View)
+            {
+                <span style="text-align: left">Select the Reservation Payments to be used in this charge.</span><br />
+                <table id="tblCharges_ReservationPayments"
+                    class="table"
+                    data-selected-row-index=""
+                    data-items-name="contract"
+                    data-related-validation-field="GeneralInformation_ReservationPaymentsList"
+                    data-table-properties='{
+                                    "allowDuplicates":true                        
+                                }'
+                    data-rows-properties='{
+                                    "showRemoveIcon":false,
+                                    "onRemoveCallBack":"UI.confirmRemoveFromTable",
+                                    "showEditIcon":true,
+                                    "onEditCallBack":"UI.editDataRow",
+                                "onRowEvents":{
+                                        }
+                                }'>
+
+                    <thead>
+                        <tr class="trheader">
+                            <th colspan="9">
+                                <label for="tblPresentations_ContractsHistory">RESERVATION PAYMENTS</label></th>
+                        </tr>
+                        <tr data-row-type="columns">
+                            <th style="display: none" data-column-type="data"
+                                data-column-visible="false"
+                                data-column-properties='{
+                                    "name":"ReservationPaymentDetailsID",
+                                    "allowEmptyValues":true
+                                }'>ReservationPaymentDetailsID
+                            </th>
+                            <th
+                                style="width: 200px"
+                                data-column-type="data"
+                                data-column-properties='{"name":"Amount",
+                                    "sourceField":"GeneralInformation_ReservationPaymentDetails_Amount",
+                                    "allowEmptyValues":false,
+                                    "warnOnDeleting":true
+                                }'>Amount
+                            </th>
+                            <th
+                                style="width: 200px"
+                                data-column-type="data"
+                                data-column-properties='{"name":"CertificateNumber",
+                                    "sourceField":"certificateNumber",
+                                    "allowEmptyValues":false,
+                                    "warnOnDeleting":true
+                                }'>Cert. Number
+                            </th>
+                            <th
+                                style="width: 200px"
+                                data-column-type="data"
+                                data-column-properties='{"name":"HotelConfirmationNumber",
+                                    "sourceField":"certificateNumber",
+                                    "allowEmptyValues":false,
+                                    "warnOnDeleting":true
+                                }'>Hotel Conf. Number
+                            </th>
+                            <th
+                                style="width: 200px"
+                                data-column-type="data"
+                                data-column-properties='{"name":"ToBeBilledBy",
+                                    "sourceField":"ToBeBilledBy",
+                                    "allowEmptyValues":true,
+                                    "warnOnDeleting":false
+                                }'>To Be Billed By
+                            </th>
+                            <th style="display: none"
+                                data-column-visible="false"
+                                data-column-type="data"
+                                data-column-properties='{"name":"ToBeBilledByID",
+                                    "sourceField":"ToBeBilledByID",
+                                    "allowEmptyValues":true,
+                                    "warnOnDeleting":false
+                                }'>To Be Billed By ID
+                            </th>
+                            @*   <th
+                                            style="width: 200px"
+                                            data-column-type="data"
+                                            data-column-properties='{"name":"NetCenterCharge",
+                                    "sourceField":"NetCenterCharge",
+                                    "allowEmptyValues":true,
+                                    "warnOnDeleting":false
+                                }'>
+                                            NetCenter Charge
+                                        </th>
+                                        <th
+                                            style="width: 200px"
+                                            data-column-type="data"
+                                            data-column-properties='{"name":"PaymentComments",
+                                    "sourceField":"PaymentComments",
+                                    "allowEmptyValues":true,
+                                    "warnOnDeleting":false
+                                }'>
+                                            Payment Comments
+                                        </th>
+                                        <th
+                                            style="width: 200px"
+                                            data-column-type="data"
+                                            data-column-properties='{"name":"RefundAccount",
+                                    "sourceField":"RefundAccount",
+                                    "allowEmptyValues":true,
+                                    "warnOnDeleting":false
+                                }'>
+                                            Refund Account
+                                        </th>*@
+                            <th
+                                style="width: 200px"
+                                data-column-type="data"
+                                data-column-properties='{"name":"ChargeType",
+                                    "sourceField":"chargeType",
+                                    "allowEmptyValues":true,
+                                    "warnOnDeleting":false
+                                }'>Charge Type
+                            </th>
+                            <th
+                                style="width: 200px"
+                                data-column-type="data"
+                                data-column-properties='{"name":"ChargeDescription",
+                                    "sourceField":"chargeDescription",
+                                    "allowEmptyValues":true,
+                                    "warnOnDeleting":false
+                                }'>Charge Description
+                            </th>
+                            <th
+                                            @*style="width: 200px"*@
+                                            data-column-type="data"
+                                            data-column-properties='{"name":"DateSaved","allowEmptyValues":true,"usesTime":true
+                                            }'>Date Saved
+                            </th>
+                            @*<th
+                                            data-column-type="data"
+                                            data-column-properties='{"name":"AuthCode","allowEmptyValues":true
+                                            }'>
+                                            Auth Code
+                                        </th>*@
+                            <th
+                                            @*style="width: 200px"*@
+                                            data-column-type="data"
+                                            data-column-properties='{"name":"AttemptDate","allowEmptyValues":true
+                                            }'>Attempt Date
+                            </th>
+                            <th
+                                            @*style="width: 200px"*@
+                                            data-column-type="data"
+                                            data-column-properties='{"name":"ErrorCode","allowEmptyValues":true
+                                            }'>Error Code
+                            </th>
+                            @*<th data-column-type="action"
+                                            data-action-type="remove"></th>*@
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            }
+            <br />
+            @if (Privileges.FirstOrDefault(m => m.Component == "btnMakeCharge") == null || Privileges.FirstOrDefault(m => m.Component == "btnMakeCharge").View)
+            {
+                <input id="btnMakeCharge" type="button" class="button-form" value="Make Charge" onclick="CHARGES_INFO.confirmChargeData()" />
+            }
+        </div>
+    </fieldset>
+    
+    }
+}

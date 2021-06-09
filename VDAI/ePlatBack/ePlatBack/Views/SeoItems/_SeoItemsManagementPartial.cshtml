@@ -1,0 +1,134 @@
+﻿@model ePlatBack.Models.ViewModels.SeoItemInfoModel
+@{
+    var Privileges = ViewData["Privileges"] as List<ePlatBack.Models.ViewModels.SysComponentsPrivilegesModel>;
+}
+@if (Privileges.FirstOrDefault(m => m.Component == "fdsSeoItems") == null || Privileges.FirstOrDefault(m => m.Component == "fdsSeoItems").View)
+    {
+<fieldset id="fdsSeoItems" data-close-siblings="true" class="view-restricted primary-selected-row-dependent" style="display: none">
+    <legend>
+        <img class="fieldset-indicator fds-indicator-separator" src="/Content/themes/base/images/eplat_show.jpg" />
+        Seo Items Management
+    </legend>
+    <div style="display: none">
+        <div class="full-width align-from-bottom">
+            <input type="button" class="submit fieldset-expander right" id="btnNewSeoItemInfo" value="new" />
+        </div>
+        <div id="divTblExistingSeoItems">
+        </div>
+        @*@if (Privileges.FirstOrDefault(m => m.Component == "fdsSeoItemInfo") == null || Privileges.FirstOrDefault(m => m.Component == "fdsSeoItemInfo").View)
+            {*@
+        <fieldset id="fdsSeoItemInfo">
+            <legend>
+                <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+                Seo Item Info
+            </legend>
+            <div style="display: none">
+                @*@if (Privileges.FirstOrDefault(m => m.Component == "frmSeoItem") == null || Privileges.FirstOrDefault(m => m.Component == "frmSeoItem").View)
+                    {*@
+                @using (Ajax.BeginForm("SaveSeoItem", "SeoItems", new AjaxOptions { OnSuccess = "SEO.saveSeoItemSuccess(data)" }, new { id = "frmSeoItem", onSubmit = "return UI.showValidationSummary(this.id);" }))
+                {
+                    <div id="frmSeoItem_ErrorMessages" style="display: none">
+                        @Html.ValidationMessageFor(model => model.SeoItemInfo_Title)
+                        @Html.ValidationMessageFor(model => model.SeoItemInfo_FriendlyUrl)
+                        @Html.ValidationMessageFor(model => model.SeoItemInfo_Url)
+                        @Html.ValidationMessageFor(model => model.SeoItemInfo_Culture)
+                        @Html.ValidationMessageFor(model => model.SeoItemInfo_Index)
+                        @Html.ValidationMessageFor(model => model.SeoItemInfo_Follow)
+                        @Html.ValidationMessageFor(model => model.SeoItemInfo_TerminalItem)
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.SeoItemInfo_TerminalItem)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.SeoItemInfo_TerminalItem, Model.SeoItemInfo_DrpTerminals)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.SeoItemInfo_Culture)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.SeoItemInfo_Culture, Model.SeoItemInfo_DrpCultures)
+                        </div>
+                    </div>
+                    <div class="editor-alignment double-width">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.SeoItemInfo_Title)
+                            @Html.HiddenFor(model => model.SeoItemInfo_SeoItemID, new { @class = "secondary-selected-row-dependent" })
+                            @Html.HiddenFor(model => model.SeoItemInfo_ItemID, new { @class = "primary-selected-row-dependent", data_keep_value = "" })
+                            @Html.HiddenFor(model => model.SeoItemInfo_ItemType, new { @class = "module-dependent", data_keep_value = "" })
+                            @Html.HiddenFor(model => model.SeoItemInfo_Terminal, new { @class = "primary-selected-row-dependent", data_keep_value = "" })
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.SeoItemInfo_Title)
+                        </div>
+                    </div>
+                    <div class="editor-alignment double-width">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.SeoItemInfo_Keywords)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextAreaFor(model => model.SeoItemInfo_Keywords, new { data_format = "lower-case" })
+                        </div>
+                    </div>
+                    <div class="editor-alignment double-width">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.SeoItemInfo_Description)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextAreaFor(model => model.SeoItemInfo_Description)
+                        </div>
+                    </div>
+                    <div class="editor-alignment double-width">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.SeoItemInfo_FriendlyUrl)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.SeoItemInfo_FriendlyUrl, new { data_format = "lower-case" })
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.SeoItemInfo_Url)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.SeoItemInfo_Url, new { data_format = "lower-case" })
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.SeoItemInfo_Index)
+                        </div>
+                        <div class="editor-field">
+                            <label for="SeoItemInfo_Index_True">Yes</label>
+                            @Html.RadioButtonFor(model => model.SeoItemInfo_Index, true, new { data_keep_value = "" })
+                            <label for="SeoItemInfo_False">No</label>
+                            @Html.RadioButtonFor(model => model.SeoItemInfo_Index, false, new { data_keep_value = "" })
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.SeoItemInfo_Follow)
+                        </div>
+                        <div class="editor-field">
+                            <label for="SeoItemInfo_Follow_True">Yes</label>
+                            @Html.RadioButtonFor(model => model.SeoItemInfo_Follow, true, new { data_keep_value = "" })
+                            <label for="SeoItemInfo_False">No</label>
+                            @Html.RadioButtonFor(model => model.SeoItemInfo_Follow, false, new { data_keep_value = "" })
+                        </div>
+                    </div>
+                    @*if (Privileges.FirstOrDefault(m => m.Component == "btnSaveSeoItem") == null || Privileges.FirstOrDefault(m => m.Component == "btnSaveSeoItem").View)
+                        {*@
+                    <div class="editor-alignment full-width">
+                        <input type="submit" class="submit right" id="btnSaveSeoItem" value="save" />
+                    </div>
+                    @*}*@
+                }
+                @*}*@
+            </div>
+        </fieldset>
+        @*}*@
+    </div>
+</fieldset>
+}

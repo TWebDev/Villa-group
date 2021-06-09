@@ -1,0 +1,122 @@
+﻿@model ePlatBack.Models.ViewModels.UserSearchModel
+@{
+    var Privileges = ViewData["Privileges"] as List<ePlatBack.Models.ViewModels.SysComponentsPrivilegesModel>;
+}
+@if (Privileges.FirstOrDefault(m => m.Component == "btnNewUsersInfo") == null || Privileges.FirstOrDefault(m => m.Component == "btnNewUsersInfo").View)
+{
+    <p class="full-width">
+        <input type="button" id="btnNewUsersInfo" class="submit fieldset-expander right" value="new" />
+    </p>
+}
+
+@using (Ajax.BeginForm("Search", "Users", new AjaxOptions { OnSuccess = "UR.searchResultsTable(data)", OnComplete = "UR.makeTableRowsSelectable()", UpdateTargetId = "divTblExistingUsers" }, new { id = "frmUsersSearch" }))
+{
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Search_FirstName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Search_FirstName)
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Search_LastName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Search_LastName)
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Search_UserName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Search_UserName)
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Search_Terminal)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Search_Terminal, Model.Search_DrpSelectedTerminals, new
+          {
+              @class = "terminal-dependent-list",
+              multiple = "multiple",
+              data_route = "/Users/GetDDLData",
+              data_route_parameter = "selectedTerminals"
+          })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Search_JobPositions)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Search_JobPositions, Model.JobPositions, new { multiple = "multiple" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Search_Destinations)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Search_Destinations, Model.Destinations, new { multiple = "multiple" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Search_Profile)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Search_Profile, Model.Search_DrpProfiles, new { multiple = "multiple" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Search_Company)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Search_Company, Model.SearchCompanyList, new
+       {
+           multiple = "multiple",
+           @class = "terminal-dependent-list",
+           data_route = "/Users/GetDDLData",
+           data_route_parameter = "company"
+       })
+        </div>
+    </div>
+    <div class="full-width editor-alignment align-from-top">
+        <div class="editor-field">
+            <input type="submit" id="btnSearchUsers" class="button marg-left avoid-trigger-on-load right" value="Search" />
+            <input type="reset" class="button right" value="clear" />
+        </div>
+    </div>
+    <div id="divTblExistingUsers" class="align-from-top">
+        <table id="tblSearchUsersResults" class="table">
+            <thead>
+                <tr>
+                    <th>User Name</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Job Position</th>
+                    <th>WorkGroup</th>
+                    <th>Role</th>
+                    <th>Email</th>
+                    <th>Company</th>
+                    <th>Departament</th>
+                    <th>Dept Phone</th>
+                    <th>EXT</th>
+                    <th>Personal Number</th>
+                    <th>Language</th>
+                    <th>OPC</th>
+                    <th>Is Active</th>
+                    <th>Is Locked</th>
+                    <th>Last Date Activity</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+}

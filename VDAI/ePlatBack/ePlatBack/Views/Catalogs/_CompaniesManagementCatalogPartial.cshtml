@@ -1,0 +1,112 @@
+﻿@model ePlatBack.Models.ViewModels.CompaniesModel.CompanyInfoModel
+@if (Model.Privileges.FirstOrDefault(m => m.Component == "CompanyInfo" && m.View == true) != null)
+{
+<fieldset id="fdsCompanyInfo" class="primary-selected-row-dependent">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        Company Info
+    </legend>
+    <div style="display:none" class="align-from-top">
+        @using (Ajax.BeginForm("SaveCompany", "Catalogs", new AjaxOptions { OnSuccess = "CATALOG.saveCompanySuccess(data)" }, new { id = "frmCompanyInfo", onSubmit = "return UI.showValidationSummary(this.id);" }))
+        { 
+        
+        
+               <div id="frmCompanyInfo_ErrorMessages" style="display:none">
+                   @Html.ValidationMessageFor(model => model.CompanyInfo_Company)
+                   @Html.ValidationMessageFor(model => model.CompanyInfo_Country)
+               </div>
+            <div class="editor-alignment">
+            	<div class="editor-label">
+                    @Html.LabelFor(model => model.CompanyInfo_Company)
+                    @Html.HiddenFor(model => model.CompanyInfo_CompanyID, new { @class = "secondary-selected-row-dependent" })
+            	</div>
+            	<div class="editor-field">
+                    @Html.TextBoxFor(model => model.CompanyInfo_Company)
+            	</div>
+            </div>
+            <div class="editor-alignment">
+            	<div class="editor-label">
+                    @Html.LabelFor(model => model.CompanyInfo_ShortName)
+            	</div>
+            	<div class="editor-field">
+                    @Html.TextBoxFor(model => model.CompanyInfo_ShortName)
+            	</div>
+            </div>
+            <div class="editor-alignment">
+            	<div class="editor-label">
+                    @Html.LabelFor(model => model.CompanyInfo_Address)
+            	</div>
+            	<div class="editor-field">
+                    @Html.TextBoxFor(model => model.CompanyInfo_Address)
+            	</div>
+            </div>
+            <div class="editor-alignment">
+            	<div class="editor-label">
+                    @Html.LabelFor(model => model.CompanyInfo_City)
+            	</div>
+            	<div class="editor-field">
+                    @Html.TextBoxFor(model => model.CompanyInfo_City)
+            	</div>
+            </div>
+            <div class="editor-alignment">
+            	<div class="editor-label">
+                    @Html.LabelFor(model => model.CompanyInfo_State)
+            	</div>
+            	<div class="editor-field">
+                    @Html.TextBoxFor(model => model.CompanyInfo_State)
+            	</div>
+            </div>
+            <div class="editor-alignment">
+            	<div class="editor-label">
+                    @Html.LabelFor(model => model.CompanyInfo_Country)
+            	</div>
+            	<div class="editor-field">
+                    @Html.DropDownListFor(model => model.CompanyInfo_Country, Model.CompanyInfo_DrpCountries)
+            	</div>
+            </div>
+            <div class="editor-alignment">
+            	<div class="editor-label">
+                    @Html.LabelFor(model => model.CompanyInfo_ZipCode)
+            	</div>
+            	<div class="editor-field">
+                    @Html.TextBoxFor(model => model.CompanyInfo_ZipCode, new { data_format = "upper-case" })
+            	</div>
+            </div>
+            <div class="editor-alignment">
+            	<div class="editor-label">
+                    @Html.LabelFor(model => model.CompanyInfo_RFC)
+            	</div>
+            	<div class="editor-field">
+                    @Html.TextBoxFor(model => model.CompanyInfo_RFC, new { data_format = "upper-case" })
+            	</div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model=>model.CompanyTypeID)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model=>model.CompanyTypeID,Model.CompanyInfo_DrpCompanyTypes)
+                </div>
+            </div>            
+            <div class="editor-alignment">
+                <div class="editor-label">
+                 @Html.LabelFor(model=>model.CompanyInfo_TerminalID)   
+                 </div>
+                <div class="editor-field">
+                 @Html.DropDownListFor(model => model.CompanyInfo_TerminalID, Model.CompanyInfo_DrpTerminals, new {multiple="multiple" })
+                </div>
+            </div>
+                                               
+            <div class="editor-alignment full-width">
+                     @if (Model.Privileges.FirstOrDefault(m => m.Component == "btnSaveCompany" && m.View==true) != null)
+                    {
+                        <input type="submit" id="btnSaveCompany" class="submit right" value="save" />
+                     }
+            </div>   
+        }   
+   </div>
+        
+                
+   
+</fieldset>
+}

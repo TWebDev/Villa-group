@@ -1,0 +1,83 @@
+﻿@model ePlatBack.Models.ViewModels.PartiesSales.SeachParties
+
+<fieldset id="fdsSaleRoomPartiesManagement">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        Sales Room Parties Management
+    </legend>
+    <div class="align-from-top">
+        <p class="full-width">
+            <input type="button" id="btnNewPartiesInfo" class="submit marg-left avoid-trigger-on-load right" value="new">
+
+            <input type="button" id="btnDuplicatePartiesInfo" class="submit right" value="duplicate">
+        </p>
+
+        @using (Ajax.BeginForm("SearchSalesRooms", "Catalogs", new AjaxOptions { OnSuccess = "CATALOG.SalesRoomPartiesResultsTable(data)", OnComplete = "CATALOG.makeSalesRoomPartialSelectable()", UpdateTargetId = "divTblExistingSalesParties" }, new { id = "frmSalesRoomPartiesSearch" }))
+        {
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SearchDate_FromDate)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.SearchDate_FromDate)
+                </div>
+            </div>
+
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SearchProgramID)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.SearchProgramID, Model.SearchProgramsDrpList, new
+                {
+                    multiple = "multiple",
+                    @class = "terminal-dependent-list",
+                    data_route = "/Catalogs/GetDDLData",
+                    data_route_parameter = "SearchProgramList"
+                })
+                </div>
+            </div>
+
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SearchTerminal)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.SearchTerminal, Model.SearchTerminalList, new
+                {
+                    multiple = "multiple",
+                    @class = "terminal-dependent-list",
+                    data_route = "/Catalogs/GetDDLData",
+                    data_route_parameter = "selectedTerminalsMultiple"
+                })
+                </div>
+            </div>
+
+            <div class="full-width editor-alignment align-from-top">
+                <div class="editor-field">
+                    <input type="submit" id="btnSearchSalesParties" class="button marg-left avoid-trigger-on-load right" value="Search" />
+                    <input type="reset" class="button right" value="clear" />
+                </div>
+            </div>
+
+            <div id="divTblExistingSalesParties" class="align-from-top">
+                <table id="tblSalesRoomsPartiesResult" class="dataTable table search-results">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Place</th>
+                            <th>Sales Rooms Parties</th>
+                            <th>Programs</th>
+                            <th>Terminals</th>
+                            <th>Allotment</th>
+                            <th>Date Saved</th>
+                            <th>Saved By User</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        }
+        @Html.Action("RenderPartiesManagement", "Catalogs")
+    </div>
+</fieldset>

@@ -1,0 +1,124 @@
+﻿@model ePlatBack.Models.ViewModels.FreeGetawayViewModel
+
+@using (Ajax.BeginForm("FreeGetawaySave", new { Controller = "Controls" }, new AjaxOptions { OnBegin = "Controls.sendingInfo('FreeGetawayForm')", OnSuccess = "Controls.showMessage(data,'FreeGetawayForm', true, 17)", OnFailure = "Controls.showMessage({ResponseType : -1, ResponseMessage : 'Failure trying to send the information to the server, please try again.'},'FreeGetawayForm')" }, new { id = "FreeGetawayForm" }))
+{
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseQuoteRequest"><span aria-hidden="true">&times;</span></button>
+                <h2 class="modal-title" id="freeGetawayLabel">Free Getaway Registration Form</h2>
+            </div>
+            <div class="modal-body">
+                <h3>3 day 2 night Relax Getaway</h3>
+                <p>
+                    Register to receive a FREE 2 night hotel stay in any of 30 states!!!
+                </p>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        @Html.LabelFor(model => model.FreeGetaway_FirstName)
+                        <div>
+                            @Html.TextBoxFor(model => model.FreeGetaway_FirstName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.FreeGetaway_FirstName)
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        @Html.LabelFor(model => model.FreeGetaway_LastName)
+                        <div>
+                            @Html.TextBoxFor(model => model.FreeGetaway_LastName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.FreeGetaway_LastName)
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        @Html.LabelFor(model => model.FreeGetaway_PhoneDay)
+
+                        <div>
+                            @Html.TextBoxFor(model => model.FreeGetaway_PhoneDay, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.FreeGetaway_PhoneDay)
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        @Html.LabelFor(model => model.FreeGetaway_PhoneEvening)
+
+                        <div>
+                            @Html.TextBoxFor(model => model.FreeGetaway_PhoneEvening, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.FreeGetaway_PhoneEvening)
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        @Html.LabelFor(model => model.FreeGetaway_Email)
+
+                        <div>
+                            @Html.TextBoxFor(model => model.FreeGetaway_Email, new { @class = "form-control", type = "email" })
+                            @Html.ValidationMessageFor(model => model.FreeGetaway_Email)
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        @Html.LabelFor(model => model.FreeGetaway_Age)
+
+                        <div>
+                            @Html.DropDownListFor(model => model.FreeGetaway_Age, Model.AgeRanges, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.FreeGetaway_Age)
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        @Html.LabelFor(model => model.FreeGetaway_MaritalStatus)
+
+                        <div>
+                            @Html.DropDownListFor(model => model.FreeGetaway_MaritalStatus, Model.MaritalStatus, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.FreeGetaway_MaritalStatus)
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        @Html.LabelFor(model => model.FreeGetaway_SecurityQuestion)
+
+                        <div>
+                           @Html.DropDownListFor(model => model.FreeGetaway_SecurityQuestion, Model.SecurityQuestions, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.FreeGetaway_SecurityQuestion)
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        @Html.LabelFor(model => model.FreeGetaway_SecurityAnswer)
+
+                        <div>
+                            @Html.TextBoxFor(model => model.FreeGetaway_SecurityAnswer, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.FreeGetaway_SecurityAnswer)
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        @Html.LabelFor(model => model.FreeGetaway_ValidationString) @Model.FreeGetaway_ValidationString
+                        @Html.HiddenFor(model => model.FreeGetaway_ValidationString)
+                        <div>
+                            @Html.TextBoxFor(model => model.FreeGetaway_ValidationStringResponse, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.FreeGetaway_ValidationStringResponse)
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>
+                            **Please note entry form must be completed in full. We must be able to contact you in order to process your free getaway certificate.<br />**Must meet age requirement of 30-70 years.
+                        </p>
+                    </div>
+                </div>
+                @*<div class="center-block" style="width:320px;">
+                    @ReCaptcha.GetHtml(theme: "red")
+                </div>*@                    
+            </div>
+            <div class="modal-footer">
+                <div class="validation-errors">
+                    @Html.ValidationSummary(true)
+                </div>
+                <div class="interaction-message"></div>
+                <input type="submit" class="btn btn-default" value="Submit" />
+            </div>
+        </div>
+    </div>
+}

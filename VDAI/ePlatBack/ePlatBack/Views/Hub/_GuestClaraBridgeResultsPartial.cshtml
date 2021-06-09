@@ -1,0 +1,59 @@
+﻿@model ePlatBack.Models.tblAppliedSurveys
+<fieldset id="fdsGuestMemberInfo" class="primary-selected-row-dependent">
+    
+    <table id="tblClaraBridgeInfo" class="table">
+        <thead>
+            <tr>
+                <th>Date In</th>
+                <th>Date Out</th>
+                <th>Organization</th>
+                <th>Had comment</th>
+                <th>Had problem</th>
+                <th>Rate</th>
+            </tr>
+
+        </thead>
+        <tbody>
+                <tr id="@Model.surveyAppliedID">
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.dateIn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.dateOut)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.organizationID)
+                    </td>
+                    <td>
+                        @if ((Model.hadComment == true))
+                        {
+                            <label>Yes</label>
+                        }
+                        else
+                        {
+                            if(Model.hadComment!=null)
+                            { 
+                                <label>No</label>
+                            }
+                        }
+                    </td>
+                    <td>
+                        @if ((Model.hadProblem == true) && (Model.hadProblem != null))
+                        {
+                            <label>Yes</label>
+                        }
+                        else
+                        {
+                            if (Model.hadComment != null)
+                            {
+                                <label>No</label>
+                            }
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.rate)
+                    </td>
+                </tr>
+        </tbody>
+    </table>
+</fieldset>

@@ -1,0 +1,41 @@
+﻿@model ePlatBack.Models.ViewModels.FieldGroupsSearchModel
+
+<span class="full-width">
+    <input type="button" id="btnNewFieldGroupsInfo" class="submit right fieldset-expander" value="new" />
+</span>
+@using (Ajax.BeginForm("SearchFieldGroups", "Emails", new AjaxOptions { OnBegin = "UI.checkForPendingRequests(xhr)", OnSuccess = "EMAIL.searchFieldGroupsResultsTable(data)", OnComplete = "EMAIL.makeFieldGroupsTableRowsSelectable()", UpdateTargetId = "divTblExistingFieldGroups" }, new { id = "frmSearchFieldGroups" }))
+{
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FieldGroupsSearch_FieldGroup)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.FieldGroupsSearch_FieldGroup)
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FieldGroupsSearch_SavedByUser)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.FieldGroupsSearch_SavedByUser, Model.FieldGroupsSearch_DrpUsers, new { multiple = "multiple" })
+        </div>
+    </div>
+    <div class="full-width align-from-top align-from-bottom">
+        <input type="submit" class="button right" value="search" />
+    </div>
+    <div id="divTblExistingFieldGroups" class="full-width align-from-top align-from-bottom">
+        <table id="tblSearchFieldGroupsResults" class="table dataTable secondary-selected-row-dependent">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Field Group</th>
+                    <th>Description</th>
+                    <th>Saved By</th>
+                    <th>Date Saved</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+}

@@ -1,0 +1,59 @@
+﻿@model ePlatBack.Models.ViewModels.AccountingAccountsViewModel.searchAccountingAccounts
+
+@using (Ajax.BeginForm("searchAccountingAccounts", "Reports", new AjaxOptions { OnSuccess = "REPORT.addExtras();", UpdateTargetId = "divAccoutResultsPartial" }, new { id = "frmSearchAccoutingAccounts" }))
+{
+
+    <div class="non-printable search-params">
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.searchTerminals)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.searchTerminals, Model.TerminalList, new
+               {
+                   @class = "terminal-dependent-list onchange",
+                   data_route = "/crm/Reports/GetDDLData",
+                   data_route_parameter = "selectedTerminalsWithDefaultItem",
+                   data_onchange_route_parameter = "accountsCategory,AAprovider",
+                   data_dependent_list = "searchCategory,searchProvider"
+               })
+
+            </div>
+        </div>
+
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.searchCategory)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.searchCategory, Model.CategoriesList, new
+                {
+                    multiple = "multiple"
+                })
+            </div>
+        </div>
+
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.searchProvider)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.searchProvider, Model.ProvidersList, new
+                {
+                    multiple = "multiple"
+                    
+                })
+            </div>
+        </div>
+
+        <div class="editor-alignment align-from-top">
+            <div class="editor-field">
+                <input type="submit" class="button" value="get" />
+            </div>
+        </div>
+    </div>
+    <div id="divAccoutResultsPartial">
+
+    </div>
+}
+    

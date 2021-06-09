@@ -1,0 +1,44 @@
+﻿@model ePlatBack.Models.ViewModels.ProvidersModel.SearchProvidersModel
+
+<table id="tblSearchProvidersResults" class="table search-results">
+    <thead>
+        <tr>
+            <th>Comercial Name</th>
+            <th>Legal Entity</th>
+            <th>RFC</th>
+            <th>Terminal</th>
+            <th>Contract Currency</th>
+            <th>Is Active</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ListProviders != null)
+        {
+            foreach (var i in Model.ListProviders)
+            {
+                var id = "provider_" + i.ProviderInfo_ProviderID;
+                <tr id="@id">
+                    <td>
+                        @Html.DisplayFor(model => i.ProviderInfo_ComercialName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.ProviderInfo_TaxesName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.ProviderInfo_RFC)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.ProviderInfo_Terminal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.ProviderInfo_ContractCurrency)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(model => i.ProviderInfo_IsActive)
+                        <img src="/Content/themes/base/images/cross.png" class="right delete-item" />
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

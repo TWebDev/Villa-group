@@ -1,0 +1,37 @@
+﻿@model ePlatBack.Models.ViewModels.BookingStatusInfoModel
+
+<span>Drag Booking Status to set their order.</span>
+<div class="full-width align-from-bottom">
+    <input type="button" id="btnNewBookingStatus" value="new" class="submit right fieldset-expander" />
+</div>
+<div id="divBookingStatus">
+</div>
+<div class="full-width align-from-bottom">
+    <input type="button" id="btnSaveBookingStatusPerWorkGroup" value="Save" class="submit right" />
+</div>
+<fieldset id="fdsBookingStatusInfo">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        Booking Status Info
+    </legend>
+    <div class="align-from-top" style="display: none">
+        @using (Ajax.BeginForm("SaveBookingStatus", "Admin", new AjaxOptions { OnSuccess = "PROFILE.saveBookingStatusSuccess(data)" }, new { id = "frmBookingStatus", onSubmit = "return UI.showValidationSummary(this.id);" }))
+        {
+            <div id="frmBookingStatus_ErrorMessages" style="display: none">
+                @Html.ValidationMessageFor(m => m.BookingStatusInfo_BookingStatus)
+            </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(m => m.BookingStatusInfo_BookingStatus)
+                @Html.HiddenFor(m => m.BookingStatusInfo_BookingStatusID)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(m => m.BookingStatusInfo_BookingStatus)
+            </div>
+        </div>
+        <div class="full-width">
+            <input type="submit" class="submit right" value="save" id="btnSaveBookingStatus" />
+        </div>
+        }
+    </div>
+</fieldset>

@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="resortConnectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Contact">
+    <Key>
+      <PropertyRef Name="ContactId" />
+    </Key>
+    <Property Name="ContactId" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="300" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="300" />
+    <Property Name="BirthDate" Type="date" />
+    <Property Name="PrimaryFlag" Type="bit" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime2" Precision="3" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MemberNote">
+    <Key>
+      <PropertyRef Name="MemberNoteId" />
+    </Key>
+    <Property Name="MemberNoteId" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+    <Property Name="ReservationId" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+    <Property Name="ContactId" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+    <Property Name="CommentType" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="NoteDate" Type="date" Nullable="false" />
+    <Property Name="Note" Type="nvarchar(max)" />
+    <Property Name="LastUpdated" Type="datetime2" Precision="3" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Reservation">
+    <Key>
+      <PropertyRef Name="ReservationId" />
+    </Key>
+    <Property Name="ReservationId" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+    <Property Name="ResortNumber" Type="int" Nullable="false" />
+    <Property Name="ConfirmationNumber" Type="varchar" MaxLength="50" />
+    <Property Name="CheckInDate" Type="date" />
+    <Property Name="CheckOutDate" Type="date" />
+    <Property Name="ReservationStatus" Type="varchar" MaxLength="50" />
+    <Property Name="ReservationType" Type="varchar" MaxLength="50" />
+    <Property Name="UnitTypeId" Type="int" />
+    <Property Name="UnitTypeName" Type="varchar" MaxLength="50" />
+    <Property Name="UnitTypeDesc" Type="varchar(max)" />
+    <Property Name="UnitId" Type="int" />
+    <Property Name="UnitDesc" Type="varchar" MaxLength="1000" />
+    <Property Name="UnitRef" Type="nchar" MaxLength="10" />
+    <Property Name="ClubTypeId" Type="int" />
+    <Property Name="ClubType" Type="varchar" MaxLength="50" />
+    <Property Name="ContractNumber" Type="varchar" MaxLength="50" />
+    <Property Name="ContractResortNumber" Type="numeric" Precision="9" Scale="0" />
+    <Property Name="PrimaryContactId" Type="numeric" Precision="9" Scale="0" />
+    <Property Name="TourBookingStatus" Type="numeric" Precision="9" Scale="0" />
+    <Property Name="TourBookingStatusDesc" Type="nchar" MaxLength="100" />
+    <Property Name="LastUpdated" Type="datetime2" Precision="3" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Reservation_Contact">
+    <Key>
+      <PropertyRef Name="Reservation_ContactId" />
+    </Key>
+    <Property Name="Reservation_ContactId" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+    <Property Name="ReservationId" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+    <Property Name="ContactId" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+    <Property Name="PhoneNumber" Type="varchar" MaxLength="20" />
+    <Property Name="EmailAddress" Type="varchar" MaxLength="75" />
+    <Property Name="LastUpdated" Type="datetime2" Precision="3" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ReservationOption">
+    <Key>
+      <PropertyRef Name="ReservationOptionId" />
+    </Key>
+    <Property Name="ReservationOptionId" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+    <Property Name="ReservationId" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+    <Property Name="ProductName" Type="nvarchar" MaxLength="1000" />
+    <Property Name="AppointmentDate" Type="datetime2" Precision="7" />
+    <Property Name="CarrierName" Type="nvarchar" MaxLength="300" />
+    <Property Name="FlightNumber" Type="nvarchar" MaxLength="100" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="BaseCurrencyAmount" Type="nvarchar" MaxLength="100" />
+    <Property Name="Note" Type="nvarchar(max)" />
+    <Property Name="LastUpdated" Type="datetime2" Precision="3" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'rc_prod_tafer-reservation-sync.sys.database_firewall_rules' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <Association Name="FK_MemberNote_Reservation">
+    <End Role="Reservation" Type="Self.Reservation" Multiplicity="1" />
+    <End Role="MemberNote" Type="Self.MemberNote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reservation">
+        <PropertyRef Name="ReservationId" />
+      </Principal>
+      <Dependent Role="MemberNote">
+        <PropertyRef Name="ReservationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reservation_Contact__Reservation">
+    <End Role="Reservation" Type="Self.Reservation" Multiplicity="1" />
+    <End Role="Reservation_Contact" Type="Self.Reservation_Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reservation">
+        <PropertyRef Name="ReservationId" />
+      </Principal>
+      <Dependent Role="Reservation_Contact">
+        <PropertyRef Name="ReservationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReservationOption_Reservation">
+    <End Role="Reservation" Type="Self.Reservation" Multiplicity="1" />
+    <End Role="ReservationOption" Type="Self.ReservationOption" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reservation">
+        <PropertyRef Name="ReservationId" />
+      </Principal>
+      <Dependent Role="ReservationOption">
+        <PropertyRef Name="ReservationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="resortConnectModelStoreContainer">
+    <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MemberNote" EntityType="Self.MemberNote" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reservation" EntityType="Self.Reservation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reservation_Contact" EntityType="Self.Reservation_Contact" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReservationOption" EntityType="Self.ReservationOption" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_MemberNote_Reservation" Association="Self.FK_MemberNote_Reservation">
+      <End Role="Reservation" EntitySet="Reservation" />
+      <End Role="MemberNote" EntitySet="MemberNote" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reservation_Contact__Reservation" Association="Self.FK_Reservation_Contact__Reservation">
+      <End Role="Reservation" EntitySet="Reservation" />
+      <End Role="Reservation_Contact" EntitySet="Reservation_Contact" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReservationOption_Reservation" Association="Self.FK_ReservationOption_Reservation">
+      <End Role="Reservation" EntitySet="Reservation" />
+      <End Role="ReservationOption" EntitySet="ReservationOption" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

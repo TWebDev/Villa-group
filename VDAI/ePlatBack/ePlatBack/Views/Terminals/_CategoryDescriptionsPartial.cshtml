@@ -1,0 +1,94 @@
+﻿@model ePlatBack.Models.ViewModels.CategoryDescriptionInfoModel
+<fieldset id="fdsCategoryDescriptionsManagement" class="view-restricted" style="display: none" data-close-siblings="true">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        Category Descriptions
+    </legend>
+    <div style="display: none" class="align-from-top">
+        <div class="full-width align-from-bottom">
+            <input type="button" id="btnNewCategoryDescriptionsInfo" class="submit fieldset-expander right" value="New">
+        </div>
+        <ul id="ulCategoryDescriptions" class="secondary-selected-row-dependent align-from-top">
+        </ul>
+        <fieldset id="fdsCategoryDescriptionsInfo" class="secondary-selected-row-dependent">
+            <legend>
+                <img src="/Content/themes/base/images/eplat_show.jpg" alt="" class="fieldset-indicator fds-indicator-separator">
+                Category Description Info
+            </legend>
+            <div style="display: none" class="align-from-top">
+                @using (Ajax.BeginForm("SaveCategoryDescription", "Terminals", new AjaxOptions { OnSuccess = "TERMINAL.saveCategoryDescriptionSuccess(data)" }, new { id = "frmCategoryDescription", onSubmit = "return UI.showValidationSummary(this.id);" }))
+                {
+                    <div id="frmCategoryDescription_ErrorMessages" style="display: none">
+                        @Html.ValidationMessageFor(model => model.CategoryDescriptionInfo_Culture)
+                        @Html.ValidationMessageFor(model => model.CategoryDescriptionInfo_Category)
+                        @Html.ValidationMessageFor(model => model.CategoryDescriptionInfo_Description)
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.HiddenFor(model => model.CategoryDescriptionInfo_CategoryID, new { data_keep_value = "" })
+                            @Html.HiddenFor(model => model.CategoryDescriptionInfo_CategoryDescriptionID, new { @class = "secondary-selected-row-dependent" })
+                            @Html.LabelFor(model => model.CategoryDescriptionInfo_Culture)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.CategoryDescriptionInfo_Culture, Model.CategoryDescriptionInfo_DrpCultures)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.CategoryDescriptionInfo_Category)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.CategoryDescriptionInfo_Category, new { data_format="free-case" })
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.CategoryDescriptionInfo_ShowOnWebsite)
+                        </div>
+                        <div class="editor-field">
+                            <label for="CategoryDescriptionInfo_ShowOnWebsiteTrue">Yes</label>
+                            @Html.RadioButtonFor(model => model.CategoryDescriptionInfo_ShowOnWebsite, true)
+                            <label for="CategoryDescriptionInfo_ShowOnWebsiteFalse">No</label>
+                            @Html.RadioButtonFor(model => model.CategoryDescriptionInfo_ShowOnWebsite, false)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.CategoryDescriptionInfo_ImgIcon)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.CategoryDescriptionInfo_ImgIcon, new { data_format="free-case" })
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.CategoryDescriptionInfo_ImgHeader)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.CategoryDescriptionInfo_ImgHeader, new { data_format = "free-case" })
+                        </div>
+                    </div>
+                    <div class="full-width">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.CategoryDescriptionInfo_Description)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextAreaFor(model => model.CategoryDescriptionInfo_Description)
+                        </div>
+                    </div>
+                    @*<div class="full-width">
+                        <p class="editor-label">
+                            @Html.LabelFor(model => model.CategoryDescriptionInfo_Policies)
+                        </p>
+                        <p class="editor-field">
+                            @Html.TextAreaFor(model => model.CategoryDescriptionInfo_Policies)
+                        </p>
+                    </div>*@
+                    <div class="full-width align-from-top">
+                        <input type="button" class="submit right" id="btnSaveCategoryDescription" value="Save" />
+                    </div>
+                }
+            </div>
+        </fieldset>
+    </div>
+</fieldset>

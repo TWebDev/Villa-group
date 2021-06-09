@@ -1,0 +1,95 @@
+﻿@model ePlatBack.Models.ViewModels.spiInvitation.invitationModel
+
+     @using (Ajax.BeginForm("searchGuestToMatch", "Invitations2", new AjaxOptions 
+     { OnSuccess = "invitation.setSearchGuest(data)" },
+         new
+         {
+             id = "frmPremanifestModal",
+             onSubmit = "return invitation.Forms().showValidationSummary(this.id);"
+         }))
+     {
+        <div  class=" card-body">
+            <div class="form-row">
+                <div class=" form-group col-md-4 col-lg-3">
+                    @Html.HiddenFor(model => model.invitationIDModal, new { v_model= "modalInfo.invitationIDModal" })
+                    @Html.HiddenFor(model => model.custumerIDModal, new { v_model = "modalInfo.custumerIDModal" })
+                    @Html.HiddenFor(model => model.guestEmailModal, new { v_model = "modalInfo.guestEmailModal" })
+                    @Html.HiddenFor(model => model.guestPhoneModal, new { v_model = "modalInfo.guestPhoneModal" })
+                    @Html.LabelFor(model => model.firstNameModal)
+                    @Html.TextBoxFor(model => model.firstNameModal,
+                    new
+                    {
+                      @class = "form-control",
+                      v_model = "modalInfo.firstNameModal"
+                    })
+                </div>
+                <div class=" form-group col-md-4 col-lg-3">
+                    @Html.LabelFor(model => model.lastNameModal)
+                    @Html.TextBoxFor(model => model.lastNameModal,
+                    new
+                    {
+                        @class= "form-control",
+                        v_model = "modalInfo.lastNameModal"
+                    })
+                </div>
+                <div class=" form-group col-md-4 col-lg-3">
+                    @Html.LabelFor(model => model.spouseNameModal)
+                    @Html.TextBoxFor(model => model.spouseNameModal,
+                    new
+                    {
+                        @class = "form-control",
+                        v_model = "modalInfo.spouseFirstNameModal"
+                    })
+                </div>
+                <div class=" form-group col-md-4 col-lg-3">
+                    @Html.LabelFor(model => model.spouseLastNameModal)
+                    @Html.TextBoxFor(model => model.spouseLastNameModal,
+                    new
+                    {
+                        @class = "form-control",
+                        v_model = "modalInfo.spouseLastNameModal"
+                    })
+                </div>
+                <div class=" form-group col-md-4 col-lg-3">
+                    @Html.LabelFor(model => model.stateModal)
+                    @Html.TextBoxFor(model => model.stateModal,
+                    new
+                    {
+                        @class = "form-control"
+                    })
+                </div>
+                <div class=" col-md-1 col-lg-1 ">
+                    <label id="lab" style="height:18px"></label>
+                    <input type="submit" id="btnSearchGuest" class=" btn btn-primary" value="Search" />
+                </div>
+            </div>            
+        </div>
+        <div class=" mt-3 card-body">
+                <div class=" card-body">
+                    <b-table id="tblMatchTable" responsive
+                             v-bind:items="guestsToMatch"
+                             v-bind:fields="matchTable.fields"
+                             v-bind:bordered="matchTable.bordered"
+                             v-bind:striped="matchTable.striped"
+                             v-bind:hover="matchTable.hover"
+                             v-bind:sort-by.sync="matchTable.sortBy"
+                             v-bind:sort-desc.sync="matchTable.sortDesc"
+                             v-bind:current-page="matchTable.currentPage"
+                             v-bind:per-page="matchTable.perPage"
+                             v-on:row-clicked="">
+                    <template slot="matchUser" slot-scope="row">
+                       @*<b-btn class="btn btn-outline-secondary" v-on:click="getRowValues(row.item,row.index,$event.target)">Match</b-btn>*@
+                        <input id="checkMatch" type="checkbox" v-on:click="getRowValues(row.item,row.index,$event.target, row)"  />
+                    </template>
+                    </b-table>
+                </div>
+            </div>            
+        <div>
+            <div class=" form-row">
+                <div class=" text-right col">
+                    <input id="btnNewGuest" class="btn btn-primary" type="button" value=" New Guest" v-on:click="newGuest()">
+                    <input id="btnPreManifest" class="btn btn-primary" type="button" value="Premanifest" v-on:click="validate()" disabled>
+                </div>
+            </div>
+        </div>    
+     }

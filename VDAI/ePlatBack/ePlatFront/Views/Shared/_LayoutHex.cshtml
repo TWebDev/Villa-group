@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html lang="@ViewBag.Culture">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    @*<link href="~/content/themes/mex/images/favicon.png" rel="shortcut icon" type="image/x-icon" />*@
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="keywords" content="@ViewBag.Keywords">
+    <meta name="description" content="@ViewBag.Description">
+    <meta name="robots" content="@ViewBag.Index, @ViewBag.Follow">
+    @if (ViewBag.CanonicalDomain != null)
+    {
+        <link rel="canonical" href="https://@(ViewBag.CanonicalDomain + ViewBag.FriendlyUrl)" />
+    }
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">*@
+    <link href="~/Content/plugins/materialize/css/materialize.min.css" rel="stylesheet" />
+    <link href="~/Content/themes/hex/css/main.css" rel="stylesheet" />
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+
+    @RenderSection("header", required: false)
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-149059630-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-149059630-1');
+    </script>
+</head>
+<body>
+    @*onload="_googWcmGet('phone-desktop', '1-877-359-0443')"*@
+    @RenderSection("afterBody", required: false)
+    <header>
+        <div class="navbar-fixed">
+            <nav class="nav-extended light-green darken-2">
+                <div class="nav-wrapper container">
+
+                    <a href="/" class="brand-logo">
+                        <img src="@ViewBag.Logo" class="hide-on-small-only" alt="Home" style="width: 120px; margin-top: 10px;" />
+                        <img src="@ViewBag.Logo" class="hide-on-med-and-up" alt="Home" style="width: 60px; margin-top: 10px;" />
+                    </a>
+                    <a href="#" data-activates="mobile-menu" class="button-collapse"><i class="material-icons">menu</i></a>
+
+                    @if (ViewBag.OppositeLanguageUrl != null)
+                    {
+                        @Html.Raw(ViewBag.Header.Replace(".com", ".com" + ViewBag.OppositeLanguageUrl))
+                    }
+                    else
+                    {
+                        @Html.Raw(ViewBag.Header)
+                    }
+
+                    <div class="nav-content hide-on-med-and-down">
+                        <ul id="navTabs" class="tabs tabs-transparent" style="width: auto; display: inline-block; margin-left: 130px;">
+                            <li class="tab"><a target="_self" class="active" href="/">Home</a></li>
+                            <li class="tab"><a target="_self" href="/adventure">@(ViewBag.Culture == "es" ? "Aventura" : "Adventure")</a></li>
+                            <li class="tab"><a target="_self" href="/culture">@(ViewBag.Culture == "es" ? "Cultura" : "Culture")</a></li>
+                            <li class="tab"><a target="_self" href="/wellness">@(ViewBag.Culture == "es" ? "Bienestar" : "Wellness")</a></li>
+                            <li class="tab">
+                                <a class="modal-trigger" href="#search-activities"><i class="material-icons right">search</i>@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Search</a>
+                            </li>
+                            <li><a href="https://facebook.com/Holistika-Experience-106551987355685/" target="_blank"><img src="/Content/themes/hex/images/facebook-icon.png" alt="Facebook Page" style="        width: 20px; margin: 12px 0 12px 0;" /></a></li>
+                            <li><a href="https://www.instagram.com/holistika.experience/" target="_blank"><img src="/Content/themes/hex/images/instagram-icon.png" alt="Instagram Page" style="        width: 20px; margin: 12px 0 12px 0;" /></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div id="land-activities" class="submenu light-green darken-4" style="display:none;">
+            <div class="container">
+                <div class="row card-panel transparent z-depth-0">
+                    @Html.Raw(@ViewBag.Submenu1)
+                    <a id="btnCloseLandActivities" class="btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">expand_less</i></a>
+                </div>
+            </div>
+        </div>
+        <div id="water-activities" class="submenu light-green darken-4" style="display:none;">
+            <div class="container">
+                <div class="row card-panel transparent z-depth-0">
+                    @Html.Raw(@ViewBag.Submenu2)
+                    <a id="btnCloseWaterActivities" class="btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">expand_less</i></a>
+                </div>
+            </div>
+        </div>
+        @RenderSection("featured", required: false)
+        @RenderBody()
+        @RenderSection("controls", required: false)
+        @Html.Partial("_BookingEngineFormV2Partial")
+        @Html.Partial("_ActivitiesSearchPartial")
+    </main>
+    <footer class="page-footer light-green darken-1">
+        @*<div class="container">
+                <div class="row">
+                    @Html.Raw(@ViewBag.Footer)
+                </div>
+            </div>*@
+        <div class="footer-copyright">
+            <div class="container">
+                @ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Copyright &copy; @DateTime.Now.Year Holístika Experience. @ePlatFront.Resources.Views.Shared.SharedStrings.All_Rights_Reserved.
+                <a class="grey-text text-lighten-4 right" href="@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Terms_Url">@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Terms_and_Conditions</a><span class="right">&nbsp;&nbsp;&bull;&nbsp;&nbsp;</span><a class="grey-text text-lighten-4 right" href="@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Privacy_Policy_Url">@ePlatFront.Resources.Views.Shared.SharedStrings.Privacy_Policy</a>
+            </div>
+        </div>
+    </footer>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    @Scripts.Render("~/Scripts/jquery.json-2.3.min.js")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/bookingengine-1.5.js"></script>
+    <script src="~/Scripts/bookingengine-ui-1.5.js"></script>
+    <script src="/Content/themes/hex/js/language.@{@ViewBag.Culture}.js"></script>
+    <script src="~/Scripts/storage-1.0.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>*@
+    <script src="~/Content/plugins/materialize/js/materialize.js"></script>
+    <script src="~/Content/themes/hex/js/ui.js?v=190731"></script>
+    @RenderSection("scripts", required: false)
+    <!--Add the following script at the bottom of the web page (before </body></html>)-->
+    <script type="text/javascript">
+    function add_chatinline() { var hccid = 64556725; var nt = document.createElement("script"); nt.async = true; nt.src = "https://www.mylivechat.com/chatinline.aspx?hccid=" + hccid; var ct = document.getElementsByTagName("script")[0]; ct.parentNode.insertBefore(nt, ct); }
+        add_chatinline();</script>
+</body>
+</html>

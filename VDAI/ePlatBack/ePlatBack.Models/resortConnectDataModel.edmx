@@ -1,0 +1,389 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="resortConnectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="ContactId" />
+          </Key>
+          <Property Name="ContactId" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="300" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="300" />
+          <Property Name="BirthDate" Type="date" />
+          <Property Name="PrimaryFlag" Type="bit" Nullable="false" />
+          <Property Name="LastUpdated" Type="datetime2" Precision="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MemberNote">
+          <Key>
+            <PropertyRef Name="MemberNoteId" />
+          </Key>
+          <Property Name="MemberNoteId" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="ReservationId" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="ContactId" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="CommentType" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="NoteDate" Type="date" Nullable="false" />
+          <Property Name="Note" Type="nvarchar(max)" />
+          <Property Name="LastUpdated" Type="datetime2" Precision="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reservation">
+          <Key>
+            <PropertyRef Name="ReservationId" />
+          </Key>
+          <Property Name="ReservationId" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="ResortNumber" Type="int" Nullable="false" />
+          <Property Name="ConfirmationNumber" Type="varchar" MaxLength="50" />
+          <Property Name="CheckInDate" Type="date" />
+          <Property Name="CheckOutDate" Type="date" />
+          <Property Name="ReservationStatus" Type="varchar" MaxLength="50" />
+          <Property Name="ReservationType" Type="varchar" MaxLength="50" />
+          <Property Name="UnitTypeId" Type="int" />
+          <Property Name="UnitTypeName" Type="varchar" MaxLength="50" />
+          <Property Name="UnitTypeDesc" Type="varchar(max)" />
+          <Property Name="UnitId" Type="int" />
+          <Property Name="UnitDesc" Type="varchar" MaxLength="1000" />
+          <Property Name="UnitRef" Type="nchar" MaxLength="10" />
+          <Property Name="ClubTypeId" Type="int" />
+          <Property Name="ClubType" Type="varchar" MaxLength="50" />
+          <Property Name="ContractNumber" Type="varchar" MaxLength="50" />
+          <Property Name="ContractResortNumber" Type="numeric" Precision="9" Scale="0" />
+          <Property Name="PrimaryContactId" Type="numeric" Precision="9" Scale="0" />
+          <Property Name="TourBookingStatus" Type="numeric" Precision="9" Scale="0" />
+          <Property Name="TourBookingStatusDesc" Type="nchar" MaxLength="100" />
+          <Property Name="LastUpdated" Type="datetime2" Precision="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reservation_Contact">
+          <Key>
+            <PropertyRef Name="Reservation_ContactId" />
+          </Key>
+          <Property Name="Reservation_ContactId" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="ReservationId" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="ContactId" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="20" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="75" />
+          <Property Name="LastUpdated" Type="datetime2" Precision="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReservationOption">
+          <Key>
+            <PropertyRef Name="ReservationOptionId" />
+          </Key>
+          <Property Name="ReservationOptionId" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="ReservationId" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="1000" />
+          <Property Name="AppointmentDate" Type="datetime2" Precision="7" />
+          <Property Name="CarrierName" Type="nvarchar" MaxLength="300" />
+          <Property Name="FlightNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="BaseCurrencyAmount" Type="nvarchar" MaxLength="100" />
+          <Property Name="Note" Type="nvarchar(max)" />
+          <Property Name="LastUpdated" Type="datetime2" Precision="3" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'rc_prod_tafer-reservation-sync.sys.database_firewall_rules' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <Association Name="FK_MemberNote_Reservation">
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="1" />
+          <End Role="MemberNote" Type="Self.MemberNote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reservation">
+              <PropertyRef Name="ReservationId" />
+            </Principal>
+            <Dependent Role="MemberNote">
+              <PropertyRef Name="ReservationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservation_Contact__Reservation">
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="1" />
+          <End Role="Reservation_Contact" Type="Self.Reservation_Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reservation">
+              <PropertyRef Name="ReservationId" />
+            </Principal>
+            <Dependent Role="Reservation_Contact">
+              <PropertyRef Name="ReservationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReservationOption_Reservation">
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="1" />
+          <End Role="ReservationOption" Type="Self.ReservationOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reservation">
+              <PropertyRef Name="ReservationId" />
+            </Principal>
+            <Dependent Role="ReservationOption">
+              <PropertyRef Name="ReservationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="resortConnectModelStoreContainer">
+          <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MemberNote" EntityType="Self.MemberNote" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reservation" EntityType="Self.Reservation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reservation_Contact" EntityType="Self.Reservation_Contact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReservationOption" EntityType="Self.ReservationOption" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_MemberNote_Reservation" Association="Self.FK_MemberNote_Reservation">
+            <End Role="Reservation" EntitySet="Reservation" />
+            <End Role="MemberNote" EntitySet="MemberNote" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservation_Contact__Reservation" Association="Self.FK_Reservation_Contact__Reservation">
+            <End Role="Reservation" EntitySet="Reservation" />
+            <End Role="Reservation_Contact" EntitySet="Reservation_Contact" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReservationOption_Reservation" Association="Self.FK_ReservationOption_Reservation">
+            <End Role="Reservation" EntitySet="Reservation" />
+            <End Role="ReservationOption" EntitySet="ReservationOption" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="resortConnectModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="ContactId" />
+          </Key>
+          <Property Name="ContactId" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDate" Type="DateTime" Precision="0" />
+          <Property Name="PrimaryFlag" Type="Boolean" Nullable="false" />
+          <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="MemberNote">
+          <Key>
+            <PropertyRef Name="MemberNoteId" />
+          </Key>
+          <Property Name="MemberNoteId" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="ReservationId" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="ContactId" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="CommentType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NoteDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Reservation" Relationship="Self.FK_MemberNote_Reservation" FromRole="MemberNote" ToRole="Reservation" />
+        </EntityType>
+        <EntityType Name="Reservation">
+          <Key>
+            <PropertyRef Name="ReservationId" />
+          </Key>
+          <Property Name="ReservationId" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="ResortNumber" Type="Int32" Nullable="false" />
+          <Property Name="ConfirmationNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CheckInDate" Type="DateTime" Precision="0" />
+          <Property Name="CheckOutDate" Type="DateTime" Precision="0" />
+          <Property Name="ReservationStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ReservationType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UnitTypeId" Type="Int32" />
+          <Property Name="UnitTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UnitTypeDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UnitId" Type="Int32" />
+          <Property Name="UnitDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="UnitRef" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ClubType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContractNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContractResortNumber" Type="Decimal" Precision="9" Scale="0" />
+          <Property Name="PrimaryContactId" Type="Decimal" Precision="9" Scale="0" />
+          <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="MemberNote" Relationship="Self.FK_MemberNote_Reservation" FromRole="Reservation" ToRole="MemberNote" />
+          <NavigationProperty Name="Reservation_Contact" Relationship="Self.FK_Reservation_Contact__Reservation" FromRole="Reservation" ToRole="Reservation_Contact" />
+          <NavigationProperty Name="ReservationOption" Relationship="Self.FK_ReservationOption_Reservation" FromRole="Reservation" ToRole="ReservationOption" />
+          <Property Name="ClubTypeId" Type="Int32" />
+          <Property Name="TourBookingStatus" Type="Decimal" Precision="9" Scale="0" />
+          <Property Name="TourBookingStatusDesc" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Reservation_Contact">
+          <Key>
+            <PropertyRef Name="Reservation_ContactId" />
+          </Key>
+          <Property Name="Reservation_ContactId" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="ReservationId" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="ContactId" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Reservation" Relationship="Self.FK_Reservation_Contact__Reservation" FromRole="Reservation_Contact" ToRole="Reservation" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EmailAddress" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ReservationOption">
+          <Key>
+            <PropertyRef Name="ReservationOptionId" />
+          </Key>
+          <Property Name="ReservationOptionId" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="ReservationId" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="ProductName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="AppointmentDate" Type="DateTime" Precision="7" />
+          <Property Name="CarrierName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="FlightNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="BaseCurrencyAmount" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Reservation" Relationship="Self.FK_ReservationOption_Reservation" FromRole="ReservationOption" ToRole="Reservation" />
+        </EntityType>
+        <Association Name="FK_MemberNote_Reservation">
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="1" />
+          <End Role="MemberNote" Type="Self.MemberNote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reservation">
+              <PropertyRef Name="ReservationId" />
+            </Principal>
+            <Dependent Role="MemberNote">
+              <PropertyRef Name="ReservationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservation_Contact__Reservation">
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="1" />
+          <End Role="Reservation_Contact" Type="Self.Reservation_Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reservation">
+              <PropertyRef Name="ReservationId" />
+            </Principal>
+            <Dependent Role="Reservation_Contact">
+              <PropertyRef Name="ReservationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReservationOption_Reservation">
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="1" />
+          <End Role="ReservationOption" Type="Self.ReservationOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reservation">
+              <PropertyRef Name="ReservationId" />
+            </Principal>
+            <Dependent Role="ReservationOption">
+              <PropertyRef Name="ReservationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="resortConnectEntities" annotation:LazyLoadingEnabled="true" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+          <EntitySet Name="Contact" EntityType="Self.Contact" />
+          <EntitySet Name="MemberNote" EntityType="Self.MemberNote" />
+          <EntitySet Name="Reservation" EntityType="Self.Reservation" />
+          <EntitySet Name="Reservation_Contact" EntityType="Self.Reservation_Contact" />
+          <EntitySet Name="ReservationOption" EntityType="Self.ReservationOption" />
+          <AssociationSet Name="FK_MemberNote_Reservation" Association="Self.FK_MemberNote_Reservation">
+            <End Role="Reservation" EntitySet="Reservation" />
+            <End Role="MemberNote" EntitySet="MemberNote" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservation_Contact__Reservation" Association="Self.FK_Reservation_Contact__Reservation">
+            <End Role="Reservation" EntitySet="Reservation" />
+            <End Role="Reservation_Contact" EntitySet="Reservation_Contact" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReservationOption_Reservation" Association="Self.FK_ReservationOption_Reservation">
+            <End Role="Reservation" EntitySet="Reservation" />
+            <End Role="ReservationOption" EntitySet="ReservationOption" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="resortConnectModelStoreContainer" CdmEntityContainer="resortConnectEntities">
+          <EntitySetMapping Name="Contact">
+            <EntityTypeMapping TypeName="resortConnectModel.Contact">
+              <MappingFragment StoreEntitySet="Contact">
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="PrimaryFlag" ColumnName="PrimaryFlag" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MemberNote">
+            <EntityTypeMapping TypeName="resortConnectModel.MemberNote">
+              <MappingFragment StoreEntitySet="MemberNote">
+                <ScalarProperty Name="MemberNoteId" ColumnName="MemberNoteId" />
+                <ScalarProperty Name="ReservationId" ColumnName="ReservationId" />
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+                <ScalarProperty Name="CommentType" ColumnName="CommentType" />
+                <ScalarProperty Name="NoteDate" ColumnName="NoteDate" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reservation">
+            <EntityTypeMapping TypeName="resortConnectModel.Reservation">
+              <MappingFragment StoreEntitySet="Reservation">
+                <ScalarProperty Name="TourBookingStatusDesc" ColumnName="TourBookingStatusDesc" />
+                <ScalarProperty Name="TourBookingStatus" ColumnName="TourBookingStatus" />
+                <ScalarProperty Name="ClubTypeId" ColumnName="ClubTypeId" />
+                <ScalarProperty Name="ReservationId" ColumnName="ReservationId" />
+                <ScalarProperty Name="ResortNumber" ColumnName="ResortNumber" />
+                <ScalarProperty Name="ConfirmationNumber" ColumnName="ConfirmationNumber" />
+                <ScalarProperty Name="CheckInDate" ColumnName="CheckInDate" />
+                <ScalarProperty Name="CheckOutDate" ColumnName="CheckOutDate" />
+                <ScalarProperty Name="ReservationStatus" ColumnName="ReservationStatus" />
+                <ScalarProperty Name="ReservationType" ColumnName="ReservationType" />
+                <ScalarProperty Name="UnitTypeId" ColumnName="UnitTypeId" />
+                <ScalarProperty Name="UnitTypeName" ColumnName="UnitTypeName" />
+                <ScalarProperty Name="UnitTypeDesc" ColumnName="UnitTypeDesc" />
+                <ScalarProperty Name="UnitId" ColumnName="UnitId" />
+                <ScalarProperty Name="UnitDesc" ColumnName="UnitDesc" />
+                <ScalarProperty Name="UnitRef" ColumnName="UnitRef" />
+                <ScalarProperty Name="ClubType" ColumnName="ClubType" />
+                <ScalarProperty Name="ContractNumber" ColumnName="ContractNumber" />
+                <ScalarProperty Name="ContractResortNumber" ColumnName="ContractResortNumber" />
+                <ScalarProperty Name="PrimaryContactId" ColumnName="PrimaryContactId" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reservation_Contact">
+            <EntityTypeMapping TypeName="resortConnectModel.Reservation_Contact">
+              <MappingFragment StoreEntitySet="Reservation_Contact">
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Reservation_ContactId" ColumnName="Reservation_ContactId" />
+                <ScalarProperty Name="ReservationId" ColumnName="ReservationId" />
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReservationOption">
+            <EntityTypeMapping TypeName="resortConnectModel.ReservationOption">
+              <MappingFragment StoreEntitySet="ReservationOption">
+                <ScalarProperty Name="ReservationOptionId" ColumnName="ReservationOptionId" />
+                <ScalarProperty Name="ReservationId" ColumnName="ReservationId" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
+                <ScalarProperty Name="CarrierName" ColumnName="CarrierName" />
+                <ScalarProperty Name="FlightNumber" ColumnName="FlightNumber" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="BaseCurrencyAmount" ColumnName="BaseCurrencyAmount" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer>
+    <edmx:Connection>
+      <edmx:DesignerInfoPropertySet>
+        <edmx:DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </edmx:DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <edmx:DesignerInfoPropertySet>
+        <edmx:DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <edmx:DesignerProperty Name="EnablePluralization" Value="false" />
+        <edmx:DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <edmx:DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <edmx:DesignerProperty Name="CodeGenerationStrategy" Value="Default" />
+      </edmx:DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams />
+  </edmx:Designer>
+</edmx:Edmx>

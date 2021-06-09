@@ -1,0 +1,41 @@
+﻿@model ePlatBack.Models.ViewModels.PlaceTypesModel.SearchPlaceTypesModel
+
+<fieldset id="fdsPlaceTypesManagement">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        Place Types Management
+    </legend>
+    <div class="align-from-top">
+        <div class="full-width">
+            <input type="button" id="btnNewPlaceTypesInfo" class="submit fieldset-expander right" value="New">
+        </div>
+        @using (Ajax.BeginForm("SearchPlaceTypes", "Catalogs", new AjaxOptions { OnSuccess = "CATALOG.placeTypesResultsTable(data)", OnComplete = "CATALOG.makePlaceTypesSelectable()", UpdateTargetId = "divTblExistingPlaceTypes" }, new { id = "frmPlaceTypesSearch" }))
+        {
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Search_PlaceTypes)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Search_PlaceTypes)
+                </div>
+            </div>
+            <div class="editor-alignment align-from-top">
+                <div class="editor-field">
+                    <input type="submit" id="btnSearchPlaceTypes" class="button search" value="Search" />
+                </div>
+            </div>
+            <div id="divTblExistingPlaceTypes" class="align-from-top">
+                <table id="tblSearchPlaceTypesResults" class="dataTable table search-results">
+                    <thead>
+                        <tr>
+                            <th>Place Type</th>
+                            <th>Active</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        }
+        @Html.Action("RenderPlaceTypesManagement", "Catalogs")
+    </div>
+</fieldset>

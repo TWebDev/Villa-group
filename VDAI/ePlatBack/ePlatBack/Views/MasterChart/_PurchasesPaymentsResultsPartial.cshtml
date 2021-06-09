@@ -1,0 +1,69 @@
+﻿@model ePlatBack.Models.ViewModels.PurchasesModel
+
+<table id="tblPurchasesPayments" class="table dataTable">
+    <thead>
+        <tr>
+            <th>Charged To</th>
+            <th>Payment Type</th>
+            <th>Exchange Rate</th>
+            <th>Amount</th>
+            <th>Transaction</th>
+            <th>Date Saved</th>
+            <th>Reference</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ListPurchasesPayments != null)
+        {
+            foreach (var i in Model.ListPurchasesPayments)
+            {
+                var id = "purchasePayment_" + i.PurchasePayment_PaymentDetailsID;
+                var amount = i.PurchasePayment_Amount + " " + i.PurchasePayment_Currency;
+                //var style= float.Parse(i.PurchasePayment_Amount) < 0 ? "color:red" : "";
+                var _amount = i.PurchasePayment_Amount < 0 ? "negative-amount" : "";
+                var _deleted = i.PurchasePaymentInfo_Deleted ? "disabled-row" : "";
+                var _code = i.PurchasePayment_ErrorCode != "Approved" ? "declined" : (i.PurchasePaymentInfo_Deleted ? "Deleted" : "");
+                var _codeText = i.PurchasePayment_ErrorCode != "Approved" ? "declined" : (i.PurchasePaymentInfo_Deleted ? "Deleted" : "");
+                var _applyCommission = i.PurchasePayment_ApplyCommission.ToString();
+                var _commission = i.PurchasePayment_CardCommission;
+                
+                <tr id="@id" class="@_deleted" >
+                    <td>
+                        @Html.DisplayFor(model => i.PurchasePayment_Company)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.PurchasePayment_PaymentType)
+                        <input type="hidden" class="hdn-commission-applied" value="@_applyCommission" />
+                        <input type="hidden" class="hdn-bank-commission" value="@_commission"/>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.PurchasePayment_ExchangeRate)
+                    </td>
+                    <td class="@_amount">
+                        @Html.DisplayFor(model => amount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.PurchasePayment_AuthCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.PurchasePaymentInfo_DateSaved)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.PurchasePayment_PurchaseReference)
+                    </td>
+                    <td class="@_code">
+                        <span class="table-cell">@Html.DisplayFor(model => @_codeText)</span>
+                    </td>
+                    <td>
+                        @if (!i.PurchasePaymentInfo_IsRelatedToCloseOut && !i.PurchasePaymentInfo_Deleted)
+                        {
+                            <span class="table-cell"><img src="~/Content/themes/base/images/trash.png" class="right" /></span>
+                        }
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

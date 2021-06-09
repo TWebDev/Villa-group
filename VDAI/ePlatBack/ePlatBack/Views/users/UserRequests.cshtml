@@ -1,0 +1,63 @@
+﻿@model ePlatBack.Models.ViewModels.UserRequestsViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+@section Head{
+    <script>
+        window.Requests = JSON.parse('@Html.Raw(Model.RequestsJson)');
+    </script>
+}
+
+@section Scripts {
+
+    <script src="~/ViewModels/eplat.local.public.userrequests.js"></script>
+}
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 border-bottom">
+    <h1 class="h2">User Requests</h1>
+</div>
+
+<div class="card my-3">
+    <div class="card-body">
+
+        <b-table id="tblUserRequests" responsive
+                 v-bind:items="Requests"
+                 v-bind:fields="RequestsDataTable.fields"
+                 v-bind:bordered="RequestsDataTable.bordered"
+                 v-bind:striped="RequestsDataTable.striped"
+                 v-bind:hover="RequestsDataTable.hover"
+                 v-bind:sort-by.sync="RequestsDataTable.sortBy"
+                 v-bind:sort-desc.sync="RequestsDataTable.sortDesc"
+                 v-bind:current-page="RequestsDataTable.currentPage"
+                 v-bind:per-page="RequestsDataTable.perPage"
+                 v-if="Requests.length > 0">
+            <template slot="Users" slot-scope="data">
+                <span v-html="data.value" style="display: block; width: 220px;"></span>
+            </template>
+            <template slot="Attachements" slot-scope="data">
+                <span v-bind:class="{ 'text-danger': data.value == 0, 'font-weight-bold' : data.value == 0 }">{{ data.value }}</span>
+            </template>
+            <template slot="DateSaved" slot-scope="data">
+                <span v-bind:class="{ 'text-warning': data.value == 'pending' }">{{ data.value }}</span>
+            </template>
+            <template slot="DateDocsChecked" slot-scope="data">
+                <span v-bind:class="{ 'text-warning': data.value == 'pending' }">{{ data.value }}</span>
+            </template>
+            <template slot="DateApproved" slot-scope="data">
+                <span v-bind:class="{ 'text-warning': data.value == 'pending' }">{{ data.value }}</span>
+            </template>
+            <template slot="DateDelivered" slot-scope="data">
+                <span v-bind:class="{ 'text-warning': data.value == 'pending' }">{{ data.value }}</span>
+            </template>
+            <template slot="actions" slot-scope="row">
+                <span style="display:block; width: 50px;">
+                    <a target="_blank" v-bind:href="'/users/userrequestfollowup/' + row.item.UserRequestID"><i class="material-icons">open_in_new</i></a>
+                    <i class="material-icons" v-on:click="deleteRequest(row.item.UserRequestID)">delete</i>
+                </span>
+            </template>
+        </b-table>
+        <b-pagination v-bind:total-rows="Requests.length" v-bind:per-page="RequestsDataTable.perPage" v-model="RequestsDataTable.currentPage" class="my-0" />
+    </div>
+</div>

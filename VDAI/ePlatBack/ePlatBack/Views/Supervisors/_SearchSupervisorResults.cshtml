@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ePlatBack.Models.ViewModels.UserSupervisorSearchModel>
+
+<table id="tblSearchUsersResults" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Search_UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Search_FirstName)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.FirstOrDefault().Search_LastName)
+</th>
+<th>
+    @Html.DisplayNameFor(model => model.FirstOrDefault().Search_JobPosition)
+</th>
+<th>
+    @Html.DisplayNameFor(model => model.FirstOrDefault().Search_UserName)
+</th>
+            
+
+</tr>
+</thead>
+    <tbody>
+      
+        @foreach (var item in Model)
+        {
+            <tr id="@item.UserID">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Search_UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Search_FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Search_LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Search_JobPosition)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Search_UserName)
+                </td>
+              
+            </tr>
+        }
+     
+    </tbody>
+</table>
+
+

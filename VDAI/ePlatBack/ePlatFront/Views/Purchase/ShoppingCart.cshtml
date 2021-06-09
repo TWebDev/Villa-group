@@ -1,0 +1,87 @@
+﻿@model ePlatBack.Models.ViewModels.PageViewModel
+
+@{
+    ViewBag.Culture = Model.Culture;
+    ViewBag.Title = Model.Seo_Title;
+    ViewBag.Keywords = Model.Seo_Keywords;
+    ViewBag.Description = Model.Seo_Description;
+    ViewBag.Index = Model.Seo_Index;
+    ViewBag.Follow = Model.Seo_Follow;
+    ViewBag.FriendlyUrl = Model.Seo_FriendlyUrl;
+    ViewBag.CanonicalDomain = Model.CanonicalDomain;
+
+    ViewBag.OppositeLanguageUrl = "/Purchase/ShoppingCart";
+
+    ViewBag.Header = Model.Template_Header;
+    ViewBag.Footer = Model.Template_Footer;
+    ViewBag.Logo = Model.Template_Logo;
+
+    ViewBag.Submenu1 = Model.Submenu1;
+    ViewBag.Submenu2 = Model.Submenu2;
+    ViewBag.Submenu3 = Model.Submenu3;
+}
+
+@section header{
+    @Html.Raw(Model.Scripts_Header)
+}
+
+@section afterBody{
+    @Html.Raw(Model.Scripts_AfterBody)
+}
+
+@section scripts{
+    @Html.Raw(Model.Scripts_Footer)
+}
+
+@section featured {
+    @Html.Raw(Model.Content_Header)
+}
+
+<div class="row container" id="CartStep1">
+    <div class="col s12 m7 l8">
+        <h1>@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Shopping_Cart</h1>
+        <ul class="collection" id="CartItems"></ul>
+    </div>
+    <div class="col s12 m5 l4">
+        <br />
+        <div class="card-panel grey lighten-3">
+            <span class="cart-subtotal">
+                <span class="right right-align" id="CartSubTotal"></span>
+                <span class="label">Subtotal</span>
+            </span>
+            <div id="divPromoCodeAdd">
+                <p>
+                    <div class="switch right">
+                        <label>
+                            No
+                            <input id="btnOpenPromocodePanel" type="checkbox">
+                            <span class="lever"></span>
+                            @ePlatFront.Resources.Views.Shared.SharedStrings.Yes
+                        </label>
+                    </div>
+                    @*<a id="btnOpenPromocodePanel" class="right btn-floating waves-effect waves-light amber black-text">
+                        <i class="material-icons">more_vert</i>
+                    </a>*@
+                    @ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Have_PromoCode
+                </p>
+            </div>
+            <div id="divPromoCodeApplied" style="display:none;">
+                <span class="right" id="PromoCodeTotal"></span>
+                <p class="label">Promo Code</p>
+            </div>
+            <div id="divPromoCode" style="display:none;">
+                <input type="text" id="PromoCode" class="browser-default black-text" />
+                <a id="btnApplyPromoCode" class="waves-effect waves-light btn amber black-text">@ePlatFront.Resources.Views.Shared.SharedStrings.Apply</a>
+            </div>
+            <div class="divider"></div>
+            <div class="section">
+                <span class="right right-align" id="CartTotal"></span>
+                <span>Total</span>
+            </div>
+            <div class="divider"></div>
+            <div class="section">
+                <a id="btnCheckOut" href="/Purchase/Checkout" class="waves-effect waves-light btn-large amber black-text">@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Proceed_to_Checkout</a>
+            </div>
+        </div>
+    </div>
+</div>

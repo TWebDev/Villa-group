@@ -1,0 +1,75 @@
+﻿@model ePlatBack.Models.ViewModels.PricesModel.PricesCustomModel
+
+<h2>@Model.ReportLayoutName</h2>
+
+<div class="table-div">
+    <div class="table-row">
+        <div class="table-cell">
+            Date<br />
+            @Model.Date
+        </div>
+        @if (Model.ExchangeRate != null)
+        {
+            <div class="table-cell">
+                Exchange Rate<br />
+                @Model.ExchangeRate
+            </div>
+        }
+        @if (Model.ProviderExchangeRate != null)
+        {
+            <div class="table-cell">
+                Provider Exchange Rate<br />
+                @Model.ProviderExchangeRate
+            </div>
+        }   
+    </div>
+</div>
+
+
+<table class="table exportable non-editable non-selectable" style="width: 100%;">
+    <thead>
+        <tr>
+            <th colspan="5"></th>
+            @foreach (var currency in Model.Currencies)
+            {
+                <th colspan="@(Model.PriceTypes.Count() * 2)" style="text-align:center;">@currency.CurrencyCode</th>
+            }
+        </tr>
+        <tr>
+            <th>ID</th>
+            <th>Category</th>
+            <th>Provider</th>
+            <th>Activity</th>
+            <th>Unit</th>
+            @foreach (var currency in Model.Currencies)
+            {
+                foreach (var pricetype in Model.PriceTypes)
+                {
+                    <th colspan="2">@pricetype.Type</th>
+                }
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var service in Model.Prices)
+        {
+            <tr>
+                <td>@service.ServiceID</td>
+                <td>@service.Category</td>
+                <td>@service.Provider</td>
+                <td>@service.Activity</td>
+                <td>@service.Unit</td>
+                @foreach (var price in @service.PricesPerType)
+                {
+                    <td>
+                        <span class="block price" data-format="currency">@price.Amount</span>
+                        <span class="block rule">@price.Rule</span>
+                    </td>
+                    <td>
+                        @price.Currency
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

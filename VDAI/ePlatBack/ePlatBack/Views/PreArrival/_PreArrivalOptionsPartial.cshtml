@@ -1,0 +1,179 @@
+﻿@model ePlatBack.Models.ViewModels.PreArrivalOptionsSoldModel
+
+@{
+    var Privileges = Model.Privileges;
+}
+@if (Privileges.Count(m => m.Component == "Section_OptionsSoldInfo") > 0 && Privileges.FirstOrDefault(m => m.Component == "Section_OptionsSoldInfo").View)
+{
+<section id="Section_OptionsSoldInfo" class="full-width editor-alignment fds-active" style="border-top:1px solid #dddddd;margin-top:20px;">
+    <h3>Options Sold Information</h3>
+    <div style="text-align:right">
+        <span class="block">
+            <input type="button" id="btnNewOptionSoldInfo" class="submit clear-form" value="new option" />
+        </span>
+    </div>
+    <div class="align-from-top align-from-bottom full-width" style="margin-bottom:20px;">
+        <table class="table dataTable" id="tblRCOptionsSoldResults">
+            <thead>
+                <tr>
+                    <th colspan="9" style="text-align:center;">Resort Connect Optionals</th>
+                </tr>
+                <tr>
+                    <th>Option Name</th>
+                    <th>Quantity</th>
+                    <th>Price Per Option</th>
+                    <th>Guest Name(s)</th>
+                    <th>Eligible for Credit</th>
+                    <th>Credit Amount</th>
+                    <th>Max Volume Redemption</th>
+                    <th>Total Paid</th>
+                    <th>Comments</th>
+                </tr>
+            </thead>
+            <tbody class="secondary-selected-row-dependent"></tbody>
+        </table>
+    </div>
+    <div class="align-from-top align-from-bottom full-width" style="margin-bottom:20px;">
+        <table class="table dataTable" id="tblOptionsSoldResults">
+            <thead>
+                <tr>
+                    <th colspan="10" style="text-align:center;">Optionals Sold</th>
+                </tr>
+                <tr>
+                    <th>Option Name</th>
+                    <th>Quantity</th>
+                    <th>Price Per Option</th>
+                    <th>Guest Name(s)</th>
+                    <th>Eligible for Credit</th>
+                    <th>Credit Amount</th>
+                    <th>Max Volume Redemption</th>
+                    <th>Total Paid</th>
+                    <th>Comments</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody class="secondary-selected-row-dependent"></tbody>
+        </table>
+    </div>
+    @using (Ajax.BeginForm("SaveOptionSold", "PreArrival", new AjaxOptions { OnSuccess = "PREARRIVAL.saveOptionSoldSuccess(data)" }, new { id = "frmOptionSoldInfo" }))
+    {
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.OptionInfo_OptionType)
+                @Html.HiddenFor(model => model.OptionInfo_ReservationID, new { data_keep_value = "", @class = "secondary-selected-row-dependent" })
+                @Html.HiddenFor(model => model.OptionInfo_OptionSoldID)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.OptionInfo_OptionType, Model.OptionTypes)
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.OptionInfo_Option)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.OptionInfo_Option, new List<SelectListItem>() { new SelectListItem() { Value = "null", Text = "--Select Type--" } })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.OptionInfo_OptionDescription)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.OptionInfo_OptionDescription, new List<SelectListItem>() { new SelectListItem() { Value = "", Text = "--Select Type--" } }, new { style = "display:none" })
+                <textarea id="txtOptionDescription" class="field-disabled" disabled="disabled"></textarea>
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.OptionInfo_Price)
+            </div>
+            <div class="editor-field">
+                @if (Privileges.Count(m => m.Component == "OptionInfo_Price") > 0 && Privileges.FirstOrDefault(m => m.Component == "OptionInfo_Price").Edit)
+                {
+                    @Html.TextBoxFor(model => model.OptionInfo_Price, new { @class = "use-placeholder numeric-field" })
+                }
+                else
+                {
+                    @Html.TextBoxFor(model => model.OptionInfo_Price, new { @class = "use-placeholder numeric-field", @readonly = "readonly" })
+                }
+            </div>
+        </div>
+
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.OptionInfo_Quantity)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.OptionInfo_Quantity, new { @class = "numeric-field" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.OptionInfo_DateTime)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.OptionInfo_DateTime, new { data_uses_datetime_picker = "true" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.OptionInfo_PointsRedemption)
+                <label id="lblRedemptionRate"></label>
+                <input type="text" id="OptionInfo_MaxRateRedemption" class="use-placeholder" style="display:none;" />
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.OptionInfo_PointsRedemption, new { @readonly = "readonly" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.OptionInfo_TotalPaid)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.OptionInfo_TotalPaid, new { @class = "field-disabled" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.OptionInfo_GuestNames)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.OptionInfo_GuestNames)
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.OptionInfo_Eligible)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.OptionInfo_Eligible, new List<SelectListItem>() { new SelectListItem() { Value = "null", Text = "--Select Option--" } })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.OptionInfo_CreditAmount)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.OptionInfo_CreditAmount, new List<SelectListItem>() { new SelectListItem() { Value = "null", Text = "--Select If Eligible--" } })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.OptionInfo_Comments)
+            </div>
+            <div class="editor-field">
+                @Html.TextAreaFor(model => model.OptionInfo_Comments)
+            </div>
+        </div>
+        if (Privileges.Count(m => m.Component == "btnSaveOptionSold") > 0 && Privileges.FirstOrDefault(m => m.Component == "btnSaveOptionSold").View)
+        {
+            <div class="editor-alignment align-from-top full-width">
+                <div class="editor-field">
+                    <input type="button" id="btnSaveOptionSold" class="submit right" value="save" />
+                </div>
+            </div>
+        }
+    }
+</section>
+}

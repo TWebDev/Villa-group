@@ -1,0 +1,50 @@
+﻿@model ePlatBack.Models.ViewModels.UserInfoModel
+
+<fieldset id="fdsUsersInfo" class="primary-selected-row-dependent">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        Supervisor info
+    </legend>
+    <div style="display: none" class="align-from-top">
+      
+
+        <div class="align-from-top" id="divTblExistingUsers" width="100%">
+            <table >
+                <tr>
+                    <td valign="top">
+                        <table id="tblSubordinates" class="table">
+                            <thead>
+                                Supervisor of
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Job Position</th>
+                                    <th>Email</th>
+
+                                </tr>
+                            </thead>
+                            <tbody class="primary-selected-row-dependent"></tbody>
+                        </table>
+                    </td>
+                    <td valign="top">
+                        <table id="tblSupervisor" class="table" >
+                            <thead>
+                                Supervised by
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Job Position</th>
+                                    <th>Email</th>
+
+                                </tr>
+                            </thead>
+                            <tbody class="primary-selected-row-dependent"></tbody>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</fieldset>
+

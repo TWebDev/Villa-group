@@ -1,0 +1,477 @@
+﻿@model ePlatBack.Models.ViewModels.PageViewModel
+
+@{
+    long terminalID = ePlatBack.Models.Utils.GeneralFunctions.GetTerminalID();
+    ViewBag.Culture = Model.Culture;
+    ViewBag.Title = Model.Seo_Title;
+    //ViewBag.Keywords = Model.Seo_Keywords;
+    //ViewBag.Description = Model.Seo_Description;
+    //ViewBag.Index = Model.Seo_Index;
+    //ViewBag.Follow = Model.Seo_Follow;
+    if (terminalID == 1)
+    {
+        ViewBag.Keywords = "Vacation Packages, Mexico, All inclusive Packages, Cabo San Lucas, Puerto Vallarta, Cancun, Loreto, All inclusive Resorts";
+        ViewBag.Description = "Enjoy a great vacations in the best hotel in Cabo San Lucas, Puerto Vallarta, Cancun or Loreto with a huge discount call us today 877 606 0014";
+    }
+
+    ViewBag.Index = "index";
+    ViewBag.Follow = "follow";
+
+    ViewBag.Header = Model.Template_Header;
+    ViewBag.Footer = Model.Template_Footer;
+    ViewBag.Logo = Model.Template_Logo;
+
+    ViewBag.Submenu1 = Model.Submenu1;
+    ViewBag.Submenu2 = Model.Submenu2;
+    ViewBag.Submenu3 = Model.Submenu3;
+}
+
+@section header{
+    @Html.Raw(Model.Scripts_Header)
+}
+
+@section afterBody{
+    @Html.Raw(Model.Scripts_AfterBody)
+}
+
+@section scripts{
+    @Html.Raw(Model.Scripts_Footer)
+}
+
+@section controls{
+    @if (@Model.Template_Controls != null && @Model.Template_Controls.Count(x => x == "QuoteRequest") > 0)
+    {
+        <div id="quoteRequest" style="display:none;">@Html.Partial("_QuoteRequestPartial", Model.QuoteRequestControl)</div>
+    }
+    @if (@Model.Template_Controls != null && @Model.Template_Controls.Count(x => x == "Categories") > 0)
+    {
+        <div id="categories" style="display:none;"></div>
+    }
+}
+
+@section featured {
+    @Html.Raw(Model.Content_Header)
+    @{
+        if (terminalID == 1)
+        {
+            //DVH
+            <div id="slider" class="slide-container">
+                <div class="slide-header header-four">
+                    <div class="slide-title">Loreto $499 All Inclusive</div>
+                    <div class="slide-content">
+                        <span class="price">$499</span>
+                        <span class="destination">Loreto</span>
+                        <span class="plan">All Inclusive</span>
+                        <span class="stay">5 days and 4 nights</span>
+                        <span class="guests">2 adults and 2 children</span>
+                        <span class="more-info">
+                            <a href="/packages/loreto/all-inclusive-package" title="Loreto All Inclusive Package">
+                                <img src="~/Content/themes/dvh/images/more-info.png" width="31" height="31" alt="More Info about Loreto All Inclusive Package" />More Info
+                            </a>
+                        </span>
+                    </div>
+                </div>
+                <div class="slide-header header-three">
+                    <div class="slide-title">Cancun $249 All Inclusive</div>
+                    <div class="slide-content">
+                        <span class="price">$249</span>
+                        <span class="destination">Cancun</span>
+                        <span class="plan">All Inclusive</span>
+                        <span class="stay">6 days and 5 nights</span>
+                        <span class="guests">2 adults and 2 children</span>
+                        <span class="more-info">
+                            <a href="/packages/cancun" title="Cancun All Inclusive Package">
+                                <img src="~/Content/themes/dvh/images/more-info.png" width="31" height="31" alt="More Info about Cancun All Inclusive Package" />More Info
+                            </a>
+                        </span>
+                    </div>
+                </div>
+                <div class="slide-header header-two">
+                    <div class="slide-title">Cabo San Lucas $299 All Inclusive</div>
+                    <div class="slide-content">
+                        <span class="price">$299</span>
+                        <span class="destination">Cabo San Lucas</span>
+                        <span class="plan">All Inclusive</span>
+                        <span class="stay">6 days and 5 nights</span>
+                        <span class="guests">2 adults and 2 children</span>
+                        <span class="more-info">
+                            <a href="/packages/cabo-san-lucas/all-inclusive-holiday-inn-resort" title="Cabo San Lucas All Inclusive Package">
+                                <img src="~/Content/themes/dvh/images/more-info.png" width="31" height="31" alt="More Info about Cabo San Lucas All Inclusive Package" />More Info
+                            </a>
+                        </span>
+                    </div>
+                </div>
+                <div class="slide-header header-one selected-header" id="test">
+                    <div class="slide-title">Puerto Vallarta $249 All Inclusive</div>
+                    <div class="slide-content">
+                        <span class="price">$299</span>
+                        <span class="destination">Puerto Vallarta</span>
+                        <span class="plan">All Inclusive</span>
+                        <span class="stay">6 days and 5 nights</span>
+                        <span class="guests">2 adults and 2 children</span>
+                        <span class="more-info">
+                            <a href="/packages/puerto-vallarta/all-inclusive-package" title="Puerto Vallarta All Inclusive Package">
+                                <img src="~/Content/themes/dvh/images/more-info.png" width="31" height="31" alt="More Info about Puerto Vallarta All Inclusive Package" />More Info
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        }
+        else if (terminalID == 9 || terminalID == 15)
+        {
+            //TGA
+            if (Model.Culture == "en")
+            {
+                <div id="slider" class="slide-container">
+                    <div class="slide-header header-four">
+                        @if (terminalID == 9)
+                        {
+                            <div class="slide-title">Loreto $899 All Inclusive</div>
+                            <div class="slide-content">
+                                <span class="price">$899</span>
+                                <span class="destination">Loreto</span>
+                                <span class="plan">All Inclusive</span>
+                                <span class="stay">5 days and 4 nights</span>
+                                <span class="guests">2 adults and 2 children</span>
+                                <span class="more-info">
+                                    <a href="/packages/loreto/all-inclusive">
+                                        <img src="~/Content/themes/dvh/images/more-info.png" width="31" height="31" />More Info
+                                    </a>
+                                </span>
+                            </div>
+                        }
+                        else if (terminalID == 15)
+                        {
+                            <div class="slide-title">Orlando $999 All Inclusive</div>
+                            <div class="slide-content">
+                                <span class="price">$999</span>
+                                <span class="destination">Orlando</span>
+                                <span class="plan">All Inclusive</span>
+                                <span class="stay">4 days and 3 nights</span>
+                                <span class="guests">2 adults and 2 children</span>
+                                <span class="more-info">
+                                    <a href="/packages/orlando/all-inclusive">
+                                        <img src="~/Content/themes/dvh/images/more-info.png" width="31" height="31" />More Info
+                                    </a>
+                                </span>
+                            </div>
+                        }
+                    </div>
+                    <div class="slide-header header-three">
+                        <div class="slide-title">Cancun $899 All Inclusive</div>
+                        <div class="slide-content">
+                            <span class="price">$899</span>
+                            <span class="destination">Cancun</span>
+                            <span class="plan">All Inclusive</span>
+                            <span class="stay">5 days and 4 nights</span>
+                            <span class="guests">2 adults and 2 children</span>
+                            <span class="more-info">
+                                <a href="/packages/cancun/all-inclusive">
+                                    <img src="~/Content/themes/dvh/images/more-info.png" width="31" height="31" />More Info
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="slide-header header-two">
+                        <div class="slide-title">Cabo San Lucas $899 All Inclusive</div>
+                        <div class="slide-content">
+                            <span class="price">$899</span>
+                            <span class="destination">Cabo San Lucas</span>
+                            <span class="plan">All Inclusive</span>
+                            <span class="stay">5 days and 4 nights</span>
+                            <span class="guests">2 adults and 2 children</span>
+                            <span class="more-info">
+                                <a href="/packages/cabo-san-lucas/all-inclusive">
+                                    <img src="~/Content/themes/dvh/images/more-info.png" width="31" height="31" />More Info
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="slide-header header-one selected-header" id="test">
+                        <div class="slide-title">Puerto Vallarta $899 All Inclusive</div>
+                        <div class="slide-content">
+                            <span class="price">$899</span>
+                            <span class="destination">Puerto Vallarta</span>
+                            <span class="plan">All Inclusive</span>
+                            <span class="stay">5 days and 4 nights</span>
+                            <span class="guests">2 adults and 2 children</span>
+                            <span class="more-info">
+                                <a href="/packages/puerto-vallarta/all-inclusive">
+                                    <img src="~/Content/themes/dvh/images/more-info.png" width="31" height="31" />More Info
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div id="slider" class="slide-container">
+                    <div class="slide-header header-four">
+                        <div class="slide-title">Loreto $9,999 Todo Incluido</div>
+                        <div class="slide-content">
+                            <span class="price">$9,999</span>
+                            <span class="destination">Loreto</span>
+                            <span class="plan">Todo Incluido</span>
+                            <span class="stay">5 días y 4 noches</span>
+                            <span class="guests">2 adultos y 2 niños</span>
+                            <span class="more-info">
+                                <a href="/paquetes/loreto/todo-incluido">
+                                    <img src="~/Content/themes/dvh/images/more-info.png" width="31" height="31" />Más Info
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="slide-header header-three">
+                        <div class="slide-title">Puerto Vallarta $4,499 Plan Europeo</div>
+                        <div class="slide-content">
+                            <span class="price">$4,499</span>
+                            <span class="destination">Puerto Vallarta</span>
+                            <span class="plan">Plan Europeo</span>
+                            <span class="stay">5 días y 4 noches</span>
+                            <span class="guests">2 adultos y 2 niños</span>
+                            <span class="more-info">
+                                <a href="/paquetes/puerto-vallarta/plan-europeo">
+                                    <img src="~/Content/themes/dvh/images/more-info.png" width="31" height="31" />Más Info
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="slide-header header-two">
+                        <div class="slide-title">Cabo San Lucas $9,999 Todo Incluido</div>
+                        <div class="slide-content">
+                            <span class="price">$9,999</span>
+                            <span class="destination">Cabo San Lucas</span>
+                            <span class="plan">Todo Incluido</span>
+                            <span class="stay">5 días y 4 noches</span>
+                            <span class="guests">2 adultos y 2 niños</span>
+                            <span class="more-info">
+                                <a href="/paquetes/cabo-san-lucas/todo-incluido">
+                                    <img src="~/Content/themes/dvh/images/more-info.png" width="31" height="31" />Más Info
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="slide-header header-one selected-header">
+                        <div class="slide-title">Puerto Vallarta $5,999 Todo Incluido</div>
+                        <div class="slide-content">
+                            <span class="price">$5,999</span>
+                            <span class="destination">Puerto Vallarta</span>
+                            <span class="plan">Todo Incluido</span>
+                            <span class="stay">5 días y 4 noches</span>
+                            <span class="guests">2 adultos y 2 niños</span>
+                            <span class="more-info">
+                                <a href="/paquetes/puerto-vallarta/todo-incluido">
+                                    <img src="~/Content/themes/dvh/images/more-info.png" width="31" height="31" />Más Info
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    }
+}
+
+@Html.Raw(Model.Content_Header)
+
+@{
+    if (terminalID == 1)
+    {
+        <div class="left-column">
+            <div class="tiles-menu">
+                <figure class="tile">
+                    <a href="/packages/puerto-vallarta">
+                        <img src="~/Content/themes/dvh/images/puerto-vallarta-packages.jpg" width="160" height="183" class="img-160-183" alt="Puerto Vallarta Packages" />
+                    </a>
+                    <figcaption class="tile-text">
+                        <a href="/packages/puerto-vallarta">
+                            Puerto Vallarta Packages
+                        </a>
+                    </figcaption>
+                </figure>
+                <figure class="tile">
+                    <a href="/packages/cabo-san-lucas">
+                        <img src="~/Content/themes/dvh/images/cabo-san-lucas-packages.jpg" width="160" height="183" class="img-160-183" alt="Cabo San Lucas Packages" />
+                    </a>
+                    <figcaption class="tile-text">
+                        <a href="/packages/cabo-san-lucas">
+                            Cabo San Lucas Packages
+                        </a>
+                    </figcaption>
+                </figure>
+                <figure class="tile">
+                    <a href="/packages/cancun">
+                        <img src="~/Content/themes/dvh/images/cancun-packages.jpg" width="160" height="183" class="img-160-183" alt="Cancun Packages" />
+                    </a>
+                    <figcaption class="tile-text">
+                        <a href="/packages/cancun">
+                            Cancun Packages
+                        </a>
+                    </figcaption>
+                </figure>
+                <figure class="tile">
+                    <a href="/packages/loreto">
+                        <img src="~/Content/themes/dvh/images/loreto-packages.jpg" width="160" height="183" class="img-160-183" alt="Loreto Packages" />
+                    </a>
+                    <figcaption class="tile-text">
+                        <a href="/packages/loreto">
+                            Loreto Packages
+                        </a>
+                    </figcaption>
+                </figure>
+            </div>
+            <div class="video-testimonial">
+                <iframe width="646" height="363" src="https://www.youtube.com/embed/5b7oSPTiT3Q?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <h1>Looking for Vacation Packages in Mexico</h1>
+            <p>
+                At Discount Vacation Hotels we believe that your vacation in <strong>Mexico</strong> should be as affordable as it is relaxing. We are dedicated to providing the absolute <strong>best pricing</strong> for Mexican vacation packages on the market. We will beat any current vacation package price posted on line for any major Mexican resorts, that is our Promise.
+            </p>
+            <p>
+                The staff at Discount Vacation Hotels are dedicated professionals who are committed to provide an immediate response to your requests whether they come by phone, email or through social media. We are a state of the art service provider with 20 years of experience in this market.
+            </p>
+            <p>
+                Each of our staff members has firsthand knowledge of the resorts and services we sell, they can backup any recommendation they make with experience. Count on us to find you the best solution for your vacation needs and <strong>call us today!</strong>
+            </p>
+        </div>
+        <div class="right-column">
+            <div class="call-us">
+                Let us help you<br />
+                <strong>plan<br />your vacation</strong><br />
+                Call us <br /><strong>toll free</strong>
+                <span class="phone-number phone-desktop">@Model.Template_Phone_Desktop</span>
+                <span class="phone-number phone-mobile">@Model.Template_Phone_Mobile</span>
+            </div>
+            <div class="call-to-action">How can we offer<br />such amazing prices?</div>
+            @Html.Partial("_FreeVacationPartial", Model.FreeVacationControl)
+        </div>
+    }
+    else if (terminalID == 9 || terminalID == 15)
+    {
+        <div class="left-column">
+            <span class="tiles-menu">
+                @if (Model.Culture == "en")
+                {
+                    <span class="tile">
+                        <a href="/packages/puerto-vallarta">
+                            <img src="~/Content/themes/tga/images/puerto-vallarta-packages.jpg?w=128&h=183&mode=crop" width="128" height="183" class="img-128-183" />
+                            <span class="tile-text">
+                                Puerto Vallarta Packages
+                            </span>
+                        </a>
+                    </span>
+                    <span class="tile">
+                        <a href="/packages/cabo-san-lucas">
+                            <img src="~/Content/themes/tga/images/cabo-san-lucas-packages.jpg?w=128&h=183&mode=crop" width="128" height="183" class="img-128-183" />
+                            <span class="tile-text">
+                                Cabo San Lucas Packages
+                            </span>
+                        </a>
+                    </span>
+                    <span class="tile">
+                        <a href="/packages/cancun">
+                            <img src="~/Content/themes/tga/images/cancun-packages.jpg?w=128&h=183&mode=crop" width="128" height="183" class="img-128-183" />
+                            <span class="tile-text">
+                                Cancun<br />
+                                Packages
+                            </span>
+                        </a>
+                    </span>
+                    if (Request.Url.ToString().IndexOf("todaygetaway.com") >= 0)
+                    {
+                        <span class="tile">
+                            <a href="/packages/loreto">
+                                <img src="~/Content/themes/tga/images/loreto-packages.jpg?w=128&h=183&mode=crop" width="128" height="183" class="img-128-183" />
+                                <span class="tile-text">
+                                    Loreto<br />
+                                    Packages
+                                </span>
+                            </a>
+                        </span>
+                    }
+                    <span class="tile">
+                        <a href="/packages/orlando">
+                            <img src="~/Content/themes/tga/images/orlando-packages.jpg?w=128&h=183&mode=crop" width="128" height="183" class="img-128-183" />
+                            <span class="tile-text">
+                                Orlando<br />
+                                Packages
+                            </span>
+                        </a>
+                    </span>
+                }
+                else
+                {
+                    <span class="tile">
+                        <a href="/paquetes/puerto-vallarta">
+                            <img src="~/Content/themes/tga/images/puerto-vallarta-packages.jpg?w=128&h=183&mode=crop" width="128" height="183" class="img-128-183" />
+                            <span class="tile-text">
+                                Paquetes a<br />Puerto Vallarta
+                            </span>
+                        </a>
+                    </span>
+                    <span class="tile">
+                        <a href="/paquetes/cabo-san-lucas">
+                            <img src="~/Content/themes/tga/images/cabo-san-lucas-packages.jpg?w=128&h=183&mode=crop" width="128" height="183" class="img-128-183" />
+                            <span class="tile-text">
+                                Paquetes a<br />Cabo San Lucas
+                            </span>
+                        </a>
+                    </span>
+                    <span class="tile">
+                        <a href="/paquetes/loreto">
+                            <img src="~/Content/themes/tga/images/loreto-packages.jpg?w=128&h=183&mode=crop" width="128" height="183" class="img-128-183" />
+                            <span class="tile-text">
+                                Paquetes a<br />
+                                Loreto
+                            </span>
+                        </a>
+                    </span>
+                }
+            </span>
+            @if (terminalID == 9)
+            {
+                @Html.Raw(ePlatFront.Resources.Views.Shared.SharedStrings.TGA_Description)
+            }
+            else if (terminalID == 15)
+            {
+                <h1>Vacation Packages to the Best Destinations</h1>
+                <p>
+                    At Vacation Members we believe that your vacation should be as affordable as it is relaxing. We are dedicated to providing the absolute <strong>best pricing</strong> for vacation packages on the market. We will beat any current vacation package price posted on line for any major Mexican resorts, that is our Promise.
+                </p>
+                <p>
+                    The staff at Vacation Members are dedicated professionals who are committed to provide an immediate response to your requests whether they come by phone, email or through social media. We are a state of the art service provider with 20 years of experience in this market.
+                </p>
+                <p>
+                    Each of our staff members has firsthand knowledge of the resorts and services we sell, they can backup any recommendation they make with experience. Count on us to find you the best solution for your vacation needs and <strong>call us today!</strong>
+                </p>
+            }
+        </div>
+        <div class="right-column">
+            <div class="call-us">
+                @Html.Raw(ePlatFront.Resources.Views.Shared.SharedStrings.Call_Us)
+                <span class="phone-number phone-desktop">@Model.Template_Phone_Desktop</span>
+                <span class="phone-number phone-mobile">@Model.Template_Phone_Mobile</span>
+            </div>
+            <div class="call-to-action">How can we offer<br />such amazing prices?</div>
+            @Html.Partial("_FreeVacationPartial", Model.FreeVacationControl)
+        </div>
+    }
+    else if (terminalID == 5 || terminalID == 6 || terminalID == 7 || terminalID == 8)
+    {
+        <div class="left-column">
+            <h1>Looking for things to do in Puerto Vallarta?</h1>
+            <h2>Top 10 Puerto Vallarta Activities that you can't miss</h2>
+            <h3>Land Activities</h3>
+            <h3>Water Activities</h3>
+            <h2>We have the <strong>best price</strong> in tours and activities on the web, <strong>guaranteed!</strong></h2>
+            <p>
+                The tours, activities, services and excursions that we offer, have always discounted prices. Better than any other website or your hotel or cruise ship tour desk. If you find a better price, we'll give you that price, that's our guarantee. Book your activity right now to ensure you have a place in the best tours of Puerto Vallarta. If you <strong>need help or</strong> any kind of <strong>assistance</strong> about your tours reservations, please feel free to contact us by phone (<strong>1 877 359 0443</strong>), chat or our Contact Us section using the links at the top of this page.
+            </p>
+        </div>
+        <div class="right-column">
+
+        </div>
+    }
+}

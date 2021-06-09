@@ -1,0 +1,160 @@
+﻿@model ePlatBack.Models.ViewModels.ActivityDescriptionInfoModel
+@{
+    var Privileges = ViewData["Privileges"] as List<ePlatBack.Models.ViewModels.SysComponentsPrivilegesModel>;
+}
+@if (Privileges.FirstOrDefault(m => m.Component == "fdsActivityDescriptions") == null || Privileges.FirstOrDefault(m => m.Component == "fdsActivityDescriptions").View)
+{
+    <fieldset class="view-restricted" data-close-siblings="true" id="fdsActivityDescriptions" style="display: none">
+        <legend>
+            <img src="/Content/themes/base/images/eplat_show.jpg" alt="" class="fieldset-indicator fds-indicator-separator">
+            Activity Descriptions
+        </legend>
+        <div style="display: none">
+            <p class="full-width align-from-bottom">
+                <input type="button" id="btnNewActivityDescriptionInfo" class="submit fieldset-expander right" value="new" />
+            </p>
+            @if (Privileges.FirstOrDefault(m => m.Component == "ulActivityDescriptions") == null || Privileges.FirstOrDefault(m => m.Component == "ulActivityDescriptions").View)
+            {
+                <ul id="ulActivityDescriptions" class="primary-selected-row-dependent half-width"></ul>
+            }
+            @if (Privileges.FirstOrDefault(m => m.Component == "fdsActivityDescriptionInfo") == null || Privileges.FirstOrDefault(m => m.Component == "fdsActivityDescriptionInfo").View)
+            {
+                <fieldset id="fdsActivityDescriptionInfo">
+                    <legend>
+                        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+                        Description Info
+                    </legend>
+                    <div style="display: none">
+                        @if (Privileges.FirstOrDefault(m => m.Component == "frmActivityDescription") == null || Privileges.FirstOrDefault(m => m.Component == "frmActivityDescription").View)
+                        {
+                            using (Ajax.BeginForm("SaveActivityDescription", "Activities", new AjaxOptions { OnSuccess = "ACTIVITY.saveActivityDescriptionSuccess(data)" }, new { id = "frmActivityDescription", onSubmit = "return UI.showValidationSummary(this.id);" }))
+                            {
+                                <div id="frmActivityDescription_ErrorMessages" style="display: none">
+                                    @Html.ValidationMessageFor(model => model.ActivityDescriptionInfo_Activity)
+                                    @Html.ValidationMessageFor(model => model.ActivityDescriptionInfo_Culture)
+                                    @Html.ValidationMessageFor(model => model.ActivityDescriptionInfo_IsActive)
+                                </div>
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.ActivityDescriptionInfo_Activity)
+                                        @Html.HiddenFor(model => model.ActivityDescriptionInfo_ActivityDescriptionID, new { @class = "secondary-seleceted-row-dependent ignore-validation" })
+                                        @Html.HiddenFor(model => model.ActivityDescriptionInfo_ActivityID, new { @class = "primary-selected-row-dependent", data_keep_value = "" })
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.ActivityDescriptionInfo_Activity, new { data_format = "free-case" })
+                                    </div>
+                                </div>
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.ActivityDescriptionInfo_Culture)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.ActivityDescriptionInfo_Culture, Model.ActivityDescriptionInfo_DrpCultures)
+                                    </div>
+                                </div>
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.ActivityDescriptionInfo_IsActive)
+                                    </div>
+                                    <div class="editor-field">
+                                        <label for="ActivityDescriptionInfo_IsActiveTrue">Yes</label>
+                                        @Html.RadioButtonFor(model => model.ActivityDescriptionInfo_IsActive, true, new { data_keep_value = "" })
+                                        <label for="ActivityDescriptionInfo_IsActiveFalse">No</label>
+                                        @Html.RadioButtonFor(model => model.ActivityDescriptionInfo_IsActive, false, new { data_keep_value = "" })
+                                    </div>
+                                </div>
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.ActivityDescriptionInfo_Tag)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.ActivityDescriptionInfo_Tag, new { data_format = "free-case" })
+                                    </div>
+                                </div>
+                                @*este campo no está asignado en los procesos de guardado de descripcion, agregar.
+                                    <div class="editor-alignment">
+                                        <p class="editor-label">
+                                            @Html.LabelFor(model => model.ActivityDescriptionInfo_SeoItem)
+                                        </p>
+                                        <p class="editor-field">
+                                            @Html.DropDownListFor(model => model.ActivityDescriptionInfo_SeoItem, Model.ActivityDescriptionInfo_DrpSeoItems, new { @class= "seo-items-related" })
+                                        </p>
+                                    </div>*@
+                                <div class="editor-alignment full-width">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.ActivityDescriptionInfo_ShortDescription)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextAreaFor(model => model.ActivityDescriptionInfo_ShortDescription)
+                                    </div>
+                                </div>
+                                <div class="editor-alignment full-width">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.ActivityDescriptionInfo_FullDescription)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextAreaFor(model => model.ActivityDescriptionInfo_FullDescription)
+                                    </div>
+                                </div>
+                                <div class="editor-alignment full-width">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.ActivityDescriptionInfo_Itinerary)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextAreaFor(model => model.ActivityDescriptionInfo_Itinerary)
+                                    </div>
+                                </div>
+                                <div class="editor-alignment full-width">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.ActivityDescriptionInfo_Includes)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextAreaFor(model => model.ActivityDescriptionInfo_Includes)
+                                    </div>
+                                </div>
+                                <div class="editor-alignment full-width">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.ActivityDescriptionInfo_Notes)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextAreaFor(model => model.ActivityDescriptionInfo_Notes)
+                                    </div>
+                                </div>
+                                <div class="editor-alignment full-width">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.ActivityDescriptionInfo_Recommendations)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextAreaFor(model => model.ActivityDescriptionInfo_Recommendations)
+                                    </div>
+                                </div>
+                                <div class="editor-alignment full-width">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.ActivityDescriptionInfo_Policies)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextAreaFor(model => model.ActivityDescriptionInfo_Policies)
+                                    </div>
+                                </div>
+                                <div class="editor-alignment full-width">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.ActivityDescriptionInfo_CancelationPolicies)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextAreaFor(model => model.ActivityDescriptionInfo_CancelationPolicies)
+                                    </div>
+                                </div>
+                                if (Privileges.FirstOrDefault(m => m.Component == "btnSaveActivityDescription") == null || Privileges.FirstOrDefault(m => m.Component == "btnSaveActivityDescription").View)
+                                {
+                                    <div class="align-from-top full-width">
+                                        <input type="button" class="submit right" id="btnSaveActivityDescription" value="save">
+                                    </div>
+                                }
+                            }
+                        }
+                    </div>
+                </fieldset>
+            }
+        </div>
+    </fieldset>
+}

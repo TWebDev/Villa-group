@@ -1,0 +1,54 @@
+﻿@model ePlatBack.Models.ViewModels.BrowseImageModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Browse</title>
+    <link href="~/Content/ckeditor-custom.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('img').on('click', function(){
+                window.opener.CKEDITOR.tools.callFunction(@Model.CKEditorFuncNum, $(this).attr('src').trim());
+                window.close();
+            });
+            $('img').hoverIntent({
+                over: function(){
+                    $(this).animate({width: '300px', height: '175px', margin:'-25px'}, 'fast', function(){$(this).css({'z-index': '1'});});
+                },
+                out: function(){
+                    $(this).animate({width:'150px', height: '75px', margin:'0'}, 'fast', function(){$(this).css({'z-index': '0'});});
+                }
+            });
+            //$('img').on('mouseover', function(){
+            //    $(this).delay(300).animate({width: '300px', height: '175px', margin:'-25px'}, 'fast', function(){$(this).css('z-index', '1');});
+            //});
+            //$('img').on('mouseout', function(){
+            //    $(this).animate({width:'150px', height: '75px'}, 'fast', function(){$(this).css({margin:'0', 'z-index': '0'});});
+            //});
+        });
+    </script>
+</head>
+<body>
+    <div>
+        @if (Model.ImagePaths != null)
+        {
+            foreach (var path in Model.ImagePaths)
+            {
+                var src = @path + "?width=300&height=175&mode=crop";
+            <div style="height: 95px; width: 170px; display: inline-block;">
+                <img class="original-image" src="@src"/>
+                @*<img style="width:150px; height: 75px; padding: 10px; position: absolute; cursor:pointer;" src="@src"/>*@
+            </div>
+            }
+        }
+    </div>
+</body>
+</html>

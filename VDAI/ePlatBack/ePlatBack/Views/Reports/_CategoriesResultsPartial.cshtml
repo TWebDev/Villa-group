@@ -1,0 +1,97 @@
+﻿@model ePlatBack.Models.ViewModels.CategoriesProductionModel
+
+<div class="table-div">
+    <div class="table-row">
+        <div class="table-cell">
+            Dates<br />
+            @Model.Dates
+        </div>
+        <div class="table-cell">
+            Points of Sale<br />
+            @Html.Raw(Model.PointOfSale)
+        </div>
+        @if (Model.SelectedCategories != null)
+        {
+            <div class="table-cell">
+                Categories<br />
+                @Html.Raw(Model.SelectedCategories)
+            </div>
+        }
+    </div>
+</div>
+
+@if (Model.Categories != null)
+{
+    <h3>Categories Totals</h3>
+    <table class="table no-plugin exportable non-editable" style="width: 50%">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th colspan="@(Model.CategoriesTotal.Count() * 2)">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var category in Model.Categories.OrderByDescending(x => x.Total.First().Amount))
+            {
+                <tr>
+                    <td>@category.Category</td>
+                    @foreach (var t in @category.Total)
+                    {
+                        <td><span data-format="currency">@t.Amount</span></td>
+                        <td>@t.Currency</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h3>Sales</h3>
+    <table class="table no-plugin exportable non-editable" style="width: 100%">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Activity</th>
+                <th># of Coupons</th>
+                @foreach (var type in Model.PriceTypes.OrderBy(x => x.Order))
+                {
+                    <th colspan="4">
+                        @type.Type
+                    </th>
+                }
+                <th colspan="4">Activity Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var category in Model.Categories)
+            {
+                foreach (var service in category.Services)
+                {
+                    <tr>
+                        <td>
+                            @category.Category
+                        </td>
+                        <td>@service.Service</td>
+                        <td>@service.NumberOfCoupons</td>
+                        @foreach (var s in service.SalesPerPrice)
+                        {
+                            foreach (var t in s.Sales)
+                            {
+                                <td class="text-right">
+                                    <span data-format="currency">@t.Amount</span>
+                                </td>
+                                <td>@t.Currency</td>
+                            }
+                        }
+                        @foreach (var st in service.SalesTotal)
+                        {
+                            <td>
+                                <span data-format="currency">@st.Amount</span>
+                            </td>
+                            <td>@st.Currency</td>
+                        }
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+}

@@ -1,0 +1,37 @@
+﻿@model ePlatBack.Models.ViewModels.TransportationZoneInfoModel
+
+<fieldset id="fdsTransportationZonesInfo">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator"/>
+        Transportation Zone Info
+    </legend>
+    <div style="display: none">
+        @using (Ajax.BeginForm("SaveTransportationZone", "Places", new AjaxOptions { OnSuccess = "PLACE.saveTransportationZoneSuccess(data)" }, new { id="frmTransportationZoneInfo", onSubmit="UI.showValidationSummary(this.id);" }))
+        {
+            <div id="frmTransportationZoneInfo_ErrorMessages" style="display:none">
+                @Html.ValidationMessageFor(model => model.TransportationZoneInfo_TransportationZone)
+                @Html.ValidationMessageFor(model => model.TransportationZoneInfo_Destination)
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.TransportationZoneInfo_TransportationZone)
+                    @Html.HiddenFor(model => model.TransportationZoneInfo_TransportationZoneID, new { @class = "secondary-selected-row-dependent" })
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.TransportationZoneInfo_TransportationZone)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.TransportationZoneInfo_Destination)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.TransportationZoneInfo_Destination, Model.TransportationZoneInfo_DrpDestinations)
+                </div>
+            </div>
+            <div class="full-width">
+                <input type="submit" id="btnSaveTransportationZone" class="submit right" value="Save"/>
+            </div>
+        }
+    </div>
+</fieldset>

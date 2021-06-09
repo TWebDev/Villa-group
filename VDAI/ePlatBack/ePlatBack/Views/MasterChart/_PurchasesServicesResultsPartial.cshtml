@@ -1,0 +1,108 @@
+﻿@model ePlatBack.Models.ViewModels.PurchasesModel
+@{
+    var Privileges = Model.CouponsPrivileges;
+    var reprint = (Privileges.FirstOrDefault(m => m.Component == ".print-coupons") != null ? Privileges.FirstOrDefault(m => m.Component == ".print-coupons").Edit : false).ToString().ToLower();
+    var resend = (Privileges.FirstOrDefault(m => m.Component == ".send-coupons") != null ? Privileges.FirstOrDefault(m => m.Component == ".send-coupons").Edit : false).ToString().ToLower();
+}
+<table id="tblPurchasesServices" class="table dataTable" data-reprint="@reprint" data-resend="@resend">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Activity</th>
+            <th>Coupon #</th>
+            <th>Activity Date</th>
+            <th>Schedule</th>
+            <th>Meeting Point</th>
+            <th>Promo</th>
+            <th>Total</th>
+            @*<th>Currency</th>*@
+            <th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ListPurchasesServices != null)
+        {
+            foreach (var i in Model.ListPurchasesServices)
+            {
+                var id = "purchaseService_" + i.PurchaseService_PurchaseServiceID;
+                var _class = i.PurchaseService_ServiceStatus >= 4 ? "canceled-row" : "";
+                var _date = i.PurchaseService_CancelationDateTime != "" ? i.PurchaseService_CancelationDateTime : i.PurchaseService_ConfirmationDateTime;
+                var _promo = i.PurchaseService_Promo != 0 ? Json.Decode(i.PurchaseService_PromoString).promo : "None";
+                var _total = i.PurchaseService_Total + " " + i.PurchaseService_Currency;
+                var _issued = i.PurchaseService_Issued.ToString().ToLower();
+                
+                <tr id="@id" class="@_class" data-issued="@_issued">
+                    <td>
+                        @if (i.PurchaseService_MainPicture != "")
+                        {
+                            var url = "//eplatfront.villagroup.com" + i.PurchaseService_MainPicture + "?width=70&height=50&mode=crop";
+                            <img src="@url" style="vertical-align:inherit; margin:5px;" />
+                        }
+                        else
+                        {
+                            <div style="width:70px;height:50px;margin:5px;display:inline-block;vertical-align:inherit;"></div>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.PurchaseService_ServiceString)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.PurchaseService_CouponNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.PurchaseService_ServiceDateTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.PurchaseService_WeeklyAvailabilityString)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.PurchaseService_MeetingPointString)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => _promo)
+                        <input type="hidden" class="promo-info" value="@i.PurchaseService_PromoString" />
+                    </td>
+                    <td class="format-currency">
+                        @Html.DisplayFor(model => _total)
+                    </td>
+                    <td class="coupon-status">
+                        <span class="block">
+                            @Html.DisplayFor(model => i.PurchaseService_ServiceStatusString)
+                            @if (i.PurchaseService_ServiceStatus >= 3)
+                            {
+                                <span class="block">@_date</span>
+                            }
+                        </span>
+                    </td>
+                    <td>
+                        <span class="block align-from-top">
+                            @if (i.PurchaseService_ServiceStatus == 3)
+                            {
+                                if (Privileges.FirstOrDefault(m => m.Component == ".print-coupons") != null && Privileges.FirstOrDefault(m => m.Component == ".print-coupons").View)
+                                {
+                                    if (!i.PurchaseService_Issued || (i.PurchaseService_Issued && Privileges.FirstOrDefault(m => m.Component == ".print-coupons").Edit))
+                                    {
+                                        <input type="button" class="print-coupon button" value="print" />
+                                    }
+                                }
+                            }
+                        </span>
+                        <span class="block align-from-top">
+                            @if (i.PurchaseService_ServiceStatus == 3)
+                            {
+                                if (Privileges.FirstOrDefault(m => m.Component == ".send-coupons") != null && Privileges.FirstOrDefault(m => m.Component == ".send-coupons").View)
+                                {
+                                    if (!i.PurchaseService_Issued || (i.PurchaseService_Issued && Privileges.FirstOrDefault(m => m.Component == ".send-coupons").Edit))
+                                    {
+                                        <input type="button" class="get-coupon button" value="get" />
+                                    }
+                                }
+                            }
+                        </span>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

@@ -1,0 +1,12 @@
+﻿@model ePlatBack.Models.ViewModels.TransportationQuotes
+<div class="panel">
+    @Html.HiddenFor(model => model.TransportationServiceID)
+    <span>@ePlatFront.Resources.Views.Shared.SharedStrings.Transportation_Quotes</span><br />
+    <input type="hidden" id="hdnResortID" value="0" />
+    <input type="text" id="txtResort" disabled="disabled" />
+    <ul id="ulResorts"></ul>
+
+    <table id="tblZonePrices">
+        <tbody></tbody>
+    </table>
+</div>

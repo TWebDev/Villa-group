@@ -1,0 +1,236 @@
+﻿@model ePlatBack.Models.ViewModels.SearchPreArrivalWeeklyReportModel
+@using System.Globalization;
+
+@if (Model.Results != null)
+{
+    var counter = 0;
+    var iDate = Model.Results.FirstOrDefault().Range.Split('-').Select(m => int.Parse(m)).ToArray();
+    var fDate = Model.Results.LastOrDefault().Range.Split('-').Select(m => int.Parse(m)).ToArray();
+    var iMonth = new DateTime(iDate[0], iDate[1], iDate[2]).ToString("MMMM", CultureInfo.InvariantCulture);
+    var fMonth = new DateTime(fDate[0], fDate[1], fDate[2]).ToString("MMMM", CultureInfo.InvariantCulture);
+    var range = iMonth != fMonth ? iMonth + " - " + fMonth : iMonth;
+    var id = "table" + counter;
+
+    foreach (var item in Model.Results)
+    {
+        //var cols = item.ItemsPerResort.Count() + item.ItemsPerResort.FirstOrDefault().Results.Count(m => m.LeadSource != null) + 2;
+        var cols = item.ItemsPerResort.Count() + item.ItemsPerResort.Select(m => m.Results).Sum(m => m.Count()) + 2;
+        <table id="tblReportingResultsTable" class="dataTable non-editable exportable">
+            <thead>
+                <tr>
+                    <th colspan="@cols">@Html.DisplayFor(model => item.Range)</th>
+                </tr>
+                <tr>
+                    <th>
+                        Resort
+                    </th>
+                    @foreach (var i in item.ItemsPerResort.OrderBy(m => m.Resort))
+                    {
+
+                        foreach (var x in i.Results)
+                        {
+                            var colHeader = i.Resort + "<br />" + x.LeadSource;
+                            <th>@Html.Raw(@colHeader)</th>
+                        }
+                    }
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody class="text-right">
+                <tr>
+                    <td>
+                        Total Arrivals
+                    </td>
+                    @foreach (var i in item.ItemsPerResort.OrderBy(m => m.Resort))
+                    {
+                        foreach (var x in i.Results)
+                        {
+                            <td>
+                                @Html.DisplayFor(model => x.TotalArrivals)
+                            </td>
+                        }
+                    }
+                    <td>
+                        @{ var sumA = item.ItemsPerResort.Sum(m => m.Results.Sum(x => int.Parse(x.TotalArrivals)));}
+                        @Html.DisplayFor(model => @sumA)
+                    </td>
+                </tr>
+                <tr>
+                    <td>Non Contactable</td>
+                    @foreach (var i in item.ItemsPerResort.OrderBy(m => m.Resort))
+                    {
+                        foreach (var x in i.Results)
+                        {
+                            <td>
+                                @Html.DisplayFor(model => x.NonContactable)
+                            </td>
+                        }
+                    }
+                    <td>
+                        @{ var sumNC = item.ItemsPerResort.Sum(m => m.Results.Sum(x => int.Parse(x.NonContactable)));}
+                        @Html.DisplayFor(model => @sumNC)
+                    </td>
+                </tr>
+                <tr>
+                    <td>Contactable Arrivals</td>
+                    @foreach (var i in item.ItemsPerResort.OrderBy(m => m.Resort))
+                    {
+                        foreach (var x in i.Results)
+                        {
+                            <td>
+                                @Html.DisplayFor(model => x.Contactable)
+                            </td>
+                        }
+                    }
+                    <td>
+                        @{ var sumCA = item.ItemsPerResort.Sum(m => m.Results.Sum(x => int.Parse(x.Contactable)));}
+                        @Html.DisplayFor(model => @sumCA)
+                    </td>
+                </tr>
+                <tr>
+                    <td>Contacted</td>
+                    @foreach (var i in item.ItemsPerResort.OrderBy(m => m.Resort))
+                    {
+                        foreach (var x in i.Results)
+                        {
+                            <td>
+                                @Html.DisplayFor(model => x.Contacted)
+                            </td>
+                        }
+                    }
+                    <td>
+                        @{ var sumC = item.ItemsPerResort.Sum(m => m.Results.Sum(x => int.Parse(x.Contacted)));}
+                        @Html.DisplayFor(model => @sumC)
+                    </td>
+                </tr>
+                <tr>
+                    <td>Contact Penetration</td>
+                    @foreach (var i in item.ItemsPerResort.OrderBy(m => m.Resort))
+                    {
+                        foreach (var x in i.Results)
+                        {
+                            <td data-format="percentage">
+                                @Html.DisplayFor(model => x.ContactPenetration)
+                            </td>
+                        }
+                    }
+                    <td data-format="percentage">
+                        @{
+                            //var sumCP = Decimal.Round((item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.ContactPenetration))) / (cols == 2 ? 1 : (cols - 2))), 2);
+                            var sumCP = Decimal.Round((item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.Contacted))) / item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.Contactable)))) * 100, 2);
+                        }
+                        @Html.DisplayFor(model => @sumCP)
+                    </td>
+                </tr>
+                <tr>
+                    <td>Arrivals Sold</td>
+                    @foreach (var i in item.ItemsPerResort.OrderBy(m => m.Resort))
+                    {
+                        foreach (var x in i.Results)
+                        {
+                            <td>
+                                @Html.DisplayFor(model => x.ArrivalsSold)
+                            </td>
+                        }
+                    }
+                    <td>
+                        @{ var sumAS = item.ItemsPerResort.Sum(m => m.Results.Sum(x => int.Parse(x.ArrivalsSold)));}
+                        @Html.DisplayFor(model => @sumAS)
+                    </td>
+                </tr>
+                <tr>
+                    <td>Sales Penetration</td>
+                    @foreach (var i in item.ItemsPerResort.OrderBy(m => m.Resort))
+                    {
+                        foreach (var x in i.Results)
+                        {
+                            <td data-format="percentage">
+                                @Html.DisplayFor(model => x.Penetration)
+                            </td>
+                        }
+                    }
+                    <td data-format="percentage">
+                        @{ 
+                            //var sumP = Decimal.Round((item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.Penetration))) / (cols - 2)), 2);
+                            var sumP = item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.Contacted))) != 0 ? Decimal.Round((item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.ArrivalsSold))) / item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.Contacted)))) * 100, 2) : 0;
+                            }
+                        @Html.DisplayFor(model => @sumP)
+                    </td>
+                </tr>
+                <tr>
+                    <td>VOLUME ARRIVALS</td>
+                    @foreach (var i in item.ItemsPerResort.OrderBy(m => m.Resort))
+                    {
+                        foreach (var x in i.Results)
+                        {
+                            <td data-format="currency">
+                                @Html.DisplayFor(model => x.ArrivalsTotalSold)
+                            </td>
+                        }
+                    }
+                    <td data-format="currency">
+                        @{ var sumTS = item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.ArrivalsTotalSold)));}
+                        @Html.DisplayFor(model => @sumTS)
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="@cols" style="text-align:center;">AVERAGES</th>
+                </tr>
+                <tr>
+                    <td>Per Arrival</td>
+                    @foreach (var i in item.ItemsPerResort.OrderBy(m => m.Resort))
+                    {
+                        foreach (var x in i.Results)
+                        {
+                            <td data-format="currency">
+                                @Html.DisplayFor(model => x.AvgPerContactableArrival)
+                            </td>
+                        }
+                    }
+                    <td data-format="currency">
+                        @{ //var sumPCA = Decimal.Round((item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.AvgPerContactableArrival))) / (cols - 2)), 2);
+                        var sumPCA = Decimal.Round((item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.AvgPerContactableArrival))) / item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.Contactable)))), 2);
+                            }
+                        @Html.DisplayFor(model => @sumPCA)
+                    </td>
+                </tr>
+                <tr>
+                    <td>Per Contacted Arrival</td>
+                    @foreach (var i in item.ItemsPerResort.OrderBy(m => m.Resort))
+                    {
+                        foreach (var x in i.Results)
+                        {
+                            <td data-format="currency">
+                                @Html.DisplayFor(model => x.AvgPerContactedArrival)
+                            </td>
+                        }
+                    }
+                    <td data-format="currency">
+                        @{ var sumPCAA = Decimal.Round((item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.ArrivalsTotalSold))) / item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.Contacted)))), 2);}
+                        @Html.DisplayFor(model => @sumPCAA)
+                    </td>
+                </tr>
+                <tr>
+                    <td>Per Purchase</td>
+                    @foreach (var i in item.ItemsPerResort.OrderBy(m => m.Resort))
+                    {
+                        foreach (var x in i.Results)
+                        {
+                            <td data-format="currency">
+                                @Html.DisplayFor(model => x.AvgPerPurchase)
+                            </td>
+                        }
+                    }
+                    <td data-format="currency">
+                        @{ //var sumPP = Decimal.Round((item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.AvgPerPurchase))) / (cols - 2)), 2);
+                            //var sumPP = item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.ArrivalsSold))) > 0 ? Decimal.Round((item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.ArrivalsTotalSold))) / item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.ArrivalsSold)))), 2) : 0;
+                            var sumPP = item.ItemsPerResort.Sum(m => m.Results.Sum(x => (x.ArrivalsSold != null ? decimal.Parse(x.ArrivalsSold) : 0))) > 0 ? Decimal.Round((item.ItemsPerResort.Sum(m => m.Results.Sum(x => (x.ArrivalsTotalSold != null ? decimal.Parse(x.ArrivalsTotalSold) : 0))) / item.ItemsPerResort.Sum(m => m.Results.Sum(x => (x.ArrivalsSold != null ? decimal.Parse(x.ArrivalsSold) : 0)))), 2) : 0;
+                            }
+                        @Html.DisplayFor(model => @sumPP)
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    }
+}
+

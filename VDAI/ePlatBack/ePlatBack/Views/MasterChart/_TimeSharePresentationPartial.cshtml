@@ -1,0 +1,76 @@
+﻿@using ePlatBack.Models.Utils;
+@model ePlatBack.Models.ViewModels.Presentations.Views.PresentationGeneralInformation
+
+@using (
+    Ajax.BeginForm(
+        "SaveReservation",
+        "CRM/Masterchart",
+        new AjaxOptions { OnSuccess = "RESPONSE_HANDLERS.saveLead(data);" },
+
+        new
+        {
+            id = "frmLeadGeneralInformation",
+            onsubmit = "return LEAD_GENERAL_INFORMATION.beforeSubmit(this.id,event);"
+        }
+    )
+)
+{
+ <fieldset  data-on-collapse="closeSiblings" data-on-expand="closeBrothers" id="fdsTimesharePreservationsDetails">
+    <legend>
+        <img class="fieldset-indicator" src="/Content/themes/base/images/eplat_show.jpg" />
+        Timeshare Presentation Details
+    </legend>
+        <div>
+                     <div id="frmLeadGeneralInformation_ErrorMessages" style="display: none">
+                            @Html.ValidationSummary(false)
+                        </div>
+            @Html.HiddenFor(model => model.Presentations_PresentationID)
+
+
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Presentations_RealTourDate)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Presentations_RealTourDate)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Presentations_TourStatusID)
+                </div>
+                <div class="editor-field">
+                     @Html.DropDownListFor(model => model.Presentations_TourStatusID, Model.Presentations_TourStatus)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Presentations_HostessComments)
+                </div>
+                <div class="editor-field">
+                    @Html.TextAreaFor(model => model.Presentations_HostessComments)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Presentations_FinalTourStatusID)
+                </div>
+                <div class="editor-field">
+                     @Html.DropDownListFor(model => model.Presentations_FinalTourStatusID, Model.Presentations_TourStatus)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Presentations_FinalBookingStatus)
+                </div>
+                <div class="editor-field">
+                     @Html.DropDownListFor(model => model.Presentations_FinalBookingStatus, Model.Presentations_BookingStatus)
+                </div>
+            </div>        
+        </div>
+    </fieldset>
+
+     
+
+   
+}

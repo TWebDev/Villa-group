@@ -1,0 +1,43 @@
+﻿@model ePlatBack.Models.ViewModels.EmailsViewModel
+
+<table id="tblSearchFieldGroupsResults" class="table dataTable">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Field Group</th>
+            <th>Description</th>
+            <th>Saved By</th>
+            <th>Date Saved</th>
+            <th>Terminal</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.SearchFieldGroupsResults != null)
+        {
+            foreach (var i in Model.SearchFieldGroupsResults)
+            {
+                var id = i.FieldGroupsInfo_FieldGroupID;
+                <tr id="@id">
+                    <td>
+                        @Html.DisplayFor(model => i.FieldGroupsInfo_FieldGroupID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.FieldGroupsInfo_FieldGroup)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.FieldGroupsInfo_Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.FieldGroupsInfo_SavedByUser)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.FieldGroupsInfo_DateSaved)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.FieldGroupInfo_Terminal)
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

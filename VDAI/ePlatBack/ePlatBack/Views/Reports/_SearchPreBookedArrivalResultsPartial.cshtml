@@ -1,0 +1,54 @@
+﻿@model ePlatBack.Models.ViewModels.ReportViewModel
+
+<table id="tblSearchPreBookedArrivalsResults" class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Arrival Date</th>
+            <th>Resort</th>
+            <th>Booking Status</th>
+            <th>Lead Source</th>
+            <th>User</th>
+            <th>Status</th>
+            <th>Total Paid</th>
+            <th>Sales Volume</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.PreBookedArrivalResults != null)
+        {
+            foreach (var i in Model.PreBookedArrivalResults)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => i.PreBookedArrivalsReport_FirstName) + " " + @Html.DisplayFor(model => i.PreBookedArrivalsReport_LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.PreBookedArrivalsReport_ArrivalDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.PreBookedArrivalsReport_Resort)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.PreBookedArrivalsReport_BookingStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.PreBookedArrivalsReport_LeadSource)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.PreBookedArrivalsReport_UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.PreBookedArrivalsReport_Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.PreBookedArrivalsReport_TotalPaid)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.PreBookedArrivalsReport_SalesVolume)
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

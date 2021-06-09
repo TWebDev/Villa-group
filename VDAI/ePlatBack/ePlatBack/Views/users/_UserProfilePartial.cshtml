@@ -1,0 +1,305 @@
+﻿@model ePlatBack.Models.ViewModels.UserInfoModel
+
+<fieldset id="fdsUsersInfo" class="primary-selected-row-dependent">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        User Info
+    </legend>
+    @using (Ajax.BeginForm("SaveUser", "Users", new AjaxOptions { OnSuccess = "UR.saveUserSuccess(data)", HttpMethod = "Post" }, new { id = "frmUser", onSubmit = "return UI.showValidationSummary(this.id);" }))
+    {
+        <div style="display: none" id="frmUser_ErrorMessages">
+            @Html.ValidationMessageFor(model => model.UserInfo_UserName)
+            @Html.ValidationMessageFor(model => model.UserInfo_FirstName)
+            @Html.ValidationMessageFor(model => model.UserInfo_LastName)
+            @Html.ValidationMessageFor(model => model.UserInfo_Password)
+            @Html.ValidationMessageFor(model => model.UserInfo_ConfirmPassword)
+            @Html.ValidationMessageFor(model => model.UserInfo_Email)
+            @Html.ValidationMessageFor(model => model.UserInfo_DepartamentPhone)
+            @Html.ValidationMessageFor(model => model.UserInfo_PhoneEXT)
+            @Html.ValidationMessageFor(model => model.UserInfo_PersonalPhoneNumber)
+            @Html.ValidationMessageFor(model => model.UserInfo_Language)
+            @Html.ValidationMessageFor(model => model.UserInfo_Departament)
+            @Html.ValidationMessageFor(model => model.UserInfo_Company)
+            @Html.ValidationMessageFor(model => model.UserInfo_IsApproved)
+            @Html.ValidationMessageFor(model => model.UserInfo_IsLockedOut)
+            @Html.ValidationMessageFor(model => model.UserInfo_WorkGroup)
+
+        </div>
+
+        <h3>User Profile</h3>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.UserInfo_FirstName)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.UserInfo_FirstName)
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.UserInfo_LastName)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.UserInfo_LastName)
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.UserInfo_DepartamentPhone)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.UserInfo_DepartamentPhone, new { data_format = "phone" })
+            </div>
+        </div>
+
+        <div class="editor-alignment" style="min-width:2%">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.UserInfo_PhoneEXT)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.UserInfo_PhoneEXT, new { style = "width:40px" })
+            </div>
+        </div>
+
+
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.UserInfo_PersonalPhoneNumber)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.UserInfo_PersonalPhoneNumber, new { data_format = "phone" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.UserInfo_Company)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.UserInfo_Company, Model.CompanyList, new
+                       {
+                           @class = "terminal-dependent-list onchange",
+                           data_route = "/Users/GetDDLData",
+                           data_route_parameter = "company",
+                           data_onchange_route_parameter = "departament",
+                           data_dependent_list = "UserInfo_Departament"
+                       })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.UserInfo_Departament)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.UserInfo_Departament, Model.DepartamentList)
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.UserInfo_Language)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.UserInfo_Language, Model.LanguageList)
+            </div>
+        </div>
+        <h3>Credentials</h3>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.UserInfo_UserName)
+                @Html.HiddenFor(model => model.UserInfo_LastDateActivity, new { @class = "ignore-validation" })
+                @Html.HiddenFor(model => model.UserInfo_UserID, new
+                    {
+                        @class = "primary-selected-row-dependent ignore-validation removeUserFromSupervisors"
+                    })
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.UserInfo_UserName, new { style = "background-color: #E8EEF4", data_format = "lower-case" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.UserInfo_Email)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.UserInfo_Email, new { data_format = "lower-case" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.UserInfo_Password)
+            </div>
+            <div class="editor-field">
+                @Html.PasswordFor(model => model.UserInfo_Password)
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.UserInfo_ConfirmPassword)
+            </div>
+            <div class="editor-field">
+                @Html.PasswordFor(model => model.UserInfo_ConfirmPassword)
+            </div>
+        </div>
+        if (Model.Privileges.FirstOrDefault(m => m.Component == "UserInfo_JobPositions") == null || Model.Privileges.FirstOrDefault(m => m.Component == "UserInfo_JobPositions").View)
+        {
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.UserInfo_JobPositions)
+                </div>
+                <div class="editor-field">
+                    @Html.ListBoxFor(model => model.UserInfo_JobPositions, Model.JobPositionsList)
+                </div>
+            </div>
+        }
+        else
+        {
+            @Html.HiddenFor(model => model.UserInfo_JobPositions, Model.JobPositionsList)
+        }
+        if (Model.Privileges.FirstOrDefault(m => m.Component == "UserInfo_Terminals") == null || Model.Privileges.FirstOrDefault(m => m.Component == "UserInfo_Terminals").View)
+        {
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.UserInfo_Terminals)
+                </div>
+                <div class="editor-field">
+                    @Html.ListBoxFor(model => model.UserInfo_Terminals, Model.TerminalsList, new
+                               {
+                                   @class = "terminal-dependent-list",
+                                   multiple = "multiple",
+                                   data_route = "/Users/GetDDLData",
+                                   data_route_parameter = "selectedTerminals"
+                               })
+                </div>
+            </div>
+        }
+        else
+        {
+            @Html.HiddenFor(mode => mode.UserInfo_Terminals, Model.TerminalsList)
+        }
+
+
+        if (Model.Privileges.FirstOrDefault(m => m.Component == "UserInfo_Supervisors") == null || Model.Privileges.FirstOrDefault(m => m.Component == "UserInfo_Supervisors").View)
+        {
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.UserInfo_Supervisors)
+                </div>
+                <div class="editor-field">
+                    @Html.ListBoxFor(model => model.UserInfo_Supervisors, Model.SupervisorsList, new
+                           {
+                               @class = "workgroup-dependent-list",
+                               data_route = "/Users/GetDDLData",
+                               data_route_parameter = "supervisors"
+                           })
+                </div>
+            </div>
+        }
+        else
+        {
+            @Html.HiddenFor(model => model.UserInfo_Supervisors, Model.SupervisorsList)
+        }
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.UserInfo_Destinations)
+            </div>
+            <div class="editor-field">
+                @Html.ListBoxFor(model => model.UserInfo_Destinations, Model.DestinationsList)
+            </div>
+        </div>
+
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.UserInfo_OPC)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.UserInfo_OPC, Model.ListOPC, new
+                        {
+                            @class = "terminal-dependent-list",
+                            data_route = "/Users/GetDDLData",
+                            data_route_parameter = "OPC"
+                        })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.UserInfo_SPIUserName)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.UserInfo_SPIUserName, new { data_format = "lower-case" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.UserInfo_IsApproved, new { data_keep_value = "" })
+            </div>
+            <div class="editor-field">
+                <label for="UserInfo_IsApprovedTrue">Yes</label>
+                @Html.RadioButtonFor(model => model.UserInfo_IsApproved, true)
+                <label for="UserInfo_IsApprovedFalse">No</label>
+                @Html.RadioButtonFor(model => model.UserInfo_IsApproved, false)
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.UserInfo_IsLockedOut, new { data_keep_value = "" })
+            </div>
+            <div class="editor-field">
+                <label for="UserInfo_IsLockedOutTrue">Yes</label>
+                @Html.RadioButtonFor(model => model.UserInfo_IsLockedOut, true)
+                <label for="UserInfo_IsLockedOutFalse">No</label>
+                @Html.RadioButtonFor(model => model.UserInfo_IsLockedOut, false)
+            </div>
+        </div>
+        <div>
+            @if (Model.Privileges.FirstOrDefault(m => m.Component == "tblWorkGroupsRolesPerUser") == null || Model.Privileges.FirstOrDefault(m => m.Component == "tblWorkGroupsRolesPerUser").View)
+            {
+                <h3>Access Profiles</h3>
+                <div class="editor-alignment" style="width: 475px">
+                    <table id="tblWorkGroupsRolesPerUser" class="table full-width">
+                        <thead>
+                            <tr>
+                                <th>WorkGroup</th>
+                                <th>Role</th>
+                                <th>Reservations</th>
+                                <th>Services</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody class="primary-selected-row-dependent"></tbody>
+                        <tfoot>
+                            <tr>
+                                <td>
+                                    @Html.HiddenFor(model => model.UserInfo_WorkGroup)
+                                    @Html.DropDownListFor(model => model.WorkGroupsList, Model.WorkGroupsList)
+                                </td>
+                                <td>
+                                    @Html.DropDownListFor(model => model.RolesList, Model.RolesList)
+                                </td>
+                                <td>
+                                    @Html.CheckBoxFor(model => model.UserInfo_ManageReservations, new { title = "Manage Reservations" })
+                                </td>
+                                <td>
+                                    @Html.CheckBoxFor(model => model.UserInfo_ManageServices, new { title = "Manage Services" })
+                                </td>
+                                <td>
+                                    <input type="button" class="button right add-button" id="addWorkGroupRole" value="ADD" />
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            }
+            else
+            {
+                @Html.HiddenFor(model => model.UserInfo_WorkGroup)
+            }
+
+            @if (Model.Privileges.FirstOrDefault(m => m.Component == "btnSaveUser") == null || Model.Privileges.FirstOrDefault(m => m.Component == "btnSaveUser").View)
+            {
+                <div class="full-width align-from-bottom">
+                    <input id="btnSaveUser" type="button" class="submit right" value="Save" />
+                </div>
+            }
+
+        </div>
+    }
+</fieldset>

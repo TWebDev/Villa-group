@@ -1,0 +1,628 @@
+﻿@model ePlatBack.Models.ViewModels.LeadModel.Views.Search
+@{
+    var Privileges = ViewData["Privileges"] as List<ePlatBack.Models.ViewModels.SysComponentsPrivilegesModel>;
+}
+@if (Privileges.FirstOrDefault(m => m.Component == "fdsSearchCoupons") != null && Privileges.FirstOrDefault(m => m.Component == "fdsSearchCoupons").View)
+{
+    @*<fieldset id="fdsSearchCOupons" data-on-collapse="closeSiblings" data-on-expand="closeBrothers" class="non-printable">*@
+    <fieldset id="fdsSearchCoupons" data-on-collapse="closeSiblings" data-on-expand="closeBrothers" class="non-printable">
+        <legend>
+            <a href="javascript:void(0)" class="legendLink">
+                <img class="fieldset-indicator" border="0" src="/Content/themes/base/images/eplat_hide.jpg" />
+                Recent Sales
+            </a>
+        </legend>
+        <div style="display:none" class="align-from-top">
+            <div id="divCouponsTabs">
+                <ul>
+                    <li><a href="#sales">Sales</a></li>
+                    <li><a href="#activities">Activities</a></li>
+                    @*<li><a href="#unconfirmedCoupons">Unconfirmed Coupons</a></li>*@
+                </ul>
+                <div id="sales">
+                    @using (Ajax.BeginForm("SearchCoupons", "MasterChart", new AjaxOptions { OnBegin = "UI.checkForPendingRequests(xhr)", OnSuccess = "PURCHASE.searchCouponsResult(data)" }, new { id = "frmSearchCoupons", @class = "non-printable align-from-bottom" }))
+                    {
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.SearchCoupon_PurchaseDate)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.SearchCoupon_PurchaseDate, new { data_uses_date_picker = "true", style = "width:190px !important;", @class = "keydown-enter", data_keydown_enter_target = "btnSearchCoupons" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.SearchCoupon_PointOfSale)
+                                <input type="hidden" id="hdnIsPoSOnline" />
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.SearchCoupon_PointOfSale, Model.SearchCoupon_DrpPointsOfSale, new { @class = "terminal-dependent-list", data_route = "/MasterChart/GetDDLData", data_route_parameter = "pointOfSale" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.SearchCoupon_Coupon)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.SearchCoupon_Coupon, new { @class = "keydown-enter numeric-field", data_keydown_enter_target = "btnSearchCoupons" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-field">
+                                <input type="button" id="btnSearchCoupons" class="button-form avoid-trigger-on-load" value="Search Coupons" />
+                                <input type="button" id="btnClearLocal" class="button-form avoid-trigger-on-load" value="clear cache" />
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div id="activities">
+                    @using (Ajax.BeginForm("SearchCouponsByDate", "MasterChart", new AjaxOptions { OnBegin = "UI.checkForPendingRequests(xhr)", OnSuccess = "PURCHASE.searchCouponsByDateResult(data)" }, new { id = "frmSearchCoupons", @class = "non-printable align-from-bottom" }))
+                    {
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.SearchCouponByDate_I_ServiceDate)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.SearchCouponByDate_I_ServiceDate, new { data_uses_date_picker = "true" })
+                                @Html.TextBoxFor(model => model.SearchCouponByDate_F_ServiceDate, new { data_uses_date_picker = "true" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.SearchCouponByDate_Provider)
+                            </div>
+                            <div class="editor-field">
+                                @*@Html.DropDownListFor(model => model.SearchCouponByDate_Provider, Model.SearchCouponByDate_DrpProviders, new { @class = "providersPerTerminal-dependent-list", data_route = "/MasterChart/GetDDLData", data_route_parameter = "providersPerTerminal", multiple = "multiple" data_uses_multiselect_single = "true"})*@
+                                @Html.DropDownListFor(model => model.SearchCouponByDate_Provider, Model.SearchCouponByDate_DrpProviders, new { @class = "terminal-dependent-list", data_route = "/MasterChart/GetDDLData", data_route_parameter = "providersPerTerminal", multiple = "multiple", data_uses_multiselect_single = "true"})
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.SearchCouponByDate_Service)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.SearchCouponByDate_Service, Model.SearchCouponByDate_DrpServices, new { @*data_uses_multiselect_single = "true"*@ multiple = "multiple" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.SearchCouponByDate_PointOfSale)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.SearchCouponByDate_PointOfSale, Model.Search_DrpPointsOfSale, new { @class = "terminal-dependent-list", data_route = "/MasterChart/GetDDLData", data_route_parameter = "pointOfSale", multiple = "multiple" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-field">
+                                <input type="submit" id="btnSearchCouponsByDate" class="button-form avoid-trigger-on-load" value="Search Coupons" />
+                            </div>
+                        </div>
+                    }
+                </div>
+                @*<div id="unconfirmedCoupons">
+
+                    </div>*@
+            </div>
+
+            <div id="divCouponsResults" class="align-from-top">
+                <table id="tblSearchCouponsResults" class="table dataTable">
+                    <thead>
+                        <tr>
+                            <th>Folio</th>
+                            <th>Customer</th>
+                            <th>Coupon Status</th>
+                            <th>Coupon Total</th>
+                            <th>Coupon Date Saved</th>
+                            <th>Service Date</th>
+                            <th>Location</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </fieldset>
+}
+@if (Privileges.FirstOrDefault(m => m.Component == "fdsLeadSearch") == null || Privileges.FirstOrDefault(m => m.Component == "fdsLeadSearch").View)
+{
+    <fieldset id="fdsLeadSearch" class="non-printable">
+        <legend>
+            <a href="javascript:void(0)" class="legendLink">
+                <img class="fieldset-indicator" border="0" src="/Content/themes/base/images/eplat_show.jpg" />
+                Lead Search
+            </a>
+        </legend>
+        <div style="display: none">
+            @using (Ajax.BeginForm(
+        "Search",
+        "MasterChart",
+        new AjaxOptions { OnBegin = "UI.checkForPendingRequests(xhr)", OnSuccess = "RESPONSE_HANDLERS.searchLead(data)", UpdateTargetId = "leadSearchResultsDiv" },
+        new { id = "frmLeadSearch", onsubmit = "return COMMON.beforeSubmit(this.id,event);" }))
+            {
+                @Html.HiddenFor(model => model.ShowReservations, new { data_keep_value = "" })
+                @Html.HiddenFor(model => model.ShowServices, new { data_keep_value = ""})
+                @Html.TextBoxFor(model => model.Search_LeadID, new { style="display:none"})
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_FirstName") == null || Privileges.FirstOrDefault(m => m.Component == "Search_FirstName").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_FirstName)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.Search_FirstName)
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_LastName") == null || Privileges.FirstOrDefault(m => m.Component == "Search_LastName").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_LastName)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.Search_LastName)
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_Email") == null || Privileges.FirstOrDefault(m => m.Component == "Search_Email").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_Email)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.Search_Email)
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_Phone") == null || Privileges.FirstOrDefault(m => m.Component == "Search_Phone").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_Phone)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.Search_Phone)
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_CallClasification") == null || Privileges.FirstOrDefault(m => m.Component == "Search_CallClasification").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_CallClasification)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(m => m.Search_CallClasification, Model.Search_DrpCallClasifications, new { multiple = "multiple" })
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_BookingStatus") == null || Privileges.FirstOrDefault(m => m.Component == "Search_BookingStatus").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_BookingStatus)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.Search_BookingStatus, Model.Search_DrpBookingStatus, new { multiple = "multiple" })
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_LeadStatus") == null || Privileges.FirstOrDefault(m => m.Component == "Search_LeadStatus").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_LeadStatus)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.Search_LeadStatus, Model.Search_DrpLeadStatus, new { multiple = "multiple" })
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_LeadStatusDescription") == null || Privileges.FirstOrDefault(m => m.Component == "Search_LeadStatusDescription").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_LeadStatusDescription)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.Search_LeadStatusDescription)
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_LeadSource") == null || Privileges.FirstOrDefault(m => m.Component == "Search_LeadSource").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_LeadSource)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.Search_LeadSource, Model.Search_DrpLeadSources, new { multiple = "multiple" })
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_ArrivalDate") == null || Privileges.FirstOrDefault(m => m.Component == "Search_ArrivalDate").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_I_ArrivalDate)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.Search_I_ArrivalDate, new { data_uses_date_picker = "true", @Value = "", data_allow_null_range = "" })
+                            @Html.TextBoxFor(model => model.Search_F_ArrivalDate, new { data_uses_date_picker = "true", @Value = "", data_allow_null_range = "" })
+
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_ConfirmationNumber") == null || Privileges.FirstOrDefault(m => m.Component == "Search_ConfirmationNumber").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_ConfirmationNumber)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.Search_ConfirmationNumber)
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_Resort") == null || Privileges.FirstOrDefault(m => m.Component == "Search_Resort").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_Resort)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.Search_Resort, Model.Search_DrpResorts, new { multiple = "multiple" })
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_AssignedTo") == null || Privileges.FirstOrDefault(m => m.Component == "Search_AssignedTo").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_AssignedTo)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.Search_AssignedTo, Model.Search_DrpAssignedTo, new { multiple = "multiple" })
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_ClubType") == null || Privileges.FirstOrDefault(m => m.Component == "Search_ClubType").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_ClubType)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.Search_ClubType)
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_MemberNumber") == null || Privileges.FirstOrDefault(m => m.Component == "Search_MemberNumber").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_MemberNumber)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.Search_MemberNumber)
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_TourDate") == null || Privileges.FirstOrDefault(m => m.Component == "Search_TourDate").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_I_TourDate)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.Search_I_TourDate, new { data_uses_date_picker = "true" })
+                            @Html.TextBoxFor(model => model.Search_F_TourDate, new { data_uses_date_picker = "true" })
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_IsVip") == null || Privileges.FirstOrDefault(m => m.Component == "Search_IsVip").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_IsVip)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.Search_IsVip, Model.Search_DrpIsVip, new { multiple = "multiple" })
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_LastInteractionType") == null || Privileges.FirstOrDefault(m => m.Component == "Search_LastInteractionType").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_LastInteractionType)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.Search_LastInteractionType, Model.Search_DrpInteractionTypes, new { multiple = "multiple" })
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_SubmissionForm") == null || Privileges.FirstOrDefault(m => m.Component == "Search_SubmissionForm").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_SubmissionForm)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.Search_SubmissionForm, Model.Search_DrpSubmissionForm, new { multiple = "multiple" })
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_ActivityCert") == null || Privileges.FirstOrDefault(m => m.Component == "Search_ActivityCert").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_ActivityCert)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.Search_ActivityCert, Model.Search_DrpActivityCert, new { multiple = "multiple" })
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_TimeZone") == null || Privileges.FirstOrDefault(m => m.Component == "Search_TimeZone").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_TimeZone)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.Search_TimeZone, Model.Search_DrpTimeZones, new { multiple = "multiple" })
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_RealTourDate") == null || Privileges.FirstOrDefault(m => m.Component == "Search_RealTourDate").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_I_RealTourDate)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.Search_I_RealTourDate, new { data_uses_date_picker = "true" })
+                            @Html.TextBoxFor(model => model.Search_F_RealTourDate, new { data_uses_date_picker = "true" })
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_TourStatus") == null || Privileges.FirstOrDefault(m => m.Component == "Search_TourStatus").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_TourStatus)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.Search_TourStatus, Model.Search_DrpTourStatus, new { multiple = "multiple" })
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_FinalBookingStatus") == null || Privileges.FirstOrDefault(m => m.Component == "Search_FinalBookingStatus").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_FinalBookingStatus)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.Search_FinalBookingStatus, Model.Search_DrpFinalbookingStatus, new { multiple = "multiple" })
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_InputBy") == null || Privileges.FirstOrDefault(m => m.Component == "Search_InputBy").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_InputBy)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.Search_InputBy, Model.Search_DrpInputBy, new { multiple = "multiple" })
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_InputDate") == null || Privileges.FirstOrDefault(m => m.Component == "Search_InputDate").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_I_InputDate)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.Search_I_InputDate, new { data_uses_date_picker = "true" })
+                            @Html.TextBoxFor(model => model.Search_F_InputDate, new { data_uses_date_picker = "true" })
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_ModificationDate") == null || Privileges.FirstOrDefault(m => m.Component == "Search_ModificationDate").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_I_ModificationDate)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.Search_I_ModificationDate, new { data_uses_date_picker = "true" })
+                            @*<span></span>*@
+                            @Html.TextBoxFor(model => model.Search_F_ModificationDate, new { data_uses_date_picker = "true" })
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_GreetingRep") == null || Privileges.FirstOrDefault(m => m.Component == "Search_GreetingRep").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_GreetingRep)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.Search_GreetingRep, Model.Search_DrpGreetingRep, new { multiple = "multiple" })
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_OPC") == null || Privileges.FirstOrDefault(m => m.Component == "Search_OPC").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_OPC)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.Search_OPC, Model.Search_DrpOpc, new { multiple = "multiple" })
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_IsConfirmed") == null || Privileges.FirstOrDefault(m => m.Component == "Search_IsConfirmed").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_IsConfirmed)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.Search_IsConfirmed, Model.Search_DrpIsConfirmed, new { multiple = "multiple" })
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_InteractionBookingStatus") == null || Privileges.FirstOrDefault(m => m.Component == "Search_InteractionBookingStatus").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_InteractionBookingStatus)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.Search_InteractionBookingStatus, Model.Search_DrpInteractionBookingStatus, new { multiple = "multiple" })
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_InteractedWithUser") == null || Privileges.FirstOrDefault(m => m.Component == "Search_InteractedWithUser").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_InteractedWithUser)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.Search_InteractedWithUser, Model.Search_DrpInteractedWithUser, new { multiple = "multiple" })
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_PreCheckIn") == null || Privileges.FirstOrDefault(m => m.Component == "Search_PreCheckIn").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_PreCheckIn)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.Search_PreCheckIn, Model.Search_DrpPreCheckIn, new { multiple = "multiple" })
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_PurchaseDate") != null && Privileges.FirstOrDefault(m => m.Component == "Search_PurchaseDate").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_I_PurchaseDate)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.Search_I_PurchaseDate, new { data_uses_date_picker = "true", @Value = "" })
+                            @Html.TextBoxFor(model => model.Search_F_PurchaseDate, new { data_uses_date_picker = "true", @Value = "" })
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_CouponNumber") == null || Privileges.FirstOrDefault(m => m.Component == "Search_CouponNumber").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_CouponNumber)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.Search_CouponNumber)
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_AuthCode") == null || Privileges.FirstOrDefault(m => m.Component == "Search_AuthCode").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_AuthCode)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.Search_AuthCode)
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_PurchaseStatus") == null || Privileges.FirstOrDefault(m => m.Component == "Search_PurchaseStatus").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_PurchaseStatus)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.Search_PurchaseStatus, Model.Search_DrpPurchaseStatus, new { multiple = "multiple" })
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_PointOfSale") != null && Privileges.FirstOrDefault(m => m.Component == "Search_PointOfSale").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_PointOfSale)
+                        </div>
+                        <div class="editor-field">
+                            @*@Html.DropDownListFor(model => model.Search_PointOfSale, Model.Search_DrpPointsOfSale, new { multiple = "multiple", @class = "terminal-dependent-list", data_route = "/MasterChart/GetDDLData", data_route_parameter = "pointsOfSalePerTerminal" })*@
+                            @Html.DropDownListFor(model => model.Search_PointOfSale, Model.Search_DrpPointsOfSale, new { multiple = "multiple", @class = "terminal-dependent-list", data_route = "/MasterChart/GetDDLData", data_route_parameter = "pointOfSale" })
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_ReservationsAgent") != null && Privileges.FirstOrDefault(m => m.Component == "Search_ReservationsAgent").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_ReservationsAgent)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.Search_ReservationsAgent, Model.Search_DrpAgents, new { multiple = "multiple" })
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "Search_SalesAgent") != null && Privileges.FirstOrDefault(m => m.Component == "Search_SalesAgent").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Search_SalesAgent)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.Search_SalesAgent, Model.Search_DrpAgents, new { multiple = "multiple" })
+                        </div>
+                    </div>
+                }
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Search_Top)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.Search_Top, Model.Search_DrpTop)
+                    </div>
+                </div>
+                <div class="editor-alignment full-width">
+                    @if (Privileges.FirstOrDefault(m => m.Component == "btnSearchLeads") == null || Privileges.FirstOrDefault(m => m.Component == "btnSearchLeads").View)
+                    {
+                        <input type="submit" id="btnSearchLeads" class="button-form right terminals-dependent avoid-trigger-on-load" value="Search" />
+                    }
+                    <input type="reset" class="button-form right" value="Clear" style="margin-right: 5px" />
+                </div>
+            }
+        </div>
+    </fieldset>
+}
+@if (Privileges.FirstOrDefault(m => m.Component == "fdsLeadSearchResults") == null || Privileges.FirstOrDefault(m => m.Component == "fdsLeadSearchResults").View)
+{
+    <fieldset id="fdsLeadSearchResults" class="non-printable" style="display: none">
+        <legend>
+            <a href="javascript:void(0)" class="legendLink">
+                <img class="fieldset-indicator" border="0" src="/Content/themes/base/images/eplat_show.jpg" />
+                Leads List
+            </a>
+        </legend>
+        <div style="display: none">
+            <input type="hidden" id="flagAll" />
+            <div id="leadSearchResultsDiv">
+            </div>
+        </div>
+    </fieldset>
+}

@@ -1,0 +1,80 @@
+﻿@model ePlatBack.Models.ViewModels.BlockItem
+
+<fieldset id="fdsBlockItem" class="primary-selected-row-dependent">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" alt="" class="fieldset-indicator fds-indicator-separator">
+            Block Info
+    </legend>
+    <div class="align-from-top" style="display:none;">
+        @using (Ajax.BeginForm("SaveBlock", "Pages", new AjaxOptions { OnSuccess = "BLOCK.saveBlockSuccess(data)" }, new { id = "frmBlockItem", onSubmit = "return UI.showValidationSummary(this.id);" }))
+        {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        @Html.HiddenFor(model => model.BlockItem_BlockID, new { _class = "primary-selected-row-dependent" } )
+        @Html.ValidationMessageFor(model => model.BlockItem_BlockID)
+        
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.BlockItem_TerminalID)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.BlockItem_TerminalID, Model.BlockItem_Terminals)
+                @Html.ValidationMessageFor(model => model.BlockItem_TerminalID)
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.BlockItem_Block)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.BlockItem_Block)
+                @Html.ValidationMessageFor(model => model.BlockItem_Block)
+            </div>
+        </div>
+        <div class="editor-alignment" style="display:none;">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.BlockItem_General)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.BlockItem_General)
+                @Html.ValidationMessageFor(model => model.BlockItem_General)
+            </div>
+        </div>
+        <div class="editor-alignment" style="display:none;">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.BlockItem_Frame)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.BlockItem_Frame)
+                @Html.ValidationMessageFor(model => model.BlockItem_Frame)
+            </div>
+        </div>
+        <div class="editor-alignment full-width">
+            <input type="submit" class="submit right" value="Save" />
+        </div>
+        }
+
+        <fieldset id="fdsBlockDescriptions" class="view-restricted" style="display:none;">
+            <legend>
+                <img src="/Content/themes/base/images/eplat_show.jpg" alt="" class="fieldset-indicator fds-indicator-separator">
+                    Block Descriptions
+            </legend>
+            <div class="align-from-top" style="display:none;">
+                <input type="button" id="btnNewBlockDescriptionItem" class="submit fieldset-expander right" value="New">
+                <table id="tblBlockDescriptions" class="table dataTable" style="width: auto;">
+                    <thead>
+                        <tr>
+                            <th>Language</th><th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    
+                    </tbody>
+                </table>
+                @Html.Partial("_BlockItemDescriptionPartial", Model.BlockItem_Description)
+
+            </div>
+        </fieldset>
+    </div>
+</fieldset>

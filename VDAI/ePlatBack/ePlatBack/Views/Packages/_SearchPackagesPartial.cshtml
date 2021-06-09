@@ -1,0 +1,51 @@
+﻿@model ePlatBack.Models.ViewModels.PackagesSearchModel
+
+
+    <div class="full-width">
+                <input type="button" id="btnNewPackagesInfo" class="submit fieldset-expander right" value="New">
+            </div>
+            @using (Ajax.BeginForm("SearchPackages", "Packages", new AjaxOptions { OnSuccess = "PACKAGE.searchResultsTable(data)", OnComplete = "PACKAGE.makeTableRowsSelectable()", UpdateTargetId = "divTblExistingPackages" }, new { id = "frmPackagesSearch" }))
+            {
+                <div class="editor-alignment">
+                	<div class="editor-label">
+                        @Html.HiddenFor(model => model.Search_Terminals)
+                        @Html.LabelFor(model => model.Search_Package)
+                	</div>
+                	<div class="editor-field">
+                        @Html.TextBoxFor(model => model.Search_Package)
+                	</div>
+                </div>
+                <div class="editor-alignment">
+                	<div class="editor-label">
+                        @Html.LabelFor(model => model.Search_Destination)
+                	</div>
+                	<div class="editor-field">
+                        @Html.DropDownListFor(model => model.Search_Destination, Model.Search_DrpDestinations)
+                	</div>
+                </div>
+                <div class="editor-alignment align-from-top">
+                	<div class="editor-field">
+                        <input type="submit" id="btnSearchPackages" class="button terminals-dependent" value="Search" />
+                	</div>
+                </div>
+             <div id="divTblExistingPackages" class="align-from-top">
+                	<table id="tblSearchPackagesResults" class="table">
+                		<thead>
+                			<tr>
+                				<th>Package</th>
+                				<th>Destination(s)</th>
+                				<th>Nights</th>
+                                <th>Description(s)</th>
+                                <th>Settings</th>
+                                <th>Active Prices</th>
+                                <th>Pictures</th>
+                                <th>Relevance</th>
+                				<th>Active</th>
+                                <th></th>
+                			</tr>
+                		</thead>
+                		<tbody>
+                		</tbody>
+                	</table>
+                </div>   
+            }

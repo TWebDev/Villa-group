@@ -1,0 +1,13 @@
+﻿@model ePlatBack.Models.ViewModels.NotificationsViewModel
+
+@{
+    ViewBag.Title = "ePlat > Settings > Notifications";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+@section Scripts{
+    
+<script src="~/ViewModels/eplat.local.crm.notifications.js?ts=@DateTime.Now"></script>
+}
+
+@Html.Action("RenderManifestPartial", "Notifications", new { partial = "manifest" })

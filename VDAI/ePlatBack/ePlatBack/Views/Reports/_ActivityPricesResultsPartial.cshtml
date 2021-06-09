@@ -1,0 +1,157 @@
+﻿@model ePlatBack.Models.ViewModels.PricesModel
+<div style="float: right; text-align: right; margin-top: -40px;">
+    EXCHANGE RATES<br />
+    @Model.ExchangeRate
+</div>
+<table id="tblPricesReport" class="table exportable">
+            <thead>
+                <tr>
+                    <th colspan="3"></th>
+                    @if(Model.SelectedCurrency == 0 || Model.SelectedCurrency == 1){
+                        <th colspan="@(Model.FullView ? 5 : 4)" style="text-align:center; background-color:#5c5c5c">USD</th>
+                    }
+                    @if (Model.SelectedCurrency == 0 || Model.SelectedCurrency == 2)
+                    {
+                        <th colspan="@(Model.FullView ? 5 : 4)" style="text-align:center;">MXN</th>   
+                    }                    
+                </tr>
+                <tr>
+                    <th>Provider</th>
+                    <th>Activity</th>
+                    <th>Unit</th>
+                    @if(Model.SelectedCurrency == 0 || Model.SelectedCurrency == 1){
+                    <th>Public</th>
+                    <th>Gold Card</th>
+                    <th>Online</th>
+                    <th>Charge Back</th>
+                        if(Model.FullView){
+                        <th>Cost</th>
+                        }
+                    }
+                     @if (Model.SelectedCurrency == 0 || Model.SelectedCurrency == 2) {
+                    <th>Public</th>
+                    <th>Gold Card</th>
+                    <th>Online</th>
+                    <th>Charge Back</th>
+                        if(Model.FullView){
+                        <th>Cost</th>
+                        }
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @if(Model.ListPrices != null){
+                    foreach(var p in Model.ListPrices){
+                        <tr>
+                            <td>@p.Prices_Provider</td>
+                            <td>@p.Prices_Activity</td>
+                            <td>@p.Prices_Unit</td>
+                             @if(Model.SelectedCurrency == 0 || Model.SelectedCurrency == 1){
+                            <td>
+                                <span class="block price @(@p.Prices_Currency_1_PriceType_1_Rule == "Base Price" ? "base-price" : "")">
+                                    @p.Prices_Currency_1_PriceType_1
+                                </span>
+                                @if(Model.FullView){
+                                <span class="block rule">
+                                    @p.Prices_Currency_1_PriceType_1_Rule
+                                </span>            
+                                }                    
+                            </td>
+                            <td>
+                                <span class="block price">
+                                    @p.Prices_Currency_1_PriceType_2
+                                </span>
+                                @if(Model.FullView){
+                                <span class="block rule">
+                                    @p.Prices_Currency_1_PriceType_2_Rule
+                                </span>
+                                }
+                            </td>
+                            <td>
+                                <span class="block price">
+                                    @p.Prices_Currency_1_PriceType_3
+                                </span>
+                                @if(Model.FullView){
+                                <span class="block rule">
+                                    @p.Prices_Currency_1_PriceType_3_Rule
+                                </span>
+                                }
+                            </td>
+                            <td>
+                                <span class="block price">
+                                    @p.Prices_Currency_1_PriceType_4
+                                </span>
+                                @if(Model.FullView){
+                                <span class="block rule">
+                                    @p.Prices_Currency_1_PriceType_4_Rule
+                                </span>
+                                }
+                            </td>
+                                 if(Model.FullView){
+                                <td>
+                                    <span class="block price">
+                                        @p.Prices_Currency_1_PriceType_5
+                                    </span>
+                                    <span class="block rule">
+                                        @p.Prices_Currency_1_PriceType_5_Rule
+                                    </span>
+                                </td>
+                                 }
+                            }
+                            @if (Model.SelectedCurrency == 0 || Model.SelectedCurrency == 2) {
+                            <td>
+                                <span class="block price">
+                                    @p.Prices_Currency_2_PriceType_1
+                                </span>
+                                @if(Model.FullView){
+                                <span class="block rule">
+                                    @p.Prices_Currency_2_PriceType_1_Rule
+                                </span>
+                                }
+                            </td>
+                            <td>
+                                <span class="block price">
+                                    @p.Prices_Currency_2_PriceType_2
+                                </span>
+                                @if(Model.FullView){
+                                <span class="block rule">
+                                    @p.Prices_Currency_2_PriceType_2_Rule
+                                </span>
+                                }
+                            </td>
+                            <td>
+                                <span class="block price">
+                                    @p.Prices_Currency_2_PriceType_3
+                                </span>
+                                @if(Model.FullView){
+                                <span class="block rule">
+                                    @p.Prices_Currency_2_PriceType_3_Rule
+                                </span>
+                                }
+                            </td>
+                            <td>
+                                <span class="block price">
+                                    @p.Prices_Currency_2_PriceType_4
+                                </span>
+                                @if(Model.FullView){
+                                <span class="block rule">
+                                    @p.Prices_Currency_2_PriceType_4_Rule
+                                </span>   
+                                }
+                            </td>
+                                if(Model.FullView){
+                                <td>
+                                    <span class="block price">
+                                        @p.Prices_Currency_2_PriceType_5
+                                    </span>
+                                    <span class="block rule">
+                                        @p.Prices_Currency_2_PriceType_5_Rule
+                                    </span>
+                                </td>
+                                }
+                            }
+                        </tr>
+                    }                    
+                }
+            </tbody>
+        </table>

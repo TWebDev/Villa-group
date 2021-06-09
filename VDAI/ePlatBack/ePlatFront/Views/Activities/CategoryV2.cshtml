@@ -1,0 +1,146 @@
+﻿@model ePlatBack.Models.ViewModels.CategoryActivitiesViewModel
+
+@{
+    ViewBag.Culture = Model.Culture;
+    ViewBag.Title = Model.Seo_Title;
+    ViewBag.Keywords = Model.Seo_Keywords;
+    ViewBag.Description = Model.Seo_Description;
+    ViewBag.Index = Model.Seo_Index;
+    ViewBag.Follow = Model.Seo_Follow;
+    ViewBag.FriendlyUrl = Model.Seo_FriendlyUrl;
+    ViewBag.OppositeLanguageUrl = Model.Seo_OppositeLanguageUrl;
+    ViewBag.CanonicalDomain = Model.CanonicalDomain;
+
+    ViewBag.Header = Model.Template_Header;
+    ViewBag.Footer = Model.Template_Footer;
+    ViewBag.Logo = Model.Template_Logo;
+
+    ViewBag.Submenu1 = Model.Submenu1;
+    ViewBag.Submenu2 = Model.Submenu2;
+    ViewBag.Submenu3 = Model.Submenu3;
+}
+
+@section header{
+    @Html.Raw(Model.Scripts_Header)
+    @if (Model.CanonicalDomain.IndexOf("my") >= 0)
+    {
+        <script> gtag('config', 'AW-1028948544/SowjCK_9tl8QwITS6gM', { 'phone_conversion_number': '@Model.Template_Phone_Desktop.Replace(" ", "-")' }); </script>
+    }
+}
+
+@section afterBody{
+    @Html.Raw(Model.Scripts_AfterBody)
+}
+
+@section scripts{
+    @Html.Raw(Model.Scripts_Footer)
+}
+
+@section controls{}
+
+@section featured {}
+
+<div class="row container">
+    <div class="col s12 m8 l9">
+        @if (Model.Zones.Count() > 2)
+        {
+            <div class="right input-field col s12 l4 zone-picker">
+                @Html.DropDownListFor(model => model.ZoneID, Model.Zones)
+                <label>@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Show_activities_from</label>
+            </div>
+        }
+        <h1>@Html.DisplayFor(model => model.Category)</h1>
+        @Html.Raw(Model.Description)
+        @if (Model.Activities != null)
+        {
+            <div class="row">
+                @foreach (var item in Model.Activities)
+                {
+                    <div class="col s12 m12 l6 xl4" data-serviceid="@item.ActivityID">
+                        <div class="card hoverable">
+                            <div class="card-image">
+                                @if (item.Tag != null && item.Tag != "")
+                                {
+                                    <div class="activity-tag" style="background-color:@item.TagColor">@item.Tag</div>
+                                }
+                                <a href="@item.Url">
+                                    @if (item.Pictures.Count() > 0)
+                                    {
+                                        <img src="//eplatfront.villagroup.com/@item.Pictures.FirstOrDefault().Picture?width=392&height=220&mode=crop&quality=50">
+                                    }
+                                    else
+                                    {
+                                        <img src="//eplatfront.villagroup.com/content/themes/mex/images/no-image.jpg?width=392&height=220&mode=crop&quality=50">
+                                    }
+                                    <span class="card-title">
+                                        @Html.DisplayFor(modelItem => item.Activity)
+                                        <span class="provider-name">@item.Provider</span>
+                                    </span>
+                                </a>
+                                <a class="btn-floating halfway-fab waves-effect waves-light red" onclick="UI.BookingEngine.book(@item.ActivityID,'@item.Activity.Replace("'", "")')"><i class="material-icons">add_shopping_cart</i></a>
+                            </div>
+                            <div class="card-content">
+                                <div class="row">
+                                    <div class="col s6">
+                                        <span class="zone">
+                                            @if (item.Zone != null)
+                                            {
+                                                @ePlatFront.Resources.Views.Activities.ActivitiesStrings.At <span>@item.Zone</span>
+                                            }
+                                            else
+                                            {
+                                                @ePlatFront.Resources.Views.Activities.ActivitiesStrings.Multiple_Locations
+                                            }
+                                        </span>
+                                        <span class="rating">
+                                            @if (item.Rating != null)
+                                            {
+                                                for (int s = 1; s <= Math.Floor(Math.Abs(item.Rating)); s++)
+                                                {
+                                                    <i class="material-icons tiny">star</i>
+                                                }
+                                                if (item.Rating % 1 != 0)
+                                                {
+                                                    <i class="material-icons tiny">star_half</i>
+                                                }
+                                                for (int v = 1; v <= Math.Floor(Math.Abs(5 - item.Rating)); v++)
+                                                {
+                                                    <i class="material-icons tiny">star_border</i>
+                                                }
+                                            }
+                                        </span><br />
+                                        <p><a href="@item.Url">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.See_Details.ToUpper()</a></p>
+                                    </div>
+                                    <div class="col s6">
+                                        @if (item.RetailPrice > 0)
+                                        {
+                                            <span class="retail-price">
+                                                $@item.RetailPrice.ToString("0.00").Replace(",", ".").Replace(".00", "") @item.Currency
+                                            </span>
+                                        }
+                                        <span class="offer-price">
+                                            $@item.OfferPrice.ToString("0.00").Replace(",", ".").Replace(".00", "") @item.Currency
+                                        </span>
+                                        @if (item.Savings > 0)
+                                        {
+                                            <span class="savings light-green-text text-darken-2">
+                                                @ePlatFront.Resources.Views.Activities.ActivitiesStrings.Youll_Save @item.Savings%
+                                            </span>
+                                            if (Model.Culture == "es")
+                                            {
+                                                <span style="color:red; display:block;">+ 3 ó 6 MSI</span>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+    <div class="col s12 m4 l3">
+        @Html.Raw(@Model.RightColumn)
+    </div>
+</div>

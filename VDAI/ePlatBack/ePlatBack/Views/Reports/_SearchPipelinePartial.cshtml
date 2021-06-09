@@ -1,0 +1,66 @@
+﻿@model ePlatBack.Models.ViewModels.PipelineModel.SearchPipelineModel
+
+@using (Ajax.BeginForm("SearchPipeline", "Reports", new AjaxOptions { OnComplete = "REPORT.totalRow('tblSearchPipelineResults')", OnSuccess = "REPORT.searchResultsTable(data)", UpdateTargetId = "divTblPipelineResults" }, new { id = "frmSearchPipeline" }))
+{
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SearchPipeline_I_ArrivalDate)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.SearchPipeline_I_ArrivalDate, new { data_uses_date_picker = "true" })
+            @Html.TextBoxFor(model => model.SearchPipeline_F_ArrivalDate, new { data_uses_date_picker = "true" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SearchPipeline_LeadSource)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.SearchPipeline_LeadSource, Model.SearchPipeline_DrpLeadSources, new { multiple = "multiple", @class = "workgroup-dependent-list", data_route = "/crm/Reports/GetDDLData", data_route_parameter = "leadSourceID" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SearchPipeline_Resort)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.SearchPipeline_Resort, Model.SearchPipeline_DrpResorts, new { multiple = "multiple", data_route = "/crm/Reports/GetDDLData", data_route_parameter = "placeID", @class = "terminal-dependent-list" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SearchPipeline_AssignedToUser)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.SearchPipeline_AssignedToUser, Model.SearchPipeline_DrpAssignedToUsers, new { multiple = "multiple"})
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-field">
+            <input type="submit" class="button" id="btnSearchPipeline" value="search" />
+        </div>
+    </div>
+    <div id="divTblPipelineResults" class="align-from-top">
+        <table id="tblSearchPipelineResults" class="table">
+            <thead>
+                <tr>
+                    <th>Agent Name</th>
+                    <th>Combined # of Leads</th>
+                    <th># of New Leads</th>
+                    <th># of In Process Leads</th>
+                    <th># of Assigned Leads</th>
+                    <th># of Pushed to On-Site Leads</th>
+                    <th># of Cancelled Leads</th>
+                    <th># of Duplicate Leads</th>
+                    <th># of Banked Leads</th>
+                    <th># of International Leads</th>
+                    <th># of Dead Leads</th>
+                    <th># of Contact Made</th>
+                    <th># of Last Minute</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+}

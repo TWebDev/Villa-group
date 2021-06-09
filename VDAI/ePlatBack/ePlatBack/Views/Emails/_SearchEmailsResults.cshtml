@@ -1,0 +1,55 @@
+﻿@model ePlatBack.Models.ViewModels.EmailsViewModel
+
+<table id="tblSearchEmailsResults" class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Template</th>
+            <th>Terminals</th>
+            <th>Description</th>
+            <th>Language</th>
+            <th>Subject</th>
+            <th>Sender</th>
+            <th>Alias</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.SearchResults != null)
+        {
+            foreach (var i in Model.SearchResults)
+            {
+                var id = i.EmailInfo_EmailID;
+                <tr id="@id">
+                    <td>
+                        @Html.DisplayFor(model => i.EmailInfo_EmailID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.EmailInfo_EmailTemplateText)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.EmailInfo_TerminalsText)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.EmailInfo_Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.EmailInfo_Culture)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.EmailInfo_Subject)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.EmailInfo_Sender)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.EmailInfo_Alias)
+                    </td>
+                    <td>
+                        @*<img src="/Content/themes/base/images/trash.png" class="right" />*@
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

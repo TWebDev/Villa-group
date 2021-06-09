@@ -1,0 +1,33 @@
+﻿@model ePlatBack.Models.ViewModels.QuoteRequestsReportModel.SearchQuoteRequests
+
+@using (Ajax.BeginForm("SearchQuoteRequests", "Reports", new AjaxOptions { OnSuccess = "REPORT.QuoteRequests.loaded();", UpdateTargetId = "divTblQuoteRequests" }, new { id = "frmSearchQuoteRequests" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div class="non-printable search-params">
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_I_FromDate)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Search_I_FromDate, new { data_uses_date_picker = "true" })
+                @Html.TextBoxFor(model => model.Search_F_ToDate, new { data_uses_date_picker = "true" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_TerminalID)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Search_TerminalID, Model.Search_Terminals, new { @class = "terminal-dependent-list", data_route="/crm/Reports/GetDDLData", data_route_parameter = "selectedTerminals" })
+            </div>
+        </div>
+        <div class="editor-alignment align-from-top">
+            <div class="editor-field">
+                <input type="submit" class="button" value="Get" />
+            </div>
+        </div>
+    </div>
+    <div id="divTblQuoteRequests" class="align-from-top">
+    </div>
+}

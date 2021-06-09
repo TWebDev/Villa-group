@@ -1,0 +1,40 @@
+﻿@model ePlatBack.Models.ViewModels.SearchPreArrivalWeeklyReportModel
+
+@using (Ajax.BeginForm("SearchPreArrivalWeeklyReport", "Reports", new AjaxOptions { OnBegin = "REPORT.clearTable('tblPreArrivalWeekly')", OnComplete = "UI.applyFormat('currency');UI.applyFormat('percentage');REPORT.addExtras();", UpdateTargetId = "divPreArrivalWeeklyReport" }, new { id = "frmSearchPreArrivalWeekly", onSubmit = "return UI.showValidationSummary(this.id);" }))
+{
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Search_I_ArrivalDate)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Search_I_ArrivalDate, new { data_uses_date_picker = "true" })
+            @Html.TextBoxFor(model => model.Search_F_ArrivalDate, new { data_uses_date_picker = "true" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Search_Terminals)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Search_Terminals, Model.Search_DrpTerminals, new { multiple = "multiple" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Search_Resorts)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Search_Resorts, Model.Search_DrpResorts, new { multiple = "multiple" })
+        </div>
+    </div>
+    <div class="editor-alignment align-from-top">
+        <div class="editor-field">
+            <input type="submit" class="button" value="search" />
+        </div>
+    </div>
+    <div id="divPreArrivalWeeklyReport" class="align-from-top">
+        <table id="tblPreArrivalWeekly" class="table">
+            <thead><tr><th></th></tr></thead>
+        </table>
+    </div>
+}

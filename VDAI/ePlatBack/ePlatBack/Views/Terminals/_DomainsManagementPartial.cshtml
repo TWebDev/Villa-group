@@ -1,0 +1,193 @@
+﻿@model ePlatBack.Models.ViewModels.DomainInfoModel
+
+<fieldset id="fdsDomainsManagement" class="view-restricted" style="display: none">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" alt="" class="fieldset-indicator fds-indicator-separator">
+        Domains Management
+    </legend>
+    <div style="display: none" class="align-from-top">
+        <div class="full-width align-from-bottom">
+            <input type="button" id="btnNewDomainsInfo" class="submit fieldset-expander right" value="New">
+        </div>
+        <table id="tblDomains" class="table dataTable">
+            <thead>
+                <tr>
+                    <th>Domain</th>
+                    <th>Culture</th>
+                    <th>Default Page</th>
+                    <th>Default Master Page</th>
+                </tr>
+            </thead>
+            <tbody class="primary-selected-row-dependent">
+            </tbody>
+        </table>
+        <fieldset id="fdsDomainsInfo" class="primary-selected-row-dependent">
+            <legend>
+                <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+                Domain Info
+            </legend>
+            <div style="display: none" class="align-from-top">
+                @using (Ajax.BeginForm("SaveDomain", "Terminals", new AjaxOptions { OnSuccess = "TERMINAL.saveDomainSuccess(data)" }, new { id = "frmDomain", onSubmit = "return UI.showValidationSummary(this.id);" }))
+                {
+                    <div id="frmDomain_ErrorMessages" style="display: none">
+                        @Html.ValidationMessageFor(model => model.DomainInfo_Domain)
+                        @Html.ValidationMessageFor(model => model.DomainInfo_DefaultPage)
+                        @Html.ValidationMessageFor(model => model.DomainInfo_DefaultMasterPage)
+                        @Html.ValidationMessageFor(model => model.DomainInfo_Logo)
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.HiddenFor(model => model.DomainInfo_TerminalID, new { @class = "primary-selected-row-dependent", data_keep_value = "" })
+                            @Html.HiddenFor(model => model.DomainInfo_DomainID, new { @class = "secondary-selected-row-dependent" })
+                            @Html.LabelFor(model => model.DomainInfo_Domain)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.DomainInfo_Domain, new { data_format = "lower-case" })
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.DomainInfo_DefaultPage)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.DomainInfo_DefaultPage, new { data_format = "free-case" })
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.DomainInfo_DefaultMasterPage)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.DomainInfo_DefaultMasterPage, new { data_format = "free-case" })
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.DomainInfo_Logo)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.DomainInfo_Logo, new { data_format = "free-case" })
+                        </div>
+                    </div>
+                    <div class="editor-alignment full-width">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.DomainInfo_MasterPageHeader)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextAreaFor(model => model.DomainInfo_MasterPageHeader)
+                        </div>
+                    </div>
+                    <div class="editor-alignment full-width">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.DomainInfo_MasterPageFooter)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextAreaFor(model => model.DomainInfo_MasterPageFooter)
+                        </div>
+                    </div>
+                    <div class="editor-alignment full-width">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.DomainInfo_ScriptsHeader)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextAreaFor(model => model.DomainInfo_ScriptsHeader)
+                        </div>
+                    </div>
+                    <div class="editor-alignment full-width">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.DomainInfo_ScriptsAfterBody)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextAreaFor(model => model.DomainInfo_ScriptsAfterBody)
+                        </div>
+                    </div>
+                    <div class="editor-alignment full-width">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.DomainInfo_ScriptsFooter)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextAreaFor(model => model.DomainInfo_ScriptsFooter)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.DomainInfo_PhoneUS)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.DomainInfo_PhoneUS)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.DomainInfo_PhoneMX)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.DomainInfo_PhoneMX)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.DomainInfo_PhoneUSMobile)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.DomainInfo_PhoneUSMobile)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.DomainInfo_PhoneMXMobile)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.DomainInfo_PhoneMXMobile)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.DomainInfo_PhoneAlt1)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.DomainInfo_PhoneAlt1)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.DomainInfo_PhoneAlt1Mobile)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.DomainInfo_PhoneAlt1Mobile)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.DomainInfo_PhoneAlt2)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.DomainInfo_PhoneAlt2)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.DomainInfo_PhoneAlt2Mobile)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.DomainInfo_PhoneAlt2Mobile)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.DomainInfo_Culture)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.DomainInfo_Culture, Model.DomainInfo_DrpCultures)
+                        </div>
+                    </div>
+                    <div class="full-width align-from-bottom">
+                        <input type="submit" id="btnSaveDomain" class="submit right" value="Save" />
+                    </div>
+                }
+                @Html.Action("RenderBannerGroups", "Terminals")
+                @*@Html.Partial("_BannersGroupsManagementPartial", Model.BannerGroupInfoModel)*@
+            </div>
+        </fieldset>
+    </div>
+</fieldset>

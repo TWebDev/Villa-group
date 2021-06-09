@@ -1,0 +1,33 @@
+﻿@model ePlatBack.Models.ViewModels.PaymentAssignationViewModel.SearchPaymentAssignation
+
+@using (Ajax.BeginForm("SearchPaymentsAssignation", "Reports", new AjaxOptions { UpdateTargetId = "divAssignationResults", OnSuccess = "REPORT.addExtras();" }, new { id = "frmSearchPaymentsAssignation" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="non-printable search-params">
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.PurchaseID)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.PurchaseID)
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Date)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Date, new { data_uses_date_picker = "true", @class = "normal-width", placeholder = "empty = today" })
+            </div>
+        </div>
+        <div class="editor-alignment align-from-top">
+            <div class="editor-field">
+                <input type="submit" class="button" value="get" />
+            </div>
+        </div>
+    </div>
+}
+<div id="divAssignationResults" class="align-from-top">
+</div>

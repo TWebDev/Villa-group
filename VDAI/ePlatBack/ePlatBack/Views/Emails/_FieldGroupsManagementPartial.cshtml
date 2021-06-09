@@ -1,0 +1,51 @@
+﻿@model ePlatBack.Models.ViewModels.FieldGroupsInfoModel
+
+<fieldset id="fdsFieldGroupsInfo" class="primary-selected-row-dependent">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        Field Group Info
+    </legend>
+    <div class="align-from-top" style="display:none">
+        @using (Ajax.BeginForm("SaveFieldGroup", "Emails", new AjaxOptions { OnSuccess = "EMAIL.saveFieldGroupSuccess(data)" }, new { id = "frmFieldGroupsInfo", onSubmit = "return UI.showValidationSummary(this.id);" }))
+        {
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.FieldGroupsInfo_FieldGroup)
+                    @Html.HiddenFor(model => model.FieldGroupsInfo_FieldGroupGUID)
+                    @Html.HiddenFor(model => model.FieldGroupsInfo_FieldGroupID)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.FieldGroupsInfo_FieldGroup)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.FieldGroupsInfo_Description)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.FieldGroupsInfo_Description)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.FieldGroupsInfo_Logo)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.FieldGroupsInfo_Logo)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.FieldGroupsInfo_EmailNotification)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.FieldGroupsInfo_EmailNotification, Model.FieldGroupsInfo_DrpEmailNotifications, new { @class="terminals" })
+                </div>
+            </div>
+            <div class="align-from-top full-width align-from-bottom">
+                <input type="submit" id="btnSaveFieldGroup" class="submit right marg-left" value="save" />
+                </div>
+        }
+        @Html.Partial("_FieldsManagementPartial", Model.FieldsInfoModel)
+    </div>
+</fieldset>

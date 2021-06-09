@@ -1,0 +1,161 @@
+﻿@model ePlatBack.Models.ViewModels.QuoteRequestViewModel
+
+@using (Ajax.BeginForm("QuoteRequestSave", new { Controller = "Controls" }, new AjaxOptions { OnBegin = "Controls.sendingInfo('QuoteRequestForm')", OnSuccess = "Controls.showMessage(data,'QuoteRequestForm', true, 2)", OnFailure = "Controls.showMessage({ResponseType : -1, ResponseMessage : 'Failure trying to send the information to the server, please try again.'},'QuoteRequestForm'); grecaptcha.reset(widgetQR);" }, new { id = "QuoteRequestForm" }))
+{
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseQuoteRequest"><span aria-hidden="true">&times;</span></button>
+                <h2 class="modal-title" id="quoteRequestLabel">Quote Request Form</h2>
+            </div>
+            <div class="modal-body">
+                <h3>Do you need a customized package?</h3>
+                <p>
+                    Maybe number of guests or number of nights you want to travel, don't match with our standard packages. Don't worry, you can fill the next form to request a quote according to your needs.
+                </p><p>
+                    Please enter your information and one of our reservations specialists will contact you by phone or email to bring you a customized quote.
+                </p>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        @Html.LabelFor(model => model.QuoteRequest_FirstName)
+                        <div>
+                            @Html.TextBoxFor(model => model.QuoteRequest_FirstName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.QuoteRequest_FirstName)
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        @Html.LabelFor(model => model.QuoteRequest_LastName)
+                        <div>
+                            @Html.TextBoxFor(model => model.QuoteRequest_LastName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.QuoteRequest_LastName)
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        @Html.LabelFor(model => model.QuoteRequest_Email)
+
+                        <div>
+                            @Html.TextBoxFor(model => model.QuoteRequest_Email, new { @class = "form-control", type = "email" })
+                            @Html.ValidationMessageFor(model => model.QuoteRequest_Email)
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        @Html.LabelFor(model => model.QuoteRequest_Phone)
+
+                        <div>
+                            @Html.TextBoxFor(model => model.QuoteRequest_Phone, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.QuoteRequest_Phone)
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        @Html.LabelFor(model => model.QuoteRequest_Destination)
+
+                        <div>
+                            @Html.DropDownListFor(model => model.QuoteRequest_Destination, Model.Destinations, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.QuoteRequest_Destination)
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        @Html.LabelFor(model => model.QuoteRequest_Resort)
+
+                        <div>
+                            @Html.DropDownListFor(model => model.QuoteRequest_Resort, Model.Resorts, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.QuoteRequest_Resort)
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        @Html.LabelFor(model => model.QuoteRequest_Arrival)
+
+                        <div>
+                            @Html.TextBoxFor(model => model.QuoteRequest_Arrival, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.QuoteRequest_Arrival)
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        @Html.LabelFor(model => model.QuoteRequest_Departure)
+
+                        <div>
+                            @Html.TextBoxFor(model => model.QuoteRequest_Departure, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.QuoteRequest_Departure)
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        @Html.LabelFor(model => model.QuoteRequest_Adults)
+
+                        <div>
+                            @Html.TextBoxFor(model => model.QuoteRequest_Adults, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.QuoteRequest_Adults)
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        @Html.LabelFor(model => model.QuoteRequest_Children)
+
+                        <div>
+                            @Html.TextBoxFor(model => model.QuoteRequest_Children, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.QuoteRequest_Children)
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        @Html.LabelFor(model => model.QuoteRequest_TimeToReach)
+                        <div>
+                            @Html.TextBoxFor(model => model.QuoteRequest_TimeToReach, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.QuoteRequest_TimeToReach)
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6"></div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        @Html.LabelFor(model => model.QuoteRequest_Comments)
+
+                        <div>
+                            @Html.TextAreaFor(model => model.QuoteRequest_Comments, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.QuoteRequest_Comments)
+                        </div>
+                    </div>
+                </div>
+                <div class="center-block" style="width:320px;">
+                    @*@ReCaptcha.GetHtml(publicKey: "6LcrngoUAAAAAFytZpXRN3RyXeZwYgxV4i1XyYKQ")*@
+                    <div id="divQR_Recaptcha"></div>
+                </div>                    
+            </div>
+            <div class="modal-footer">
+                <div class="validation-errors">
+                    @Html.ValidationSummary(true)
+                </div>
+                <div class="interaction-message"></div>
+                <input type="submit" class="btn btn-default" value="Send Request" />
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    var onloadQRReCaptchaCallback = function () {
+        var widgetQR;
+
+        widgetQR = grecaptcha.render('divQR_Recaptcha', {
+            'sitekey': '6LfsSlEUAAAAAFA7qAyNVL2KuoUTmCowDTkwghNz'
+        });
+
+        if ($('#divRP_Recaptcha').length > 0) {
+            var widgetRP;
+
+            widgetRP = grecaptcha.render('divRP_Recaptcha', {
+                'sitekey': '6LfsSlEUAAAAAFA7qAyNVL2KuoUTmCowDTkwghNz'
+            });
+        }
+    }
+</script>
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadQRReCaptchaCallback&render=explicit"
+        async defer>
+</script>

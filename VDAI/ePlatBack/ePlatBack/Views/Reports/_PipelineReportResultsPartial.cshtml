@@ -1,0 +1,124 @@
+﻿@model ePlatBack.Models.ViewModels.PipelineModel
+@{ 
+    var Privileges = Model.Privileges;
+    var export = Privileges.Count(m => m.Component == "exportPipelineToExcel") > 0 && Privileges.FirstOrDefault(m => m.Component == "exportPipelineToExcel").View ? "exportable" : "";
+}
+<table id="tblSearchPipelineResults" class="table non-editable @export">
+    <thead>
+        <tr>
+            <th>Agent Name</th>
+            <th>Combined # of Leads</th>
+            <th># of New Leads</th>
+            <th>New Leads Percentage</th>
+            <th># of In Process Leads</th>
+            <th># of Assigned Leads</th>
+            <th># of Pushed to On-Site Leads</th>
+            <th># of Cancelled Leads</th>
+            <th># of Duplicate Leads</th>
+            <th># of Banked Leads</th>
+            <th># of International Leads</th>
+            <th># of Dead Leads</th>
+            <th># of Contact Made</th>
+            <th># of Last Minute</th>
+        </tr>
+    </thead>
+    @if (Model.ListPipelineReportModel != null)
+    {
+        var lastRow = Model.ListPipelineReportModel.Last();
+        <tbody>
+            @foreach (var i in Model.ListPipelineReportModel.Where(m => m.PipelineReport_AgentName != "Total"))
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => i.PipelineReport_AgentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.PipelineReport_CombinedLeads)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.PipelineReport_NewLeads)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.PipelineReport_NewLeadsPercentage)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.PipelineReport_InProcessLeads)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.PipelineReport_AssignedLeads)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.PipelineReport_PushedLeads)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.PipelineReport_CancelledLeads)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.PipelineReport_DuplicateLeads)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.PipelineReport_BankedLeads)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.PipelineReport_InternationalLeads)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.PipelineReport_DeadLeads)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.PipelineReport_CallClasification)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.PipelineReport_LastMinuteLeads)
+                </td>
+            </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr id="totalRow">
+                <td>
+                    @Html.DisplayFor(model => lastRow.PipelineReport_AgentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => lastRow.PipelineReport_CombinedLeads)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => lastRow.PipelineReport_NewLeads)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => lastRow.PipelineReport_NewLeadsPercentage)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => lastRow.PipelineReport_InProcessLeads)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => lastRow.PipelineReport_AssignedLeads)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => lastRow.PipelineReport_PushedLeads)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => lastRow.PipelineReport_CancelledLeads)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => lastRow.PipelineReport_DuplicateLeads)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => lastRow.PipelineReport_BankedLeads)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => lastRow.PipelineReport_InternationalLeads)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => lastRow.PipelineReport_DeadLeads)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => lastRow.PipelineReport_CallClasification)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => lastRow.PipelineReport_LastMinuteLeads)
+                </td>
+            </tr>
+        </tfoot>
+    }
+</table>

@@ -1,0 +1,32 @@
+﻿@model ePlatBack.Models.ViewModels.RoleSearchModel
+
+<div class="full-width">
+    <input type="button" id="btnNewRolesInfo" class="submit fieldset-expander right" value="new" />
+</div>
+@using (Ajax.BeginForm("SearchRoles", "Admin", new AjaxOptions { OnSuccess = "SM.searchRolesSuccess(data)" }, new { id = "frmRolesSearch" }))
+{
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RoleSearch_Role)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.RoleSearch_Role)
+        </div>
+    </div>
+    <div class="editor-alignment align-from-top">
+        <div class="editor-field">
+            <input id="btnSearchRoles" type="button" class="button" value="search" />
+        </div>
+    </div>
+    <div id="divTblExistingRoles">
+        <table id="tblSearchRolesResults" class="table">
+            <thead>
+                <tr>
+                    <th colspan="2">Roles</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+}

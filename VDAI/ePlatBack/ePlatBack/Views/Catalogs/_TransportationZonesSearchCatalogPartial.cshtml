@@ -1,0 +1,41 @@
+﻿@model ePlatBack.Models.ViewModels.TransportationZonesModel.SearchTransportationZonesModel
+
+<fieldset id="fdsTransportationZonesManagement">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator"/>
+        Transportation Zones Management
+    </legend>
+    <div class="align-from-top">
+        <div class="full-width">
+            <input type="button" id="btnNewTransportationZonesInfo" class="submit fieldset-expander right" value="New">
+        </div>
+        @using (Ajax.BeginForm("SearchTransportationZones", "Catalogs", new AjaxOptions { OnSuccess = "CATALOG.transportationZonesResultsTable(data)", OnComplete = "CATALOG.makeTransportationZonesSelectable()", UpdateTargetId = "divTblExistingTransportationZones" }, new { id = "frmTransportationZonesSearch" }))
+        {
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Search_TransportationZones)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Search_TransportationZones)
+                </div>
+            </div>
+            <div class="editor-alignment align-from-top">
+                <div class="editor-field">
+                    <input type="submit" id="btnSearchTransportationZones" class="button search" value="Search" />
+                </div>
+            </div>
+            <div id="divTblExistingTransportationZones" class="align-from-top">
+                <table id="tblSearchTransportationZonesResults" class="dataTable table search-results">
+                    <thead>
+                        <tr>
+                            <th>Transportation Zone</th>
+                            <th>Destination</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        }
+        @Html.Action("RenderTransportationZonesManagement", "Catalogs")
+    </div>
+</fieldset>

@@ -1,0 +1,77 @@
+﻿@model ePlatBack.Models.ViewModels.MarketCodes.MarketCodeInfo
+
+<fieldset id="fdsMarketCodesInfo" class="primary-selected-row-dependent align-from-top" style="border:none;">
+    @using (Ajax.BeginForm("AssignMarketCodes", "Catalogs", new AjaxOptions { OnSuccess = "CATALOG.saveMarketCodeSuccess(data)" }, new { id = "frmMarketCodeInfo", onSubmit = "return UI.showValidationSummary(this.id);" }))
+    {
+        <section class="full-width editor-alignment" style="border-top:1px solid #dddddd;margin-top:20px;">
+            <h3>Market Code Info</h3>
+            <div class="align-from-top">
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.MarketCodeInfo_MarketCode)
+                        @Html.HiddenFor(model => model.MarketCodeInfo_MarketCodeID, new { @class = "secondary-selected-row-dependent" })
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.MarketCodeInfo_MarketCode, new { data_format = "free-case"})
+                    </div>
+                </div>
+                @*<div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.MarketCodeInfo_Terminal)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.MarketCodeInfo_Terminal, Model.MarketCodeInfo_DrpTerminals)
+                    </div>
+                </div>*@
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.MarketCodeInfo_Place)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.MarketCodeInfo_Place, Model.MarketCodeInfo_DrpPlaces)
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.MarketCodeInfo_LeadSource)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.MarketCodeInfo_LeadSource, Model.MarketCodeInfo_DrpLeadSources)
+                    </div>
+                </div>
+                @*<div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.MarketCodeInfo_Users)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.MarketCodeInfo_Users, Model.MarketCodeInfo_DrpUsers, new { multiple = "multiple" })
+                    </div>
+                </div>*@
+                <div class="editor-alignment align-from-top">
+                    <div class="editor-field">
+                        <input type="button" class="submit right" value="save" id="btnSaveMarketCode" />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="full-width editor-alignment" style="border-top: 1px solid #dddddd; margin-top: 20px;">
+            <h3>Market Codes Assignation</h3>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.MarketCodeInfo_AssignTo)
+                    @Html.HiddenFor(model => model.MarketCodeInfo_MarketCodes, new { data_keep_value = "" })
+                    @Html.HiddenFor(model => model.MarketCodeInfo_Assign)
+                </div>
+                <div class="editor-field">
+                    @*@Html.DropDownListFor(model => model.MarketCodeInfo_AssignTo, Model.MarketCodeInfo_DrpUsers, new { multiple = "multiple" })*@
+                    @Html.DropDownListFor(model => model.MarketCodeInfo_AssignTo, Model.MarketCodeInfo_DrpLeadSources)
+                </div>
+            </div>
+            <div class="editor-alignment align-from-top">
+                <div class="editor-field">
+                    <input type="button" id="btnAssignMarketCodes" class="submit right" value="assign" />
+                </div>
+            </div>
+        </section>
+    }
+</fieldset>

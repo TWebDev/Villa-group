@@ -1,0 +1,93 @@
+﻿@model ePlatBack.Models.ViewModels.ProductionModel.ExternalSales
+
+<div class="table-div">
+    <div class="table-row">
+        <div class="table-cell">
+            From<br />
+            @Model.FromDate
+        </div>
+        <div class="table-cell">
+            To<br />
+            @Model.ToDate
+        </div>
+        <div class="table-cell">
+            Point of Sale<br />
+            @Html.Raw(@Model.PointsOfSale)
+        </div>
+        <div class="table-cell">
+            Terminal<br />
+            @Model.Terminal
+        </div>
+        <div class="table-cell">
+            Number of Purchases<br />
+            @Model.NumberOfPurchases
+        </div>
+        <div class="table-cell">
+            Number of Coupons<br />
+            @Model.NumberOfCoupons
+        </div>
+    </div>
+</div>
+
+<table class="table no-plugin exportable non-editable" style="width: 100%;">
+    <thead>
+        <tr>
+            <th colspan="10"></th>
+            <th colspan="2">Deal Price</th>
+            <th colspan="2">Minimal Price</th>
+            <th colspan="2">Subtotal Deal Price</th>
+            <th colspan="2">Subtotal Minimal Price</th>
+            <th colspan="2">Difference</th>
+        </tr>
+        <tr>
+            <th>Point Of Sale</th>
+            <th>Sales Agent</th>
+            <th>Folio</th>
+            <th>Customer</th>
+            <th>Confirmation</th>
+            <th>Cancelation</th>
+            <th>Service</th>
+            <th>UnitsQty</th>
+            <th>Units</th>
+            <th>Status</th>
+            <th>USD</th>
+            <th>MXN</th>
+            <th>USD</th>
+            <th>MXN</th>
+            <th>USD</th>
+            <th>MXN</th>
+            <th>USD</th>
+            <th>MXN</th>
+            <th>USD</th>
+            <th>MXN</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var detail in Model.Coupons)
+        {
+            <tr>
+                <td>@detail.PointOfSale</td>
+                <td>@detail.SalesAgent</td>
+                <td>@detail.Folio</td>
+                <td>@detail.Customer</td>
+                <td>@detail.ConfirmationDate</td>
+                <td>@detail.CancelationDate</td>
+                <td>@detail.Service</td>
+                <td>@detail.UnitsQty</td>
+                <td>@detail.Units</td>
+                <td>@detail.Status</td>
+                <td><span data-format="currency">@detail.DealPrice.FirstOrDefault(x => x.Currency == "USD").Amount USD</span></td>
+                <td><span data-format="currency">@detail.DealPrice.FirstOrDefault(x => x.Currency == "MXN").Amount MXN</span></td>
+                <td><span data-format="currency">@detail.MinimalPrice.FirstOrDefault(x => x.Currency == "USD").Amount USD</span></td>
+                <td><span data-format="currency">@detail.MinimalPrice.FirstOrDefault(x => x.Currency == "MXN").Amount MXN</span></td>
+                <td><span data-format="currency">@detail.UnitDealPrice.FirstOrDefault(x => x.Currency == "USD").Amount USD</span></td>
+                <td><span data-format="currency">@detail.UnitDealPrice.FirstOrDefault(x => x.Currency == "MXN").Amount MXN</span></td>
+                <td><span data-format="currency">@detail.UnitMinimalPrice.FirstOrDefault(x => x.Currency == "USD").Amount USD</span></td>
+                <td><span data-format="currency">@detail.UnitMinimalPrice.FirstOrDefault(x => x.Currency == "MXN").Amount MXN</span></td>
+                <td><span data-format="currency">@detail.UnitDifference.FirstOrDefault(x => x.Currency == "USD").Amount USD</span></td>
+                <td><span data-format="currency">@detail.UnitDifference.FirstOrDefault(x => x.Currency == "MXN").Amount MXN</span></td>
+            </tr>
+        }
+    </tbody>
+
+</table>

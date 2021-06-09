@@ -1,0 +1,182 @@
+﻿@model ePlatBack.Models.ViewModels.IndicatorsModel
+
+<table id="tblIndicatorsReport" class="table">
+    <thead>
+        <tr>
+            <th>
+                Resort
+            </th>
+            <th>
+                Arrivals
+            </th>
+            <th>
+                Bookings
+            </th>
+            <th>
+                Booking %
+            </th>
+            <th>
+                Tours
+            </th>
+            <th>
+                Tour %
+            </th>
+            <th>
+                Capture %
+            </th>
+            <th>
+                Qualified
+            </th>
+            <th>
+                Q Factor
+            </th>
+            <th>
+                Volume
+            </th>
+            <th>
+                VPG
+            </th>
+            <th>
+                Missed Sales
+            </th>
+            <th>
+                Missed Sales Volume
+            </th>
+            <th>
+                M-VPG
+            </th>
+            <th>
+                Total Paid %
+            </th>
+            <th>
+                Total Paid Volume
+            </th>
+            <th>
+                Total Paid Per Arrival
+            </th>
+        </tr>
+    </thead>
+    @if (Model.ListIndicatorsReportModel != null)
+    {
+        var lastRow = Model.ListIndicatorsReportModel.Last();
+
+        <tbody>
+            @foreach (var i in Model.ListIndicatorsReportModel)
+            {
+                if (i.IndicatorsReport_FirstName != "Total")
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(model => i.IndicatorsReport_Resort)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => i.IndicatorsReport_Arrivals)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => i.IndicatorsReport_Bookings)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => i.IndicatorsReport_BookingsPercentage)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => i.IndicatorsReport_Tours)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => i.IndicatorsReport_ToursPercentage)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => i.IndicatorsReport_CapturePercentage)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => i.IndicatorsReport_Qualified)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => i.IndicatorsReport_QFactor)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => i.IndicatorsReport_Volume)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => i.IndicatorsReport_VPG)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => i.IndicatorsReport_MissedSales)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => i.IndicatorsReport_MissedSalesVolume)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => i.IndicatorsReport_MVPG)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => i.IndicatorsReport_TotalPaidPercentage)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => i.IndicatorsReport_TotalPaidVolume)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => i.IndicatorsReport_TotalPaidPerArrival)
+                        </td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+        <tfoot>
+            <tr id="totalRow">
+                <td>
+                    @Html.DisplayFor(model => lastRow.IndicatorsReport_FirstName) @Html.DisplayFor(model => lastRow.IndicatorsReport_LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => lastRow.IndicatorsReport_Arrivals)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => lastRow.IndicatorsReport_Bookings)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => lastRow.IndicatorsReport_BookingsPercentage)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => lastRow.IndicatorsReport_Tours)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => lastRow.IndicatorsReport_ToursPercentage)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => lastRow.IndicatorsReport_CapturePercentage)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => lastRow.IndicatorsReport_Qualified)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => lastRow.IndicatorsReport_QFactor)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => lastRow.IndicatorsReport_Volume)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => lastRow.IndicatorsReport_VPG)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => lastRow.IndicatorsReport_MissedSales)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => lastRow.IndicatorsReport_MissedSalesVolume)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => lastRow.IndicatorsReport_MVPG)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => lastRow.IndicatorsReport_TotalPaidPercentage)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => lastRow.IndicatorsReport_TotalPaidVolume)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => lastRow.IndicatorsReport_TotalPaidPerArrival)
+                </td>
+            </tr>
+        </tfoot>
+    }
+</table>
+

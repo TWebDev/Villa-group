@@ -1,0 +1,329 @@
+﻿@model ePlatBack.Models.ViewModels.PriceInfoModel
+@{
+    var Privileges = ViewData["Privileges"] as List<ePlatBack.Models.ViewModels.SysComponentsPrivilegesModel>;
+}
+@if (Privileges.FirstOrDefault(m => m.Component == "fdsPrices") != null && Privileges.FirstOrDefault(m => m.Component == "fdsPrices").View)
+{
+    <fieldset id="fdsPrices" data-close-siblings="true" class="view-restricted primary-selected-row-dependent" style="display: none">
+        <legend>
+            @if (Privileges.FirstOrDefault(m => m.Component == "openWizard") != null && Privileges.FirstOrDefault(m => m.Component == "openWizard").View)
+            {
+                <span id="openWizard" class="wizard-icon" title="open wizard">...</span>
+            }
+            @if (Privileges.FirstOrDefault(m => m.Component == "openForm") != null && Privileges.FirstOrDefault(m => m.Component == "openForm").View)
+            {
+                <div id="openForm" title="open form" class="wizard-icon" style="padding-top:1px;"><div class="horizontal-line"></div><div class="horizontal-line"></div><div class="horizontal-line"></div></div>
+            }
+            <img class="fieldset-indicator fds-indicator-separator" src="/Content/themes/base/images/eplat_show.jpg" />
+            Prices Management
+        </legend>
+        <div style="display: none">
+            <div id="divPricesCulture" class="editor-alignment" style="display:none">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PriceInfo_Culture)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.PriceInfo_Culture, Model.PriceInfo_DrpCultures)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PriceInfo_PointOfSale)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.PriceInfo_PointOfSale, Model.PriceInfo_DrpPointsOfSale)
+                </div>
+            </div>
+            <div class="full-width align-from-bottom">
+                <input type="button" class="submit fieldset-expander right" id="btnNewPriceInfo" value="new" />
+            </div>
+            <div id="divTblExistingPrices">
+            </div>
+            @if (Privileges.FirstOrDefault(m => m.Component == "fdsPriceInfo") != null && Privileges.FirstOrDefault(m => m.Component == "fdsPriceInfo").View)
+            {
+                <fieldset id="fdsPriceInfo">
+                    <legend>
+                        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+                        Price Info
+                    </legend>
+                    <div style="display: none">
+                        <input type="hidden" id="hdnItemType" />
+                        @if (Privileges.FirstOrDefault(m => m.Component == "frmPrice") != null && Privileges.FirstOrDefault(m => m.Component == "frmPrice").View)
+                        {
+                            using (Ajax.BeginForm("SavePrice", "Prices", new AjaxOptions { OnSuccess = "PRICE.savePriceSuccess(data)" }, new { id = "frmPrice", onSubmit = "return UI.showValidationSummary(this.id);" }))
+                            {
+                                <div id="frmPrice_ErrorMessages" style="display: none">
+                                    @Html.ValidationMessageFor(model => model.PriceInfo_PriceType)
+                                    @Html.ValidationMessageFor(model => model.PriceInfo_PriceClasification)
+                                    @Html.ValidationMessageFor(model => model.PriceInfo_Price)
+                                    @Html.ValidationMessageFor(model => model.PriceInfo_Currency)
+                                    @Html.ValidationMessageFor(model => model.PriceInfo_IsPermanent)
+                                    @Html.ValidationMessageFor(model => model.PriceInfo_Terminal)
+                                    @Html.ValidationMessageFor(model => model.PriceInfo_FromDate)
+                                    @Html.ValidationMessageFor(model => model.PriceInfo_ToDate)
+                                    @Html.ValidationMessageFor(model => model.PriceInfo_TaxesIncluded)
+                                    @Html.ValidationMessageFor(model => model.PriceUnitInfo_Culture)
+                                    @Html.ValidationMessageFor(model => model.PriceInfo_TWFromDate)
+                                    @Html.ValidationMessageFor(model => model.PriceInfo_TWToDate)
+                                </div>
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PriceInfo_PriceType)
+                                        @Html.HiddenFor(model => model.PriceInfo_PriceID, new { @class = "secondary-selected-row-dependent" })
+                                        @Html.HiddenFor(model => model.PriceUnitInfo_PriceUnitID, new { @class = "secondary-selected-row-dependent" })
+                                        @Html.HiddenFor(model => model.PriceInfo_ItemID, new { @class = "primary-selected-row-dependent", data_keep_value = "" })
+                                        @Html.HiddenFor(model => model.PriceInfo_Terminal, new { @class = "primary-selected-row-dependent", data_keep_value = "" })
+                                        @Html.HiddenFor(model => model.PriceInfo_ItemType, new { @class = "module-dependent", data_keep_value = "" })
+                                        @Html.HiddenFor(model => model.PriceInfo_PriceToReplace, new { @class = "secondary-selected-row-dependent" })
+                                        <input type="hidden" id="priceGroupID" class="secondary-selected-row-dependent" value="" />
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.PriceInfo_PriceType, Model.PriceInfo_DrpPriceTypes, new { @class = "terminal-dependent-list", data_route = "/Prices/GetDDLData", data_route_parameter = "priceTypesPerSelectedTerminals" })
+                                    </div>
+                                </div>
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PriceInfo_PriceClasification)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.PriceInfo_PriceClasification, Model.PriceInfo_DrpPriceClasifications)
+                                    </div>
+                                </div>
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PriceInfo_Price)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.PriceInfo_Price)
+                                    </div>
+                                </div>
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PriceInfo_Currency)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.PriceInfo_Currency, Model.PriceInfo_DrpCurrencies)
+                                    </div>
+                                </div>
+                                <div id="divPriceFromDate" class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PriceInfo_FromDate)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.PriceInfo_FromDate, new { placeholder = "click here to pick date" })
+                                    </div>
+                                </div>
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PriceInfo_IsPermanent)
+                                    </div>
+                                    <div class="editor-field">
+                                        <label for="PriceInfo_IsPermanentTrue">Yes</label>
+                                        @Html.RadioButtonFor(model => model.PriceInfo_IsPermanent, true, new { data_keep_value = "" })
+                                        <label for="PriceInfo_IsPermanentFalse">No</label>
+                                        @Html.RadioButtonFor(model => model.PriceInfo_IsPermanent, false, new { data_keep_value = "" })
+                                    </div>
+                                </div>
+                                <div id="divPriceToDate" class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PriceInfo_ToDate)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.PriceInfo_ToDate, new { placeholder = "click here to pick date" })
+                                    </div>
+                                </div>
+                                <div id="divTravelWindowDates" class="editor-alignment">
+                                    <div class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.PriceInfo_TWFromDate)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.TextBoxFor(model => model.PriceInfo_TWFromDate)
+                                        </div>
+                                    </div>
+                                    <div class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.PriceInfo_TWPermanent)
+                                        </div>
+                                        <div class="editor-field">
+                                            <label>Yes</label>
+                                            @Html.RadioButtonFor(model => model.PriceInfo_TWPermanent, true, new { data_keep_value = "" })
+                                            <label>No</label>
+                                            @Html.RadioButtonFor(model => model.PriceInfo_TWPermanent, false, new { data_keep_value = "" })
+                                        </div>
+                                    </div>
+                                    <div id="divTWToDate" class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.PriceInfo_TWToDate)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.TextBoxFor(model => model.PriceInfo_TWToDate)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PriceInfo_GenericUnit)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.PriceInfo_GenericUnit, Model.PriceInfo_DrpGenericUnits)
+                                    </div>
+                                </div>
+                                <div class="editor-alignment" style="display:none">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PriceInfo_TaxesIncluded)
+                                    </div>
+                                    <div class="editor-field">
+                                        <label for="PriceInfo_TaxesIncludedTrue">Yes</label>
+                                        @Html.RadioButtonFor(model => model.PriceInfo_TaxesIncluded, true, new { data_keep_value = "" })
+                                        <label for="PriceInfo_TaxesIncludedFalse">No</label>
+                                        @Html.RadioButtonFor(model => model.PriceInfo_TaxesIncluded, false, new { data_keep_value = "" })
+                                    </div>
+                                </div>
+                                <div class="editor-alignment" id="divFromZone" style="display: none">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PriceInfo_FromTransportationZone)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.PriceInfo_FromTransportationZone, Model.PriceInfo_DrpFromTransportationZones)
+                                    </div>
+                                </div>
+                                <div class="editor-alignment" id="divToZone" style="display: none">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PriceInfo_ToTransportationZone)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.PriceInfo_ToTransportationZone, Model.PriceInfo_DrpToTransportationZones)
+                                    </div>
+                                </div>
+                                <div class="editor-alignment" id="divUrlRedeem" style="display: none">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PriceInfo_UrlRedeem)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.PriceInfo_UrlRedeem)
+                                    </div>
+                                </div>
+                                <div class="editor-alignment" id="divUrlCompare" style="display: none">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PriceInfo_UrlCompare)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.PriceInfo_UrlCompare)
+                                    </div>
+                                </div>
+                                <div class="price-unit" style="border-top: 1px solid #dddddd; margin-top: 20px;">
+                                    <div class="editor-alignment align-from-top" style="width:45%; margin-right:4%;">
+                                        <table id="tblPriceUnits" class="full-width dataTable">
+                                            <thead>
+                                                <tr>
+                                                    <th>Language</th>
+                                                    <th>Unit</th>
+                                                    <th>Additional Info</th>
+                                                    <th>Min</th>
+                                                    <th>Max</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="secondary-selected-row-dependent"></tbody>
+                                        </table>
+                                    </div>
+                                    <div class="editor-alignment" style="width:45%; margin-left:4%;">
+                                        <div class="editor-alignment">
+                                            <div class="editor-label">
+                                                @Html.LabelFor(model => model.PriceUnitInfo_Culture)
+                                                @Html.HiddenFor(model => model.PriceUnitInfo_Culture_Hdn)
+                                            </div>
+                                            <div class="editor-field">
+                                                @Html.DropDownListFor(model => model.PriceUnitInfo_Culture, Model.PriceUnitInfo_DrpCultures)
+                                            </div>
+                                        </div>
+                                        <div class="editor-alignment">
+                                            <div class="editor-label">
+                                                @Html.LabelFor(model => model.PriceUnitInfo_Unit)
+                                            </div>
+                                            <div class="editor-field">
+                                                @Html.TextBoxFor(model => model.PriceUnitInfo_Unit, new { placeholder = "type to show options" })
+                                            </div>
+                                        </div>
+                                        <div class="editor-alignment">
+                                            <div class="editor-label">
+                                                @Html.LabelFor(model => model.PriceUnitInfo_AdditionalInfo)
+                                            </div>
+                                            <div class="editor-field">
+                                                @Html.TextBoxFor(model => model.PriceUnitInfo_AdditionalInfo)
+                                            </div>
+                                        </div>
+                                        <div class="editor-alignment">
+                                            <div class="editor-label">
+                                                @Html.LabelFor(model => model.PriceUnitInfo_Min)
+                                                @Html.LabelFor(model => model.PriceUnitInfo_Max, new { style = "margin-left:80px" })
+                                            </div>
+                                            <div class="editor-field">
+                                                @Html.TextBoxFor(model => model.PriceUnitInfo_Min, new { style = "width:95px" })
+                                                @Html.TextBoxFor(model => model.PriceUnitInfo_Max, new { style = "width:95px" })
+                                            </div>
+                                        </div>
+                                        <div class="full-width align-from-top">
+                                            <input type="button" id="btnAddUnit" class="button" value="add" />
+                                        </div>
+                                    </div>
+                                </div>
+                                if (Privileges.FirstOrDefault(m => m.Component == "btnSavePrice") != null && Privileges.FirstOrDefault(m => m.Component == "btnSavePrice").View)
+                                {
+                                    <div class="editor-alignment full-width align-from-top">
+                                        @if (Privileges.FirstOrDefault(m => m.Component == "btnSavePrice") != null && Privileges.FirstOrDefault(m => m.Component == "btnSavePrice").Edit)
+                                        {
+                                            <input type="button" class="submit right" id="btnSavePrice" value="save">
+                                        }
+                                        else
+                                        {
+                                            <div class="fake-submit">save</div>
+                                        }
+                                    </div>
+                                }
+                            }
+                        }
+                    </div>
+                </fieldset>
+                if (Privileges.FirstOrDefault(m => m.Component == "fdsPricesWizard") != null && Privileges.FirstOrDefault(m => m.Component == "fdsPricesWizard").View)
+                {
+                    <fieldset id="fdsPriceInfoWizard">
+                        <legend>
+                            <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+                            Price Wizard
+                        </legend>
+                        <div style="display: none">
+
+                        </div>
+                    </fieldset>
+                }
+            }
+            @*<fieldset id="fdsPricesItems">
+                    <legend>
+                        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator"/>
+                        Prices-Related Items
+                    </legend>
+                    <div style="display: none">
+                        <fieldset id="fdsPriceClasifications">
+                            <legend>
+                                <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator"/>
+                                Price Clasifications Management
+                            </legend>
+                            <div style="display: none">
+                                @Html.Partial("_SearchPriceClasificationsPartial", Model.PriceClasificationsSearchModel)
+                                @Html.Partial("_PriceClasificationsManagementPartial", Model.PriceClasificationInfoModel)
+                            </div>
+                        </fieldset>
+                        <fieldset id="fdsCurrencies">
+                            <legend>
+                                <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator"/>
+                                Currencies Management
+                            </legend>
+                            <div style="display: none">
+                                @Html.Partial("_SearchCurrenciesPartial", Model.CurrenciesSearchModel)
+                                @Html.Partial("_CurrenciesManagementPartial", Model.CurrencyInfoModel)
+                            </div>
+                        </fieldset>
+                    </div>
+                </fieldset>*@
+        </div>
+    </fieldset>
+}

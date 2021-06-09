@@ -1,0 +1,226 @@
+﻿@model ePlatBack.Models.ViewModels.CommissionsModel.CommissionsInfoModel
+
+
+@if (Model.Privileges.FirstOrDefault(m => m.Component == "CommissionsInfo" && m.View == true) != null)
+{
+<fieldset id="fdsCommissionsInfo" class="primary-selected-row-dependent">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        Commission Info
+    </legend>
+    <div style="display:none" class="align-from-top">
+        @using (Ajax.BeginForm("SaveCommission", "Catalogs", new AjaxOptions { OnSuccess = "CATALOG.saveCommissionSuccess(data)" }, new { id = "frmCommissionInfo", onSubmit = "return UI.showValidationSummary(this.id);" }))
+        {
+            <div id="frmCommissionInfo_ErrorMessages" style="display:none">
+                @Html.ValidationMessageFor(model => model.CommissionsInfo_PriceType)
+                @Html.ValidationMessageFor(model => model.CommissionsInfo_JobPosition)
+                @Html.ValidationMessageFor(model => model.CommissionsInfo_Terminal)
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CommissionsInfo_IsBonus)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.CommissionsInfo_IsBonus, Model.CommissionsInfo_CommissionTypes)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CommissionsInfo_CommissionPercentage)
+                    @Html.HiddenFor(model => model.CommissionsInfo_CommissionID, new { @class = "secondary-selected-row-dependent" })
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.CommissionsInfo_CommissionPercentage)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CommissionsInfo_CommissionAmount)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.CommissionsInfo_CommissionAmount)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CommissionsInfo_CommissionCurrency)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.CommissionsInfo_CommissionCurrency, Model.CommissionsInfo_DrpAmountCurrencies)
+                </div>
+            </div>
+            <div class="editor-alignment for-bonus">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CommissionsInfo_MinVolume)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.CommissionsInfo_MinVolume, new { placeholder = "0" })
+                </div>
+            </div>
+            <div class="editor-alignment for-bonus">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CommissionsInfo_MaxVolume)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.CommissionsInfo_MaxVolume, new { placeholder = "empty if no limit exists" })
+                </div>
+            </div>
+            <div class="editor-alignment for-bonus">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CommissionsInfo_VolumeCurrencyCode)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.CommissionsInfo_VolumeCurrencyCode, Model.CommissionsInfo_DrpCurrencies)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CommissionsInfo_MinProfit)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.CommissionsInfo_MinProfit, new { placeholder = "0" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CommissionsInfo_MaxProfit)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.CommissionsInfo_MaxProfit, new { placeholder = "empty if no limit exists" })
+                </div>
+            </div>
+
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CommissionsInfo_PriceType)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.CommissionsInfo_PriceType, Model.CommissionsInfo_DrpPriceTypes, new { multiple = "multiple" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CommissionsInfo_JobPosition)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.CommissionsInfo_JobPosition, Model.CommissionsInfo_DrpJobPositions)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CommissionsInfo_SysWorkGroup)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.CommissionsInfo_SysWorkGroup, Model.CommissionsInfo_DrpSysWorkGroups)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CommissionsInfo_Terminal)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.CommissionsInfo_Terminal, Model.CommissionsInfo_DrpTerminals)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CommissionsInfo_PointsOfSale)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.CommissionsInfo_PointsOfSale, Model.CommissionsInfo_DrpPointsOfSale, new { multiple = "multiple" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CommissionsInfo_Override)
+                </div>
+                <div class="editor-field">
+                    <label>Yes</label>
+                    @Html.RadioButtonFor(model => model.CommissionsInfo_Override, true, new { data_keep_value = "" })
+                    <label>No</label>
+                    @Html.RadioButtonFor(model => model.CommissionsInfo_Override, false, new { data_keep_value = "" })
+                </div>
+            </div>
+
+            <div id="divPriceFromDate" class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CommissionsInfo_FromDate)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.CommissionsInfo_FromDate, new { placeholder = "click here to pick date"})
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CommissionsInfo_IsPermanent)
+            </div>
+                <div class="editor-field">
+                    <label for="CommissionsInfo_IsPermanent">Yes</label>
+                    @Html.RadioButtonFor(model => model.CommissionsInfo_IsPermanent, true, new { data_keep_value = "" })
+                    <label for="CommissionsInfo_IsPermanent">No</label>
+                    @Html.RadioButtonFor(model => model.CommissionsInfo_IsPermanent, false, new { data_keep_value = "" })
+                </div>
+            </div>
+            <div id="divPriceToDate" class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CommissionsInfo_ToDate)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.CommissionsInfo_ToDate, new { placeholder = "click here to pick date"})
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CommissionsInfo_ApplyOnSales)
+                </div>
+                <div class="editor-field">
+                    <label for="CommissionsInfo_ApplyOnSales">Yes</label>
+                    @Html.RadioButtonFor(model => model.CommissionsInfo_ApplyOnSales, true, new { data_keep_value = ""})
+                    <label for="CommissionsInfo_ApplyOnSales">No</label>
+                    @Html.RadioButtonFor(model => model.CommissionsInfo_ApplyOnSales, false, new { data_keep_value = "" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CommissionsInfo_ApplyOnDealPrice)
+                </div>
+                <div class="editor-field">
+                    <label for="CommissionsInfo_ApplyOnDealPrice">Yes</label>
+                    @Html.RadioButtonFor(model => model.CommissionsInfo_ApplyOnDealPrice, true, new { data_keep_value = "" })
+                    <label for="CommissionsInfo_ApplyOnDealPrice">No</label>
+                    @Html.RadioButtonFor(model => model.CommissionsInfo_ApplyOnDealPrice, false, new { data_keep_value = "" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CommissionsInfo_ApplyOnAdultSales)
+                </div>
+                <div class="editor-field">
+                    <label for="CommissionsInfo_ApplyOnAdultSales">Yes</label>
+                    @Html.RadioButtonFor(model => model.CommissionsInfo_ApplyOnAdultSales, true, new { data_keep_value = "" })
+                    <label for="CommissionsInfo_ApplyOnAdultSales">No</label>
+                    @Html.RadioButtonFor(model => model.CommissionsInfo_ApplyOnAdultSales, false, new { data_keep_value = "" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CommissionsInfo_OnlyIfCharged)
+                </div>
+                <div class="editor-field">
+                    <label for="CommissionsInfo_OnlyIfCharged">Yes</label>
+                    @Html.RadioButtonFor(model => model.CommissionsInfo_OnlyIfCharged, true, new { data_keep_value = "" })
+                    <label for="CommissionsInfo_OnlyIfCharged">No</label>
+                    @Html.RadioButtonFor(model => model.CommissionsInfo_OnlyIfCharged, false, new { data_keep_value = "" })
+                </div>
+            </div>
+
+            <div class="editor-alignment full-width">
+                @if (Model.Privileges.FirstOrDefault(m => m.Component == "btnSaveCommission" && m.View == true) != null)
+                {
+                    <input type="submit" id="btnSaveCommission" class="submit right" value="save" />
+                }
+            </div>
+        }
+    </div>
+</fieldset>
+}

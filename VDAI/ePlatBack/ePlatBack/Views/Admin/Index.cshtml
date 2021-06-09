@@ -1,0 +1,125 @@
+﻿@model ePlatBack.Models.ViewModels.AdminViewModel
+
+@{
+    ViewBag.Title = "ePlat > Settings > Access Profiles";
+    Html.EnableClientValidation(true);
+}
+
+@section Head
+{
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/jstree.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/jquery-ui-1.8.14.custom.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/jquery.mjs.nestedSortable.css" rel="stylesheet" type="text/css" />
+}
+@section Scripts
+{
+    <script src="~/Scripts/jquery.numeric.js" type="text/javascript"></script>
+    <script src="~/Scripts/settings/jquery.tinysort.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.mjs.nestedSortable.js" type="text/javascript"></script>
+    <script src="~/Scripts/settings/profiles.js" type="text/javascript"></script>
+}
+<h1>Access Profiles</h1>
+<div class="align-from-top">
+    <fieldset id="fdsWorkGroupsManagement" data-close-siblings="true">
+        <legend>
+            <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+            WorkGroups Management
+        </legend>
+        <div class="align-from-top" style="display: none">
+            @Html.Partial("_SearchWorkGroupsPartial", Model.WorkGroupSearchModel)
+            @Html.Partial("_WorkGroupsManagementPartial", Model.WorkGroupInfoModel)
+            <fieldset id="fdsWorkGroupRelatedItems">
+                <legend>
+                    <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+                    WorkGroups-Related Items
+                </legend>
+                <div class="align-from-top" style="display: none">
+                    <fieldset id="fdsBookingStatus" data-close-siblings="true" class="clear-content">
+                        <legend>
+                            <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+                            Booking Status
+                        </legend>
+                        <div class="align-from-top" style="display: none">
+                            @Html.Partial("_BookingStatusManagementPartial", Model.BookingStatusInfoModel)
+                        </div>
+                    </fieldset>
+                    <fieldset id="fdsLeadTypes" data-close-siblings="true" class="clear-content">
+                        <legend>
+                            <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+                            Lead Types
+                        </legend>
+                        <div class="align-from-top" style="display: none">
+                            @Html.Partial("_LeadTypesManagementPartial", Model.LeadTypeInfoModel)
+                        </div>
+                    </fieldset>
+                    <fieldset id="fdsLeadSources" data-close-siblings="true" class="clear-content">
+                        <legend>
+                            <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+                            Lead Sources
+                        </legend>
+                        <div class="align-from-top" style="display: none">
+                            @Html.Partial("_LeadSourcesManagementPartial", Model.LeadSourceInfoModel)
+                        </div>
+                    </fieldset>
+                    <fieldset id="fdsQualificationRequirements" data-close-siblings="true" class="clear-content">
+                        <legend>
+                            <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+                            Qualification Requirements
+                        </legend>
+                        <div class="align-from-top" style="display: none">
+                            @Html.Partial("_QualificationRequirementsManagementPartial", Model.QualificationRequirementInfoModel)
+                        </div>
+                    </fieldset>
+                    <fieldset id="fdsResortFeeTypes" data-close-siblings="true" class="clear-content">
+                        <legend>
+                            <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+                            Resort Fee Types
+                        </legend>
+                        <div class="align-from-top" style="display: none">
+                            @Html.Partial("_ResortFeeTypesManagementPartial", Model.ResortFeeTypeInfoModel)
+                        </div>
+                    </fieldset>
+                    <fieldset id="fdsReservationStatus" data-close-siblings="true" class="clear-content">
+                        <legend>
+                            <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+                            Reservation Status
+                        </legend>
+                        <div class="align-from-top" style="display: none">
+                            @Html.Partial("_ReservationStatusManagementPartial", Model.ReservationStatusInfoModel)
+                        </div>
+                    </fieldset>
+                    <fieldset id="fdsVerificationAgreements" data-close-siblings="true" class="clear-content">
+                        <legend>
+                            <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+                            Verification Agreements
+                        </legend>
+                        <div class="align-from-top" style="display: none">
+                            @Html.Partial("_VerificationAgreementsManagementPartial", Model.VerificationAgreementInfoModel)
+                        </div>
+                    </fieldset>
+                </div>
+            </fieldset>
+        </div>
+    </fieldset>
+    <fieldset id="fdsRolesManagement" data-close-siblings="true">
+        <legend>
+            <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+            Roles Management
+        </legend>
+        <div class="align-from-top" style="display: none">
+            @Html.Partial("_SearchRolesPartial", Model.RoleSearchModel)
+            @Html.Partial("_RolesManagementPartial", Model.RoleInfoModel)
+        </div>
+    </fieldset>
+    <fieldset id="fdsProfilesManagement" data-close-siblings="true">
+        <legend>
+            <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+            Profiles Management
+        </legend>
+        <div class="div-main-container" style="display: none">
+            @Html.Partial("_ProfileManagementPartial", Model.ProfileInfoModel)
+            @*@Html.Partial("_ProfilesManagementPartial", Model.ProfileInfoModel)*@
+        </div>
+    </fieldset>
+</div>

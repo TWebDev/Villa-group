@@ -1,0 +1,441 @@
+﻿@model ePlatBack.Models.ViewModels.PreArrivalReport
+
+@if (Model.ListManifest != null)
+{
+    <table id="tblManifestResults" class="table no-plugin full-width exportable">
+        <thead>
+            <tr>
+                <th colspan="15" align="center">Arrivals: @Model.ListManifest.Count()</th>
+                <th>Booked: @Model.ListManifest.Count(m => m.Hooked == "Yes")</th>
+                <th></th>
+                <th>Qualified: @Model.ListManifest.Count(m => m.TourStatus != null && (m.TourStatus.IndexOf("Full") != -1 || m.TourStatus.IndexOf("Qualified Tour") != -1))</th>
+                <th></th>
+                <th>Sold: @Model.ListManifest.Count(m => m.SalesVolume != "0.00")<br />Volume: @Model.ListManifest.Where(m => m.SalesVolume != "0.00").Sum(m => decimal.Parse(m.SalesVolume))</th>
+                <th colspan="2"></th>
+            </tr>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Resort</th>
+                <th>Agency Name</th>
+                <th>Confirmation Number</th>
+                <th>Booking Status</th>
+                <th>Secondary Booking Status</th>
+                <th>Arrival Date</th>
+                <th>Total Nights</th>
+                <th>Source</th>
+                <th>Service Type</th>
+                <th>Service Details</th>
+                <th>Total Sold</th>
+                <th>Flight Information</th>
+                <th>Assigned To User</th>
+                <th>Booked</th>
+                @if (Model.ListManifest.Count(m => m.IsExternal) > 0)
+                {
+                    <th></th>
+                }
+                else
+                {
+                    <th>Linked</th>
+                }
+                <th>Final Tour Status</th>
+                <th>Real Tour Date</th>
+                <th>Volume Sold</th>
+                @if (Model.ListManifest.Count(m => m.IsExternal) > 0)
+                {
+                    <th>Concierge</th>
+                    <th>Concierge Comments</th>
+                }
+                else
+                {
+                    <th colspan="2">Concierge Comments</th>
+                }
+
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.ListManifest != null)
+            {
+                var bySource = Model.ListManifest.GroupBy(m => m.LeadSource);
+                foreach (var a in bySource)
+                {
+                    var count = a.Count();
+                    <tr>
+                        <th colspan="22">
+                            @Html.DisplayFor(model => a.Key): @Html.DisplayFor(model => count)
+                        </th>
+                    </tr>
+                    foreach (var i in a)
+                    {
+                        var comment = i.PresentationModifiedByUser + " " + i.PresentationModificationDate;
+                        var id = "https://eplat.villagroup.com/crm/prearrival#id=" + i.ReservationID.ToString();
+                        var _class = i.ReservationStatus == "3" && i.Options.IndexOf("No optionals sold") == -1 ? "error show-detail" : "";
+                        var msg = i.ReservationStatus == "3" && i.Options.IndexOf("No optionals sold") == -1 ? "Reservation Canceled.<br />Verify if an active reservation exists and ask for optionals reassignment." : "";
+                        var secondaryClass = "";
+                        if (i.IsExternal == true)
+                        {
+                            secondaryClass = "";
+                        }
+                        else
+                        {
+                            if (i.IsBooked)
+                            {
+                                if (!i.IsLinked)
+                                {
+                                    if (i.TourFound)
+                                    {
+                                        //danger
+                                        secondaryClass = "table-danger";
+                                    }
+                                    else
+                                    {
+                                        //warning
+                                        secondaryClass = "table-warning";
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (!i.IsLinked)
+                                {
+                                    if (i.TourFound)
+                                    {
+                                        //danger
+                                        secondaryClass = "table-danger";
+                                    }
+                                    else
+                                    {
+                                        secondaryClass = "";
+                                    }
+                                }
+                                else
+                                {
+                                    //warning
+                                    secondaryClass = "table-warning";
+                                }
+                            }
+                        }
+                        _class = string.Join(" ", new string[] { _class, secondaryClass });
+
+                        <tr class="@_class" title="@msg">
+                            <td>
+                                @Html.DisplayFor(model => i.FirstName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.LastName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.Resort)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.FrontAgencyName)
+                            </td>
+                            <td>
+                                <a href="@id" target="_blank">@i.ConfirmationNumber</a>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.BookingStatus)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.SecondaryBookingStatus)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.ArrivalDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.NumberNights)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.Source)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.OptionTypes)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.Options)
+                            </td>
+                            <td data-format="currency">
+                                @Html.DisplayFor(model => i.OptionsTotal)
+                            </td>
+                            <td>
+                                @Html.Raw(i.FlightInfo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.AssignedToUser)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.Hooked)
+                            </td>
+                            <td>
+                                @if (!i.IsExternal)
+                                {
+                                    @Html.DisplayTextFor(model => i.IsLinked)
+                                }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.TourStatus)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.TourDate)
+                            </td>
+                            <td data-format="currency">
+                                @Html.DisplayFor(model => i.SalesVolume)
+                            </td>
+                            @if (i.IsExternal)
+                            {
+                                <td>
+                                    @Html.DisplayFor(model => i.Concierge)
+                                </td>
+                                <td title="@comment">
+                                    @Html.Raw(i.ConciergeComments)
+                                </td>
+                            }
+                            else
+                            {
+                                <td colspan="2" title="@comment">
+                                    @Html.Raw(i.ConciergeComments)
+                                </td>
+                            }
+
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <table id="tblManifestResults" class="table no-plugin full-width exportable">
+        <thead>
+            <tr>
+                <th colspan="15" align="center">Arrivals: 0</th>
+                <th>Booked: 0</th>
+                <th></th>
+                <th>Qualified: 0</th>
+                <th></th>
+                <th>Sold: 0.00<br />Volume: 0.00</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Resort</th>
+                <th>Agency Name</th>
+                <th>Confirmation Number</th>
+                <th>Booking Status</th>
+                <th>Secondary Booking Status</th>
+                <th>Arrival Date</th>
+                <th>Total Nights</th>
+                <th>Source</th>
+                <th>Service Type</th>
+                <th>Service Details</th>
+                <th>Total Sold</th>
+                <th>Flight Information</th>
+                <th>Assigned To User</th>
+                <th>Booked</th>
+                <th>Linked</th>
+                <th>Final Tour Status</th>
+                <th>Real Tour Date</th>
+                <th>Volume Sold</th>
+                <th>Concierge</th>
+                <th>Concierge Comments</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+}
+
+@if (Model.ListManifest == null)
+{
+    var tours = Model.ListManifest.Select(m => m.ToursInfo);
+    int qualified = 0;
+    int qVolumen = 0;
+    decimal volumen = 0;
+    foreach (var x in tours)
+    {
+        foreach (var t in x)
+        {
+            if ((t.TourStatus != null && t.TourStatus.IndexOf("Full") != -1) || (t.Volume > 0 && (t.TourStatus.Contains("Procesable") || t.TourStatus.Contains("LQD") || t.TourStatus.Contains("Full") || t.TourStatus.Contains("Cancel"))))
+            {
+                qualified++;
+            }
+            if (t.ContractStatus != null && t.ContractStatus.IndexOf("ancel") == -1)
+            {
+                qVolumen++;
+                volumen += (decimal)t.Volume;
+            }
+        }
+    }
+    <table id="tblManifestResults" class="table no-plugin full-width exportable">
+        <thead>
+            <tr>
+                <th colspan="15" align="center">Arrivals: @Model.ListManifest.Count()</th>
+                <th>Booked: @Model.ListManifest.Count(m => m.Hooked == "Yes")</th>
+                <th></th>
+                @*<th>Qualified: @Model.ListManifest.Count(m => m.TourStatus != null && m.TourStatus.IndexOf("Full") != -1)</th>*@
+                <th>Qualified: @qualified.ToString()</th>
+                <th></th>
+                @*<th>Sold: @Model.ListManifest.Count(m => m.SalesVolume != "0.00")<br />Volume: @Model.ListManifest.Where(m => m.SalesVolume != "0.00").Sum(m => decimal.Parse(m.SalesVolume))</th>*@
+                <th>Sold: @qVolumen.ToString()<br />Volume: @volumen</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Resort</th>
+                <th>Agency Name</th>
+                <th>Confirmation Number</th>
+                <th>Booking Status</th>
+                <th>Secondary Booking Status</th>
+                <th>Arrival Date</th>
+                <th>Total Nights</th>
+                <th>Source</th>
+                <th>Service Type</th>
+                <th>Service Details</th>
+                <th>Total Sold</th>
+                <th>Flight Information</th>
+                <th>Assigned To User</th>
+                <th>Booked</th>
+                <th>Linked</th>
+                <th>Final Tour Status</th>
+                <th>Real Tour Date</th>
+                <th>Volume Sold</th>
+                <th>Concierge</th>
+                <th>Concierge Comments</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.ListManifest != null)
+            {
+                var bySource = Model.ListManifest.GroupBy(m => m.LeadSource);
+                foreach (var a in bySource)
+                {
+                    var count = a.Count();
+                    <tr>
+                        <th colspan="22">
+                            @Html.DisplayFor(model => a.Key): @Html.DisplayFor(model => count)
+                        </th>
+                    </tr>
+                    foreach (var i in a)
+                    {
+                        var comment = i.PresentationModifiedByUser + " " + i.PresentationModificationDate;
+                        var id = "https://eplat.villagroup.com/crm/prearrival#id=" + i.ReservationID.ToString();
+                        var _class = i.ReservationStatus == "3" && i.Options.IndexOf("No optionals sold") == -1 ? "error show-detail" : "";
+                        var msg = i.ReservationStatus == "3" && i.Options.IndexOf("No optionals sold") == -1 ? "Reservation Canceled.<br />Verify if an active reservation exists and ask for optionals reassignment." : "";
+                        var secondaryClass = "";
+
+                        if (i.IsBooked)
+                        {
+                            if (!i.IsLinked)
+                            {
+                                if (i.TourFound)
+                                {
+                                    //danger
+                                    secondaryClass = "table-danger";
+                                }
+                                else
+                                {
+                                    //warning
+                                    secondaryClass = "table-warning";
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (!i.IsLinked)
+                            {
+                                if (i.TourFound)
+                                {
+                                    //danger
+                                    secondaryClass = "table-danger";
+                                }
+                                else
+                                {
+                                    secondaryClass = "";
+                                }
+                            }
+                            else
+                            {
+                                //warning
+                                secondaryClass = "table-warning";
+                            }
+                        }
+                        _class = string.Join(" ", new string[] { _class, secondaryClass });
+
+                        <tr class="@_class" title="@msg">
+                            <td>
+                                @Html.DisplayFor(model => i.FirstName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.LastName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.Resort)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.FrontAgencyName)
+                            </td>
+                            <td>
+                                <a href="@id" target="_blank">@i.ConfirmationNumber</a>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.BookingStatus)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.SecondaryBookingStatus)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.ArrivalDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.NumberNights)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.Source)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.OptionTypes)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.Options)
+                            </td>
+                            <td data-format="currency">
+                                @Html.DisplayFor(model => i.OptionsTotal)
+                            </td>
+                            <td>
+                                @Html.Raw(i.FlightInfo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.AssignedToUser)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.Hooked)
+                            </td>
+                            <td>
+                                @Html.DisplayTextFor(model => i.IsLinked)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.TourStatus)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.TourDate)
+                            </td>
+                            <td data-format="currency">
+                                @Html.DisplayFor(model => i.SalesVolume)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.Concierge)
+                            </td>
+                            <td title="@comment">
+                                @Html.DisplayFor(model => i.ConciergeComments)
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+}

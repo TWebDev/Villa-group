@@ -1,0 +1,214 @@
+﻿@model  ePlatBack.Models.ViewModels.PaymentAssignationViewModel
+
+<div class="editor-alignment">
+    <div class="editor-label">
+        @Html.LabelFor(model => model.PurchaseID)
+    </div>
+    <div class="editor-field">
+        @Html.DisplayFor(model => model.PurchaseID)
+    </div>
+</div>
+<div class="editor-alignment">
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Customer)
+    </div>
+    <div class="editor-field">
+        @Html.DisplayFor(model => model.Customer)
+    </div>
+</div>
+<div class="editor-alignment">
+    <div class="editor-label">
+        @Html.LabelFor(model => model.TerminalID)
+    </div>
+    <div class="editor-field">
+        @Html.DisplayFor(model => model.TerminalID)
+    </div>
+</div>
+@*<div class="editor-alignment">
+@using (Ajax.BeginForm("SavePaymentsAssignation", "Reports", new AjaxOptions { OnSuccess = "UI.messageBox(0, 'Assignations Saved!');" }, new { id = "frmSavePaymentsAssignation" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div class="editor-label">
+        @Html.HiddenFor(model => model.PurchaseID)
+    </div>
+    <div class="editor-field">
+        <input type="submit" value="SAVE" class="submit" />
+    </div>
+}
+</div>*@
+
+@if (Model.CloseOuts != null)
+{
+    foreach (var closeout in Model.CloseOuts)
+    {
+        <div class="closeout" style="border: #ddd solid 1px; padding: 15px; margin-top: 10px;">
+            <div class="table-div">
+                <div class="table-row">
+                    <div class="table-cell">
+                        Close Out ID<br />
+                        @closeout.CloseOutID
+                    </div>
+                    <div class="table-cell">
+                        Point of Sale<br />
+                        @closeout.PointOfSale
+                    </div>
+                    <div class="table-cell">
+                        Point of Sale ID<br />
+                        @closeout.PointOfSaleID
+                    </div>
+                    <div class="table-cell">
+                        Date<br />
+                        @closeout.Date
+                    </div>
+                    <div class="table-cell">
+                        User ID<br />
+                        @closeout.UserID
+                    </div>
+                    <div class="table-cell">
+                        Status<br />
+                        @closeout.Status
+                    </div>
+                </div>
+                <div class="table-row">
+                    <div class="table-cell">
+                        Diagnosis<br />
+                        @Html.Raw(closeout.DiagnosisMessage)
+                    </div>
+                </div>
+            </div>
+            @if (closeout.Payments.Count() > 0)
+            {
+                    <div>
+                        <h4>Payments</h4>
+                        <table style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Payment Details ID</th>
+                                    <th>Date</th>
+                                    <th>Payment Type</th>
+                                    <th>Saved By</th>
+                                    <th>Total Payment</th>
+                                    <th>Total Remaining</th>
+                                    <th>Currency ID</th>
+                                    <th>Transaction Type</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var payment in closeout.Payments)
+                            {
+                                    <tr>
+                                        <td>@payment.PaymentDetailsID</td>
+                                        <td>@payment.Date</td>
+                                        <td>@payment.PaymentType</td>
+                                        <td>@payment.SavedBy</td>
+                                        <td>@payment.TotalPayment</td>
+                                        <td>@payment.TotalRemaining</td>
+                                        <td>@payment.CurrencyID</td>
+                                        <td>@payment.MoneyTransactionTypeID</td>
+                                    </tr>
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+            }
+            else
+            {
+                    <h4>No Payments</h4>
+            }
+
+                @if (closeout.Assignations != null)
+            {
+                    <div>
+                        <h4>Assignations</h4>
+                        <table style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Payment Assignation ID</th>
+                                    <th>Folio</th>
+                                    <th>Service</th>
+                                    <th>Purchase Service Detail ID</th>
+                                    <th>Quantity</th>
+                                    <th>Unit</th>
+                                    <th>Price Type</th>
+                                    <th>Total</th>
+                                    <th>CurrencyID</th>
+                                    <th>Exchange Rate</th>
+                                    <th>Exchange Rate ID</th>
+                                    <th>Payment Details ID</th>
+                                    <th>Payment Type</th>
+                                    <th>Subtotal Payment</th>
+                                    <th>Payment Total</th>
+                                    <th>Subtotal Currency ID</th>
+                                    <th>Money Transaction Type ID</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var assignation in closeout.Assignations)
+                            {
+                                    <tr>
+                                        <td>@assignation.PaymentAssignationID</td>
+                                        <td>@assignation.Folio</td>
+                                        <td>@assignation.Service</td>
+                                        <td>@assignation.PurchaseServiceDetailID</td>
+                                        <td>@assignation.Quantity</td>
+                                        <td>@assignation.Unit</td>
+                                        <td>@assignation.PriceType</td>
+                                        <td>@assignation.Total.Amount @assignation.Total.Currency</td>
+                                        <td>@assignation.CurrencyID</td>
+                                        <td>@assignation.ExchangeRate</td>
+                                        <td>@assignation.ExchangeRateID</td>
+                                        <td>@assignation.PaymentDetailsID</td>
+                                        <td>@assignation.PaymentType</td>
+                                        <td>@assignation.PaymentSubtotal.Amount @assignation.PaymentSubtotal.Currency</td>
+                                        <td>@assignation.PaymentTotal</td>
+                                        <td>@assignation.PaymentCurrencyID</td>
+                                        <td>@assignation.MoneyTransactionTypeID</td>
+                                    </tr>
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+            }
+            else
+            {
+                    <h4>No Assignations</h4>
+            }
+
+                @if (closeout.ExtraPayments.Count() > 0)
+            {
+                    <div>
+                        <h4>Nullable Payments</h4>
+                        <table style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Extra Amount</th>
+                                    <th>Extra From Payment Details ID</th>
+                                    <th>Payment Detail Description</th>
+                                    <th>Refund Payment Details ID</th>
+                                    <th>Refund Detail Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var extra in closeout.ExtraPayments)
+                            {
+                                    <tr>
+                                        <td>@extra.ExtraAmount.Amount @extra.ExtraAmount.Currency</td>
+                                        <td>@extra.ExtraFromPaymentDetailsID</td>
+                                        <td>@extra.PaymentDetailDescription</td>
+                                        <td>@extra.RefundPaymentDetailsID</td>
+                                        <td>@extra.RefundDetailDescription</td>
+                                    </tr>
+                            }
+                            </tbody>
+                        </table>
+
+                    </div>
+            }
+            else
+            {
+                    <h4>No Nullable Payments</h4>
+            }
+            </div>
+    }
+}

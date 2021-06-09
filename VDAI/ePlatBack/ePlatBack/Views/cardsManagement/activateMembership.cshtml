@@ -1,0 +1,13 @@
+﻿@model  List<ePlatBack.Models.tblMembershipCards>
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    Random rand = new Random();
+}
+
+<div id="app">
+        <component :is="currentcomponentmemberhips"></component>
+</div>
+@section Scripts
+{
+    <script src="~/ViewModels/Components/activatememberships.js?_=@rand.Next()"></script>
+}

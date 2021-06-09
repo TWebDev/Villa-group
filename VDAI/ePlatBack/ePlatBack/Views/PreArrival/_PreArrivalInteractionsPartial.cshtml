@@ -1,0 +1,48 @@
+﻿@model ePlatBack.Models.ViewModels.PreArrivalInteractionsInfoModel
+
+@section Scripts{
+    <script src="/Scripts/crm/interactions.js" type="text/javascript"></script>
+}
+
+@{
+    var Privileges = Model.Privileges;
+}
+@if (Privileges.Count(m => m.Component == "Section_InteractionsInfo") > 0 && Privileges.FirstOrDefault(m => m.Component == "Section_InteractionsInfo").View)
+{
+    <section id="Section_InteractionsInfo" class="full-width editor-alignment" style="border-top:1px solid #dddddd;margin-top:20px;">
+        <h3>Interactions Information</h3>
+        @using (Ajax.BeginForm("SaveInteraction", "PreArrival", new AjaxOptions { OnSuccess = "INTERACTION.saveInteractionSuccess(data)" }, new { id = "frmInteraction", onSubmit = "return UI.showValidationSummary(this.id);" }))
+        {
+            <div style="width: 800px; margin: 50px auto !important; clear: both;">
+                <div class="interaction-wrapper">
+                    @Html.HiddenFor(model => model.InteractionsInfo_LeadID, new { @class = "primary-selected-row-dependent", data_keep_value = "true" })
+                    <div style="width:200px;margin-right:10px;" class="left">
+                        <div class="text-left">@Html.DropDownListFor(model => model.InteractionsInfo_InteractionType, Model.InteractionTypes, new { title = "Interaction Type" })</div>
+                        <div class="text-left align-from-top">@Html.DropDownListFor(model => model.InteractionsInfo_BookingStatus, Model.BookingStatus, new { title = "Options Status" })</div>
+                        <div class="text-left align-from-top">@Html.DropDownListFor(model => model.InteractionsInfo_InteractedWithUser, Model.Users, new { title = "Interacted With User" })</div>
+
+                        @if (Privileges.Count(m => m.Component == "InteractionsInfo_TotalSold") > 0 && Privileges.FirstOrDefault(m => m.Component == "InteractionsInfo_TotalSold").View)
+                        {
+                            <div class="text-left align-from-top">@Html.TextBoxFor(model => model.InteractionsInfo_TotalSold, new { placeholder = "Total Sold" })</div>
+                        }
+                    </div>
+                    <div style="width:480px;margin-right:10px;" class="right">
+                        <div style="width:480px;">
+                            @Html.TextAreaFor(model => model.InteractionsInfo_InteractionComments, new { style = "height:100px;", title = "Comments", placeholder = "Comments/Notes" })
+                        </div>
+                    </div>
+                    <div class="align-from-top" style="width:700px;display:inline-block;">
+                        @if (Privileges.Count(m => m.Component == "btnSaveInteraction") > 0 && Privileges.FirstOrDefault(m => m.Component == "btnSaveInteraction").View)
+                        {
+                            <div class="text-right">
+                                <input type="submit" id="btnSaveInteraction" class="submit" value="save" />
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+        <div id="divPreArrivalInteractions" class="primary-selected-row-dependent">
+        </div>
+    </section>
+}

@@ -1,0 +1,93 @@
+﻿@model ePlatBack.Models.ViewModels.PreArrivalReport
+
+@if (Model.ListManifest != null)
+{
+    var groupsByResort = Model.ListManifest.GroupBy(model => model.Resort);
+    var counter = 0;
+    foreach (var resort in groupsByResort)
+    {
+        var types = resort.GroupBy(m => m.OptionTypes);
+        var volumeSold = resort.Sum(m => decimal.Parse(m.OptionsTotal));
+        var countResort = resort.Count();
+        <table id="tblSalesPerOptions" class="table no-plugin full-width selectable exportable">
+            <thead>
+                <tr>
+                    <th colspan="7">
+                        @Html.DisplayFor(model => resort.Key)
+                    </th>
+                    <th>
+                        Optionals: @Html.DisplayFor(model => countResort)
+                    </th>
+                    <th data-format="currency">
+                        @Html.DisplayFor(model => volumeSold)
+                    </th>
+                </tr>
+                <tr>
+                    <th>Confirmation Number</th>
+                    <th>Guest Name</th>
+                    <th>Invoice(s)</th>
+                    <th>Quantity</th>
+                    <th>Option Name</th>
+                    <th>Unit Price</th>
+                    <th>Lead Source</th>
+                    <th>Resort</th>
+                    <th>Total Paid</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var type in types)
+                {
+                    var total = type.Sum(m => decimal.Parse(m.OptionsTotal));
+                    var count = type.Count();
+                    <tr>
+                        <th colspan="7">
+                            @Html.DisplayFor(model => type.Key)
+                        </th>
+                        <th>
+                            Optionals: @Html.DisplayFor(model => count)
+                        </th>
+                        <th data-format="currency">
+                            @Html.DisplayFor(model => total)
+                        </th>
+                    </tr>
+                    foreach (var i in type)
+                    {
+                        var r = i.ReservationID;
+                        var n = i.EmailNotificationID;
+                        var t = i.TransactionID;
+                        var name = i.FirstName + " " + i.LastName;
+                        <tr>
+                            <td>
+                                @Html.RouteLink(i.ConfirmationNumber, new { href=""}, new { data_transaction = i.TransactionID, data_id = n, data_reservation = r, @class = "preview" })
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.InvoiceNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.OptionsQuantity)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.Options)
+                            </td>
+                            <td data-format="currency">
+                                @Html.DisplayFor(model => i.PricePaid)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.LeadSource)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.Resort)
+                            </td>
+                            <td data-format="currency">
+                                @Html.DisplayFor(model => i.OptionsTotal)
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    }
+}

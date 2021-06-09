@@ -1,0 +1,180 @@
+﻿@model ePlatBack.Models.ViewModels.CouponsHistoryModel
+
+<div class="table-div">
+    <div class="table-row">
+        <div class="table-cell">
+            Point of Sale<br />
+            @Html.Raw(Model.PointOfSale)
+        </div>
+        <div class="table-cell">
+            Providers<br />
+            @Html.Raw(Model.Provider)
+        </div>
+        @if (Model.From != null)
+        {
+            <div class="table-cell">
+                From Coupon<br />
+                @Model.From
+            </div>
+        }
+        @if (Model.To != null)
+        {
+            <div class="table-cell">
+                To Coupon<br />
+                @Model.To
+            </div>
+        }
+        @if (Model.AuditedStatus != null)
+        {
+            <div class="table-cell">
+                Audit Status<br />
+                @Model.AuditedStatus
+            </div>
+        }
+        @if (Model.CouponStatus != null)
+        {
+            <div class="table-cell">
+                Coupon Status<br />
+                @Html.Raw(Model.CouponStatus)
+            </div>
+        }
+        @if (Model.AuditedStatus != null && Model.AuditedStatus.IndexOf("Not Audited") > -1)
+        {
+            <div class="table-cell">
+                @if (Model.CouponStatus.IndexOf("Confirmed") > -1)
+                {
+                    <input type="button" id="btnNoShow" class="button" value="Mark as No Show" />
+                } else if(Model.CouponStatus.IndexOf("No Show") > -1) {
+                    <input type="button" id="btnConfirmed" class="button" value="Mark as Confirmed" />
+                }   
+            </div>
+        }
+    </div>
+</div>
+
+<table class="table no-plugin exportable non-editable non-stripable" style="width: 100%;">
+    <thead>
+        <tr>
+            @if (Model.AuditedStatus != null && Model.AuditedStatus.IndexOf("Not Audited") > -1)
+            {
+                <th><input type="checkbox" class="mark-all" value="true"></th>
+
+            }
+            <th>Folio</th>
+            <th>Provider</th>
+            <th>Activity</th>
+            <th>Activity Date</th>
+            <th>Status</th>
+            <th>Replacements</th>
+
+            <th>Quantity</th>
+            <th>Unit</th>
+            <th>Price Type</th>
+            <th>Acc Acc Number</th>
+            <th>Acc Acc Name</th>
+            <th>Acc Acc Article</th>
+            <th>Unit Cost</th>
+
+            <th>Total</th>
+            <th>Cost</th>
+            <th>Client from Agent</th>
+            <th>Saved</th>
+            <th>Confirmed</th>
+            <th>Confirmed by</th>
+            <th>Canceled</th>
+            <th>Canceled by</th>
+            <th>Close Out</th>
+            <th>Audited By</th>
+            <th>Audited On</th>
+            <th>Provider Invoice</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var coupon in Model.Coupons)
+        {
+        <tr id="@coupon.Purchase_ServiceID">
+            @if (Model.AuditedStatus != null && Model.AuditedStatus.IndexOf("Not Audited") > -1)
+            {
+                <td rowspan="@(coupon.Details.Count() > 0 ? coupon.Details.Count() : 1)">
+                    @if (coupon.Status.IndexOf("Confirmed") > -1 || coupon.Status.IndexOf("No Show") > -1)
+                    {
+                        <input type="checkbox" class="mark" value="true">
+                    }
+                </td>
+            }
+            <td rowspan="@(coupon.Details.Count() > 0 ? coupon.Details.Count() : 1)"><a href="/crm/masterchart#purchaseid=@coupon.PurchaseID" target="_blank">@coupon.Folio</a></td>
+            <td rowspan="@(coupon.Details.Count() > 0 ? coupon.Details.Count() : 1)">@coupon.Provider</td>
+            <td rowspan="@(coupon.Details.Count() > 0 ? coupon.Details.Count() : 1)">
+                @coupon.Service
+                @if (coupon.Promo != null)
+                {
+                    <span class="block"><strong>Promo:</strong> @coupon.Promo</span>
+                }
+            </td>
+            <td rowspan="@(coupon.Details.Count() > 0 ? coupon.Details.Count() : 1)">
+                @coupon.ServiceDate
+            </td>
+            @if (coupon.Status != null && (coupon.Status.IndexOf("Refund") >= 0 || coupon.Status.IndexOf("Cancel") >= 0))
+            {
+                <td class="mb-warning status" rowspan="@(coupon.Details.Count() > 0 ? coupon.Details.Count() : 1)">@coupon.Status</td>
+            }
+            else
+            {
+                <td rowspan="@(coupon.Details.Count() > 0 ? coupon.Details.Count() : 1)" class="status">@coupon.Status</td>
+            }
+            <td rowspan="@(coupon.Details.Count() > 0 ? coupon.Details.Count() : 1)">@Html.Raw(coupon.Replacements)</td>
+
+            @if (@coupon.Details.Count() > 0)
+            {
+                <td>@coupon.Details.FirstOrDefault().Quantity.ToString().Replace(".00", "")</td>
+                <td>@coupon.Details.FirstOrDefault().Unit</td>
+                <td>@coupon.Details.FirstOrDefault().AccAccPriceType</td>
+                <td>@coupon.Details.FirstOrDefault().AccAccNumber</td>
+                <td>@coupon.Details.FirstOrDefault().AccAccName</td>
+                <td>@coupon.Details.FirstOrDefault().AccAccArticle</td>
+                <td><span data-format="currency">@coupon.Details.FirstOrDefault().UnitCostTotal.Amount @coupon.Details.FirstOrDefault().UnitCostTotal.Currency</span></td>
+            }
+            else
+            {
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            }
+
+            <td rowspan="@(coupon.Details.Count() > 0 ? coupon.Details.Count() : 1)"><span data-format="currency">@coupon.Total @coupon.Currency</span></td>
+            <td rowspan="@(coupon.Details.Count() > 0 ? coupon.Details.Count() : 1)"><span data-format="currency">@coupon.Cost.Amount @coupon.Cost.Currency</span></td>
+            <td rowspan="@(coupon.Details.Count() > 0 ? coupon.Details.Count() : 1)">@coupon.AgentPurchase</td>
+            <td rowspan="@(coupon.Details.Count() > 0 ? coupon.Details.Count() : 1)">@coupon.DateSaved</td>
+            <td rowspan="@(coupon.Details.Count() > 0 ? coupon.Details.Count() : 1)">@coupon.DateConfirmed</td>
+            <td rowspan="@(coupon.Details.Count() > 0 ? coupon.Details.Count() : 1)">@coupon.AgentConfirmed</td>
+            <td rowspan="@(coupon.Details.Count() > 0 ? coupon.Details.Count() : 1)">@coupon.DateCanceled</td>
+            <td rowspan="@(coupon.Details.Count() > 0 ? coupon.Details.Count() : 1)">@coupon.AgentCanceled</td>
+            <td rowspan="@(coupon.Details.Count() > 0 ? coupon.Details.Count() : 1)">@Html.Raw(coupon.CloseOut)</td>
+            <td rowspan="@(coupon.Details.Count() > 0 ? coupon.Details.Count() : 1)">@coupon.AuditedByUser</td>
+            <td rowspan="@(coupon.Details.Count() > 0 ? coupon.Details.Count() : 1)">@coupon.AuditedOnDate</td>
+            <td rowspan="@(coupon.Details.Count() > 0 ? coupon.Details.Count() : 1)">@coupon.AuditedOnInvoice</td>
+        </tr>
+                int i = 0;
+                foreach (var detail in @coupon.Details)
+                {
+                    if (i > 0)
+                    {
+                        <tr>
+                            <td>@detail.Quantity.ToString().Replace(".00", "")</td>
+                            <td>@detail.Unit</td>
+                            <td>@detail.AccAccPriceType</td>
+                            <td>@detail.AccAccNumber</td>
+                            <td>@detail.AccAccName</td>
+                            <td>@detail.AccAccArticle</td>
+                            <td><span data-format="currency">@detail.UnitCostTotal.Amount @detail.UnitCostTotal.Currency</span></td>
+                        </tr>
+                    }
+                    i++;
+                }
+        }
+    </tbody>
+</table>

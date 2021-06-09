@@ -1,0 +1,61 @@
+﻿@model ePlatBack.Models.ViewModels.DailyCommissions
+
+<div class="dashboard-panel">
+    <h3 class="title">Individual Daily Commissions</h3>
+    <div class="content">
+        <div class="content-item">
+            <div class="dashboard-total" data-format="currency">@Model.Commission.Amount @Model.Commission.Currency</div>
+            <div class="summary-note">Commission</div>
+            <div style="clear:both;"></div>
+            <span class="summary-fields total" data-format="currency">@Model.Production.Amount @Model.Production.Currency</span>
+            <div style="clear:both;"></div>
+            <div class="summary-note">Commissionable Production</div>
+            <div style="clear:both;"></div>
+            <span class="summary-fields total" data-format="currency">@Model.ProductionNoIVA.Amount @Model.ProductionNoIVA.Currency</span>
+            <div style="clear:both;"></div>
+            <div class="summary-note">Production Before IVA</div>
+            <div style="clear:both;"></div>
+        </div>
+        @foreach (var jp in Model.AgentsCommissions)
+        {
+            <div class="content-item">
+                <strong>@jp.JobPostion</strong>
+                @*<div class="content-column">
+
+                        <span class="summary-fields total" data-format="currency">@jp.Production.Amount @jp.Production.Currency</span><br />
+                        <span class="summary-fields total" data-format="currency">@jp.ProductionNoIVA.Amount @jp.Production.Currency</span><br />
+                        <span class="summary-fields total" data-format="currency">@jp.Commission.Amount @jp.Production.Currency</span>
+                    </div>*@
+                <div class="content-column">
+                    <table style="font-size:.8em; width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>Price Type</th>
+                                <th>Commission</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var pt in jp.Commissions.Where(x => x.Commission.Amount > 0))
+                            {
+                                <tr>
+                                    <td>
+                                        <strong>@pt.PriceType</strong><br />
+                                        @pt.Percentage %<br />
+                                        @pt.MinProfit - @pt.MaxProfit<br />
+                                    </td>
+
+                                    <td>
+                                        <span data-format="currency">@pt.Production.Amount @pt.Production.Currency</span>
+                                        <span data-format="currency">@pt.ProductionNoIVA.Amount @pt.ProductionNoIVA.Currency</span>
+                                        <span data-format="currency">@pt.Commission.Amount @pt.Commission.Currency</span>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        }
+    </div>
+</div>

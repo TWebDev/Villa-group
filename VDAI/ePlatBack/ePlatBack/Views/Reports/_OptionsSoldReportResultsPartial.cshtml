@@ -1,0 +1,43 @@
+﻿@model ePlatBack.Models.ViewModels.OptionsSoldModel
+
+<table id="tblOptionsSoldReport" class="table">
+         <thead>
+             <tr>
+                 <th>Resort</th>
+                 <th>Arrivals</th>
+                 <th>Arrivals With Options</th>
+                 <th>% Options Capture</th>
+                 <th>Total Paid Volume</th>
+                 <th>Total Nights</th>
+             </tr>
+         </thead>
+         <tbody>
+             @if (Model.ListOptionsSoldReportModel != null)
+             {
+                 foreach (var i in Model.ListOptionsSoldReportModel)
+                 {
+                     <tr>
+                         <td>
+                             @Html.DisplayFor(model => i.OptionsSoldReport_Resort)
+                             @Html.HiddenFor(model => i.OptionsSoldReport_LeadsWithOptions)
+                         </td>
+                         <td>
+                             @Html.DisplayFor(model => i.OptionsSoldReport_Arrivals)
+                         </td>
+                         <td>
+                             @Html.DisplayFor(model => i.OptionsSoldReport_ArrivalsWithOptions)
+                         </td>
+                         <td>
+                             @Html.DisplayFor(model => i.OptionsSoldReport_OptionsCapture)
+                         </td>
+                         <td>
+                             @Html.DisplayFor(model => i.OptionsSoldReport_TotalPaidVolume)
+                         </td>
+                         <td>
+                             @Html.DisplayFor(model => i.OptionsSoldReport_TotalNights)
+                         </td>
+                     </tr>
+                 }
+             }
+         </tbody>
+     </table>

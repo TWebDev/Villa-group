@@ -1,0 +1,187 @@
+﻿@model ePlatBack.Models.ViewModels.PreArrivalPresentationsModel
+@{
+    var Privileges = Model.Privileges;
+}
+@if (Privileges.Count(m => m.Component == "Section_PresentationInfo") > 0 && Privileges.FirstOrDefault(m => m.Component == "Section_PresentationInfo").View)
+{
+    <section id="Section_PresentationInfo" class="full-width editor-alignment" style="border-top:1px solid #dddddd;margin-top:20px;">
+        <h3>Presentation Information</h3>
+
+        @using (Ajax.BeginForm("SavePresentation", "PreArrival", new AjaxOptions { OnSuccess = "PREARRIVAL.savePresentationSuccess(data)" }, new { id = "frmPresentationInfo" }))
+        {
+
+            <div class="editor-alignment" style="display:none;">
+                @Html.HiddenFor(model => model.PresentationInfo_LeadID, new { data_keep_value = "", @class = "primary-selected-row-dependent" })
+                @Html.HiddenFor(model => model.PresentationInfo_ReservationID, new { data_keep_value = "", @class = "secondary-selected-row-dependent" })
+                @Html.HiddenFor(model => model.PresentationInfo_PresentationID)
+            </div>
+            if (Privileges.Count(m => m.Component == "divGeneralUse") > 0 && Privileges.FirstOrDefault(m => m.Component == "divGeneralUse").View)
+            {
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PresentationInfo_DatePresentation)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.PresentationInfo_DatePresentation, new { data_uses_date_picker = "true" })
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PresentationInfo_TimePresentation)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.PresentationInfo_TimePresentation, new { data_uses_time_picker = "true" })
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PresentationInfo_SecondaryBookingStatus) 
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.PresentationInfo_SecondaryBookingStatus, Model.BookingStatus)
+                    </div>
+                </div>
+                if (Privileges.Count(m => m.Component == "PresentationInfo_TourStatus") > 0 && Privileges.FirstOrDefault(m => m.Component == "PresentationInfo_TourStatus").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.PresentationInfo_TourStatus)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.PresentationInfo_TourStatus, Model.TourStatus)
+                        </div>
+                    </div>
+                }
+                if (Privileges.Count(m => m.Component == "PresentationInfo_TourStatusText") > 0 && Privileges.FirstOrDefault(m => m.Component == "PresentationInfo_TourStatusText").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.PresentationInfo_TourStatusText)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.PresentationInfo_TourStatusText, new { @readonly = "readonly", disabled="disabled" })
+                        </div>
+                    </div>
+                }
+
+            }
+            <div class="half-width" style="border-top:1px solid #dddddd;margin-top:20px;"></div>
+            if (Privileges.Count(m => m.Component == "divConciergeUse") > 0 && Privileges.FirstOrDefault(m => m.Component == "divConciergeUse").View)
+            {
+                <div id="divConciergeUse">
+                    <h3>For Concierge Usage</h3>
+                    <section class="full-width editor-alignment">
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.PresentationInfo_LeadSource)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.PresentationInfo_LeadSource, Model.PresentationInfo_LeadSources)
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.PresentationInfo_SpiTourDate)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.PresentationInfo_SpiTourDate)
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.PresentationInfo_SpiTour)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.PresentationInfo_SpiTour, Model.PresentationInfo_Tours)
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.PresentationInfo_SPISource)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.PresentationInfo_SPISource, new { @class = "field-disabled", @readonly = "readonly" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.PresentationInfo_VolumeSold)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.PresentationInfo_VolumeSold, new { @class = "numeric-field field-disabled", @readonly = "readonly" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.PresentationInfo_HostessComments)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextAreaFor(model => model.PresentationInfo_HostessComments)
+                            </div>
+                        </div>
+                        @if (Privileges.Count(m => m.Component == "PresentationInfo_RealTourDate") > 0 && Privileges.FirstOrDefault(m => m.Component == "PresentationInfo_RealTourDate").View)
+                        {
+                            <div class="editor-alignment" style="display:none;">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.PresentationInfo_RealTourDate)
+                                </div>
+                                <div class="editor-field">
+                                    @if (Privileges.FirstOrDefault(m => m.Component == "PresentationInfo_RealTourDate").Edit)
+                                    {
+                                        @Html.TextBoxFor(model => model.PresentationInfo_RealTourDate, new { data_uses_date_picker = "true" })
+                                    }
+                                    else
+                                    {
+                                        @Html.TextBoxFor(model => model.PresentationInfo_RealTourDate, new { data_uses_date_picker = "true", @readonly = "readonly", @class = "field-disabled" })
+                                    }
+                                </div>
+                            </div>
+                        }
+                        @if (Privileges.Count(m => m.Component == "PresentationInfo_FinalBookingStatus") > 0 && Privileges.FirstOrDefault(m => m.Component == "PresentationInfo_FinalBookingStatus").View)
+                        {
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.PresentationInfo_FinalBookingStatus)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.DropDownListFor(model => model.PresentationInfo_FinalBookingStatus, Model.FinalBookingStatus)
+                                    @*@if (Privileges.FirstOrDefault(m => m.Component == "PresentationInfo_FinalBookingStatus").Edit)
+                                        {
+                                            @Html.DropDownListFor(model => model.PresentationInfo_FinalBookingStatus, Model.BookingStatus)
+                                        }
+                                        else
+                                        {
+                                            @Html.DropDownListFor(model => model.PresentationInfo_FinalBookingStatus, Model.BookingStatus)
+                                        }*@
+                                </div>
+                            </div>
+                        }
+                        @if (Privileges.Count(m => m.Component == "PresentationInfo_FinalTourStatus") > 0 && Privileges.FirstOrDefault(m => m.Component == "PresentationInfo_FinalTourStatus").View)
+                        {
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.PresentationInfo_FinalTourStatus)
+                                </div>
+                                <div class="editor-field">
+                                    @if (Privileges.FirstOrDefault(m => m.Component == "PresentationInfo_FinalTourStatus").Edit)
+                                    {
+                                        @Html.DropDownListFor(model => model.PresentationInfo_FinalTourStatus, Model.TourStatus)
+                                    }
+                                    else
+                                    {
+                                        @Html.DropDownListFor(model => model.PresentationInfo_FinalTourStatus, Model.TourStatus, new { @readonly = "readonly", @class = "field-disabled" })
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </section>
+                </div>
+                <div class="editor-alignment align-from-top full-width">
+                    <div class="editor-field">
+                        <input type="submit" class="submit right" value="save" />
+                    </div>
+                </div>
+            }
+        }
+    </section>
+}

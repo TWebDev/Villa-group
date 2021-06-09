@@ -1,0 +1,66 @@
+﻿@model ePlatBack.Models.ViewModels.PageViewModel
+
+@{
+    ViewBag.Culture = Model.Culture;
+    ViewBag.Title = Model.Seo_Title;
+    ViewBag.Keywords = Model.Seo_Keywords;
+    ViewBag.Description = Model.Seo_Description;
+    ViewBag.Index = Model.Seo_Index;
+    ViewBag.Follow = Model.Seo_Follow;
+    ViewBag.FriendlyUrl = Model.Seo_FriendlyUrl;
+    ViewBag.OppositeLanguageUrl = Model.Seo_OppositeLanguageUrl;
+    ViewBag.CanonicalDomain = Model.CanonicalDomain;
+
+    ViewBag.Header = Model.Template_Header;
+    ViewBag.Footer = Model.Template_Footer;
+    ViewBag.Logo = Model.Template_Logo;
+
+    ViewBag.Submenu1 = Model.Submenu1;
+    ViewBag.Submenu2 = Model.Submenu2;
+    ViewBag.Submenu3 = Model.Submenu3;
+}
+
+@section header{
+    @Html.Raw(Model.Scripts_Header)
+    @if (Model.CanonicalDomain != null && Model.CanonicalDomain.IndexOf("discountvacationhotels.com") > -1)
+    {
+        <script> gtag('config', 'AW-1022671970/xONSCPmz75ABEOL40ucD', { 'phone_conversion_number': '@Model.Template_Phone_Desktop.Replace(" ","-")' }); </script>
+    }
+}
+
+@section afterBody{
+    @Html.Raw(Model.Scripts_AfterBody)
+}
+
+@section scripts{
+    @Html.Raw(Model.Scripts_Footer)
+}
+
+@section controls{
+    @if (@Model.Template_Controls.Count(x => x == "FreeGetaway") > 0)
+    {
+        <div id="freeGetaway" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="freeGetawayLabel">@Html.Partial("_FreeGetawayPartialV2", Model.FreeGetawayControl)</div>
+    }
+    @if (@Model.Template_Controls.Count(x => x == "QuoteRequest") > 0)
+    {
+        <div id="quoteRequest" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="quoteRequestLabel">@Html.Partial("_QuoteRequestPartialV2", Model.QuoteRequestControl)</div>
+    }
+    @if (@Model.Template_Controls.Count(x => x == "RedeemMyPackage") > 0)
+    {
+        <div id="redeemMyPackage" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="redeemMyPackageLabel">@Html.Partial("_RedeemMyPackage", Model.RedeemMyPackageControl)</div>
+    }
+    @if (@Model.Template_Controls.Count(x => x == "FreeVacation") > 0)
+    {
+        <div id="freeVacation" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="freeVacationLabel">@Html.Partial("_FreeVacationPartialV2", Model.FreeVacationControl)</div>
+    }
+    @if (@Model.Template_Controls.Count(x => x == "Categories") > 0)
+    {
+        <div id="categories" style="display:none;"></div>
+    }
+}
+
+@section featured {
+    @Html.Raw(Model.Content_Header)
+}
+
+@Html.Raw(Model.Content)

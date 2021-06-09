@@ -1,0 +1,24 @@
+﻿
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Web;
+using System.Web.Mvc;
+
+namespace ePlatBack.Models.DataModels
+{
+    public class BookingStatusDataModel
+    {
+        public static List<SelectListItem> GetAllBookingStatus()
+        {
+            ePlatEntities db = new ePlatEntities();
+            List<SelectListItem> list = new List<SelectListItem>();
+            var query = from bs in db.tblBookingStatus
+                        select new { bs.bookingStatusID, bs.bookingStatus };
+            foreach (var i in query)
+                list.Add(new SelectListItem() { Value = i.bookingStatusID.ToString(), Text = i.bookingStatus });
+            return list;
+        }
+    }
+}

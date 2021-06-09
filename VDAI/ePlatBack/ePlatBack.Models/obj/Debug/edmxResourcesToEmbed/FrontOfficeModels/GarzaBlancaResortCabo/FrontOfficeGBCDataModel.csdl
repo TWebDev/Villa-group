@@ -1,0 +1,428 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FrontOfficeGBCModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityType Name="dtproperties">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="property" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="objectid" Type="Int32" />
+    <Property Name="property" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="value" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="uvalue" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="lvalue" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="version" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbaAgencia">
+    <Key>
+      <PropertyRef Name="idagencia" />
+    </Key>
+    <Property Name="idagencia" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="nameagencia" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="codeagencia" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="IdCompania" Type="Int32" />
+    <Property Name="idcodigodemercado" Type="Int32" />
+    <Property Name="Mayorista" Type="Boolean" Nullable="false" />
+    <Property Name="IdPerfilDelHuesped" Type="Int32" />
+    <Property Name="UltimaVisita" Type="DateTime" Precision="3" />
+    <Property Name="UltimaTarifa" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="UltimaHabitacion" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="TotalDeNoches" Type="Int32" />
+    <Property Name="TotalDeVisitas" Type="Int32" />
+    <Property Name="TotalDeCancelaciones" Type="Int32" />
+    <Property Name="TotalDeNoShow" Type="Int32" />
+    <Property Name="TotalDeIngresos" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="usualta" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+    <Property Name="fechaalta" Type="DateTime" Precision="3" />
+    <Property Name="usumodi" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+    <Property Name="fechamodi" Type="DateTime" Precision="3" />
+    <Property Name="clasifnoimprimible" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="concredito" Type="Boolean" Nullable="false" />
+    <Property Name="tipodeagencia" Type="Int32" Nullable="false" />
+    <Property Name="Porcentajerenta" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="cuentacontableagencia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Activo" Type="Boolean" Nullable="false" />
+    <Property Name="interfas" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="tipoagencia" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="nombreContacto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MostrarModuloPresup" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tbaCodigosdeMercado">
+    <Key>
+      <PropertyRef Name="idcodigodemercado" />
+    </Key>
+    <Property Name="idcodigodemercado" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="namecodigodemercado" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="codigo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="IdMayor" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="usualta" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="fechaalta" Type="DateTime" Precision="3" />
+    <Property Name="usumodi" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="fechamodi" Type="DateTime" Precision="3" />
+    <Property Name="tarificadorservown" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="idresort" Type="Int32" />
+    <Property Name="activo" Type="Boolean" Nullable="false" />
+    <Property Name="tipofix" Type="Boolean" Nullable="false" />
+    <Property Name="preasignacion" Type="Boolean" />
+    <Property Name="color" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+    <Property Name="segmentohotel" Type="Int16" Nullable="false" />
+    <Property Name="owner" Type="Boolean" Nullable="false" />
+    <Property Name="invitadoown" Type="Boolean" Nullable="false" />
+    <Property Name="idplantilladecargoinvown" Type="Int32" Nullable="false" />
+    <Property Name="rentalprogram" Type="Boolean" Nullable="false" />
+    <Property Name="orden" Type="Int32" Nullable="false" />
+    <Property Name="NameUVC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="callcenter" Type="Boolean" Nullable="false" />
+    <Property Name="walkin" Type="Boolean" Nullable="false" />
+    <Property Name="idmodocallcenter" Type="Int32" />
+    <Property Name="interfas" Type="Boolean" Nullable="false" />
+    <Property Name="EsCortecia" Type="Boolean" />
+    <Property Name="idSegmentoPpto" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tbaCxRxR1">
+    <Key>
+      <PropertyRef Name="idconsecutivo" />
+    </Key>
+    <Property Name="idconsecutivo" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idreservacion" Type="Decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="tbaCxRxR2">
+    <Key>
+      <PropertyRef Name="idconsecutivo" />
+    </Key>
+    <Property Name="idconsecutivo" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idreservacion" Type="Decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="tbaCxRxR3">
+    <Key>
+      <PropertyRef Name="idconsecutivo" />
+    </Key>
+    <Property Name="idconsecutivo" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idreservacion" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbaCxRxR4">
+    <Key>
+      <PropertyRef Name="idconsecutivo" />
+    </Key>
+    <Property Name="idconsecutivo" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idreservacion" Type="Decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="tbaCxRxR5">
+    <Key>
+      <PropertyRef Name="idconsecutivo" />
+    </Key>
+    <Property Name="idconsecutivo" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idreservacion" Type="Decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="tbaCxRxR7">
+    <Key>
+      <PropertyRef Name="idconsecutivo" />
+    </Key>
+    <Property Name="idconsecutivo" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idreservacion" Type="Decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="tbaPlantilladeCargos">
+    <Key>
+      <PropertyRef Name="idplantilla" />
+    </Key>
+    <Property Name="idplantilla" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombredeplantilla" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="codigodeplantilla" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="usualta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fechaalta" Type="DateTime" Precision="3" />
+    <Property Name="usumodi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fechamodi" Type="DateTime" Precision="3" />
+    <Property Name="idresort" Type="Int32" />
+    <Property Name="cargotelefonico" Type="Boolean" Nullable="false" />
+    <Property Name="numerodedias" Type="Int32" Nullable="false" />
+    <Property Name="tipoalimentos" Type="Boolean" />
+    <Property Name="plantillaactiva" Type="Boolean" Nullable="false" />
+    <Property Name="allinclusive" Type="Boolean" Nullable="false" />
+    <Property Name="Upgrade" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tbaTiposdeHabitacion">
+    <Key>
+      <PropertyRef Name="idtipodehabitacion" />
+    </Key>
+    <Property Name="idtipodehabitacion" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nametipodehabitacion" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Name="codetipodehabitacion" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="cantidad" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="usualta" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="fechaalta" Type="DateTime" Precision="3" />
+    <Property Name="usumodi" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="fechamodi" Type="DateTime" Precision="3" />
+    <Property Name="idcolortipodehabitacion" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="idresort" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="clasificacion" Type="Int32" Nullable="false" />
+    <Property Name="idtipohabvillacompleta" Type="Int32" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ocupacionmaxima" Type="Int32" Nullable="false" />
+    <Property Name="numinternetgratis" Type="Int16" Nullable="false" />
+    <Property Name="Activa" Type="Boolean" />
+    <Property Name="Permitesplit" Type="Boolean" />
+  </EntityType>
+  <EntityContainer Name="FrontofficeGBCEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="dtproperties" EntityType="Self.dtproperties" />
+    <EntitySet Name="tbaAgencia" EntityType="Self.tbaAgencia" />
+    <EntitySet Name="tbaCodigosdeMercado" EntityType="Self.tbaCodigosdeMercado" />
+    <EntitySet Name="tbaCxRxR1" EntityType="Self.tbaCxRxR1" />
+    <EntitySet Name="tbaCxRxR2" EntityType="Self.tbaCxRxR2" />
+    <EntitySet Name="tbaCxRxR3" EntityType="Self.tbaCxRxR3" />
+    <EntitySet Name="tbaCxRxR4" EntityType="Self.tbaCxRxR4" />
+    <EntitySet Name="tbaCxRxR5" EntityType="Self.tbaCxRxR5" />
+    <EntitySet Name="tbaCxRxR7" EntityType="Self.tbaCxRxR7" />
+    <EntitySet Name="tbaPlantilladeCargos" EntityType="Self.tbaPlantilladeCargos" />
+    <EntitySet Name="tbaTiposdeHabitacion" EntityType="Self.tbaTiposdeHabitacion" />
+    <FunctionImport Name="dt_addtosourcecontrol">
+      <Parameter Name="vchSourceSafeINI" Mode="In" Type="String" />
+      <Parameter Name="vchProjectName" Mode="In" Type="String" />
+      <Parameter Name="vchComment" Mode="In" Type="String" />
+      <Parameter Name="vchLoginName" Mode="In" Type="String" />
+      <Parameter Name="vchPassword" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="dt_addtosourcecontrol_u">
+      <Parameter Name="vchSourceSafeINI" Mode="In" Type="String" />
+      <Parameter Name="vchProjectName" Mode="In" Type="String" />
+      <Parameter Name="vchComment" Mode="In" Type="String" />
+      <Parameter Name="vchLoginName" Mode="In" Type="String" />
+      <Parameter Name="vchPassword" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="dt_adduserobject" />
+    <FunctionImport Name="dt_adduserobject_vcs">
+      <Parameter Name="vchProperty" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="dt_checkinobject">
+      <Parameter Name="chObjectType" Mode="In" Type="String" />
+      <Parameter Name="vchObjectName" Mode="In" Type="String" />
+      <Parameter Name="vchComment" Mode="In" Type="String" />
+      <Parameter Name="vchLoginName" Mode="In" Type="String" />
+      <Parameter Name="vchPassword" Mode="In" Type="String" />
+      <Parameter Name="iVCSFlags" Mode="In" Type="Int32" />
+      <Parameter Name="iActionFlag" Mode="In" Type="Int32" />
+      <Parameter Name="txStream1" Mode="In" Type="String" />
+      <Parameter Name="txStream2" Mode="In" Type="String" />
+      <Parameter Name="txStream3" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="dt_checkinobject_u">
+      <Parameter Name="chObjectType" Mode="In" Type="String" />
+      <Parameter Name="vchObjectName" Mode="In" Type="String" />
+      <Parameter Name="vchComment" Mode="In" Type="String" />
+      <Parameter Name="vchLoginName" Mode="In" Type="String" />
+      <Parameter Name="vchPassword" Mode="In" Type="String" />
+      <Parameter Name="iVCSFlags" Mode="In" Type="Int32" />
+      <Parameter Name="iActionFlag" Mode="In" Type="Int32" />
+      <Parameter Name="txStream1" Mode="In" Type="String" />
+      <Parameter Name="txStream2" Mode="In" Type="String" />
+      <Parameter Name="txStream3" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="dt_checkoutobject">
+      <Parameter Name="chObjectType" Mode="In" Type="String" />
+      <Parameter Name="vchObjectName" Mode="In" Type="String" />
+      <Parameter Name="vchComment" Mode="In" Type="String" />
+      <Parameter Name="vchLoginName" Mode="In" Type="String" />
+      <Parameter Name="vchPassword" Mode="In" Type="String" />
+      <Parameter Name="iVCSFlags" Mode="In" Type="Int32" />
+      <Parameter Name="iActionFlag" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="dt_checkoutobject_u">
+      <Parameter Name="chObjectType" Mode="In" Type="String" />
+      <Parameter Name="vchObjectName" Mode="In" Type="String" />
+      <Parameter Name="vchComment" Mode="In" Type="String" />
+      <Parameter Name="vchLoginName" Mode="In" Type="String" />
+      <Parameter Name="vchPassword" Mode="In" Type="String" />
+      <Parameter Name="iVCSFlags" Mode="In" Type="Int32" />
+      <Parameter Name="iActionFlag" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="dt_displayoaerror">
+      <Parameter Name="iObject" Mode="In" Type="Int32" />
+      <Parameter Name="iresult" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="dt_displayoaerror_u">
+      <Parameter Name="iObject" Mode="In" Type="Int32" />
+      <Parameter Name="iresult" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="dt_droppropertiesbyid">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="property" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="dt_dropuserobjectbyid">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="dt_generateansiname">
+      <Parameter Name="name" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="dt_getobjwithprop" ReturnType="Collection(Int32)">
+      <Parameter Name="property" Mode="In" Type="String" />
+      <Parameter Name="value" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="dt_getobjwithprop_u" ReturnType="Collection(Int32)">
+      <Parameter Name="property" Mode="In" Type="String" />
+      <Parameter Name="uvalue" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="dt_getpropertiesbyid" ReturnType="Collection(FrontOfficeGBCModel.dt_getpropertiesbyid_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="property" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="dt_getpropertiesbyid_u" ReturnType="Collection(FrontOfficeGBCModel.dt_getpropertiesbyid_u_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="property" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="dt_getpropertiesbyid_vcs">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="property" Mode="In" Type="String" />
+      <Parameter Name="value" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="dt_getpropertiesbyid_vcs_u">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="property" Mode="In" Type="String" />
+      <Parameter Name="value" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="dt_isundersourcecontrol">
+      <Parameter Name="vchLoginName" Mode="In" Type="String" />
+      <Parameter Name="vchPassword" Mode="In" Type="String" />
+      <Parameter Name="iWhoToo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="dt_isundersourcecontrol_u">
+      <Parameter Name="vchLoginName" Mode="In" Type="String" />
+      <Parameter Name="vchPassword" Mode="In" Type="String" />
+      <Parameter Name="iWhoToo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="dt_removefromsourcecontrol" />
+    <FunctionImport Name="dt_setpropertybyid">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="property" Mode="In" Type="String" />
+      <Parameter Name="value" Mode="In" Type="String" />
+      <Parameter Name="lvalue" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="dt_setpropertybyid_u">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="property" Mode="In" Type="String" />
+      <Parameter Name="uvalue" Mode="In" Type="String" />
+      <Parameter Name="lvalue" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="dt_validateloginparams">
+      <Parameter Name="vchLoginName" Mode="In" Type="String" />
+      <Parameter Name="vchPassword" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="dt_validateloginparams_u">
+      <Parameter Name="vchLoginName" Mode="In" Type="String" />
+      <Parameter Name="vchPassword" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="dt_vcsenabled" />
+    <FunctionImport Name="dt_verstamp006" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="dt_verstamp007" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="dt_whocheckedout">
+      <Parameter Name="chObjectType" Mode="In" Type="String" />
+      <Parameter Name="vchObjectName" Mode="In" Type="String" />
+      <Parameter Name="vchLoginName" Mode="In" Type="String" />
+      <Parameter Name="vchPassword" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="dt_whocheckedout_u">
+      <Parameter Name="chObjectType" Mode="In" Type="String" />
+      <Parameter Name="vchObjectName" Mode="In" Type="String" />
+      <Parameter Name="vchLoginName" Mode="In" Type="String" />
+      <Parameter Name="vchPassword" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spCorreoHuesped" ReturnType="Collection(FrontOfficeGBCModel.spCorreoHuesped_Result)">
+      <Parameter Name="idhuesped" Mode="In" Type="Int32" />
+      <Parameter Name="email" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spAgregaComentario">
+      <Parameter Name="V_idReservacion" Mode="In" Type="Decimal" />
+      <Parameter Name="V_idRoomList" Mode="In" Type="Int32" />
+      <Parameter Name="V_Comentario" Mode="In" Type="String" />
+      <Parameter Name="V_Urgente" Mode="In" Type="Boolean" />
+      <Parameter Name="V_RESULTADO" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spHistorialReservaciones" ReturnType="Collection(FrontOfficeGBCModel.spHistorialReservaciones_Result)">
+      <Parameter Name="idhuesped" Mode="In" Type="Int32" />
+      <Parameter Name="email" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spLlegadas" ReturnType="Collection(FrontOfficeGBCModel.spLlegadas_Result)">
+      <Parameter Name="fechaInicial" Mode="In" Type="DateTime" />
+      <Parameter Name="fechafinal" Mode="In" Type="DateTime" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="dt_getpropertiesbyid_Result">
+    <Property Type="String" Name="property" Nullable="false" MaxLength="64" />
+    <Property Type="Int32" Name="version" Nullable="false" />
+    <Property Type="String" Name="value" Nullable="true" MaxLength="255" />
+    <Property Type="Binary" Name="lvalue" Nullable="true" MaxLength="Max" />
+  </ComplexType>
+  <ComplexType Name="dt_getpropertiesbyid_u_Result">
+    <Property Type="String" Name="property" Nullable="false" MaxLength="64" />
+    <Property Type="Int32" Name="version" Nullable="false" />
+    <Property Type="String" Name="uvalue" Nullable="true" MaxLength="255" />
+    <Property Type="Binary" Name="lvalue" Nullable="true" MaxLength="Max" />
+  </ComplexType>
+  <ComplexType Name="spCorreoHuesped_Result">
+    <Property Type="String" Name="email" Nullable="true" MaxLength="35" />
+    <Property Type="Decimal" Name="idmember" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="idhuesped" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="String" Name="telefono" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="spHistorialReservaciones_Result">
+    <Property Type="Decimal" Name="idhuesped" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="idreservacion" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="String" Name="numconfirmacion" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="namepais" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="nameestado" Nullable="true" MaxLength="60" />
+    <Property Type="Int32" Name="numadultos" Nullable="true" />
+    <Property Type="Int32" Name="numchilds" Nullable="true" />
+    <Property Type="String" Name="nameagencia" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="numdereservacioncrs" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="numcuenta" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="mercado" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="nametipodehabitacion" Nullable="true" MaxLength="35" />
+    <Property Type="DateTime" Name="llegada" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="salida" Nullable="true" Precision="23" />
+    <Property Type="String" Name="TipoPlan" Nullable="false" MaxLength="2" />
+    <Property Type="Decimal" Name="Renta" Nullable="true" Precision="38" Scale="6" />
+    <Property Type="Decimal" Name="Paquete" Nullable="true" Precision="38" Scale="6" />
+    <Property Type="Decimal" Name="Otros" Nullable="true" Precision="38" Scale="6" />
+    <Property Type="Decimal" Name="SPA" Nullable="true" Precision="38" Scale="6" />
+    <Property Type="Double" Name="ConsumoPOS" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spLlegadas_Result">
+    <Property Type="Decimal" Name="idReservacion" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="CuartosNoche" Nullable="true" />
+    <Property Type="String" Name="TipoHab" Nullable="true" MaxLength="10" />
+    <Property Type="DateTime" Name="llegada" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="salida" Nullable="true" Precision="23" />
+    <Property Type="String" Name="NumHab" Nullable="true" MaxLength="6" />
+    <Property Type="String" Name="numconfirmacion" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Procedencia" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="CodigoMerc" Nullable="true" MaxLength="10" />
+    <Property Type="Decimal" Name="idresort" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Boolean" Name="Split" Nullable="true" />
+    <Property Type="String" Name="CRS" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="codeagencia" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="nameagencia" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Huesped" Nullable="true" MaxLength="160" />
+    <Property Type="Int32" Name="cuartos" Nullable="true" />
+    <Property Type="Int32" Name="Adultos" Nullable="true" />
+    <Property Type="Int32" Name="Ninos" Nullable="true" />
+    <Property Type="String" Name="apellidopaterno" Nullable="true" MaxLength="25" />
+    <Property Type="String" Name="apellidomaterno" Nullable="true" MaxLength="25" />
+    <Property Type="String" Name="nombres" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="codepais" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="namepais" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="codigostatusreservacion" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="X" Nullable="false" />
+    <Property Type="String" Name="Titulo" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="Infantes" Nullable="true" />
+    <Property Type="String" Name="HLlegada" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="HSalida" Nullable="false" MaxLength="1" />
+    <Property Type="Decimal" Name="IdHuesped" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="String" Name="DistintivoPrecheckin" Nullable="true" MaxLength="10" />
+    <Property Type="DateTime" Name="FechaHoraCheckin" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Contrato" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="TipoPlan" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Comentario" Nullable="true" MaxLength="30" />
+    <Property Type="Int32" Name="idroomlist" Nullable="true" />
+    <Property Type="Double" Name="Tarifa" Nullable="true" />
+    <Property Type="String" Name="codetipodemoneda" Nullable="true" MaxLength="50" />
+  </ComplexType>
+</Schema>

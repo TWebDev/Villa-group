@@ -1,0 +1,43 @@
+﻿@model ePlatBack.Models.ViewModels.ActivityViewModel
+
+<table id="tblStockTransactions" class="table dataTable exportable">
+    <thead>
+        <tr>
+            <th>Transaction Way</th>
+            <th>Quantity</th>
+            <th>Date Saved</th>
+            <th>Saved By User</th>
+            <th>Description</th>
+            <th>Coupon</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.StockTransactionsResults != null)
+        {
+            foreach (var i in Model.StockTransactionsResults)
+            {
+                //var ingress = i.Ingress ? "Ingress" : "Egress";
+                <tr>
+                    <td>
+                        @Html.DisplayTextFor(model => i.Ingress)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(model => i.Quantity)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(model => i.DateSaved)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(model => i.SavedByUser)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(model => i.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(model => i.PurchaseServiceDetail)
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

@@ -1,0 +1,72 @@
+﻿@model ePlatBack.Models.ViewModels.CouponFoliosModel.CouponFoliosInfoModel
+
+
+@if (Model.Privileges.FirstOrDefault(m => m.Component == "fdsCouponFolioInfo" && m.View == true) != null)
+{
+    <fieldset id="fdsCouponFolioInfo" class="primary-selected-row-dependent">
+        <legend>
+            <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+            Coupon Folio Info
+        </legend>
+        <div style="display:none" class="align-from-top">
+            @using (Ajax.BeginForm("SaveCouponFolio", "Catalogs", new AjaxOptions { OnSuccess = "CATALOG.saveCouponFolioSuccess(data)" }, new { id = "frmCouponFolioInfo", onSubmit = "return UI.showValidationSummary(this.id);" }))
+            {
+            <div id="frmCouponFolioInfo_ErrorMessages" style="display:none">
+                @Html.ValidationMessageFor(model => model.CouponFoliosInfo_FromFolio)
+                @Html.ValidationMessageFor(model => model.CouponFoliosInfo_ToFolio)
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CouponFoliosInfo_FromFolio)
+                    @Html.HiddenFor(model => model.CouponFoliosInfo_CouponFolioID, new { @class = "secondary-selected-row-dependent" })
+                    @Html.HiddenFor(model => model.CouponFoliosInfo_Delivered, new { @class = "secondary-selected-row-dependent" })
+                    @Html.HiddenFor(model => model.CouponFoliosInfo_Generated, new { @class = "secondary-selected-row-dependent" })
+                    @Html.HiddenFor(model => model.CouponFoliosInfo_Available, new { @class = "secondary-selected-row-dependent" })
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.CouponFoliosInfo_FromFolio)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CouponFoliosInfo_ToFolio)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.CouponFoliosInfo_ToFolio)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CouponFoliosInfo_Serial)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.CouponFoliosInfo_Serial)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CouponFoliosInfo_Company)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.CouponFoliosInfo_Company, Model.CouponFoliosInfo_DrpCompanies, new { @class = "company-dependent-list terminal-dependent-list", data_route = "/Catalogs/GetDDLData", data_route_parameter = "company" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CouponFoliosInfo_PointOfSale)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.CouponFoliosInfo_PointOfSale, Model.CouponFoliosInfo_DrpPointsOfSale, new { @class = "pointOfSale-dependent-list terminal-dependent-list", data_route = "/Catalogs/GetDDLData", data_route_parameter = "pointOfSale" })
+                </div>
+            </div>
+            <div class="editor-alignment full-width">
+                @if (Model.Privileges.FirstOrDefault(m => m.Component == "btnSaveCouponFolio" && m.Edit == true) != null)
+                    {
+                    <input type="submit" id="btnSaveCouponFolio" class="submit right" value="save" />
+                    }
+        </div>
+            }
+        </div>
+        
+    </fieldset>
+}

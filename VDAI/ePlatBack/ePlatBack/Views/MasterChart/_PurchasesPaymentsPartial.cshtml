@@ -1,0 +1,404 @@
+﻿@model ePlatBack.Models.ViewModels.PurchasesModel.PurchasePaymentModel
+
+@{
+    var Privileges = ViewData["Privileges"] as List<ePlatBack.Models.ViewModels.SysComponentsPrivilegesModel>;
+}
+@if (Privileges.FirstOrDefault(m => m.Component == "fdsPurchasesPayments") == null || Privileges.FirstOrDefault(m => m.Component == "fdsPurchasesPayments").View)
+{
+    <fieldset id="fdsPurchasesPayments" class="view-restricted" style="display: none">
+        <legend>
+            <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+            Payments Management
+        </legend>
+        <div class="align-from-top" style="display: none">
+            <div id="divPurchaseTickets" class="full-width align-from-bottom">
+            </div>
+            <div class="full-width align-from-bottom">
+                <span class="right align-from-bottom" style="text-align:right">
+                    <span style="display: block">
+                        <input id="btnNewPurchasePaymentInfo" type="button" class="submit fieldset-expander" value="new payment" data-trigger-change-on-clear="true" />
+                    </span>
+                    <span style="display: block">
+                        <input type="button" class="button print-ticket" value="generate ticket" style="display: none; margin-top: 5px" />
+                    </span>
+                    <span style="display: block">
+                        <input type="button" id="btnNewRefund" class="submit-refund" value="new refund" style="margin-top: 5px" data-trigger-change-on-clear="true" />
+                    </span>
+                    @if (Privileges.FirstOrDefault(m => m.Component == "btnPrintOPCChargeBack") != null && Privileges.FirstOrDefault(m => m.Component == "btnPrintOPCChargeBack").View)
+                    {
+                        <span style="display: block">
+                            <input type="button" id="btnPrintOPCChargeBack" class="button print-chargeback" value="print chargeback(s)" style="margin-top: 5px" />
+                        </span>
+                    }
+                    @if (Privileges.FirstOrDefault(m => m.Component == "btnPrintChargeTicket") != null && Privileges.FirstOrDefault(m => m.Component == "btnPrintChargeTicket").View)
+                    {
+                        <span style="display: block">
+                            <input type="button" id="btnPrintChargeVoucher" class="button" value="print charge voucher" style="margin-top: 5px" />
+                        </span>
+                    }
+                    @if (Privileges.FirstOrDefault(m => m.Component == "btnPrintOPCChargeBack") != null && Privileges.FirstOrDefault(m => m.Component == "btnPrintOPCChargeBack").View)
+                    {
+                        <span style="display:block">
+                            <input type="text" id="txtPrintFromDate" class="" style="opacity:0" readonly />
+                            <input type="text" id="txtPrintToDate" class="" style="opacity:0" readonly />
+                        </span>
+                    }
+                </span>
+                <span id="currentExchangeRates" class="right" style="margin-right: 15px"></span>
+                <span id="spanChangeExchangeRates" class="right" style="margin-right: 5px">Exchange Rates: </span>
+                <div id="spanPaymentsDetails" style="font-size: 14pt; width:140px"></div>
+            </div>
+            <div id="tblExistingPurchasesPaymentsContainer">
+                <table id="tblPurchasesPayments" class="table dataTable">
+                    <thead>
+                        <tr>
+                            <th>Charged To</th>
+                            <th>Payment Type</th>
+                            <th>Exchange Rate</th>
+                            <th>Amount</th>
+                            <th>Service(s) Paid</th>
+                            <th>Transaction</th>
+                            <th>Date Saved</th>
+                            <th>Reference</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            @if (Privileges.FirstOrDefault(m => m.Component == "fdsPurchasePaymentInfo") == null || Privileges.FirstOrDefault(m => m.Component == "fdsPurchasePaymentInfo").View)
+            {
+                <fieldset id="fdsPurchasePaymentInfo">
+                    <legend>
+                        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+                        Payment Info
+                    </legend>
+                    <div style="display: none">
+                        @using (Ajax.BeginForm("SavePayment", "MasterChart", new AjaxOptions { OnSuccess = "PURCHASE.savePurchasePaymentSuccess(data)" }, new { id = "frmPurchasePaymentInfo", onSubmit = "return UI.showValidationSummary(this.id);" }))
+                        {
+                            <div id="frmPurchasePaymentInfo_ErrorMessages" style="display: none">
+                                @Html.ValidationMessageFor(model => model.PurchasePayment_PaymentType)
+                                @Html.ValidationMessageFor(model => model.PurchasePayment_Amount)
+                                @Html.ValidationMessageFor(model => model.PurchasePayment_Currency)
+                                @Html.ValidationMessageFor(model => model.PurchasePayment_Coupons)
+                                @Html.ValidationMessageFor(model => model.PurchasePayment_ReferenceNumber)
+                                @Html.ValidationMessageFor(model => model.PurchasePayment_BillingInfo)
+                                @Html.ValidationMessageFor(model => model.PurchasePayment_DateSaved)
+                                @Html.ValidationMessageFor(model => model.PurchasePayment_Company)
+                                @Html.ValidationMessageFor(model => model.PurchasePayment_Other)
+
+                            </div>
+                            if (Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_TransactionType") == null || Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_TransactionType").View)
+                            {
+                                <div class="editor-alignment" style="display:none">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchasePayment_TransactionType)
+                                        @Html.HiddenFor(model => model.PurchasePayment_PaymentDetailsID)
+                                        @Html.HiddenFor(model => model.PurchasePayment_Purchase, new { data_keep_value = "" })
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.PurchasePayment_TransactionType, Model.PurchasePayment_DrpTransactionTypes)
+                                    </div>
+                                </div>
+                            }
+                            if (Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_RefundAccount") == null || Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_RefundAccount").View)
+                            {
+                                <div id="divRefundAccountContainer" class="editor-alignment" style="display: none">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchasePayment_RefundAccount)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.PurchasePayment_RefundAccount)
+                                    </div>
+                                </div>
+                            }
+                            if (Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_PaymentType") == null || Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_PaymentType").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchasePayment_PaymentType)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.PurchasePayment_PaymentType, Model.PurchasePayment_DrpPaymentTypes)
+                                    </div>
+                                </div>
+                            }
+                            if (Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_CertificateNumbers") == null || Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_CertificateNumbers").View)
+                            {
+                                <div class="editor-alignment certificate-dependent">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchasePayment_CertificateNumbers)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.PurchasePayment_CertificateNumbers)
+                                    </div>
+                                </div>
+                            }
+                            <div class="editor-alignment chargeback-dependent" style="display:none">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.PurchasePayment_ChargeBackConcept)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.DropDownListFor(model => model.PurchasePayment_ChargeBackConcept, Model.PurchasePayment_DrpChargeBackConcepts)
+                                </div>
+                            </div>
+                            <div id="divCreditCardDependent" class="editor-alignment credit-card-dependent" style="display: none">
+                                @if (Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_BillingInfo") == null || Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_BillingInfo").View)
+                                {
+                                    <div id="divBillingInfo" class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.PurchasePayment_BillingInfo)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.DropDownListFor(model => model.PurchasePayment_BillingInfo, Model.PurchasePayment_DrpBillingInfo, new { @class = "billingInfo-dependent-list" })
+                                        </div>
+                                    </div>
+                                    if (Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_ReferenceNumber") == null || Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_ReferenceNumber").View)
+                                    {
+                                        <div id="divReferenceNumber" style="display:none">
+                                            <div class="editor-alignment">
+                                                <div class="editor-label">
+                                                    @Html.LabelFor(model => model.PurchasePayment_ReferenceNumber)
+                                                </div>
+                                                <div class="editor-field">
+                                                    @Html.TextBoxFor(model => model.PurchasePayment_ReferenceNumber, new { maxLength = "4", placeholder = "last 4 digits" })
+                                                </div>
+                                            </div>
+                                            <div class="editor-alignment">
+                                                <div class="editor-label">
+                                                    @Html.LabelFor(model => model.PurchasePayment_CardType)
+                                                </div>
+                                                <div class="editor-field">
+                                                    @Html.DropDownListFor(model => model.PurchasePayment_CardType, Model.PurchasePayment_DrpCardTypes)
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+
+                            if (Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_Amount") == null || Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_Amount").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchasePayment_Amount)
+                                        <span id="spanCommissionPercentage" class="" style="display:none"></span>
+                                    @*<i id="btnAddCommission" class="material-icons bank-commission-dependent right" style="display:none" title="sums commission">add_circle</i>*@
+                                                                            <input type = "button" id="btnAddCommission" class="bank-commission-dependent right" style="display:none" value="add "/>
+                                    @*<i id="btnSubstractCommission" class="material-icons bank-commission-dependent right" style="display:none" title="substracts commission">remove_circle</i>*@
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.PurchasePayment_Amount)
+                                    </div>
+                                </div>
+                            }
+                            if (Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_ApplyCommission") == null || Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_ApplyCommission").View)
+                            {
+                                <div id="divApplyBankCommission" class="editor-alignment credit-card-dependent bank-commission-dependent" style="display:none">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchasePayment_ApplyCommission)
+                                        @Html.HiddenFor(model => model.PurchasePayment_CardCommission)
+                                    </div>
+                                    <div class="editor-field">
+                                        <label>Yes</label>
+                                        @Html.RadioButtonFor(model => model.PurchasePayment_ApplyCommission, true, new { data_keep_value = "" })
+                                        <label>No</label>
+                                        @Html.RadioButtonFor(model => model.PurchasePayment_ApplyCommission, false, new { data_keep_value = "" })
+                                    </div>
+                                </div>
+                            }
+                            if (Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_Currency") == null || Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_Currency").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchasePayment_Currency)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.PurchasePayment_Currency, Model.PurchasePayment_DrpCurrencies, new { data_keep_value = "", @class = "terminal-dependent-list", data_route = "/crm/MasterChart/GetDDLData", data_route_parameter = "currenciesAllowedPerSession" })
+                                    </div>
+                                </div>
+                            }
+
+                            if (Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_ReferenceNumber") == null || Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_ReferenceNumber").View)
+                            {
+                                <div id="divReferenceNumber" style="display:none">
+                                    <div class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.PurchasePayment_ReferenceNumber)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.TextBoxFor(model => model.PurchasePayment_ReferenceNumber, new { maxLength = "4" })
+                                        </div>
+                                    </div>
+                                    <div class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.PurchasePayment_CardType)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.DropDownListFor(model => model.PurchasePayment_CardType, Model.PurchasePayment_DrpCardTypes)
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <div class="editor-alignment credit-card-dependent" style="display:none">
+                                @if (Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_ApplyCharge") == null || Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_ApplyCharge").View)
+                                {
+                                    <div id="divApplyCharge" class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.PurchasePayment_ApplyCharge)
+                                        </div>
+                                        <div class="editor-field">
+                                            <label>Yes</label>
+                                            @Html.RadioButtonFor(model => model.PurchasePayment_ApplyCharge, true, new { data_keep_value = "" })
+                                            <label>No</label>
+                                            @Html.RadioButtonFor(model => model.PurchasePayment_ApplyCharge, false, new { data_keep_value = "" })
+                                        </div>
+                                    </div>
+                                }
+                                @if (Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_TransactionCode") == null || Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_TransactionCode").View)
+                                {
+                                    <div id="divApplyChargeDependent" class="editor-alignment" style="display:none">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.PurchasePayment_TransactionCode)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.TextBoxFor(model => model.PurchasePayment_TransactionCode)
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <div id="divPaymentTypeDependent" class="editor-alignment chargeback-dependent" style="display: none">
+                                @if (Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_OPC") == null || Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_OPC").View)
+                                {
+                                    <div class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.PurchasePayment_OPC)
+                                            <i class="material-icons right update-opc-list">refresh</i>
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.DropDownListFor(model => model.PurchasePayment_OPC, Model.PurchasePayment_DrpOPCS, new { @class = "", data_route = "/MasterChart/GetDDLData", data_route_parameter = "opcsPerPurchaseTerminal" })
+                                        </div>
+                                    </div>
+                                    <div class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.PurchasePayment_OPCNumber)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.TextBoxFor(model => model.PurchasePayment_OPCNumber, new { disabled = "disabled" })
+                                        </div>
+                                    </div>
+
+                                    if (Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_Other") == null || Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_Other").View)
+                                    {
+                                        <div id="divOtherOPC" class="editor-alignment">
+                                            <div class="editor-label">
+                                                @Html.LabelFor(model => model.PurchasePayment_Other)
+                                            </div>
+                                            <div class="editor-field">
+                                                @Html.TextBoxFor(model => model.PurchasePayment_Other)
+                                            </div>
+                                        </div>
+                                    }
+                                    if (Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_PromotionTeam") == null || Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_PromotionTeam").View)
+                                    {
+                                        <div class="editor-alignment">
+                                            <div class="editor-label">
+                                                @Html.LabelFor(model => model.PurchasePayment_PromotionTeam)
+                                                <input type="hidden" id="hdnPromotionTeamInfo" />
+                                            </div>
+                                            <div class="editor-field">
+                                                @Html.DropDownListFor(model => model.PurchasePayment_PromotionTeam, Model.PurchasePayment_DrpPromotionTeams, new { @class = "opcTeam-dependent-list" })
+                                            </div>
+                                        </div>
+                                        <div class="editor-alignment">
+                                            <div class="editor-label">
+                                                @Html.LabelFor(model => model.PurchasePayment_Budget)
+                                            </div>
+                                            <div class="editor-field">
+                                                @Html.DropDownListFor(model => model.PurchasePayment_Budget, Model.PurchasePayment_DrpBudgets, new { @class = "budgetsPerTeam-dependent-list" })
+                                            </div>
+                                        </div>
+                                        <div id="divUseExtension" class="editor-alignment" style="display:none">
+                                            <div class="editor-label">
+                                                @Html.LabelFor(model => model.PurchasePayment_IsVoucher)
+                                            </div>
+                                            <div class="editor-field">
+                                                <label>Yes</label>
+                                                @Html.RadioButtonFor(model => model.PurchasePayment_IsVoucher, true, new { data_keep_value = "" })
+                                                <label>No</label>
+                                                @Html.RadioButtonFor(model => model.PurchasePayment_IsVoucher, false, new { data_keep_value = "" })
+                                            </div>
+                                        </div>
+                                    }
+                                    if (Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_Company") == null || Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_Company").View)
+                                    {
+                                        <div class="editor-alignment allow-if-company">
+                                            <div class="editor-label">
+                                                @Html.LabelFor(model => model.PurchasePayment_Company)
+                                            </div>
+                                            <div class="editor-field">
+                                                @Html.DropDownListFor(model => model.PurchasePayment_Company, Model.PurchasePayment_DrpCompanies, new { @class = "" })
+                                            </div>
+                                        </div>
+                                    }
+                                    if (Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_Location") == null || Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_Location").View)
+                                    {
+                                        <div class="editor-alignment">
+                                            <div class="editor-label">
+                                                @Html.LabelFor(model => model.PurchasePayment_Location)
+                                            </div>
+                                            <div class="editor-field">
+                                                @Html.DropDownListFor(model => model.PurchasePayment_Location, Model.PurchasePayment_DrpLocations)
+                                            </div>
+                                        </div>
+                                    }
+                                    if (Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_Invitation") == null || Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_Invitation").View)
+                                    {
+                                        <div class="editor-alignment allow-if-company">
+                                            <div class="editor-label">
+                                                @Html.LabelFor(model => model.PurchasePayment_Invitation)
+                                            </div>
+                                            <div class="editor-field">
+                                                @Html.TextBoxFor(model => model.PurchasePayment_Invitation)
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                            if (Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_DateSaved") == null || Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_DateSaved").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchasePayment_DateSaved)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.PurchasePayment_DateSaved, new { data_keep_value = "" })
+                                    </div>
+                                </div>
+                            }
+                            if (Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_PaymentComments") == null || Privileges.FirstOrDefault(m => m.Component == "PurchasePayment_PaymentComments").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchasePayment_PaymentComments)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextAreaFor(model => model.PurchasePayment_PaymentComments, new { @class = "double-width" })
+                                    </div>
+                                </div>
+                            }
+                            if (Privileges.FirstOrDefault(m => m.Component == "btnSavePurchasePayment") == null || Privileges.FirstOrDefault(m => m.Component == "btnSavePurchasePayment").View)
+                            {
+                                <div class="full-width align-from-top">
+                                    <input type="button" id="btnSavePurchasePayment" class="submit right alert-dblclick" value="save" />
+                                </div>
+                            }
+                        }
+                    </div>
+                </fieldset>
+            }
+        </div>
+    </fieldset>
+
+}

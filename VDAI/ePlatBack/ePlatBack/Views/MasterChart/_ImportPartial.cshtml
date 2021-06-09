@@ -1,0 +1,76 @@
+﻿@model ePlatBack.Models.ViewModels.LeadModel.Views.LeadGeneralInformation
+@{
+    var Privileges = ViewData["Privileges"] as List<ePlatBack.Models.ViewModels.SysComponentsPrivilegesModel>;
+}
+@if (Privileges.FirstOrDefault(m => m.Component == "fdsLeadImport") == null || Privileges.FirstOrDefault(m => m.Component == "fdsLeadImport").View)
+{
+    <fieldset id="fdsLeadImport" class="non-printable">
+        <legend><a href="javascript:void(0)" class="legendLink">
+            <img src="/Content/themes/base/images/eplat_show.jpg" border="0" alt="" class="fieldset-indicator" style="padding-right: 5px">
+            Leads Import</a>
+        </legend>
+        <div style="display: none">
+            <div>
+                <div class="editor-field">
+                    <div class="editor-label">
+                        <span>Instructions</span>
+                    </div>
+                    <ul id="ulInstructions">
+                        <li style="list-style-type: square">Define if (.csv) import file has or not header row.</li>
+                        <li style="list-style-type: square">To avoid errors, select a default value for each row.</li>
+                        @*<li style="list-style-type:square">For rows that has a list of values as "Default Value" option, select the one that match in file.</li>*@
+                        <li style="list-style-type: square">Select the fields in the import file that should be imported into each field in the system. When you are finished, click <b>IMPORT</b>.</li>
+                    </ul>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-field">
+                        <div class="editor-label">
+                            <input type="hidden" id="hdnFileName" data-keep-value="true" />
+                            <label>Header:</label>
+                        </div>
+                        <div class="editor-field">
+                            <label for="hasHeaderTrue">Yes</label>
+                            <input type="radio" name="hasHeader" value="True" />
+                            <label for="hasHeaderFalse">No</label>
+                            <input type="radio" name="hasHeader" value="False" />
+                        </div>
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div id="btnUploadFile" class="qq-upload-button" style="width: 65px; height: 24px">LOAD FILE</div>
+                    <div id="fileUploader">
+                    </div>
+                </div>
+                <div id="divImportTableContainer">
+                    <table id="tblImportedDataFormat" class="table dataTable">
+                        <thead>
+                            <tr>
+                                <th class="order">Row</th>
+                                <th style="width: 105px">Comparable</th>
+                                <th>Section</th>
+                                <th>Field</th>
+                                <th>Header Row</th>
+                                <th>Default Value</th>
+                                <th>Row 1</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr id="trTableSettings">
+                                <td colspan="7">
+                                    <input type="button" id="btnAddRow" class="button" value="New Field" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="editor-alignment full-width" style="padding-top: 20px">
+                    <div id="divFilesToDownload" class="editor-alignment" style="display: none">
+                        <a href="/Content/files/data/Rows_Not_Imported.csv" target="_blank">Rows Not Imported</a><br />
+                        @Html.ActionLink("Errors Import", "DownloadImportErrors", "MasterChart")
+                    </div>
+                    <input type="button" class="submit" id="btnImportLeads" value="Import" style="float: right" />
+                </div>
+            </div>
+        </div>
+    </fieldset>
+}

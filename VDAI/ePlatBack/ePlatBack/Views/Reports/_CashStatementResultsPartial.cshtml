@@ -1,0 +1,72 @@
+﻿@model ePlatBack.Models.ViewModels.CashStatementModel.CashStatementResults
+
+<div class="table-div">
+    <div class="table-row">
+        <div class="table-cell">
+            Month<br />
+            @Model.Month
+        </div>
+        <div class="table-cell">
+            Terminal<br />
+            @Model.Terminal
+        </div>
+        <div class="table-cell">
+            Fund<br />
+            @Model.Fund</span>
+        </div>
+        <div class="table-cell">
+            Initial Amount<br />
+            <span data-format="currency" style="width: 120px; display: block;">@Model.InitialAmount @Model.FundCurrencyCode</span>
+        </div>
+        <div class="table-cell">
+            Final Amount<br />
+            <span data-format="currency" style="width: 120px; display: block;">@Model.FinalAmount @Model.FundCurrencyCode</span>
+        </div>
+    </div>
+</div>
+
+<table class="table exportable non-editable" style="width:100%;">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Concept</th>
+            <th>Invitation</th>
+            <th>Agent</th>
+            <th>Amount</th>
+            <th>Egress</th>
+            <th>Income</th>
+            <th>Balance</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Items != null)
+        {
+            foreach (var item in Model.Items)
+            {
+                //if (item.Amount > 0)
+                //{
+                    <tr>
+                        <td>@item.Date</td>
+                        <td>@item.Concept</td>
+                        <td>@item.Invitation</td>
+                        <td>@item.Agent</td>
+                        <td><span data-format="currency">@item.Amount @item.CurrencyCode</span></td>
+                        <td><span data-format="currency">@item.AmountEgress @Model.FundCurrencyCode</span></td>
+                        <td><span data-format="currency">@item.AmountIncome @Model.FundCurrencyCode</span></td>
+                        <td><span data-format="currency">@item.AmountBalance @Model.FundCurrencyCode</span></td>
+                    </tr>
+                //}
+
+            }
+        }
+    </tbody>
+
+    <tfoot>
+        <tr>
+            <td colspan="5" class="text-right">Totals</td>
+            <td><span data-format="currency">@Model.TotalEgress @Model.FundCurrencyCode</span></td>
+            <td><span data-format="currency">@Model.TotalIncome @Model.FundCurrencyCode</span></td>
+            <td></td>
+        </tr>
+    </tfoot>
+</table>

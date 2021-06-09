@@ -1,0 +1,75 @@
+﻿@model ePlatBack.Models.ViewModels.ArrivalsReport
+@{
+    var Privileges = Model.Privileges;
+    var export = Privileges.Count(m => m.Component == "exportArrivalsToExcel") > 0 && Privileges.FirstOrDefault(m => m.Component == "exportArrivalsToExcel").View ? "exportable" : "";
+}
+<table id="tblArrivalsResults" class="table exportable full-width non-editable">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Club Type</th>
+            <th>Account Number</th>
+            <th>Contract Number</th>
+            <th>Co Owner</th>
+            <th>Arrival Date</th>
+            <th>Resort</th>
+            <th>Booking Status</th>
+            <th>Number Of Adults</th>
+            <th>Number Of Children</th>
+            <th>Flight Information</th>
+            <th>Lead Source</th>
+            <th>Assigned To User</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ListArrivalsReportModel != null)
+        {
+            foreach (var i in Model.ListArrivalsReportModel)
+            {
+                var _name = i.ArrivalsReport_FirstName + " " + i.ArrivalsReport_LastName;
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => _name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.ArrivalsReport_ClubType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.ArrivalsReport_AccountNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.ArrivalsReport_ContractNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.ArrivalsReport_CoOwner)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.ArrivalsReport_ArrivalDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.ArrivalsReport_Resort)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.ArrivalsReport_BookingStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.ArrivalsReport_NumberAdults)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.ArrivalsReport_NumberChildren)
+                    </td>
+                    <td>
+                        @Html.Raw(i.ArrivalsReport_FlightInformation)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.ArrivalsReport_LeadSource)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.ArrivalsReport_AssignedToUser)
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+

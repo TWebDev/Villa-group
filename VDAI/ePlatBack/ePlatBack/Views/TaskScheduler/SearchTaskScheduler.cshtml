@@ -1,0 +1,57 @@
+﻿@model ePlatBack.Models.ViewModels.TaskSchedulerViewModel.SearchTasks
+
+    <div class="align-from-top">
+    <p class="full-width align-from-bottom">
+        <input id="btnNewTask" type="button" class="submit right" value="New" />
+        @*<input type="button" id="btnNewTask" class="submit fieldset-expander right" value="new" />*@
+    </p>
+
+    @using (Ajax.BeginForm("SearchTasks", "TaskScheduler", new AjaxOptions { OnSuccess = "TASKSCHEDULER.TaskResultTable(data)", OnComplete = "TASKSCHEDULER.makeTaskSelectable", UpdateTargetId = "divTaskSchedulerResult" },
+        new { id = "frmSearchTaskScheduler" }))
+        {
+        <div class=" non-printable search-params">
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SearchFromDate)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.SearchFromDate, new { @class = "DateFormat" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SearchToDate)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.SearchToDate, new { @class = "DateFormat" })
+                </div>
+            </div>   
+            <div class="full-width editor-alignment align-from-top">
+                <div class="editor-field">
+                    <input type="submit" id="btnSearchTasks" class="button marg-left avoid-trigger-on-load right" value="Search" />
+                    <input type="reset" class="button right" value="clear" />
+                </div>
+            </div>
+        </div>
+
+        <div id="divTaskSchedulerResult">
+            <table id="tblTaskScheduler" class="dataTable table search-results">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Url</th>
+                        <th>Recur</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Permanent</th>
+                        <th>Active</th>
+                        <th>Saved by User</th>
+                        <th>Date Saved</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    }
+        @Html.Action("RenderTaskSchedulerManagement", "TaskScheduler")
+       </div>
+    

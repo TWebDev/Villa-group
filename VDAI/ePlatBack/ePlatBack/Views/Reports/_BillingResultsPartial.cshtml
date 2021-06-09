@@ -1,0 +1,227 @@
+﻿@model ePlatBack.Models.ViewModels.BillingModel
+
+<div class="table-div">
+    <div class="table-row">
+        <div class="table-cell">
+            @Html.DisplayNameFor(model => model.Terminal)<br />
+            @Html.DisplayFor(model => model.Terminal)
+        </div>
+        <div class="table-cell">
+            @Html.DisplayNameFor(model => model.Companies)<br />
+            @Html.Raw(Model.Companies)
+        </div>
+        <div class="table-cell">
+            @Html.DisplayNameFor(model => model.PointsOfSale)<br />
+            @Html.Raw(Model.PointsOfSale)
+        </div>
+        <div class="table-cell">
+            @Html.DisplayNameFor(model => model.Currency)<br />
+            @Html.DisplayFor(model => model.Currency)
+        </div>
+        <div class="table-cell">
+            @Html.DisplayNameFor(model => model.Date)<br />
+            @Html.DisplayFor(model => model.Date)
+        </div>
+        <div class="table-cell">
+            @Html.DisplayNameFor(model => model.ReportType)<br />
+            @Html.DisplayFor(model => model.ReportType)
+        </div>
+    </div>
+</div>
+@if (Model.ErrorMessage != null)
+{
+    <div class="mb-error">
+        @Model.ErrorMessage
+    </div>
+}
+
+<h3>Coupons</h3>
+
+@if (Model.Details.Count() > 0)
+{
+    <table class="table exportable non-editable" style="width: 100%; font-size: .9em;">
+        <thead>
+            <tr>
+                <th>Point of Sale</th>
+                <th>Customer</th>
+                <th>Folio</th>
+                <th>Date</th>
+                <th>Category</th>
+                <th>Service</th>
+                <th>Quantity</th>
+                <th>Unit</th>
+                <th colspan="2">Unit Total</th>
+                <th>Close Out</th>
+                <th>Audited</th>
+                <th>Price Type</th>
+                <th>Payment Type</th>
+                <th>CxC to Company</th>
+                <th>CxC OPC</th>
+                <th>Team</th>
+                <th>Legacy Key</th>
+                <th>Invitation</th>
+                <th>Budget</th>
+                <th>Acc Acc Number</th>
+                <th>Acc Acc Name</th>
+                <th>Acc Acc Article</th>
+                <th colspan="2">Payment</th>
+                <th>X Rate</th>
+                <th colspan="2">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var detail in Model.Details)
+            {
+                <tr style="border-bottom: #ddd solid 1px;">
+                    <td rowspan="@(detail.Assignations.Count() > 0 ? detail.Assignations.Count() : 1)">@detail.PointOfSale</td>
+                    <td rowspan="@(detail.Assignations.Count() > 0 ? detail.Assignations.Count() : 1)">@detail.Customer</td>
+                    <td rowspan="@(detail.Assignations.Count() > 0 ? detail.Assignations.Count() : 1)">
+                        <a target="_blank" href="/crm/masterchart#purchaseid=@detail.PurchaseID">@detail.Folio</a>
+                        @if (detail.CouponReference != null)
+                        {
+                            <br /><span style="width: 70px; display: inline-block;">
+                                [@detail.CouponReference]
+                            </span>
+                        }
+                    </td>
+                    <td rowspan="@(detail.Assignations.Count() > 0 ? detail.Assignations.Count() : 1)">@detail.Date</td>
+                    <td rowspan="@(detail.Assignations.Count() > 0 ? detail.Assignations.Count() : 1)">@detail.Category</td>
+                    <td rowspan="@(detail.Assignations.Count() > 0 ? detail.Assignations.Count() : 1)">@detail.Service</td>
+                    <td rowspan="@(detail.Assignations.Count() > 0 ? detail.Assignations.Count() : 1)">@detail.Quantity</td>
+                    <td rowspan="@(detail.Assignations.Count() > 0 ? detail.Assignations.Count() : 1)">@detail.Unit</td>
+                    <td rowspan="@(detail.Assignations.Count() > 0 ? detail.Assignations.Count() : 1)" data-format="currency">@detail.UnitTotal.Amount</td>
+                    <td rowspan="@(detail.Assignations.Count() > 0 ? detail.Assignations.Count() : 1)">@detail.UnitTotal.Currency</td>
+                    <td rowspan="@(detail.Assignations.Count() > 0 ? detail.Assignations.Count() : 1)">@Html.Raw(detail.CloseOut)</td>
+                    <td rowspan="@(detail.Assignations.Count() > 0 ? detail.Assignations.Count() : 1)">@Html.Raw(detail.Audited)</td>
+                    <td rowspan="@(detail.Assignations.Count() > 0 ? detail.Assignations.Count() : 1)">@detail.PriceType</td>
+                    @if (detail.Assignations.Count() > 0)
+                    {
+                        <td>@detail.Assignations.FirstOrDefault().PaymentType</td>
+                        <td>@detail.Assignations.FirstOrDefault().CxCCompany</td>
+                        <td>@detail.Assignations.FirstOrDefault().CxCOPC</td>
+                        <td>@detail.Assignations.FirstOrDefault().CxCOPCTeam</td>
+                        <td>@detail.Assignations.FirstOrDefault().CxCOPCLegacyKey</td>
+                        <td>@detail.Assignations.FirstOrDefault().CxCInvitation</td>
+                        <td>@detail.Assignations.FirstOrDefault().CxCBudget</td>
+                        <td style="@(@detail.Assignations.FirstOrDefault().AccAccNumber == "000000000" ? "color:red;" : "")">@detail.Assignations.FirstOrDefault().AccAccNumber</td>
+                        <td style="@(@detail.Assignations.FirstOrDefault().AccAccNumber == "000000000" ? "color:red;" : "")">@detail.Assignations.FirstOrDefault().AccAccName</td>
+                        <td>@detail.Assignations.FirstOrDefault().AccAccArticle</td>
+                        <td data-format="currency">@detail.Assignations.FirstOrDefault().Payment.Amount</td>
+                        <td>@detail.Assignations.FirstOrDefault().Payment.Currency</td>
+                        <td>@detail.Assignations.FirstOrDefault().ExchangeRate</td>
+                        <td data-format="currency">@detail.Assignations.FirstOrDefault().Total.Amount</td>
+                        <td>@detail.Assignations.FirstOrDefault().Total.Currency</td>
+                    }
+                    else
+                    {
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    }
+
+                </tr>
+                    var i = 0;
+                    foreach (var assignation in detail.Assignations)
+                    {
+                        if (i > 0)
+                        {
+                            <tr style="border-bottom: #ddd solid 1px;">
+                                <td>@assignation.PaymentType</td>
+                                <td>@assignation.CxCCompany</td>
+                                <td>@assignation.CxCOPC</td>
+                                <td>@assignation.CxCOPCTeam</td>
+                                <td>@assignation.CxCOPCLegacyKey</td>
+                                <td>@assignation.CxCInvitation</td>
+                                <td>@assignation.CxCBudget</td>
+                                <td style="@(@detail.Assignations.FirstOrDefault().AccAccNumber == "000000000" ? "color:red;" : "")">@assignation.AccAccNumber</td>
+                                <td style="@(@detail.Assignations.FirstOrDefault().AccAccNumber == "000000000" ? "color:red;" : "")">@assignation.AccAccName</td>
+                                <td>@assignation.AccAccArticle</td>
+                                <td data-format="currency">@assignation.Payment.Amount</td>
+                                <td>@assignation.Payment.Currency</td>
+                                <td>@assignation.ExchangeRate</td>
+                                <td data-format="currency">@assignation.Total.Amount</td>
+                                <td>@assignation.Total.Currency</td>
+                            </tr>
+                        }
+                        i++;
+                    }
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <span>No Results</span>
+}
+
+<h3>Invoices Info</h3>
+
+@foreach (var company in Model.CompaniesTotals)
+{
+    <h4>@company.CxCCompany</h4>
+
+    <table class="table exportable non-editable" style="width:70%;">
+        <thead>
+            <tr>
+                <th>Acc Acc Number</th>
+                <th>Acc Acc Name</th>
+                <th>Acc Acc Price Type</th>
+                <th>Acc Acc Article</th>
+                <th>Units</th>
+                <th colspan="2">Average Unit</th>
+                <th colspan="2">Subtotal</th>
+                <th colspan="2">IVA</th>
+                <th colspan="2">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var acc in company.AccountingAccounts)
+            {
+                <tr style="@(@acc.AccAccNumber == "000000000" ? "color:red;" : "")">
+                    <td>@acc.AccAccNumber</td>
+                    <td>@acc.AccAccName</td>
+                    <td>@acc.AccAccPriceType</td>
+                    <td>@acc.AccAccArticle</td>
+                    <td>@acc.Units</td>
+                    <td data-format="currency">@acc.AverageUnit.Amount</td>
+                    <td>@acc.AverageUnit.Currency</td>
+                    <td data-format="currency">@acc.Subtotal.Amount</td>
+                    <td>@acc.Subtotal.Currency</td>
+                    <td data-format="currency">@acc.IVA.Amount</td>
+                    <td>@acc.IVA.Currency</td>
+                    <td data-format="currency">@acc.Total.Amount</td>
+                    <td>@acc.Total.Currency</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td data-format="currency">@company.Subtotal.Amount</td>
+                <td>@company.Subtotal.Currency</td>
+                <td data-format="currency">@company.IVA.Amount</td>
+                <td>@company.IVA.Currency</td>
+                <td data-format="currency">@company.Total.Amount</td>
+                <td>@company.Total.Currency</td>
+            </tr>
+        </tfoot>
+    </table>
+}

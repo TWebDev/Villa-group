@@ -1,0 +1,66 @@
+﻿@model ePlatBack.Models.ViewModels.ExchangeTourModel
+
+<table id="tblSearchExchangeToursResults" class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Assigned To User</th>
+                    <th>Lead Source</th>
+                    <th>Arrival Date</th>
+                    <th>Booking Status</th>
+                    <th>Total Paid</th>
+                    <th>Resort</th>
+                    <th>Final Tour Date</th>
+                    <th>Final Tour Status</th>
+                    <th>Final Booking Status</th>
+                    <th>Sales Volume</th>
+                    <th>Hostess Comments</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.ListExchangeToursReportModel != null)
+                {
+                    foreach (var i in Model.ListExchangeToursReportModel)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(model => i.ExchangeTourReport_FirstName) @Html.DisplayFor(model => i.ExchangeTourReport_LastName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.ExchangeTourReport_UserName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.ExchangeTourReport_LeadSource)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.ExchangeTourReport_ArrivalDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.ExchangeTourReport_BookingStatus)
+                            </td>
+                            <td class="format-currency">
+                                @Html.DisplayFor(model => i.ExchangeTourReport_TotalPaid)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.ExchangeTourReport_Resort)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.ExchangeTourReport_FinalTourDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.ExchangeTourReport_FinalTourStatus)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.ExchangeTourReport_FinalBookingStatus)
+                            </td>
+                            <td class="format-currency">
+                                @Html.DisplayFor(model => i.ExchangeTourReport_SalesVolume)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.ExchangeTourReport_HostessComments)
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>

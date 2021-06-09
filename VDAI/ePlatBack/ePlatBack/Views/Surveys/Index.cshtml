@@ -1,0 +1,204 @@
+﻿@model ePlatBack.Models.ViewModels.SurveyViewModel.SurveyIndexModel
+
+@{
+    ViewBag.Title = "ePlat > Settings > Surveys";
+    Html.EnableClientValidation(true);
+}
+
+@section Head
+{
+    
+}
+
+@section Scripts{
+    <script src="~/Scripts/jquery.dataTables.js" type="text/javascript"></script>
+    <script src="~/Scripts/ckeditor/ckeditor.js" type="text/javascript"></script>
+    <script src="~/Scripts/settings/surveys/surveys.js"></script>
+}
+
+<h1>Surveys Management</h1>
+<div class="align-from-top">
+    <fieldset id="fdsSurveysManagement">
+        <legend>
+            <img src="/Content/themes/base/images/eplat_hide.jpg" id="showSurveysManagement" class="fieldset-indicator fds-indicator-separator">
+            Surveys Management
+        </legend>
+        <p class="full-width">
+            <input type="button" id="btnNewSurveyInfo" class="submit fieldset-expander right" value="New">
+        </p>
+
+        @Html.Partial("_SearchSurveyPartial", Model.SearchSurveyModel)
+
+        @if (Model.AbleToModify) { 
+        <fieldset id="fdsSurveyInfo" class="primary-selected-row-dependent">
+            <legend>
+                <img src="/Content/themes/base/images/eplat_show.jpg" alt="" class="fieldset-indicator fds-indicator-separator">
+                Survey Info
+            </legend>
+            <div style="display:none;">
+                @Html.Partial("_SurveyInfoPartial", Model.SurveyModel)
+            </div>
+        </fieldset>
+        }
+        <fieldset id="fdsSurveyReferrals">
+            <legend>
+                <img src="/Content/themes/base/images/eplat_show.jpg" alt="" class="fieldset-indicator fds-indicator-separator">
+                Survey Referrals Report
+            </legend>
+            <div class="non-printable search-params" id="surveyReferralsParams">
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        <label for="Stats_I_ReferralsFromDate">From</label>
+                    </div>
+                    <div class="editor-field">
+                        <input id="Stats_I_ReferralsFromDate" name="Stats_I_ReferralsFromDate" type="text" class="field-value" value="">
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        <label for="Stats_F_ReferralsToDate">To</label>
+                    </div>
+                    <div class="editor-field">
+                        <input id="Stats_F_ReferralsToDate" name="Stats_F_ReferralsToDate" type="text" class="field-value" value="">
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        <br />
+                    </div>
+                    <div class="editor-field">
+                        <input type="button" class="button" value="GET" id="btnGetReferrals" />
+                    </div>
+                </div>
+            </div>
+            <div id="surveyReferralsResults">
+                <table id="tblReferralsReport" class="table exportable" style="width:100%;">
+                    <thead>
+                        <tr>
+                            <th>Referral</th>
+                            <th>Email</th>
+                            <th>Mobile</th>
+                            <th>Home Phone</th>
+                            <th>Referred By</th>
+                            <th>Hosted on</th>
+                            <th>Stay</th>
+                            <th>Saved On</th>
+                            <th>Terminal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+        <fieldset id="fdsSurveyStats" class="">
+            <legend>
+                <img src="/Content/themes/base/images/eplat_show.jpg" alt="" class="fieldset-indicator fds-indicator-separator">
+                Survey Stats
+            </legend>
+            <div style="display:none;">
+                <div class="non-printable search-params" id="surveyStatsParams">
+                    <div class="editor-alignment stats-original-fields">
+                        <div class="editor-label">
+                            <label for="Stats_I_FromDate">Sent Since</label>
+                        </div>
+                        <div class="editor-field">
+                            <input id="Stats_I_FromDate" name="Stats_I_FromDate" type="text" class="field-value" value="">
+                        </div>
+                    </div>
+                    <div class="editor-alignment stats-original-fields">
+                        <div class="editor-label">
+                            <label for="Stats_F_ToDate">Sent Until</label>
+                        </div>
+                        <div class="editor-field">
+                            <input id="Stats_F_ToDate" name="Stats_F_ToDate" type="text" class="field-value" value="">
+                        </div>
+                    </div>
+                </div>
+                <div id="surveyStatsReport" style="display:none;">
+                    <div class="survey-results-col-1">
+                        <span class="pleca">Summary</span>
+                        <div id="divSummaryContainer">
+                            <div class="summary-elements-alignment">
+                                <span class="summary-labels">
+                                    Sent
+                                </span>
+                                <span id="pSent" style="cursor: pointer" class="summary-fields">
+                                    0
+                                </span>
+                            </div>
+                            <div class="summary-elements-alignment">
+                                <span class="summary-labels">
+                                    Open
+                                </span>
+                                <span id="pOpen" style="cursor: pointer" class="summary-fields">0</span> <span class="summary-percentage" id="percOpen"></span>
+                            </div>
+                            <div class="summary-elements-alignment">
+                                <span class="summary-labels">
+                                    Answered
+                                </span>
+                                <span id="pAnswered" style="cursor: pointer" class="summary-fields">0</span> <span class="summary-percentage" id="percAnswered"></span>
+                            </div>
+                            <div class="summary-elements-alignment">
+                                <span class="summary-labels">
+                                    Referrals
+                                </span>
+                                <span id="pReferrals" style="cursor: pointer" class="summary-fields">
+                                    0
+                                </span>
+                            </div>
+                        </div>
+                        <div id="divSurveyTopics">
+
+                        </div>
+                    </div>
+                    <div id="divDetailsContainer" class="survey-results-col-2">
+                        <span class="pleca">
+                            Details :: <span id="spnDetailsDescription"></span><span id="spnDetailsCounter"></span>
+                        </span>
+                        <div class="survey-details-container">
+                            <div id="divSurveyDetailsSlider" class="survey-details-slider">
+                                <div class="survey-details" id="tblSurveyDetails"></div>
+                                <div id="divSurveyContent">
+                                    <span class="survey-content-controls">
+                                        <img id="btnBackToTable" src="/Images/btn_go_back.png" class="btn btn-img" alt="" />
+                                        <img id="btnNextSurvey" src="/Images/btn_next.png" alt="" class="right btn btn-img" />
+                                        <img id="btnSendMail" src="/Images/btn_email.png" alt="" class="right btn btn-img" />
+                                        <img id="btnPreviousSurvey" src="/Images/btn_prev.png" alt="" class="right btn btn-img" />
+                                    </span>
+                                    <div id="divMailBody" style="display: none;" class="send-mail-container">
+                                        <div class="pleca">
+                                            <div class="triangle"></div>
+                                            Send Survey By Email<span class="right btn-close" id="btnCloseMail"></span>
+                                        </div>
+                                        <div class="wrapper">
+                                            <span class="summary-labels details-tag-alignment">To: </span>
+                                            <input type="text" id="txtMailTo" class="send-mail-items" data-format="free-case">
+                                            <span class="summary-labels details-tag-alignment">CC: </span>
+                                            <input type="text" id="txtMailCC" class="send-mail-items" data-format="free-case">
+                                            <span class="summary-labels details-tag-alignment">Subject: </span>
+                                            <input type="text" id="txtMailSubject" class="send-mail-items" data-format="free-case">
+                                            <span class="summary-labels details-tag-alignment">Content:</span><textarea id="txtMailContent" class="send-mail-items" style="height: 200px"></textarea>
+                                            <span class="editor-field">
+                                                <input type="button" id="btnSendMailContent" class="right submit" value="Send">
+                                            </span>
+                                            <span id="spanSendStatus" class="float-right send-status"></span>
+                                            <div style="clear:both;"></div>
+                                        </div>
+                                    </div>
+                                    <span id="spnSurveyContent">
+                                        <span class="survey-content-infofields"></span>
+                                        <span class="survey-content-formfields"></span>
+                                    </span>
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </fieldset>
+    </fieldset>
+</div>

@@ -1,0 +1,78 @@
+@using System.Web.Http
+@using System.Web.Http.Controllers
+@using System.Web.Http.Description
+@using System.Collections.ObjectModel
+@using ePlatApi.Areas.HelpPage.Models
+@model Collection<ApiDescription>
+
+@{
+    ViewBag.Title = "ePlat Web API Help Page";
+
+    // Group APIs by controller
+    ILookup<HttpControllerDescriptor, ApiDescription> apiGroups = Model.ToLookup(api => api.ActionDescriptor.ControllerDescriptor);
+}
+
+<link type="text/css" href="~/Areas/HelpPage/HelpPage.css" rel="stylesheet" />
+<header class="help-page">
+    <div class="content-wrapper">
+        <div class="float-left">
+            <h1>@ViewBag.Title</h1>
+        </div>
+    </div>
+</header>
+<div id="body" class="help-page">
+    <section class="featured">
+        <div class="content-wrapper">
+            <h2>Introduction</h2>
+            <p>
+                A continuación encontrarás las APIs disponibles para interactuar con ePlat desde tu aplicación.
+            </p>
+        </div>
+    </section>
+    <section class=" content-wrapper clear-fix">
+        <h2>Autenticación</h2>
+        <p>Para hacer uso de las APIs de ePlat, es necesario autenticarse en el sistema para obtener el Bearer Token que deberá enviarse en la comunicación con las APIs.</p>
+        <p>Para generar el token es necesario hacer una petición (POST) a https://developers.eplat.villagroup.com/token con las siguientes variables:</p>
+        <blockquote>
+                username: TuNombreDeUsuario<br />
+                password: TuContraseña<br />
+                grant_type: password
+        </blockquote>
+        <p>
+            La API regresara una cadena de 256 caracteres en una variable llamada “acces_token” a continuación se muestra un ejemplo:
+        </p>
+        <blockquote>
+            {<br />
+            &nbsp;&nbsp;&nbsp; "access_token": "GKUigsmwwk8lUGXFsGFEIgu200wYSMuPXnpUU2Gsj87o_dbR_DWKMv9_7TkGzy4fY7iifZrKcNDbpf_8hl6CnQEwiJidpOAlsadrLQ67d4kD3dsZUE-V7VhcqBgwmnVIYfdOz73HN5U-ACDepXMZqwbLFjtDZTQSrIDAkwmDqwdjacpDgfmHgiS0CrzybI0h8uX18SxjuVrWoxL8HZC22nH8fQ7nz5l9HucbO-QqpZWjcC5wKcEc7J9hwLfP7c9C3uRqWRzwNojWIO6KZJPqhNo9rKdpeSptX8t8XLLatXQuatSnP7oXrBB2hSheyioDGo0C1kM1_7ZqjUwVuJ1rqcNZbgL0fgbCgeHz0ZS8SH_czlJGPd4C0wOkaJYpHvMWtII8sFALFcUug4eeH1OgbNJwLIcujPPcZJRojCwN9hTRJ1bAklrY-qR1MYcqaIjkh7u2o9RhEXaGQO8fyzoNWCHDdajBLSYZcIKLi3C72WW-XTT-UpUE5r55RwzEI5f2",<br />
+            &nbsp;&nbsp;&nbsp; "token_type": "bearer",<br />
+            &nbsp;&nbsp;&nbsp; "expires_in": 1799,<br />
+            &nbsp;&nbsp;&nbsp; "userName": "TuNombreDeUsuario",<br />
+            &nbsp;&nbsp;&nbsp; ".issued": "Mon, 29 Jan 2018 23:16:28 GMT",<br />
+            &nbsp;&nbsp;&nbsp; ".expires": "Mon, 29 Jan 2018 23:46:28 GMT"<br />
+            }
+        </blockquote>
+
+        <p>Este token tiene una duración de 30 minutos, transcurrido este tiempo es necesario generar uno nuevo.</p>
+        <p>El token tendrá que ser enviado cada que se haga una petición a la API, este mismo deberá ser introducido como un header en la petición HTTP como se muestra a continuación:</p>
+        <blockquote>
+                $.ajax({<br />
+                &nbsp;&nbsp;&nbsp;type: 'GET',<br />
+                &nbsp;&nbsp;&nbsp;url: 'http://developers.eplat.villagroup.com/api/GuestPreferences',<br />
+            &nbsp;&nbsp;&nbsp;data: {},<br />
+            &nbsp;&nbsp;&nbsp;crossDomain: true,<br />
+            &nbsp;&nbsp;&nbsp;beforeSend: function (xhr) {<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xhr.setRequestHeader('Authorization', 'bearer Fj1XDwitL52UPSWhrs95IylSu9vb0iPGlPJRI1VXzPh7L23KKaQD_GYw8Q3o9cwLMwbtL1L1rmfMSsrP2KrtBil4yr6BxSHBHBHJiwhmz_b7Gq9R47vzw3W8EwjZY28LQvH1cLOaHXB09adiLGGsSvSFNeyM1S-jQogOmGg1ZoW84-0F7Or5lVqmwVwJwo9qfRh-QecYLiSluLS9sviRy6LvG8AtevCt6_6bjnGUwf6UQy6As72r-ygXketRj9ea');<br />
+            &nbsp;&nbsp;&nbsp;},<br />
+            &nbsp;&nbsp;&nbsp;success: function (data) {<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(data);<br />
+            &nbsp;&nbsp;&nbsp;}<br />
+                });
+        </blockquote>
+    </section>
+    <section class="content-wrapper main-content clear-fix">
+        @foreach (var group in apiGroups)
+        {
+            @Html.DisplayFor(m => group, "ApiGroup")
+        }
+    </section>
+</div>

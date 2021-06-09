@@ -1,0 +1,130 @@
+﻿@model ePlatBack.Models.ViewModels.PreArrivalBillingModel
+
+@{
+    var Privileges = Model.Privileges;
+}
+@if (Privileges.Count(m => m.Component == "Section_BillingInfo") > 0 && Privileges.FirstOrDefault(m => m.Component == "Section_BillingInfo").View)
+{
+    <section id="Section_BillingInfo" class="full-width editor-alignment" style="border-top:1px solid #dddddd;margin-top:20px;">
+        <h3>Billing Information</h3>
+        <div style="text-align:right">
+            <span class="block">
+                <input type="button" id="btnNewBillingInfo" class="submit clear-form" value="new billing" />
+            </span>
+        </div>
+        <div class="align-from-top align-from-bottom full-width" style="margin-bottom:20px">
+            <table id="tblBillingResults" class="dataTable table">
+                <thead>
+                    <tr>
+                        <th>Card Holder Name</th>
+                        <th>Card Type</th>
+                        <th>Card Number</th>
+                        <th>Card Expiry</th>
+                        <th>Card CVV</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="primary-selected-row-dependent"></tbody>
+            </table>
+        </div>
+
+        @using (Ajax.BeginForm("SaveBilling", "PreArrival", new AjaxOptions { OnSuccess = "PREARRIVAL.saveBillingSuccess(data)" }, new { id = "frmBillingInfo" }))
+    {
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.HiddenFor(model => model.BillingInfo_LeadID, new { data_keep_value = "", @class = "primary-selected-row-dependent" })
+            @Html.HiddenFor(model => model.BillingInfo_BillingInfoID, new { @class = "secondary-selected-row-dependent" })
+            @Html.LabelFor(model => model.BillingInfo_FirstName)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.BillingInfo_FirstName)
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BillingInfo_LastName)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.BillingInfo_LastName)
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BillingInfo_Address)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.BillingInfo_Address)
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BillingInfo_Country)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.BillingInfo_Country, Model.Countries)
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BillingInfo_ZipCode)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.BillingInfo_ZipCode, new { @class = "" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BillingInfo_CardHolderName)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.BillingInfo_CardHolderName)
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BillingInfo_CardNumber)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.BillingInfo_CardNumber)
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BillingInfo_CardType)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.BillingInfo_CardType, Model.CardTypes)
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BillingInfo_CardExpiry)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.BillingInfo_CardExpiry, new { data_uses_cc_date_picker="true", placeholder = "mm/yyyy"})
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BillingInfo_CardCVV)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.BillingInfo_CardCVV)
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BillingInfo_Comments)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.BillingInfo_Comments)
+        </div>
+    </div>
+    <div class="editor-alignment align-from-top full-width">
+        <div class="editor-field">
+            <input id="btnSaveBillingInfo" type="submit" class="submit right" value="save" />
+        </div>
+    </div>
+    }
+    </section>
+}

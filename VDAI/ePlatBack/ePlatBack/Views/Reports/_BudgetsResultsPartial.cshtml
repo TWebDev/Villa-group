@@ -1,0 +1,107 @@
+﻿@model ePlatBack.Models.ViewModels.BudgetsViewModel
+
+<div class="table-div">
+    <div class="table-row">
+        <div class=" table-cell">
+            @Html.DisplayNameFor(model=>model.Terminal)<br />
+            @Html.DisplayFor(model=>model.Terminal)
+        </div>
+        <div class=" table-cell">
+            @Html.DisplayNameFor(model => model.Date)<br />
+            @Html.DisplayFor(model => model.Date)
+        </div>
+        <div class="table-cell">
+            @Html.DisplayNameFor(model => model.PointsOfSale)<br />
+            @Html.Raw(Model.PointsOfSale)
+        </div>
+        <div class="table-cell">
+            @Html.DisplayNameFor(model => model.BudgetsType)<br />
+            @Html.Raw(Model.BudgetsType)
+        </div>
+    </div>
+</div>
+
+<h3>Budgets</h3>
+@if (Model.Summary.Count() > 0)
+{
+    <table id="tblBudgets" class="table no-plugin exportable" style="width: 100%; text-align:center;">
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Type</th>
+                <th colspan="2">Period</th>
+                <th>Team</th>
+                <th>Quantity</th>
+                <th>Used</th>
+                <th>Available</th>
+                <th>Budget Amount</th>
+                <th>Currency</th>
+            </tr>
+        </thead>
+        @foreach (var budgets in Model.Summary)
+        {
+            <tbody>
+                <tr id="@budgets.BudgetID + @budgets.StartDate.Date + @budgets.EndDate.Date" >
+                    <td>@budgets.Description</td>
+                    <td>@budgets.Type</td>
+                    <td>@budgets.StartDate.ToString("yyyy-MM-dd")</td>
+                    <td>@budgets.EndDate.ToString("yyyy-MM-dd")</td>
+                    <td>@budgets.Team</td>
+                    <td>@budgets.Cant</td>
+                    <td><span data-format="currency">@budgets.Used.Amount</span></td>
+                    <td><span data-format="currency">@budgets.Available.Amount</span></td>
+                    <td><span data-format="currency">@budgets.Budget.Amount </span></td>
+                    <td>@budgets.Budget.Currency</td>
+                </tr>
+            </tbody>
+        }
+    </table>
+
+    foreach (var budgets in Model.Summary)
+    {
+        DateTime initDate = budgets.StartDate;
+        DateTime EndDate = budgets.EndDate;
+        <div data-id="@budgets.BudgetID + @budgets.StartDate.Date + @budgets.EndDate.Date" class="budget-detail" style="display:none">
+            <h4> Details - "@budgets.Description" </h4>
+            <table class="table no-plugin exportable non-editable" style="width: 100%;text-align:center;">
+                <thead>
+                    <tr>
+                        <th> Date </th>
+                        <th> Amount </th>
+                        <th> Currency </th>
+                        <th> Exchange Rate</th>
+                        <th> Used Budget</th>
+                        <th> Currency</th>
+                        <th> Transaction Type </th>
+                        <th> OPC </th>
+                        <th> Location </th>
+                        <th> Agent </th>
+                        <th> Last Modification</th>
+                        <th> Modified By User</th>
+                        <th> Client </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var details in Model.Summary.FirstOrDefault(x => x.StartDate == initDate && x.EndDate == EndDate && x.BudgetID == budgets.BudgetID).Details)
+                    {
+                        <tr id="@details.DetailBudgetID">
+                            <td>@details.Date.ToString("yyyy-MM-dd hh:mm:ss tt")</td>
+                            <td data-format="currency">@details.Amount.Amount</td>
+                            <td>@details.Amount.Currency</td>
+                            <td>@details.ExchangeRate</td>
+                            <td data-format="currency">@details.Budget.Amount </td>
+                            <td>@details.Budget.Currency</td>
+                            <td>@details.Type</td>
+                            <td>@details.Opc</td>
+                            <td>@details.Location</td>
+                            <td>@details.Agent</td>
+                            <td>@details.LastModification</td>
+                            <td>@details.ModifiedByUser</td>
+                            <td>@details.Client</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+}

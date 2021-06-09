@@ -1,0 +1,56 @@
+﻿@model ePlatBack.Models.ViewModels.PreArrivalReport.SearchPreArrivalReport
+
+@using (Ajax.BeginForm("SearchPreArrivalSalesByResortOptionType", "Reports", new AjaxOptions { OnBegin= "REPORT.clearTable('tblSalesPerOptions');", OnSuccess = "REPORT.addExtras();REPORT.highlightRows('tblSalesPerOptions');REPORT.bindEmailPreview();", UpdateTargetId = "divTblPreArrivalSales"}, new { id="frmSearchPreArrivalSalesPerOption", onSubmit="return UI.showValidationSummary(this.id);"}))
+{
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Search_I_PurchaseDate)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Search_I_PurchaseDate, new { data_uses_date_picker = "true" })
+            @Html.TextBoxFor(model => model.Search_F_PurchaseDate, new { data_uses_date_picker = "true" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Search_Resorts)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Search_Resorts, Model.Search_DrpResortsByUser, new { multiple ="multiple" })
+        </div>
+    </div>
+    
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Search_HotelConfirmationNumber)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Search_HotelConfirmationNumber)
+        </div>
+    </div>
+
+    <div class="editor-alignment align-from-top">
+        <div class="editor-field">
+            <input type="submit" class="button" value="search" />
+            <input type="reset" class="button" value="reset" />
+        </div>
+    </div>
+    <div id="divTblPreArrivalSales" class="align-from-top">
+        <table id="tblSalesPerOptions" class="table">
+            <thead>
+                <tr>
+                    <th>Confirmation Number</th>
+                    <th>Invoice(s)</th>
+                    <th>Quantity</th>
+                    <th>Option Name</th>
+                    <th>Unit Price</th>
+                    <th>Lead Source</th>
+                    <th>Resort</th>
+                    <th>Total Paid</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+}

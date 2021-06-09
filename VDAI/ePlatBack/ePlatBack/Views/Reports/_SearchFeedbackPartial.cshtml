@@ -1,0 +1,25 @@
+﻿@model ePlatBack.Models.ViewModels.PreArrivalFeedbackModel.SearchFeedback
+
+@using (Ajax.BeginForm("SearchPrearrivalsFeedback", "Reports", new AjaxOptions { UpdateTargetId = "divFeedbackResults", OnSuccess = "REPORT.addExtras();" }, new { id = "frmSearchPrearrivalsFeedback" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="non-printable search-params">
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_I_FromDate)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Search_I_FromDate, new { data_uses_date_picker = "true" })
+                @Html.TextBoxFor(model => model.Search_F_ToDate, new { data_uses_date_picker = "true" })
+            </div>
+        </div>
+        <div class="editor-alignment align-from-top">
+            <div class="editor-field">
+                <input type="submit" class="button" value="get" />
+            </div>
+        </div>
+    </div>
+    <div id="divFeedbackResults" style="margin-top: 14px;"></div>
+}

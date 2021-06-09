@@ -1,0 +1,52 @@
+﻿@model ePlatBack.Models.ViewModels.CallsByLocationViewModel.SearchCalls
+
+@using (Ajax.BeginForm("SearchAgentsPerformance", "Reports", new AjaxOptions { OnSuccess = "REPORT.AgentsPerformance.loaded()", UpdateTargetId = "divAgentsPerformanceResults" }, new { id = "frmSearchAgentsPerformance" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="non-printable search-params">
+        <div class="importer" style="right: 20px; position: absolute; top: 40px; width: 500px;">
+            <div  id="bannerUploader" class="full-width align-from-bottom"></div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_I_FromDate)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Search_I_FromDate, new { data_uses_date_picker = "true" })
+                @Html.TextBoxFor(model => model.Search_F_ToDate, new { data_uses_date_picker = "true" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_TerminalID)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Search_TerminalID, Model.Search_Terminals, new { @class = "terminal-dependent-list onchange", data_route = "/crm/Reports/GetDDLData", data_route_parameter = "selectedTerminals", data_onchange_route_parameter = "phonesByTerminal", data_dependent_list = "Search_Phones" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_Phones)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Search_Phones, Model.Search_PhonesList, new { multiple = "multiple" })
+            </div>
+        </div>
+        <div class="editor-alignment align-from-top">
+            <div class="editor-field">
+                <input type="submit" class="button" value="get" />
+            </div>
+        </div>
+    </div>
+    <div id="divAgentsPerformanceResults">
+
+    </div>
+}
+
+<script>
+    $(function () {
+        REPORT.AgentsPerformance.init();
+    });
+</script>

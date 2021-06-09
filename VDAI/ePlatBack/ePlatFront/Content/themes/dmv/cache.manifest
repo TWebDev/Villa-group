@@ -1,0 +1,22 @@
+CACHE MANIFEST
+# version 201501221023
+# Explicitly cached entries
+/Content/themes/dmv/images/bg_pv01.jpg
+/Content/themes/dmv/images/bg_lo01.jpg
+/Content/themes/dmv/images/bg_or01.jpg
+/Content/themes/dmv/images/bg_pv02.jpg
+/Content/themes/dmv/images/bg_lo02.jpg
+/Content/themes/dmv/images/bg_or02.jpg
+/Content/themes/dmv/images/room_pv.jpg
+/Content/themes/dmv/images/room_lo.jpg
+/Content/themes/dmv/images/room_or.jpg
+/
+# files will be displayed if the user is offline
+FALLBACK:
+
+# All other resources (e.g. sites) require the user to be online. 
+NETWORK:
+
+*	
+# Additional resources to cache
+CACHE:

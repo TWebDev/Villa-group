@@ -1,0 +1,233 @@
+﻿@model ePlatBack.Models.ViewModels.PreArrivalReport
+
+@if (Model.ListManifest != null)
+{
+
+    var lists = Model.ListManifest.GroupBy(m => m.AssignedToUserID);
+    var listsSupervisors = lists.Where(m => m.FirstOrDefault().SalesVolume == null);
+    var listsPerUser = lists.Where(m => m.FirstOrDefault().SalesVolume != null);
+    var total = listsPerUser.Sum(model => model.Sum(x => decimal.Parse(x.SalesVolume)));
+    var sales = Model.ListManifest.Count(m => m.Options != "" && m.Paid);
+    <div style="display:table-cell;">
+        <h4>Sales: @Html.DisplayFor(model => sales)</h4>
+        <h4>Volume: <span data-format="currency">@Html.DisplayFor(model => total)</span></h4>
+        @foreach (var i in listsSupervisors)
+        {
+            <h4>@Html.DisplayFor(model => i.FirstOrDefault().AssignedToUser) <span data-format="currency">@Html.DisplayFor(model => i.FirstOrDefault().CommissionVolume)</span></h4>
+        }
+    </div>
+
+    if (listsPerUser.Count() > 0)
+    {
+        foreach (var i in listsPerUser)
+        {
+            var ls = i.GroupBy(m => m.LeadSource);
+            var sum = Decimal.Round(i.Sum(m => (m.Paid ? decimal.Parse(m.SalesVolume) : 0)), 2);
+            var count = i.Count(m => (m.Options != "" && m.Paid == true));
+            var commission = i.Sum(m => decimal.Parse(m.CommissionVolume));
+            <table id="tblArrivalsResults" class="table dataTable exportable">
+                <thead>
+                    <tr>
+                        <th colspan="8">@Html.DisplayFor(model => i.FirstOrDefault().AssignedToUser)</th>
+                        <th>Sales: @Html.DisplayFor(model => count)</th>
+                        <th data-format="currency" title="Commission Volume">@Html.DisplayFor(model => commission)</th>
+                        <th data-format="currency" title="Volume Sold">@Html.DisplayFor(model => sum)</th>
+                    </tr>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Resort</th>
+                        <th>Resort Confirmation</th>
+                        <th>Arrival Date</th>
+                        <th>Purchase Date</th>
+                        <th>Total Nights</th>
+                        <th>Option Types</th>
+                        <th>Options</th>
+                        <th>Invoice</th>
+                        <th>Volume Sold</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var x in ls)
+                    {
+                        var summ = Decimal.Round(x.Sum(m => (m.Paid ? decimal.Parse(m.SalesVolume) : 0)), 2);
+                        var countt = x.Count(m => (m.Options != "" && m.Paid == true));
+                        <tr style="font-weight:bold;text-align:center;">
+                            <td colspan="9">@Html.DisplayFor(model => x.FirstOrDefault().LeadSource)</td>
+                            <td>Sales: @Html.DisplayFor(model => countt)</td>
+                            <td data-format="currency">@Html.DisplayFor(model => summ)</td>
+                        </tr>
+                        foreach (var a in x)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(model => a.FirstName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => a.LastName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => a.Resort)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => a.ConfirmationNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => a.ArrivalDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => a.PurchaseDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => a.NumberNights)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => a.OptionTypes)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => a.Options)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => a.InvoiceNumber)
+                                </td>
+                                <td data-format="currency">
+                                    @Html.DisplayFor(model => a.SalesVolume)
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        }
+    }
+    else
+    {
+        <table id="tblArrivalsResults" class="table dataTable">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Certificate Number</th>
+                    <th>Resort</th>
+                    <th>Resort Confirmation</th>
+                    <th>Arrival Date</th>
+                    <th>Departure Date</th>
+                    <th>Total Nights</th>
+                    <th>Option Types</th>
+                    <th>Options</th>
+                    <th>Volume Sold</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    }
+}
+else
+{
+    <table id="tblArrivalsResults" class="table dataTable">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Certificate Number</th>
+                <th>Resort</th>
+                <th>Resort Confirmation</th>
+                <th>Arrival Date</th>
+                <th>Departure Date</th>
+                <th>Total Nights</th>
+                <th>Option Types</th>
+                <th>Options</th>
+                <th>Volume Sold</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+}
+
+
+
+@*@if (Model.ListManifest == null)
+    {
+        var listsPerUser = Model.ListManifest.GroupBy(m => m.AssignedToUserID);
+        var total = listsPerUser.Sum(model => model.Sum(x => decimal.Parse(x.SalesVolume)));
+        <h2>@Html.DisplayFor(model => total)</h2>
+        foreach (var i in listsPerUser)
+        {
+            var ls = i.GroupBy(m => m.LeadSourceID);
+            var sum = Decimal.Round(i.Sum(m => (m.Paid ? decimal.Parse(m.SalesVolume) : 0)), 2);
+            var count = i.Count(m => (m.Options != "" && m.Paid == true));
+            <table id="tblArrivalsResults" class="table dataTable exportable">
+                <thead>
+                    <tr>
+                        <th colspan="9">@Html.DisplayFor(model => i.FirstOrDefault().AssignedToUser)</th>
+                        <th>Sales: @Html.DisplayFor(model => count)</th>
+                        <th data-format="currency">@Html.DisplayFor(model => sum)</th>
+                    </tr>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Certificate Number</th>
+                        <th>Resort</th>
+                        <th>Resort Confirmation</th>
+                        <th>Arrival Date</th>
+                        <th>Departure Date</th>
+                        <th>Total Nights</th>
+                        <th>Option Types</th>
+                        <th>Options</th>
+                        <th>Volume Sold</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var x in ls)
+                    {
+                        var summ = Decimal.Round(x.Sum(m => (m.Paid ? decimal.Parse(m.SalesVolume) : 0)), 2);
+                        var countt = x.Count(m => (m.Options != "" && m.Paid == true));
+                        <tr style="font-weight:bold;text-align:center;">
+                            <td colspan="9">@Html.DisplayFor(model => x.FirstOrDefault().LeadSource)</td>
+                            <td>Sales: @Html.DisplayFor(model => countt)</td>
+                            <td data-format="currency">@Html.DisplayFor(model => summ)</td>
+                        </tr>
+                        foreach (var a in x)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(model => a.FirstName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => a.LastName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => a.CertificateNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => a.Resort)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => a.ConfirmationNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => a.ArrivalDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => a.DepartureDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => a.NumberNights)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => a.OptionTypes)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => a.Options)
+                                </td>
+                                <td data-format="currency">
+                                    @Html.DisplayFor(model => a.SalesVolume)
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+
+        }
+    }*@

@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28729.10
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ePlatBack.Models", "ePlatBack.Models\ePlatBack.Models.csproj", "{A7C86E4D-498D-4322-9521-7A34965B8239}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ePlatFront", "ePlatFront\ePlatFront.csproj", "{89ABF426-DD80-4D53-A27B-8BD1217E99E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ePlatBack", "ePlatBack\ePlatBack.csproj", "{603BB516-199A-4139-999C-C2850E9FF9C3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A7C86E4D-498D-4322-9521-7A34965B8239}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7C86E4D-498D-4322-9521-7A34965B8239}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7C86E4D-498D-4322-9521-7A34965B8239}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7C86E4D-498D-4322-9521-7A34965B8239}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89ABF426-DD80-4D53-A27B-8BD1217E99E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89ABF426-DD80-4D53-A27B-8BD1217E99E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89ABF426-DD80-4D53-A27B-8BD1217E99E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89ABF426-DD80-4D53-A27B-8BD1217E99E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{603BB516-199A-4139-999C-C2850E9FF9C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{603BB516-199A-4139-999C-C2850E9FF9C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{603BB516-199A-4139-999C-C2850E9FF9C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{603BB516-199A-4139-999C-C2850E9FF9C3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {72DCAA32-39BE-483A-A75F-4C627FE0D8EE}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://dev.azure.com/netcenterit
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ePlatBack.Models\\ePlatBack.Models.csproj
+		SccProjectName1 = ePlatBack.Models
+		SccLocalPath1 = ePlatBack.Models
+		SccProjectUniqueName2 = ePlatBack\\ePlatBack.csproj
+		SccProjectName2 = ePlatBack
+		SccLocalPath2 = ePlatBack
+		SccProjectUniqueName3 = ePlatFront\\ePlatFront.csproj
+		SccProjectName3 = ePlatFront
+		SccLocalPath3 = ePlatFront
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,95 @@
+﻿@model ePlatBack.Models.ViewModels.PricesEditorViewModel.ParamsPriceEditor
+
+<fieldset id="fdsPricesEditor" data-close-siblings="true" class="view-restricted primary-selected-row-dependent">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        Prices Editor
+    </legend>
+    <div>
+        <div class="full-width align-from-bottom" style="border-bottom: #ddd solid 1px; margin-bottom: 20px;">
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.HiddenFor(model => model.ParamsPricesEditor_ServiceID)
+                    @Html.LabelFor(model => model.ParamsPricesEditor_Date)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.ParamsPricesEditor_Date, new { data_uses_date_picker = "true" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.ParamsPricesEditor_TerminalID)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.ParamsPricesEditor_TerminalID, Model.Terminals)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.ParamsPricesEditor_PointOfSaleID)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.ParamsPricesEditor_PointOfSaleID, Model.PointsOfSale)
+                </div>
+            </div>
+            <div class="editor-alignment prices-editor-special-rate">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.ParamsPricesEditor_Nationality)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.ParamsPricesEditor_Nationality, Model.Nationalities)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    <br />
+                </div>
+                <div class="editor-field">
+                    <input type="submit" class="button" id="btnRun" value="Run" /> 
+                    <input type="submit" class="submit" id="btnSavePricesEditor" value="Save" />
+                </div>
+            </div>
+        </div>
+
+        <div id="divPricesEditor" style="display:none;">
+            <div class="table-div">
+                <div class="table-row">
+                    <div class="table-cell">
+                        Provider<br />
+                        <span class="pe-label1" id="pe-lblProvider"></span>
+                    </div>
+                    <div class="table-cell">
+                        Item<br />
+                        <span class="pe-label1" id="pe-lblItem"></span>
+                    </div>
+                    <div class="table-cell">
+                        Provider Contract Currency<br />
+                        <span id="pe-lblContractCurrency" class="pe-label1"></span><br />
+                        <span id="pe-lblContractDate" class="pe-label3"></span>
+                    </div>
+                    <div class="table-cell">
+                        Exchange Rate<br />
+                        <span id="pe-lblExchangeRate" class="pe-label1"></span><br />
+                        <span id="pe-lblExchangeType" class="pe-label3"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="unit-column">
+                <div class="unit-space"></div>
+                <div class="unit-prices">
+
+                </div>
+            </div>
+            <div class="prices-column">
+                <div class="rule-columns">
+
+                </div>
+                <div class="rule-prices">
+
+                </div>
+            </div> 
+        </div>
+       
+    </div>
+</fieldset>

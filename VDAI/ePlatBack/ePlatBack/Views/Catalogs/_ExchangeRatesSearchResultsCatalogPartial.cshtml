@@ -1,0 +1,61 @@
+﻿@using System.Globalization;
+@model ePlatBack.Models.ViewModels.ExchangeRatesModel.SearchExchangeRatesModel
+
+<table id="tblSearchExchangeRatesResults" class="dataTable table search-results">
+    <thead>
+        <tr>
+            <th>Exchange Rate</th>
+            <th>From Date</th>
+            <th>Vigency</th>
+            <th>Currencies</th>
+            <th>Exchange Rate Type</th>
+            <th>Date Saved</th>
+            <th>Saved By User</th>
+            <th>Date Modified</th>
+            <th>Modified By User</th>
+            <th>Terminal / Provider</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ListExchangeRates != null)
+        {
+            foreach (var i in Model.ListExchangeRates)
+            {
+                //var expired = i.ExchangeRatesInfo_ToDate != "Permanent" ? DateTime.Parse(i.ExchangeRatesInfo_ToDate, CultureInfo.InvariantCulture).AddDays(1).AddSeconds(-1) >= DateTime.Today.AddDays(1).AddSeconds(-1) ? "" : "expired" : "";
+                var id = "exchangeRate_" + i.ExchangeRatesInfo_ExchangeRateID;
+            <tr id="@id">
+                <td>
+                    @Html.DisplayFor(model => i.ExchangeRatesInfo_ExchangeRate)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.ExchangeRatesInfo_I_Date, new { data_uses_date_picker = "true" })
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.ExchangeRatesInfo_F_Date, new { data_uses_date_picker = "true" })
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.ExchangeRatesInfo_FromCurrencyText)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.ExchangeRatesInfo_ExchangeRateTypeText)
+                </td>
+                <td>
+                   @Html.DisplayFor(model => i.ExchangeRatesInfo_ExchangeRateDateSaved)
+                </td>
+                <td>
+                   @Html.DisplayFor(model => i.ExchangeRatesInfo_ExchangeRateUser)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.ExchangeRatesInfo_ExchangeRateLastModifyDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.ExchangeRatesInfo_ExchangeRateLastModifyUser)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.ExchangeRatesInfo_ProviderTerminal)
+                </td>
+            </tr>
+            }
+        }
+    </tbody>
+</table>

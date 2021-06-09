@@ -1,0 +1,99 @@
+﻿@model ePlatBack.Models.ViewModels.GroupsFormViewModel
+
+@using (Ajax.BeginForm("GroupsFormSave", new { Controller = "Controls" }, new AjaxOptions { OnBegin = "ControlsUI.blockForm('GroupsForm','Saving Information...')", OnSuccess = "ControlsUI.showMessage(data,'GroupsForm');", OnFailure = "ControlsUI.showMessage({ResponseType : -1, ResponseMessage : 'There was a problem trying to send your information. Try again.'},'GroupsForm'); ControlsUI.unblockForm('GroupsForm')" }, new { id = "frmGroupsForm" }))
+{
+
+    @Html.AntiForgeryToken()
+
+    <div id="GroupsForm" class=" row">
+
+        <div class="input-field col l6 s12">
+            @Html.LabelFor(model => model.GroupsForm_Hotel)
+            @Html.EditorFor(model => model.GroupsForm_Hotel)
+            @Html.ValidationMessageFor(model => model.GroupsForm_Hotel)
+        </div>
+
+        <div class="input-field col l6 s12">
+            @Html.LabelFor(model => model.GroupsForm_NumberOfPassengers)
+            @Html.EditorFor(model => model.GroupsForm_NumberOfPassengers)
+            @Html.ValidationMessageFor(model => model.GroupsForm_NumberOfPassengers)
+        </div>
+
+        <div class="input-field col l6 s12">
+            @Html.LabelFor(model => model.GroupsForm_FromDate)
+            @Html.TextBoxFor(model => model.GroupsForm_FromDate, new { @class = "datepicker" })
+            @Html.ValidationMessageFor(model => model.GroupsForm_FromDate)
+        </div>
+
+        <div class="input-field col l6 s12">
+            @Html.LabelFor(model => model.GroupsForm_ToDate)
+            @Html.TextBoxFor(model => model.GroupsForm_ToDate, new { @class = "datepicker" })
+            @Html.ValidationMessageFor(model => model.GroupsForm_ToDate)
+        </div>
+
+        <div class="input-field col l6 s12">
+            @Html.LabelFor(model => model.GroupsForm_Name)
+            @Html.EditorFor(model => model.GroupsForm_Name)
+            @Html.ValidationMessageFor(model => model.GroupsForm_Name)
+        </div>
+
+        <div class="input-field col l6 s12">
+            @Html.LabelFor(model => model.GroupsForm_Phone)
+            @Html.EditorFor(model => model.GroupsForm_Phone)
+            @Html.ValidationMessageFor(model => model.GroupsForm_Phone)
+        </div>
+
+        <div class="input-field col l6 s12">
+            @Html.LabelFor(model => model.GroupsForm_Email)
+            @Html.EditorFor(model => model.GroupsForm_Email)
+            @Html.ValidationMessageFor(model => model.GroupsForm_Email)
+        </div>
+
+        <div class="input-field col l6 s12">
+            <div id="divQR_Recaptcha"></div>
+        </div>
+
+        <div class="input-field col s12">
+            <input type="submit" value="@ePlatFront.Resources.Views.Shared.SharedStrings.Submit" class="btn waves-effect waves-light btn-large amber black-text right" />
+            <div class="status-bar">
+                <div class="preloader-wrapper small interaction-loading">
+                    <div class="spinner-layer spinner-green-only">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div><div class="gap-patch">
+                            <div class="circle"></div>
+                        </div><div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="interaction-message"></div>
+            </div>
+        </div>
+        <div class="col s12 validation-errors">
+            @Html.ValidationSummary(true)
+            @*@Html.ValidationMessageFor(model => model.GroupsForm_Hotel)
+            @Html.ValidationMessageFor(model => model.GroupsForm_NumberOfPassengers)
+            @Html.ValidationMessageFor(model => model.GroupsForm_FromDate)
+            @Html.ValidationMessageFor(model => model.GroupsForm_ToDate)
+            @Html.ValidationMessageFor(model => model.GroupsForm_Name)
+            @Html.ValidationMessageFor(model => model.GroupsForm_Phone)
+            @Html.ValidationMessageFor(model => model.GroupsForm_Email)*@
+        </div>
+    </div>
+}
+
+<script>
+    var onloadQRReCaptchaCallback = function () {
+        var widgetQR;
+
+        widgetQR = grecaptcha.render('divQR_Recaptcha', {
+            'sitekey': '6LcrngoUAAAAAFytZpXRN3RyXeZwYgxV4i1XyYKQ'
+        });
+    };
+
+
+</script>
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadQRReCaptchaCallback&render=explicit"
+        async defer>
+</script>

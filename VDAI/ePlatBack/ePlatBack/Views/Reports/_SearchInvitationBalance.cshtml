@@ -1,0 +1,66 @@
+﻿@model ePlatBack.Models.ViewModels.InvitationBalance.SearchInvitationBalance
+           
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 border-bottom">
+    <h1 class="h2">Invitation Balance</h1>
+    <div class="form-row">
+        <button type="button" class="btn btn-sm" id="btnSearchBalance" v-on:click="UI().showSearchCard()">
+            <i class="material-icons">search</i>
+        </button>
+        <div class="col-md-1">
+            <button id="btnExportable" v-show="showExportable">
+            </button>
+        </div>
+     </div>
+</div> 
+
+@using (Ajax.BeginForm("SearchInvitationBalance", "Reports", new AjaxOptions
+        {
+           UpdateTargetId = "divInvitationBalanceResults",
+           OnSuccess = "balance.tableResult(data)"
+        },
+        new { id = "frmInvitationBalance" }))        
+{
+    <div class="card mb-2 search-card" v-bind:class="{ 'd-none' : !UIData.showSearchCard }">
+        <div class="card-body">
+            <h5 class="card-title">Search</h5>
+            <div class="form-row">
+                <div class="form-group col-md-3 col-lg-2">
+                    @Html.LabelFor(model => model.searchFromDate, 
+                        new { @class = "text-truncate d-block" })
+                    @Html.TextBoxFor(model => model.searchFromDate, new 
+                    {
+                        @class = "form-control datetimepicker-input", 
+                        placeholder = "yyyy-mm-dd",
+                        data_toggle = "datetimepicker",
+                        data_target = "#searchFromDate" 
+                    })
+                </div>
+                <div class="form-group col-md-3 col-lg-2">
+                    @Html.LabelFor(model => model.searchToDate, 
+                        new { @class = "text-truncate d-block" })
+                    @Html.TextBoxFor(model => model.searchToDate, new 
+                    {
+                        @class = "form-control datetimepicker-input", 
+                        placeholder = "yyyy-mm-dd",
+                        data_toggle = "datetimepicker",
+                        data_target = "#searchToDate" 
+                    })
+                </div> 
+                <div class=" form-group col-md-3 col-lg-2">
+                    @Html.LabelFor(model => model.searchInvitationNumber, new { @class= "text-truncate d-block"})
+                    @Html.TextBoxFor(model => model.searchInvitationNumber, new { @class = "form-control"} )
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="text-right col">
+                    <input type="reset" class="btn" value="Clear" />
+                    <input type="submit" id="btnSearchBalance" class="btn btn-primary" value="Search" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<div class="card mt-3 mb-3" id="divInvitationBalanceResults">
+
+</div>

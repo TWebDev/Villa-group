@@ -1,0 +1,287 @@
+﻿@model ePlatBack.Models.ViewModels.PurchaseProcessViewModel
+
+@{
+    if (ViewContext.FormContext == null){
+        ViewContext.FormContext = new FormContext();
+    }
+}
+
+@using (Ajax.BeginForm("Save", new { Controller = "Purchase" }, new AjaxOptions { OnBegin = "UI.sendingInfo('PurchaseForm')", OnSuccess = "UI.confirmation(data,'PurchaseForm')", OnFailure = "Controls.showMessage({ResponseType : -1, ResponseMessage : '" + ePlatFront.Resources.Views.Home.FreeVacationStrings.Failure + "'},'PurchaseForm')" }, new { id = "PurchaseForm", style = "display:inline-block", onSubmit = "return BookingEngine.showValidationSummary(this.id);" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+ 
+    <div id="divPurchaseValidation" style="display:none;">
+        <div class="fix-button">
+            <input type="button" id="btnFixErrors" value="Go and fix these issues" />
+        </div>
+        <h2>Please check the next issues:</h2>
+        <div class="step2-validation">
+            <h3>Customer Information</h3>
+            @Html.ValidationMessageFor(model => model.FirstName)
+            @Html.ValidationMessageFor(model => model.LastName)
+            @Html.ValidationMessageFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.ConfirmEmail)
+            @Html.ValidationMessageFor(model => model.Phone)
+            @Html.ValidationMessageFor(model => model.Mobile)
+
+            @Html.ValidationMessageFor(model => model.Address)
+            @Html.ValidationMessageFor(model => model.City)
+            @Html.ValidationMessageFor(model => model.State)
+            @Html.ValidationMessageFor(model => model.Country)
+            @Html.ValidationMessageFor(model => model.ZipCode)
+            <h3>Travel Information</h3>
+            @Html.ValidationMessageFor(model => model.StayingAtPlaceID)
+            @Html.ValidationMessageFor(model => model.StayingAt)
+        </div>
+        <div class="step3-validation">
+            <h3>Payment Information</h3>
+            @Html.ValidationMessageFor(model => model.CCHolderName)
+            @Html.ValidationMessageFor(model => model.CCType)
+            @Html.ValidationMessageFor(model => model.CCNumber)
+            @Html.ValidationMessageFor(model => model.CCExpirationMonth)
+            @Html.ValidationMessageFor(model => model.CCExpirationYear)
+            @Html.ValidationMessageFor(model => model.CCSecurityNumber)
+
+            @Html.ValidationMessageFor(model => model.Comments)
+            @Html.ValidationMessageFor(model => model.Accept)
+        </div>
+    </div>
+    
+    <fieldset class="checkout-process">
+        <legend>Purchase Process</legend>
+        @Html.HiddenFor(model => model.PurchaseID)
+
+        <div id="step2" class="step">
+            <a class="inline-button">
+                <img src="/Content/themes/mex/images/icon_prev.png" alt="Go to My Activities" />
+            </a>
+            <div class="main-content">
+                <span class="clear-form" style="float: right;margin-right: 30px;font-size: .8em; cursor:pointer;">CLEAR</span>
+                <h2>@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Checkout_Customer_Information</h2>
+                <div>
+                    <!--form-->
+
+                    <div class="form-column">
+                        <div class="editor-half-column">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.FirstName)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.FirstName, new { tabindex = 1 })
+                            </div>
+                        </div>
+
+                        <div class="editor-half-column">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.LastName)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.LastName, new { tabindex = 2 })
+                            </div>
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Email)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.Email, new { tabindex = 3 })
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.ConfirmEmail)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.ConfirmEmail, new { tabindex = 4 })
+                        </div>
+
+                        <div class="editor-half-column">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.Phone)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.Phone, new { data_format = "phone", tabindex = 5 , placeholder = "(000) 000 0000", maxlength = "14" })
+                            </div>
+                        </div>
+
+                        <div class="editor-half-column">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.Mobile)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.Mobile, new { data_format = "phone", tabindex = 6 , placeholder = "(000) 000 0000", maxlength = "14" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-column">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Address)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.Address, new { tabindex = 7 })
+                        </div>
+
+                        <div class="editor-half-column">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.City)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.City, new { tabindex = 8 })
+                            </div>
+                        </div>
+
+                        <div class="editor-half-column">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.State)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.State, new { tabindex = 9 })
+                            </div>
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Country)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.Country, Model.Countries, new { tabindex = 10 })
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.ZipCode)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.ZipCode, new { tabindex = 11 })
+                        </div>
+                    </div>
+                </div>
+                <h2>@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Travel_Information</h2>
+                <div>
+                    <div class="form-column">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.StayingAtPlaceID)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.StayingAtPlaceID, Model.StayingAtPlaces, new { tabindex = 12 })
+                        </div>
+                    </div>
+                    <div class="form-column">
+                        <div id="divStayingAt" style="display:none;">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.StayingAt)
+                            </div>
+                            <div class="editor-field">
+                                @Html.EditorFor(model => model.StayingAt, new { tabindex = 13 })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="step3" class="step">
+            <a class="inline-button">
+                <img src="/Content/themes/mex/images/icon_prev.png" alt="Go to My Activities" />
+            </a>
+            <div class="main-content">
+                <h2>@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Checkout_Payment_Information</h2>
+                <div>
+                    <div class="form-column">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.CCHolderName)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.CCHolderName)
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.CCType)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.CCType, Model.CCTypes)
+                        </div>
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.CCNumber)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.CCNumber, new { data_format = "card-number", maxlength = "19" })
+                        </div>
+
+                        <div class="editor-half-column">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.CCExpirationMonth)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.CCExpirationMonth, Model.CCExpirationMonths, new { @class = "quart-column" }) /
+                                @Html.DropDownListFor(model => model.CCExpirationYear, Model.CCExpirationYears, new { @class = "quart-column" })
+                            </div>
+                        </div>
+
+                        <div class="editor-half-column">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.CCSecurityNumber)
+                            </div>
+                            <div class="editor-field">
+                                @Html.EditorFor(model => model.CCSecurityNumber)
+                            </div>                            
+                        </div>
+                    </div>
+
+                    <div class="form-column">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Comments)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextAreaFor(model => model.Comments)
+                        </div>
+
+                        <div class="editor-label">
+                            <span style="display:none;">@Html.EditorFor(model => model.isTrue)</span>
+                            <div class="checkbox-style">
+                            @Html.CheckBoxFor(model => model.Accept)
+                            <label for="Accept"></label>
+                            </div>
+                            @Html.LabelFor(model => model.Accept, new { @class = "accept showTerms" })
+                        </div>
+                    </div>
+                    <div id="divTerms">
+                        <span class="close">@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Close_Terms</span>
+                        <h3>@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Terms_and_Conditions</h3>
+                        <div class="container">
+                            @Html.Raw(Model.Terms)
+                        </div>
+                    </div>
+                    <div id="divPurchaseSubmit">
+                        <input type="submit" class="primary-button" value="@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Pay_Now" />
+                        <a class="showTerms"> + @ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Read_Terms</a>
+                    </div>
+                    <div id="lblSubmit" style="display:none;"></div>
+                </div>
+            </div>
+            @Html.HiddenFor(model => model.ItemsJSON)
+            @Html.HiddenFor(model => model.Total)
+            @Html.HiddenFor(model => model.Savings)
+            @Html.HiddenFor(model => model.PromoID)
+            @Html.HiddenFor(model => model.CurrencyID)
+            @Html.HiddenFor(model => model.TerminalID)
+            @Html.HiddenFor(model => model.PointOfSaleID)
+            @Html.HiddenFor(model => model.CampaignTag)
+        </div>
+    </fieldset>
+}
+
+<div id="divProsa" style="display: inline-block; width: 1px; height: 1px; overflow:hidden">
+    <form method="post" id="formProsa" name="formProsa" action="https://www.procom.prosa.com.mx/eMerchant/merchant.jsp?host=domain">
+        <input type="hidden" name="total" value="">
+        <input type="hidden" name="currency" value="484">
+        <input type="hidden" name="address" value="My Experience Tours">
+        <input type="hidden" name="order_id" value="">
+        <input type="hidden" name="merchant" value="">
+        <input type="hidden" name="store" value="1234">
+        <input type="hidden" name="term" value="001">
+        <input type="hidden" name="digest" value="">
+        <input type="hidden" name="return_target" value="">
+        <input type="hidden" name="urlBack" value="https://domain/purchase/confirmation?EM_OrderIDX=value">
+    </form>
+</div>

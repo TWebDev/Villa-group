@@ -1,0 +1,40 @@
+﻿@model ePlatBack.Models.ViewModels.PackageViewModel
+
+@{
+    ViewBag.Title = "ePlat > CMS > Packages";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+}
+
+@section Head
+{
+    <link href="/Content/fineuploader.css" rel="stylesheet" type="text/css" />
+}
+
+@section Scripts {   
+    <script src="~/Scripts/jquery.dataTables.js" type="text/javascript"></script>
+    @*<script src="~/Scripts/ckeditor/ckeditor.js" type="text/javascript"></script>
+    <script src="~/Scripts/ckeditor/adapter-jquery.js" type="text/javascript"></script>
+    <script src="~/Scripts/ckeditor/config.js" type="text/javascript"></script>
+    <script src="~/Scripts/ckeditor/styles.js" type="text/javascript"></script>*@
+    <script src="~/Scripts/cms/packages/packages.js" type="text/javascript"></script>
+    <script src="~/Scripts/cms/prices.js" type="text/javascript"></script>
+    <script src="~/Scripts/cms/seoItems.js" type="text/javascript"></script>
+    <script src="~/Scripts/cms/pictures.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.jstree.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.fineuploader-3.0.min.js" type="text/javascript"></script>
+}
+
+<h1>Packages Management</h1>
+<div class="align-from-top">
+    <fieldset id="fdsPackagesManagement">
+        <legend>
+            <img src="/Content/themes/base/images/eplat_show.jpg" alt="" class="fieldset-indicator fds-indicator-separator">
+            Packages Management
+        </legend>
+        <div style="display: none" class="align-from-top">
+            @Html.Partial("_SearchPackagesPartial", Model.PackagesSearchModel)
+            @Html.Action("RenderPackages", "Packages")
+        </div>
+    </fieldset>
+</div>

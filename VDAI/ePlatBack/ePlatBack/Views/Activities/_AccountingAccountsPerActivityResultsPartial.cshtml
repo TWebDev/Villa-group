@@ -1,0 +1,45 @@
+﻿@model ePlatBack.Models.ViewModels.ActivityInfoModel
+
+<table id="tblActivityAccountingAccounts" class="table dataTable">
+    <thead>
+        <tr>
+            <th>Account Number</th>
+            <th>Account Name</th>
+            <th>Account Type</th>
+            <th>Price Type</th>
+            <th>Point(s) Of Sale</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ListAccountingAccountsPerActivity != null)
+        {
+            foreach (var i in Model.ListAccountingAccountsPerActivity)
+            {
+                var id = "account_" + i.ActivityAccountingAccountInfo_AccountingAccount[0];
+                <tr id="@id">
+                    <td>
+                        @Html.DisplayFor(model => i.ActivityAccountingAccountInfo_AccountingAccountString)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.ActivityAccountingAccountInfo_AccountingAccountName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.ActivityAccountingAccountInfo_AccountType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.ActivityAccountingAccountInfo_PriceType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.ActivityAccountingAccountInfo_PointOfSaleString)
+                    </td>
+                    <td>
+                        <span class="table-cell">
+                            <img src="/Content/themes/base/images/trash.png" class="right" />
+                        </span>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

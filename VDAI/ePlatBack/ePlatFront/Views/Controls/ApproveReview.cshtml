@@ -1,0 +1,48 @@
+﻿@model ePlatBack.Models.ViewModels.PageViewModel
+
+@{
+    ViewBag.Culture = Model.Culture;
+    ViewBag.Title = Model.Seo_Title;
+    ViewBag.Keywords = Model.Seo_Keywords;
+    ViewBag.Description = Model.Seo_Description;
+    ViewBag.Index = Model.Seo_Index;
+    ViewBag.Follow = Model.Seo_Follow;
+
+    ViewBag.Header = Model.Template_Header;
+    ViewBag.Footer = Model.Template_Footer;
+    ViewBag.Logo = Model.Template_Logo;
+    ViewBag.FriendlyUrl = Model.Seo_FriendlyUrl;
+    ViewBag.CanonicalDomain = Model.CanonicalDomain;
+
+    ViewBag.Submenu1 = Model.Submenu1;
+    ViewBag.Submenu2 = Model.Submenu2;
+    ViewBag.Submenu3 = Model.Submenu3;
+}
+
+@section header{
+    @Html.Raw(Model.Scripts_Header)
+}
+
+@section afterBody{
+    @Html.Raw(Model.Scripts_AfterBody)
+}
+
+@section scripts{
+    @Html.Raw(Model.Scripts_Footer)
+}
+
+@section controls{
+    <div id="categories" style="display:none;"></div>    
+}
+
+@section featured {
+    @Html.Raw(Model.Content_Header)
+}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                @Html.Raw(Model.Content)
+            </div>
+        </div>
+    </div>

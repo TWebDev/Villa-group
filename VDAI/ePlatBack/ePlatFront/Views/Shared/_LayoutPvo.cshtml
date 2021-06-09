@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html lang="@ViewBag.Culture">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title</title>
+        @*<link href="~/content/themes/pvo/images/pvo.png" rel="shortcut icon" type="image/x-icon" />*@
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="keywords" content="@ViewBag.Keywords">
+        <meta name="description" content="@ViewBag.Description">
+        <meta name="robots" content="@ViewBag.Index, @ViewBag.Follow">
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        @Styles.Render("//fonts.googleapis.com/css?family=Open+Sans:400,700")
+        @Styles.Render("~/themes/pvo")
+        @Styles.Render("~/Content/themes/base/datepicker")
+        @RenderSection("header", required: false)
+    </head>
+    <body onload="_googWcmGet('phone-desktop', '1-855-283-2170')">
+        @RenderSection("afterBody", required: false)
+        <header>
+            <div class="content-wrapper">
+                <div class="float-right">
+                    <section id="login">
+                        @*@Html.Partial("_LoginPartial")*@
+                        @Html.Raw(@ViewBag.Header)
+                    </section>
+                </div>
+                <div>
+                    <p class="site-title">
+                        <a href="/">
+                            <img src="@ViewBag.Logo" class="logo-image" width="176" height="53" alt="PremiumVacationsOnline.com" />
+                        </a>
+                    </p>
+                </div>
+                    <nav>
+                        <ul id="menu">
+                            <li><a href="/packages/puerto-vallarta">@ePlatFront.Resources.Views.Shared.SharedStrings.Puerto_Vallarta_Packages</a></li>
+                            <li><a href="/packages/cabo-san-lucas">@ePlatFront.Resources.Views.Shared.SharedStrings.Cabo_San_Lucas_Packages</a></li>
+                            <li><a href="/packages/cancun">@ePlatFront.Resources.Views.Shared.SharedStrings.Cancun_Packages</a></li>
+                            <li><a id="aQuoteRequest" class="fancybox" href="#quoteRequest">@ePlatFront.Resources.Views.Shared.SharedStrings.Request_a_Quote</a></li>
+                        </ul>
+                        <div id="showMenu"><img src="~/Content/themes/dvh/images/down.png" width="13" height="6" alt="Show Menu" /></div>
+                    </nav>
+            </div>
+        </header>
+        <div id="body">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+            @RenderSection("controls", required: false)
+        </div>
+        <footer>
+            <div class="content-wrapper">
+                <div style="float:right; margin-right:40px;">
+                    <a href="http://www.bbb.org/mexico/business-reviews/hotels-reservations/net-center-in-puerto-vallarta-ja-332?bluerefx=1" target="_blank">
+                        <img src="/images/ab-seal-horizontal-large.jpg?w=100" alt="Better Business Bureau" style="border:none;" />
+                    </a>
+                </div>
+                <div class="float-left">
+                    <p>
+                        Copyright &copy; @DateTime.Now.Year Premium Vacations Online.
+@ePlatFront.Resources.Views.Shared.SharedStrings.All_Rights_Reserved.<br />All prices are US Dollars. @Html.Raw(@ViewBag.Footer)<br />
+                        
+                    </p>
+                </div>
+            </div>
+        </footer>
+        @*@Html.Partial("../Home/_SpecialPromoForCity")*@
+
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryui")
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/pvo")
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

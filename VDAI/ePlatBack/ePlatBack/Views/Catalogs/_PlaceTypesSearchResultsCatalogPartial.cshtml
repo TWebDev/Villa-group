@@ -1,0 +1,28 @@
+﻿@model ePlatBack.Models.ViewModels.PlaceTypesModel.SearchPlaceTypesModel
+
+<table id="tblSearchPlaceTypesResults" class="dataTable table search-results">
+    <thead>
+        <tr>
+            <th>Place Type</th>
+            <th>Active</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ListPlaceTypes != null)
+        {
+            foreach (var i in Model.ListPlaceTypes)
+            {
+                var id = "placeType_" + i.PlaceTypeInfo_PlaceTypeID;
+                <tr id="@id">
+                    <td>
+                        @Html.DisplayFor(model => i.PlaceTypeInfo_PlaceType)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(model => i.PlaceTypeInfo_IsActive)
+                        <img src="/Content/themes/base/images/cross.png" class="right delete-item" />
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

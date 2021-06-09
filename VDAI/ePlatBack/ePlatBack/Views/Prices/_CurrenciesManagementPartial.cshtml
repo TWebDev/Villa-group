@@ -1,0 +1,39 @@
+﻿@model ePlatBack.Models.ViewModels.CurrencyInfoModel
+
+<fieldset id="fdsCurrenciesInfo">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator"/>
+        Currency Info
+    </legend>
+    <div style="display: none">
+        @using (Ajax.BeginForm("SaveCurrency", "Prices", new AjaxOptions { OnSuccess = "PRICE.saveCurrencySuccess(data)" }, new { id = "frmCurrency", onSubmit = "return UI.showValidationSummary(this.id);" }))
+        {
+            <div id="frmCurrency_ErrorMessages" style="display: none">
+                @Html.ValidationMessageFor(model => model.CurrencyInfo_Currency)
+                @Html.ValidationMessageFor(model => model.CurrencyInfo_CurrencyCode)
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CurrencyInfo_Currency)
+                    @Html.HiddenFor(model => model.CurrencyInfo_CurrencyID, new { @class = "secondary-selected-row-dependent", data_keep_value="" })
+                    @*<input type="hidden" id="hdnCurrencies" />*@
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.CurrencyInfo_Currency)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CurrencyInfo_CurrencyCode)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.CurrencyInfo_CurrencyCode)
+                </div>
+            </div>
+            <div class="full-width">
+                <input type="submit" id="btnSaveCurrency" class="submit right" value="Save"/>
+            </div>
+        }
+    </div>
+</fieldset>
+

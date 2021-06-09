@@ -1,0 +1,97 @@
+﻿@model ePlatBack.Models.ViewModels.GuestSearchModel
+
+@using (Ajax.BeginForm("Search", "Hub", new AjaxOptions { OnSuccess = "UR.searchResultsTable(data)", OnComplete = "UR.makeTableRowsSelectable()", UpdateTargetId = "divTblExistingGuests" }, new { id = "frmGuestsSearch" }))
+    {
+    
+    <div class="editor-alignment">
+        <p class="editor-label">
+            @Html.LabelFor(model => model.Search_Resort)
+        </p>
+        <p class="editor-field">
+            @Html.DropDownListFor(model => model.Search_Resort, Model.ResortList)
+        </p>
+    </div>
+
+
+
+    <div class="editor-alignment">
+        <p class="editor-label">
+            @Html.LabelFor(model => model.SearchDateI)
+        </p>
+        <p class="editor-field">
+            @Html.TextBoxFor(model => model.SearchDateI, new { data_uses_date_picker = "true" })
+            @Html.TextBoxFor(model => model.SearchDatef, new { data_uses_date_picker = "true" })
+        </p>
+    </div>
+
+    <div class="editor-alignment">
+        <p class="editor-label">
+            @Html.LabelFor(model => model.PreferenceType)
+        </p>
+        <p class="editor-field">
+            @Html.DropDownListFor(model => model.PreferenceType, Model.PreferenceTypesList)
+        </p>
+    </div>
+
+
+    <div class="editor-alignment" id="PreferenceSearchID">
+        <p class="editor-label">
+            @Html.LabelFor(model => model.Preference)
+        </p>
+        <p class="editor-field">
+            @Html.DropDownListFor(model => model.Preference, Model.SearchPreferencesList)
+        </p>
+    </div>
+
+    <div class="editor-alignment" id="SpecialDateSearchID">
+        <p class="editor-label">
+            @Html.LabelFor(model => model.SearchSpecialDate)
+        </p>
+        <p class="editor-field">
+
+            @Html.TextBoxFor(model => model.SearchSpecialDate, new { data_uses_date_picker = "true" })
+        </p>
+    </div>
+    <div class="editor-alignment" id="NameSearch">
+        <p class="editor-label">
+            @Html.LabelFor(model => model.FirstName)
+        </p>
+        <p class="editor-field">
+
+            @Html.TextBoxFor(model => model.FirstName)
+        </p>
+    </div>
+    <div class="editor-alignment" id="CrsSearch">
+        <p class="editor-label">
+            @Html.LabelFor(model => model.crs)
+        </p>
+        <p class="editor-field">
+
+            @Html.TextBoxFor(model => model.crs)
+        </p>
+    </div>
+
+
+
+
+    <div class="editor-alignment">
+        <p class="editor-field">
+            <input type="submit" id="btnSearchGuests" class="button" value="Search" />
+        </p>
+    </div>
+
+        <div id="divTblExistingGuests" class="align-from-top">
+            <table id="tblSearchGuestsResults" class="table">
+                <thead>
+                    <tr>
+                        
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Country</th>
+                        <th>Room  Number</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    }

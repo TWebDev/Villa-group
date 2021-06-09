@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FrontOfficeGBRVDataModelStoreContainer" CdmEntityContainer="FrontOfficeGBRVEntities">
+    <EntitySetMapping Name="tbaAgencia">
+      <EntityTypeMapping TypeName="FrontOfficeGBRVDataModel.tbaAgencia">
+        <MappingFragment StoreEntitySet="tbaAgencia">
+          <ScalarProperty Name="tipoagencia" ColumnName="tipoagencia" />
+          <ScalarProperty Name="interfas" ColumnName="interfas" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="cuentacontableagencia" ColumnName="cuentacontableagencia" />
+          <ScalarProperty Name="Porcentajerenta" ColumnName="Porcentajerenta" />
+          <ScalarProperty Name="tipodeagencia" ColumnName="tipodeagencia" />
+          <ScalarProperty Name="concredito" ColumnName="concredito" />
+          <ScalarProperty Name="clasifnoimprimible" ColumnName="clasifnoimprimible" />
+          <ScalarProperty Name="fechamodi" ColumnName="fechamodi" />
+          <ScalarProperty Name="usumodi" ColumnName="usumodi" />
+          <ScalarProperty Name="fechaalta" ColumnName="fechaalta" />
+          <ScalarProperty Name="usualta" ColumnName="usualta" />
+          <ScalarProperty Name="TotalDeIngresos" ColumnName="TotalDeIngresos" />
+          <ScalarProperty Name="TotalDeNoShow" ColumnName="TotalDeNoShow" />
+          <ScalarProperty Name="TotalDeCancelaciones" ColumnName="TotalDeCancelaciones" />
+          <ScalarProperty Name="TotalDeVisitas" ColumnName="TotalDeVisitas" />
+          <ScalarProperty Name="TotalDeNoches" ColumnName="TotalDeNoches" />
+          <ScalarProperty Name="UltimaHabitacion" ColumnName="UltimaHabitacion" />
+          <ScalarProperty Name="UltimaTarifa" ColumnName="UltimaTarifa" />
+          <ScalarProperty Name="UltimaVisita" ColumnName="UltimaVisita" />
+          <ScalarProperty Name="IdPerfilDelHuesped" ColumnName="IdPerfilDelHuesped" />
+          <ScalarProperty Name="Mayorista" ColumnName="Mayorista" />
+          <ScalarProperty Name="idcodigodemercado" ColumnName="idcodigodemercado" />
+          <ScalarProperty Name="IdCompania" ColumnName="IdCompania" />
+          <ScalarProperty Name="codeagencia" ColumnName="codeagencia" />
+          <ScalarProperty Name="nameagencia" ColumnName="nameagencia" />
+          <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+          <ScalarProperty Name="idagencia" ColumnName="idagencia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbaCodigosdeMercado">
+      <EntityTypeMapping TypeName="FrontOfficeGBRVDataModel.tbaCodigosdeMercado">
+        <MappingFragment StoreEntitySet="tbaCodigosdeMercado">
+          <ScalarProperty Name="WidgetPreCheckIn" ColumnName="WidgetPreCheckIn" />
+          <ScalarProperty Name="EsCortecia" ColumnName="EsCortecia" />
+          <ScalarProperty Name="interfas" ColumnName="interfas" />
+          <ScalarProperty Name="idmodocallcenter" ColumnName="idmodocallcenter" />
+          <ScalarProperty Name="walkin" ColumnName="walkin" />
+          <ScalarProperty Name="callcenter" ColumnName="callcenter" />
+          <ScalarProperty Name="NameUVC" ColumnName="NameUVC" />
+          <ScalarProperty Name="orden" ColumnName="orden" />
+          <ScalarProperty Name="rentalprogram" ColumnName="rentalprogram" />
+          <ScalarProperty Name="idplantilladecargoinvown" ColumnName="idplantilladecargoinvown" />
+          <ScalarProperty Name="invitadoown" ColumnName="invitadoown" />
+          <ScalarProperty Name="owner" ColumnName="owner" />
+          <ScalarProperty Name="segmentohotel" ColumnName="segmentohotel" />
+          <ScalarProperty Name="color" ColumnName="color" />
+          <ScalarProperty Name="preasignacion" ColumnName="preasignacion" />
+          <ScalarProperty Name="tipofix" ColumnName="tipofix" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="idresort" ColumnName="idresort" />
+          <ScalarProperty Name="tarificadorservown" ColumnName="tarificadorservown" />
+          <ScalarProperty Name="fechamodi" ColumnName="fechamodi" />
+          <ScalarProperty Name="usumodi" ColumnName="usumodi" />
+          <ScalarProperty Name="fechaalta" ColumnName="fechaalta" />
+          <ScalarProperty Name="usualta" ColumnName="usualta" />
+          <ScalarProperty Name="IdMayor" ColumnName="IdMayor" />
+          <ScalarProperty Name="codigo" ColumnName="codigo" />
+          <ScalarProperty Name="namecodigodemercado" ColumnName="namecodigodemercado" />
+          <ScalarProperty Name="idcodigodemercado" ColumnName="idcodigodemercado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbaTiposdeHabitacion">
+      <EntityTypeMapping TypeName="FrontOfficeGBRVDataModel.tbaTiposdeHabitacion">
+        <MappingFragment StoreEntitySet="tbaTiposdeHabitacion">
+          <ScalarProperty Name="Permitesplit" ColumnName="Permitesplit" />
+          <ScalarProperty Name="Activa" ColumnName="Activa" />
+          <ScalarProperty Name="numinternetgratis" ColumnName="numinternetgratis" />
+          <ScalarProperty Name="ocupacionmaxima" ColumnName="ocupacionmaxima" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="idtipohabvillacompleta" ColumnName="idtipohabvillacompleta" />
+          <ScalarProperty Name="clasificacion" ColumnName="clasificacion" />
+          <ScalarProperty Name="idresort" ColumnName="idresort" />
+          <ScalarProperty Name="idcolortipodehabitacion" ColumnName="idcolortipodehabitacion" />
+          <ScalarProperty Name="fechamodi" ColumnName="fechamodi" />
+          <ScalarProperty Name="usumodi" ColumnName="usumodi" />
+          <ScalarProperty Name="fechaalta" ColumnName="fechaalta" />
+          <ScalarProperty Name="usualta" ColumnName="usualta" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="codetipodehabitacion" ColumnName="codetipodehabitacion" />
+          <ScalarProperty Name="nametipodehabitacion" ColumnName="nametipodehabitacion" />
+          <ScalarProperty Name="idtipodehabitacion" ColumnName="idtipodehabitacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="spCorreoHuesped" FunctionName="FrontOfficeGBRVDataModel.Store.spCorreoHuesped">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FrontOfficeGBRVDataModel.spCorreoHuesped_Result">
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="idmember" ColumnName="idmember" />
+          <ScalarProperty Name="idhuesped" ColumnName="idhuesped" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spAgregaComentario" FunctionName="FrontOfficeGBRVDataModel.Store.spAgregaComentario" />
+    <FunctionImportMapping FunctionImportName="spHistorialReservaciones" FunctionName="FrontOfficeGBRVDataModel.Store.spHistorialReservaciones">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FrontOfficeGBRVDataModel.spHistorialReservaciones_Result">
+          <ScalarProperty Name="idhuesped" ColumnName="idhuesped" />
+          <ScalarProperty Name="idreservacion" ColumnName="idreservacion" />
+          <ScalarProperty Name="numconfirmacion" ColumnName="numconfirmacion" />
+          <ScalarProperty Name="namepais" ColumnName="namepais" />
+          <ScalarProperty Name="nameestado" ColumnName="nameestado" />
+          <ScalarProperty Name="numadultos" ColumnName="numadultos" />
+          <ScalarProperty Name="numchilds" ColumnName="numchilds" />
+          <ScalarProperty Name="nameagencia" ColumnName="nameagencia" />
+          <ScalarProperty Name="numdereservacioncrs" ColumnName="numdereservacioncrs" />
+          <ScalarProperty Name="numcuenta" ColumnName="numcuenta" />
+          <ScalarProperty Name="mercado" ColumnName="mercado" />
+          <ScalarProperty Name="nametipodehabitacion" ColumnName="nametipodehabitacion" />
+          <ScalarProperty Name="llegada" ColumnName="llegada" />
+          <ScalarProperty Name="salida" ColumnName="salida" />
+          <ScalarProperty Name="TipoPlan" ColumnName="TipoPlan" />
+          <ScalarProperty Name="Renta" ColumnName="Renta" />
+          <ScalarProperty Name="Paquete" ColumnName="Paquete" />
+          <ScalarProperty Name="Otros" ColumnName="Otros" />
+          <ScalarProperty Name="SPA" ColumnName="SPA" />
+          <ScalarProperty Name="ConsumoPOS" ColumnName="ConsumoPOS" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spLlegadas" FunctionName="FrontOfficeGBRVDataModel.Store.spLlegadas">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FrontOfficeGBRVDataModel.spLlegadas_Result">
+          <ScalarProperty Name="idReservacion" ColumnName="idReservacion" />
+          <ScalarProperty Name="CuartosNoche" ColumnName="CuartosNoche" />
+          <ScalarProperty Name="TipoHab" ColumnName="TipoHab" />
+          <ScalarProperty Name="llegada" ColumnName="llegada" />
+          <ScalarProperty Name="salida" ColumnName="salida" />
+          <ScalarProperty Name="NumHab" ColumnName="NumHab" />
+          <ScalarProperty Name="numconfirmacion" ColumnName="numconfirmacion" />
+          <ScalarProperty Name="Procedencia" ColumnName="Procedencia" />
+          <ScalarProperty Name="CodigoMerc" ColumnName="CodigoMerc" />
+          <ScalarProperty Name="idresort" ColumnName="idresort" />
+          <ScalarProperty Name="Split" ColumnName="Split" />
+          <ScalarProperty Name="CRS" ColumnName="CRS" />
+          <ScalarProperty Name="codeagencia" ColumnName="codeagencia" />
+          <ScalarProperty Name="nameagencia" ColumnName="nameagencia" />
+          <ScalarProperty Name="Huesped" ColumnName="Huesped" />
+          <ScalarProperty Name="cuartos" ColumnName="cuartos" />
+          <ScalarProperty Name="Adultos" ColumnName="Adultos" />
+          <ScalarProperty Name="Ninos" ColumnName="Ninos" />
+          <ScalarProperty Name="apellidopaterno" ColumnName="apellidopaterno" />
+          <ScalarProperty Name="apellidomaterno" ColumnName="apellidomaterno" />
+          <ScalarProperty Name="nombres" ColumnName="nombres" />
+          <ScalarProperty Name="codepais" ColumnName="codepais" />
+          <ScalarProperty Name="namepais" ColumnName="namepais" />
+          <ScalarProperty Name="codigostatusreservacion" ColumnName="codigostatusreservacion" />
+          <ScalarProperty Name="X" ColumnName="X" />
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="Infantes" ColumnName="Infantes" />
+          <ScalarProperty Name="HLlegada" ColumnName="HLlegada" />
+          <ScalarProperty Name="HSalida" ColumnName="HSalida" />
+          <ScalarProperty Name="IdHuesped" ColumnName="IdHuesped" />
+          <ScalarProperty Name="DistintivoPrecheckin" ColumnName="DistintivoPrecheckin" />
+          <ScalarProperty Name="FechaHoraCheckin" ColumnName="FechaHoraCheckin" />
+          <ScalarProperty Name="Contrato" ColumnName="Contrato" />
+          <ScalarProperty Name="TipoPlan" ColumnName="TipoPlan" />
+          <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+          <ScalarProperty Name="idroomlist" ColumnName="idroomlist" />
+          <ScalarProperty Name="Tarifa" ColumnName="Tarifa" />
+          <ScalarProperty Name="codetipodemoneda" ColumnName="codetipodemoneda" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

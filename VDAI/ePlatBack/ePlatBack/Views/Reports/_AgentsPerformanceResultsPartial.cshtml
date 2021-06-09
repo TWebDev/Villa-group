@@ -1,0 +1,105 @@
+﻿@model ePlatBack.Models.ViewModels.AgentsPerformanceViewModel.AgentsPerformanceResults
+
+    <div class="table-div">
+        <div class="table-row">
+            <div class="table-cell">
+                Dates Range<br />
+                From @Model.FromDate to @Model.ToDate
+                <br /><br />
+                Phone Labels
+                @Html.Raw(@Model.PhoneLabels)
+            </div>
+        </div>
+    </div>
+    <div id="tabs">
+        <ul>
+            <li><a href="#tabs-0">More Than 40s</a></li>
+            <li><a href="#tabs-1">First Contact</a></li>
+        </ul>
+        <div id="tabs-0">
+            <div style="clear:both; margin-top: 25px;"></div>
+            <table class="table exportable non-editable sortable">
+                <thead>
+                    <tr>
+                        <th>Agent</th>
+                        <th>Extension</th>
+                        <th>Calls</th>
+                        <th>Sales</th>
+                        <th>Closing</th>
+                        <th>Total Sales</th>
+                        <th>Average Sale</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var agent in Model.AgentsMoreThanForty)
+                    {
+                        <tr>
+                            <td>@agent.Agent</td>
+                            <td>@agent.Extension</td>
+                            <td>@agent.Calls</td>
+                            <td>@agent.Sales</td>
+                            <td>@agent.Closing%</td>
+                            <td><span data-format="currency">@agent.TotalSales</span></td>
+                            <td><span data-format="currency">@agent.AverageSale</span></td>
+                        </tr>
+                    }                    
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>@Model.TotalMoreThanForty.Calls</td>
+                        <td>@Model.TotalMoreThanForty.Sales</td>
+                        <td>@Model.TotalMoreThanForty.Closing%</td>
+                        <td><span data-format="currency">@Model.TotalMoreThanForty.TotalSales</span></td>
+                        <td><span data-format="currency">@Model.TotalMoreThanForty.AverageSale</span></td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <div style="clear:both;"></div>
+        </div>
+        <div id="tabs-1">
+            <div style="clear:both; margin-top: 25px;"></div>
+            <table class="table exportable non-editable sortable">
+                <thead>
+                    <tr>
+                        <th>Agent</th>
+                        <th>Extension</th>
+                        <th>Calls</th>
+                        <th>Sales</th>
+                        <th>Closing</th>
+                        <th>Total Sales</th>
+                        <th>Average Sale</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var agent in Model.AgentsFirstContact)
+                    {
+                        <tr>
+                            <td>@agent.Agent</td>
+                            <td>@agent.Extension</td>
+                            <td>@agent.Calls</td>
+                            <td>@agent.Sales</td>
+                            <td>@agent.Closing%</td>
+                            <td><span data-format="currency">@agent.TotalSales</span></td>
+                            <td><span data-format="currency">@agent.AverageSale</span></td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>@Model.TotalFirstContact.Calls</td>
+                        <td>@Model.TotalFirstContact.Sales</td>
+                        <td>@Model.TotalFirstContact.Closing</td>
+                        <td>@Model.TotalFirstContact.TotalSales</td>
+                        <td>@Model.TotalFirstContact.AverageSale</td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <div style="clear:both;"></div>
+        </div>
+    </div>

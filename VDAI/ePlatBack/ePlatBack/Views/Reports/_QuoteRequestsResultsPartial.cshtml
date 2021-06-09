@@ -1,0 +1,162 @@
+﻿@model ePlatBack.Models.ViewModels.QuoteRequestsReportModel
+
+<div class="table-div">
+    <div class="table-row">
+        <div class="table-cell">
+            @Html.DisplayNameFor(model => model.Terminal)<br />
+            @Html.DisplayFor(model => model.Terminal)
+        </div>
+        <div class="table-cell">
+            @Html.DisplayNameFor(model => model.Dates)<br />
+            @Html.DisplayFor(model => model.Dates)
+        </div>
+    </div>
+</div>
+<input type="hidden" id="Json" value="@Model.Json" />
+<h3>Quote Requests Search Results</h3>
+
+@if (Model.QuoteRequests.Count() > 0)
+{
+    <table class="table" style="width:100%">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Destination</th>
+                <th>Arrival</th>
+                <th>Departure</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var qr in Model.QuoteRequests)
+            {
+                <tr id="@qr.TransactionID">
+                    <td>@qr.DateSaved</td>
+                    <td>@qr.FirstName</td>
+                    <td>@qr.LastName</td>
+                    <td>@qr.Destination</td>
+                    <td>@qr.Arrival</td>
+                    <td>@qr.Departure</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    
+    <div id="divQuoteRequestInfo" style="display:none;">
+        <fieldset id="fdsQuoteRequestInfo" class="primary-selected-row-dependent">
+            <legend>
+                <img src="/Content/themes/base/images/eplat_show.jpg" alt="" class="fieldset-indicator fds-indicator-separator">
+                Quote Request Info
+            </legend>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    <label>Date Saved</label>
+                </div>
+                <div class="editor-field">
+                    <input type="text" disabled="disabled" id="DateSaved" />
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    <label>First Name</label>
+                </div>
+                <div class="editor-field">
+                    <input type="text" disabled="disabled" id="FirstName" />
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    <label>Last Name</label>
+                </div>
+                <div class="editor-field">
+                    <input type="text" disabled="disabled" id="LastName" />
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    <label>Email</label>
+                </div>
+                <div class="editor-field">
+                    <input type="text" disabled="disabled" id="Email" />
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    <label>Phone</label>
+                </div>
+                <div class="editor-field">
+                    <input type="text" disabled="disabled" id="Phone" />
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    <label>Destination</label>
+                </div>
+                <div class="editor-field">
+                    <input type="text" disabled="disabled" id="Destination" />
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    <label>Resort</label>
+                </div>
+                <div class="editor-field">
+                    <input type="text" disabled="disabled" id="Resort" />
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    <label>Arrival</label>
+                </div>
+                <div class="editor-field">
+                    <input type="text" disabled="disabled" id="Arrival" />
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    <label>Departure</label>
+                </div>
+                <div class="editor-field">
+                    <input type="text" disabled="disabled" id="Departure" />
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    <label>Adults</label>
+                </div>
+                <div class="editor-field">
+                    <input type="text" disabled="disabled" id="Adults" />
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    <label>Children</label>
+                </div>
+                <div class="editor-field">
+                    <input type="text" disabled="disabled" id="Children" />
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    <label>Time to be Reached</label>
+                </div>
+                <div class="editor-field">
+                    <input type="text" disabled="disabled" id="TimeToBeReached" />
+                </div>
+            </div>
+            <div class="double-width">
+                <div class="editor-label">
+                    <label>Comments</label>
+                </div>
+                <div class="editor-field">
+                    <textarea disabled="disabled" id="Comments"></textarea>
+                </div>
+            </div>
+        </fieldset>
+</div>
+}
+else
+{
+    <span>No Results</span>
+}

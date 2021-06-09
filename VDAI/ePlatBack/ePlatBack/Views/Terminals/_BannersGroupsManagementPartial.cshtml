@@ -1,0 +1,100 @@
+﻿@model ePlatBack.Models.ViewModels.BannerGroupInfoModel
+
+<fieldset id="fdsBannersGroups" class="view-restricted">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        Banners Groups
+    </legend>
+    <div style="display: none" class="align-from-top">
+        <div class="full-width align-from-bottom">
+            <input type="button" id="btnNewBannerGroupInfo" class="submit fieldset-expander right" value="New">
+        </div>
+        <table id="tblBannersGroups" class="table dataTable secondary-selected-row-dependent">
+            <thead>
+                <tr>
+                    <th>Banner Group</th>
+                    <th>Width</th>
+                    <th>Height</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        @*<fieldset id="fdsBannerGroupInfo" class="secondary-selected-row-dependent">*@
+        <fieldset id="fdsBannerGroupInfo" class="secondary-selected-row-dependent">
+            <legend>
+                <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+                Banner Group Info
+            </legend>
+            <div style="display: none" class="align-from-top">
+                @using (Ajax.BeginForm("SaveBannerGroup", "Terminals", new AjaxOptions { OnSuccess = "TERMINAL.saveBannerGroupSuccess(data)" }, new { id = "frmBannerGroup", onSubmit = "return UI.showValidationSummary(this.id);" }))
+                {
+                    <div id="frmBannerGroup_ErrorMessages" style="display: none">
+                        @Html.ValidationMessageFor(model => model.BannerGroupInfo_BannerGroup)
+                        @Html.ValidationMessageFor(model => model.BannerGroupInfo_Width)
+                        @Html.ValidationMessageFor(model => model.BannerGroupInfo_Height)
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.BannerGroupInfo_BannerGroup)
+                            @Html.HiddenFor(model => model.BannerGroupInfo_TerminalDomainID, new { @class = "secondary-selected-row-dependent skip-one-level", data_keep_value = "" })
+                            @Html.HiddenFor(model => model.BannerGroupInfo_BannerGroupID, new { @class = "secondary-selected-row-dependent" })
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.BannerGroupInfo_BannerGroup)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.BannerGroupInfo_Height)
+                        </div>
+                        <div class="editor-field">
+                            <span class="field-label">px</span>
+                            @Html.TextBoxFor(model => model.BannerGroupInfo_Height)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.BannerGroupInfo_Width)
+                        </div>
+                        <div class="editor-field">
+                            <span class="field-label">px</span>
+                            @Html.TextBoxFor(model => model.BannerGroupInfo_Width)
+                        </div>
+                    </div>
+                    <div class="full-width align-from-bottom">
+                        <input type="submit" class="submit right" value="save" />
+                    </div>
+                }
+                <div class="left align-from-bottom">
+                    <div id="divBannersTree" class="left secondary-selected-row-dependent" style="padding-right: 20px">
+                    </div>
+                </div>
+                @*<fieldset id="fdsBannersInfo" class="secondary-selected-row-dependent view-restricted">*@
+                <fieldset id="fdsBannersInfo" class="view-restricted">
+                    <legend>
+                        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+                        Banners In Group
+                    </legend>
+                    <div style="display: none" class="align-from-top">
+                        <div class="full-width align-from-bottom">
+                            <input type="button" class="submit right fieldset-expander" value="new" id="btnNewBannerInfo" />
+                        </div>
+                        <span id="spanInstructions" class="span-instructions">Drag pictures vertically to define order</span>
+                        <ul id="ulBanners" class="">
+                        </ul>
+                        <fieldset id="fdsBannerInfo" class="secondary-selected-row-dependent">
+                            <legend>
+                                <img class="fieldset-indicator fds-indicator-separator" src="/Content/themes/base/images/eplat_show.jpg" />
+                                Banner Info
+                            </legend>
+                            <div class="align-from-top" style="display: none">
+                                @Html.Partial("_BannersManagementPartial", Model.BannerInfoModel)
+                            </div>
+                        </fieldset>
+                    </div>
+                </fieldset>
+            </div>
+        </fieldset>
+    </div>
+</fieldset>

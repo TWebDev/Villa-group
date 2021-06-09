@@ -1,0 +1,120 @@
+﻿#page {
+    width: 200px;
+    margin: 0 auto;
+    background-color: white;
+    font-family: Arial;
+    font-size: 9pt;
+}
+
+.large-coupon {
+    display:none !important;
+}
+
+.small-coupon {
+    
+}
+
+.print-counter{
+    display: none;
+}
+
+.footer-column-1{
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.barcode{
+    width: 200px;
+    border-bottom: #ddd solid 1px;
+    padding-bottom: 10px;
+}
+
+#container {
+}
+
+#coupon {
+    margin-bottom: 10px;
+}
+
+.terms-area {
+    font-size: 8pt !important;
+    line-height: 10pt !important;
+}
+
+.terms-area ul li {
+    line-height: 9pt !important;
+}
+
+.terms-area p {
+    line-height: 10pt !important;
+    margin-bottom: 5px !important;
+}
+
+#page .display-item {
+    margin-bottom: 5px;
+}
+
+.policies-block{
+    border-top: #252525 solid 2px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#policies {
+    font-size: .9em;
+}
+
+    #policies .display-item {
+        margin-bottom: 30px;
+        width: 100%;
+    }
+
+    #policies .display-label {
+        text-transform: uppercase;
+    }
+
+    #policies .display-field {
+        font-weight: normal;
+        text-align: left;
+    }
+
+.display-label{
+    text-transform: uppercase;
+    font-size: 8pt;
+}
+
+.display-item {
+    display: inline-block;
+    width: 100%;
+    vertical-align: top;
+    margin-bottom: 2px;
+    min-height: 30px;
+}
+
+.display-field {
+    font-weight: bold;
+    margin-top: 3px;
+}
+
+#coupon .display-field{
+    padding-left: 20px;
+}
+
+.display-item-full {
+    width: 100%;
+    font-size: .9em;
+    border-top: #eee solid 1px;
+    padding-top: 10px;
+}
+
+.exchange-rate {
+    display:none;
+}
+
+.modality {
+    display:none;
+}
+
+.coupon-number {
+    font-size: 2em;
+}

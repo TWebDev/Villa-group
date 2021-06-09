@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SpiTvgDataModelStoreContainer" CdmEntityContainer="SpiTvgEntities">
+    <FunctionImportMapping FunctionImportName="spCustomer_tracking" FunctionName="SpiTvgDataModel.Store.spCustomer_tracking">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SpiTvgDataModel.spCustomer_tracking_Result">
+          <ScalarProperty Name="cus_id" ColumnName="cus_id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="calificacion" ColumnName="calificacion" />
+          <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+          <ScalarProperty Name="Contrato" ColumnName="Contrato" />
+          <ScalarProperty Name="volumen" ColumnName="volumen" />
+          <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+          <ScalarProperty Name="Closer" ColumnName="Closer" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spCustomer_History" FunctionName="SpiTvgDataModel.Store.spCustomer_History">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SpiTvgDataModel.spCustomer_History_Result">
+          <ScalarProperty Name="ContractNumber" ColumnName="ContractNumber" />
+          <ScalarProperty Name="LegalNames" ColumnName="LegalNames" />
+          <ScalarProperty Name="SalesCenter" ColumnName="SalesCenter" />
+          <ScalarProperty Name="TourDate" ColumnName="TourDate" />
+          <ScalarProperty Name="SourceGroup" ColumnName="SourceGroup" />
+          <ScalarProperty Name="Source" ColumnName="Source" />
+          <ScalarProperty Name="SourceItem" ColumnName="SourceItem" />
+          <ScalarProperty Name="VLO" ColumnName="VLO" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+          <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+          <ScalarProperty Name="FrontOfficeIdCliente" ColumnName="FrontOfficeIdCliente" />
+          <ScalarProperty Name="FrontOfficeIdResort" ColumnName="FrontOfficeIdResort" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spCustomer_check_tours" FunctionName="SpiTvgDataModel.Store.spCustomer_check_tours">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SpiTvgDataModel.spCustomer_check_tours_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+          <ScalarProperty Name="customer_name2" ColumnName="customer_name2" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="st" ColumnName="st" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="tour_date" ColumnName="tour_date" />
+          <ScalarProperty Name="tour" ColumnName="tour" />
+          <ScalarProperty Name="sales_center" ColumnName="sales_center" />
+          <ScalarProperty Name="source" ColumnName="source" />
+          <ScalarProperty Name="Volumen" ColumnName="Volumen" />
+          <ScalarProperty Name="match" ColumnName="match" />
+          <ScalarProperty Name="contract_type" ColumnName="contract_type" />
+          <ScalarProperty Name="contract_status" ColumnName="contract_status" />
+          <ScalarProperty Name="Account_no" ColumnName="Account_no" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spEP_Cliente_alta" FunctionName="SpiTvgDataModel.Store.spEP_Cliente_alta" />
+    <FunctionImportMapping FunctionImportName="spEP_Cliente_modifica" FunctionName="SpiTvgDataModel.Store.spEP_Cliente_modifica" />
+    <FunctionImportMapping FunctionImportName="spEP_Equipo" FunctionName="SpiTvgDataModel.Store.spEP_Equipo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SpiTvgDataModel.spEP_Equipo_Result">
+          <ScalarProperty Name="grupo_id" ColumnName="grupo_id" />
+          <ScalarProperty Name="grupo" ColumnName="grupo" />
+          <ScalarProperty Name="equipo_id" ColumnName="equipo_id" />
+          <ScalarProperty Name="equipo" ColumnName="equipo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spEP_Hotel" FunctionName="SpiTvgDataModel.Store.spEP_Hotel">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SpiTvgDataModel.spEP_Hotel_Result">
+          <ScalarProperty Name="hotel_id" ColumnName="hotel_id" />
+          <ScalarProperty Name="hotel" ColumnName="hotel" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spEP_Idioma" FunctionName="SpiTvgDataModel.Store.spEP_Idioma">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SpiTvgDataModel.spEP_Idioma_Result">
+          <ScalarProperty Name="idioma_id" ColumnName="idioma_id" />
+          <ScalarProperty Name="idioma" ColumnName="idioma" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spEP_Locacion" FunctionName="SpiTvgDataModel.Store.spEP_Locacion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SpiTvgDataModel.spEP_Locacion_Result">
+          <ScalarProperty Name="locacion_id" ColumnName="locacion_id" />
+          <ScalarProperty Name="locacion" ColumnName="locacion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spEP_OPC" FunctionName="SpiTvgDataModel.Store.spEP_OPC">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SpiTvgDataModel.spEP_OPC_Result">
+          <ScalarProperty Name="opc_id" ColumnName="opc_id" />
+          <ScalarProperty Name="nombre_opc" ColumnName="nombre_opc" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spEP_Pais" FunctionName="SpiTvgDataModel.Store.spEP_Pais">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SpiTvgDataModel.spEP_Pais_Result">
+          <ScalarProperty Name="pais_id" ColumnName="pais_id" />
+          <ScalarProperty Name="pais" ColumnName="pais" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spEP_Premanifiesto_alta" FunctionName="SpiTvgDataModel.Store.spEP_Premanifiesto_alta" />
+    <FunctionImportMapping FunctionImportName="spEP_Reservacion_alta" FunctionName="SpiTvgDataModel.Store.spEP_Reservacion_alta" />
+    <FunctionImportMapping FunctionImportName="spEP_Sala_ventas" FunctionName="SpiTvgDataModel.Store.spEP_Sala_ventas">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SpiTvgDataModel.spEP_Sala_ventas_Result">
+          <ScalarProperty Name="sala_ventas_id" ColumnName="sala_ventas_id" />
+          <ScalarProperty Name="sala_ventas" ColumnName="sala_ventas" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spManifest_Info" FunctionName="SpiTvgDataModel.Store.spManifest_Info">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SpiTvgDataModel.spManifest_Info_Result">
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="LegacyKey" ColumnName="LegacyKey" />
+          <ScalarProperty Name="VLOID" ColumnName="VLOID" />
+          <ScalarProperty Name="VLO" ColumnName="VLO" />
+          <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+          <ScalarProperty Name="ContractStatus" ColumnName="ContractStatus" />
+          <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+          <ScalarProperty Name="SalesCenter" ColumnName="SalesCenter" />
+          <ScalarProperty Name="Closer" ColumnName="Closer" />
+          <ScalarProperty Name="FrontOfficeIdCliente" ColumnName="FrontOfficeIdCliente" />
+          <ScalarProperty Name="FrontOfficeIdResort" ColumnName="FrontOfficeIdResort" />
+          <ScalarProperty Name="RoomNumber" ColumnName="RoomNumber" />
+          <ScalarProperty Name="MarketingProgram" ColumnName="MarketingProgram" />
+          <ScalarProperty Name="Subdivision" ColumnName="Subdivision" />
+          <ScalarProperty Name="SourceGroup" ColumnName="SourceGroup" />
+          <ScalarProperty Name="Source" ColumnName="Source" />
+          <ScalarProperty Name="SourceItem" ColumnName="SourceItem" />
+          <ScalarProperty Name="OPCID" ColumnName="OPCID" />
+          <ScalarProperty Name="OPC" ColumnName="OPC" />
+          <ScalarProperty Name="TourID" ColumnName="TourID" />
+          <ScalarProperty Name="TourDate" ColumnName="TourDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spManifest_Info_Customer" FunctionName="SpiTvgDataModel.Store.spManifest_Info_Customer">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SpiTvgDataModel.spManifest_Info_Customer_Result">
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="LegacyKey" ColumnName="LegacyKey" />
+          <ScalarProperty Name="VLOID" ColumnName="VLOID" />
+          <ScalarProperty Name="VLO" ColumnName="VLO" />
+          <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+          <ScalarProperty Name="ContractStatus" ColumnName="ContractStatus" />
+          <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+          <ScalarProperty Name="SalesCenter" ColumnName="SalesCenter" />
+          <ScalarProperty Name="Closer" ColumnName="Closer" />
+          <ScalarProperty Name="FrontOfficeIdCliente" ColumnName="FrontOfficeIdCliente" />
+          <ScalarProperty Name="FrontOfficeIdResort" ColumnName="FrontOfficeIdResort" />
+          <ScalarProperty Name="RoomNumber" ColumnName="RoomNumber" />
+          <ScalarProperty Name="MarketingProgram" ColumnName="MarketingProgram" />
+          <ScalarProperty Name="Subdivision" ColumnName="Subdivision" />
+          <ScalarProperty Name="SourceGroup" ColumnName="SourceGroup" />
+          <ScalarProperty Name="Source" ColumnName="Source" />
+          <ScalarProperty Name="SourceItem" ColumnName="SourceItem" />
+          <ScalarProperty Name="OPCID" ColumnName="OPCID" />
+          <ScalarProperty Name="OPC" ColumnName="OPC" />
+          <ScalarProperty Name="TourID" ColumnName="TourID" />
+          <ScalarProperty Name="TourDate" ColumnName="TourDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spEP_Categoria" FunctionName="SpiTvgDataModel.Store.spEP_Categoria">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SpiTvgDataModel.spEP_Categoria_Result">
+          <ScalarProperty Name="categoria_id" ColumnName="categoria_id" />
+          <ScalarProperty Name="categoria" ColumnName="categoria" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

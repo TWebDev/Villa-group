@@ -1,0 +1,72 @@
+﻿@model ePlatBack.Models.ViewModels.PreArrivalSearchModel
+
+@{
+    //privileges
+}
+
+<div id="preArrivalSearchTabs">
+    <ul>
+        <li><a href="#searchTab">Search</a></li>
+        <li><a href="#columnsTab">Columns</a></li>
+        <li style="float:right">
+            <div class="editor-field">
+                <form id="frmSaveLayout" onsubmit="return UI.showValidationSummary(this.id);">
+                    @Html.HiddenFor(model => model.Search_Fields)
+                    @Html.HiddenFor(model => model.Search_ReportLayout)
+                    <span>@Html.LabelFor(model => model.Search_LayoutName):</span><span class="align-from-left">@Html.TextBoxFor(model => model.Search_LayoutName, new { placeholder = "None" })</span>
+                    <span><label for="SearchDynamic_PublicTrue">Public</label> @Html.RadioButtonFor(model => model.Search_Public, true, new { data_keep_value = "" })</span>
+                    <span><label for="SearchDynamic_PublicFalse">Private</label> @Html.RadioButtonFor(model => model.Search_Public, false, new { data_keep_value = "" })</span>
+                    <i id="btnDeleteLayout" class="material-icons right align-from-left" title="delete layout">delete</i>
+                    <i id="btnNewLayout" class="material-icons right align-from-left" title="clear form">add_box</i>
+                    <i id="btnCopyLayout" class="material-icons right align-from-left" title="copy selected layout">content_copy</i>
+                    <i id="btnSaveLayout" class="material-icons right align-from-left" title="save layout">save</i>
+                </form>
+            </div>
+        </li>
+    </ul>
+    @using (Ajax.BeginForm("SearchPreArrival", "PreArrival", new AjaxOptions { OnBegin = "PREARRIVAL.clearTable('tblSearchPreArrivalResults');UI.checkForPendingRequests(xhr)", OnSuccess = "PREARRIVAL.searchResultsTable(data);UI.showCommentsOnHover(PREARRIVAL.oTable)", UpdateTargetId = "divPreArrivalResults", OnComplete = "PREARRIVAL.makeTableRowsSelectable()" }, new { id = "frmSearchPreArrival" }))
+    {
+        <div id="searchTab">
+            <div class="editor-alignment align-from-left">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Search_SearchFilters)
+                    @Html.HiddenFor(model => model.Search_Columns)
+                    @Html.HiddenFor(model => model.Search_Filters)
+                    @Html.HiddenFor(model => model.Search_LeadID)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Search_SearchFilters, new { placeholder = "type filter name" })
+                    <i id="addFilterToForm" class="material-icons lg right">add_box</i>
+                </div>
+            </div>
+            <div class="full-width editor-alignment">
+                <input type="button" id="btnSearchPreArrival" class="button right marg-left" value="search" />
+                <input type="reset" class="button right" value="reset" />
+            </div>
+        </div>
+        <div id="columnsTab">
+            <div class="editor-alignment align-from-left">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Search_ColumnHeaders)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Search_ColumnHeaders, new { placeholder = "type column name" })
+                    <i id="addColumnToForm" class="material-icons lg right">add_box</i>
+                </div>
+            </div>
+        </div>
+    
+    }
+</div>
+<div class="align-from-top">
+    <input type="button" class="button left" id="btnGroupLeads" value="group" />
+</div>
+<div id="divPreArrivalResults" class="align-from-top">
+    <table id="tblSearchPreArrivalResults" class="dataTable table"><thead><tr><th align="center">Pre Arrival</th></tr></thead><tbody></tbody></table>
+</div>
+@*<div id="customerBanner" data-fixed-component="">
+    <span style="font-size: 14pt">Customer: </span>
+    <br />
+    <span id="customerName" class="primary-selected-row-dependent" style="font-size: 14pt"></span>
+    <span><img id="imgCloseLead" src="/Content/themes/base/images/cross.png" class="right" style="margin-right:30px;cursor:pointer;" /></span>
+</div>*@

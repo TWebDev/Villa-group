@@ -1,0 +1,481 @@
+﻿@model ePlatBack.Models.ViewModels.spiInvitation.invitationModelTable
+
+<div id="divInvitationInfo" class="card mt-3 mb-3" v-bind:class="{ 'd-none' : !showInvitationInfo }">
+    <div class="card-body">
+        <h5 class="card-title">Customer Information</h5>
+        @using (Ajax.BeginForm("saveSPIInvitation", "Invitations2",
+        new AjaxOptions {
+            OnSuccess = "invitation.saveInvitation(data)" },
+        new
+        {
+            id = "frmInvitationInfo",
+            onSubmit = "return invitation.Forms().showValidationSummary(this.id);"
+        }))
+        {
+        <div class="form-row">
+            <div class=" form-group col-md-3 col-lg-2">
+                @Html.HiddenFor(mode => Model.Privileges.FirstOrDefault().Edit)
+                @Html.HiddenFor(model => model.sendEmail, new { v_model = "invitationModel.sendEmail" })
+                @Html.HiddenFor(x => x.invitationID, new { v_model = "invitationModel.invitationID" })
+                @Html.LabelFor(x => x.presentationDateTime, new
+           {
+               @class = "text-truncate d-block"
+           })
+                @Html.TextBoxFor(x => x.presentationDateTime, new
+           {
+               @class = "form-control datetimepicker-input",
+               placeholder = "yyyy-mm-dd",
+               data_toggle = "datetimepicker",
+               data_target = "#presentationDateTime",
+               v_model = "invitationModel.presentationDateTimeFormat"
+           })
+            </div>
+
+            <div class="form-group col-md-3 col-lg-2">
+                @Html.LabelFor(model => model.presentationPlaceID)
+                @Html.DropDownListFor(model => model.presentationPlaceID, Model.fillDrpPresentationPlaces, new
+           {
+               @class = "form-control oneValue",
+               v_model = "invitationModel.presentationPlaceID",
+               placeholder = "--Select One--"
+           })
+            </div>
+
+            <div class="form-group col-md-3 col-lg-2">
+                @Html.LabelFor(model => model.pickUpTypeID)
+                @Html.DropDownListFor(model => model.pickUpTypeID, Model.pickUpTypeList, new
+           {
+               @class = "form-control oneValue",
+               v_model = "invitationModel.pickUpTypeID",
+               placeholder = "--Select One--"
+           })
+            </div>
+
+            <div class="form-group col-md-3 col-lg-2">
+                @Html.LabelFor(model => model.spiHotelID)
+                @Html.DropDownListFor(model => model.spiHotelID, Model.fillDrpSPIHotel, new
+           {
+               @class = "form-control oneValue",
+               v_model = "invitationModel.spiHotelID",
+               placeholder = "--Select One--"
+           })
+            </div>
+
+            <div class=" form-group col-md-3 col-lg-2">
+                @Html.LabelFor(x => x.pickUpTime)
+                @Html.TextBoxFor(x => x.pickUpTime, new
+           {
+               @class = "form-control onlyNumbers onlyLetters",
+               placeholder = "HH:mm",
+               data_toggle = "datetimepicker",
+               data_target = "#pickUpTime",
+               v_model = "invitationModel.pickUpTimeFormat",
+           })
+            </div>
+
+            <div class=" form-group col-md-3 col-lg-2">
+                @Html.LabelFor(x => x.firstName)
+                @Html.TextBoxFor(x => x.firstName, new
+           {
+               @class = "form-control",
+               v_model = "invitationModel.firstName"
+           })
+            </div>
+
+            <div class=" form-group col-md-3 col-lg-2">
+                @Html.LabelFor(x => x.secondName)
+                @Html.TextBoxFor(x => x.secondName, new
+           {
+               @class = "form-control",
+               v_model = "invitationModel.secondName"
+           })
+            </div>
+
+            <div class=" form-group col-md-3 col-lg-2">
+                @Html.LabelFor(x => x.lastName)
+                @Html.TextBoxFor(x => x.lastName, new
+           {
+               @class = "form-control",
+               v_model = "invitationModel.lastName"
+           })
+            </div>
+
+            <div class=" form-group col-md-3 col-lg-2">
+                @Html.LabelFor(x => x.spouseFirstName)
+                @Html.TextBoxFor(x => x.spouseFirstName, new
+           {
+               @class = "form-control",
+               v_model = "invitationModel.spouseFirstName"
+           })
+            </div>
+
+            <div class=" form-group col-md-3 col-lg-2">
+                @Html.LabelFor(x => x.spouseSecondName)
+                @Html.TextBoxFor(x => x.spouseSecondName, new
+           {
+               @class = "form-control",
+               v_model = "invitationModel.spouseSecondName"
+           })
+            </div>
+
+            <div class=" form-group col-md-3 col-lg-2">
+                @Html.LabelFor(x => x.spouseLastName)
+                @Html.TextBoxFor(x => x.spouseLastName, new
+                {
+                   @class = "form-control",
+                   v_model = "invitationModel.spouseLastName"
+                })
+            </div>
+
+            <div class=" form-group col-md-3 col-lg-2">
+                @Html.LabelFor(x => x.adults)
+                @Html.TextBoxFor(x => x.adults, new
+                {
+                   @class = "form-control",
+                   v_model = "invitationModel.adults"
+                })
+            </div>
+
+            <div class=" form-group col-md-3 col-lg-2">
+                @Html.LabelFor(x => x.childs)
+                @Html.TextBoxFor(x => x.childs, new
+                {
+                   @class = "form-control",
+                   v_model = "invitationModel.childs"
+                })
+            </div>
+
+            <div class=" form-group col-md-3 col-lg-2 validate">
+                @Html.LabelFor(x => x.guestPhone)
+                @Html.TextBoxFor(x => x.guestPhone, new
+           {
+               @class = "form-control onlyNumbers ",
+               v_model = "invitationModel.guestPhone"
+           })
+            </div>
+
+            <div class=" form-group col-md-3 col-lg-2 validate">
+                @Html.LabelFor(x => x.guestEmail)
+                @Html.TextBoxFor(x => x.guestEmail, new
+                {
+                   @class = "form-control ",
+                   v_model = "invitationModel.guestEmail"
+                })
+            </div>
+
+            <div class=" form-group col-md-3 col-lg-2">
+                @Html.LabelFor(x => x.invitationNumber)
+                @Html.TextBoxFor(x => x.invitationNumber, new
+           {
+               @class = "form-control",
+               v_model = "invitationModel.invitationNumber"
+           })
+            </div>
+
+            <div class="form-group col-md-3 col-lg-2">
+                @Html.LabelFor(x => x.state)
+                @Html.TextBoxFor(x => x.state, new
+           {
+               @class = "form-control ",
+               v_model = "invitationModel.state"
+           })
+            </div>
+
+            <div class="form-group col-md-3 col-lg-2">
+                @Html.LabelFor(model => model.spiCountryID)
+                @Html.DropDownListFor(model => model.spiCountryID, Model.fillDrpSPICountries, new
+           {
+               @class = "form-control oneValue",
+               v_model = "invitationModel.spiCountryID",
+               placeholder = "--Select One--"
+           })
+            </div>
+
+            <div class="form-group col-md-3 col-lg-2">
+                @Html.LabelFor(model => model.spiLanguageID)
+                @Html.DropDownListFor(model => model.spiLanguageID, Model.fillDrpSPILanguage, new
+           {
+               @class = "form-control oneValue",
+               v_model = "invitationModel.spiLanguageID",
+               placeholder = "--Select One--"
+           })
+            </div>
+
+            <div class="form-group col-md-3 col-lg-2">
+                @Html.LabelFor(model => model.depositPickUpID)
+                @Html.DropDownListFor(model => model.depositPickUpID, Model.depositPickUpNotesList, new
+           {
+               @class = "form-control oneValue",
+               v_model = "invitationModel.depositPickUpID",
+               placeholder = "--Select One--"
+           })
+            </div>
+
+            <div class="form-group col-md-6 col-lg-4">
+                @Html.LabelFor(model => model.pickUpNotes)
+                @Html.TextAreaFor(model => model.pickUpNotes, new
+           {
+               @class = "form-control",
+               v_model = "invitationModel.pickUpNotes",
+               style = "height:90px"
+           })
+            </div>
+
+            <div class="form-group col-md-6 col-lg-4">
+                @Html.LabelFor(model => model.gift)
+                @Html.TextAreaFor(model => model.gift, new
+           {
+               @class = "form-control",
+               v_model = "invitationModel.gift",
+               style = "height:90px"
+           })
+            </div>
+        </div>
+            <div class="row">
+                <div class="col-12">
+                    <h5>Deposits Information</h5>
+                </div>
+            </div>
+
+            <div class="form-row justify-content-md-center">
+                <div class="col-8 ">
+                    <table class="table w-100 table-sm">
+                        <thead class="thead-light">
+                            <tr class="text-center">
+                                <th class="align-middle">Payment Type</th>
+                                <th class="align-middle">ccReference</th>
+                                <th class="align-middle">Amount</th>
+                                <th class="align-middle">Currency</th>
+                                <th class="align-middle">Received</th>
+                                <th style="width: 85px;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(d,i) in invitationModel.invitationDeposits" v-bind:id="d.invitationDepositID" v-bind:class="{'text-muted': d.deleted}">
+                                <td class="text-center">
+                                    <p>{{d.paymentType}}</p>
+                                </td>
+                                <td class="text-center">
+                                    <p>{{d.ccReferenceNumber}}</p>
+                                </td>
+                                <td class="text-center">
+                                    <p>${{d.amount}}.00</p>
+                                </td>
+                                <td class="text-center">
+                                    <p>{{d.currency}}</p>
+                                </td>
+                                <td class="align-middle">
+                                    <input type="checkbox" class=" form-control form-control-sm" v-model="d.received" disabled />
+                                </td>
+                                <td class="text-right">
+                                    <button class="btn btn-sm btn-light"
+                                            v-on:click="editPayment(i)"
+                                            v-bind:class="{'d-none': d.deleted}"
+                                            onclick="return false;"
+                                            v-show="!invitationModel.invitationDeposits[i].editDeposit">
+                                        <i class="material-icons">edit</i>
+                                    </button>
+                                    <button id="editDeposit" class="btn btn-sm btn-light"
+                                            v-on:click="saveEditPayment(i)"
+                                            onclick="return false;"
+                                            v-show="invitationModel.invitationDeposits[i].editDeposit">
+                                        <i id="addPayment" class="material-icons">check</i>
+                                    </button>
+                                    <button class="btn btn-sm btn-light" v-on:click="deleteDeposit(i)" v-bind:class="{'d-none': d.deleted}" onclick="return false;">
+                                        <i class="material-icons">delete</i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot class="align-middle">
+                            <tr>
+                                <td class="align-middle">
+                                    <select id="depositPaymentType" class="form-control form-control-sm oneValue" v-model="invitationDeposits.paymentTypeID" placeholder="--Select One--">
+                                        @foreach (var item in Model.paymentsTypeList)
+                                        {
+                                            <option value="@item.Value">@item.Text</option>
+                                        }
+                                    </select>
+                                </td>
+                                <td class="align-middle">
+                                    <input id="depositccReference" type="text" class=" form-control form-control-sm onlyNumbers" v-model="invitationDeposits.ccReferenceNumber" />
+                                </td>
+                                <td class="align-middle">
+                                    <div class="input-group">
+                                        <div class=" input-group-prepend">
+                                            <span class="input-group-text">$</span>
+                                        </div>
+                                        <input id="depositAmount" type="text" class="form-control form-control-sm onlyNumbers" v-model="invitationDeposits.amount" />
+                                        <div class="input-group-append">
+                                            <span class=" input-group-text">.00</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="align-middle">
+                                    <select id="depositCurrency" class="form-control form-control-sm oneValue" v-model="invitationDeposits.currencyID" placeholder="--Select One--">
+                                        @foreach (var item in Model.currencieList)
+                                        {
+                                            if (item.Value == "0")
+                                            {
+                                                <option value="@item.Value">@item.Text</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item.Value">@item.Text</option>
+                                            }
+                                        }
+                                    </select>
+                                </td>
+                                <td class="align-middle">
+                                    <input id="depositReceived" type="checkbox" class=" form-control form-control-sm" v-model="invitationDeposits.received" />
+                                </td>
+                                <td class="text-right">
+                                    <button id="addDeposit" class="btn btn-sm btn-light"
+                                            v-on:click="addPayment()"
+                                            onclick="return false;"
+                                            v-bind:class="{'d-none':invitationDeposits.editDeposit}">
+                                        <i id="addPayment" class="material-icons">add</i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+            <h5>OPC Information</h5>
+            <div class="form-row">
+                <div class="form-group col-md-3 col-lg-2">
+                    @Html.LabelFor(model => model.programID)
+                    @Html.DropDownListFor(model => model.programID, Model.fillDrpPrograms, new
+               {
+                   @class = "form-control oneValue",
+                   v_model = "invitationModel.programID",
+                   placeholder = "--Select One--"
+               })
+                </div>
+
+                <div class="form-group col-md-3 col-lg-2 jaladorSH">
+                    @Html.LabelFor(model => model.jaladorOpcID)
+                    @Html.DropDownListFor(model => model.jaladorOpcID, new List<SelectListItem>(), new
+               {
+                   @class = "form-control oneValue ",
+                   v_model = "invitationModel.jaladorOpcID"
+               })
+                </div>
+
+                <div class="form-group col-md-3 col-lg-2">
+                    @Html.LabelFor(model => model.opcID)
+                    @Html.DropDownListFor(model => model.opcID, new List<SelectListItem>(), new
+               {
+                   @class = "form-control oneValue",
+                   v_model = "invitationModel.opcID",
+                   placeholder = "--Select One--"
+               })
+                </div>
+
+                <div class="form-group col-md-3 col-lg-2">
+                    @Html.LabelFor(model => model.spiGroupID)
+                    @Html.DropDownListFor(model => model.spiGroupID, Model.fillDrpSPIGroups, new
+               {
+                   @class = "form-control oneValue",
+                   v_model = "invitationModel.spiGroupID",
+                   placeholder = "--Select One--"
+               })
+                </div>
+
+                <div class="form-group col-md-3 col-lg-2">
+                    @Html.LabelFor(model => model.spiTeamID)
+                    @Html.DropDownListFor(model => model.spiTeamID, new List<SelectListItem>(), new
+                    {
+                       @class = "form-control oneValue",
+                       v_model = "invitationModel.spiTeamID",
+                       placeholder = "--Select One--"
+                    })
+                </div>
+
+                <div class="form-group col-md-3 col-lg-2">
+                    @Html.LabelFor(model => model.spiCategoryID)
+                    @Html.DropDownListFor(model => model.spiCategoryID, new List<SelectListItem>(), new
+                    {
+                       @class = "form-control oneValue",
+                       v_model = "invitationModel.spiCategoryID",
+                       placeholder = "--Select One--"
+                    })
+                </div>
+
+                <div class="form-group col-md-3 col-lg-2">
+                    @Html.LabelFor(model => model.spiLocationID)
+                    @Html.DropDownListFor(model => model.spiLocationID, Model.fillDrpSPILocation, new
+                   {
+                   @class = "form-control oneValue",
+                   v_model = "invitationModel.spiLocationID",
+                   placeholder = "--Select One--"
+                   })
+                </div>
+
+                <div class="form-group col-md-3 col-lg-2">
+                    @Html.LabelFor(model => model.shiftID)
+                    @Html.DropDownListFor(model => model.shiftID, Model.shiftList, new
+               {
+                   @class = "form-control oneValue",
+                   v_model = "invitationModel.shiftID",
+                   placeholder = "--Select One--"
+               })
+                </div>
+
+                <div class="form-group col-md-3 col-lg-2">
+                    @Html.LabelFor(x => x.manifestFolio)
+                    @Html.TextBoxFor(x => x.manifestFolio, new
+               {
+                   @class = "form-control ",
+                   v_model = "invitationModel.manifestFolio"
+               })
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="text-right col">
+                    <input type="button" class="btn" value="Cancel" v-on:click="newInvitation()" />
+                    <button style="width:12%" type="button" id="openEmailPreview" class="btn btn-outline-secondary" v-b-modal.moda-center="'previewEmail'"  v-on:click="showEmail(false)">Preview</button>
+                    <button id="invitationUpdate" type="button" v-on:click="submitInfo(false)" class="btn btn-primary" value="Update" name="update">Update</button>
+                </div>
+            </div>
+
+            <b-modal ref="previewEmail" id="previewEmail" centered size="lg" hide-footer title="Email Preview">
+                <div class="card-body" style="height:700px">
+                    <div class="form-row">
+                        <iframe id="emailPreviewFrame" width="100%" frameborder="0" height="650px"></iframe>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="text-right col">
+                        <input id="cancelEmailPreview" class="btn" type="button" value="Cancel" v-on:click="hideModal()" />
+                        <button id="btnSaveInvitation" type="button" v-show="!update" v-on:click="submitInfo(false)" class="btn btn-primary" name="save">Save and Sent</button>
+                        <button id="UpdateInvitationbtn" type="button" v-show="update" v-on:click="submitInfo(true)" class="btn btn-primary"  name="save">Update and Sent</button>
+                        @*<input id="sendEmailButton" type="submit"  class="btn btn-primary" value="OK" />*@
+                    </div>
+                </div>
+            </b-modal>
+
+            @*
+                 <iframe id="emailPreviewFrame" width="100%" frameborder="0" height="650px" src="@{Html.Action("RenderEmailPreviewText", "invitations2")} "></iframe>
+                <b-modal ref="previewEmail" id="previewEmail" centered size="lg" hide-footer title="Email Preview">
+                <div class="card-body" style="height:700px">
+                    <div class="form-row">
+                        <iframe id="emailPreviewFrame" width="100%" frameborder="0" height="650px"></iframe>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="text-right col">
+                        <input id="cancelEmailPreview" class="btn" type="button" value="Cancel" v-on:click="hideModal()" />
+                        <input id="btnSaveInvitation" type="submit" class="btn btn-primary" value="Save Invitation" />
+                        <input id="sendEmailButton" type="submit" v-on:click="showEmail(true)" class="btn btn-primary" value="Send Email" />
+                    </div>
+                </div>
+            </b-modal>*@
+        }
+    </div>
+</div>
+
+
+

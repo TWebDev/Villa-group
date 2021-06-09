@@ -1,0 +1,8 @@
+﻿@model ePlatBack.Models.ViewModels.TicketViewModel
+
+<div style="padding: 0 8px;">
+    <input id="btnNewTicketInfo" type="button" class="submit right fieldset-expander" value="NEW TICKET" style="margin-bottom: -25px; margin-top: 10px;" />
+    <h3 style="margin: 0 0 10px 0;">Support Tickets</h3>
+    @Html.Partial("_SearchTicketPartial", Model.SearchTicketViewModel)
+    @Html.Partial("_TicketInfoPartial", Model.TicketInfo)
+</div>

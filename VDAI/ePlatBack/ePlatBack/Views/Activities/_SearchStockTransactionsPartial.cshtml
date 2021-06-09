@@ -1,0 +1,164 @@
+﻿@model ePlatBack.Models.ViewModels.StockInfoModel
+@{
+    var Privileges = ViewData["Privileges"] as List<ePlatBack.Models.ViewModels.SysComponentsPrivilegesModel>;
+}
+@if (Privileges.FirstOrDefault(m => m.Component == "fdsStockTransactions") == null || Privileges.FirstOrDefault(m => m.Component == "fdsStockTransactions").View)
+{
+    <fieldset id="fdsStockTransactions" data-close-siblings="true" class="view-restricted primary-selected-row-dependent">
+        <legend>
+            <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+            Stock Transactions
+        </legend>
+        <div style="display:none">
+            @if (Privileges.FirstOrDefault(model => model.Component == "frmStock") == null || Privileges.FirstOrDefault(model => model.Component == "frmStock").View)
+            {
+                using (Ajax.BeginForm("UpdateStock", "Activities", new AjaxOptions { OnSuccess = "ACTIVITY.updateStockSuccess(data)" }, new { id = "frmStock", onSubmit = "return UI.showValidationSummary(this.id);" }))
+                {
+                    <h2>Stock Update</h2>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.HiddenFor(model => model.StockInfo_StockID)
+                            @Html.HiddenFor(model => model.StockInfo_Service)
+                            @Html.LabelFor(model => model.StockInfo_Quantity)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.StockInfo_Quantity, new { @class = "numeric-field field-disabled", @readonly = "readonly" })
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.StockInfo_MinimalStock)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.StockInfo_MinimalStock, new { @class = "numeric-field" })
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        @if (Privileges.FirstOrDefault(model => model.Component == "btnUpdateStock") == null || Privileges.FirstOrDefault(model => model.Component == "btnUpdateStock").View)
+                        {
+                            <input type="submit" class="submit right" id="btnUpdateStock" value="update" />
+                        }
+                    </div>
+                }
+            }
+            @if (Privileges.FirstOrDefault(model => model.Component == "frmSearchStockTransactions") == null || Privileges.FirstOrDefault(model => model.Component == "frmSearchStockTransactions").View)
+            {
+                using (Ajax.BeginForm("SearchStockTransactions", "Activities", new AjaxOptions { OnSuccess = "ACTIVITY.searchStockTransactionsResultsTable(data)", UpdateTargetId = "divStockTransactions" }, new { id = "frmSearchStockTransactions" }))
+                {
+                    <h2>Stock Search</h2>
+                    <h4>Note: Empty date range will show only the 10 most recent transactions</h4>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.SearchStockTransactions_I_Date)
+                            @Html.HiddenFor(model => model.SearchStockTransactions_Stock, new { data_keep_value = "" })
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.SearchStockTransactions_I_Date, new { data_uses_date_picker = "true", data_start_date_picker = "null" })
+                            @Html.TextBoxFor(model => model.SearchStockTransactions_F_Date, new { data_uses_date_picker = "true", data_start_date_picker = "null" })
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.SearchStockTransactions_Ingress)
+                        </div>
+                        <div class="editor-field">
+                            @Html.CheckBoxFor(model => model.SearchStockTransactions_Ingress)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.SearchStockTransactions_Egress)
+                        </div>
+                        <div class="editor-field">
+                            @Html.CheckBoxFor(model => model.SearchStockTransactions_Egress)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-field">
+                            @if (Privileges.FirstOrDefault(model => model.Component == "btnSearchStockTransactions") == null || Privileges.FirstOrDefault(model => model.Component == "btnSearchStockTransactions").View)
+                            {
+                                <input type="submit" id="btnSearchStockTransactions" class="button right" value="search" />
+                            }
+                        </div>
+                    </div>
+                }
+            }
+            <div id="divStockTransactions" class="align-from-bottom align-from-top">
+                <table id="tblStockTransactions" class="table dataTable exportable primary-selected-row-dependent">
+                    <thead>
+                        <tr>
+                            <th>Transaction Way</th>
+                            <th>Quantity</th>
+                            <th>Date Saved</th>
+                            <th>Saved By User</th>
+                            <th>Description</th>
+                            <th>Coupon</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <p class="align-from-top">
+                <input type="button" class="submit fieldset-expander right" id="btnNewStockTransactionInfo" value="new" />
+            </p>
+            @if (Privileges.FirstOrDefault(model => model.Component == "fdsStockTransactionInfo") == null || Privileges.FirstOrDefault(model => model.Component == "fdsStockTransactionInfo").View)
+            {
+                <fieldset id="fdsStockTransactionInfo" class="align-from-top">
+                    <legend>
+                        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+                        Stock Transaction Info
+                    </legend>
+                    <div style="display:none">
+                        @if (Privileges.FirstOrDefault(model => model.Component == "frmStockTransactionInfo") == null || Privileges.FirstOrDefault(model => model.Component == "frmStockTransactionInfo").View)
+                        {
+                            using (Ajax.BeginForm("SaveStockTransaction", "Activities", new AjaxOptions { OnSuccess = "ACTIVITY.saveStockTransactionSuccess(data)" }, new { id = "frmStockTransactionInfo", onSubmit = "return UI.showValidationSummary(this.id);" }))
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.HiddenFor(model => model.StockTransactionInfo_Stock, new { data_keep_value = "" })
+                                        @Html.HiddenFor(model => model.StockTransactionInfo_Service, new { data_keep_value = "" })
+                                        @Html.LabelFor(model => model.StockTransactionInfo_Quantity)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.StockTransactionInfo_Quantity, new { @class = "numeric-field" })
+                                    </div>
+                                </div>
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.StockTransactionInfo_Ingress)
+                                    </div>
+                                    <div class="editor-field">
+                                        @if (Privileges.FirstOrDefault(model => model.Component == "StockTransactionInfo_Ingress") == null || Privileges.FirstOrDefault(model => model.Component == "StockTransactionInfo_Ingress").View)
+                                        {
+                                            <label for="StockTransactionInfo_Ingress">Ingress</label>
+                                            @Html.RadioButtonFor(model => model.StockTransactionInfo_Ingress, true, new { data_keep_value = "" })
+                                        }
+                                        @if (Privileges.FirstOrDefault(model => model.Component == "StockTransactionInfo_Egress") == null || Privileges.FirstOrDefault(model => model.Component == "StockTransactionInfo_Egress").View)
+                                        {
+                                            <label for="StockTransactionInfo_Ingress">Egress</label>
+                                            @Html.RadioButtonFor(model => model.StockTransactionInfo_Ingress, false, new { data_keep_value = "" })
+                                        }
+                                    </div>
+                                </div>
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.StockTransactionInfo_TransactionDescription)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.StockTransactionInfo_TransactionDescription)
+                                    </div>
+                                </div>
+                                <div class="editor-alignment full-width">
+                                    @if (Privileges.FirstOrDefault(model => model.Component == "btnSaveStockTransaction") == null || Privileges.FirstOrDefault(model => model.Component == "btnSaveStockTransaction").View)
+                                    {
+                                        <input type="submit" class="submit right" id="btnSaveStockTransaction" value="save" />
+                                    }
+                                </div>
+                            }
+                        }
+                    </div>
+                </fieldset>
+            }
+        </div>
+    </fieldset>
+}

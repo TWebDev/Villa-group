@@ -1,0 +1,228 @@
+﻿@model ePlatBack.Models.ViewModels.GuestInfoModel
+
+@Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+<fieldset id="fdsGuestInfo" class="primary-selected-row-dependent">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        Guest INFO
+    </legend>
+    <div>
+        
+        <br />
+
+        <div style="width:34%;float:left;">
+            <div>
+                <div>
+                    @*
+    <div style="float:left;width:30%">
+
+        <p class="editor-label">
+            <img src='/Images/avatar.png' alt="Sample Image" width="100px" id="imgBtn"/>
+        </p>
+        <div id="uploadPicturediv">
+        @using (Html.BeginForm("UploadGuestPicture", "Hub", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.HiddenFor(model=>model.GuestHubID)
+            <input type="file" name="file" class="button-form" />
+            <input type="submit" id="SubmitPicture" value="Upload" class="button-form" />
+
+        }
+
+
+
+        </div>
+        <input type="submit" id="CancelPicture" value="Cancel" class="button" />
+
+
+    </div>
+                    *@
+
+                    <div style="float:left;width:30%">
+                        <p class="editor-label">
+                            <img src='/Images/avatar.png' alt="Sample Image" width="100px" id="imgBtn" />
+                            <div style="float:left;">
+                                <div id="imgBtnn" class="full-width align-from-bottom"></div>
+                            </div>
+                        </p>
+                        <div >
+                            <div id="imgBtnn" class="full-width align-from-bottom"></div>
+                        </div>
+
+                    </div>
+                   
+                    
+                    <div>
+                        <div style="width:70%;float:right;">
+
+                            <div class="editor-alignment">
+                                <p class="editor-label">
+                                    <b>
+                                        <label id="FirstNameInfo" style="font-size:16px;">
+                                            
+                                        </label>
+                                    </b>
+
+                                </p>
+
+
+                            </div>
+
+
+                            <br>
+
+                            <div class="editor-alignment">
+                                <p class="editor-label">
+                                    <b>
+                                        <label id="Country" style="font-size:16px;">
+
+                                        </label>
+                                    </b>
+
+                                </p>
+
+
+                            </div>
+
+                            <br />
+                            <div class="editor-alignment">
+                                <p class="editor-label">
+                                    <b>
+                                        <label id="Email" style="font-size:16px;">
+
+                                        </label>
+                                    </b>
+
+                                </p>
+
+
+                            </div>
+                            <br />
+                            <div class="editor-alignment">
+                                <p class="editor-label">
+                                    <b>
+                                        <label id="Phone" style="font-size:16px;">
+                                            Phone number:
+                                        </label>
+                                    </b>
+
+                                </p>
+
+
+                            </div>
+
+                            <!--<div class="editor-alignment">
+                    <p class="editor-label">
+                       @* @Html.LabelFor(model => model.BookingStatus)
+                    </p>
+                    <p class="editor-field">
+                        @Html.TextBoxFor(model => model.BookingStatus)*@
+                    </p>
+                </div>-->
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <div style="float:left; width:100%">
+                    <p>@Html.Partial("_GuestPreferencesPartial", Model)</p>
+                </div>
+                
+            </div>
+            <br />
+            <br />
+            
+
+
+
+
+                </div>
+
+                    <div  style="width:65%;float:right;">
+                        <div id="tabs">
+                            <ul>
+                                <li ><a id="staysTab" href="#tabs-1">Stays</a></li>
+                                <li><a href="#tabs-3">Hotel Expert Data</a></li>
+                                <li><a href="#tabs-2">ClaraBridge</a></li>
+                                <li><a href="#tabs-4">MemberInfo</a></li>
+
+                            </ul>
+                            <div id="tabs-3">
+                                <p>@Html.Partial("_GuestTasksPartial", null)</p>
+                            </div>
+                            <div id="tabs-4">
+                                <p>@Html.Partial("_GuestMemberInfoPartial", null)</p>
+                            </div>
+                            <div id="tabs-2">
+                                <p>@Html.Partial("_GuestClarabridgePartial", null)</p>
+                            </div>
+                            <div id="tabs-1">
+                                <div id="SearchGuestsReservations">
+                                    <fieldset id="fdsGuestReservations" class="primary-selected-row-dependent">
+                                        <legend>
+                                            <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+                                            Current Reservation
+                                        </legend>
+                                        <table id="tblSearchGuestsReservations" class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Destination</th>
+                                                    <th>Nights</th>
+                                                    <th>Arrival Date</th>
+                                                    <th>Room Type</th>
+                                                    <th>Room Number</th>
+                                                    <th>Adults</th>
+                                                    <th>Childrens</th>
+                                                    <th>Agency Name</th>
+                                                    <th>Source</th>
+                                                    <!--<th>Plan Type</th>-->
+                                                    <th>Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </fieldset>
+                                </div>
+
+                                    <div id="SearchGuestHistoryReservations">
+                                        <fieldset id="fdsGuestHistoryReservations" class="primary-selected-row-dependent">
+                                            <legend>
+                                                <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+                                                History Guest Reservations
+                                            </legend>
+
+                                            <table id="tblSearchGuestHistoryReservations" class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Destination</th>
+                                                        <th>Nights</th>
+                                                        <th>Arrival Date</th>
+                                                        <th>Room Type</th>
+                                                        <th>Room Number</th>
+                                                        <th>Adults</th>
+                                                        <th>Childrens</th>
+                                                        <th>Agency Name</th>
+                                                        <th>Source</th>
+                                                        <!--<th>Plan Type</th>-->
+                                                        <th>Total</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table>
+                                    </fieldset>
+                                        </div>
+                        
+                            </div>
+                        </div>
+                        
+                        
+                    
+         
+    </div>
+   
+</fieldset>
+
+<div id="uploadPicture">
+    </div>
+

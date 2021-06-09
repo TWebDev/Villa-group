@@ -1,0 +1,58 @@
+﻿@model ePlatBack.Models.ViewModels.ConfirmedLeadsModel.SearchConfirmedLeadsModel
+
+@using (Ajax.BeginForm("SearchConfirmedLeads", "Reports", new AjaxOptions { OnSuccess = "REPORT.searchResultsTable(data)", UpdateTargetId = "divTblConfirmedLeadsResults" }, new { id = "frmSearchConfirmedLeads" }))
+{
+    <div class="editor-alignment">
+    	<div class="editor-label">
+            @Html.LabelFor(model => model.GenericSearchFieldsReport_I_ArrivalDate)
+    	</div>
+    	<div class="editor-field">
+            @Html.TextBoxFor(model => model.GenericSearchFieldsReport_I_ArrivalDate, new { data_uses_date_picker = "true" })
+            @Html.TextBoxFor(model => model.GenericSearchFieldsReport_F_ArrivalDate, new { data_uses_date_picker = "true" })
+    	</div>
+    </div>
+    <div class="editor-alignment">
+    	<div class="editor-label">
+            @Html.LabelFor(model => model.GenericSearchFieldsReport_BookingStatus)
+    	</div>
+    	<div class="editor-field">
+            @Html.DropDownListFor(model => model.GenericSearchFieldsReport_BookingStatus, Model.GenericSearchFieldsReport_DrpBookingStatus, new { style = "height:68px", @class = "workgroup-dependent-list", data_route = "/crm/Reports/GetDDLData", data_route_parameter = "bookingStatusID", multiple = "multiple" })
+    	</div>
+    </div>
+    <div class="editor-alignment">
+    	<div class="editor-label">
+            @Html.LabelFor(model => model.SearchConfirmedLeads_User)
+    	</div>
+    	<div class="editor-field">
+            @Html.DropDownListFor(model => model.SearchConfirmedLeads_User, Model.SearchConfirmedLeads_DrpUsers, new { style = "height:68px", multiple = "multiple" })
+    	</div>
+    </div>
+    <div class="editor-alignment">
+    	<div class="editor-label">
+            @Html.LabelFor(model => model.SearchConfirmedLeads_TourStatus)
+    	</div>
+    	<div class="editor-field">
+            @Html.DropDownListFor(model => model.SearchConfirmedLeads_TourStatus, Model.SearchConfirmedLeads_DrpTourStatus, new { style = "height:68px", multiple = "multiple" })
+    	</div>
+    </div>
+    <div class="editor-alignment align-from-top">
+    	<div class="editor-field">
+            <input type="submit" class="button" value="search" />
+    	</div>
+    </div>
+    <div class="align-from-top" id="divTblConfirmedLeadsResults">
+        <table id="tblConfirmedLeadsReport" class="table">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Lead</th>
+                    <th>Arrival Date</th>
+                    <th>Booking Status</th>
+                    <th>Tour Status</th>
+                    <th>Final Tour Status</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+}

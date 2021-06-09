@@ -1,0 +1,89 @@
+﻿@model ePlatBack.Models.ViewModels.ActivityAccountingAccountInfoModel
+@{
+    var Privileges = ViewData["Privileges"] as List<ePlatBack.Models.ViewModels.SysComponentsPrivilegesModel>;
+}
+@if (Privileges.FirstOrDefault(m => m.Component == "fdsAccountingAccounts") == null || Privileges.FirstOrDefault(m => m.Component == "fdsAccountingAccounts").View)
+{
+    <fieldset id="fdsAccountingAccounts" data-close-siblings="true" style="display:none" class="view-restricted">
+        <legend>
+            <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+            Accounting Accounts
+        </legend>
+        <div style="display:none">
+            <p class="full-width align-from-bottom">
+                <input type="button" class="submit fieldset-expander right" id="btnNewAccountingAccountInfo" value="new" />
+            </p>
+            <h3 id="hResults"></h3>
+            <div>
+                @if (Privileges.FirstOrDefault(m => m.Component == "btnDeleteAccounts") != null && Privileges.FirstOrDefault(m => m.Component == "btnDeleteAccounts").View)
+                {
+                    <input type="button" id="btnDeleteAccounts" class="button left" value="delete all accounts" />
+                }
+            </div>
+            <div id="divAccountingAccountsPerActivity">
+                <table id="tblActivityAccountingAccounts">
+                    <thead>
+                        <tr>
+                            <th>Account Number</th>
+                            <th>Account Name</th>
+                            <th>Account Type</th>
+                            <th>Price Type</th>
+                            <th>Point(s) Of Sale</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            @if (Privileges.FirstOrDefault(m => m.Component == "fdsAccountingAccountInfo") == null || Privileges.FirstOrDefault(m => m.Component == "fdsAccountingAccountInfo").View)
+            {
+                <fieldset id="fdsAccountingAccountInfo">
+                    <legend>
+                        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+                        Accounting Account Info
+                    </legend>
+                    <div style="display:none">
+                        @if (Privileges.FirstOrDefault(m => m.Component == "frmAccountingAccount") == null || Privileges.FirstOrDefault(m => m.Component == "frmAccountingAccount").View)
+                        {
+                            using (Ajax.BeginForm("SaveActivityAccountingAccount", "Activities", new AjaxOptions { OnSuccess = "ACTIVITY.saveActivityAccountingAccountSuccess(data)" }, new { id = "frmAccountingAccount", onSubmit = "return UI.showValidationSummary(this.id);" }))
+                            {
+                                <div id="frmAccountingAccount_ErrorMessages" style="display:none">
+                                    @Html.ValidationMessageFor(model => model.ActivityAccountingAccountInfo_AccountingAccount)
+                                </div>
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.ActivityAccountingAccountInfo_AccountingAccount)
+                                        @Html.HiddenFor(model => model.ActivityAccountingAccountInfo_ActivityAccountingAccountID, new { @class = "secondary-selected-row-dependent ignore-validation" })
+                                        @Html.HiddenFor(model => model.ActivityAccountingAccountInfo_ActivityID, new { @class = "primary-selected-row-dependent", data_keep_value = "" })
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.ActivityAccountingAccountInfo_AccountingAccount, Model.ActivityAccountingAccountInfo_DrpAccountingAccounts, new { @class = "accountingAccount-dependent-list terminal-dependent-list", data_route = "/Activities/GetDDLData", data_route_parameter = "accountingAccount", multiple = "multiple" })
+                                    </div>
+                                </div>
+                                <div class="editor-alignment" style="display:none">
+                                    <div class="editor-label">
+                                        <span id="ActivityAccountingAccountInfo_AccountingAccountString"></span>
+                                    </div>
+                                </div>
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.ActivityAccountingAccountInfo_PointOfSale)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.ActivityAccountingAccountInfo_PointOfSale, Model.ActivityAccountingAccountInfo_DrpPointsOfSale, new { multiple = "multiple" })
+                                    </div>
+                                </div>
+                                if (Privileges.FirstOrDefault(m => m.Component == "btnSaveAccountingAccount") == null || Privileges.FirstOrDefault(m => m.Component == "btnSaveAccountingAccount").View)
+                                {
+                                    <div class="editor-alignment full-width">
+                                        <input type="submit" id="btnSaveAccountingAccount" class="submit right" value="save" />
+                                    </div>
+                                }
+                            }
+                        }
+                    </div>
+                </fieldset>
+            }
+        </div>
+    </fieldset>
+}

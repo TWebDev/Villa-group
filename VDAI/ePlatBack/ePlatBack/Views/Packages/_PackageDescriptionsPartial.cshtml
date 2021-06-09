@@ -1,0 +1,81 @@
+﻿@model ePlatBack.Models.ViewModels.PackageDescriptionInfoModel
+ @*class="view-restricted"*@
+<fieldset id="fdsPackageDescriptions" style="display:none" class="view-restricted">
+            	<legend>
+                    <img src="/Content/themes/base/images/eplat_show.jpg" alt="" class="fieldset-indicator fds-indicator-separator">
+                    Package Descriptions
+            	</legend>
+                <div style="display:none">
+                    <div class="full-width align-from-bottom">
+                        <input type="button" id="btnNewPackageDescriptionInfo" class="submit fieldset-expander right" value="New">
+                    </div>
+                    <ul id="ulPackageDescriptions" class="primary-selected-row-dependent half-width">
+                    </ul>
+                    <fieldset id="fdsPackageDescriptionInfo">
+                    	<legend>
+                            <img src="/Content/themes/base/images/eplat_show.jpg" alt="" class="fieldset-indicator fds-indicator-separator">
+                            Description Info
+                    	</legend>
+                        <div style="display:none">
+                            @using (Ajax.BeginForm("SavePackageDescription", "Packages", new AjaxOptions { OnSuccess = "PACKAGE.savePackageDescriptionSuccess(data)" }, new { id = "frmPackageDescription", onSubmit = "return UI.showValidationSummary(this.id);" }))
+                            {
+                            <div id="frmPackageDescription_ErrorMessages" style="display:none">
+                                @Html.ValidationMessageFor(model => model.PackageDescriptionInfo_Package)
+                                @Html.ValidationMessageFor(model => model.PackageDescriptionInfo_Culture)
+                                @Html.ValidationMessageFor(model => model.PackageDescriptionInfo_Description)
+                                @Html.ValidationMessageFor(model => model.PackageDescriptionInfo_IsActive)
+                            </div>
+                             <div class="editor-alignment">
+                             	<div class="editor-label">
+                                     @Html.LabelFor(model => model.PackageDescriptionInfo_Package)
+                                     @Html.HiddenFor(model => model.PackageDescriptionInfo_PackageDescriptionID, new { @class = "secondary-selected-row-dependent ignore-validation" })
+                                     @Html.HiddenFor(model => model.PackageDescriptionInfo_PackageID, new { @class = "primary-selected-row-dependent", data_keep_value="" })
+                             	</div>
+                             	<div class="editor-field">
+                                     @Html.TextBoxFor(model => model.PackageDescriptionInfo_Package)
+                             	</div>
+                             </div>
+                             <div class="editor-alignment">
+                             	<div class="editor-label">
+                                     @Html.LabelFor(model => model.PackageDescriptionInfo_IsActive)
+                             	</div>
+                             	<div class="editor-field">
+                                     <label for="Description_ActiveTrue">Yes</label>
+                                     @Html.RadioButtonFor(model => model.PackageDescriptionInfo_IsActive, true, new { data_keep_value = "" })
+                                     <label for="Description_ActiveFalse">No</label>
+                                     @Html.RadioButtonFor(model => model.PackageDescriptionInfo_IsActive, false, new { data_keep_value = "" })
+                             	</div>
+                             </div>
+                             <div class="editor-alignment">
+                             	<div class="editor-label">
+                                     @Html.LabelFor(model => model.PackageDescriptionInfo_Culture)                                     
+                             	</div>
+                             	<div class="editor-field">
+                                     @Html.DropDownListFor(model => model.PackageDescriptionInfo_Culture, Model.PackageDescriptionInfo_DrpCultures)
+                             	</div>
+                             </div>
+                             <div class="editor-alignment full-width">
+                             	<div class="editor-label">
+                                     @Html.LabelFor(model => model.PackageDescriptionInfo_Description)
+                             	</div>
+                             	<div class="editor-field">
+                                     @Html.TextAreaFor(model => model.PackageDescriptionInfo_Description)
+                             	</div>
+                             </div>
+                             <div class="editor-alignment full-width">
+                             	<div class="editor-label">
+                                     @Html.LabelFor(model => model.PackageDescriptionInfo_Includes)
+                             	</div>
+                             	<div class="editor-field">
+                                     @Html.TextAreaFor(model => model.PackageDescriptionInfo_Includes)
+                             	</div>
+                             </div>
+                             <div class="full-width align-from-top">
+                                 <input type="button" class="submit right" id="btnSavePackageDescription" value="save"/>
+                             </div>
+                            }
+                        </div>
+                    </fieldset>
+                </div>
+            </fieldset>
+

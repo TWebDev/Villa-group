@@ -1,0 +1,141 @@
+﻿@model ePlatBack.Models.ViewModels.DailyVolume
+
+<div class="dashboard-panel">
+    <span style="padding: 3px 3px 0 0; float: right; width:50%">
+        @*<span style="margin: 4px 10px 0 0; display: none;">ER: @Model.ExchangeRate</span>*@
+        <input type="button" class="mini-button" value="M" title="Month" id="btnVolumeByMonth" />
+        <input type="button" class="mini-button" value="W" title="Week" id="btnVolumeByWeek" />
+        <input type="button" class="mini-button" value="Y" title="Yesterday" id="btnVolumeByYesterday" />
+        <input type="button" class="mini-button" value="D" title="Today" id="btnVolumeByDay" />
+
+        <input type="button" class="mini-button" title="Programs" value="PR" id="btnVolumeByProgram" style="margin-top: 3px;" />
+        <input type="button" class="mini-button" title="Agents" value="AG" id="btnVolumeByAgent" style="margin-top: 3px;" />
+        <input type="button" class="mini-button selected" title="Points Of Sale" value="PS" id="btnVolumeByPos"  style="margin-top: 3px;" />
+    </span>
+
+    <h3 class="title">Volume</h3>
+    <div class="content" style="height: 324px;">
+        <div class="content-item">
+            <span class="bar" style="width:16px; display: inline-block; vertical-align: top;"></span> <span class="legend">Current Year</span>
+            <span class="bar bar-9" style="width:16px; display: inline-block; vertical-align: top;"></span> <span class="legend">Last Year</span>
+            @if (Model.GoalPercentage > 0)
+            {
+                <span class="bar bar-6" style="width:16px; display: inline-block; vertical-align: top;"></span> <span class="legend">Current Goal</span>
+                <span class="bar bar-6" style="width: 255px;">
+                    <span class="bar-tag">@Model.GoalPercentage%</span>
+                    <span class="bar" style="width: @(Model.GoalPercentage * 255 / 100)px"></span>
+                </span>
+            }
+            <span data-format="currency" class="dashboard-total" style="color: #70c0ea;">@Model.Total.Amount @Model.Total.Currency</span>
+            <span data-format="currency" class="dashboard-total" style="font-size: 2em; color:#af99e7;">@Model.LYTotal.Amount @Model.LYTotal.Currency</span>
+            @if (Model.GoalPercentage > 0)
+            {
+                <span data-format="currency" class="dashboard-total" style="font-size: 2em; color:#8cda83;">@Model.GoalTotal.Amount @Model.GoalTotal.Currency</span>
+            }
+            <div style="height: 10px;"></div>
+
+            @{int i = 0;}
+            @foreach (var pt in Model.PriceTypeTotals.OrderByDescending(x => x.Percentage))
+            {
+                if (pt.Total.Amount > 0)
+                {
+                    @*@pt.GlobalPercentage <span>-</span>
+                        @Model.LYPriceTypeTotals.FirstOrDefault(x => x.PriceTypeID == pt.PriceTypeID).GlobalPercentage*@
+                    <span class="bar-tag" data-format="currency">@pt.Total.Amount @pt.Total.Currency</span>
+                    <span class="bar-tag">@pt.Percentage%</span>
+                    <span class="bar" style="width:@(pt.GlobalPercentage * 255 / 100)px" title="@pt.PriceType : @pt.Percentage%"></span>
+                    <span class="bar-tag" data-format="currency">@Model.LYPriceTypeTotals.FirstOrDefault(x => x.PriceTypeID == pt.PriceTypeID).Total.Amount @Model.LYPriceTypeTotals.FirstOrDefault(x => x.PriceTypeID == pt.PriceTypeID).Total.Currency</span>
+                    <span class="bar-tag">@Model.LYPriceTypeTotals.FirstOrDefault(x => x.PriceTypeID == pt.PriceTypeID).Percentage%</span>
+                    <span class="bar bar-9" style="width:@(Model.LYPriceTypeTotals.FirstOrDefault(x => x.PriceTypeID == pt.PriceTypeID).GlobalPercentage * 255 / 100)px" title="@pt.PriceType : @pt.Percentage%"></span>
+
+                    <span class="bar-tag-caption">@pt.PriceType</span>
+                    <span class="bar-separator"></span>
+                }
+                i++;
+            }
+        </div>
+        <div class="pos-volume">
+            @foreach (var pos in Model.PoSVolume)
+            {
+                if (pos.Total.Amount > 0)
+                {
+                    <div class="content-item">
+                        <span title="@pos.PointOfSale" class="content-column">
+                            <span class="summary-fields total" data-format="currency">@pos.Total.Amount @pos.Total.Currency</span>
+                            <span class="summary-note">@pos.PointOfSale : @pos.ConfirmedCoupons Confirmed Coupons</span>
+                            <span class="summary-big">@pos.ShortName</span>
+                        </span>
+                        <span class="content-column" style="width: 255px;">
+                            @{int index = 0;}
+                            @foreach (var pt in pos.PriceTypeVolume.OrderByDescending(x => x.Percentage))
+                            {
+                                if (pt.Total.Amount > 0)
+                                {
+                                    @*@pt.GlobalPercentage*@
+                                    <span class="bar" style="width:@(pt.GlobalPercentage * 255 / 100)px" title="@pt.PriceType : @pt.Percentage%"></span>
+                                    <span class="bar-tag" title="@pt.PriceType : @pt.Percentage%" data-format="currency">@pt.Total.Amount @pt.Total.Currency</span>
+                                    <span class="bar-tag-caption">@pt.PriceType : @pt.Percentage%</span>
+                                    <span class="bar-separator"></span>
+                                }
+                                index++;
+                            }
+                        </span>
+                    </div>
+                }
+            }
+        </div>
+        <div class="agent-volume" style="display: none;">
+            @foreach (var ag in Model.AgentsVolume)
+            {
+                <div class="content-item">
+                    <span title="@ag.Agent" class="content-column">
+                        <span style="display:block;"><strong>@ag.Agent</strong></span>
+                        <span class="summary-fields total" data-format="currency">@ag.Total.Amount @ag.Total.Currency</span>
+                        <span class="summary-note" style="float: none; margin-top: 10px;">@ag.ConfirmedCoupons Confirmed Coupons</span>
+                    </span>
+                    <span class="content-column" style="width: 255px;">
+                        @{int index = 0;}
+                        @foreach (var pt in ag.PriceTypeVolume.OrderByDescending(x => x.Percentage))
+                        {
+                            if (pt.Total.Amount > 0)
+                            {
+                                @*@pt.GlobalPercentage*@
+                                <span class="bar" style="width:@(pt.GlobalPercentage * 255 / 100)px" title="@pt.PriceType : @pt.Percentage%"></span>
+                                <span class="bar-tag" title="@pt.PriceType : @pt.Percentage%" data-format="currency">@pt.Total.Amount @pt.Total.Currency : @pt.Percentage%</span>
+                                <span class="bar-tag-caption">@pt.PriceType </span>
+                                <span class="bar-separator"></span>
+                            }
+                            index++;
+                        }
+                    </span>
+                </div>
+            }
+        </div>
+        <div class="program-volume" style="display: none;">
+            @foreach(var pr in Model.ProgramsVolume)
+            {
+                <div class="content-item">
+                    <span title="@pr.Program" class="content-column">
+                        <span style="display:block;"><strong>@(pr.Program != null ? pr.Program : "Unknown")</strong></span>
+                        <span class="summary-fields total" data-format="currency">@pr.Total.Amount @pr.Total.Currency</span>
+                        <span class="summary-note" style="float:none; margin-top: 10px;">@pr.ConfirmedCoupons Confirmed Coupons</span>
+                    </span>
+                    <span class="content-column" style="width: 255px;">
+                        @{ int index = 0; }
+                        @foreach (var pt in pr.PriceTypeVolume.OrderByDescending(x => x.Percentage))
+                        {
+                            if (pt.Total.Amount > 0)
+                            {
+                                <span class="bar" style="width:@(pt.GlobalPercentage * 255 / 100)px" title="@pt.PriceType : @pt.Percentage%"></span>
+                                <span class="bar-tag" title="@pt.PriceType : @pt.Percentage%" data-format="currency">@pt.Total.Amount @pt.Total.Currency : @pt.Percentage%</span>
+                                <span class="bar-tag-caption">@pt.PriceType </span>
+                                <span class="bar-separator"></span>
+                            }
+                            index++;
+                        }
+                    </span>
+                </div>
+            }
+        </div>
+    </div>
+</div>

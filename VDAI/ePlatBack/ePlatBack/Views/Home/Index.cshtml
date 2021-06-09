@@ -1,0 +1,54 @@
+﻿@model ePlatBack.Models.ViewModels.DashboardViewModel
+
+@{
+    ViewBag.Title = "ePlat > Dashboard";
+}
+@section Head {
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+}
+@section Scripts{
+    <script src="/Scripts/dashboard/dashboard.js?v=@DateTime.Now"></script>
+}
+<h1>@ViewBag.Message</h1>
+
+@*@Html.Partial("_PendingCloseOutsPartial", Model.PendingCloseOuts)*@
+
+@if (Model.Privileges.FirstOrDefault(m => m.Component == "Pending Close Outs" && m.View == true) != null)
+{
+    <div id="divPendingCloseOuts" class="dashboard-holder"><span>Getting Pending Close Outs</span></div>
+}
+
+@if (Model.Privileges.FirstOrDefault(m => m.Component == "Daily Volume" && m.View == true) != null)
+{
+    <div id="divDailyVolume" class="dashboard-holder"><span>Getting Volume</span></div>
+}
+
+@if (Model.Privileges.FirstOrDefault(m => m.Component == "Individual Daily Commissions" && m.View == true) != null)
+{
+    <div id="divDailyCommissions" class="dashboard-holder"><span>Getting Daily Commissions</span></div>
+}
+
+@if (Model.Privileges.FirstOrDefault(m => m.Component == "Exchange Rates" && m.View == true) != null)
+{
+    <div id="divExchangeRates" class="dashboard-holder"><span>Getting Exchange Rates Status</span></div>
+}
+
+@if (Model.Privileges.FirstOrDefault(m => m.Component == "Availability Status" && m.View == true) != null)
+{
+    <div id="divAvailabilityStatus" class="dashboard-holder"><span>Getting Availability Status</span></div>
+}
+
+@if (Model.Privileges.FirstOrDefault(m => m.Component == "Hostess Status" && m.View == true) != null)
+{
+    <div id="divHostessStatus" class="dashboard-holder"><span>Getting Hostess Status</span></div>
+}
+
+@if (Model.Privileges.FirstOrDefault(m => m.Component == "Pending Cache" && m.View == true) != null)
+{
+    <div id="divPendingCache" class="dashboard-holder"><span>Getting Pending Cache</span></div>
+}
+
+@if (Model.Privileges.FirstOrDefault(m => m.Component == "Online Goals" && m.View == true) != null)
+{
+    <div id="divOnlineGoals" class="dashboard-holder"><span>Getting Goal</span></div>
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="387cdbd62e6c4bc99f918617e15da2ed" Name="Diagram1">
+        <EntityTypeShape EntityType="resortConnectModel.Contact" Width="1.5" PointX="5.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="resortConnectModel.MemberNote" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="resortConnectModel.Reservation" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="resortConnectModel.Reservation_Contact" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="resortConnectModel.ReservationOption" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <AssociationConnector Association="resortConnectModel.FK_MemberNote_Reservation" ManuallyRouted="false" />
+        <AssociationConnector Association="resortConnectModel.FK_Reservation_Contact__Reservation" ManuallyRouted="false" />
+        <AssociationConnector Association="resortConnectModel.FK_ReservationOption_Reservation" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

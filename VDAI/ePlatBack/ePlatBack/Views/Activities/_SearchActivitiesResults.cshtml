@@ -1,0 +1,182 @@
+﻿@model ePlatBack.Models.ViewModels.ActivityViewModel
+
+<table id="tblSearchActivitiesResults" class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Provider</th>
+            <th>Activity</th>
+            <th>Terminal</th>
+            <th>Category(ies)</th>
+            <th>Acc. Acc.</th>
+            <th>On Line</th>
+            <th>Rules</th>
+            <th title="Number of Descriptions">DE</th>
+            <th title="Number of Categories">CA</th>
+            <th title="Number of On Line Categories">OC</th>
+            <th title="Number of Images">IM</th>
+            <th title="Number of Seo Settings">SE</th>
+            <th title="Number of Schedules">SH</th>
+            <th title="Number of Meeting Points">MP</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.SearchResults != null)
+        {
+            foreach (var i in Model.SearchResults)
+            {
+                var trID = "trActivity" + i.ActivityID;
+                var tdID = "delA" + i.ActivityID;
+                var _class = i.Deleted ? "disabled-row" : "";
+                <tr id="@trID" class="@_class">
+                    <td>
+                        @Html.DisplayFor(model => i.ActivityID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.Provider)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.Activity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.Terminal)
+                    </td>
+                    <td>
+                        @Html.Raw(i.Categories)
+                    </td>
+                    <td>
+                        @Html.Raw(i.AccountingAccounts)
+                    </td>
+                    @if (i.Published)
+                    {
+                        if (i.NImages == 0)
+                        {
+                            <td class="mb-error" title="There is not any image in Gallery">Yes</td>
+                        }
+                        else if (i.NMeetingPoints == 0)
+                        {
+                            <td class="mb-error" title="There is not any Meeting Point">Yes</td>
+                        }
+                        else if (i.NSchedules == 0)
+                        {
+                            <td class="mb-error" title="There is not any Schedule">Yes</td>
+                        }
+                        else if (i.NSeoItems == 0)
+                        {
+                            <td class="mb-error" title="There is not any Frienly URL">Yes</td>
+                        }
+                        else
+                        {
+                            <td>Yes</td>
+                        }
+                    }
+                    else
+                    {
+                        if (i.NPublicCategories > 0 && i.Published == false)
+                        {
+                            <td class="mb-warning" title="It is in a On Line Category and is not on line">No</td>
+                        }
+                        else
+                        {
+                            <td title="It is not on line because it's not in an On Line Category">No</td>
+                        }
+                    }
+                    @if (i.Rules)
+                    {
+                        <td>OK</td>
+                    }
+                    else
+                    {
+                        <td class="mb-error" title="@Html.DisplayFor(model => i.RulesErrors)">Error</td>
+                    }
+                    @if (i.NDescriptions == 0 && i.NPublicCategories > 0)
+                    {
+                        <td class="mb-error">@Html.DisplayFor(model => i.NDescriptions)</td>
+                    }
+                    else
+                    {
+                        <td>@Html.DisplayFor(model => i.NDescriptions)</td>
+                    }
+                    @if (i.NCategories == 0)
+                    {
+                        <td class="mb-error">@Html.DisplayFor(model => i.NCategories)</td>
+                    }
+                    else
+                    {
+                        <td>@Html.DisplayFor(model => i.NCategories)</td>
+                    }
+                    <td>@Html.DisplayFor(model => i.NPublicCategories)</td>
+                    @if (i.Published && i.NImages == 0)
+                    {
+                        <td class="mb-error">@Html.DisplayFor(model => i.NImages)</td>
+                    }
+                    else if (!i.Published && i.NImages == 0)
+                    {
+                        <td class="mb-warning">@Html.DisplayFor(model => i.NImages)</td>
+                    }
+                    else
+                    {
+                        <td>@Html.DisplayFor(model => i.NImages)</td>
+                    }
+                    @if ((i.Published && i.NSeoItems == 0) || (i.NPublicCategories > 0 && i.NSeoItems == 0 && i.NDescriptions > 0))
+                    {
+                        <td class="mb-error">@Html.DisplayFor(model => i.NSeoItems)</td>
+                    }
+                    else if (i.NPublicCategories > 0 && i.NSeoItems == 0 && i.Published == false)
+                    {
+                        <td class="mb-warning">@Html.DisplayFor(model => i.NSeoItems)</td>
+                    }
+                    else
+                    {
+                        <td>@Html.DisplayFor(model => i.NSeoItems)</td>
+                    }
+                    @if (i.Published && i.NSchedules == 0)
+                    {
+                        <td class="mb-error">@Html.DisplayFor(model => i.NSchedules)</td>
+                    }
+                    else if (!i.Published && i.NSchedules == 0)
+                    {
+                        <td class="mb-warning">@Html.DisplayFor(model => i.NSchedules)</td>
+                    }
+                    else
+                    {
+                        <td>@Html.DisplayFor(model => i.NSchedules)</td>
+                    }
+                    @if (i.Published && i.NMeetingPoints == 0)
+                    {
+                        <td class="mb-error">@Html.DisplayFor(model => i.NMeetingPoints)</td>
+                    }
+                    else if (!i.Published && i.NMeetingPoints == 0)
+                    {
+                        <td class="mb-warning">@Html.DisplayFor(model => i.NMeetingPoints)</td>
+                    }
+                    else
+                    {
+                        <td>@Html.DisplayFor(model => i.NMeetingPoints)</td>
+                    }
+                    <td>
+                        @if (i.Deleted)
+                        {
+                            <img src="~/Content/themes/base/images/revert-icon.png" id="@tdID" class="right revert" />
+                            <span class="block">
+                                Deleted by: @Html.DisplayFor(model => i.DeletedByUser)
+                            </span>
+                            <span class="block">
+                                Date deleted: @Html.DisplayFor(model => i.DateDeleted)
+                            </span>
+                        }
+                        else
+                        {
+                            <img src="~/Content/themes/base/images/trash.png" id="@tdID" class="right" />
+                        }
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+
+
+
+
+</table>

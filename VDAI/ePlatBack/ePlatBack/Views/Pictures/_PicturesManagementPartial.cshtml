@@ -1,0 +1,56 @@
+﻿@model ePlatBack.Models.ViewModels.PictureInfoModel
+@{
+    var Privileges = ViewData["Privileges"] as List<ePlatBack.Models.ViewModels.SysComponentsPrivilegesModel>;
+}
+@if (Privileges.FirstOrDefault(m => m.Component == "fdsPictures") == null || Privileges.FirstOrDefault(m => m.Component == "fdsPictures").View)
+{
+    @*<fieldset id="fdsPictures" data-close-siblings="true" class="view-restricted primary-selected-row-dependent" style="display: none">*@
+    @*<fieldset id="fdsPictures" data-close-siblings="true" class="view-restricted primary-selected-row-dependent">
+        <legend>
+            <img class="fieldset-indicator fds-indicator-separator" src="/Content/themes/base/images/eplat_show.jpg" />
+            Pictures Management
+        </legend>
+        <div style="display: none">*@
+            <div class="left align-from-top" style="width:19%">
+                <label class="tree-label">Pictures Tree</label>
+                <div id="divPicturesTree" class="secondary-selected-row-dependent left div-pictures-tree"></div>
+            </div>
+            if (Privileges.FirstOrDefault(m => m.Component == "divPictures") == null || Privileges.FirstOrDefault(m => m.Component == "divPictures").View)
+            {
+                <div id="divPictures" class="left div-pictures align-from-top">
+                    <span id="spanInstructions" class="span-instructions" style="display: none">Drag pictures to add to gallery</span>
+                    <div id="divPicturesContainer" class="full-width secondary-selected-row-dependent div-pictures-container">
+                    </div>
+                    @if (Privileges.FirstOrDefault(m => m.Component == "pictureUploader") == null || Privileges.FirstOrDefault(m => m.Component == "pictureUploader").View)
+                    {
+                        <div id="pictureUploader" class="full-width picture-uploader">
+                        </div>
+                    }
+                </div>
+            }
+            <div class="right gallery align-from-top">
+                <div>
+                    <span class="align-from-left">Copy Gallery From: </span>
+                    <select id="itemsGalleries" class="items-galleries"></select>
+                </div>
+                @if (Privileges.FirstOrDefault(m => m.Component == "divPicturesGallery") == null || Privileges.FirstOrDefault(m => m.Component == "divPicturesGallery").View)
+                {
+                    <div id="divPicturesGallery" class="picture-gallery div-pictures-gallery">
+                        <div id="divGalleryHeader" class="align-from-bottom full-width div-gallery-header">
+                            <h3 id="galleryHeader" class="gallery-header" style="display:inline"></h3>Gallery
+                        </div>
+                        @Html.HiddenFor(m => m.PictureInfo_ItemType, new { @class = "picture-info-item-type" })
+                        @Html.HiddenFor(m => m.PictureInfo_ItemID, new { @class = "picture-info-item-id" })
+                        <ul id="ulPicturesGallery" class="ul-pictures-gallery"></ul>
+                        @if (Privileges.FirstOrDefault(m => m.Component == "btnSavePicturesOnGallery") == null || Privileges.FirstOrDefault(m => m.Component == "btnSavePicturesOnGallery").View)
+                        {
+                            <p class="full-width gallery-save-button">
+                                <input type="button" id="btnSavePicturesOnGallery" class="submit right btn-save-pictures-on-gallery" value="save" />
+                            </p>
+                        }
+                    </div>
+                }
+            </div>
+        @*</div>
+    </fieldset>*@
+}

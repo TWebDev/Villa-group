@@ -1,0 +1,50 @@
+﻿@model ePlatBack.Models.ViewModels.PreCheckInModel
+
+<table id="tblSearchPreCheckInResults" class="table exportable">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            @*<th>Email</th>
+            <th>Phone</th>*@
+            <th>Booking Status</th>
+            <th>Lead Source</th>
+            <th>Arrival Date</th>
+            <th>Resort</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ListPreCheckInModel != null)
+        {
+            foreach (var i in Model.ListPreCheckInModel)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => i.PreCheckInReport_FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.PreCheckInReport_LastName)
+                    </td>
+                    @*<td>
+                        @Html.DisplayFor(model => i.PreCheckInReport_Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.PreCheckInReport_Phone)
+                    </td>*@
+                    <td>
+                        @Html.DisplayFor(model => i.PreCheckInReport_BookingStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.PreCheckInReport_LeadSource)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.PreCheckInReport_ArrivalDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.PreCheckInReport_Resort)
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

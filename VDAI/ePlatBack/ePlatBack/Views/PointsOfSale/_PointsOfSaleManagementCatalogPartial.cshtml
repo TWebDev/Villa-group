@@ -1,0 +1,105 @@
+﻿@model ePlatBack.Models.ViewModels.PointsOfSaleModel.PointsOfSaleInfoModel
+@{
+    var Privileges = ViewData["Privileges"] as List<ePlatBack.Models.ViewModels.SysComponentsPrivilegesModel>;
+}
+
+@Html.Partial("_PointsOfSaleSearchCatalogPartial", Model.SearchPointsOfSaleModel)
+
+@if (Privileges.FirstOrDefault(m => m.Component == "fdsPointOfSaleInfo") == null || Privileges.FirstOrDefault(m => m.Component == "fdsPointOfSaleInfo").View)
+{
+    <fieldset id="fdsPointOfSaleInfo">
+        <legend>
+            <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+            Point Of Sale Info
+        </legend>
+        <div style="display:none" class="align-from-top">
+            @if (Privileges.FirstOrDefault(m => m.Component == "frmPointOfSaleInfo") == null || Privileges.FirstOrDefault(m => m.Component == "frmPointOfSaleInfo").View)
+            {
+                using (Ajax.BeginForm("SavePointOfSale", "PointsOfSale", new AjaxOptions { OnSuccess = "CATALOG.savePointOfSaleSuccess(data)" }, new { id = "_frmPointOfSaleInfo", onSubmit = "return UI.showValidationSummary(this.id);" }))
+                {
+                    <div id="frmPointOfSaleInfo_ErrorMessages" style="display:none">
+                        @Html.ValidationMessageFor(model => model.PointsOfSaleInfo_PointOfSale)
+                        @Html.ValidationMessageFor(model => model.PointsOfSaleInfo_ShortName)
+                        @Html.ValidationMessageFor(model => model.PointsOfSaleInfo_Place)
+                    </div>
+                    if (Privileges.FirstOrDefault(m => m.Component == "PointsOfSaleInfo_PointOfSale") == null || Privileges.FirstOrDefault(m => m.Component == "PointsOfSaleInfo_PointOfSale").View)
+                    {
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.PointsOfSaleInfo_PointOfSale)
+                                @Html.HiddenFor(model => model.PointsOfSaleInfo_PointOfSaleID, new { @class = "secondary-selected-row-dependent" })
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.PointsOfSaleInfo_PointOfSale)
+                            </div>
+                        </div>
+                    }
+                    if (Privileges.FirstOrDefault(m => m.Component == "PointsOfSaleInfo_ShortName") == null || Privileges.FirstOrDefault(m => m.Component == "PointsOfSaleInfo_ShortName").View)
+                    {
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.PointsOfSaleInfo_ShortName)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.PointsOfSaleInfo_ShortName, new { data_format = "upper-case" })
+                            </div>
+                        </div>
+                    }
+                    if (Privileges.FirstOrDefault(m => m.Component == "PointsOfSaleInfo_Place") == null || Privileges.FirstOrDefault(m => m.Component == "PointsOfSaleInfo_Place").View)
+                    {
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.PointsOfSaleInfo_Place)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.PointsOfSaleInfo_Place, Model.PointsOfSaleInfo_DrpPlaces, new { @class = "terminal-dependent-list", data_route = "/Catalogs/GetDDLData", data_route_parameter = "place" })
+                            </div>
+                        </div>
+                    }
+                    if (Privileges.FirstOrDefault(m => m.Component == "PointsOfSaleInfo_PoliciesBlock") == null || Privileges.FirstOrDefault(m => m.Component == "PointsOfSaleInfo_PoliciesBlock").View)
+                    {
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.PointsOfSaleInfo_PoliciesBlock)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.PointsOfSaleInfo_PoliciesBlock, Model.PointsOfSaleInfo_DrpPoliciesBlocks)
+                            </div>
+                        </div>
+                    }
+                    if (Privileges.FirstOrDefault(m => m.Component == "PointsOfSaleInfo_AcceptCharges") == null || Privileges.FirstOrDefault(m => m.Component == "PointsOfSaleInfo_AcceptCharges").View)
+                    {
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.PointsOfSaleInfo_AcceptCharges)
+                            </div>
+                            <div class="editor-field">
+                                <label for="PointsOfSaleInfo_AcceptChargesTrue">Yes</label>
+                                @Html.RadioButtonFor(model => model.PointsOfSaleInfo_AcceptCharges, true)
+                                <label for="PointsOfSaleInfo_AcceptChargesFalse">No</label>
+                                @Html.RadioButtonFor(model => model.PointsOfSaleInfo_AcceptCharges, false)
+                            </div>
+                        </div>
+                    }
+                    if (Privileges.FirstOrDefault(m => m.Component == "PointsOfSaleInfo_Terminal") == null || Privileges.FirstOrDefault(m => m.Component == "PointsOfSaleInfo_Terminal").View)
+                    {
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.PointsOfSaleInfo_Terminal)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.PointsOfSaleInfo_Terminal, Model.PointsOfSaleInfo_DrpTerminals, new { @class = "terminal-dependent-list", data_route = "/Catalogs/GetDDLData", data_route_parameter = "selectedTerminals" })
+                            </div>
+                        </div>
+                    }
+                    if (Privileges.FirstOrDefault(m => m.Component == "btnSavePointOfSaleInfo") == null || Privileges.FirstOrDefault(m => m.Component == "btnSavePointOfSaleInfo").View)
+                    {
+                        <div class="editor-alignment full-width">
+                            <input type="submit" class="submit right" value="save" />
+                        </div>
+                    }
+                }
+            }
+        </div>
+    </fieldset>
+}

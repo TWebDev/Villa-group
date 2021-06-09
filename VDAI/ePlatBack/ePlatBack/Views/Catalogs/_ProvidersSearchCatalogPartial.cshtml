@@ -1,0 +1,55 @@
+﻿@model ePlatBack.Models.ViewModels.ProvidersModel.SearchProvidersModel
+@{
+    var Privileges = new ePlatBack.Models.ViewModels.CatalogsViewModel().Privileges;
+}
+<fieldset id="fdsProvidersManagement">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        Providers Management
+    </legend>
+    <div class="align-from-top">
+        <div class="full-width">
+            <input type="button" class="submit fieldset-expander right" id="btnNewProviderInfo" value="new" />
+        </div>
+        @using (Ajax.BeginForm("SearchProviders", "Catalogs", new AjaxOptions { OnSuccess = "CATALOG.providersResultsTable(data)", OnComplete = "CATALOG.makeProvidersSelectable()", UpdateTargetId = "divTblExistingProviders" }, new { id = "frmProvidersSearch" }))
+        {
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SearchProviders_ComercialName)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.SearchProviders_ComercialName)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SearchProviders_Destinations)
+                </div>
+                <div class="editor-field">
+                    @Html.ListBoxFor(model => model.SearchProviders_Destinations, Model.SearchProviders_DrpDestinations, new { multiple = "multiple", @class = "destination-dependent-list terminal-dependent-list", data_route = "/Catalogs/GetDDLData", data_route_parameter = "destination" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-field align-from-top">
+                    <input type="submit" class="button search" value="search" />
+                </div>
+            </div>
+            <div id="divTblExistingProviders" class="align-from-top">
+                <table id="tblSearchProvidersResults" class="dataTable table search-results">
+                    <thead>
+                        <tr>
+                            <th>Comercial Name</th>
+                            <th>Legal Entity</th>
+                            <th>RFC</th>
+                            <th>Terminal</th>
+                            <th>Contract Currency</th>
+                            <th>Is Active</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        }
+        @Html.Action("RenderProvidersManagement", "Catalogs")
+    </div>
+</fieldset>

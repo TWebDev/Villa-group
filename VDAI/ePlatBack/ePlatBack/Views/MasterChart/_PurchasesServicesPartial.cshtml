@@ -1,0 +1,586 @@
+﻿@model ePlatBack.Models.ViewModels.PurchasesModel.PurchaseServiceModel
+
+@{
+    var Privileges = ViewData["Privileges"] as List<ePlatBack.Models.ViewModels.SysComponentsPrivilegesModel>;
+}
+@if (Privileges.FirstOrDefault(m => m.Component == "fdsPurchasesServices") == null || Privileges.FirstOrDefault(m => m.Component == "fdsPurchasesServices").View)
+{
+    <fieldset id="fdsPurchasesServices" class="view-restricted non-collapsible" style="display: none">
+        <legend>
+            <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+            Coupons Management
+        </legend>
+        <div class="align-from-top" style="display: none">
+            <div class="full-width align-from-bottom">
+
+                <input id="btnNewPurchaseServiceInfo" type="button" class="submit right" value="add coupon" />
+                @if (Privileges.FirstOrDefault(m => m.Component == ".send-coupons") != null && Privileges.FirstOrDefault(m => m.Component == ".send-coupons").View)
+                {
+                    <input type="button" class="button send-coupons right" value="send all coupons" style="margin-right: 10px" />
+                }
+                @if (Privileges.FirstOrDefault(m => m.Component == ".print-coupons") != null && Privileges.FirstOrDefault(m => m.Component == ".print-coupons").View)
+                {
+                    @*<input type="button" id="btnPrintAllCoupons" class="button print-coupons right" value="print all coupons" style="margin-right: 10px" />*@
+                    <input type="button" id="btnPrintAllCoupons" class="button right" value="print all coupons" style="margin-right: 10px" />
+                }
+            </div>
+            <div id="tblExistingPurchasesServicesContainer">
+                <table id="tblPurchasesServices" class="table dataTable">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Activity</th>
+                            <th>Coupon #</th>
+                            <th>Activity Date</th>
+                            <th>Schedule</th>
+                            <th>Meeting Point</th>
+                            <th>Promo</th>
+                            <th>Total</th>
+                            @*<th>Currency</th>*@
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            @if (Privileges.FirstOrDefault(m => m.Component == "fdsPurchaseServiceInfo") == null || Privileges.FirstOrDefault(m => m.Component == "fdsPurchaseServiceInfo").View)
+            {
+                <fieldset id="fdsPurchaseServiceInfo">
+                    <legend>
+                        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+                        Coupon Info
+                    </legend>
+                    <div style="display: none">
+                        <form id="frmPurchaseServiceInfo" onsubmit="return UI.showValidationSummary(this.id);">
+                            <div id="frmPurchaseServiceInfo_ErrorMessages" style="display: none">
+                                @Html.ValidationMessageFor(model => model.PurchaseService_Service)
+                                @Html.ValidationMessageFor(model => model.PurchaseService_ServiceDateTime)
+                                @Html.ValidationMessageFor(model => model.PurchaseService_WeeklyAvailability)
+                                @Html.ValidationMessageFor(model => model.PurchaseService_ServiceStatus)
+                                @Html.ValidationMessageFor(model => model.PurchaseService_Total)
+                                @Html.ValidationMessageFor(model => model.PurchaseService_Currency)
+                                @Html.ValidationMessageFor(model => model.PurchaseService_ReservedFor)
+                            </div>
+                            <div class="right">
+                                <div>
+                                    <span><span id="serviceProviderName" class="secondary-selected-row-dependent"></span> Phone: </span>
+                                    <br />
+                                    <span id="serviceProviderPhone" class="secondary-selected-row-dependent"></span>
+                                </div>
+                                @if (Privileges.FirstOrDefault(m => m.Component == "PurchaseService_Total") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseService_Total").View)
+                                {
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchaseService_Total)
+                                    </div>
+                                    <div class="editor-field">
+                                        <label id="lblPurchaseService_Total" style="font-size:18pt" data-format="currency"></label>
+                                        @Html.TextBoxFor(model => model.PurchaseService_Total, new { @readonly = "readonly", style = "display:none", @class = "not-editable" })
+                                    </div>
+                                }
+                                @if (Privileges.FirstOrDefault(m => m.Component == "PurchaseService_DateSaved") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseService_DateSaved").View)
+                                {
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchaseService_DateSaved)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.PurchaseService_DateSaved, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important", @class = "not-editable" })
+                                    </div>
+                                }
+                                @if (Privileges.FirstOrDefault(m => m.Component == "PurchaseService_ConfirmationDateTime") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseService_ConfirmationDateTime").View)
+                                {
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchaseService_ConfirmationDateTime)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.PurchaseService_ConfirmationDateTime, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important", @class = "not-editable" })
+                                    </div>
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchaseService_ConfirmedByUser)
+                                    </div>
+                                    <div class="editor-field">
+                                        @if (Privileges.Count(m => m.Component == "PurchaseService_ConfirmedByUser") > 0 && Privileges.FirstOrDefault(m => m.Component == "PurchaseService_ConfirmedByUser").Edit)
+                                        {
+                                            @Html.DropDownListFor(model => model.PurchaseService_ConfirmedByUser, Model.PurchaseService_DrpUsers, new { data_keep_value = "", @class = "update-on-confirmed" })
+                                        }
+                                        else
+                                        {
+                                            @Html.DropDownListFor(model => model.PurchaseService_ConfirmedByUser, Model.PurchaseService_DrpUsers, new { data_keep_value = "", @class = "update-on-confirmed", style="display:none;" })
+                                            @Html.TextBoxFor(model => model.PurchaseService_ConfirmedByUserName, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                                        }
+
+                                    </div>
+                                }
+                                @if (Privileges.FirstOrDefault(m => m.Component == "PurchaseService_CancelationDateTime") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseService_CancelationDateTime").View)
+                                {
+                                    <div class="cancelation-info-container" style="display:none">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.PurchaseService_CancelationDateTime)
+                                        </div>
+                                        <div class="editor-field">
+                                            @*@Html.TextBoxFor(model => model.PurchaseService_CancelationDateTime, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important", @class = "not-editable" })*@
+                                            @Html.TextBoxFor(model => model.PurchaseService_CancelationDateTime, new { @readonly = "readonly", @class = "not-editable" })
+                                        </div>
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.PurchaseService_CanceledByUser)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.DropDownListFor(model => model.PurchaseService_CanceledByUser, Model.PurchaseService_DrpUsers, new { data_keep_value = "", @class = "updatable-content update-on-confirmed" })
+                                            @*@Html.TextBoxFor(model => model.PurchaseService_CancelledByUser, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important", @class = "not-editable" })*@
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+                            @Html.HiddenFor(model => model.PurchaseService_PurchaseServiceID)
+                            @Html.HiddenFor(model => model.PurchaseService_Purchase, new { data_keep_value = "" })
+                            <input type="hidden" id="hdnCurrentPurchaseService" />
+                            @Html.HiddenFor(model => model.PurchaseService_CurrentUnits)
+                            @if (Privileges.FirstOrDefault(m => m.Component == "PurchaseService_Provider") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseService_Provider").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchaseService_Provider)
+                                        @Html.HiddenFor(model => model.PurchaseService_ProviderEmail)
+
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.PurchaseService_Provider, Model.PurchaseService_DrpProviders, new { @class = "providersPerTerminal-dependent-list", data_route = "/MasterChart/GetDDLData", data_route_parameter = "providersPerTerminal" })
+                                        @*@Html.DropDownListFor(model => model.PurchaseService_Provider, Model.PurchaseService_DrpProviders, new { @class = "terminal-dependent-list", data_route = "/MasterChart/GetDDLData", data_route_parameter = "terminal" })*@
+                                    </div>
+                                </div>
+                            }
+                            @if (Privileges.FirstOrDefault(m => m.Component == "PurchaseService_Service") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseService_Service").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchaseService_Service)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.PurchaseService_Service, Model.PurchaseService_DrpServices)
+                                    </div>
+                                </div>
+                            }
+                            @if (Privileges.FirstOrDefault(m => m.Component == "PurchaseService_OpenCoupon") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseService_OpenCoupon").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchaseService_OpenCoupon)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.PurchaseService_OpenCoupon, Model.PurchaseService_DrpOpenCoupons, new { @class = "update-on-confirmed" })
+                                    </div>
+                                </div>
+                            }
+                            @if (Privileges.FirstOrDefault(m => m.Component == "PurchaseService_ServiceDateTime") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseService_ServiceDateTime").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchaseService_ServiceDateTime)
+                                        <span id="altDateFormat" class="secondary-selected-row-dependent removable-content" style="float: right"></span>
+                                    </div>
+                                    <div class="editor-field">
+                                        @*@Html.TextBoxFor(model => model.PurchaseService_ServiceDateTime, new { @class = "update-on-confirmed" })*@
+                                        @Html.TextBoxFor(model => model.PurchaseService_ServiceDateTime, new { @class = "" })
+                                        @*@Html.TextBoxFor(model => model.PurchaseService_ServiceDateTime, new { data_uses_date_picker = "true" })*@
+                                    </div>
+                                </div>
+                            }
+                            @if (Privileges.FirstOrDefault(m => m.Component == "PurchaseService_WeeklyAvailability") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseService_WeeklyAvailability").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchaseService_WeeklyAvailability)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.PurchaseService_WeeklyAvailability, Model.PurchaseService_DrpWeeklyAvailabilities, new { @class = "update-on-confirmed" })
+                                    </div>
+                                </div>
+                            }
+                            @if (Privileges.FirstOrDefault(m => m.Component == "PurchaseService_MeetingPoint") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseService_MeetingPoint").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchaseService_MeetingPoint)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.PurchaseService_MeetingPoint, Model.PurchaseService_DrpMeetingPoints, new { @class = "update-on-confirmed" })
+                                    </div>
+                                </div>
+                            }
+                            @if (Privileges.FirstOrDefault(m => m.Component == "PurchaseService_CustomMeetingPoint") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseService_CustomMeetingPoint").View)
+                            {
+                                <div class="editor-alignment" style="display:none">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchaseService_CustomMeetingPoint)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.PurchaseService_CustomMeetingPoint)
+                                    </div>
+                                </div>
+                            }
+                            @if (Privileges.FirstOrDefault(m => m.Component == "PurchaseService_CustomMeetingTime") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseService_CustomMeetingTime").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchaseService_CustomMeetingTime)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.PurchaseService_CustomMeetingTime, new { data_uses_time_picker = "true", data_uses_time_only = "true", @class = "update-on-confirmed" })
+                                    </div>
+                                </div>
+                            }
+                            @if (Privileges.FirstOrDefault(m => m.Component == "PurchaseService_ReservedFor") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseService_ReservedFor").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchaseService_ReservedFor)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.PurchaseService_ReservedFor)
+                                    </div>
+                                </div>
+                            }
+                            @if (Privileges.FirstOrDefault(m => m.Component == "PurchaseService_ChildrenAges") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseService_ChildrenAges").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchaseService_ChildrenAges)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.PurchaseService_ChildrenAges)
+                                    </div>
+                                </div>
+                            }
+                            @if (Privileges.FirstOrDefault(m => m.Component == "PurchaseService_Promo") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseService_Promo").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchaseService_Promo)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.PurchaseService_Promo, Model.PurchaseService_DrpPromos)
+                                    </div>
+                                </div>
+                            }
+                            @if (Privileges.FirstOrDefault(m => m.Component == "PurchaseService_ServiceStatus") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseService_ServiceStatus").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchaseService_ServiceStatus)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.PurchaseService_ServiceStatus, Model.PurchaseService_DrpServiceStatus, new { @class = "updatable-content update-on-confirmed" })
+                                    </div>
+                                </div>
+                            }
+                            <div id="divCancelationInfoContainer" class="editor-alignment cancelation-info-container" style="display: none">
+                                @if (Privileges.FirstOrDefault(m => m.Component == "PurchaseService_CancelationCharge") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseService_CancelationCharge").View)
+                                {
+                                    <div class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.PurchaseService_CancelationCharge)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.TextBoxFor(model => model.PurchaseService_CancelationCharge, new { @class = "updatable-content" })
+                                        </div>
+                                    </div>
+                                }
+                                @if (Privileges.FirstOrDefault(m => m.Component == "PurchaseService_CancelationNumber") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseService_CancelationNumber").View)
+                                {
+                                    <div class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.PurchaseService_CancelationNumber)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.TextBoxFor(model => model.PurchaseService_CancelationNumber, new { @class = "updatable-content", data_format = "free-case" })
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            @if (Privileges.FirstOrDefault(m => m.Component == "PurchaseService_ConfirmationNumber") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseService_ConfirmationNumber").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchaseService_ConfirmationNumber)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.PurchaseService_ConfirmationNumber, new { @class = " update-on-confirmed", data_format = "free-case" })
+                                    </div>
+                                </div>
+                            }
+                            <div id="divTransportationInfoContainer" class="editor-alignment" style="display: none">
+                                @if (Privileges.FirstOrDefault(m => m.Component == "PurchaseService_Airline") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseService_Airline").View)
+                                {
+                                    <div class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.PurchaseService_Airline)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.TextBoxFor(model => model.PurchaseService_Airline, new { @class = " update-on-confirmed" })
+                                        </div>
+                                    </div>
+                                }
+                                @if (Privileges.FirstOrDefault(m => m.Component == "PurchaseService_FlightNumber") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseService_FlightNumber").View)
+                                {
+                                    <div class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.PurchaseService_FlightNumber)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.TextBoxFor(model => model.PurchaseService_FlightNumber, new { @class = " update-on-confirmed" })
+                                        </div>
+                                    </div>
+                                }
+                                @if (Privileges.FirstOrDefault(m => m.Component == "PurchaseService_Destination") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseService_Destination").View)
+                                {
+                                    <div class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.PurchaseService_Destination)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.DropDownListFor(model => model.PurchaseService_Destination, Model.PurchaseService_DrpDestinations, new { @class = "linked-list update-on-confirmed", data_url = "/MasterChart/GetDDLData", data_itemType = "destination" })
+                                        </div>
+                                    </div>
+                                }
+                                @if (Privileges.FirstOrDefault(m => m.Component == "PurchaseService_TransportationService") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseService_TransportationService").View)
+                                {
+                                    <div class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.PurchaseService_TransportationZone)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.DropDownListFor(model => model.PurchaseService_TransportationZone, Model.PurchaseService_DrpTransportationZones, new { @class = "destination-dependent-list update-on-confirmed" })
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <div id="divIsRound" class="editor-alignment">
+                                @if (Privileges.FirstOrDefault(m => m.Component == "PurchaseService_Round") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseService_Round").View)
+                                {
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchaseService_Round)
+                                    </div>
+                                    <div class="editor-field">
+                                        <label for="PurchaseService_RoundTrue">Yes</label>
+                                        @Html.RadioButtonFor(model => model.PurchaseService_Round, true, new { data_keep_value = "" })
+                                        <label for="PurchaseService_RoundFalse">No</label>
+                                        @Html.RadioButtonFor(model => model.PurchaseService_Round, false, new { data_keep_value = "" })
+                                    </div>
+                                }
+                            </div>
+                            <div id="divRoundTripInfoContainer" class="editor-alignment" style="display: none">
+                                @if (Privileges.FirstOrDefault(m => m.Component == "PurchaseService_RoundAirline") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseService_RoundAirline").View)
+                                {
+                                    <div class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.PurchaseService_RoundAirline)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.TextBoxFor(model => model.PurchaseService_RoundAirline, new { @class = " update-on-confirmed" })
+                                        </div>
+                                    </div>
+                                }
+                                @if (Privileges.FirstOrDefault(m => m.Component == "PurchaseService_RoundFlightNumber") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseService_RoundFlightNumber").View)
+                                {
+                                    <div class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.PurchaseService_RoundFlightNumber)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.TextBoxFor(model => model.PurchaseService_RoundFlightNumber, new { @class = " update-on-confirmed" })
+                                        </div>
+                                    </div>
+                                }
+                                @if (Privileges.FirstOrDefault(m => m.Component == "PurchaseService_RoundFlightTime") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseService_RoundFlightTime").View)
+                                {
+                                    <div class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.PurchaseService_RoundFlightTime)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.TextBoxFor(model => model.PurchaseService_RoundFlightTime, new { data_uses_time_picker = "true", data_uses_time_only = "true", @class = " update-on-confirmed" })
+                                        </div>
+                                    </div>
+                                }
+                                @if (Privileges.FirstOrDefault(m => m.Component == "PurchaseService_RoundDate") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseService_RoundDate").View)
+                                {
+                                    <div class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.PurchaseService_RoundDate)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.TextBoxFor(model => model.PurchaseService_RoundDate, new { data_uses_date_picker = "true", @class = "update-on-confirmed" })
+                                        </div>
+                                    </div>
+                                }
+                                @if (Privileges.FirstOrDefault(m => m.Component == "PurchaseService_RoundMeetingTime") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseService_RoundMeetingTime").View)
+                                {
+                                    <div class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.PurchaseService_RoundMeetingTime)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.TextBoxFor(model => model.PurchaseService_RoundMeetingTime, new { data_uses_time_picker = "true", data_uses_time_only = "true", @class = " update-on-confirmed" })
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            @if (Privileges.FirstOrDefault(m => m.Component == "PurchaseService_ReplacementOf") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseService_ReplacementOf").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchaseService_ReplacementOf)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.PurchaseService_ReplacementOf, Model.PurchaseService_DrpSiblingsCoupons, new { @class = "update-on-confirmed" })
+                                    </div>
+                                </div>
+                            }
+                            @if (Privileges.FirstOrDefault(m => m.Component == "PurchaseService_Audit") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseService_Audit").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchaseService_Audit)
+                                    </div>
+                                    <div class="editor-field">
+                                        <label for="PurchaseService_AuditTrue">Yes</label>
+                                        @Html.RadioButtonFor(model => model.PurchaseService_Audit, true, new { data_keep_value = "", disabled = "disabled" })
+                                        <label for="PurchaseService_AuditFalse">No</label>
+                                        @Html.RadioButtonFor(model => model.PurchaseService_Audit, false, new { data_keep_value = "", disabled = "disabled" })
+                                    </div>
+                                </div>
+                            }
+                            @if (Privileges.FirstOrDefault(m => m.Component == "PurchaseService_Issued") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseService_Issued").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchaseService_Issued)
+                                    </div>
+                                    <div class="editor-field">
+                                        <label for="PurchaseService_IssuedTrue">Yes</label>
+                                        @Html.RadioButtonFor(model => model.PurchaseService_Issued, true, new { data_keep_value = "", disabled = "disabled" })
+                                        <label for="PurchaseService_IssuedFalse">No</label>
+                                        @Html.RadioButtonFor(model => model.PurchaseService_Issued, false, new { data_keep_value = "", disabled = "disabled" })
+                                    </div>
+                                </div>
+                            }
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.PurchaseService_CouponReference)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(model => model.PurchaseService_CouponReference, new { @class = "update-on-confirmed", data_format = "upper-case" })
+                                </div>
+                            </div>
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.PurchaseService_SoldByOPC)
+                                </div>
+                                <div class="editor-field">
+                                    <label for="PurchaseService_SoldByOPC">Yes</label>
+                                    @Html.RadioButtonFor(model => model.PurchaseService_SoldByOPC, true, new { data_keep_value = "" })
+                                    <label for="PurchaseService_SoldByOPC">No</label>
+                                    @Html.RadioButtonFor(model => model.PurchaseService_SoldByOPC, false, new { data_keep_value = "" })
+                                </div>
+                            </div>
+                            <div class="full-width editor-alignment" style="border-top: 1px solid #DDDDDD; margin-top: 20px;">
+                                <div id="divTblPricesContainer">
+                                    <table id="tblPrices" class="table dataTable non-editable" style="margin: 10px auto !important; width:auto !important;">
+                                        <thead>
+                                            <tr>
+                                                <th>Price Type</th>
+                                                <th>Quantity</th>
+                                                <th>Unit</th>
+                                                <th style="width:100px;">Price</th>
+                                                <th>Sub Total</th>
+                                                <th>Promo</th>
+                                                <th>Coupon Folio</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="secondary-selected-row-dependent"></tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td>
+                                                    @Html.DropDownListFor(model => model.PurchaseServiceDetailModel.PurchaseServiceDetail_PriceType, Model.PurchaseServiceDetailModel.PurchaseServiceDetail_DrpPriceTypes, new { style = "width:115px;" })
+                                                    @Html.HiddenFor(model => model.PurchaseServiceDetailModel.PurchaseServiceDetail_PurchaseServiceDetailID)
+                                                    @Html.HiddenFor(model => model.PurchaseServiceDetailModel.PurchaseServiceDetail_PurchaseService)
+                                                </td>
+                                                <td>
+                                                    @Html.TextBoxFor(model => model.PurchaseServiceDetailModel.PurchaseServiceDetail_Quantity, new { style = "width:50px;", @class = "numeric-field" })
+                                                </td>
+                                                <td>
+                                                    @Html.DropDownListFor(model => model.PurchaseServiceDetailModel.PurchaseServiceDetail_PriceUnit, Model.PricesUnits, new { style = "width:115px;" })
+                                                </td>
+                                                <td>
+                                                    @if (Privileges.FirstOrDefault(m => m.Component == "PurchaseServiceDetailModel_PurchaseServiceDetail_CustomPrice") != null && Privileges.FirstOrDefault(m => m.Component == "PurchaseServiceDetailModel_PurchaseServiceDetail_CustomPrice").Edit)
+                                                    {
+                                                        @Html.TextBoxFor(model => model.PurchaseServiceDetailModel.PurchaseServiceDetail_CustomPrice, new { style = "width:50px;", @class = "numeric-field" })
+                                                    }
+                                                    else
+                                                    {
+                                                        @Html.TextBoxFor(model => model.PurchaseServiceDetailModel.PurchaseServiceDetail_CustomPrice, new { @readonly = "readonly", style = "width:50px; background-color:#E8EEF4 !important" })
+                                                    }
+                                                    @Html.TextBoxFor(model => model.PurchaseService_Currency, new { style = "width:30px; background-color:#E8EEF4 !important", data_keep_value = "", @readonly = "readonly", @class = "not-editable" })
+                                                    @Html.HiddenFor(model => model.PurchaseServiceDetailModel.PurchaseServiceDetail_ExchangeRate)
+                                                    @Html.HiddenFor(model => model.PurchaseServiceDetailModel.PurchaseServiceDetail_Price)
+                                                </td>
+                                                <td data-format="currency"></td>
+                                                <td>
+                                                    @Html.CheckBoxFor(model => model.PurchaseServiceDetailModel.PurchaseServiceDetail_Promo)
+                                                    <input type="hidden" id="hdnGetPromo" />
+                                                </td>
+                                                <td>
+                                                    @Html.TextBoxFor(model => model.PurchaseServiceDetailModel.PurchaseServiceDetail_Coupon, new { @readonly = "readonly", style = "width:70px; background-color:#E8EEF4 !important", @class = "not-editable" })
+                                                </td>
+                                                <td>
+                                                    <input type="button" class="button" value="add" id="btnAddPrice" style="margin-left: 10px" />
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="full-width" style="border-top: 1px solid #DDDDDD; margin-top: 20px;">
+                                @if (Privileges.FirstOrDefault(m => m.Component == "PurchaseService_Note") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseService_Note").View)
+                                {
+                                    <div class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.PurchaseService_Note)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.TextAreaFor(model => model.PurchaseService_Note, new { @class = "double-width" })
+                                        </div>
+                                    </div>
+                                }
+                                @if (Privileges.FirstOrDefault(m => m.Component == "PurchaseService_SpecialRequest") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseService_SpecialRequest").View)
+                                {
+                                    <div class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.PurchaseService_SpecialRequest)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.TextAreaFor(model => model.PurchaseService_SpecialRequest, new { @class = "double-width" })
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <div class="full-width align-from-top">
+                                @if (Privileges.FirstOrDefault(m => m.Component == "btnSavePurchaseService") == null || Privileges.FirstOrDefault(m => m.Component == "btnSavePurchaseService").View)
+                                {
+                                    <input type="button" id="btnSavePurchaseService" class="submit right alert-dblclick" value="save" />
+                                }
+                                @if (Privileges.FirstOrDefault(m => m.Component == "btnGetCoupon") == null || Privileges.FirstOrDefault(m => m.Component == "btnGetCoupon").View)
+                                {
+                                    <input type="button" id="btnGetCoupon" class="button right get-coupon alert-dblclick" value="get coupon" style="margin-right: 10px; display: none" />
+                                }
+                                <input type="hidden" id="couponRef" />
+                            </div>
+                        </form>
+                    </div>
+                </fieldset>
+            }
+        </div>
+    </fieldset>
+}

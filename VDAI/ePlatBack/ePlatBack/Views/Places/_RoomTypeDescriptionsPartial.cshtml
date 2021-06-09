@@ -1,0 +1,60 @@
+﻿@model ePlatBack.Models.ViewModels.RoomTypeDescriptionModel
+
+<fieldset id="fdsRoomTypeDescriptions" class="primary-selected-row-dependent view-restricted" style="display:none">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator"/>
+        Room Type Descriptions
+    </legend>
+    <div style="display: none">
+        <div class="full-width align-from-bottom">
+            <input type="button" class="submit fieldset-expander right" id="btnNewRoomTypeDescriptionInfo" value="New"/>
+        </div>
+        <ul id="ulRoomTypeDescriptions" class="primary-selected-row-dependent">
+        </ul>
+        <fieldset id="fdsRoomTypeDescriptionInfo">
+            <legend>
+                <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator"/>
+                Description Info
+            </legend>
+            <div style="display: none">
+                @using (Ajax.BeginForm("SaveRoomTypeDescription", "Places", new AjaxOptions { OnSuccess = "PLACE.saveRoomTypeDescriptionSuccess(data)" }, new { id="frmRoomTypeDescription", onSubmit="UI.showValidationSummary(this.id);" }))
+                {
+                    <div id="frmRoomTypeDescription_ErrorMessages" style="display: none">
+                        @Html.ValidationMessageFor(model => model.RoomTypeDescription_RoomType)
+                        @Html.ValidationMessageFor(model => model.RoomTypeDescription_Description)
+                        @Html.ValidationMessageFor(model => model.RoomTypeDescription_Culture)
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.RoomTypeDescription_RoomType)
+                            @Html.HiddenFor(model => model.RoomTypeDescription_RoomTypeID, new { @class = "secondary-selected-row-dependent skip-one-level", data_keep_value="" })
+                            @Html.HiddenFor(model => model.RoomTypeDescription_RoomTypeDescriptionID, new { @class = "ignore-validation" })
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.RoomTypeDescription_RoomType)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.RoomTypeDescription_Culture)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.RoomTypeDescription_Culture, Model.RoomTypeDescription_DrpCultures)
+                        </div>
+                    </div>
+                    <div class="full-width">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.RoomTypeDescription_Description)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextAreaFor(model => model.RoomTypeDescription_Description)
+                        </div>
+                    </div>
+                    <div class="full-width align-from-top">
+                        <input type="button" class="submit right" id="btnSaveRoomTypeDescription" value="Save"/>
+                    </div>
+                }
+            </div>
+        </fieldset>
+    </div>
+</fieldset>

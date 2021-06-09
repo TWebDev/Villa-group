@@ -1,0 +1,101 @@
+﻿@model ePlatBack.Models.ViewModels.SearchToImportModel
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<!-- Vue -->
+<!-- development version, includes helpful console warnings -->
+@*<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>*@
+<!-- Moment -->
+@*<script src="~/Content/plugins/moment/moment.min.js"></script>*@
+<!-- Archivos ePlat Vue-->
+@*<script src="~/ViewModels/eplat.global.filters.js"></script>
+    <script src="~/ViewModels/eplat.global.store.js"></script>
+    <script src="~/ViewModels/eplat.global.utils.js"></script>
+    <script src="~/ViewModels/eplat.global.directives.js"></script>*@
+
+<h3>Import From Front</h3>
+<section id="app" class="full-width editor-alignment" style="border-top:1px solid #dddddd;margin-top:20px;">
+    @*@using (Ajax.BeginForm("GetArrivals", "PreArrival", new AjaxOptions { OnSuccess = "PREARRIVAL.searchToImportSuccess(data)" }, new { id = "frmSearchToImport" }))*@
+    @using (Ajax.BeginForm("GetArrivalsToImport", "PreArrival", new AjaxOptions { OnSuccess = "PREARRIVAL.searchToImport(data)", UpdateTargetId = "divImportSearchResults" }, new { id = "frmSearchToImport" }))
+    {
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SearchToImport_ImportResort)
+                @Html.HiddenFor(model => model.ListResults, new { v_model = "Arrivals" })
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.SearchToImport_ImportResort, Model.Resorts, new { multiple = "multiple" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_I_ImportArrivalDate)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Search_I_ImportArrivalDate, new { @class = "import-date-picker" })
+                @Html.TextBoxFor(model => model.Search_F_ImportArrivalDate, new { @class = "import-date-picker" })
+            </div>
+        </div>
+        <div class="editor-alignment full-width">
+            <div class="editor-field">
+                @*<input type="submit" id="btnSearchToImport" class="button right" value="import" />*@
+                <input type="submit" id="btnGetArrivalsToImport" class="submit right" value="get" />
+            </div>
+        </div>
+        @*<div id="divImportSearchResults">
+                <table id="tblArrivalsToImport" class="table dataTable">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Guest</th>
+                            <th>Agency</th>
+                            <th>Market Code</th>
+                            <th>Lead Source</th>
+                            <th>Assignment</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>*@
+        <div>
+            <table class="table dataTable">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Guest</th>
+                        <th>Agency</th>
+                        <th>Market Code</th>
+                        <th>Lead Source</th>
+                        <th>Assignment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(row, key) in Arrivals">
+                        <td>
+                            {{row.llegada | dateYYYYMMDD }}
+                        </td>
+                        <td>
+                            {{row.Huesped}}
+                        </td>
+                        <td>
+                            {{row.Procedencia}}
+                        </td>
+                        <td>
+                            {{row.CodigoMerc}}
+                        </td>
+                        <td>
+                            <select v-model="row.LeadSource">
+                                <option v-for="option in row.LeadSources" v-bind:value="option.Value">{{option.Text}}</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select v-model="row.AssignedToUserID">
+                                <option v-for="option in row.Users" v-bind:value="option.Value">{{option.Text}}</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    }
+</section>

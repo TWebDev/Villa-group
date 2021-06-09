@@ -1,0 +1,232 @@
+﻿@model ePlatBack.Models.ViewModels.NotificationsModel
+@{var applyCustomStyle = !Model.ShowVLOClassification;
+var tableStyle = applyCustomStyle ? "width:100%;text-align:center;border:1px solid #ddd;border-collapse:collapse;font-family:verdana;font-size:10pt;" : "";
+var font = applyCustomStyle ? "font-family:verdana;font-size:10pt;" : "";
+var headerStyle = applyCustomStyle ? "background-color:black;color:white;text-align:center;" : "";
+var striped = applyCustomStyle ? "background-color:#e8eef4;" : "";
+var footerStyle = applyCustomStyle ? "background-color:#E6E6E6;" : "";
+var alignment = applyCustomStyle ? "text-align:left;" : "";
+}
+
+<h3 style="@font">Classified By Letter</h3>
+<table class="table dataTable non-editable" style="@tableStyle">
+    <thead>
+        <tr style="@headerStyle">
+            <th>Form</th>
+            <th>Sent</th>
+            <th>Received</th>
+            <th>Opened</th>
+            <th>Open Rate</th>
+            <th>Clicked</th>
+            <th>Click Rate</th>
+            <th>Who Open Links</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{var _counter = 1;}
+        @if (Model.ListNotifications.Count() == 0)
+        {
+            <tr>
+                <td colspan="8" align="center">
+                    <strong>No data available due to incomplete data in sent letters or there is no letters sent yet</strong>
+                </td>
+            </tr>
+            @*@foreach (var i in Model.ListNotifications.Where(m => m.NotificationsReport_VLO == null).Take(Model.ListNotifications.Count(m => m.NotificationsReport_VLO == null) - 2))*@
+        }
+
+        @foreach (var i in Model.ListNotifications.Where(m => m.NotificationsReport_Form != null))
+        {
+            var style = _counter % 2 == 0 && applyCustomStyle ? striped : "";
+            var clickedBy = string.Join(", ", i.NotificationsReport_ClicksList.Select(m => m.NotificationsReport_GuestName).ToArray());
+            var clicks = clickedBy != "" ? clickedBy.Split(',').Count() : 0;
+            <tr id="@i.NotificationsReport_FormID" style="@style">
+                <td style="@alignment">
+                    @Html.DisplayFor(model => i.NotificationsReport_Form)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.NotificationsReport_Sent)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.NotificationsReport_Received)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.NotificationsReport_Opened)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.NotificationsReport_OpenRate) %
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.NotificationsReport_Clicked)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.NotificationsReport_ClickRate) %
+                </td>
+                <td style="@alignment">
+                    @Html.DisplayFor(model => @clickedBy)
+                </td>
+            </tr>
+            _counter++;
+        }
+    </tbody>
+    <tfoot>
+        @{
+            var vloTotal = Model.ListNotifications.LastOrDefault();
+            Model.ListNotifications.Reverse();
+            var last = Model.ListNotifications.Skip(1).FirstOrDefault();
+            <tr style="@footerStyle">
+                <td style="@alignment">Totals</td>
+                <td>
+                    @Html.DisplayFor(model => last.NotificationsReport_TotalSent)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => last.NotificationsReport_TotalReceived)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => last.NotificationsReport_TotalOpened)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => last.NotificationsReport_TotalOpenRate) %
+                </td>
+                <td>
+                    @Html.DisplayFor(model => last.NotificationsReport_TotalClicks)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => last.NotificationsReport_TotalClickRate) %
+                </td>
+                <td></td>
+            </tr>
+        }
+    </tfoot>
+</table>
+<br />
+@if (Model.ShowVLOClassification == true)
+{
+    <h3>Classified By VLO</h3>
+    <table class="table dataTable non-editable">
+        <thead>
+            <tr>
+                <th>VLO</th>
+                <th>Sent</th>
+                <th>Received</th>
+                <th>Opened</th>
+                <th>Open Rate</th>
+                <th>Clicked</th>
+                <th>Click Rate</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var i in Model.ListNotifications.Where(m => m.NotificationsReport_Form == null && m.NotificationsReport_VLO != null))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => i.NotificationsReport_VLO)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.NotificationsReport_Sent)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.NotificationsReport_Received)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.NotificationsReport_Opened)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.NotificationsReport_OpenRate) %
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.NotificationsReport_Clicks)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.NotificationsReport_ClickRate) %
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            @{
+                <tr>
+                    <td>Totals</td>
+                    <td>
+                        @Html.DisplayFor(model => vloTotal.NotificationsReport_TotalSent)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => vloTotal.NotificationsReport_TotalReceived)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => vloTotal.NotificationsReport_TotalOpened)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => vloTotal.NotificationsReport_TotalOpenRate) %
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => vloTotal.NotificationsReport_TotalClicks)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => vloTotal.NotificationsReport_TotalClickRate) %
+                    </td>
+                </tr>
+            }
+        </tfoot>
+    </table>
+}
+<br />
+<h3 style="@font">Clicks Details</h3>
+<table style="width:50%;@tableStyle" class="non-editable">
+    <thead>
+        <tr>
+            <th colspan="7">
+                Canceled Contracts: @Model.ListNotifications.Where(m => m.NotificationsReport_ClicksList != null).Select(m => m.NotificationsReport_ClicksList).Sum(m => m.Where(x => x.NotificationsReport_Status == "Cancel").Count())
+            </th>
+        </tr>
+        <tr style="@headerStyle">
+            <th></th>
+            <th>Form</th>
+            <th>Guest</th>
+            <th>VPA Number</th>
+            <th>VLO</th>
+            <th>Link</th>
+            <th>Times Clicked</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{var counter = 1;}
+        @foreach (var i in Model.ListNotifications)
+        {
+            if (i.NotificationsReport_ClicksList != null)
+            {
+                foreach (var item in i.NotificationsReport_ClicksList)
+                {
+                    var rowsPerGuest = item.NotificationsReport_Urls.Select(m => m.Key).Distinct().Count();
+                    var style = counter % 2 == 0 ? "background-color:#e8eef4;" : "";
+                    style += (item.NotificationsReport_Status == "Cancel" ? "color: red;font-weight: bold;" : "");
+
+                    <tr id="@item.NotificationsReport_Transaction" style="@style">
+                        <td rowspan="@rowsPerGuest">@counter</td>
+                        <td rowspan="@rowsPerGuest" style="@alignment">@Html.DisplayFor(model => item.NotificationsReport_FormName)</td>
+                        <td rowspan="@rowsPerGuest" style="@alignment">@Html.DisplayFor(model => item.NotificationsReport_GuestName)</td>
+                        <td rowspan="@rowsPerGuest">@Html.DisplayFor(model => item.NotificationsReport_VPANumber)</td>
+                        <td rowspan="@rowsPerGuest">@Html.DisplayFor(model => item.NotificationsReport_VLO)</td>
+                        <td style="@alignment">
+                            @Html.DisplayFor(model => item.NotificationsReport_Urls.FirstOrDefault().Key)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => item.NotificationsReport_Urls.FirstOrDefault().Value)
+                        </td>
+                    </tr>
+                    foreach (var x in item.NotificationsReport_Urls.Skip(1))
+                    {
+                        <tr style="@style">
+                            <td style="@alignment">
+                                @Html.DisplayFor(model => x.Key)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => x.Value)
+                            </td>
+                        </tr>
+                    }
+                    counter++;
+                }
+            }
+        }
+    </tbody>
+</table>

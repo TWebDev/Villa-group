@@ -1,0 +1,48 @@
+﻿@model IEnumerable<ePlatBack.Models.ViewModels.ActivityListItem>
+
+@foreach (var item in Model)
+{
+    <figure class="tile-activity" id="@item.ActivityID">
+        @if (@item.Tag != null && @item.Tag != "")
+        {
+            <div class="tile-activity-tag" style="background-color:@item.TagColor">@item.Tag</div>
+        }
+        <a href="@item.Url" title="@item.Activity" class="tile-activity-images">
+            @foreach (var picture in @item.Pictures)
+            {
+                <img alt="@item.Activity" src="//eplatfront.villagroup.com/@picture.Picture?width=392&height=220&mode=crop&quality=50" width="196" height="110" />
+            }
+            <span class="tile-progress"><span class="tile-progress-indicator"></span></span>
+        </a>
+        <figcaption class="tile-text">
+            <a href="@item.Url" title="@item.Activity">
+                <h2>@Html.DisplayFor(modelItem => item.Activity)</h2>
+                <span class="retail-price">$@item.RetailPrice.ToString("0.00").Replace(",", ".")
+                </span>
+                <span class="offer-price">$@item.OfferPrice.ToString("0.00").Replace(",", ".")
+                </span>
+                <span class="rating">
+                    @if (item.Rating != null)
+                    {
+                        for (int s = 1; s <= Math.Floor(Math.Abs(item.Rating)); s++)
+                        {
+                        <img src="~/Content/themes/mex/images/stars_full.png" />
+                        }
+                        if (item.Rating % 1 != 0)
+                        {
+                        <img src="~/Content/themes/mex/images/stars_half.png" />
+                        }
+                        for (int v = 1; v <= Math.Floor(Math.Abs(5 - item.Rating)); v++)
+                        {
+                        <img src="~/Content/themes/mex/images/stars_empty.png" />
+                        }
+                    }
+                </span>
+                <span class="savings">
+                    @ePlatFront.Resources.Views.Activities.ActivitiesStrings.Youll_Save @item.Savings%
+                </span>
+            </a>
+            <a class="a-info" href="@item.Url" title="More Info about @item.Activity">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.See_Details</a><a class="a-book" href="#shopping-cart" onclick="BookingEngine.Service.book(@item.ActivityID,'@item.Activity.Replace("'", "")')" title="Book @item.Activity">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Book_This</a>
+        </figcaption>
+    </figure>
+}

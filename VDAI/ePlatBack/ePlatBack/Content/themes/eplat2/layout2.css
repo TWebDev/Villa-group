@@ -1,0 +1,363 @@
+﻿html, body {
+    height: 100%;
+}
+
+/* Bootstrap Material Icons */
+
+.material-icons {
+    cursor: pointer;
+}
+
+.btn-sm .material-icons {
+    font-size: 16px;
+    position: relative;
+    top: 3px;
+}
+
+.nav-link .material-icons {
+    top: 2px;
+    position: relative;
+}
+
+a i.material-icons {
+    vertical-align: top;
+    font-size: 1.1em;
+    line-height: 1.3em;
+}
+
+
+body {
+    padding-top: 65px;
+    background-color: #fafafa;
+}
+
+/* Menu Secundario */
+
+#secondaryMenu {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin-left: -15px;
+    background-color: #343a40 !important;
+}
+
+    #secondaryMenu .navbar-nav {
+        -ms-flex-direction: row;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+    }
+
+    #secondaryMenu .nav-item {
+        -ms-flex: auto;
+        -webkit-flex: auto;
+        flex: auto;
+        text-align: center;
+    }
+
+/* Submenus */
+.dropdown-submenu {
+    position: relative;
+}
+
+    .dropdown-submenu a::after {
+        -moz-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        -webkit-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+        position: absolute;
+        right: 6px;
+        top: .3em;
+    }
+
+    .dropdown-submenu .dropdown-menu {
+        top: 0;
+        left: 100%;
+        margin-left: .1rem;
+        margin-right: .1rem;
+    }
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 100;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .1);
+    margin-top: 60px;
+}
+
+.account-icon {
+    font-size: 90px;
+    width: 90px;
+}
+
+.edit-picture {
+    position: absolute;
+    left: 57%;
+    width: 24px;
+    margin-top: 78px;
+}
+
+/* validation */
+.input-validation-error {
+    border-color: #dc3545;
+}
+
+/* multiple */
+.multiselect-native-select button {
+    background-color: white;
+    border: solid 1px #ccc;
+    text-align: left;
+}
+
+.dropdown-toggle::after {
+    float: right;
+    margin-top: .6em;
+}
+
+ul.multiselect-container li a {
+    color: rgba(0,0,0,.6);
+}
+
+.multiselect-container > li.multiselect-group label {
+    padding-left: 10px;
+}
+
+/* misc */
+
+.multiselect-container.dropdown-menu {
+    max-height: 300px !important;
+    overflow: auto !important;
+    z-index: 10000 !important;
+}
+
+.initials-avatar {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+}
+
+.search-card, .mt-flat {
+    border-radius: 0 0 .25rem .25rem;
+    border-top: none;
+}
+
+div[name="HeaderSettings"] {
+    display: none;
+}
+
+tr.selected {
+    color: #fff;
+    background-color: #3CB1EF !important;
+    box-shadow: inset 0 2px 15px rgba(0,0,0,.2);
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #3CB1EF;
+    border-color: #1d8cc7;
+}
+
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #3CB1EF;
+    border-color: #1d8cc7;
+}
+
+.multiselect-container > li > a > label {
+    padding: 3px 10px 3px 10px;
+    width: 230px;
+}
+
+.multiselect-selected-text {
+    width: 80%;
+    display: inline-block;
+}
+
+.multiselect-container {
+    padding: .5rem 0;
+    margin: .125rem 0 0;
+}
+
+#ddlSelectedTerminals {
+    padding: 5px 5px 5px;
+    border: #ddd solid 1px;
+    border-radius: 3px;
+}
+
+.terminals-list {
+    max-height: 190px !important;
+    margin: 0 0 5px 0;
+    overflow-y: auto;
+    border-top: #ddd solid 1px;
+    border-bottom: #ddd solid 1px;
+    box-shadow: inset -15px -1px 40px rgba(0,0,0,.1);
+}
+
+.input-group-append .material-icons {
+    vertical-align: middle;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    background-color: #3CB1EF !important;
+}
+
+a {
+    color: #3CB1EF;
+}
+
+.input-auto-width {
+    width: 140px;
+}
+
+.display-5 {
+    font-size: 3rem;
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+.blank-canvas {
+    height: 110px;
+    border-radius: 3px;
+}
+
+.input-group .btn-outline-secondary {
+    border: 1px solid #ced4da;
+}
+
+.deleted {
+    color: #ddd;
+    text-decoration: line-through;
+}
+
+.text-so-muted {
+    color: #ddd;
+}
+
+.form-group small {
+    background: #f3f3f3;
+    display: block;
+    padding: 5px 20px;
+    margin: 0 -20px 0 -20px;
+}
+
+/* File Input */
+
+#fine-uploader-basic i.material-icons {
+    font-size: 1.2em;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 5px 3px 0;
+}
+
+/* Map */
+#map {
+    height: 400px;
+    width: 100%;
+}
+
+/* Status Bar*/
+
+#statusBar {
+    height: 40px;
+    background-color: rgba(52, 58, 64, 0.9);
+    color: white;
+    z-index: 1000;
+    position: fixed;
+    bottom: 45px;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    font-size: .8em;
+    display: none;
+}
+
+    #statusBar .loading {
+        background-image: url('/images/loading.gif');
+        background-repeat: no-repeat;
+        background-position: left center;
+        background-size: 16px;
+        padding-left: 25px;
+        width: auto;
+    }
+
+    /*Workflows*/
+.wf-btn{
+    min-width:150px;
+}
+
+.full-width{
+    width:100%;
+}
+/*personalizar clase porque afecta a nivel global*/
+#newStepModal .form-control, #searchWorkflowContainer .form-control, #workflowsManagementContainer .form-control {
+    min-width: 190px;
+}
+
+.google-visualization-orgchart-node i {
+    display: block;
+    color: white;
+    float: right;
+    /*margin: 2px;*/
+    margin-right: -30px !important;
+    margin-top: -20px !important;
+    border: 1px hidden;
+    border-radius: 50%;
+    /*font-size: larger;*/
+}
+
+.invisible{
+    width:0 !important;
+    height:0 !important;
+    visibility:hidden !important;
+}
+
+.wf-step {
+    display:block;
+    cursor: pointer;
+    margin:2px;
+}
+
+.lead-source{
+    width: max-content !important;
+}
+
+/*Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {
+}
+
+/*Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+    #secondaryMenu {
+        position: static;
+        bottom: auto;
+        width: auto;
+        margin-left: 0;
+    }
+
+    #statusBar {
+        bottom: 0;
+    }
+
+    .nav-item > .dropdown-menu {
+        margin-top: 7px;
+        border-radius: 0 0 5px 5px;
+    }
+
+    .navbar-expand-md .navbar-nav .dropdown-menu {
+        box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+        background-color: #dcdcdc;
+    }
+}
+
+/*Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
+}
+
+/*Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+}

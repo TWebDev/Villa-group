@@ -1,0 +1,24 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    Random rand = new Random();
+}
+
+
+
+
+<div id="app">
+
+    <component :is="currentcomponentpreview"></component>
+
+</div>
+
+
+
+@section Scripts
+{
+    <script src="~/ViewModels/Components/preview.js?_=@rand.Next()"></script>
+
+}
+    
+
+

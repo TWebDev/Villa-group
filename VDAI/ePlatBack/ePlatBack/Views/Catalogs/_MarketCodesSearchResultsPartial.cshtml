@@ -1,0 +1,47 @@
+﻿@model ePlatBack.Models.ViewModels.MarketCodes.SearchMarketCodes
+
+<table id="tblMarketCodes" class="table dataTable exportable">
+    <thead>
+        <tr>
+            <th class="align-center"><span>All</span><br /><input type="checkbox" class="chk-parent" /></th>
+            <th>Market Code</th>
+            @*<th>Assigned To User(s)</th>*@
+            <th>Resort</th>
+            <th>Lead Source</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ListResults != null)
+        {
+            foreach (var i in Model.ListResults)
+            {
+                var id = i.MarketCodeInfo_MarketCodeID;
+                var check = i.MarketCodeInfo_Checked ? "checked" : "";
+                <tr id="@id">
+                    <td>
+                        @if (i.MarketCodeInfo_Checked)
+                        {
+                            <input type="checkbox" data-id="@id" class="chk-son" checked/>
+                        }
+                        else
+                        {
+                            <input type="checkbox" data-id="@id" class="chk-son"/>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.MarketCodeInfo_MarketCode)
+                    </td>
+                    @*<td>
+                        @Html.DisplayFor(model => i.MarketCodeInfo_UsersText)
+                    </td>*@
+                    <td>
+                        @Html.DisplayFor(model => i.MarketCodeInfo_Resort)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.MarketCodeInfo_LeadSource)
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

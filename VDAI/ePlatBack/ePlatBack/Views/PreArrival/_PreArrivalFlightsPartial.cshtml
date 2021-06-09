@@ -1,0 +1,113 @@
+﻿@model ePlatBack.Models.ViewModels.PreArrivalFlightsModel
+@{
+    var Privileges = Model.Privileges;
+}
+@if (Privileges.Count(m => m.Component == "Section_FlightsInfo") > 0 && Privileges.FirstOrDefault(m => m.Component == "Section_FlightsInfo").View)
+{
+    <section id="Section_FlightsInfo" class="full-width editor-alignment fds-active" style="border-top:1px solid #dddddd;margin-top:20px;">
+        <h3>Flights Information</h3>
+        <div style="text-align:right">
+            <span class="block">
+                <input type="button" id="btnNewFlight" class="submit clear-form" value="new flight" />
+            </span>
+        </div>
+        <div class="align-from-top align-from-bottom full-width" style="margin-bottom:20px">
+            <table id="tblFlightsResults" class="dataTable table">
+                <thead>
+                    <tr>
+                        <th>Airline</th>
+                        <th>Flight Number</th>
+                        <th>Passengers Names</th>
+                        <th>Number of Passengers</th>
+                        <th>Flight Type</th>
+                        <th>Flight Date & Time</th>
+                        <th>Comments</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="secondary-selected-row-dependent"></tbody>
+            </table>
+        </div>
+
+        @using (Ajax.BeginForm("SaveFlight", "PreArrival", new AjaxOptions { OnSuccess = "PREARRIVAL.saveFlightSuccess(data)" }, new { id = "frmFlightInfo" }))
+        {
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.HiddenFor(model => model.FlightInfo_ReservationID, new { data_keep_value = "", @class = "secondary-selected-row-dependent" })
+                    @Html.HiddenFor(model => model.FlightInfo_FlightID)
+                    @Html.HiddenFor(model => model.FlightInfo_Destination, new { data_keep_value = "", @class = "secondary-selected-row-dependent" })
+                    @Html.LabelFor(model => model.FlightInfo_FlightType)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.FlightInfo_FlightType, Model.FlightTypes)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.FlightInfo_AirlineName)
+                    @Html.HiddenFor(model => model.FlightInfo_Airline)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.FlightInfo_AirlineName)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.FlightInfo_FlightNumber)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.FlightInfo_FlightNumber)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.FlightInfo_PassengerNames)
+                </div>
+                <div class="editor-field">
+                    @Html.TextAreaFor(model => model.FlightInfo_PassengerNames)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.FlightInfo_Passengers)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.FlightInfo_Passengers, Model.Passengers)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.FlightInfo_FlightComments)
+                </div>
+                <div class="editor-field">
+                    @Html.TextAreaFor(model => model.FlightInfo_FlightComments)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.FlightInfo_FlightDateTime)
+                </div>
+                <div class="editor-field">
+                    @*@Html.TextBoxFor(model => model.FlightInfo_FlightDateTime, new { data_uses_datetime_picker = "true" })*@
+                    @Html.TextBoxFor(model => model.FlightInfo_FlightDateTime)
+                </div>
+            </div>
+            <div id="divPickupTime" class="editor-alignment" style="display:none">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.FlightInfo_PickUpTime)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.FlightInfo_PickUpTime, new { data_uses_time_picker = "true" })
+                </div>
+            </div>
+            if (Privileges.Count(m => m.Component == "btnSaveFlight") > 0 && Privileges.FirstOrDefault(m => m.Component == "btnSaveFlight").View)
+            {
+                <div class="editor-alignment align-from-top full-width">
+                    <div class="editor-field">
+                        <input type="submit" id="btnSaveFlight" class="submit right" value="save" />
+                    </div>
+                </div>
+            }
+        }
+    </section>
+}

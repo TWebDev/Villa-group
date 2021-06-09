@@ -1,0 +1,182 @@
+﻿@model ePlatBack.Models.ViewModels.DestinationPackagesViewModel
+
+@{
+    ViewBag.Culture = Model.Culture;
+    ViewBag.Title = Model.Seo_Title;
+    ViewBag.Keywords = Model.Seo_Keywords;
+    ViewBag.Description = Model.Seo_Description;
+    ViewBag.Index = Model.Seo_Index;
+    ViewBag.Follow = Model.Seo_Follow;
+
+    ViewBag.Header = Model.Template_Header;
+    ViewBag.Footer = Model.Template_Footer;
+    ViewBag.Logo = Model.Template_Logo;
+}
+
+@section header{
+    @Html.Raw(Model.Scripts_Header)
+}
+
+@section afterBody{
+    @Html.Raw(Model.Scripts_AfterBody)
+}
+
+@section scripts{
+    @Html.Raw(Model.Scripts_Footer)
+    @*@Scripts.Render("~/bundles/dvh/slider")*@
+    <script src="~/Content/themes/dvh/js/dvh-slider2.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            Slider.play();
+        });
+    </script>
+}
+
+@section controls{
+    <div id="quoteRequest" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="quoteRequestLabel">@Html.Partial("_QuoteRequestPartialV2", Model.QuoteRequestControl)</div>
+}
+
+@section featured {
+    <div class="featured @Model.Destination.ToLower().Replace(" ","-")">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 col-md-8 col-sm-12">
+                    <div id="slidesGallery" class="slide-container">
+                        @if (Model.Pictures != null)
+                        {
+                            <div id="sliderPicturesContainer">
+                                @{
+                                int j = 0;
+                                foreach (var item in Model.Pictures)
+                                {
+                                    <img src="@item.Picture_Url" alt="@item.Picture_Alt" class="slide-picture img-responsive" style="@(j==0 ? "display:inline-block;" : "display:none;")" />
+                                    j++;
+                                }
+                                }
+                            </div>
+                            <div class="slider-pager">
+                                <div id="pagerRow" class="slider-pager-row">
+                                    <div class="slider-pager-container">
+                                        @{
+                                        int i = 0;
+
+                                        foreach (var item in Model.Pictures)
+                                        {
+                                            <div class="slide-button @(i==0 ? "slide-button-selected" : "")" onclick="Slider.play(@i)" style="background-image:url(@item.Picture_Url?height=40)"></div>
+                                            i++;
+                                        }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div id="slidesGalleryCaption" class="hidden-xs"></div>
+                </div>
+                <aside class="col-lg-3 col-md-4 hidden-sm hidden-xs">
+                    <div id="sliderOverlay" class="slider-info @Model.Destination.ToLower().Replace(" ","-")">
+                        <h2 id="slidesGalleryTitle">@Html.DisplayFor(model => model.Destination)</h2>
+                        @if (Model.VideoUrl != null)
+                        {
+                            <div class="slider-video">
+                                <div id="player"></div>
+                                <script>
+                                    // 2. This code loads the IFrame Player API code asynchronously.
+                                    var tag = document.createElement('script');
+                                    tag.src = "http://www.youtube.com/player_api";
+                                    var firstScriptTag = document.getElementsByTagName('script')[0];
+                                    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+                                    // 3. This function creates an <iframe> (and YouTube player)
+                                    //    after the API code downloads.
+                                    var player;
+                                    function onYouTubePlayerAPIReady() {
+                                        player = new YT.Player('player', {
+                                            playerVars: { 'rel': 0, 'autoplay': 1, 'showinfo': 0, 'autohide': 1, 'wmode': 'opaque' },
+                                            height: '165',
+                                            width: '293',
+                                            videoId: '@Model.VideoUrl',
+                                            events: {
+                                                'onReady': onPlayerReady
+                                            }
+                                        });
+                                    }
+
+                                    // 4. The API will call this function when the video player is ready.
+                                    function onPlayerReady(event) {
+                                        event.target.mute();
+                                    }
+                                </script>
+                            </div>
+                            @*<div id="sliderVideotitle">@Html.DisplayFor(model => model.VideoTitle)</div>*@
+                        }
+                        <div class="savings-box">
+                            <span class="savings-box-call">Save up to</span>
+                            <span class="savings-box-percentage">80%</span>
+                            <span class="savings-box-text">with our exclusive discounts on Vacation Packages to Mexico</span>
+                            <span class="savings-box-question">Why such a Great Deal?</span>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-9 col-md-8 col-sm-8">
+            <h1>@Html.DisplayFor(model => model.PageTitle)</h1><br />
+            @if (Model.Packages != null)
+            {
+                <div class="row">
+                    @foreach (var item in Model.Packages)
+                    {
+                        <div class="col-xs-12 col-md-6 col-lg-4">
+                            <figure class="tile-package">
+                                <a href="@item.Url" title="@item.Package">
+                                    <img class="tile-image img-responsive" src="@item.PictureUrl?width=480" alt="@item.Package" />
+                                </a>
+                                <figcaption class="tile-text">
+                                    <a href="@item.Url" title="@item.Package">
+                                        <h2>@Html.DisplayFor(modelItem => item.Package)</h2>
+                                        <span class="price">
+                                            $@Html.DisplayFor(modelItem => item.Price)
+
+                                        </span>
+                                        @Html.DisplayFor(modelItem => item.Stay)<br />@ePlatFront.Resources.Views.Shared.SharedStrings._for @Html.DisplayFor(modelItem => item.Guests)
+                                        <div class="tile-button">MORE DETAILS</div>
+                                    </a>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    }
+                </div>
+            }
+            <div id="destinationDescription">
+                @Html.Raw(Model.Content)
+            </div>
+        </div>
+        <aside class="col-lg-3 col-md-4 col-sm-4">
+            @*<img src="~/Content/themes/pvo/images/easter/easter-deals.png" style="width:262px; height:175px; margin-top: 30px; margin-bottom: 30px;">*@
+            <div class="call-us">
+                <span class="action">@ePlatFront.Resources.Views.Packages.PackagesStrings.Call_Now!</span><br />
+                <strong>@ePlatFront.Resources.Views.Packages.PackagesStrings.Book_Today</strong><br />
+                @ePlatFront.Resources.Views.Packages.PackagesStrings.Decide_travel_dates_later
+                <span class="phone-number phone-desktop hidden-xs hidden-sm">@Model.Template_Phone_Desktop</span>
+                <span class="phone-number phone-mobile hidden-md hidden-lg">@Model.Template_Phone_Mobile</span>
+            </div>
+            @Html.Partial("_FreeVacationPartial", Model.FreeVacationControl)
+            <div class="right-panel">
+                <a href="http://www.bbb.org/mexico/business-reviews/hotels-reservations/vg-vacation-services-in-puerto-vallarta-ja-332" target="_blank">
+                    <img src="/images/ab-seal-horizontal-large.jpg?w=400" alt="Better Business Bureau" style="border:none; width:200px;" />
+                </a>
+            </div>
+            @*<div class="right-panel">
+                <div class="trustpilot-widget" data-locale="en-US" data-template-id="5613c9cde69ddc09340c6beb" data-businessunit-id="560185cf0000ff00058398a0" data-style-height="100%" data-style-width="100%" data-theme="light">
+                    <a href="https://www.trustpilot.com/review/discountvacationhotels.com" target="_blank">Trustpilot</a>
+                </div>
+            </div>*@
+        </aside>
+    </div>
+</div>

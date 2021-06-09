@@ -1,0 +1,62 @@
+﻿@model ePlatBack.Models.ViewModels.PackageViewModel
+
+<table id="tblSearchPackagesResults" class="table">
+    <thead>
+        <tr>
+            <th>Package</th>
+            <th>Destination(s)</th>
+            <th>Nights</th>
+            <th>Description(s)</th>
+            <th>Settings</th>
+            <th>Active Prices</th>
+            <th>Pictures</th>
+            <th>Relevance</th>
+            <th>Active</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.SearchResults != null)
+        {
+            foreach (var i in Model.SearchResults)
+            {
+                var trID = "trPackage" + i.PackageID;
+                var tdID = "delP" + i.PackageID;
+            <tr id="@trID" >
+                <td>
+                    @Html.DisplayFor(model => i.Package)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.Destinations)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.Nights)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.Descriptions)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.Settings)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.Prices)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.Pictures)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.Relevance)
+                </td>
+                <td>
+                    @Html.DisplayTextFor(model => i.Active)
+                    @*@Html.DisplayFor(model => i.Active)*@
+                </td>
+                <td class="tds">
+                    <i class="material-icons" id="@tdID">delete</i>
+                    @*<img src="/Content/themes/base/images/cross.png">*@
+                </td>
+            </tr>
+            }
+        }
+    </tbody>
+</table>

@@ -1,0 +1,77 @@
+﻿@model ePlatBack.Models.ViewModels.WeeklyModel.SearchWeeklyModel
+
+@using (Ajax.BeginForm("SearchWeekly", "Reports", new AjaxOptions { OnSuccess = "REPORT.searchResultsTable(data);UI.applyFormat('currency')", UpdateTargetId = "divTblWeeklyResults" }, new { id = "frmSearchWeekly" }))
+{
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SearchWeekly_I_PresentationDate)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.SearchWeekly_I_PresentationDate, new { data_uses_date_picker = "true" })
+            @Html.TextBoxFor(model => model.SearchWeekly_F_PresentationDate, new { data_uses_date_picker = "true" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SearchWeekly_BookingStatus)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.SearchWeekly_BookingStatus, Model.SearchWeekly_DrpBookinStatus, new { style="height:68px", multiple="multiple"})
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SearchWeekly_LeadSource)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.SearchWeekly_LeadSource, Model.SearchWeekly_DrpLeadSources, new { multiple = "multiple" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SearchWeekly_Resort)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.SearchWeekly_Resort, Model.SearchWeekly_DrpResorts, new { multiple = "multiple" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SearchWeekly_AssignedToUser)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.SearchWeekly_AssignedToUser, Model.SearchWeekly_DrpAssignedToUsers, new { multiple = "multiple" })
+        </div>
+    </div>
+    <div class="editor-alignment align-from-top">
+        <div class="editor-field">
+            <input type="reset" value="reset" class="button" />
+            <input type="submit" class="button" value="search" />
+        </div>
+    </div>
+    <div class="download-file" style="display:none">
+        <a href="/content/files/data/Weekly_Report.csv" target="_blank">Download File</a>
+    </div>
+    <div id="divTblWeeklyResults" class="align-from-top">
+        <table id="tblNewWeeklyReport" class="table non-editable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Lead Source</th>
+                    <th>User</th>
+                    <th>Member Number</th>
+                    <th>Tour Status</th>
+                    <th>Final Tour Status</th>
+                    <th>Tour Date</th>
+                    <th>Real Tour Date</th>
+                    <th>Sales Volume</th>
+                    <th>Arrival Date</th>
+                    <th>Booking Status</th>
+                    <th>Resort</th>
+                    <th>Total Paid</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+}

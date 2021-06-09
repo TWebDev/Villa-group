@@ -1,0 +1,67 @@
+﻿@model ePlatBack.Models.ViewModels.EmailsViewModel
+
+<table id="tblSearchEmailNotificationsResults" class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Terminal</th>
+            <th>Point(s) Of Sale</th>
+            <th>Description</th>
+            <th>Resort(s)</th>
+            <th>BCC Accounts</th>
+            <th>Lead Source(s)</th>
+            <th>Lead Status</th>
+            <th>Broker Contract(s)</th>
+            <th>Booking Status</th>
+            <th>Is Active</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.SearchNotificationsResults != null)
+        {
+            foreach (var i in Model.SearchNotificationsResults)
+            {
+                var id = i.EmailNotificationInfo_EmailNotificationID;
+                <tr id="@id">
+                    <td>
+                        @Html.DisplayFor(model => i.EmailNotificationInfo_EmailNotificationID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.EmailNotificationInfo_TerminalText)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.EmailNotificationInfo_PointsOfSaleText)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.EmailNotificationInfo_Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.EmailNotificationInfo_ResortsText)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.EmailNotificationInfo_EmailAccounts)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.EmailNotificationInfo_LeadSourcesText)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.EmailNotificationInfo_LeadStatusText)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.EmailNotificationInfo_BrokerContractsText)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.EmailNotificationInfo_BookingStatusText)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(model => i.EmailNotificationInfo_IsActive)
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(model => i.EmailNotificationInfo_RequiredFieldsText)*@
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

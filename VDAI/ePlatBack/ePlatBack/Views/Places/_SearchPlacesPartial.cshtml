@@ -1,0 +1,53 @@
+﻿@model ePlatBack.Models.ViewModels.PlacesSearchModel
+
+<div class="full-width">
+    <input type="button" id="btnNewPlacesInfo" class="submit fieldset-expander right" value="New">
+</div>
+@using (Ajax.BeginForm("SearchPlaces", "Places", new AjaxOptions { OnSuccess = "PLACE.searchResultsTable(data)", OnComplete = "PLACE.makeTableRowsSelectable()", UpdateTargetId = "divTblExistingPlaces" }, new { id = "frmPlacesSearch" }))
+{
+    <div class="editor-alignment">
+    	<div class="editor-label">
+            @Html.HiddenFor(model => model.Search_Terminals)
+            @Html.LabelFor(model => model.Search_Place)
+    	</div>
+    	<div class="editor-field">
+            @Html.TextBoxFor(model => model.Search_Place)
+    	</div>
+    </div>
+    <div class="editor-alignment">
+    	<div class="editor-label">
+            @Html.LabelFor(model => model.Search_Destination)
+    	</div>
+    	<div class="editor-field">
+            @Html.DropDownListFor(model => model.Search_Destination, Model.Search_DrpDestinations)
+    	</div>
+    </div>
+    <div class="editor-alignment">
+    	<div class="editor-label">
+            @Html.LabelFor(model => model.Search_PlaceType)
+    	</div>
+    	<div class="editor-field">
+            @Html.DropDownListFor(model => model.Search_PlaceType, Model.Search_DrpPlaceTypes)
+    	</div>
+    </div>
+    <div class="editor-alignment align-from-top">
+    	<div class="editor-field">
+            <input type="submit" class="button terminals-dependent" id="btnSearchPlaces" value="search">
+    	</div>
+    </div>
+    <div id="divTblExistingPlaces" class="align-from-top">
+    	<table id="tblSearchPlacesResults" class="table">
+    		<thead>
+    			<tr>
+    				<th>Place</th>
+    				<th>Label</th>
+    				<th>Destination</th>
+    				<th>Zone</th>
+    				<th>Place Type</th>
+                    <th></th>
+    			</tr>
+    		</thead>
+    		<tbody></tbody>
+    	</table>
+    </div>
+}

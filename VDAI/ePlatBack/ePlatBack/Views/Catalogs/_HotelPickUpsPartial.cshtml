@@ -1,0 +1,165 @@
+﻿@model ePlatBack.Models.ViewModels.HotelPickUps.SearchHotels
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 border-bottom">
+    <h1 class="h2">Hotel Pick Ups</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <button type="button" class="btn btn-sm btn-outline-secondary" id="btnSearchHotelInfo" v-on:click="UI().showSearchCard()">
+            <i class="material-icons">search</i>
+        </button>
+    </div>
+</div>
+
+@using (Ajax.BeginForm("SearchHotelPickUps", "Catalogs", new AjaxOptions
+        {
+            OnSuccess = "HotelPickUps.setSearchResults(data)"
+        },
+        new { id = "frmHotelPickUpsSearch" }))
+{
+    <div class="card mb-2 search-card" v-bind:class="{ 'd-none' : !UIData.showSearchCard }">
+        <div class="card-body">
+            <h5 class="card-title">Search Hotels</h5>
+            <div class="form-row">
+                <div class="form-group col-md-3 col-lg-2">
+                    @Html.LabelFor(model => model.Search_HotelName)
+                    @Html.TextBoxFor(model => model.Search_HotelName, new { @class = "form-control" })
+                </div>
+                <div class="form-group col-md-3 col-lg-2">
+                    @Html.LabelFor(model => model.Search_TerminalID)
+                    <select id="Search_TerminalID" name="Search_TerminalID" class="form-control">
+                        <option value="">Any</option>
+                        <option v-for="t in Shared.Session.TerminalsList" v-bind:value="t.value">{{ t.label }}</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3 col-lg-2">
+                    @Html.LabelFor(model => model.Search_DestinationID)
+                    @Html.DropDownListFor(model => model.Search_DestinationID, new List<SelectListItem>(), new
+                    {
+                        @class = "form-control"
+                    })
+                </div>
+                <div class="form-group col-md-3 col-lg-2">
+                    @Html.LabelFor(model => model.Search_ZoneID)
+                    @Html.DropDownListFor(model => model.Search_ZoneID, new List<SelectListItem>(), new
+                    {
+                        @class = "form-control"
+                    })
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="text-right col">
+                    <input type="reset" class="btn" value="Clear" />
+                    <input type="submit" id="btnSearchHotels" class="btn btn-primary" value="Search" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="mt-3 card" v-if="Hotels.length > 0">
+    <div class="card-body">
+        <b-table id="tblHotels" responsive
+                 v-bind:items="Hotels"
+                 v-bind:fields="DataTable.fields"
+                 v-bind:bordered="DataTable.bordered"
+                 v-bind:striped="DataTable.striped"
+                 v-bind:hover="DataTable.hover"
+                 v-bind:sort-by.sync="DataTable.sortBy"
+                 v-bind:sort-desc.sync="DataTable.sortDesc"
+                 v-bind:current-page="DataTable.currentPage"
+                 v-bind:per-page="DataTable.perPage">
+            <template slot="destination" slot-scope="row">
+                <span class="form-row">
+                    <span class="form-group col">
+                        <select class="form-control form-control-sm mb-2" v-model="row.item.DestinationID" v-on:change="pendingChanges(row.item)">
+                            <option v-for="d in row.item.Destinations" v-bind:value="d.Value">{{ d.Text }}</option>
+                        </select>
+                        <select class="form-control form-control-sm" v-model="row.item.ZoneID" v-on:change="pendingChanges(row.item)">
+                            <option v-for="z in getZones(row.item.DestinationID)" v-bind:value="z.Value">{{ z.Text }}</option>
+                        </select>
+                    </span>
+                </span>
+            </template>
+            <template slot="pickup" slot-scope="row">
+                <span class="form-row">
+                    <span class="form-group col-md-6">
+
+                        <span class="blank-canvas bg-outline-secondary mb-2 d-block" v-bind:style="{ 'background-image': 'url(' + row.item.Picture + ')' }" style="background-repeat:no-repeat; background-position: center; background-size:cover;" v-if="row.item.Picture">
+                            <button type="button" class="btn w-100 h-100 btn-outline-secondary" data-toggle="modal" data-target="#uploadModal" v-on:click="openUploadModal(row.item)">
+                                <i class="material-icons text-light">photo_camera</i>
+                            </button>
+                        </span>
+                        <span v-if="!row.item.Picture" class="blank-canvas bg-outline-secondary mb-2 d-block">
+                            <button type="button" class="btn w-100 h-100 btn-outline-secondary" data-toggle="modal" data-target="#uploadModal" v-on:click="openUploadModal(row.item)">
+                                <i class="material-icons">photo_camera</i>
+                            </button>
+                        </span>
+
+                        <span class="blank-canvas bg-outline-secondary d-block" v-bind:style="{ 'background-image': 'url(https://maps.googleapis.com/maps/api/staticmap?center=' + row.item.Lat + ',' + row.item.Lng + '&zoom=18&size=640x400&maptype=hybrid&markers=color:red%7Clabel:H%7C' + row.item.Lat + ',' + row.item.Lng + '&key=AIzaSyAXoJHEOgj8zop9tUl-mOrpneZKlfhHpBM)' }" style="background-repeat:no-repeat; background-position: center; background-size:cover;" v-if="row.item.Lat">
+                            <button type="button" class="btn w-100 h-100 btn-outline-secondary" data-toggle="modal" data-target="#locationModal" v-on:click="openMapModal(row.item)">
+                                <i class="material-icons text-light">location_on</i>
+                            </button>
+                        </span>
+                        <span class="blank-canvas bg-outline-secondary d-block" v-if="!row.item.Lat">
+                            <button type="button" class="btn w-100 h-100 btn-outline-secondary" data-toggle="modal" data-target="#locationModal" v-on:click="openMapModal(row.item)">
+                                <i class="material-icons">location_on</i>
+                            </button>
+                        </span>
+                    </span>
+                    <span class="form-group col-md-6">
+                        <textarea class="form-control mb-2" placeholder="English Description" v-model="row.item.DescriptionENUS" style="height: 110px;" v-on:click="pendingChanges(row.item)"></textarea>
+                        <textarea class="form-control" placeholder="Spanish Description" v-model="row.item.DescriptionESMX" style="height: 110px;" v-on:click="pendingChanges(row.item)"></textarea>
+                    </span>
+                </span>
+            </template>
+            <template slot="actions" slot-scope="row">
+                <i class="material-icons" v-on:click.stop="updatePickUp(row.item)" style="cursor:pointer;" v-if="row.item.PendingChanges">save</i>
+            </template>
+        </b-table>
+        <b-pagination v-bind:total-rows="Hotels.length" v-bind:per-page="DataTable.perPage" v-model="DataTable.currentPage" class="my-0" />
+        {{ Hotels.length }} Hotels
+    </div>
+</div>
+
+<!-- Modal Upload Picture -->
+<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Upload Picture for {{ SelectedHotel.Hotel }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <div id="fine-uploader-basic" class="btn btn-success">
+                    <i class="material-icons">file_upload</i>Browse
+                </div>
+                <div id="messages"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" >OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Pick Location -->
+<div class="modal fade" id="locationModal" tabindex="-1" role="dialog" aria-labelledby="locationModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="locationModalLabel">Pick the location of the pick up for {{ SelectedHotel.Hotel }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <div id="map"></div>
+                <span class="text-muted d-block mt-3">{{ SelectedHotel.Lat }},{{ SelectedHotel.Lng }}</span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" v-on:click="savePickUpLocation()">OK</button>
+            </div>
+        </div>
+    </div>
+</div>

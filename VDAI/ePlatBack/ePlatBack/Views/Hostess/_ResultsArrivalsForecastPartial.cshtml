@@ -1,0 +1,83 @@
+﻿@model ePlatBack.Models.ViewModels.ArrivalsViewModel.ArrivalsForecast
+
+<table class="table exportable" style="display:none;">
+    <thead>
+        <tr>
+            <th>Arrival Date</th>
+            <th>Room Number</th>
+            <th>Nights</th>
+            <th>Guest</th>
+            <th>Adults</th>
+            <th>Children</th>
+            <th>Infants</th>
+            <th>Country</th>
+            <th>Agency Name</th>
+            <th>Market Code</th>
+            <th>Reservation Status</th>
+            <th>Room Type</th>
+            <th>Confirmation Number</th>
+            <th>CRS</th>
+            <th>Program</th>
+            <th>Check In Type</th>
+            <th>Q/NQ</th>
+            <th>NQ Reason</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var arrival in Model.Arrivals)
+        {
+            <tr>
+                <td>@arrival.ArrivalDate</td>
+                <td>@arrival.RoomNumber</td>
+                <td>@arrival.Nights</td>
+                <td>@arrival.Guest</td>
+                <td>@arrival.Adults</td>
+                <td>@arrival.Children</td>
+                <td>@arrival.Infants</td>
+                <td>@arrival.Country</td>
+                <td>@arrival.AgencyName</td>
+                <td>@arrival.Source</td>
+                <td>@arrival.ReservationStatus</td>
+                <td>@arrival.RoomType</td>
+                <td>@arrival.ConfirmationNumber</td>
+                <td>@arrival.Crs</td>
+                <td>@arrival.Program</td>
+                <td>@arrival.TravelSource</td>
+                <td>@(arrival.HostessQualificationStatusID == 2 ? "NQ" : "") </td>
+                <td>@arrival.NQReason</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="table-div">
+    <div class="table-row">
+        @foreach (var program in Model.Programs.OrderByDescending(x => x.Amount))
+        {
+            <div class="table-cell summary-template" style="min-width:120px;">
+                <div class="dashboard-total">@program.Amount</div>
+                <h3 class="title" style="margin-top:0;">@program.Program</h3>
+                <div class="content-item">
+                    @{int cti = 0;}
+                    @foreach (var checkinType in program.CheckInTypes.OrderByDescending(x => x.Percentage))
+                    {
+                        <div>
+                            <span class="right">@checkinType.Amount</span>
+                            @if (checkinType.TravelSourceID > 9000)
+                            {
+                                <strong>@checkinType.TravelSource </strong>
+                            }
+                            else
+                            {
+                                @checkinType.TravelSource
+                            }
+                        </div>
+                        <span class="bar-tag">@checkinType.Percentage%</span>
+                        <span class="bar bar-@cti" title="@checkinType.TravelSource" style="width: @(checkinType.Percentage * 100 / program.CheckInTypes.OrderByDescending(x => x.Percentage).FirstOrDefault().Percentage)%;"></span>
+                            cti++;
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>

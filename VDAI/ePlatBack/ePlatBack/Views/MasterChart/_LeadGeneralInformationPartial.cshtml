@@ -1,0 +1,1589 @@
+﻿@using ePlatBack.Models.Utils;
+@model ePlatBack.Models.ViewModels.LeadModel.Views.LeadGeneralInformation
+@{
+    var Privileges = ViewData["Privileges"] as List<ePlatBack.Models.ViewModels.SysComponentsPrivilegesModel>;
+}
+
+@using (
+    Ajax.BeginForm(
+        "SaveLead",
+        "CRM/Masterchart",
+        new AjaxOptions { OnSuccess = "RESPONSE_HANDLERS.saveLead(data);" },
+
+        new
+        {
+            id = "frmLeadGeneralInformation",
+            onSubmit = "return COMMON.beforeSubmit(this.id,event);",
+            //onSubmit = "return UI.showValidationSummary(this.id);",
+            @class = "non-printable"
+        }
+    )
+)
+{
+    <p class="full-width align-from-bottom">
+        <input type="button" id="btnNewLead" onclick="LEAD_GENERAL_INFORMATION.newLead()" class="submit-right marg-left" value="New Lead" />
+        @if (Privileges.FirstOrDefault(m => m.Component == "btnFastSale") == null || Privileges.FirstOrDefault(m => m.Component == "btnFastSale").View)
+        {
+            <input type="button" id="btnFastSale" class="modal right" value="quick sale" />
+        }
+    </p>
+    <fieldset data-on-collapse="closeSiblings" data-on-expand="closeBrothers" id="fdsLeadInformation">
+        <legend>
+            <a href="javascript:void(0)" class="legendLink">
+                <img class="fieldset-indicator" border="0" src="/Content/themes/base/images/eplat_hide.jpg" />
+                Lead Information
+            </a>
+        </legend>
+        <div>
+            @*@if (new ePlatBack.Models.ViewModels.LeadModel.Views.Search().ShowReservations == true)*@
+            @if (Privileges.FirstOrDefault(m => m.Component == "fdsLeadChangesHistory") == null || Privileges.FirstOrDefault(m => m.Component == "fdsLeadChangesHistory").View)
+            {
+
+                <fieldset data-on-collapse="closeSiblings" data-on-expand="closeBrothers" id="fdsLeadChangesHistory">
+                    <legend>
+                        <a href="javascript:void(0)" class="legendLink">
+                            <img class="fieldset-indicator" border="0" src="/Content/themes/base/images/eplat_show.jpg" />
+                            Lead Changes History
+                        </a>
+                    </legend>
+                    <div style="display: none">
+                        <table id="tblLeadChangesHistory" class="table dataTable">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Field
+                                    </th>
+                                    <th>
+                                        Previous Value
+                                    </th>
+                                    <th>
+                                        Current Value
+                                    </th>
+                                    <th>
+                                        Modified By User
+                                    </th>
+                                    <th>
+                                        Modification Date
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </fieldset>
+            }
+            @if (Privileges.FirstOrDefault(m => m.Component == "fdsLeadGeneralInformation") == null || Privileges.FirstOrDefault(m => m.Component == "fdsLeadGeneralInformation").View)
+            {
+                <fieldset data-on-collapse="closeSiblings" data-on-expand="closeBrothers" id="fdsLeadGeneralInformation">
+                    <legend>
+                        <a href="javascript:void(0)" class="legendLink">
+                            <img class="fieldset-indicator" border="0" src="/Content/themes/base/images/eplat_show.jpg" />
+                            Lead General Information
+                        </a>
+                    </legend>
+                    <div style="display: none">
+                        <div id="frmLeadGeneralInformation_ErrorMessages" style="display: none">
+                            @Html.ValidationSummary(true)
+                            @*@Html.ValidationSummary(false)*@
+                            @Html.ValidationMessageFor(model => model.GeneralInformation_FirstName)
+                            @Html.ValidationMessageFor(model => model.GeneralInformation_LastName)
+                            @Html.ValidationMessageFor(model => model.GeneralInformation_EmailsList)
+                            @Html.ValidationMessageFor(model => model.GeneralInformation_TerminalID)
+                            @Html.ValidationMessageFor(model => model.GeneralInformation_PhonesList)
+                            @*  @Html.ValidationMessageFor(model => model.GeneralInformation_FirstName)
+                                @Html.ValidationMessageFor(model => model.GeneralInformation_LastName,"*")
+                                @Html.ValidationMessageFor(model => model.GeneralInformation_Email,"*")
+                                @Html.ValidationMessageFor(model => model.GeneralInformation_TerminalID,"*")
+                                @Html.ValidationMessageFor(model => model.GeneralInformation_LeadStatusID,"*")
+                            *@
+                            @*
+                                partial validation errors
+                            *@
+                            @Html.ValidationMessageFor(model => model.GeneralInformation_PhoneNumbers.PhoneTypeID)
+                            @Html.ValidationMessageFor(model => model.GeneralInformation_PhoneNumbers.PhoneNumber)
+                            @Html.ValidationMessageFor(model => model.GeneralInformation_Interactions.BookingStatusID)
+                        </div>
+                        @Html.HiddenFor(model => model.GeneralInformation_LeadID, new { @class = "primary-selected-row-dependent" })
+                        @Html.HiddenFor(model => model.GeneralInformation_DuplicateLead, new { @class = "primary-selected-row-dependent", data_keep_value = "" })
+                        @Html.HiddenFor(model => model.GeneralInformation_InputMethodID, new { data_keep_value = "true" }) @* "_" is translated into "-", by MVC when rendering *@
+                        @*@Html.HiddenFor(model => model.GeneralInformation_LeadStatusID, new  {data_keep_value="true" })*@
+                        @*@Html.HiddenFor(model => model.GeneralInformation_LeadSourceID)*@
+                        @Html.HiddenFor(model => model.GeneralInformation_BookingStatusID)
+                        @Html.HiddenFor(model => model.GeneralInformation_ReferredByID, new { data_keep_value = "true" })
+                        @Html.HiddenFor(model => model.SpiCustomerID, new { @class = "primary-selected-row-dependent" })
+                        @Html.HiddenFor(model => model.SpiFrontOfficeGuestID, new { @class = "primary-selected-row-dependent" })
+                        @Html.HiddenFor(model => model.SpiFrontOfficeResortID, new { @class = "primary-selected-row-dependent" })
+                        @*@Html.HiddenFor(model => model.FrontOfficeGuestID, new { @class = "primary-selected-row-dependent" })
+                        @Html.HiddenFor(model => model.FrontOfficeResortID, new { @class = "primary-selected-row-dependent" })*@
+                        @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_Title") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_Title").Edit)
+                        {
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.GeneralInformation_Title)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.DropDownListFor(model => model.GeneralInformation_Title, Model.GeneralInformation_Titles)
+                                </div>
+                            </div>
+                        }
+                        else if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_Title") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_Title").View)
+                        {
+                            var title = Html.IdFor(model => model.GeneralInformation_Title).ToString();
+                            title += "_readOnly";
+
+                            @Html.DropDownList(title,
+                         Model.GeneralInformation_Titles,
+                                new { style = "display:none" }
+                            )
+                            <span data-text-source="@title"
+                                  data-read-only-text-for="@Html.IdFor(model => model.GeneralInformation_Title)" style="display:none"></span>
+                            @Html.HiddenFor(model => model.GeneralInformation_Title)
+
+                        }
+                        @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_FirstName") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_FirstName").View)
+                        {
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.GeneralInformation_FirstName)
+                                </div>
+
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(model => model.GeneralInformation_FirstName)
+
+                                </div>
+                            </div>
+                        }
+                        @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_LastName") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_LastName").View)
+                        {
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.GeneralInformation_LastName)
+
+                                </div>
+
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(model => model.GeneralInformation_LastName)
+
+                                </div>
+                            </div>
+                        }
+                        @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_TerminalID") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_TerminalID").View)
+                        {
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.GeneralInformation_TerminalID)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.DropDownListFor(model => model.GeneralInformation_TerminalID, Model.GeneralInformation_Terminals,
+                    new
+                        {
+                            @class = "terminal-dependent-list",
+                            data_cascading_group = Html.IdFor(model => model.GeneralInformation_TerminalID),
+                            data_keep_value = "",
+                            data_route = "/crm/MasterChart/GetDDLData",
+                            data_route_parameter = "selectedTerminals"
+                        })
+
+                                </div>
+                            </div>
+                        }
+                        @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_LeadStatusID") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_LeadStatusID").View)
+                        {
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.GeneralInformation_LeadStatusID)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.DropDownListFor(model => model.GeneralInformation_LeadStatusID, Model.GeneralInformation_LeadStatuses, new { data_keep_value = "" })
+                                </div>
+                            </div>
+                        }
+                        <div id="divAssignedToUser" class="editor-alignment" style="display:none">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.GeneralInformation_AssignedToUserID)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.GeneralInformation_AssignedToUserID, Model.GeneralInformation_DrpAssignedToUser)
+                            </div>
+                            <div>
+                                <input type="button" id="btnAcceptDuplicate" class="button" value="yes" style="float:left" />
+                                <input type="button" id="btnCancelDuplicate" class="button" value="no" style="float:right" />
+                            </div>
+                        </div>
+                        @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_CallClasificationID") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_CallClasificationID").View)
+                        {
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.GeneralInformation_CallClasificationID)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.DropDownListFor(model => model.GeneralInformation_CallClasificationID, Model.GeneralInformation_CallClasificationStatus)
+
+                                </div>
+                            </div>
+                        }
+                        @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_LeadStatusDescription") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_LeadStatusDescription").View)
+                        {
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.GeneralInformation_LeadStatusDescription)
+
+                                </div>
+
+                                <div class="editor-field">
+                                    @Html.EditorFor(model => model.GeneralInformation_LeadStatusDescription)
+
+                                </div>
+                            </div>
+                        }
+                        @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_LeadDescription") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_LeadDescription").View)
+                        {
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.GeneralInformation_LeadDescription)
+
+                                </div>
+
+                                <div class="editor-field">
+                                    @Html.EditorFor(model => model.GeneralInformation_LeadDescription)
+
+                                </div>
+                            </div>
+                        }
+                        @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_LeadSourceID") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_LeadSourceID").View)
+                        {
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.GeneralInformation_LeadSourceID)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.DropDownListFor(model => model.GeneralInformation_LeadSourceID, Model.GeneralInformation_LeadSources)
+
+                                </div>
+                            </div>
+                        }
+                        @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_brokerContractID") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_brokerContractID").View)
+                        {
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.GeneralInformation_brokerContractID)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.DropDownListFor(model => model.GeneralInformation_brokerContractID, Model.GeneralInformation_BrokerContracts,
+                new
+                        {
+                            data_cascading_group = Html.IdFor(model => model.GeneralInformation_TerminalID),
+                            data_cascading_parent = Html.IdFor(model => model.GeneralInformation_TerminalID),
+                            data_cascading_feeding_method = "/CRM/masterchart/GetBrokerContractsByTerminal",
+                            data_cascading_feeding_parameter_name = "terminalID"
+                        })
+                                </div>
+                            </div>
+                        }
+                        @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_TimeZoneID") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_TimeZoneID").View)
+                        {
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.GeneralInformation_TimeZoneID)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.DropDownListFor(model => model.GeneralInformation_TimeZoneID, Model.GeneralInformation_TimeZones)
+
+                                </div>
+                            </div>
+                        }
+                        @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_Confirmed") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_Confirmed").View)
+                        {
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.GeneralInformation_Confirmed)
+
+                                </div>
+
+                                <div class="editor-field">
+                                    @Html.CheckBoxFor(model => model.GeneralInformation_Confirmed)
+
+                                </div>
+                            </div>
+                        }
+                        @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_SubmissionForm") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_SubmissionForm").View)
+                        {
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.GeneralInformation_SubmissionForm)
+
+                                </div>
+
+                                <div class="editor-field">
+                                    @Html.CheckBoxFor(model => model.GeneralInformation_SubmissionForm)
+
+                                </div>
+                            </div>
+                        }
+                        @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_ActivityCert") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_ActivityCert").View)
+                        {
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.GeneralInformation_ActivityCert)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.CheckBoxFor(model => model.GeneralInformation_ActivityCert)
+                                </div>
+                            </div>
+                        }
+                        @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_OptionsTourDiscount") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_OptionsTourDiscount").View)
+                        {
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.GeneralInformation_OptionsTourDiscount)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.CheckBoxFor(model => model.GeneralInformation_OptionsTourDiscount)
+                                </div>
+                            </div>
+                        }
+                        @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_Address") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_Address").View)
+                        {
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.GeneralInformation_Address)
+
+                                </div>
+
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(model => model.GeneralInformation_Address)
+
+                                </div>
+                            </div>
+                        }
+                        @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_City") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_City").View)
+                        {
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.GeneralInformation_City)
+
+                                </div>
+
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(model => model.GeneralInformation_City)
+
+                                </div>
+                            </div>
+                        }
+                        @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_State") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_State").View)
+                        {
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.GeneralInformation_State)
+
+                                </div>
+
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(model => model.GeneralInformation_State, new { data_format = "free-case" })
+
+                                </div>
+                            </div>
+                        }
+                        @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_ZipCode") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_ZipCode").View)
+                        {
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.GeneralInformation_ZipCode)
+
+                                </div>
+
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(model => model.GeneralInformation_ZipCode, new { data_format = "upper-case" })
+
+                                </div>
+                            </div>
+                        }
+                        @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_countryID") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_countryID").View)
+                        {
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.GeneralInformation_countryID)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.DropDownListFor(model => model.GeneralInformation_countryID, Model.GeneralInformation_Countries)
+                                </div>
+                            </div>
+                        }
+                        @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_LeadComments") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_LeadComments").View)
+                        {
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.GeneralInformation_LeadComments)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextAreaFor(model => model.GeneralInformation_LeadComments)
+                                </div>
+                            </div>
+                        }
+                        @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_ReservationMadeDate") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_ReservationMadeDate").View)
+                        {
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.GeneralInformation_ReservationMadeDate)
+                                </div>
+                                @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_ReservationMadeDate") == null || !Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_ReservationMadeDate").Edit)
+                                {
+                                    <span data-read-only-text-for="@Html.IdFor(model => model.GeneralInformation_ReservationMadeDate)"></span>
+                                    @Html.HiddenFor(model => model.GeneralInformation_ReservationMadeDate)
+                                }
+                                else
+                                {
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.GeneralInformation_ReservationMadeDate, new { data_uses_date_picker = "true" })
+                                    </div>
+                                }
+                            </div>
+                        }
+                    </div>
+                </fieldset>
+            }
+            @*<fieldset id="fdsLeadGeneralInformation_SpouseInformation">
+                            <legend>
+                                <img class="fieldset-indicator" src="/Content/themes/base/images/eplat_show.jpg" />
+                                Spouse Information
+                            </legend>
+                            <div>
+                                Spouse Information Content
+                            </div>
+                </fieldset>*@
+            @if (Privileges.FirstOrDefault(m => m.Component == "fdsLeadGeneralInformation_ContactInformation") == null || Privileges.FirstOrDefault(m => m.Component == "fdsLeadGeneralInformation_ContactInformation").View)
+            {
+                <fieldset id="fdsLeadGeneralInformation_ContactInformation">
+                    <legend>
+                        <a href="javascript:void(0)" class="legendLink">
+                            <img class="fieldset-indicator" border="0" src="/Content/themes/base/images/eplat_show.jpg" />
+                            Contact Information
+                        </a>
+                    </legend>
+                    <div style="display: none">
+                        @if (Privileges.FirstOrDefault(m => m.Component == "fdsLeadGeneralInformation_ContactInformationEmails") == null || Privileges.FirstOrDefault(m => m.Component == "fdsLeadGeneralInformation_ContactInformationEmails").View)
+                        {
+                            <fieldset id="fdsLeadGeneralInformation_ContactInformationEmails">
+                                <legend>
+                                    <a href="javascript:void(0)" class="legendLink">
+                                        <img class="fieldset-indicator" border="0" src="/Content/themes/base/images/eplat_show.jpg" />
+                                        Email addresses
+                                    </a>
+                                </legend>
+                                <div style="display: none">
+                                    <div class="editor-alignment">
+                                        @Html.TextBoxFor(model => model.GeneralInformation_EmailsList, new { @class = "fakeDisplayNone", tabindex = "-1" })
+                                        <table id="tblGeneralInformation_Emails"
+                                               class="table"
+                                               data-table="true"
+                                               data-selected-row-index=""
+                                               data-items-name="email"
+                                               data-related-validation-field="GeneralInformation_EmailsList"
+                                               data-table-properties='{
+                                    "allowDuplicates":false
+                                }'
+                                               data-rows-properties='{
+                                    "showRemoveIcon":true,
+                                    "onRemoveCallBack":"UI.confirmRemoveFromTable",
+                                    "showEditIcon":true,
+                                    "onEditCallBack":"UI.editDataRow",
+                                "onRowEvents":{
+                                        "click":"UI.editDataRow"
+                                        }
+                                }'>
+                                            <thead>
+                                                <tr class="trheader">
+                                                    <th colspan="4">
+                                                        <label for="tblGeneralInformation_Emails">CURRENT EMAILS</label>
+                                                    </th>
+                                                </tr>
+                                                <tr data-row-type="columns">
+                                                    <th style="display: none" data-column-type="data"
+                                                        data-column-visible="false"
+                                                        data-column-properties='{
+                                    "name":"emailID",
+                                    "allowEmptyValues":true
+                                }'>
+                                                        EmailID
+                                                    </th>
+                                                    <th style="width: 200px"
+                                                        data-column-type="data"
+                                                        data-column-properties='{
+                                    "name":"email",
+                                    "sourceField":"GeneralInformation_Emails_Email",
+                                    "allowEmptyValues":false,
+                                    "warnOnDeleting":true,
+                                    "requiredAndUnique":true
+                                }'>
+                                                        @Html.DisplayNameFor(model => model.GeneralInformation_Emails.Email)
+                                                    </th>
+                                                    <th style="width: 200px"
+                                                        data-column-type="data"
+                                                        data-column-properties='{
+                                    "name":"main",
+                                    "sourceField":"GeneralInformation_Emails_Main",
+                                    "warnOnDeleting":true,
+                                    "requiredAndUniqueValue":true
+                                }'>
+                                                        @Html.DisplayNameFor(model => model.GeneralInformation_Emails.Main)
+                                                    </th>
+                                                    @*<th data-column-type="action"
+                                                        data-action-type="remove"></th>*@
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                        <div style="clear: both">
+                                            @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_Emails_Email") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_Emails_Email").View)
+                                            {
+                                                <div class="editor-alignment">
+                                                    <div class="editor-label">
+                                                        @Html.LabelFor(model => model.GeneralInformation_Emails.Email)
+                                                    </div>
+                                                    <div class="editor-field">
+                                                        @Html.TextBoxFor(model => model.GeneralInformation_Emails.Email, new { data_format = "lower-case" })
+                                                    </div>
+                                                </div>
+                                            }
+
+                                            <div class="editor-alignment">
+                                                @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_Emails_Main") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_Emails_Main").View)
+                                                {
+                                                    <div class="editor-label">
+                                                        @Html.LabelFor(model => model.GeneralInformation_Emails.Main)
+                                                    </div>
+                                                    <div class="editor-field">
+                                                        @Html.EditorFor(model => model.GeneralInformation_Emails.Main)
+                                                    </div>
+                                                }
+                                                @if (Privileges.FirstOrDefault(m => m.Component == "btnAddEmail") == null || Privileges.FirstOrDefault(m => m.Component == "btnAddEmail").View)
+                                                {
+                                                    <input type="button" id="btnAddEmail" class="button" data-table-button-type="add"
+                                                           data-table-group="tblGeneralInformation_Emails" value="ADD" />
+                                                }
+                                                @if (Privileges.FirstOrDefault(m => m.Component == "btnEmailNotSet") == null || Privileges.FirstOrDefault(m => m.Component == "btnEmailNotSet").View)
+                                                {
+                                                    <input type="button" id="btnEmailNotSet" class="button" value="NOT SET" />
+                                                }
+                                                @if (Privileges.FirstOrDefault(m => m.Component == "btnEmailUpdate") == null || Privileges.FirstOrDefault(m => m.Component == "btnEmailUpdate").View)
+                                                {
+                                                    <input id="btnEmailUpdate" type="button" class="button" data-table-button-type="update"
+                                                           data-table-group="tblGeneralInformation_Emails" value="UPDATE" />
+                                                }
+                                                @if (Privileges.FirstOrDefault(m => m.Component == "btnEmailCancel") == null || Privileges.FirstOrDefault(m => m.Component == "btnEmailCancel").View)
+                                                {
+                                                    <input id="btnEmailCancel" type="button" class="button" data-table-button-type="cancel"
+                                                           data-table-group="tblGeneralInformation_Emails" value="CANCEL" />
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        }
+                        @if (Privileges.FirstOrDefault(m => m.Component == "fdsLeadGeneralInformation_ContactInformationPhoneNumbers") == null || Privileges.FirstOrDefault(m => m.Component == "fdsLeadGeneralInformation_ContactInformationPhoneNumbers").View)
+                        {
+                            <fieldset id="fdsLeadGeneralInformation_ContactInformationPhoneNumbers">
+                                <legend>
+                                    <a href="javascript:void(0)" class="legendLink">
+                                        <img class="fieldset-indicator" border="0" src="/Content/themes/base/images/eplat_show.jpg" />
+                                        Phone Numbers
+                                    </a>
+                                </legend>
+                                <div style="display: none">
+                                    @Html.TextBoxFor(model => model.GeneralInformation_PhonesList, new { @class = "fakeDisplayNone", tabindex = "-1" })
+                                    <table id="tblGeneralInformation_Phones"
+                                           data-table="true"
+                                           class="table"
+                                           data-items-name="phone number"
+                                           data-related-validation-field="GeneralInformation_PhonesList"
+                                           data-table-properties='{
+                        "allowDuplicates":false
+                    }'
+                                           data-rows-properties='{
+                        "showRemoveIcon":false,
+                        "onRemoveCallBack":"UI.confirmRemoveFromTable",
+                        "onRowEvents":{
+                                        "click":"UI.editDataRow"
+                                        },
+                        "prependRowControls":{
+                                        "select":"UI.selectDataRow"
+                                        },
+                        "apendRowControls":{
+                                        "edit":"UI.editDataRow",
+                                        "remove":"UI.confirmRemoveFromTable"
+                                        }
+                    }'>
+                                        <thead>
+                                            <tr class="trheader">
+                                                <th colspan="7">
+                                                    <label for="tblGeneralInformation_Phones">CURRENT PHONE NUMBERS</label>
+                                                </th>
+                                            </tr>
+                                            <tr data-row-type="columns">
+                                                <th style="display: none" data-column-type="data"
+                                                    data-column-visible="false"
+                                                    data-column-properties='{
+                                    "name":"phoneID",
+                                    "allowEmptyValues":true
+                                }'>
+                                                    PhoneID
+                                                </th>
+                                                <th data-column-type="data"
+                                                    data-column-properties='{
+                                    "name":"phoneTypeID",
+                                    "sourceField":"GeneralInformation_PhoneNumbers_PhoneTypeID",
+                                    "required":true,
+                                    "initialValue":"0",
+                                    "warnOnDeleting":true
+                                }'>
+                                                    @Html.DisplayNameFor(model => model.GeneralInformation_PhoneNumbers.PhoneTypeID)
+                                                </th>
+                                                <th data-column-type="data"
+                                                    data-column-properties='{
+                                    "name":"phone",
+                                    "sourceField":"GeneralInformation_PhoneNumbers_PhoneNumber",
+                                    "allowEmptyValues":false,
+                                    "warnOnDeleting":true,
+                                    "requiredAndUnique":true
+                                }'>
+                                                    @Html.DisplayNameFor(model => model.GeneralInformation_PhoneNumbers.PhoneNumber)
+                                                </th>
+                                                <th data-column-type="data"
+                                                    data-column-properties='{
+                                    "name":"ext",
+                                    "sourceField":"GeneralInformation_PhoneNumbers_ExtensionNumber",
+                                    "warnOnDeleting":true,
+                                    "allowEmptyValues":true
+                                }'>
+                                                    @Html.DisplayNameFor(model => model.GeneralInformation_PhoneNumbers.ExtensionNumber)
+                                                </th>
+                                                <th style="width: 200px"
+                                                    data-column-type="data"
+                                                    data-column-properties='{
+                                    "name":"main",
+                                    "sourceField":"GeneralInformation_PhoneNumbers_Main",
+                                    "warnOnDeleting":true,
+                                    "requiredAndUniqueValue":true
+                                }'>
+                                                    @Html.DisplayNameFor(model => model.GeneralInformation_PhoneNumbers.Main)
+                                                </th>
+                                                <th style="width: 200px"
+                                                    data-column-type="data"
+                                                    data-column-properties='{
+                                    "name":"doNotCall",
+                                    "sourceField":"GeneralInformation_PhoneNumbers_DoNotCall",
+                                    "warnOnDeleting":true
+                                }'>
+                                                    @Html.DisplayNameFor(model => model.GeneralInformation_PhoneNumbers.DoNotCall)
+                                                </th>
+                                                @*<th data-column-type="action"
+                                                        data-action-type="remove"
+                                                        >
+                                                    </th>*@
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+
+                                    <div style="clear: both">
+                                        @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_PhoneNumbers_PhoneTypeID") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_PhoneNumbers_PhoneTypeID").View)
+                                        {
+                                            <div class="editor-alignment">
+                                                <div class="editor-label">
+                                                    @Html.LabelFor(model => model.GeneralInformation_PhoneNumbers.PhoneTypeID)
+                                                </div>
+                                                <div class="editor-field">
+                                                    @Html.DropDownListFor(model => model.GeneralInformation_PhoneNumbers.PhoneTypeID, Model.GeneralInformation_PhoneNumbers.PhoneTypes)
+                                                </div>
+                                            </div>
+                                        }
+                                        @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_PhoneNumbers_PhoneNumber") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_PhoneNumbers_PhoneNumber").View)
+                                        {
+                                            <div class="editor-alignment">
+                                                <div class="editor-label">
+                                                    @Html.LabelFor(model => model.GeneralInformation_PhoneNumbers.PhoneNumber)
+                                                </div>
+                                                <div class="editor-field">
+                                                    @Html.EditorFor(model => model.GeneralInformation_PhoneNumbers.PhoneNumber)
+                                                </div>
+                                            </div>
+                                        }
+                                        @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_PhoneNumbers_ExtensionNumber") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_PhoneNumbers_ExtensionNumber").View)
+                                        {
+                                            <div class="editor-alignment">
+                                                <div class="editor-label">
+                                                    @Html.LabelFor(model => model.GeneralInformation_PhoneNumbers.ExtensionNumber)
+                                                </div>
+                                                <div class="editor-field">
+                                                    @Html.EditorFor(model => model.GeneralInformation_PhoneNumbers.ExtensionNumber)
+                                                </div>
+                                            </div>
+                                        }
+                                        @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_PhoneNumbers_Main") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_PhoneNumbers_Main").View)
+                                        {
+                                            <div class="editor-alignment">
+                                                <div class="editor-label">
+                                                    @Html.LabelFor(model => model.GeneralInformation_PhoneNumbers.Main)
+                                                </div>
+                                                <div class="editor-field">
+                                                    @Html.EditorFor(model => model.GeneralInformation_PhoneNumbers.Main)
+                                                </div>
+                                            </div>
+                                        }
+                                        @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_PhoneNumbers_DoNotCall") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_PhoneNumbers_DoNotCall").View)
+                                        {
+                                            <div class="editor-alignment">
+                                                <div class="editor-label">
+                                                    @Html.LabelFor(model => model.GeneralInformation_PhoneNumbers.DoNotCall)
+                                                </div>
+                                                <div class="editor-field">
+                                                    @Html.EditorFor(model => model.GeneralInformation_PhoneNumbers.DoNotCall)
+                                                </div>
+                                            </div>
+                                        }
+                                        @if (Privileges.FirstOrDefault(m => m.Component == "btnAddPhone") == null || Privileges.FirstOrDefault(m => m.Component == "btnAddPhone").View)
+                                        {
+                                            <input type="button" id="btnAddPhone" class="button" data-table-button-type="add"
+                                                   data-table-group="tblGeneralInformation_Phones" value="ADD" />
+                                        }
+                                        @if (Privileges.FirstOrDefault(m => m.Component == "btnPhoneNotSet") == null || Privileges.FirstOrDefault(m => m.Component == "btnPhoneNotSet").View)
+                                        {
+                                            <input type="button" id="btnPhoneNotSet" class="button" value="not set" />
+                                        }
+                                        @if (Privileges.FirstOrDefault(m => m.Component == "btnPhoneUpdate") == null || Privileges.FirstOrDefault(m => m.Component == "btnPhoneUpdate").View)
+                                        {
+                                            <input id="btnPhoneUpdate" type="button" class="button" data-table-button-type="update"
+                                                   data-table-group="tblGeneralInformation_Phones" value="UPDATE" />
+                                        }
+                                        @if (Privileges.FirstOrDefault(m => m.Component == "btnPhoneCancel") == null || Privileges.FirstOrDefault(m => m.Component == "btnPhoneCancel").View)
+                                        {
+                                            <input id="btnPhoneCancel" type="button" class="button" data-table-button-type="cancel"
+                                                   data-table-group="tblGeneralInformation_Phones" value="CANCEL" />
+                                        }
+                                    </div>
+                                </div>
+                            </fieldset>
+                        }
+                        @if (Privileges.FirstOrDefault(m => m.Component == "fdsLeadGeneralInformation_MemberInformation") == null || Privileges.FirstOrDefault(m => m.Component == "fdsLeadGeneralInformation_MemberInformation").View)
+                        {
+                            <fieldset id="fdsLeadGeneralInformation_MemberInformation">
+                                <legend>
+                                    <a href="javascript:void(0)" class="legendLink">
+                                        <img class="fieldset-indicator" border="0" src="/Content/themes/base/images/eplat_show.jpg" />
+                                        Member Information
+                                    </a>
+                                </legend>
+                                <div style="display: none">
+                                    @*<div class="editor-alignment">
+                                            <div class="editor-label">
+                                                @Html.LabelFor(model => model.GeneralInformation_MemberInformation.ClubTypeID)
+                                            </div>
+                                            <div class="editor-field">
+                                                @Html.DropDownListFor(model => model.GeneralInformation_MemberInformation.ClubTypeID, Model.GeneralInformation_MemberInformation_View.ClubTypes)
+
+                                            </div>
+                                        </div>*@
+                                    @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_MemberInformation_ClubType") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_MemberInformation_ClubType").View)
+                                    {
+                                        <div class="editor-alignment">
+                                            <div class="editor-label">
+                                                @Html.LabelFor(model => model.GeneralInformation_MemberInformation.ClubType)
+                                            </div>
+                                            <div class="editor-field">
+                                                @Html.TextBoxFor(model => model.GeneralInformation_MemberInformation.ClubType)
+
+                                            </div>
+                                        </div>
+                                    }
+                                    @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_MemberInformation_CoOwner") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_MemberInformation_CoOwner").View)
+                                    {
+                                        <div class="editor-alignment">
+                                            <div class="editor-label">
+                                                @Html.LabelFor(model => model.GeneralInformation_MemberInformation.CoOwner)
+                                            </div>
+                                            <div class="editor-field">
+                                                @Html.TextBoxFor(model => model.GeneralInformation_MemberInformation.CoOwner)
+                                            </div>
+                                        </div>
+                                    }
+                                    @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_MemberInformation_MemberNumber") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_MemberInformation_MemberNumber").View)
+                                    {
+                                        <div class="editor-alignment">
+                                            <div class="editor-label">
+                                                @Html.LabelFor(model => model.GeneralInformation_MemberInformation.MemberNumber)
+
+                                            </div>
+
+                                            <div class="editor-field">
+                                                @Html.EditorFor(model => model.GeneralInformation_MemberInformation.MemberNumber)
+
+
+                                            </div>
+                                        </div>
+                                    }
+                                    @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_MemberInformation_MemberName") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_MemberInformation_MemberName").View)
+                                    {
+                                        <div class="editor-alignment">
+                                            <div class="editor-label">
+                                                @Html.LabelFor(model => model.GeneralInformation_MemberInformation.MemberName)
+                                            </div>
+                                            <div class="editor-field">
+                                                @Html.TextBoxFor(model => model.GeneralInformation_MemberInformation.MemberName)
+                                            </div>
+                                        </div>
+                                    }
+                                    @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_MemberInformation_ContractNumber") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_MemberInformation_ContractNumber").View)
+                                    {
+                                        <div class="editor-alignment">
+                                            <div class="editor-label">
+                                                @Html.LabelFor(model => model.GeneralInformation_MemberInformation.ContractNumber)
+                                            </div>
+                                            <div class="editor-field">
+                                                @Html.TextBoxFor(model => model.GeneralInformation_MemberInformation.ContractNumber)
+                                            </div>
+                                        </div>
+                                    }
+                                    @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_MemberInformation_IsNational") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_MemberInformation_IsNational").View)
+                                    {
+                                        <div class="editor-alignment">
+                                            <div class="editor-label">
+                                                @Html.LabelFor(model => model.GeneralInformation_MemberInformation.IsNational)
+
+                                            </div>
+
+                                            <div class="editor-field">
+                                                @Html.CheckBoxFor(model => model.GeneralInformation_MemberInformation.IsNational)
+
+                                            </div>
+                                        </div>
+                                    }
+                                    @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_MemberInformation_PresentationConfirmed") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_MemberInformation_PresentationConfirmed").View)
+                                    {
+                                        <div class="editor-alignment">
+                                            <div class="editor-label">
+                                                @Html.LabelFor(model => model.GeneralInformation_MemberInformation.PresentationConfirmed)
+
+                                            </div>
+
+                                            <div class="editor-field">
+                                                @Html.EditorFor(model => model.GeneralInformation_MemberInformation.PresentationConfirmed)
+
+                                            </div>
+                                        </div>
+                                    }
+                                    @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_MemberInformation_IsVIP") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_MemberInformation_IsVIP").View)
+                                    {
+                                        <div class="editor-alignment">
+                                            <div class="editor-label">
+                                                @Html.LabelFor(model => model.GeneralInformation_MemberInformation.IsVIP)
+
+                                            </div>
+
+                                            <div class="editor-field">
+                                                @Html.EditorFor(model => model.GeneralInformation_MemberInformation.IsVIP)
+
+                                            </div>
+                                        </div>
+                                    }
+                                    @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_MemberInformation_PushedToOnSiteConcierge") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_MemberInformation_PushedToOnSiteConcierge").View)
+                                    {
+                                        <div class="editor-alignment">
+                                            <div class="editor-label">
+                                                @Html.LabelFor(model => model.GeneralInformation_MemberInformation.PushedToOnSiteConcierge)
+
+                                            </div>
+
+                                            <div class="editor-field">
+                                                @Html.EditorFor(model => model.GeneralInformation_MemberInformation.PushedToOnSiteConcierge)
+
+                                            </div>
+                                        </div>
+                                    }
+                                    @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_MemberInformation_IsAllInclusive") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_MemberInformation_IsAllInclusive").View)
+                                    {
+                                        <div class="editor-alignment">
+                                            <div class="editor-label">
+                                                @Html.LabelFor(model => model.GeneralInformation_MemberInformation.IsAllInclusive)
+
+                                            </div>
+
+                                            <div class="editor-field">
+                                                @Html.EditorFor(model => model.GeneralInformation_MemberInformation.IsAllInclusive)
+
+                                            </div>
+                                        </div>
+                                    }
+                                    @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_MemberInformation_NeedsTransportation") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_MemberInformation_NeedsTransportation").View)
+                                    {
+                                        <div class="editor-alignment">
+                                            <div class="editor-label">
+                                                @Html.LabelFor(model => model.GeneralInformation_MemberInformation.NeedsTransportation)
+
+                                            </div>
+
+                                            <div class="editor-field">
+                                                @Html.EditorFor(model => model.GeneralInformation_MemberInformation.NeedsTransportation)
+
+                                            </div>
+                                        </div>
+                                    }
+                                    @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_MemberInformation_HasOptions") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_MemberInformation_HasOptions").View)
+                                    {
+                                        <div class="editor-alignment">
+                                            <div class="editor-label">
+                                                @Html.LabelFor(model => model.GeneralInformation_MemberInformation.HasOptions)
+
+                                            </div>
+
+                                            <div class="editor-field">
+                                                @Html.EditorFor(model => model.GeneralInformation_MemberInformation.HasOptions)
+
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </fieldset>
+                        }
+                    </div>
+                </fieldset>
+            }
+            @*<fieldset id="fdsLeadGeneralInformation_InternalControlInformation">
+                            <legend>
+                                <img class="fieldset-indicator" src="/Content/themes/base/images/eplat_show.jpg" />
+                                Internal Control Information
+                            </legend>
+                            <div>
+                                Internal Control Information Content
+                            </div>
+                </fieldset>*@
+
+                @*  <fieldset id="fdsLeadGeneralInformation_QualificationInformation">
+                                <legend>
+                                    <img class="fieldset-indicator" src="/Content/themes/base/images/eplat_show.jpg" />
+                                    Qualification Information
+                                </legend>
+                                <div>
+                                    Qualification Information Content
+                                </div>
+                    </fieldset>*@
+                @if (Privileges.FirstOrDefault(m => m.Component == "fdsLeadGeneralInformation_ReferralInformation") != null && Privileges.FirstOrDefault(m => m.Component == "fdsLeadGeneralInformation_ReferralInformation").View)
+                {
+                    <fieldset id="fdsLeadGeneralInformation_ReferralInformation">
+                        <legend>
+                            <a href="javascript:void(0)" class="legendLink">
+                                <img class="fieldset-indicator" border="0" src="/Content/themes/base/images/eplat_show.jpg" />
+                                Referral Information
+                            </a>
+                        </legend>
+
+
+
+                        <div style="display: none">
+                            <table id="tblGeneralInformation_ReferredBy"
+                                   class="table"
+                                   data-selected-row-index=""
+                                   data-items-name="lead"
+                                   data-source-name="referringLead"
+                                   data-table-properties='{
+                                    "allowDuplicates":false
+                                }'
+                                   data-rows-properties='{
+                                    "showRemoveIcon":false,
+                                    "onRemoveCallBack":"UI.confirmRemoveFromTable",
+                                    "showEditIcon":true,
+                                    "onEditCallBack":"UI.editDataRow","rowID":"ReservationID",
+                                    "onRowEvents":{
+                                        "click":"LEAD_GENERAL_INFORMATION.viewLead"
+                                        },"rowID":"LeadID"
+
+                                }'>
+                                <thead>
+                                    <tr class="trheader">
+                                        <th colspan="8">
+                                            <label for="tblGeneralInformation_Emails">THIS LEAD WAS REFERRED BY</label>
+                                        </th>
+                                    </tr>
+                                    <tr data-row-type="columns">
+                                        <th style="display: none" data-column-type="data"
+                                            data-column-visible="false"
+                                            data-column-properties='{
+                                    "name":"LeadID",
+                                    "allowEmptyValues":true
+                                }'>
+                                            LeadID
+                                        </th>
+                                        <th style="width: 200px"
+                                            data-column-type="data"
+                                            data-column-properties='{
+                                    "name":"FirstName",
+                                    "allowEmptyValues":false
+                                }'>
+                                            First Name
+                                        </th>
+                                        <th style="width: 200px"
+                                            data-column-type="data"
+                                            data-column-properties='{
+                                    "name":"LastName",
+                                    "allowEmptyValues":false
+                                }'>
+                                            Last Name
+                                        </th>
+                                        <th style="width: 200px"
+                                            data-column-type="data"
+                                            data-column-properties='{
+                                    "name":"Email",
+                                    "allowEmptyValues":false
+                                }'>
+                                            Email
+                                        </th>
+                                        <th style="width: 200px"
+                                            data-column-type="data"
+                                            data-column-properties='{
+                                    "name":"Phone",
+                                    "allowEmptyValues":false
+                                }'>
+                                            Phone
+                                        </th>
+                                        <th style="width: 200px"
+                                            data-column-type="data"
+                                            data-column-properties='{
+                                    "name":"BookingStatus",
+                                    "allowEmptyValues":false
+                                }'>
+                                            Booking Status
+                                        </th>
+                                        <th style="width: 200px"
+                                            data-column-type="data"
+                                            data-column-properties='{
+                                    "name":"LeadStatus",
+                                    "allowEmptyValues":false
+                                }'>
+                                            Lead Status
+                                        </th>
+                                        <th style="width: 200px"
+                                            data-column-type="data"
+                                            data-column-properties='{
+                                    "name":"LeadSource",
+                                    "allowEmptyValues":false
+                                }'>
+                                            Lead Source
+                                        </th>
+                                        <th style="width: 200px"
+                                            data-column-type="data"
+                                            data-column-properties='{
+                                    "name":"ArrivalDate",
+                                    "allowEmptyValues":false
+                                }'>
+                                            Arrival Date
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                            <div>
+                                @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_ReferralInformation_ReferralRelationShip") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_ReferralInformation_ReferralRelationShip").View)
+                                {
+                                    <div class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.GeneralInformation_ReferralInformation.ReferralRelationShip)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.EditorFor(model => model.GeneralInformation_ReferralInformation.ReferralRelationShip)
+                                        </div>
+                                    </div>
+                                }
+                                @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_ReferralInformation_ReferredByComment") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_ReferralInformation_ReferredByComment").View)
+                                {
+                                    <div class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.GeneralInformation_ReferralInformation.ReferredByComment)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.TextAreaFor(model => model.GeneralInformation_ReferralInformation.ReferredByComment)
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </fieldset>
+                }
+                @if (Privileges.FirstOrDefault(m => m.Component == "fdsLeadGeneralInformation_CurrentReferrals") != null && Privileges.FirstOrDefault(m => m.Component == "fdsLeadGeneralInformation_CurrentReferrals").View)
+                {
+                    <fieldset id="fdsLeadGeneralInformation_CurrentReferrals" style="display: none">
+                        <legend>
+                            <a href="javascript:void(0)" class="legendLink">
+                                <img class="fieldset-indicator" border="0" src="/Content/themes/base/images/eplat_show.jpg" />
+                                Current Referrals
+                            </a>
+                        </legend>
+                        <div style="display: none">
+                            @if (Privileges.FirstOrDefault(m => m.Component == "tblGeneralInformation_Referrals") == null || Privileges.FirstOrDefault(m => m.Component == "tblGeneralInformation_Referrals").View)
+                            {
+                                <table id="tblGeneralInformation_Referrals"
+                                       class="table"
+                                       data-table="true"
+                                       data-selected-row-index=""
+                                       data-items-name="referral"
+                                       data-source-name="currentReferrals"
+                                       data-table-properties='{
+                                    "allowDuplicates":false
+                                }'
+                                       data-rows-properties='{
+                                    "showRemoveIcon":false,
+                                    "onRemoveCallBack":"UI.confirmRemoveFromTable",
+                                    "showEditIcon":true,
+                                    "onEditCallBack":"UI.editDataRow","rowID":"ReservationID",
+                                    "onRowEvents":{
+                                        "click":"LEAD_GENERAL_INFORMATION.editReferral"
+                                        },"rowID":"LeadID"
+
+                                }'>
+                                    <thead>
+                                        <tr class="trheader">
+                                            <th colspan="8">
+                                                <label for="tblGeneralInformation_Emails">CURRENT REFERRALS</label>
+                                            </th>
+                                        </tr>
+                                        <tr data-row-type="columns">
+                                            <th style="display: none" data-column-type="data"
+                                                data-column-visible="false"
+                                                data-column-properties='{
+                                    "name":"LeadID",
+                                    "allowEmptyValues":true
+                                }'>
+                                                LeadID
+                                            </th>
+                                            <th style="width: 200px"
+                                                data-column-type="data"
+                                                data-column-properties='{
+                                    "name":"FirstName",
+                                    "allowEmptyValues":false
+                                }'>
+                                                First Name
+                                            </th>
+                                            <th style="width: 200px"
+                                                data-column-type="data"
+                                                data-column-properties='{
+                                    "name":"LastName",
+                                    "allowEmptyValues":false
+                                }'>
+                                                Last Name
+                                            </th>
+                                            <th style="width: 200px"
+                                                data-column-type="data"
+                                                data-column-properties='{
+                                    "name":"Email",
+                                    "allowEmptyValues":false
+                                }'>
+                                                Email
+                                            </th>
+                                            <th style="width: 200px"
+                                                data-column-type="data"
+                                                data-column-properties='{
+                                    "name":"Phone",
+                                    "allowEmptyValues":false
+                                }'>
+                                                Phone
+                                            </th>
+                                            <th style="width: 200px"
+                                                data-column-type="data"
+                                                data-column-properties='{
+                                    "name":"BookingStatus",
+                                    "allowEmptyValues":false
+                                }'>
+                                                Booking Status
+                                            </th>
+                                            <th style="width: 200px"
+                                                data-column-type="data"
+                                                data-column-properties='{
+                                    "name":"LeadStatus",
+                                    "allowEmptyValues":false
+                                }'>
+                                                Lead Status
+                                            </th>
+                                            <th style="width: 200px"
+                                                data-column-type="data"
+                                                data-column-properties='{
+                                    "name":"LeadSource",
+                                    "allowEmptyValues":false
+                                }'>
+                                                Lead Source
+                                            </th>
+                                            <th style="width: 200px"
+                                                data-column-type="data"
+                                                data-column-properties='{
+                                    "name":"ArrivalDate",
+                                    "allowEmptyValues":false
+                                }'>
+                                                Arrival Date
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            }
+                            @if (Privileges.FirstOrDefault(m => m.Component == "btnNewReferrals") == null || Privileges.FirstOrDefault(m => m.Component == "btnNewReferrals").View)
+                            {
+                                <input id="btnNewReferrals" type="button" value="New Referral" class="submit-right">
+                            }
+                        </div>
+                    </fieldset>
+                }
+                @if (Privileges.FirstOrDefault(m => m.Component == "fdsLeadGeneralInformation_LastContractInformation") != null && Privileges.FirstOrDefault(m => m.Component == "fdsLeadGeneralInformation_LastContractInformation").View)
+                {
+                    <fieldset id="fdsLeadGeneralInformation_LastContractInformation">
+                        <legend>
+                            <a href="javascript:void(0)" class="legendLink">
+                                <img class="fieldset-indicator" border="0" src="/Content/themes/base/images/eplat_show.jpg" />
+                                Last Contract Information
+                            </a>
+                        </legend>
+                        <div style="display: none">
+                            @*<div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.GeneralInformation_MemberInformation.ClubTypeID)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.GeneralInformation_MemberInformation.ClubTypeID, Model.GeneralInformation_MemberInformation_View.ClubTypes)
+
+                                    </div>
+                                </div>*@
+                            @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_LastContractInformation_TravelDate") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_LastContractInformation_TravelDate").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.GeneralInformation_LastContractInformation.TravelDate)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.GeneralInformation_LastContractInformation.TravelDate, new { data_uses_date_picker = "true", data_uses_date_picker_time = "false" })
+
+                                    </div>
+                                </div>
+                            }
+                            @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_LastContractInformation_PresentationDate") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_LastContractInformation_PresentationDate").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.GeneralInformation_LastContractInformation.PresentationDate)
+
+                                    </div>
+
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.GeneralInformation_LastContractInformation.PresentationDate, new { data_uses_date_picker = "true", data_uses_date_picker_time = "false" })
+
+                                    </div>
+                                </div>
+                            }
+                            @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_LastContractInformation_UpgradeDate") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_LastContractInformation_UpdgradeDate").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.GeneralInformation_LastContractInformation.UpgradeDate)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.GeneralInformation_LastContractInformation.UpgradeDate, new { data_uses_date_picker = "true", data_uses_date_picker_time = "false" })
+                                    </div>
+                                </div>
+                            }
+                            @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_LastContractInformation_UpgradeVolume") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_LastContractInformation_UpgradeVolume").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.GeneralInformation_LastContractInformation.UpgradeVolume)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.EditorFor(model => model.GeneralInformation_LastContractInformation.UpgradeVolume)
+                                    </div>
+                                </div>
+                            }
+                            @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_LastContractInformation_ContractNumber") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_LastContractInformation_ContractNumber").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.GeneralInformation_LastContractInformation.ContractNumber)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.EditorFor(model => model.GeneralInformation_LastContractInformation.ContractNumber)
+                                    </div>
+                                </div>
+                            }
+                            @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_LastContractInformation_SalesCenter") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_LastContractInformation_SalesCenter").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.GeneralInformation_LastContractInformation.SalesCenter)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.GeneralInformation_LastContractInformation.SalesCenter)
+                                    </div>
+                                </div>
+                            }
+                            @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_LastContractInformation_LegacyKey") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_LastContractInformation_LegacyKey").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.GeneralInformation_LastContractInformation.LegacyKey)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.GeneralInformation_LastContractInformation.LegacyKey, new { data_format = "upper-case" })
+                                    </div>
+                                </div>
+                            }
+                            @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_LastContractInformation_UsageType") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_LastContractInformation_UsageType").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.GeneralInformation_LastContractInformation.UsageType)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.EditorFor(model => model.GeneralInformation_LastContractInformation.UsageType)
+                                    </div>
+                                </div>
+                            }
+                            @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_LastContractInformation_Category") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_LastContractInformation_Category").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.GeneralInformation_LastContractInformation.Category)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.EditorFor(model => model.GeneralInformation_LastContractInformation.Category)
+                                    </div>
+                                </div>
+                            }
+                            @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_LastContractInformation_Season") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_LastContractInformation_Season").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.GeneralInformation_LastContractInformation.Season)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.EditorFor(model => model.GeneralInformation_LastContractInformation.Season)
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </fieldset>
+                }
+                @* <fieldset id="fdsLeadGeneralInformation_BillingInformation">
+                                <legend>
+                                    <img class="fieldset-indicator" src="/Content/themes/base/images/eplat_show.jpg" />
+                                    Billing Information
+                                </legend>
+                                <div>
+                                    Billing Information Content
+                                </div>
+                    </fieldset>*@
+                    @* <fieldset id="fdsLeadGeneralInformation_QualificationRequirements">
+                                    <legend>
+                                        <img class="fieldset-indicator" src="/Content/themes/base/images/eplat_show.jpg" />
+                                        Qualification Requirements
+                                    </legend>
+                                    <div>
+                                        Qualification Requirements Content,
+                                    </div>
+                        </fieldset>*@
+                    @if (Privileges.FirstOrDefault(m => m.Component == "fdsCommunicationInteractionsWithLead") == null || Privileges.FirstOrDefault(m => m.Component == "fdsCommunicationInteractionsWithLead").View)
+                    {
+                        <fieldset data-on-collapse="closeSiblings" data-on-expand="closeBrothers" id="fdsCommunicationInteractionsWithLead">
+                            <legend>
+                                <a href="javascript:void(0)" class="legendLink">
+                                    <img class="fieldset-indicator" border="0" src="/Content/themes/base/images/eplat_show.jpg" />
+                                    Communciation Interactions With Lead
+                                </a>
+                            </legend>
+                            <div style="display: none">
+                                <div class="editor-alignment">
+                                    @Html.TextBoxFor(model => model.GeneralInformation_InteractionsList, new { @class = "fakeDisplayNone" })
+                                    <table id="tblGeneralInformation_Interactions"
+                                           class="table"
+                                           data-table="true"
+                                           data-selected-row-index=""
+                                           data-items-name="interaction"
+                                           data-related-validation-field="GeneralInformation_InteractionsList"
+                                           data-table-properties='{
+                                    "allowDuplicates":true
+                                }'
+                                           data-rows-properties='{
+                                           "showRemoveIcon":false,
+                                           "onRemoveCallBack":"UI.confirmRemoveFromTable",
+                                           "showEditIcon":false,
+                                           "onEditCallBack":"UI.editDataRow",
+                                           "blockEditOnSavedRows":true,
+                                           "onRowEvents":{
+                                           "click":"UI.editDataRow"
+                                           }
+                                           }'>
+                                        <thead>
+                                            <tr class="trheader">
+                                                <th colspan="6">
+                                                    <label for="tblGeneralInformation_Interactions">CURRENT INTERACTIONS</label>
+                                                </th>
+                                            </tr>
+                                            <tr data-row-type="columns">
+                                                @*<th style="display: none" data-column-type="data"
+                                                                        data-column-visible="false"
+                                                                        data-column-properties='{
+                                                        "name":"interactionID",
+                                                        "allowEmptyValues":true
+                                                    }'>
+                                                                        InteractionID
+                                                                    </th>*@
+                                                <th style="display: none" data-column-type="data"
+                                                    data-column-visible="false"
+                                                    data-column-properties='{
+                                            "name":"InteractionID","allowEmptyValues":true
+                                            }'>
+                                                    InteractionID
+                                                </th>
+                                                <th @*style="width: 200px"*@
+                                                    data-column-type="data"
+                                                    data-column-properties='{"name":"InteractionTypeID",
+                                    "sourceField":"GeneralInformation_Interactions_InteractionTypeID",
+                                    "allowEmptyValues":false,
+                                    "warnOnDeleting":true
+                                }'>
+                                                    @Html.DisplayNameFor(model => model.GeneralInformation_Interactions.InteractionTypeID)
+                                                </th>
+                                                <th @*style="width: 200px"*@
+                                                    data-column-type="data"
+                                                    data-column-properties='{"name":"BookingStatusID",
+                                    "sourceField":"GeneralInformation_Interactions_BookingStatusID",
+                                    "warnOnDeleting":true
+                                }'>
+                                                    @Html.DisplayNameFor(model => model.GeneralInformation_Interactions.BookingStatusID)
+                                                </th>
+                                                <th @*style="width: 200px"*@
+                                                    data-column-type="data"
+                                                    data-column-properties='{"name":"InteractedWithUserID",
+                                    "sourceField":"GeneralInformation_Interactions_InteractedWithUserID",
+                                    "warnOnDeleting":true
+                                }'>
+                                                    @Html.DisplayNameFor(model => model.GeneralInformation_Interactions.InteractedWithUserID)
+                                                </th>
+
+                                                <th @* style="width: 200px"*@
+                                                    data-column-type="data"
+                                                    data-column-properties='{"name":"InteractionComments",
+                                    "sourceField":"GeneralInformation_Interactions_InteractionComments",
+                                    "warnOnDeleting":true
+                                }'>
+                                                    @Html.DisplayNameFor(model => model.GeneralInformation_Interactions.InteractionComments)
+                                                </th>
+                                                <th @*style="width: 200px"*@
+                                                    data-column-type="data"
+                                                    data-column-properties='{
+                                                    "name":"SavedByUserID",
+                                                    "sourceField":"GeneralInformation_Interactions_SavedByUserID",
+                                                    "allowEmptyValues":true
+                                                    }'>
+                                                    @Html.DisplayNameFor(model => model.GeneralInformation_Interactions.SavedByUserID)
+                                                </th>
+                                                <th @*style="width: 200px"*@
+                                                    data-column-type="data"
+                                                    data-column-properties='{"name":"InteractionDateSaved","allowEmptyValues":true,"usesTime":true,
+                                                    "sourceField":"GeneralInformation_Interactions_InteractionDateSaved"
+                                            }'>
+                                                    @Html.DisplayNameFor(model => model.GeneralInformation_Interactions.InteractionDateSaved)
+                                                </th>
+                                                @*<th data-column-type="action"
+                                                    data-action-type="remove"></th>*@
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                    <div style="clear: both">
+                                        @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_Interactions_InteractionTypeID") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_Interactions_InteractionTypeID").View)
+                                        {
+                                            <div class="editor-alignment">
+                                                <div class="editor-label">
+                                                    @Html.LabelFor(model => model.GeneralInformation_Interactions.InteractionTypeID)
+                                                </div>
+                                                <div class="editor-field">
+                                                    @Html.DropDownListFor(model => model.GeneralInformation_Interactions.InteractionTypeID, Model.GeneralInformation_Interactions.InteractionTypes)
+                                                </div>
+                                            </div>
+                                        }
+                                        @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_Interactions_BookingStatusID") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_Interactions_BookingStatusID").View)
+                                        {
+                                            <div class="editor-alignment">
+                                                <div class="editor-label">
+                                                    @Html.LabelFor(model => model.GeneralInformation_Interactions.BookingStatusID)
+                                                </div>
+                                                <div class="editor-field">
+                                                    @Html.DropDownListFor(model => model.GeneralInformation_Interactions.BookingStatusID, Model.GeneralInformation_Interactions.BookingStatus)
+                                                </div>
+                                            </div>
+                                        }
+                                        @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_Interactions_InteractedWithUserID") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_Interactions_InteractedWithUserID").View)
+                                        {
+                                            <div class="editor-alignment">
+                                                <div class="editor-label">
+                                                    @Html.LabelFor(model => model.GeneralInformation_Interactions.InteractedWithUserID)
+                                                </div>
+                                                <div class="editor-field">
+                                                    @Html.DropDownListFor(model => model.GeneralInformation_Interactions.InteractedWithUserID, Model.GeneralInformation_Interactions.Users)
+                                                </div>
+                                            </div>
+                                            @*<div class="editor-alignment" style="display:none">
+                                                <div class="editor-label">
+                                                    @Html.LabelFor(model => model.GeneralInformation_Interactions.SavedByUserID)
+                                                </div>
+                                                <div class="editor-field">
+                                                    @Html.DropDownListFor(model => model.GeneralInformation_Interactions.SavedByUserID, Model.GeneralInformation_Interactions.Users)
+                                                </div>
+                                            </div>*@
+                                        }
+                                        @if (Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_Interactions_InteractionComments") == null || Privileges.FirstOrDefault(m => m.Component == "GeneralInformation_Interactions_InteractionComments").View)
+                                        {
+                                            <div class="editor-alignment">
+                                                <div class="editor-label">
+                                                    @Html.LabelFor(model => model.GeneralInformation_Interactions.InteractionComments)
+                                                </div>
+                                                <div class="editor-field">
+                                                    @Html.TextAreaFor(model => model.GeneralInformation_Interactions.InteractionComments)
+                                                </div>
+                                            </div>
+                                        }
+                                        <div class="editor-alignment">
+                                            @if (Privileges.FirstOrDefault(m => m.Component == "btnInteractionAdd") == null || Privileges.FirstOrDefault(m => m.Component == "btnInteractionAdd").View)
+                                            {
+                                                <input id="btnInteractionAdd" type="button" class="button" data-table-button-type="add"
+                                                       data-table-group="tblGeneralInformation_Interactions" value="ADD" />
+                                            }
+                                            @if (Privileges.FirstOrDefault(m => m.Component == "btnInteractionUpdate") == null || Privileges.FirstOrDefault(m => m.Component == "btnInteractionUpdate").View)
+                                            {
+                                                <input id="btnInteractionUpdate" type="button" class="button" data-table-button-type="update"
+                                                       data-table-group="tblGeneralInformation_Interactions" value="UPDATE" />
+                                            }
+                                            @if (Privileges.FirstOrDefault(m => m.Component == "btnInteractionCancel") == null || Privileges.FirstOrDefault(m => m.Component == "btnInteractionCancel").View)
+                                            {
+                                                <input id="btnInteractionCancel" type="button" class="button" data-table-button-type="cancel"
+                                                       data-table-group="tblGeneralInformation_Interactions" value="CANCEL" />
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    }
+                    <div class="full-width">
+                        @if (Privileges.FirstOrDefault(m => m.Component == "btnDuplicateLead") != null && Privileges.FirstOrDefault(m => m.Component == "btnDuplicateLead").View)
+                        {
+                            <input type="button" id="btnDuplicateLead" class="submit right marg-left" value="Duplicate Lead" />
+                        }
+                        @if (Privileges.FirstOrDefault(m => m.Component == "btnSaveLead") == null || Privileges.FirstOrDefault(m => m.Component == "btnSaveLead").View)
+                        {
+                            @*<input type="submit" id="btnSaveLead" class="button-form" value="Save Lead" />*@
+                            <input type="submit" id="btnSaveLead" class="submit right marg-left" value="Save Lead" />
+                        }
+                        @if (Privileges.FirstOrDefault(m => m.Component == "btnSaveContinueLead") == null || Privileges.FirstOrDefault(m => m.Component == "btnSaveContinueLead").View)
+                        {
+                            @*<input type="button" id="btnSaveContinueLead" class="button-form" value="Save & Continue" />*@
+                            <input type="button" id="btnSaveContinueLead" class="submit right" value="Save & Continue" />
+                        }
+                    </div>
+                </div>
+            </fieldset>
+}

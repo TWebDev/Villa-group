@@ -1,0 +1,42 @@
+﻿@model IEnumerable<ePlatBack.Models.ViewModels.PackageItemViewModel>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+            <figure class="tile-package wow bounceInUp">
+                <a href="@item.Url" title="@item.Package">
+                    <img class="tile-image img-responsive" src="//eplatfront.villagroup.com/@item.PictureUrl?width=480" alt="@item.Package" />
+                </a>
+                <figcaption class="tile-text">
+                    <a href="@item.Url" title="@item.Package">
+                        <h2>@Html.DisplayFor(modelItem => item.Package)</h2>
+                        <span class="tile-package-price">
+                            <span class="retail-price">$@Html.DisplayFor(modelItem => item.RetailPrice)</span>
+                            <span class="price">
+                                $@Html.DisplayFor(modelItem => item.Price)
+                            </span>
+                            <br />
+                            PER COUPLE
+                            <span class="reviews-rate">
+                                <img src="/content/themes/mex/images/stars_full.png" alt="star" />
+                                <img src="/content/themes/mex/images/stars_full.png" alt="star" />
+                                <img src="/content/themes/mex/images/stars_full.png" alt="star" />
+                                <img src="/content/themes/mex/images/stars_full.png" alt="star" />
+                                <img src="/content/themes/mex/images/stars_full.png" alt="star" />
+                            </span>
+                            @*<br />
+                            @Html.DisplayFor(modelItem => item.Stay)*@
+                        </span>
+                        <span class="tile-package-description">
+                            <span class="tile-destination">@item.Destination @item.PlanType</span>
+                            <span class="tile-wash">@Html.DisplayFor(modelItem => item.Stay) @ePlatFront.Resources.Views.Shared.SharedStrings._for @Html.DisplayFor(modelItem => item.Guests)</span>
+                            <span class="tile-includes">@Html.Raw(item.Includes)</span>
+                            <span class="tile-button">MORE DETAILS</span>
+                        </span>
+                    </a>
+                </figcaption>
+            </figure>
+        </div>
+    }
+</div>

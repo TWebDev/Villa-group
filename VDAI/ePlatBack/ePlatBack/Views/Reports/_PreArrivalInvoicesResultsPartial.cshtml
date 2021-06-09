@@ -1,0 +1,88 @@
+﻿@model ePlatBack.Models.ViewModels.PreArrivalReport
+
+@if (Model.ListManifest != null)
+{
+    var sum = Model.ListManifest.Sum(m => decimal.Parse(m.PricePaid.Split(' ')[0]));
+    var count = Model.ListManifest.Count();
+    <table id="tblPreArrivalInvoices" class="exportable">
+        <thead>
+            <tr>
+                <th>Invoices: @Html.DisplayFor(model => count)</th>
+                <th colspan="12"></th>
+                <th data-format="currency" title="Volume Sold">@Html.DisplayFor(model => sum)</th>
+                <th></th>
+            </tr>
+            <tr>
+                <th>Merchant Account</th>
+                <th>Payment Type</th>
+                <th>Invoice Number</th>
+                <th>Purchase Date</th>
+                <th>Travelers</th>
+                <th>Resort</th>
+                <th>Arrival Date</th>
+                <th>Departure Date</th>
+                <th>Confirmation Number</th>
+                <th>Certificate Number</th>
+                <th>Assigned To</th>
+                <th>Charged By</th>
+                <th>Member Number</th>
+                <th>Amount</th>
+                <th>Reference</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var i in Model.ListManifest)
+            {
+                var _class = i.Paid ? "" : "mb-warning";
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => i.MerchantAccount)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.PaymentType)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.InvoiceNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.PurchaseDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.Passengers)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.Resort)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.ArrivalDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.DepartureDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.ConfirmationNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.CertificateNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.AssignedToUser)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.ChargedByUser)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.MemberNumber)
+                </td>
+                <td class="@_class" data-format="currency">
+                    @Html.DisplayFor(model => i.PricePaid)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.TransactionReference)
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+}

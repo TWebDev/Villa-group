@@ -1,0 +1,48 @@
+﻿@model ePlatBack.Models.ViewModels.CouponFoliosModel.SearchCouponFoliosModel
+
+<table id="tblSearchCouponFoliosResults" class="table search-results">
+    <thead>
+        <tr>
+            <th>From Folio</th>
+            <th>To Folio</th>
+            <th>Serial</th>
+            <th>Delivered</th>
+            <th>Generated</th>
+            <th>Available</th>
+            <th>Company</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ListCouponFolios != null)
+        {
+            foreach (var i in Model.ListCouponFolios)
+            {
+                var id = "couponFolio_" + i.CouponFoliosInfo_CouponFolioID;
+                <tr id="@id">
+                    <td>
+                        @Html.DisplayFor(model => i.CouponFoliosInfo_FromFolio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.CouponFoliosInfo_ToFolio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.CouponFoliosInfo_Serial)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.CouponFoliosInfo_Delivered)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.CouponFoliosInfo_Generated)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.CouponFoliosInfo_Available)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.CouponFoliosInfo_CompanyText)
+                        <img src="/Content/themes/base/images/cross.png" class="right delete-item" />
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

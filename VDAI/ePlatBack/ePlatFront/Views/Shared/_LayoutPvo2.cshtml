@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+<html lang="@ViewBag.Culture">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="keywords" content="@ViewBag.Keywords">
+    <meta name="description" content="@ViewBag.Description">
+    <meta name="robots" content="@ViewBag.Index, @ViewBag.Follow">
+    <!--[if lt IE 9]>
+        <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="~/Content/themes/pvo/css/main2.css?v=190211" rel="stylesheet" />
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+    @Styles.Render("~/Content/themes/base/datepicker")
+
+    @RenderSection("header", required: false)
+
+    <style type="text/css">
+        /*Christmas styles*/
+        /*img.christmas-1,
+        img.christmas-2,
+        img.christmas-3,
+        img.christmas-4 {
+            width: 50px;
+            position: absolute;
+            margin-left: 234px;
+            margin-top: -15px;
+        }*/
+
+
+
+        /*img.halloween-1 {
+            position: absolute;
+            margin: -15px 0 0 210px;
+        }*/
+
+        .phantom {
+            position: absolute;
+            width: 95px;
+            margin: 40px 0 0 180px;
+        }
+    </style>
+    <script src="//cdn.letspin.io/js/main/19a5a8e190fb931f16a05ffb248d49df.js"></script>
+</head>
+<body>
+    @*onload="_googWcmGet('phone-desktop', '1-855-283-2170')"*@
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11&appId=162061067851907';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    @RenderSection("afterBody", required: false)
+    <header class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @{if (ViewBag.Culture == "en")
+                    {
+                        <a href="/" class="navbar-brand">
+                            <img src="@ViewBag.Logo" class="logo-image" width="190" alt="PremiumVacationsOnline.com" />
+                        </a>
+                    }
+                    else
+                    {
+                        <img src="@ViewBag.Logo" class="logo-image" width="150" alt="PremiumVacationsOnline.com" />
+                    }
+                }
+            </div>
+            <nav id="bs-navbar" class="collapse navbar-collapse">
+                <div class="nav navbar-right hidden-xs">
+                    @Html.Raw(@ViewBag.Header)
+                </div>
+                <ul class="nav navbar-nav">
+                    <li><a href="/packages/puerto-vallarta" title="Puerto Vallarta Vacation Packages">Puerto Vallarta</a></li>
+                    <li><a href="/packages/cabo-san-lucas" title="Los Cabos Vacation Packages">Los Cabos</a></li>
+                    <li><a href="/packages/cancun" title="Cancun Vacation Packages">Cancun</a></li>
+                    <li><a href="/packages/riviera-maya" title="Riviera Maya Vacation Packages">Riviera Maya</a></li>
+                    <li><a href="/journal" title="Blog">Blog</a></li>
+                    <li><a id="aQuoteRequest" title="Request a Quote" data-toggle="modal" data-target="#quoteRequest">@ePlatFront.Resources.Views.Shared.SharedStrings.Request_a_Quote</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    @RenderSection("featured", required: false)
+    <div id="body">
+        @RenderBody()
+    </div>
+    <div class="controls">
+        @RenderSection("controls", required: false)
+    </div>
+    <div class="hidden-sm hidden-md hidden-lg phone-box">
+        <span class="phone-box-call">
+            <span class="phone-box-t1">Book Today</span>
+            <span class="phone-box-t2">Decide your dates later</span>
+        </span>
+        @Html.Raw(@ViewBag.Header)
+    </div>
+    <footer>
+        <div class="container">
+            <div class="pull-right" style="margin-top:10px;">
+                <div class="fb-like" data-href="@Request.Url.AbsoluteUri" data-layout="button_count" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
+                <a href="https://www.bbb.org/mexico/business-reviews/hotels-reservations/net-center-in-puerto-vallarta-ja-332?bluerefx=1" target="_blank">
+                    <img src="/images/ab-seal-horizontal-large.jpg?w=100" alt="Better Business Bureau" style="border:none;" />
+                </a>
+                @*<img alt="Cinco de Mayo Special" src="~/Content/themes/pvo/images/cinco-de-mayo.png" class="presidents-tag" />*@
+            </div>
+            <p style="width:50%;">Copyright &copy; @DateTime.Now.Year Premium Vacations Online. @ePlatFront.Resources.Views.Shared.SharedStrings.All_Rights_Reserved.<br />All prices are US Dollars.<br /><a href="/terms-and-conditions">TERMS &amp; CONDITIONS</a><br /> <span class="footer-terms">@Html.Raw(@ViewBag.Footer)</span></p>
+
+        </div>
+    </footer>
+
+    @*@Scripts.Render("~/bundles/modernizr")*@
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/controls.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!-- MyLiveChat-->
+    @*<script type="text/javascript" async="async" defer="defer" data-cfasync="false" src="https://mylivechat.com/chatinline.aspx?hccid=48557891"></script>*@
+    <script type="text/javascript">
+        function add_chatinline() { var hccid = 48557891; var nt = document.createElement("script"); nt.async = true; nt.src = "https://mylivechat.com/chatinline.aspx?hccid=" + hccid; var ct = document.getElementsByTagName("script")[0]; ct.parentNode.insertBefore(nt, ct); }
+        add_chatinline();</script>
+
+    <script src="~/Content/themes/pvo/js/pvo-banners.js?v=191017"></script>
+    @RenderSection("scripts", required: false)
+    <script>
+        //special banner
+        function getCookie(name) {
+            var value = "; " + document.cookie;
+            var parts = value.split("; " + name + "=");
+            if (parts.length == 2) return parts.pop().split(";").shift();
+        }
+
+                    //$('body').append('<div id="special" style="display: none; position: fixed; bottom: -175px; right: 13px;"><span alt="close" class="close" style="background-color: rgba(255,255,255,.5); margin-left: -50px; padding: 0.4em 0.5em .4em .7em; opacity: 0.99; text-align: center; margin-top: 0;">&times;</span><img src="/content/themes/pvo/images/halloween/halloween-2018.png" alt="Halloween" style="width: 236px;" /></div>');
+                    //$('#special').fadeIn('fast').animate({ bottom: '35px' }, 300);
+                    //$('#special .close').off('click').on('click', function () {
+                    //    $('#special').fadeOut('fast');
+                    //});
+                    //(getCookie('dvh_campaign') != undefined ? getCookie('dvh_campaign') : "gsh")
+
+                    ///*Halloween Scripts*/
+                    //$('.tile-package a[title="Cancun Palm All Inclusive"]').eq(0).parent().prepend('<img src="/content/themes/pvo/images/halloween/hw181.png" class="halloween-1" />');
+
+                    //$('.tile-package a[title="Cancun Bel All Inclusive"]').eq(0).parent().prepend('<img src="/content/themes/pvo/images/halloween/hw182.png" class="halloween-1" />');
+
+                    //$('.tile-package a[title="Beachfront Cabo All Inclusive"]').eq(0).parent().prepend('<img src="/content/themes/pvo/images/halloween/hw183.png" class="halloween-1" />');
+
+                    //$('.tile-package a[title="Grand Hotel & Spa All Inclusive"]').eq(0).parent().prepend('<img src="/content/themes/pvo/images/halloween/hw181.png" class="halloween-1" />');
+
+                    //$('.tile-package a[title="San Jose All Inclusive"]').eq(0).parent().prepend('<img src="/content/themes/pvo/images/halloween/halloween-6.gif" class="halloween-6" />');
+
+                    //$('.tile-package a[title="Grand Hotel & Spa All Inclusive"]').eq(0).parent().prepend('<img src="/content/themes/pvo/images/halloween/halloween-3.gif" class="halloween-3" />');
+    </script>
+</body>
+</html>

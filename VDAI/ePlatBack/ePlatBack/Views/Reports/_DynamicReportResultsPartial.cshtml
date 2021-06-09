@@ -1,0 +1,33 @@
+@model ePlatBack.Models.ViewModels.DynamicModel.DynamicResults
+Total: @Html.DisplayFor(model => model.SearchTotalRows) Row(s)
+<table id="tableSearchDynamicResults" class="table">
+    <thead>
+        <tr>
+            @if (Model.ListDynamicResults.Count > 0)
+            {
+                foreach (var i in Model.ListDynamicResults.FirstOrDefault())
+                {
+                <th>
+                    @Html.DisplayFor(model => i.Key)
+                </th>
+                }
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ListDynamicResults.Count > 0)
+        {
+            foreach (var i in Model.ListDynamicResults)
+            {
+<tr>
+                @foreach (var a in i)
+                {
+<td>
+                        @Html.DisplayFor(model => a.Value)
+                </td>
+                }
+            </tr>
+            }
+        }
+    </tbody>
+</table>

@@ -1,0 +1,90 @@
+﻿@model ePlatBack.Models.ViewModels.PreArrivalReport
+@if (Model.ListManifest != null)
+{
+    foreach (var table in Model.ListManifest.GroupBy(m => m.FlightType))
+    {
+        var header = table.Key == "1" ? "Arrivals" : "Departures";
+        var id = "tblTransportations" + table.Key;
+        var cols = table.Key == "1" ? 12 : 13;
+
+        <table id="@id" class="table dataTable non-editable non-selectable exportable" style="margin-bottom:30px !important;">
+            <thead>
+                <tr><th colspan="@cols">@header</th></tr>
+                <tr>
+                    <th>Date</th>
+                    <th>Passenger(s) Name(s)</th>
+                    <th>Confirmation Number</th>
+                    <th>Resort</th>
+                    <th>Option(s)</th>
+                    @if (table.FirstOrDefault().Terminals.Contains(80))
+                    {
+                        <th>Volume</th>
+                    }
+                    <th>Airline</th>
+                    <th>Flight Number</th>
+                    <th>Flight Date</th>
+                    <th>Flight Time</th>
+                    @if (table.Key == "2")
+                    {
+                        <th>PickUp Time</th>
+                    }
+                    <th>Passengers</th>
+                    <th>Comments</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var i in table)
+                {
+                    var datetime = i.FlightDateTime + " " + i.PickUpTime;
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(model => i.ArrivalDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => i.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => i.ConfirmationNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => i.Resort)
+                        </td>
+                        <td>
+                            @Html.Raw(i.Options)
+                        </td>
+                        @if (i.Terminals.Contains(80))
+                        {
+                            <td data-format="currency">
+                                @Html.DisplayFor(model => i.SalesVolume)
+                            </td>
+                        }
+                        <td>
+                            @Html.DisplayFor(model => i.Airline)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => i.FlightNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => i.FlightDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => i.FlightTime)
+                        </td>
+                        @if (table.Key == "2")
+                        {
+                            <td>
+                                @Html.DisplayFor(model => i.PickUpTime)
+                            </td>
+                        }
+                        <td>
+                            @Html.DisplayFor(model => i.NumberOfPassengers)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => i.FlightComments)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}

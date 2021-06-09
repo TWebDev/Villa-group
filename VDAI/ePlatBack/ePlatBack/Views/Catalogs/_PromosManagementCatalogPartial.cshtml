@@ -1,0 +1,215 @@
+﻿@model ePlatBack.Models.ViewModels.PromosModel.PromoInfoModel
+
+<fieldset id="fdsPromosInfo">
+    <legend>
+        <img src="~/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        Promo Info
+    </legend>
+    <div style="display:none" class="align-from-top">
+        @using (Ajax.BeginForm("SavePromo", "Catalogs", new AjaxOptions { OnSuccess = "CATALOG.savePromoSuccess(data)" }, new { id = "frmPromoInfo", onSubmit = "return UI.showValidationSummary(this.id);" }))
+        {
+            <div id="frmPromoInfo_ErrorMessages" style="display:none">
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PromoInfo_Terminal)
+                    @Html.HiddenFor(model => model.PromoInfo_PromoID)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.PromoInfo_Terminal, Model.PromoInfo_DrpTerminals)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PromoInfo_Promo)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.PromoInfo_Promo)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PromoInfo_FromDateBW)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.PromoInfo_FromDateBW)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PromoInfo_ToDateBW)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.PromoInfo_ToDateBW)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PromoInfo_FromDateTW)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.PromoInfo_ToDateTW)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PromoInfo_Amount)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.PromoInfo_Amount)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PromoInfo_Currency)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.PromoInfo_Currency, Model.PromoInfo_DrpCurrencies)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PromoInfo_Percentage)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.PromoInfo_Percentage)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PromoInfo_AnyPrice)
+                </div>
+                <div class="editor-field">
+                    <label>Yes</label>
+                    @Html.RadioButtonFor(model => model.PromoInfo_AnyPrice, true, new { data_keep_value = "" })
+                    <label>No</label>
+                    @Html.RadioButtonFor(model => model.PromoInfo_AnyPrice, false, new { data_keep_value = "" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PromoInfo_WholeStay)
+                </div>
+                <div class="editor-field">
+                    <label>Yes</label>
+                    @Html.RadioButtonFor(model => model.PromoInfo_WholeStay, true, new { data_keep_value = "" })
+                    <label>No</label>
+                    @Html.RadioButtonFor(model => model.PromoInfo_WholeStay, false, new { data_keep_value = "" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PromoInfo_PerNight)
+                </div>
+                <div class="editor-field">
+                    <label>Yes</label>
+                    @Html.RadioButtonFor(model => model.PromoInfo_PerNight, true, new { data_keep_value = "" })
+                    <label>No</label>
+                    @Html.RadioButtonFor(model => model.PromoInfo_PerNight, false, new { data_keep_value = "" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PromoInfo_Combinable)
+                </div>
+                <div class="editor-field">
+                    <label>Yes</label>
+                    @Html.RadioButtonFor(model => model.PromoInfo_Combinable, true, new { data_keep_value = "" })
+                    <label>No</label>
+                    @Html.RadioButtonFor(model => model.PromoInfo_Combinable, false, new { data_keep_value = "" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="weekdays-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PromoInfo_Monday)
+                    </div>
+                    <div class="editor-field">
+                        @Html.CheckBoxFor(model => model.PromoInfo_Monday)
+                    </div>
+                </div>
+                <div class="weekdays-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PromoInfo_Tuesday)
+                    </div>
+                    <div class="editor-field">
+                        @Html.CheckBoxFor(model => model.PromoInfo_Tuesday)
+                    </div>
+                </div>
+                <div class="weekdays-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PromoInfo_Wednesday)
+                    </div>
+                    <div class="editor-field">
+                        @Html.CheckBoxFor(model => model.PromoInfo_Wednesday)
+                    </div>
+                </div>
+                <div class="weekdays-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PromoInfo_Thursday)
+                    </div>
+                    <div class="editor-field">
+                        @Html.CheckBoxFor(model => model.PromoInfo_Thursday)
+                    </div>
+                </div>
+                <div class="weekdays-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PromoInfo_Friday)
+                    </div>
+                    <div class="editor-field">
+                        @Html.CheckBoxFor(model => model.PromoInfo_Friday)
+                    </div>
+                </div>
+                <div class="weekdays-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PromoInfo_Saturday)
+                    </div>
+                    <div class="editor-field">
+                        @Html.CheckBoxFor(model => model.PromoInfo_Saturday)
+                    </div>
+                </div>
+                <div class="weekdays-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PromoInfo_Sunday)
+                    </div>
+                    <div class="editor-field">
+                        @Html.CheckBoxFor(model => model.PromoInfo_Sunday)
+                    </div>
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PromoInfo_Publish)
+                </div>
+                <div class="editor-field">
+                    <label>Yes</label>
+                    @Html.RadioButtonFor(model => model.PromoInfo_Publish, true, new { data_keep_value = "" })
+                    <label>No</label>
+                    @Html.RadioButtonFor(model => model.PromoInfo_Publish, false, new { data_keep_value = "" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PromoInfo_PromoCode)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.PromoInfo_PromoCode)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PromoInfo_applyOnPerson)
+                </div>
+                <div class="editor-field">
+                    <label>Yes</label>
+                    @Html.RadioButtonFor(model => model.PromoInfo_applyOnPerson, true, new { data_keep_value = "" })
+                    <label>No</label>
+                    @Html.RadioButtonFor(model => model.PromoInfo_applyOnPerson, false, new { data_keep_value = "" })
+                </div>
+            </div>
+            <div class="editor-alignment full-width">
+                <input type="submit" class="submit right" value="save" id="btnSavePromo" />
+            </div>
+        }
+    </div>
+</fieldset>

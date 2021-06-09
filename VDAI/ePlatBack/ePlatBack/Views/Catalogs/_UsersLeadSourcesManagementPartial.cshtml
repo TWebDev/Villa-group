@@ -1,0 +1,75 @@
+﻿@model ePlatBack.Models.ViewModels.UsersLeadSources.UserLeadSources
+
+<fieldset id="fdsUserLeadSourceInfo" class="primary-selected-row-dependent">
+    <legend>
+        <img src="~/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        User-LeadSource Info
+    </legend>
+    <div style="display:none" class="align-from-top">
+        @using (Ajax.BeginForm("SaveUserLeadSource", "Catalogs", new AjaxOptions { OnSuccess = "CATALOG.saveUserLeadSourceSuccess(data);" }, new { id="frmUserLeadSourceInfo" }))
+        {
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Users)
+                    @Html.HiddenFor(model => model.User_LeadSourceID, new { @class = "secondary-selected-row-dependent" })
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.Users, Model.ListUsers, new { multiple = "multiple" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Resorts)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.Resorts, Model.ListResorts, new { multiple = "multiple" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.LeadSources)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.LeadSources, Model.ListLeadSources, new { multiple = "multiple" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.FromDate)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.FromDate, new { data_uses_date_picker = "true" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.ToDate)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.ToDate, new { data_uses_date_picker = "true", @class = "to-date" })
+                </div>
+            </div>
+            <div class="editor-alignment full-width">
+                <div class="editor-field">
+                    <input type="submit" class="submit right" value="save" />
+                </div>
+            </div>
+            <div style="display:none" id="divCloseRule">
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.ToDate)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBox("txtToDate", new { type = "date", min = DateTime.Today, @class="to-date" })
+                    </div>
+                </div>
+                <div>
+                    <div class="editor-field right align-from-top">
+                        <input type="button" id="btnSaveRule" class="submit" value="save" />
+                        <input type="button" id="btnCancelClose" class="button" value="cancel" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</fieldset>

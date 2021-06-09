@@ -1,0 +1,505 @@
+﻿<!DOCTYPE html>
+<html lang="@ViewBag.Culture">
+<head>
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="keywords" content="@ViewBag.Keywords">
+    <meta name="description" content="@ViewBag.Description">
+    <meta name="robots" content="@ViewBag.Index, @ViewBag.Follow">
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+    <link href="~/Content/themes/hm/css/main.css" rel="stylesheet" />
+    @RenderSection("header", required: false)
+</head>
+<body>
+    @RenderSection("afterBody", required: false)
+    <header>
+        <section>
+            <div class="navbar-fixed">
+                <nav class="white-nav">
+                    <div class="top-nav hide-on-med-and-down">
+                        <div class="container">
+                            <div id="topBar" class="row">
+                                <div class="col l10 top-menu social" style="height:25px;">
+                                    <ul>
+                                        <li></li>
+                                        <li style="margin-top: 4px;">
+                                            <a class=" dropdown-button waves-effect" href="#!" data-activates="dropdown_social" title="Social Media">
+                                                <i style="line-height:20px;" class="material-icons">share</i>
+                                            </a><ul id="dropdown_social" class="dropdown-content" style="top: 40px !important;">
+                                                <li>
+                                                    <a class="waves-effect" href="https://www.facebook.com/HotelMousai/" title="Facebook">
+                                                        <i class="fa fa-facebook-official right" aria-hidden="true"></i>
+                                                        Facebook
+                                                    </a>
+                                                </li>
+                                                <li class="divider"></li>
+                                                <li>
+                                                    <a class="waves-effect" href="https://twitter.com/HotelMousai" title="Twitter">
+                                                        <i class="fa fa-twitter right" aria-hidden="true"></i>
+                                                        Twitter
+                                                    </a>
+                                                </li>
+                                                <li class="divider"></li>
+                                                <li>
+                                                    <a class="waves-effect" href="https://instagram.com/hotelmousai" title="Instagram">
+                                                        <i class="fa fa-instagram right" aria-hidden="true"></i>
+                                                        Instagram
+                                                    </a>
+                                                </li>
+                                                <li class="divider"></li>
+                                                <li>
+                                                    <a class="waves-effect" href="https://plus.google.com/+Hotelmousai" title="Google Plus">
+                                                        <i class="fa fa-google-plus-official right" aria-hidden="true"></i>
+                                                        Google Plus
+                                                    </a>
+                                                </li>
+                                                <li class="divider"></li>
+                                                <li>
+                                                    <a class="waves-effect" href="https://www.youtube.com/c/HotelMousai" title="Youtube">
+                                                        <i class="fa fa-youtube-play right" aria-hidden="true"></i>
+                                                        Youtube
+                                                    </a>
+                                                </li>
+                                                <li class="divider"></li>
+                                                <li>
+                                                    <a class="waves-effect" href="https://www.tripadvisor.com/UserReviewEdit-g150793-d6002592-ehttp:__2F____2F__www__2E__tripadvisor__2E__com__2E__mx__2F__Hotel__5F__Review__2D__g150793__2D__d6002592__2D__Reviews__2D__Hotel__5F__Mousai__2D__Puerto__5F__Vallarta__2E__html-Hotel_Mousai-Puerto_Vallarta.html" title="Tripadvisor">
+                                                        <i class="fa fa-newspaper-o  right" aria-hidden="true"></i>
+                                                        Tripadvisor
+                                                    </a>
+                                                </li>
+                                                <li class=" divider"></li>
+                                            </ul>
+
+                                        </li>
+                                        <li>
+                                            <a class="waves-effect" href="https://www.hotelmousai.com/blog" title="Blog">
+                                                Blog
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="waves-effect" href="https://www.hotelmousai.com/live-cam" title="@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Live_Cam">
+                                                @ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Live_Cam
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="waves-effect" href="https://www.hotelmousai.com/virtual-tour-puerto-vallarta" title="@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Virtual_Tour">
+                                                @ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Virtual_Tour
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="waves-effect" href="https://www.hotelmousai.com/puerto-vallarta-weather" title="@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Weather">
+                                                @ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Weather
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="waves-effect" href="https://www.hotelmousai.com/airport-pickup" title="@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Airport_Pickup">
+                                                @ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Airport_Pickup
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="waves-effect" href="https://www.hotelmousai.com/why-book-with-us" title="@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Why_us_">
+                                                @ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Why_us_
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="waves-effect" href="https://www.hotelmousai.com/contact" title="@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Contact">
+                                                @ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Contact
+
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="waves-effect" href="http://booking.hotelmousai.com/bookcore/agency/iata/" title="Travel Agents"><strong>Travel Agents</strong></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class=" col l2 center-align" style="height:30px;line-height: 20px; border-left:1px solid rgba(134,117,77,0.15);">
+                                    <i style="height: 5px; line-height: 2px; display:inline-block; vertical-align:middle; padding-left:15px" class=" material-icons">language</i><a style="color:#86754D; text-transform:uppercase" href="" hreflang="@ViewBag.Culture">@ViewBag.Culture</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s2 offset-s5">
+                                    <img width=" 150" src="~/Content/themes/hm/images/logo.png" />
+                                </div>
+                                <div class="col l5 right-align" style="padding-top:20px">
+                                    <div id="bannerPhone" class="phone">
+                                        <span class="text">@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Book_Now_or_Call</span>
+                                        @if (ViewBag.Culture == "en")
+                                        {
+                                            <strong><i style=" display: inline-block; height:20px; line-height: 2px; padding: 10px;" class="material-icons">call</i>1 855 229 0461</strong>
+                                        }
+                                        else
+                                        {
+                                            <strong><i style=" display: inline-block; height:20px; line-height: 2px; padding: 10px;" class="material-icons">call</i>322 22 38 383</strong>
+                                        }
+                                        <div class="row" style="padding-top:1px">
+                                            @if (ViewBag.Culture == "en")
+                                            {
+                                                <div class="col s4 offset-s5" style="padding-right:1px">
+                                                    <a href="https://booking.hotelmousai.com/bookcore/availability/rooms/mousai/" class="right-align white">@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Hotel_Only</a>
+                                                </div>
+                                                <div class="col s3 right-align" style="padding-left:1px;">
+                                                    <a href="https://www.reservhotel.com/puerto-vallarta-mexico/hotel-mousai/booking-engine/ibe4.main?currency=&lang=1&hotel=34053&airport=&rooms=1&adate=31-Dec-1969&ddate=31-Dec-1969&adults=1&child=" class="right-align white-text">@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Hotel_Flight</a>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="col s4 offset-s5" style="padding-right:1px">
+                                                    <a href="https://reservas.hotelmousai.com.mx/bookcore/availability/rooms/mousaihotel" class="right-align white">@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Hotel_Only</a>
+                                                </div>
+                                                <div class="col s3 right-align" style="padding-left:1px;">
+                                                    <a href="https://www.reservhotel.com/puerto-vallarta-mexico/hotel-mousai/booking-engine/ibe4.main?currency=MXN&lang=2&hotel=34053&airport=&rooms=1&adate=31-Dec-1969&ddate=31-Dec-1969&adults=1&child=" class="right-align white-text">@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Hotel_Flight</a>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sub-nav row hide-on-med-and-down">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col l1 center-align">
+                                    <img class="logo-fixed" src="~/Content/themes/hm/images/logo.png" />
+                                </div>
+                                <div class="col l9 center-align">
+                                    <ul>
+                                        <li>
+                                            <a title="Land Activities" class="dropdown-button btnLandActivities" href="#land-activities">@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Land_Activities</a>
+                                        </li>
+                                        <li>
+                                            <a title="Water Activities" class="dropdown-button waves-effect btnWaterActivities" href="#water-activities">@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Water_Activities</a>
+                                        </li>
+                                        <li>
+                                            <a title="Transportation" class="dropdown-button waves-effect" href="/transportation" target="_self">@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Transportation</a>
+                                        </li>
+                                        <li>
+                                            <a class="btnShoppingCart" href="/Purchase/ShoppingCart"><i class="tiny material-icons right">shopping_cart</i>@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Shopping_Cart</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col l2 center-align phone-fixed">
+                                    <span class="phone">
+                                        <span class="text">@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Book_Now_or_Call</span>
+                                        @if (ViewBag.Culture == "en")
+                                        {
+                                            <span>1 855 229 0461</span>
+                                        }
+                                        else
+                                        {
+                                            <span>322 22 38 383</span>
+                                        }
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mobile-nav row hide-on-large-only z-depth-1">
+                        <div class="col l12 m12 s12 center-align">
+                            <a href="#" data-activates="mobile-nav" class="button-collapse left">
+                                <i class="material-icons">menu</i>
+                            </a>
+                            <a class="logo-mobile left" href="https://www.hotelmousai.com/#" title="Villa del Palmar, Beach Resort and Spa, Puerto Vallarta, México">
+                                <span class="icon-vdppv">
+                                    <img src="~/Content/themes/hm/images/logo.png" class="responsive-img" />
+                                </span>
+                            </a>
+                            @if (ViewBag.Cultur == "en")
+                            {
+                                <a href="tel:1 855 229 0461" class="right call" title="@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Book_Now_or_Call 1 855 229 0461">
+                                    <i class="material-icons">phone</i>
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="tel:322 22 38 383" class="right call" title="@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Book_Now_or_Call 322 22 38 383">
+                                    <i class="material-icons">phone</i>
+                                </a>
+                            }
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="side-nav" id="mobile-nav">
+                <div class="mobile-logo">
+                    <a href="/">
+                        <span class="icon-vgr">
+                            <img src="~/Content/themes/hm/images/logo.png" />
+                        </span>
+                    </a>
+                </div>
+                <ul class="collapsible" data-collapsible="accordion">
+                    <li>
+                        <a title="Land Activities" class="waves-effect btnLandActivities" href="#land-activities">@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Land_Activities</a>
+                    </li>
+                    <li>
+                        <a title="Water Activities" class="waves-effect btnWaterActivities" href="#water-activities">@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Water_Activities</a>
+                    </li>
+                    <li>
+                        <a title="Transportation" class="waves-effect " href="/transportation" target="_self">@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Transportation</a>
+                    </li>
+                    <li>
+                        <a class="btnShoppingCart" href="/Purchase/ShoppingCart"><i class="material-icons right">shopping_cart</i>@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Shopping_Cart</a>
+                    </li>
+                </ul>
+                <div class="divider"></div>
+                <ul class="social">
+                    <li>
+                        <a class="waves-effect" href="https://www.facebook.com/HotelMousai/">
+                            <i class="fa fa fa-facebook-official" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="waves-effect" href="https://twitter.com/HotelMousai">
+                            <i class="fa fa fa-twitter" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="waves-effect" href="https://instagram.com/hotelmousai">
+                            <i class="fa fa fa-instagram" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="waves-effect" href="https://plus.google.com/+Hotelmousai">
+                            <i class="fa fa fa-google-plus-official" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="waves-effect" href="https://www.youtube.com/c/HotelMousai">
+                            <i class="fa fa fa-youtube-play" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="waves-effect" href="https://www.tripadvisor.com/UserReviewEdit-g150793-d6002592-ehttp:__2F____2F__www__2E__tripadvisor__2E__com__2E__mx__2F__Hotel__5F__Review__2D__g150793__2D__d6002592__2D__Reviews__2D__Hotel__5F__Mousai__2D__Puerto__5F__Vallarta__2E__html-Hotel_Mousai-Puerto_Vallarta.html">
+                            <i class=" fa fa-newspaper-o" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="waves-effect" href="">
+                            <i class="fa fa fa-newspaper-o" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
+                <div class="divider"></div>
+            </div>
+        </section>
+        <div id="submenu-land-activities" class="submenu white">
+            <div class="container">
+                <div class="row card-panel transparent z-depth-0" style="padding-top:90px">
+                    @Html.Raw(@ViewBag.Submenu1)
+                    <a id="btnCloseLandActivities" class="btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">expand_less</i></a>
+                </div>
+            </div>
+        </div>
+        <div id="submenu-water-activities" class="submenu white">
+            <div class="container">
+                <div class="row card-panel transparent z-depth-0" style="padding-top:90px">
+                    @Html.Raw(@ViewBag.Submenu2)
+                    <a id="btnCloseWaterActivities" class="btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">expand_less</i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+    @RenderSection("featured", required: false)
+    <div id="body" class="container">
+        @RenderBody()
+        @RenderSection("controls", required: false)
+        @Html.Partial("_BookingEngineFormV2Partial")
+    </div>
+    <div id="CardV">
+        <div class="container">
+            <div class=" row">
+                <div class="col l3">
+                    <a href="https://www.hotelmousai.com/" style="color:#A08A6A">
+                        Hotel Mousai
+                    </a>
+                    <br />
+                    <em>The Art of Inspiration</em>
+                    <br />
+                    @if (ViewBag.Culture == "en")
+                    {
+                        <span>@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_ResortPhone 1 877 929 79 77</span>
+                    }
+                    else
+                    {
+                        <span>@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_ResortPhone +52 (322) 176 0738</span>
+                    }
+                    <br />
+                    <span>
+                        Carretera a Barra de Navidad Km. 7.5
+                        Puerto Vallarta, JAL. 48390, Mexico.
+                    </span>
+                </div>
+                <div class="col l9 right-align" id="awards">
+                    <img style="height:110px; width:300px" src="~/Content/themes/hm/images/awards.png" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="separteBarLinks">
+        <div class=" container">
+            <div class=" row">
+                <div class="col l3">
+                    @if (ViewBag.Culture == "en")
+                    {
+                        <span>@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Toll_Free_USA_CAN: 1 855 229 0461</span>
+                    }
+                    else
+                    {
+                        <span>@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Toll_Free_USA_CAN: 322 22 38 383</span>
+                    }
+                </div>
+                <div id="hovLinks" class=" col l9 right-align">
+                    <a href="http://jobs.taferresorts.com/" target="_blank" title="@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Talent">@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Talent</a>
+                    <a href="https://www.hotelmousai.com/frequently-asked-questions" target="_blank" title="@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_FAQS">@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_FAQS</a>
+                    <a href="https://www.hotelmousai.com/contact" target="_blank" title="@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Contact">@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Contact</a>
+                    <a href="https://www.hotelmousai.com/terms-and-conditions" target="_blank" title="@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Terms">@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Terms</a>
+                    <a href="https://www.hotelmousai.com/privacy-policy" target="_blank" title="@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Privacy">@ePlatFront.Resources.Views.Shared.SharedStrings.Privacy_Policy</a>
+                    <a href="https://www.hotelmousai.com/access" target="_blank" title="@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_My_Reservation">@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_My_Reservation</a>
+                    @if (ViewBag.Culture == "en")
+                    {
+                        <a href="https://www.hotelmousai.com/website-feedback" target="_blank" title="Feedback">Feedback</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="page-footer">
+        <div class="container center-align">
+            <div class=" row no-margin center-align">
+                <div class="col l1 center-align offset-l1">
+                    <a href="https://www.taferresorts.com/">
+                        <img width="90" height="60" src="~/Content/themes/hm/images/tafer.png" />
+                    </a>
+                </div>
+                <div class="col l2 center-align">
+                    <a href="https://www.garzablancaresort.com/">
+                        <img height="38" width="130" src="~/Content/themes/hm/images/garzaBlanca.png" />
+                    </a>
+                </div>
+                <div class="col l1 center-align">
+                    <a href="https://www.hotelmousai.com/">
+                        <img height="60" width="80" src="~/Content/themes/hm/images/hotelMousai.png" />
+                    </a>
+                </div>
+                <div class="col l1 center-align">
+                    <a href="https://www.villapalmarcancun.com/">
+                        <img height="60" src="~/Content/themes/hm/images/vpcLogo.png" />
+                    </a>
+                </div>
+                <div class="col l1 center-align">
+                    <a href="https://www.sierralagoresort.com/">
+                        <img height="60" src="~/Content/themes/hm/images/jollyRoger.png" />
+                    </a>
+                </div>
+                <div class="col l1 center-align">
+                    <a href="https://www.siankaanvillage.com/">
+                        <img width="60" src="~/Content/themes/hm/images/sierraLago.png" />
+                    </a>
+                </div>
+                <div class="col l1 center-align">
+                    <a href="http://www.pirateshipvallarta.com/">
+                        <img height="35" width="150" src="~/Content/themes/hm/images/sianVillage.png" />
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="container" style=" border-top:1px solid #d2d2d2;">
+            <div class="row no-margin">
+                <div class="col five s12 m6 hide-on-med-and-down">
+                    <p id="footerTitles">HOTEL & RESORTS</p>
+                    <ul>
+                        <li>
+                            <a href="https://www.garzablancaresort.com/">Garsa Blanca</a>
+                        </li>
+                        <li>
+                            <a href="https://www.hotelmousai.com/">Hotel Mousai</a>
+                        </li>
+                        <li>
+                            <a href="https://www.villapalmarcancun.com/">Villa del Palmar</a>
+                        </li>
+                        <li>
+                            <a href="https://www.sierralago.com/">Sierra Lago</a>
+                        </li>
+                        <li>
+                            <a href="https://www.siankaanvillage.com/">Sian Ka'an Village</a>
+                        </li>
+                        <li>
+                            <a href="https://www.villagroupresorts.com/">The Villa Group</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col five s6 m6">
+                    <p id="footerTitles">EXPERIENCES</p>
+                    <ul>
+                        <li><a href="http://romance.taferresorts.com/">Love Affair</a></li>
+                        <li><a href="https://wellness.taferresorts.com/">Wellness</a></li>
+                        <li><a href="https://taste.taferresorts.com/">Taste Buds</a></li>
+                    </ul>
+                </div>
+                <div class="col five s6 m6">
+                    <p id="footerTitles">MEMBER CLUBS</p>
+                    <ul>
+                        <li>
+                            <a href="http://www.garzablancaresidenceclub.com/">Garsa Blanca</a>
+                        </li>
+                        <li>
+                            <a href="http://www.clubcaribecancun.com/">Club Caribe</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col five s6 m6">
+                    <p id="footerTitles">REAL ESTATE</p>
+                    <ul>
+                        <li>
+                            <a href="http://www.garzablancarealestate.com/">Garza Blanca Residences</a>
+                        </li>
+                        <li>
+                            <a href="http://luxury.taferresorts.com/">Tafer Luxury Residences </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col five s12 m6 hide-on-med-and-down">
+                    <p id="footerTitles">ADVENTURES</p>
+                    <ul>
+                        <li><a href="http://www.pirateshipvallarta.com/">Pirate Ship Vallarta</a></li>
+                        <li><a href="https://www.pirateshowcancun.com/">Pirate Show Cancun</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class=" row" style=" color:darkgrey; font-size:.85em; border-top:1px solid #d2d2d2">
+            <div class="col">
+                <p>"Amedeus: PVRHMM | Galileo/Apollo: A4828 | Sabre: 219840 | Worldspan: PVRHM | Travelweb: 67684 | Pegs ADS: 67684"</p>
+            </div>
+        </div>
+        <div class=" row" style=" color:darkgrey; font-size:.85em; border-top:1px solid #d2d2d2">
+            <div class=" col ">
+                <spam>  Copyright © 2018 — All rights reserved</spam>
+            </div>
+        </div>
+
+    </footer>
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    @Scripts.Render("~/Scripts/jquery.json-2.3.min.js")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/bookingengine-1.5.js"></script>
+    <script src="~/Scripts/bookingengine-ui-1.5.js"></script>
+    <script src="/Content/themes/mex/js/language.@{@ViewBag.Culture}.js"></script>
+    <script src="~/Scripts/storage-1.0.js"></script>
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>*@
+    <script src="~/Content/plugins/materialize/js/materialize.js"></script>
+    <script src="https://use.fontawesome.com/40bd8b9a45.js"></script>
+    <script src="~/Content/themes/hm/js/ui.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+

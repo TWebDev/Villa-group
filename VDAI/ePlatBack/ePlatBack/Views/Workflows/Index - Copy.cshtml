@@ -1,0 +1,108 @@
+﻿@*@model ePlatBack.Models.ViewModels.NotificationsViewModel*@
+@{
+    ViewBag.Title = "ePlat > CRM > Workflows";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+@section Scripts{
+    <script src="~/ViewModels/eplat.local.crm.workflows.js?ts=@DateTime.Now"></script>
+}
+
+<div id="app">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 border-bottom mb-4">
+        <h1 class="h2">Workflows</h1>
+    </div>
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">Rules</div>
+                <div class="card-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="newStepModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span>New Step</span>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-12 col-md-3">
+            <div class="btn-group-vertical d-block mb-2 mb-md-5">
+                <button id="btnNewWorkflow" class="btn btn-primary">new</button>
+            </div>
+            <div class="card mb-3">
+                <div class="card-header">Conditions</div>
+                <div class="card-body">
+                    <div class="btn-group-vertical d-block">
+                        <button id="btnOpenCondition" data-toggle="modal" data-target="newStepModal" class="btn btn-info mb-2 btn-condition" data-action="open">Open</button>
+                        <button id="btnClickCondition" data-toggle="modal" data-target="newStepModal" class="btn btn-info mb-2 btn-condition" data-action="click">Click</button>
+                        <button id="btnSubmitCondition" data-toggle="modal" data-target="newStepModal" class="btn btn-info mb-2 btn-condition" data-action="submit">Submit</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3">
+                <div class="card-header">Actions</div>
+                <div class="card-body">
+                    <div class="btn-group-vertical d-block">
+                        <button id="btnStart" data-toggle="modal" data-target="newStepModal" class="btn btn-success mb-2 btn-action" data-action="start">Start</button>
+                        <button id="btnDelayAction" data-toggle="modal" data-target="newStepModal" class="btn btn-info mb-2 btn-action" data-action="delay">Delay</button>
+                        <button id="btnSendAction" data-toggle="modal" data-target="newStepModal" class="btn btn-info mb-2 btn-action" data-action="send">Send</button>
+                        <button id="btnFinish" data-toggle="modal" data-target="newStepModal" class="btn btn-danger mb-2 btn-action" data-action="end">End</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-9">
+            <div class="card">
+                <div class="card-header">Workflow Panel</div>
+                @*<div id="workflowPanel" class="card-body text-center" style="min-height:200px;">*@
+                <div id="workflowPanel" class="card-body text-center">
+                    <span v-for="(row,key) in workflowModel.workflow" style="min-width:100px;">
+
+                        <button v-if="row.type=='action'" class="btn" v-bind:class="{'btn-success':row.subtype== 'start', 'btn-info':row.subtype=='delay'||row.subtype=='send','btn-danger':row.subtype=='end', widthClass:width(key)}">
+                            {{row.key}}
+                            <i class="material-icons float-right clear-step" v-on:click="clearStep(key)">clear</i>
+                            <div>
+                                <input type="text" class="form-control" v-if="row.subtype == 'delay'" v-model="row.delay.days" placeholder="days" />
+                                <input type="text" class="form-control" v-if="row.subtype == 'delay'" v-model="row.delay.hours" placeholder="hours" />
+                                <select class="form-control" v-if="row.type == 'send'">
+                                    <option v-for="option in EmailNotifications" v-bind:value="option.Value">{{option.Text}}</option>
+                                </select>
+                            </div>
+                        </button>
+
+                        <button v-if="row.type=='condition'" class="btn w-100 btn-info">
+                            {{row.key}}
+                            <i class="material-icons float-right clear-step" v-on:click="clearStep(key)">clear</i>
+                            <div>
+                                <input type="text" class="form-control w-50 mx-auto" v-model="row.delay.days" placeholder="days" />
+                                <input type="text" class="form-control w-50 mx-auto" v-model="row.delay.hours" placeholder="hours" />
+                            </div>
+                        </button>
+
+                        @*<span v-if="key >= 0 && key < workflowModel.workflow.length-1">*@
+                        <span v-if="row.subtype != 'end'" class="w-100 d-block">
+                            <i v-if="row.type == 'action'" class="material-icons mt-2 mb-2">arrow_downward</i>
+
+                            <i v-if="row.type == 'condition'" class="material-icons mt-2 mb-2 w-25 mx-auto">arrow_downward</i>
+                            <i v-if="row.type == 'condition'" class="material-icons mt-2 mb-2 w-25 mx-auto">arrow_downward</i>
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row"></div>
+</div>

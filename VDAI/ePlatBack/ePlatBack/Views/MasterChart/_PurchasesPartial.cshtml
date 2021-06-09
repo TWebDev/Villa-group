@@ -1,0 +1,303 @@
+﻿@model ePlatBack.Models.ViewModels.PurchasesModel.PurchaseInfoModel
+
+@*@if (Model.ManageServices == true)*@
+@{
+    var Privileges = ViewData["Privileges"] as List<ePlatBack.Models.ViewModels.SysComponentsPrivilegesModel>;
+}
+@if (Privileges.FirstOrDefault(m => m.Component == "fdsPurchasesManagement") == null
+    || Privileges.FirstOrDefault(m => m.Component == "fdsPurchasesManagement").View)
+{
+    <fieldset id="fdsPurchasesManagement" style="display: none" class="non-printable view-restricted primary-selected-row-dependent">
+        <legend>
+            <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+            Purchases
+        </legend>
+        <div style="display: none" class="align-from-top">
+            <div class="full-width align-from-bottom">
+                <input id="btnNewPurchaseInfo" type="button" class="submit right fieldset-expander" value="new" />
+                <div id="customerBanner" data-fixed-component="">
+                    <span style="font-size: 14pt">Customer: </span>
+                    <br />
+                    <span id="customerName" class="primary-selected-row-dependent" style="font-size: 14pt"></span>
+                    <span><img id="imgCloseLead" src="/Content/themes/base/images/cross.png" class="right" style="margin-right:30px;cursor:pointer;"/></span>
+                </div>
+            </div>
+            <div id="tblExistingPurchasesContainer">
+                <table id="tblPurchases" class="table dataTable">
+                    <thead>
+                        <tr>
+                            <th>Coupons</th>
+                            <th>Status</th>
+                            <th>Purchase Date</th>
+                            <th>Total</th>
+                            <th>Currency</th>
+                            <th>Sales Agent</th>
+                            <th>Point Of Sale</th>
+                            <th>Terminal</th>
+                        </tr>
+                    </thead>
+                    <tbody class="primary-selected-row-dependent"></tbody>
+                </table>
+            </div>
+            @if (Privileges.FirstOrDefault(m => m.Component == "fdsPurchaseInfo") == null || Privileges.FirstOrDefault(m => m.Component == "fdsPurchaseInfo").View)
+            {
+                <fieldset id="fdsPurchaseInfo">
+                    <legend>
+                        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+                        Purchase Info
+                    </legend>
+                    <div style="display: none" class="align-from-top">
+                        @using (Ajax.BeginForm("SavePurchase", "MasterChart", new AjaxOptions { OnSuccess = "PURCHASE.savePurchaseSuccess(data)" }, new { id = "frmPurchaseInfo" }))
+                        {
+                            <div id="frmPurchaseInfo_ErrorMessages" style="display: none">
+                                @Html.ValidationMessageFor(model => model.PurchaseInfo_Culture)
+                                @Html.ValidationMessageFor(model => model.PurchaseInfo_PurchaseDateTime)
+                                @Html.ValidationMessageFor(model => model.PurchaseInfo_Terminal)
+                                @Html.ValidationMessageFor(model => model.PurchaseInfo_Currency)
+                                @Html.ValidationMessageFor(model => model.PurchaseInfo_PurchaseStatus)
+                                @Html.ValidationMessageFor(model => model.PurchaseInfo_PointOfSale)
+                                @Html.ValidationMessageFor(model => model.PurchaseInfo_Agent)
+                            </div>
+                            if (Privileges.FirstOrDefault(m => m.Component == "PurchaseInfo_Total") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseInfo_Total").View)
+                            {
+                                <div class="right">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchaseInfo_Total)
+                                    </div>
+                                    <div class="editor-field">
+                                        <label id="lblPurchaseInfo_Total" style="font-size:18pt" data-format="currency"></label>
+                                        @Html.TextBoxFor(model => model.PurchaseInfo_Total, new { @class = "field-disabled", style = "display:none" })
+                                    </div>
+                                </div>
+                            }
+                            <div class="editor-alignment">
+                                @Html.HiddenFor(model => model.PurchaseInfo_Lead, new { data_keep_value = "", @class = "primary-selected-row-dependent" })
+                                @Html.HiddenFor(model => model.PurchaseInfo_PurchaseID)
+                                @Html.HiddenFor(model => model.PurchaseInfo_BankCommission)
+                                @Html.HiddenFor(model => model.PurchaseInfo_FlagsByTerminalPurchase)
+                                @Html.HiddenFor(model => model.PurchaseInfo_AllowUnitsEdition)
+                                @Html.HiddenFor(model => model.PurchaseInfo_MarketingProgram)
+                                @Html.HiddenFor(model => model.PurchaseInfo_Subdivision)
+                                @Html.HiddenFor(model => model.PurchaseInfo_Source)
+                                @Html.HiddenFor(model => model.PurchaseInfo_OPCID)
+                                @Html.HiddenFor(model => model.PurchaseInfo_SpiOPCID)
+                                @Html.HiddenFor(model => model.PurchaseInfo_TourID)
+                                @Html.HiddenFor(model => model.PurchaseInfo_TourDate)
+                                @if (Privileges.FirstOrDefault(m => m.Component == "PurchaseInfo_Terminal") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseInfo_Terminal").View)
+                                {
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchaseInfo_Terminal)
+
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.PurchaseInfo_Terminal, Model.PurchaseInfo_DrpTerminals, new { data_keep_value = "", @class = "terminal-dependent-list", data_route = "/crm/MasterChart/GetDDLData", data_route_parameter = "selectedTerminals" })
+                                        @*@Html.DropDownListFor(model => model.PurchaseInfo_Terminal, Model.PurchaseInfo_DrpTerminals, new { data_keep_value = "", @class = "terminal-dependent-list onchange", data_route = "/crm/MasterChart/GetDDLData", data_route_parameter = "selectedTerminals", data_onchange_route_parameter = "allSalesAgentsByTerminal,allSalesAgentsByTerminal", data_dependent_list = "PurchaseInfo_User,PurchaseInfo_Agent" })*@
+                                    </div>
+                                }
+                            </div>
+                            if (Privileges.FirstOrDefault(m => m.Component == "PurchaseInfo_PointOfSale") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseInfo_PointOfSale").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchaseInfo_PointOfSale)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.PurchaseInfo_PointOfSale, Model.PurchaseInfo_DrpPointsOfSale, new { @class = "place-dependent-list terminal-dependent-list", data_route = "/crm/MasterChart/GetDDLData", data_route_parameter = "pointOfSale", data_keep_value = "" })
+                                    </div>
+                                </div>
+                            }
+                            if (Privileges.FirstOrDefault(m => m.Component == "PurchaseInfo_Location") != null && Privileges.FirstOrDefault(m => m.Component == "PurchaseInfo_Location").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchaseInfo_Location)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.PurchaseInfo_Location, Model.PurchaseInfo_DrpLocations, new { @class ="terminal-dependent-list", data_route = "/crm/MasterChart/GetDDLData", data_route_parameter = "location"})
+                                    </div>
+                                </div>
+                            }
+                            if (Privileges.FirstOrDefault(m => m.Component == "PurchaseInfo_Currency") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseInfo_Currency").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchaseInfo_Currency)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.PurchaseInfo_Currency, Model.PurchaseInfo_DrpCurrencies, new { data_keep_value = "", @class = "terminal-dependent-list", data_route = "/crm/MasterChart/GetDDLData", data_route_parameter = "currenciesAllowedPerSession" })
+                                    </div>
+                                </div>
+                            }
+                            if (Privileges.FirstOrDefault(m => m.Component == "PurchaseInfo_Culture") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseInfo_Culture").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchaseInfo_Culture)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.PurchaseInfo_Culture, Model.PurchaseInfo_DrpCultures, new { data_keep_value = "" })
+                                    </div>
+                                </div>
+                            }
+                            if (Privileges.FirstOrDefault(m => m.Component == "PurchaseInfo_PurchaseStatus") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseInfo_PurchaseStatus").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchaseInfo_PurchaseStatus)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.PurchaseInfo_PurchaseStatus, Model.PurchaseInfo_DrpPurchaseStatus, new { data_keep_value = "" })
+                                    </div>
+                                </div>
+                            }
+                            if (Privileges.FirstOrDefault(m => m.Component == "PurchaseInfo_User") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseInfo_User").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchaseInfo_User)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.PurchaseInfo_User, Model.PurchaseInfo_DrpAgents, new { data_keep_value = "" })
+                                    </div>
+                                </div>
+                            }
+                            if (Privileges.FirstOrDefault(m => m.Component == "PurchaseInfo_Agent") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseInfo_Agent").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchaseInfo_Agent)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.PurchaseInfo_Agent, Model.PurchaseInfo_DrpAgents, new { data_keep_value = "" })
+                                    </div>
+                                </div>
+                            }
+                            if (Privileges.FirstOrDefault(m => m.Component == "PurchaseInfo_Promo") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseInfo_Promo").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchaseInfo_Promo)
+                                        <input type="hidden" id="hdnPurchasePromo" />
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.PurchaseInfo_Promo, Model.PurchaseInfo_DrpPromos, new { @class = "terminal-dependent-list", data_route = "/MasterChart/GetDDLData", data_route_parameter = "promosPurchases" })
+                                    </div>
+                                </div>
+                            }
+                            if (Privileges.FirstOrDefault(m => m.Component == "PurchaseInfo_PurchaseDateTime") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseInfo_PurchaseDateTime").View)
+                            {
+                                <div class="editor-alignment" style="display:none">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchaseInfo_PurchaseDateTime)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.PurchaseInfo_PurchaseDateTime, new { @class = "field-disabled" })
+                                    </div>
+                                </div>
+                            }
+                            if (Privileges.FirstOrDefault(m => m.Component == "PurchaseInfo_StayingAtPlace") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseInfo_StayingAtPlace").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchaseInfo_StayingAtPlace)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.PurchaseInfo_StayingAtPlace, Model.PurchaseInfo_DrpStayingAtPlaces)
+                                    </div>
+                                </div>
+                            }
+                            if (Privileges.FirstOrDefault(m => m.Component == "PurchaseInfo_StayingAt") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseInfo_StayingAt").View)
+                            {
+                                <div id="divStayingAt" class="editor-alignment" style="display: none">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchaseInfo_StayingAt)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.PurchaseInfo_StayingAt)
+                                    </div>
+                                </div>
+                            }
+                            if (Privileges.FirstOrDefault(m => m.Component == "PurchaseInfo_StayingAtRoom") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseInfo_StayingAtRoom").View)
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PurchaseInfo_StayingAtRoom)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.PurchaseInfo_StayingAtRoom)
+                                    </div>
+                                </div>
+                            }
+                            <div class="full-width" style="border-top: 1px solid #DDDDDD; margin-top: 20px;">
+                                @if (Privileges.FirstOrDefault(m => m.Component == "PurchaseInfo_CustomerRequests") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseInfo_CustomerRequests").View)
+                                {
+                                    <div class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.PurchaseInfo_CustomerRequests)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.TextAreaFor(model => model.PurchaseInfo_CustomerRequests, new { @class = "double-width" })
+                                        </div>
+                                    </div>
+                                }
+                                @if (Privileges.FirstOrDefault(m => m.Component == "PurchaseInfo_PurchaseComments") == null || Privileges.FirstOrDefault(m => m.Component == "PurchaseInfo_PurchaseComments").View)
+                                {
+                                    <div class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.PurchaseInfo_PurchaseComments)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.TextAreaFor(model => model.PurchaseInfo_PurchaseComments, new { @class = "double-width" })
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <div class="editor-alignment full-width align-from-top">
+                                @if (Privileges.FirstOrDefault(m => m.Component == "btnSavePurchase") == null || Privileges.FirstOrDefault(m => m.Component == "btnSavePurchase").View)
+                                {
+                                    <input type="button" id="btnSavePurchase" class="submit right" value="save" />
+                                }
+                            </div>
+                        }
+                        @Html.Partial("_PurchasesServicesPartial", Model.PurchaseServiceModel)
+                        @Html.Partial("_PurchasesPaymentsPartial", Model.PurchasePaymentModel)
+                    </div>
+                </fieldset>
+            }
+        </div>
+    </fieldset>
+    <div id="printableTicket" class="printable">
+        @*<div class="ticket-generals">
+            <div class="ticket-section">
+                <p id="t_terminal"></p>
+                <p id="t_company"></p>
+            </div>
+            <div class="ticket-section ticket-left-align">
+                <p id="t_datetime" class="align-right"></p>
+                <p id="t_customer"></p>
+                <p id="t_number"></p>
+                <p id="t_username"></p>
+                <p id="t_pointOfSale"></p>
+            </div>
+            <div class="ticket-section ticket-left-align full-width">
+                <ol class="ticket-details" id="t_details"></ol>
+                <br />
+                <p id="t_subtotals"></p>
+                <p id="t_totalPaid"></p>
+                <p id="t_totalRefund"></p>
+                <br />
+                <p id="t_signature"></p>
+            </div>
+            <div class="ticket-greetings">
+                <p id="t_gratitude"></p>
+                <p id="t_policies"></p>
+                <p id="t_comments"></p>
+                <p id="t_url"></p>
+            </div>
+        </div>*@
+    </div>
+    <div id="printableCoupon" class="printable printable-coupon">
+    </div>
+    <div id="ticketOPCChargeBack" class="printable printable-chargeback">
+    </div>
+}

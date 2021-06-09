@@ -1,0 +1,28 @@
+﻿@model ePlatBack.Models.ViewModels.WorkGroupInfoModel
+
+<fieldset id="fdsWorkGroupsInfo">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        WorkGroup Info
+    </legend>
+    <div class="main-div-container" style="display: none">
+        @using (Ajax.BeginForm("SaveWorkGroup", "Admin", new AjaxOptions { OnSuccess = "PROFILE.saveWorkGroupSuccess(data)" }, new { id = "frmWorkGroup", onSubmit = "return UI.showValidationSummary(this.id);" }))
+        {
+            <div id="frmWorkGroup_ErrorMessages" style="display: none">
+                @Html.ValidationMessageFor(model => model.WorkGroupInfo_WorkGroup)
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.WorkGroupInfo_WorkGroup)
+                    @Html.HiddenFor(model => model.WorkGroupInfo_WorkGroupID, new { @class = "secondary-selected-row-dependent", data_keep_value="" })
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.WorkGroupInfo_WorkGroup)
+                </div>
+            </div>
+            <div class="full-width">
+                <input type="submit" id="btnSaveWorkGroup" class="submit right" value="Save"/>
+            </div>
+        }
+    </div>
+</fieldset>

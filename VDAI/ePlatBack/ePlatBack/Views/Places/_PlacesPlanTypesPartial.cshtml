@@ -1,0 +1,51 @@
+﻿@model ePlatBack.Models.ViewModels.PlacePlanTypeModel
+
+<fieldset id="fdsPlacePlanTypes" data-close-siblings="true" class="primary-selected-row-dependent view-restricted" style="display:none">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator"/>
+        Plan Types
+    </legend>
+    <div style="display:none">
+        <div class="full-width align-from-bottom">
+            <input type="button" class="submit fieldset-expander right" id="btnNewPlacePlanTypeInfo" value ="New"/>
+        </div>
+        <ul id="ulPlacePlanTypes" class="primary-selected-row-dependent">
+        </ul>
+        <fieldset id="fdsPlacePlanTypeInfo">
+            <legend>
+                <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator"/>
+                Plan Type Info
+            </legend>
+            <div style="display:none">
+                @using (Ajax.BeginForm("SavePlacePlanType", "Places", new AjaxOptions { OnSuccess = "PLACE.savePlacePlanTypeSuccess(data)" }, new { id="frmPlacePlanType", onSubmit="UI.showValidationSummary(this.id);" }))
+                {
+                    <div id="frmPlacePlanType_ErrorMessages" style="display:none">
+                        @Html.ValidationMessageFor(model => model.PlacePlanType_PlanType)
+                        @Html.ValidationMessageFor(model => model.PlacePlanType_Terminal)
+                    </div>
+                    <div class="editor-alignment">
+                    	<div class="editor-label">
+                            @Html.LabelFor(model => model.PlacePlanType_PlanType)
+                            @Html.HiddenFor(model => model.PlacePlanType_PlaceID, new { @class = "primary-selected-row-dependent", data_keep_value="" })
+                            @Html.HiddenFor(model => model.PlacePlanType_PlacePlanTypeID, new { @class = "secondary-selected-row-dependent" })
+                    	</div>
+                    	<div class="editor-field">
+                            @Html.DropDownListFor(model => model.PlacePlanType_PlanType, Model.PlacePlanType_DrpPlanTypes)
+                    	</div>
+                    </div>
+                    <div class="editor-alignment">
+                    	<div class="editor-label">
+                            @Html.LabelFor(model => model.PlacePlanType_Terminal)
+                    	</div>
+                    	<div class="editor-field">
+                            @Html.DropDownListFor(model => model.PlacePlanType_Terminal, Model.PlacePlanType_DrpTerminals)
+                    	</div>
+                    </div>
+                    <div class="full-width align-from-top">
+                        <input type="submit" class="submit right" id="btnSavePlacePlanType" value="Save"/>
+                    </div>
+                }
+            </div>
+        </fieldset>
+    </div>
+</fieldset>

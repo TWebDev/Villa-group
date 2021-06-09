@@ -1,0 +1,25 @@
+﻿@model ePlatBack.Models.ViewModels.TerminalViewModel
+
+           
+<table id="tblSearchTerminalsResults" class="table" >
+    <thead>
+    <tr>
+    <th>Prefix</th><th>Terminal Name</th><th></th>
+    </tr>
+    </thead>
+        <tbody>
+        @if (Model.SearchResults != null)
+        {
+            foreach (var i in Model.SearchResults)
+            {
+                var tdID = "delT" + i.TerminalID;
+                var trID = "trTerminal" + i.TerminalID;
+            <tr id="@trID" >
+                <td>@Html.DisplayFor(m => i.Prefix)</td>
+                <td>@Html.DisplayFor(m => i.Terminal)</td>
+                <td class="tds"><img id="@tdID" src="../../Content/themes/base/images/cross.png" /></td>
+            </tr>
+            }
+        }
+        </tbody>
+    </table>

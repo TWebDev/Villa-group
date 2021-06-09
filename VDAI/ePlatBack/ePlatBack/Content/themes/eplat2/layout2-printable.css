@@ -1,0 +1,20 @@
+﻿body {
+    padding-top: 0;
+    background-color: white;
+}
+
+.non-printable {
+    display: none !important;
+}
+
+.non-printable-border {
+    border: none !important;
+}
+
+.non-printable-mt-0 {
+    margin-top: 0 !important;
+}
+
+.only-print {
+    display: block !important;
+}

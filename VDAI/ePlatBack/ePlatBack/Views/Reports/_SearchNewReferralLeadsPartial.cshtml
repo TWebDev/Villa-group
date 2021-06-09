@@ -1,0 +1,40 @@
+﻿@model ePlatBack.Models.ViewModels.NewReferralLeadsModel.SearchNewReferralLeadsModel
+
+@*@using (Ajax.BeginForm("SearchNewReferralLeads", "Reports", new AjaxOptions { OnSuccess = "REPORT.searchDynamicResultsTable(data)" }, new { id = "frmSearchNewReferralLeads" }))*@
+@using (Ajax.BeginForm("SearchNewReferralLeads", "Reports", new AjaxOptions { OnSuccess = "REPORT.searchResultsTable(data)", UpdateTargetId = "divTblNewReferralLeadsResults" }, new { id = "frmSearchNewReferralLeads" }))
+{
+    <div class="editor-alignment">
+        <p class="editor-label">
+            @Html.LabelFor(model => model.SearchNewReferralLeads_I_DateRange)
+        </p>
+        <p class="editor-field">
+            @Html.TextBoxFor(model => model.SearchNewReferralLeads_I_DateRange, new { data_uses_date_picker = "true" })
+            @Html.TextBoxFor(model => model.SearchNewReferralLeads_F_DateRange, new { data_uses_date_picker = "true" })
+        </p>
+    </div>
+        <div class="editor-alignment">
+        <p class="editor-label">
+            @Html.LabelFor(model => model.SearchNewReferralLeads_InputByUser)
+        </p>
+        <p class="editor-field">
+            @Html.DropDownListFor(model => model.SearchNewReferralLeads_InputByUser, Model.SearchNewReferralLeads_DrpInputByUsers, new { style="height:68px", multiple = "multiple" })
+        </p>
+    </div>
+    <div class="editor-alignment align-from-top">
+        <p class="editor-field">
+            <input type="submit" class="button" value="search" />
+        </p>
+    </div>
+    <div id="divTblNewReferralLeadsResults" class="align-from-top">
+        <table id="tblNewReferralLeadsReport" class="table">
+            <thead>
+                <tr>
+                    <th>Input Date</th>
+                    <th>Agent</th>
+                    <th>Referrals</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+}

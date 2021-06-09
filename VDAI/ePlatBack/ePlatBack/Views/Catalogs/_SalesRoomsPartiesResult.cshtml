@@ -1,0 +1,49 @@
+﻿@model  ePlatBack.Models.ViewModels.PartiesSales.SalesRoomPartiesViewModel
+
+<table id="tblSalesRoomsPartiesResult" class="dataTable table search-results">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Place</th>
+            <th>Sales Rooms Parties</th>
+            <th>Program</th>
+            <th>Terminal</th>
+            <th>Allotment</th>
+            <th>Date Saved</th>
+            <th>Saved By User</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.SearchSalesRoomResults)
+        {
+            var id = item.SalesRoomPartiesID;
+            <tr id="@id">
+                <td>
+                    @Html.DisplayFor(model => item.PartiesDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Place)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.SalesRoomParties)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Program)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Terminal)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Allotment)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.DateSaved)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.SavedByUser)
+                    <img src="~/Content/themes/base/images/trash.png" class="right delete-icon" />
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

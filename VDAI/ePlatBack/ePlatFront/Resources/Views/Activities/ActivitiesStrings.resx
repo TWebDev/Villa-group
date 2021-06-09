@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Activity Length" xml:space="preserve">
+    <value>Activity Length</value>
+  </data>
+  <data name="Add a Review Now" xml:space="preserve">
+    <value>Add a Review Now</value>
+  </data>
+  <data name="Adults" xml:space="preserve">
+    <value>Adults</value>
+  </data>
+  <data name="And" xml:space="preserve">
+    <value>and</value>
+  </data>
+  <data name="At" xml:space="preserve">
+    <value>At</value>
+  </data>
+  <data name="Availability" xml:space="preserve">
+    <value>Schedules</value>
+  </data>
+  <data name="Babies" xml:space="preserve">
+    <value>Babies</value>
+  </data>
+  <data name="Book Now" xml:space="preserve">
+    <value>BOOK NOW</value>
+  </data>
+  <data name="Book This" xml:space="preserve">
+    <value>Book This</value>
+  </data>
+  <data name="By" xml:space="preserve">
+    <value>by</value>
+  </data>
+  <data name="Children" xml:space="preserve">
+    <value>Children</value>
+  </data>
+  <data name="Click Here To" xml:space="preserve">
+    <value>CLICK HERE TO</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Comments</value>
+  </data>
+  <data name="Features" xml:space="preserve">
+    <value>Features</value>
+  </data>
+  <data name="Fri" xml:space="preserve">
+    <value>F</value>
+  </data>
+  <data name="Friendly with" xml:space="preserve">
+    <value>Friendly with</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="Guest Ranking" xml:space="preserve">
+    <value>Guest Ranking</value>
+  </data>
+  <data name="Hi" xml:space="preserve">
+    <value>Hi</value>
+  </data>
+  <data name="Hours" xml:space="preserve">
+    <value>hours</value>
+  </data>
+  <data name="How to Apply" xml:space="preserve">
+    <value>HOW DO I APPLY IT?</value>
+  </data>
+  <data name="Itinerary" xml:space="preserve">
+    <value>Itinerary</value>
+  </data>
+  <data name="Meeting Points" xml:space="preserve">
+    <value>Meeting Points</value>
+  </data>
+  <data name="Minutes" xml:space="preserve">
+    <value>minutes</value>
+  </data>
+  <data name="Mon" xml:space="preserve">
+    <value>M</value>
+  </data>
+  <data name="Multiple Locations" xml:space="preserve">
+    <value>Multiple Locations</value>
+  </data>
+  <data name="Need More Options" xml:space="preserve">
+    <value>Need More Options?</value>
+  </data>
+  <data name="Not Ranked" xml:space="preserve">
+    <value>This activity has not been ranked yet. Be the first to share your experience.</value>
+  </data>
+  <data name="Notes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="Our Price" xml:space="preserve">
+    <value>OUR PRICE</value>
+  </data>
+  <data name="Pregnant Women" xml:space="preserve">
+    <value>Pregnant Women</value>
+  </data>
+  <data name="Prices" xml:space="preserve">
+    <value>Prices</value>
+  </data>
+  <data name="Rank it now" xml:space="preserve">
+    <value>Rank it now</value>
+  </data>
+  <data name="Rate your experience" xml:space="preserve">
+    <value>How would you rate your experience?</value>
+  </data>
+  <data name="Recommendations" xml:space="preserve">
+    <value>Recommendations</value>
+  </data>
+  <data name="Restrictions" xml:space="preserve">
+    <value>Restrictions</value>
+  </data>
+  <data name="Retail Price" xml:space="preserve">
+    <value>RETAIL PRICE</value>
+  </data>
+  <data name="Sat" xml:space="preserve">
+    <value>S</value>
+  </data>
+  <data name="Savings" xml:space="preserve">
+    <value>SAVINGS</value>
+  </data>
+  <data name="See Details" xml:space="preserve">
+    <value>See Details</value>
+  </data>
+  <data name="Select your File" xml:space="preserve">
+    <value>Select your File</value>
+  </data>
+  <data name="Seniors" xml:space="preserve">
+    <value>Seniors</value>
+  </data>
+  <data name="Share a Picture" xml:space="preserve">
+    <value>Share a Picture</value>
+  </data>
+  <data name="Share My Opinion" xml:space="preserve">
+    <value>Write a Review</value>
+  </data>
+  <data name="Share your Experience" xml:space="preserve">
+    <value>Share your Experience</value>
+  </data>
+  <data name="Show activities from" xml:space="preserve">
+    <value>Show activities from</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="Sun" xml:space="preserve">
+    <value>S</value>
+  </data>
+  <data name="Take a minute" xml:space="preserve">
+    <value>will you please take a minute to share your experience?</value>
+  </data>
+  <data name="Thu" xml:space="preserve">
+    <value>T</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>to</value>
+  </data>
+  <data name="Tue" xml:space="preserve">
+    <value>T</value>
+  </data>
+  <data name="Visited on" xml:space="preserve">
+    <value>visited on</value>
+  </data>
+  <data name="Wed" xml:space="preserve">
+    <value>W</value>
+  </data>
+  <data name="What is included" xml:space="preserve">
+    <value>What is included?</value>
+  </data>
+  <data name="What is this about" xml:space="preserve">
+    <value>What is this about?</value>
+  </data>
+  <data name="Years" xml:space="preserve">
+    <value>years</value>
+  </data>
+  <data name="Youll Save" xml:space="preserve">
+    <value>You'll save</value>
+  </data>
+  <data name="Your Reviews" xml:space="preserve">
+    <value>Your Reviews</value>
+  </data>
+  <data name="Average Rating from" xml:space="preserve">
+    <value>Average Rating from</value>
+  </data>
+  <data name="Be the first" xml:space="preserve">
+    <value>Be the first reviewing this activity</value>
+  </data>
+  <data name="Booking Experience" xml:space="preserve">
+    <value>How do you rate your experience booking your activities with us?</value>
+  </data>
+  <data name="How did we do" xml:space="preserve">
+    <value>¿How did we do?</value>
+  </data>
+  <data name="reviews" xml:space="preserve">
+    <value>reviews</value>
+  </data>
+  <data name="We are always" xml:space="preserve">
+    <value>We are always looking for improve our customer service. Please take a minute to evaluate your experience with My Experience Tours.</value>
+  </data>
+  <data name="Enter Payment Confirmation" xml:space="preserve">
+    <value>In order to have a legit rank reference, please enter your Payment Confirmation Number to proceed.</value>
+  </data>
+  <data name="Payment Confirmation Number" xml:space="preserve">
+    <value>Payment Confirmation Number</value>
+  </data>
+  <data name="Read Reviews" xml:space="preserve">
+    <value>Read Reviews</value>
+  </data>
+</root>

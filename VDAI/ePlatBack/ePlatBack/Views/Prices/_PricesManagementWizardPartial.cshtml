@@ -1,0 +1,250 @@
+﻿@model ePlatBack.Models.ViewModels.PriceWizardModel
+
+<div style="margin:10px;" class="non-printable">
+    @using (Ajax.BeginForm("SavePriceWizard", "Prices", new AjaxOptions { OnSuccess = "WIZARD.savePriceWizardSuccess(data)" }, new { id = "frmPriceWizard" }))
+    {
+        <div id="pricesManagementWizard">
+            <ul>
+                <li><a href="#wizardPage1">1</a></li>
+                <li><a href="#wizardPage2">2</a></li>
+                <li><a href="#wizardPage3">3</a></li>
+                <li><a href="#wizardPage4">4</a></li>
+                <li><a href="#wizardPage5">5</a></li>
+                <li><a href="#wizardPage6">6</a></li>
+                <li><a href="#wizardPage7">7</a></li>
+                <li><a href="#wizardPage8">8</a></li>
+                <li><a href="#wizardPage9">9</a></li>
+            </ul>
+            <div id="wizardPage1">
+                <div><span>What do you want to do?</span></div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PriceWizard_IsNewUnit)
+                        @Html.HiddenFor(model => model.PriceWizard_ItemID)
+                        @Html.HiddenFor(model => model.PriceWizard_Terminal)
+                        @Html.HiddenFor(model => model.PriceWizard_ItemType)
+                        @Html.HiddenFor(model => model.PriceWizard_PriceType)
+                    </div>
+                    <div class="editor-field">
+                        <label>Create Unit</label>
+                        @Html.RadioButtonFor(model => model.PriceWizard_IsNewUnit, true)
+                        <label>Edit Unit</label>
+                        @Html.RadioButtonFor(model => model.PriceWizard_IsNewUnit, false)
+                    </div>
+                </div>
+                <div class="editor-alignment" style="display:none">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PriceWizard_Unit)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.PriceWizard_Unit, Model.PriceWizard_Units)
+                    </div>
+                </div>
+                <div class="align-from-bottom align-from-top">
+                    <div class="paging-icon right next-tab marg-left">></div>
+                </div>
+            </div>
+            <div id="wizardPage2">
+                <p>From which date the customer can book with this price?</p>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PriceWizard_StartBookingDate)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.PriceWizard_StartBookingDate)
+                    </div>
+                </div>
+                <div class="align-from-bottom align-from-top">
+                    <div class="paging-icon right next-tab marg-left">></div>
+                    <div class="paging-icon right prev-tab"><</div>
+                </div>
+            </div>
+            <div id="wizardPage3">
+                <p>Until which date the customer can book with this price?</p>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PriceWizard_IsBookingPermanent)
+                    </div>
+                    <div class="editor-field">
+                        <label>Yes</label>
+                        @Html.RadioButtonFor(model => model.PriceWizard_IsBookingPermanent, true)
+                        <label>No</label>
+                        @Html.RadioButtonFor(model => model.PriceWizard_IsBookingPermanent, false)
+                    </div>
+                </div>
+                <div class="editor-alignment" style="display:none">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PriceWizard_EndBookingDate)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.PriceWizard_EndBookingDate)
+                    </div>
+                </div>
+                <div class="align-from-bottom align-from-top">
+                    <div class="paging-icon right next-tab marg-left">></div>
+                    <div class="paging-icon right prev-tab"><</div>
+                </div>
+            </div>
+            <div id="wizardPage4">
+                <p>This price will be available for services used from this date:</p>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PriceWizard_StartTravelDate)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.PriceWizard_StartTravelDate)
+                    </div>
+                </div>
+                <div class="align-from-bottom align-from-top">
+                    <div class="paging-icon right next-tab marg-left">></div>
+                    <div class="paging-icon right prev-tab"><</div>
+                </div>
+            </div>
+            <div id="wizardPage5">
+                <p>This price will be available for services used until this date:</p>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PriceWizard_IsTravelPermanent)
+                    </div>
+                    <div class="editor-field">
+                        <label>Yes</label>
+                        @Html.RadioButtonFor(model => model.PriceWizard_IsTravelPermanent, true)
+                        <label>No</label>
+                        @Html.RadioButtonFor(model => model.PriceWizard_IsTravelPermanent, false)
+                    </div>
+                </div>
+                <div class="editor-alignment" style="display:none">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PriceWizard_EndTravelDate)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.PriceWizard_EndTravelDate)
+                    </div>
+                </div>
+                <div class="align-from-bottom align-from-top">
+                    <div class="paging-icon right next-tab marg-left">></div>
+                    <div class="paging-icon right prev-tab"><</div>
+                </div>
+            </div>
+            <div id="wizardPage6">
+                <p>What will be the price?</p>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PriceWizard_Price)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.PriceWizard_Price)
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PriceWizard_Currency)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.PriceWizard_Currency, Model.PriceWizard_DrpCurrencies)
+                    </div>
+                </div>
+                <div class="align-from-bottom align-from-top">
+                    <div class="paging-icon right next-tab marg-left">></div>
+                    <div class="paging-icon right prev-tab"><</div>
+                </div>
+            </div>
+            <div id="wizardPage7">
+                <p>What will be the unit of this price?</p>
+                <div class="editor-alignment align-from-top full-width align-from-bottom">
+                    <table id="tblUnits" class="table dataTable">
+                        <thead>
+                            <tr>
+                                <th>Language</th>
+                                <th>Unit</th>
+                                <th>Min</th>
+                                <th>Max</th>
+                                <th colspan="2">Additional Info</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PriceWizard_Language)
+                        @Html.HiddenFor(model => model.PriceWizard_PriceUnits)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.PriceWizard_Language, Model.PriceWizard_DrpLanguages)
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PriceWizard_PriceUnit)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.PriceWizard_PriceUnit, new { placeholder = "type to show options" })
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PriceWizard_Min)
+                        @Html.LabelFor(model => model.PriceWizard_Max, new { style = "margin-left:80px" })
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.PriceWizard_Min, new { style = "width:95px" })
+                        @Html.TextBoxFor(model => model.PriceWizard_Max, new { style = "width:95px" })
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PriceWizard_AdditionalInfo)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.PriceWizard_AdditionalInfo)
+                    </div>
+                </div>
+                <div class="editor-alignment align-from-top">
+                    <input type="button" id="btnAddPriceUnit" class="button" value="add" />
+                </div>
+                <div class="align-from-bottom align-from-top">
+                    <div class="paging-icon right next-tab marg-left">></div>
+                    <div class="paging-icon right prev-tab"><</div>
+                </div>
+            </div>
+            <div id="wizardPage8">
+                <p>What are the transportation zones of this price</p>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PriceWizard_FromTransportationZoneID)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.PriceWizard_FromTransportationZoneID, Model.PriceWizard_DrpTransportationZones)
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PriceWizard_ToTransportationZoneID)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.PriceWizard_ToTransportationZoneID, Model.PriceWizard_DrpTransportationZones)
+                    </div>
+                </div>
+                <div class="align-from-bottom align-from-top">
+                    <div class="paging-icon right next-tab marg-left">></div>
+                    <div class="paging-icon right prev-tab"><</div>
+                </div>
+            </div>
+            <div id="wizardPage9">
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PriceWizard_GenericUnit)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.PriceWizard_GenericUnit, Model.PriceWizard_DrpGenericUnits)
+                    </div>
+                </div>
+                <div class="align-from-bottom align-from-top" style="padding: 10px 0px 35px;">
+                    <input type="button" id="btnSavePriceFromWizard" class="submit right marg-left" value="save" />
+                    <div class="paging-icon right prev-tab" style="margin-top:5px"><</div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,59 @@
+﻿
+@model ePlatBack.Models.ViewModels.SystemUsers.SystemUser
+
+@using (Ajax.BeginForm("saveSystemUserInfo", "Users",
+        new AjaxOptions 
+        { 
+            OnSuccess = "usersOrgCharts.saveUserInfo(data)",
+            OnComplete = "" 
+        },
+        new
+        {
+
+            id = "frmSystemUsersInfo"  
+        }))
+        { 
+            <div class="card-body" id="orgChartsInfo">
+                <div class=" form-row">
+                    <div class=" form-group col-md-3 col-lg-4">
+                        @Html.HiddenFor(model => model.supervisorAgentID, new { v_model = "user.supervisorAgentID" })
+                        @Html.HiddenFor(model => model.userID, new { v_model = "user.userID" })
+                        @Html.LabelFor(model => model.userName)
+                        @Html.TextBoxFor(model => model.userName, new { v_model = "user.userName", @class = "form-control", @readonly = "readonly" })
+                    </div>
+                    <div class=" form-group col-md-3 col-lg-4">
+                        @Html.LabelFor(model => model.firstName)
+                        @Html.TextBoxFor(model => model.firstName, new { v_model = "user.firstName", @class = "form-control" })
+                    </div>
+                    <div class=" form-group col-md-3 col-lg-4">
+                        @Html.LabelFor(model => model.lastName)
+                        @Html.TextBoxFor(model => model.lastName, new { v_model = "user.lastName", @class = "form-control" })
+                    </div>
+                    <div class=" form-group col-md-3 col-lg-4">                      
+                        @Html.LabelFor(model => model.locked)
+                        @Html.CheckBoxFor(model => model.locked, new { v_model = "user.locked", @class = "form-control" })
+                    </div>
+                    <div class=" form-group col-md-3 col-lg-4">                    
+                        @Html.LabelFor(model => model.email)
+                        @Html.TextBoxFor(model => model.email, new { v_model = "user.email", @class = "form-control", @readonly = "readonly" })
+                    </div>
+                    <div class=" form-group col-md-3 col-lg-4">
+                        @Html.LabelFor(model => model.jobPosition)
+                        @Html.TextBoxFor(model => model.jobPosition, new { v_model = "user.jobPosition", @class = "form-control", @readonly = "readonly" })
+                    </div>
+                    <div class=" form-group col-md-3 col-lg-4">                                   
+                        @Html.LabelFor(model => model.supervisorID)
+                        @Html.DropDownListFor(model => model.supervisorID, Model.supervisorList, new { v_model = "user.supervisorID", @class = "form-control" })
+                    </div>
+                    <div class=" form-group col-md-3 col-lg-4">                       
+                        @Html.LabelFor(model => model.system)
+                        @Html.TextBoxFor(model => model.system, new { v_model = "user.system", @class = "form-control", @readonly="readonly" })
+                    </div>
+                </div>
+                <div class="form-row">
+                        <div class=" text-right col">
+                            <input id="saveInfo" class="btn btn-primary" type="submit" value="Save" >
+                        </div>
+                </div>
+            </div>
+        }

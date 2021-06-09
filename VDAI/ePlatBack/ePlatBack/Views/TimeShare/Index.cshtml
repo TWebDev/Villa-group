@@ -1,0 +1,21 @@
+﻿@model ePlatBack.Models.ViewModels.TimeShareViewModel
+
+@{
+    ViewBag.Title = "ePlat > CRM > TimeShare Operation";
+    ViewData["Privileges"] = Model.Privileges;
+}
+
+@section Head{
+<link href="/Content/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+}
+
+@section Scripts{
+<script src="@Url.Content("~/Scripts/jquery.dataTables.js")" type="text/javascript"></script>
+<script src="/Scripts/jquery.numeric.js" type="text/javascript"></script>
+    <script src="~/Scripts/crm/masterchart/fastsale.js" type="text/javascript"></script>
+<script src="~/Scripts/crm/timeshare/timeshare.js?v=@DateTime.Now" type="text/javascript"></script>
+}
+
+<h1 class="non-printable">Timeshare Operations</h1>
+@Html.Partial("_AccountancyManagementPartial", Model)
+@*@Html.Action("RenderTimeShareOperations", "TimeShare")*@

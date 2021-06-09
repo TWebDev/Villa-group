@@ -1,0 +1,301 @@
+﻿@model ePlatBack.Models.ViewModels.ActivityDetailViewModel
+
+@{
+    ViewBag.Culture = Model.Culture;
+    ViewBag.Title = Model.Seo_Title;
+    ViewBag.Keywords = Model.Seo_Keywords;
+    ViewBag.Description = Model.Seo_Description;
+    ViewBag.Index = Model.Seo_Index;
+    ViewBag.Follow = Model.Seo_Follow;
+
+    ViewBag.Header = Model.Template_Header;
+    ViewBag.Footer = Model.Template_Footer;
+    ViewBag.Logo = Model.Template_Logo;
+
+    ViewBag.Submenu1 = Model.Submenu1;
+    ViewBag.Submenu2 = Model.Submenu2;
+    ViewBag.Submenu3 = Model.Submenu3;
+}
+
+@section header{
+    @Html.Raw(Model.Scripts_Header)
+}
+
+@section afterBody{
+    @Html.Raw(Model.Scripts_AfterBody)
+}
+
+@section scripts{
+    @Html.Raw(Model.Scripts_Footer)
+    <script>
+        UI.alerts('@Model.Seo_Title');
+    </script>
+}
+
+@section controls{}
+
+@section featured {}
+
+@Html.HiddenFor(model => model.ActivityID)
+@Html.HiddenFor(model => model.ItemTypeID)
+<div class="left-column">
+    <h1>@Html.DisplayFor(model => model.Activity)</h1>
+    <div id="divGallery">
+        @foreach (var picture in Model.Pictures)
+        {
+            <figure id="@picture.PictureID">
+                <img src="@("//eplatfront.villagroup.com" + @picture.Picture + "?width=920&height=520&mode=crop&autorotate=true")" alt="@(picture.Description != null ? picture.Description : Model.Activity)" />
+                <figcaption>@picture.Description</figcaption>
+            </figure>
+        }
+        <div id="divGallerySelector">
+            @foreach (var picture in Model.Pictures)
+            {
+                <img data-picid="@picture.PictureID" src="//eplatfront.villagroup.com/@picture.Picture?width=110&height=72&mode=crop&quality=50" width="55" height="36" />
+            }
+        </div>
+    </div>
+    <div id="divFeatures">
+        <h2>@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Features</h2>
+        <div style="display:none;">
+            @Html.DisplayFor(model => model.Features_MinimumAge)
+            @Html.DisplayFor(model => model.Features_MinimumHeight)
+        </div>
+        <div id="divFriendlyWith">
+            <span class="feature-label">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Friendly_with:</span>
+            <img src="~/Content/themes/mex/images/icon_baby.png" alt="" style="@(!Model.Features_BabiesAllowed ? "opacity:.2;" : "")" title="@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Babies" />
+            <img src="~/Content/themes/mex/images/icon_children.png" alt="" style="@(!Model.Features_ChildrenAllowed ? "opacity:.2;" : "")" title="@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Children" />
+            <img src="~/Content/themes/mex/images/icon_plus12.png" alt="" style="@(!Model.Features_AdultsAllowed ? "opacity:.2;" : "")" title="@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Adults" />
+            <img src="~/Content/themes/mex/images/icon_pregnant.png" alt="" style="@(!Model.Features_PregnantsAllowed ? "opacity:.2;" : "")" title="@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Pregnant_Women" />
+            <img src="~/Content/themes/mex/images/icon_oldies.png" alt="" style="@(!Model.Features_OldiesAllowed ? "opacity:.2;" : "")" title="@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Seniors" />
+        </div>
+        <div id="divRanking">
+            <span class="right read-reviews">Read Reviews</span>
+            <span class="feature-label">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Guest_Ranking</span>
+            @if (Model.Rating != null && Model.Rating > 0)
+            {
+                for (int s = 1; s <= Math.Floor(Math.Abs(Model.Rating)); s++)
+                {
+                    <img src="~/Content/themes/mex/images/icon_star_full.png" />
+                }
+                if (Model.Rating % 1 != 0)
+                {
+                    <img src="~/Content/themes/mex/images/icon_star_half.png" />
+                }
+                for (int v = 1; v <= Math.Floor(Math.Abs(5 - Model.Rating)); v++)
+                {
+                    <img src="~/Content/themes/mex/images/icon_star_empty.png" />
+                }
+            }
+            else
+            {
+                <span><img src="/Content/themes/mex/images/stars_empty.png" /><img src="/Content/themes/mex/images/stars_empty.png" /><img src="/Content/themes/mex/images/stars_empty.png" /><img src="/Content/themes/mex/images/stars_empty.png" /><img src="/Content/themes/mex/images/stars_empty.png" /> <a href="#share-your-experience" class="share-your-experience">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Rank_it_now!</a></span>
+            }
+        </div>
+        <div id="divLength">
+            <span class="feature-label">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Activity_Length</span>
+            <img src="~/Content/themes/mex/images/icon_time.png" /> <span id="spnLength">@Html.DisplayFor(model => model.Length)</span>
+        </div>
+    </div>
+    @if (Model.Promo_MainTag != null && Model.Promo_MainTag != "")
+    {
+        <div id="divOffer" style="background-color: @Model.Promo_TagColor; color: @Model.Promo_TextColor;">
+            <div class="row-tag">
+                <div class="main-tag">
+                    @Html.DisplayFor(model => model.Promo_MainTag)
+                </div>
+                <div class="secondary-tag">
+                    <h3>
+                        @Html.DisplayFor(model => model.Promo_TitleTag)
+                    </h3>
+                    @Html.Raw(Model.Promo_Description)
+                </div>
+                <div class="button-tag"><a class="fancybox" href="#divOfferInstructions">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.How_to_Apply</a></div>
+            </div>
+            <div id="divOfferInstructions" style="display: none;">
+                @Html.Raw(Model.Promo_Instructions)
+            </div>
+        </div>
+    }
+    <div id="divDescription">
+        <h2>@ePlatFront.Resources.Views.Activities.ActivitiesStrings.What_is_this_about</h2>
+        @Html.Raw(Model.Description)
+    </div>
+    @if (Model.Itinerary != null && Model.Itinerary != "")
+    {
+        <div id="divItinerary">
+            <h2>@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Itinerary</h2>
+            @Html.Raw(Model.Itinerary)
+        </div>
+    }
+    @if (Model.Included != null && Model.Included != "")
+    {
+        <div id="divIncluded" style="@(Model.Itinerary != null && Model.Itinerary != "" ? "" : "width:100%")">
+            <h2>@ePlatFront.Resources.Views.Activities.ActivitiesStrings.What_is_included</h2>
+            @Html.Raw(Model.Included)
+        </div>
+    }
+    <div id="divRecommendations">
+        <h2>@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Recommendations</h2>
+        @Html.Raw(Model.Recommendations)
+    </div>
+    <div id="divReviews">
+        <h2>@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Share_your_Experience</h2>
+        @if (Model.Reviews.Count() == 0)
+        {
+            <div class="review review-invitation">
+                <div class="review-description">
+                    <p>@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Not_Ranked <a class="share-your-experience" href="#share-your-experience">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Add_a_Review_Now!</a></p>
+                </div>
+            </div>
+        }
+        else
+        {
+            foreach (var review in Model.Reviews)
+            {
+                <div class="review">
+                    <div class="review-info">
+                        @if (review.Picture != null)
+                        {
+                            <img src="@review.Picture?w=320&h=240&mode=crop" width="160" style="margin: -20px -20px 10px -20px; width: 160px;" />
+                        }
+                        @for (int s = 1; s <= Math.Floor(Math.Abs(review.Rating)); s++)
+                        {
+                            <img src="~/Content/themes/mex/images/stars_full.png" />
+                        }
+                        @if (review.Rating % 1 != 0)
+                        {
+                            <img src="~/Content/themes/mex/images/stars_half.png" />
+                        }
+                        @for (int v = 1; v <= Math.Floor(Math.Abs(5 - review.Rating)); v++)
+                        {
+                            <img src="~/Content/themes/mex/images/stars_empty.png" />
+                        }
+                        <br />
+                        @review.Author<br />
+                        @review.From<br />
+                        @review.Saved<br />
+                    </div>
+                    <div class="review-description">                  
+                        @review.Review
+                    </div>
+                </div>
+            }
+            <a href="#share-your-experience" class="share-your-experience secondary-button">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Share_My_Opinion</a>
+        }
+        <div id="divSubmitReview" style="display:none;">
+            @Html.Partial("_SubmitReviewPartial", Model.NewReview)
+        </div>
+    </div>
+</div>
+<div class="right-column">
+    <div id="divPrices">
+        <a href="/best-price-guaranteed">
+            <img class="right" src="/Content/themes/mex/images/icon_best_price.png" alt="" />
+        </a>
+        <h2>
+            @ePlatFront.Resources.Views.Activities.ActivitiesStrings.Prices
+        </h2>
+        @if (!@Model.IsTransportation)
+        {
+            foreach (var price in Model.Prices.OrderByDescending(p => p.OfferPrice))
+            {
+                if (price.DependingOnPriceID == null)
+                {
+                    <div class="price">
+                        <div class="price-unit">
+                            @price.Unit
+                            @if (@price.UnitMin != null)
+                            {
+                                <text>
+                                    (@price.UnitMin - @price.UnitMax @ePlatFront.Resources.Views.Activities.ActivitiesStrings.Years)
+                                </text>
+                            }
+                        </div>
+                        <div class="price-retail">$@price.RetailPrice.ToString("0.00").Replace(",", ".") @price.Currency</div>
+                        <div class="price-offer">$@price.OfferPrice.ToString("0.00").Replace(",", ".") @price.Currency</div>
+                        <div class="price-label">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Retail_Price</div>
+                        <div class="price-label">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Our_Price</div>
+                    </div>
+                }
+            }
+        }
+
+        @if (Model.Prices.Count() > 0)
+        {
+            <a id="aBookNow" href="#shopping-cart" onclick="BookingEngine.Service.book(@Model.ActivityID, '@Model.Activity.Replace("'","")')">
+                <span class="book-button">
+                    <span>@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Click_Here_To </span>
+                    <span class="book-button-now">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Book_Now</span>
+                </span><span class="book-savings">
+                    @if (Model.Prices.OrderByDescending(x => x.Savings).FirstOrDefault().Savings > 0)
+                    {
+                        @ePlatFront.Resources.Views.Activities.ActivitiesStrings.Savings
+                        <span class="book-percentage">
+                            @Html.DisplayFor(model => model.Prices.OrderByDescending(x => x.Savings).FirstOrDefault().Savings)%
+                        </span>
+                    }
+                </span>
+            </a>
+        }
+    </div>
+    <div id="divAvailability">
+        <h2>@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Availability</h2>
+        <div class="day-button" data-day="Monday">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Mon</div>
+        <div class="day-button" data-day="Tuesday">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Tue</div>
+        <div class="day-button" data-day="Wednesday">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Wed</div>
+        <div class="day-button" data-day="Thursday">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Thu</div>
+        <div class="day-button" data-day="Friday">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Fri</div>
+        <div class="day-button" data-day="Saturday">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Sat</div>
+        <div class="day-button" data-day="Sunday">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Sun</div>
+        <div id="divSchedules">
+            @foreach (var schedule in Model.Schedules)
+            {
+                if (schedule.Time != "")
+                {
+                    <span id="@schedule.Day" class="day-schedule" style="display:none;">
+                        @schedule.Time
+                    </span>
+                }
+            }
+        </div>
+    </div>
+    <div id="divMeetingPoints">
+        <h2>@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Meeting_Points</h2>
+        <ul class="meeting-points">
+            @foreach (var place in Model.MeetingPoints)
+            {
+                <li data-lat="@place.Lat" data-lng="@place.Lng"><img src="/content/themes/mex/images/icon_location.png" class="place-icon" /><span class="place"><span class="name">@place.Place</span><span class="address">@Html.Raw(@place.Address)</span></span></li>
+            }
+        </ul>
+    </div>
+    @if (Model.Notes != null && Model.Notes != "")
+    {
+        <div id="divNotes">
+            <h2>@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Notes</h2>
+            @Html.Raw(Model.Notes)
+        </div>
+    }
+    @if (Model.Restrictions != null && Model.Restrictions != "")
+    {
+        <div id="divRestrictions">
+            <h2>@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Restrictions</h2>
+            @Html.Raw(Model.Restrictions)
+        </div>
+    }
+    @if (Model.AlternativeActivities.Count() > 0)
+    {
+        <div id="divMoreOptions">
+            <h2>@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Need_More_Options</h2>
+            @foreach (var activity in Model.AlternativeActivities)
+            {
+                <a href="@activity.Url" title="@activity.Activity">
+                    <figure>
+                        <img src="//eplatfront.villagroup.com/@activity.Picture?width=126&height=76&mode=crop&quality=50" width="63" height="38" alt="@activity.Activity" />
+                        <figcaption>@activity.Activity</figcaption>
+                    </figure>
+                </a>
+            }
+        </div>
+    }
+</div>

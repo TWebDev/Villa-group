@@ -1,0 +1,853 @@
+﻿@model ePlatBack.Models.ViewModels.ArrivalsViewModel.ArrivalInfoView
+
+<fieldset id="fdsArrivalInfo">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        Guest Info
+    </legend>
+    <div style="display:none;">
+        @using (Ajax.BeginForm("SaveArrivalInfo", "Hostess", new AjaxOptions { OnSuccess = "Hostess.updated(data);" }, new { id = "frmArrivalInfo" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            @Html.HiddenFor(model => model.ArrivalID)
+
+            <div style="padding-top: 65px; display: inline-block; float: right;">
+                <input type="button" value="CANCEL" class="button right" id="btnCloseArrivalInfo" />&nbsp;
+                @if (Model.Privileges.FirstOrDefault(m => m.Component == "btnSaveArrivalInfo") == null || Model.Privileges.FirstOrDefault(m => m.Component == "btnSaveArrivalInfo").View)
+                {
+                    <input type="submit" id="btnSaveArrivalInfo" class="submit right" value="save" style="margin-right: 5px;" />
+                }
+            </div>
+            <div class="guest-pic">
+
+            </div>
+            <h3 class="guest-name">Guest Name</h3>
+            <div id="guestTabs">
+                <ul style="padding-left: 160px;">
+                    @if (Model.Privileges.FirstOrDefault(m => m.Component == "Front Office") == null || Model.Privileges.FirstOrDefault(m => m.Component == "Front Office").View)
+                    {
+                        <li><a href="#tabFront">Front Office</a></li>
+                    }
+                    @if (Model.Privileges.FirstOrDefault(m => m.Component == "Hostess") == null || Model.Privileges.FirstOrDefault(m => m.Component == "Hostess").View)
+                    {
+                        <li><a href="#tabHostess">Concierge Binnacle</a></li>
+                    }
+                    @if (Model.Privileges.FirstOrDefault(m => m.Component == "Manifest") == null || Model.Privileges.FirstOrDefault(m => m.Component == "Hostess").View)
+                    {
+                        <li><a href="#tabManifest">Manifest</a></li>
+                    }
+                    @if (Model.Privileges.FirstOrDefault(m => m.Component == "Guest Info") == null || Model.Privileges.FirstOrDefault(m => m.Component == "Guest Info").View)
+                    {
+                        <li><a href="#tabGuestInfo">Guest Info</a></li>
+                    }
+                    <li id="divClarabridge"><a href="#tabClarabridge">Clarabridge</a></li>
+                    @if (Model.Privileges.FirstOrDefault(m => m.Component == "Member Info") == null || Model.Privileges.FirstOrDefault(m => m.Component == "Member Info").View)
+                    {
+                        <li id="divMemberInfo"><a href="#tabMemberInfo">Member Info</a></li>
+                    }
+                    @if (Model.Privileges.FirstOrDefault(m => m.Component == "Prearrival") == null || Model.Privileges.FirstOrDefault(m => m.Component == "Prearrival").View)
+                    {
+                        <li id="divPreArrivalInfo"><a href="#tabPreArrival">Prearrival</a></li>
+                    }
+                </ul>
+                @if (Model.Privileges.FirstOrDefault(m => m.Component == "Front Office") == null || Model.Privileges.FirstOrDefault(m => m.Component == "Front Office").View)
+                {
+                    <div id="tabFront">
+                        <h3>Front Office Information</h3>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.FrontOfficeReservationID)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.FrontOfficeReservationID, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ArrivalDate)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ArrivalDate, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.Nights)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.Nights, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment double-width">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.Guest)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.Guest, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.FirstName)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.FirstName, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.LastName)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.LastName, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.Adults)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.Adults, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.Children)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.Children, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.Infants)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.Infants, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.Country)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.Country, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.Source)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.Source, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ReservationStatus)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ReservationStatus, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.RoomType)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.RoomType, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ConfirmationNumber)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ConfirmationNumber, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.Crs)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.Crs, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.Contract)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.Contract, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.PlanType)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.PlanType, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.CheckinDateTime)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.CheckinDateTime, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.DateLastUpdate)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.DateLastUpdate, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.LeadID)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.LeadID, new List<SelectListItem>())
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.Nationality)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.Nationality, Model.Nationalities)
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.PreCheckIn)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.PreCheckIn, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ExtensionReservation)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ExtensionReservation, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                            </div>
+                        </div>
+                    </div>
+                }
+                @if (Model.Privileges.FirstOrDefault(m => m.Component == "Guest Info") == null || Model.Privileges.FirstOrDefault(m => m.Component == "Guest Info").View)
+                {
+                    <div id="tabGuestInfo">
+                        @if (Model.Privileges.Count() > 0 && Model.Privileges.FirstOrDefault(m => m.Component == "Contact Info").View)
+                        {
+                            <h3>Contact Information</h3>
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.Email1)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(model => model.Email1, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                                </div>
+                            </div>
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.Email2)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(model => model.Email2, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                                </div>
+                            </div>
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.Phone1)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(model => model.Phone1, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                                </div>
+                            </div>
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.Phone2)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(model => model.Phone2, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                                </div>
+                            </div>
+                        }
+                        @if (Model.Privileges.FirstOrDefault(m => m.Component == "Address") == null || Model.Privileges.FirstOrDefault(m => m.Component == "Address").View)
+                        {
+                            <h3>Address Information</h3>
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.CountryID)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.DropDownListFor(model => model.CountryID, Model.Countries)
+                                </div>
+                            </div>
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.StateID)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.DropDownListFor(model => model.StateID, Model.States)
+                                </div>
+                            </div>
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.City)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(model => model.City)
+                                </div>
+                            </div>
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.ZipCode)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(model => model.ZipCode)
+                                </div>
+                            </div>
+                        }
+                        @if (Model.Privileges.FirstOrDefault(m => m.Component == "Pre-Check In") == null || Model.Privileges.FirstOrDefault(m => m.Component == "Pre-Check In").View)
+                        {
+                            <h3>Pre-Check In</h3>
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.PCIPrearrivalStatus)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(model => model.PCIPrearrivalStatus, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                                </div>
+                            </div>
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.PCILastInteractionAgent)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(model => model.PCILastInteractionAgent, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                                </div>
+                            </div>
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.PCILastInteractionDate)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(model => model.PCILastInteractionDate, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                                </div>
+                            </div>
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.PCIVipCardType)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.DropDownListFor(model => model.PCIVipCardType, Model.VipCardTypes)
+                                </div>
+                            </div>
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.PCIVipCardStatus)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.DropDownListFor(model => model.PCIVipCardStatus, Model.VipCardStatuses)
+                                </div>
+                            </div>
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.PCIVipCardStatusAgent)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(model => model.PCIVipCardStatusAgent, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                                </div>
+                            </div>
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.PCICompleted)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.CheckBoxFor(model => model.PCICompleted)
+                                </div>
+                            </div>
+                            <div class="editor-alignment double-width">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.PCIConciergeComments)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextAreaFor(model => model.PCIConciergeComments)
+                                </div>
+                            </div>
+                            @*<h4>Guest Companions</h4>
+                                <table></table>*@
+                        }
+                        @if (Model.Privileges.FirstOrDefault(m => m.Component == "Preferences") == null || Model.Privileges.FirstOrDefault(m => m.Component == "Preferences").View)
+                        {
+                            <h3>Guest Preferences</h3>
+                            @Html.HiddenFor(model => model.Preferences)
+                            <table class="fields-table" id="tblPreferences" style="width:100%;">
+                                <thead>
+                                    <tr>
+                                        @foreach (var type in Model.PreferenceTypes)
+                                        {
+                                            <th>
+                                                @type.PreferenceTypeName
+                                            </th>
+                                        }
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        @foreach (var type in Model.PreferenceTypes)
+                                        {
+                                            <td>
+                                                @foreach (var preference in type.Preferences)
+                                                {
+                                                    <span class="editor-field">
+                                                        <input type="checkbox" id="chk_@preference.PreferenceID" data-preferenceid="@preference.PreferenceID" /><label for="chk_@preference.PreferenceID">@preference.Preference</label>
+                                                    </span>
+                                                }
+                                            </td>
+                                        }
+                                    </tr>
+                                </tbody>
+                            </table>
+                        }
+                    </div>
+                }
+
+                <div id="tabClarabridge">
+                    <h3>Clarabridge Survey</h3>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.SentDate)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.SentDate, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.SubmittedDate)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.SubmittedDate, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Rate)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.Rate, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.SurveyRoomNumber)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.SurveyRoomNumber, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                        </div>
+                    </div>
+                    <div class="survey-answers"></div>
+                </div>
+
+                @if (Model.Privileges.FirstOrDefault(m => m.Component == "Member Info") == null || Model.Privileges.FirstOrDefault(m => m.Component == "Member Info").View)
+                {
+                    <div id="tabMemberInfo">
+                        <h3>Member Info</h3>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.AccountNumber)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.AccountNumber, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ContractNumber)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ContractNumber, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ClubType)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ClubType, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.CoOwner)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.CoOwner, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                            </div>
+                        </div>
+
+                        <div id="divTimeshareTours">
+                            <h3>Timeshare Tours History</h3>
+                            @*<div class="editor-alignment half-width">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.SPIRelatedCustomerID)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.SPIRelatedCustomerID, new List<SelectListItem>(), new { style = "width: 400px; height: 34px;" })
+                                        <input type="button" id="btnSearchSPIHistory" class="button" value="GET HISTORY" />
+                                    </div>
+                                </div>*@
+                            <table id="tblToursHistory" class="table" style="width:100%;">
+                                <thead>
+                                    <tr>
+                                        <th style="width:70px;">Tour Date</th>
+                                        <th>Sales Center</th>
+                                        <th>Contract</th>
+                                        <th>Volume</th>
+                                        <th>Customer</th>
+                                        <th>Customer ID</th>
+                                        <th style="width:75px;">Account Number</th>
+                                        <th>Last Tour</th>
+                                        <th>Last Contract</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                            @Html.Partial("_TimeshareTourInfoPartial", Model.TourInfoForm)
+                        </div>
+                    </div>
+                }
+                @if (Model.Privileges.FirstOrDefault(m => m.Component == "Prearrival") == null || Model.Privileges.FirstOrDefault(m => m.Component == "Prearrival").View)
+                {
+                    <div id="tabPreArrival">
+                        @*<div class="div-button" style=" margin-bottom: -25px; padding-top: 5px;">
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+
+                                    </div>
+                                    <div class="editor-field">
+                                        <a class="fake-button options-conf" target="_blank" href="">Options Confirmation</a>
+                                    </div>
+                                </div>
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+
+                                    </div>
+                                    <div class="editor-field">
+                                        <a class="fake-button transportation-conf" target="_blank" href="">Transportation Confirmation</a>
+                                    </div>
+                                </div>
+                            </div>*@
+                        <h3>Prearrival Info</h3>
+                        <div class="editor-alignment double-width">
+                            <div class="editor-label">
+                                @Html.HiddenFor(model => model.PreArrivalReservationID)
+                                @Html.LabelFor(model => model.PreArrivalFeedBack)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextAreaFor(model => model.PreArrivalFeedBack)
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.PreArrivalStatus)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.PreArrivalStatus, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.PreArrivalOptionsTotal)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.PreArrivalOptionsTotal, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.PrintedLetterOnHand)
+                            </div>
+                            <div class="editor-field">
+                                @Html.RadioButtonFor(model => model.PrintedLetterOnHand, "true") Yes
+                                @Html.RadioButtonFor(model => model.PrintedLetterOnHand, "false") No
+                            </div>
+                        </div>
+                        <div id="divInteractions">
+                            <h4>Interactions</h4>
+                            <div id="divInteractionsInfo"></div>
+                        </div>
+                        <div id="divFlights">
+                            <h4>Flight Info</h4>
+                            <table id="tblFlights" class="table half-width">
+                                <thead>
+                                    <tr>
+                                        <th>Flight Type</th>
+                                        <th>Date Time</th>
+                                        <th>Airline</th>
+                                        <th>Flight Number</th>
+                                        <th>Passengers</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                        <div id="divLetters">
+                            <h4>Confirmation Letters Info</h4>
+                            <table id="tblConfirmationLetters" class="table half-width">
+                                <thead>
+                                    <tr>
+                                        <th>Confirmation Letter</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                }
+                @if (Model.Privileges.FirstOrDefault(m => m.Component == "Hostess") == null || Model.Privileges.FirstOrDefault(m => m.Component == "Hostess").View)
+                {
+                    <div id="tabHostess">
+                        <div class="right">
+                            <div class="editor-alignment">
+                                <div class="editor-field">
+                                    @Html.LabelFor(model => model.HostessName) @Html.TextBoxFor(model => model.HostessName, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                                </div>
+                            </div>
+                            <div class="editor-alignment">
+                                <div class="editor-field">
+                                    @Html.LabelFor(model => model.HostessInputDateTime) @Html.TextBoxFor(model => model.HostessInputDateTime, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                                </div>
+                            </div>
+                        </div>
+                        <h3 style="display: inline-block;">Concierge Information</h3>
+                        <div style="clear: both;">
+                            @if (@Model.Privileges.FirstOrDefault(y => y.Component == "Hostess") != null)
+                            {
+                                <input type="hidden" id="tabHostessEdit" data-keep-value="true" value="@Model.Privileges.FirstOrDefault(y => y.Component == "Hostess").Edit.ToString().ToLower()" />
+                            }
+                            else
+                            {
+                                <input type="hidden" id="tabHostessEdit" data-keep-value="true" value="true" />
+                            }
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ProgramID)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.ProgramID, Model.Programs)
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.TravelSourceID)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.TravelSourceID, Model.TravelSources)
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.AgencyName)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.AgencyName, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.HostessQualificationStatusID)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.HostessQualificationStatusID, Model.QualificationStatuses)
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.NQReasonID)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.NQReasonID, Model.NQReasons)
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.PromotionTeamID)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.PromotionTeamID, Model.PromotionTeams)
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.OPCID)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.OPCID, Model.OPCs)
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.BookingStatusID)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.BookingStatusID, Model.BookingStatuses)
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.VipCardType)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.VipCardType, Model.VipCardTypes)
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.VipCardStatus)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.VipCardStatus, Model.VipCardStatuses)
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.VipCardStatusAgent)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.VipCardStatusAgent, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment double-width">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.Comments)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextAreaFor(model => model.Comments)
+                            </div>
+                        </div>
+                    </div>
+                }
+                @if (Model.Privileges.FirstOrDefault(m => m.Component == "Manifest") == null || Model.Privileges.FirstOrDefault(m => m.Component == "Manifest").View)
+                {
+                    <div id="tabManifest">
+                        <h3>Manifest Information</h3>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.PresentationDate)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.PresentationDate)
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.SalesRoomPartyID)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.SalesRoomPartyID, Model.SalesRoomsParties)
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.Deposit)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.Deposit, new { style = "width:86px;" })
+                                @Html.DropDownListFor(model => model.DepositCurrencyID, Model.Currencies, new { style = "width:100px;" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.PickUpTimeHour)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.PickUpTimeHour, Model.Hours, new { style = "width: 66px;" })
+                                @Html.DropDownListFor(model => model.PickUpTimeMinute, Model.Minutes, new { style = "width: 66px;" })
+                                @Html.DropDownListFor(model => model.PickUpTimeMeridian, Model.Meridians, new { style = "width: 60px;" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.GuestEmail)
+                            </div>
+                            <div class="editor-field">
+                                @Html.PasswordFor(model => model.GuestEmail, new { data_format = "free-case" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.Confirmed)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.Confirmed, Model.ConfirmationStatuses)
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.InvitationNumber)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.InvitationNumber)
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ManifestRoomNumber)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ManifestRoomNumber, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.PresentationPax)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.PresentationPax)
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.InvitationGenerated)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.InvitationGenerated, new { @readonly = "readonly", style = "background-color:#E8EEF4 !important" })
+                            </div>
+                        </div>
+                        <div>
+                            <div class="editor-alignment double-width">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.Gifting)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextAreaFor(model => model.Gifting)
+                                </div>
+                            </div>
+                        </div>
+                        <h3>SPI Feedback</h3>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.SPICustomerID)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.SPICustomerID)
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</fieldset>

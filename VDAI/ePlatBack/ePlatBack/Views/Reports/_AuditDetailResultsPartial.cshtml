@@ -1,0 +1,569 @@
+﻿@model ePlatBack.Models.ViewModels.AuditCouponsModel.InvoiceDetail
+
+<span class="btn-close non-printable" id="btnCloseAuditDetails"></span>
+<input type="button" value="PRINT" class="mini-button right non-printable" style="margin-right:15px;" id="btnAuditDetailsPrint" />
+<h3 class="non-printable">Audit Coupons Report</h3>
+
+<div class="table-div">
+    <div class="table-row">
+        <div class="table-cell">
+            Date<br />
+            @Model.Date
+        </div>
+        <div class="table-cell">
+            Provider<br />
+            @Model.Provider
+        </div>
+        <div class="table-cell">
+            Invoice<br />
+            @Model.Invoice
+        </div>
+        @if (Model.ExchangeRate != null && Model.ExchangeRate != "")
+        {
+            <div class="table-cell">
+                Exchange Rate<br />
+                @Model.ExchangeRate
+            </div>
+        }
+    </div>
+</div>
+
+<table class="table small-text" style="width:100%" id="tblAuditDetails">
+    <thead>
+        <tr>
+            <th>Point Of Sale</th>
+            <th>Activity</th>
+            <th>Coupon</th>
+            <th>Date</th>
+            <th>Currency of Sale</th>
+            <th>Culture of Sale</th>
+            <th>Total USD</th>
+            <th>Total MXN</th>
+            <th>Units</th>
+            <th>Unit Description</th>
+            <th>Price Type</th>
+            <th>Acc Acc Number</th>
+            <th>Acc Acc Name</th>
+            <th>Acc Acc Article</th>
+            <th>Unit Cost USD</th>
+            <th>Unit Cost MXN</th>
+            <th>Cost USD</th>
+            <th>Cost MXN</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var PoS in Model.PointsOfSale)
+        {
+            <tr data-index="a">
+                <td rowspan="@(PoS.Services.Count() + 1 + PoS.Services.SelectMany(x => x.Coupons).Count() + PoS.Services.SelectMany(x => x.Coupons.SelectMany(y => y.Units)).Count())" style="background-color:rgb(217, 252, 255);">@PoS.PointOfSale</td>
+                <td rowspan="@(PoS.Services.FirstOrDefault().Coupons.Count() + 1 + PoS.Services.FirstOrDefault().Coupons.SelectMany(y => y.Units).Count())" style="background-color:rgb(235, 253, 255);">@PoS.Services.FirstOrDefault().Service</td>
+                <td rowspan="@(PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().Units.Count() + 1)" style="background-color:rgb(250, 255, 255);">
+                    @PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().Folio
+                    @if (@PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().CouponReference != null && @PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().CouponReference != "")
+                    {
+                        <br />
+                        <span>[@PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().CouponReference]</span>
+                    }
+                </td>
+                <td rowspan="@(PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().Units.Count() + 1)" style="background-color:rgb(250, 255, 255);">@PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().Date</td>
+                <td rowspan="@(PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().Units.Count() + 1)" style="background-color:rgb(250, 255, 255);">@PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().CurrencyOfSale</td>
+                <td rowspan="@(PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().Units.Count() + 1)" style="background-color:rgb(250, 255, 255);">@(PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().CultureOfSale == "es-MX" ? "Español" : "English")</td>
+                <td rowspan="@(PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().Units.Count() + 1)" style="background-color:rgb(250, 255, 255);"><span data-format="currency">@PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().Total.FirstOrDefault(c => c.Currency == "USD").Amount.ToString("0.00") USD</span></td>
+                <td rowspan="@(PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().Units.Count() + 1)" style="background-color:rgb(250, 255, 255);"><span data-format="currency">@PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().Total.FirstOrDefault(c => c.Currency == "MXN").Amount.ToString("0.00") MXN </span></td>
+                <td>@PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().Units.FirstOrDefault().Quantity.ToString().Replace(".00", "") </td>
+                <td>@PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().Units.FirstOrDefault().Unit</td>
+                <td>@PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().Units.FirstOrDefault().PriceType</td>
+                <td>@PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().Units.FirstOrDefault().AccAccNumber </td>
+                <td>@PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().Units.FirstOrDefault().AccAccName </td>
+                <td>@PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().Units.FirstOrDefault().AccAccArticle </td>
+                <td><span data-format="currency" title="@PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().Units.FirstOrDefault().UnitRule.FirstOrDefault(c => c.Currency == "USD").Rule">@PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().Units.FirstOrDefault().UnitCost.FirstOrDefault(c => c.Currency == "USD").Amount USD</span></td>
+                <td><span data-format="currency" title="@PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().Units.FirstOrDefault().UnitRule.FirstOrDefault(c => c.Currency == "MXN").Rule">@PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().Units.FirstOrDefault().UnitCost.FirstOrDefault(c => c.Currency == "MXN").Amount MXN</span></td>
+                <td class="@(PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().Units.FirstOrDefault().CustomCost ? "custom-cost" : "")">
+                    @if (Model.Privileges.FirstOrDefault(m => m.Component == ".edit-cost") == null || Model.Privileges.FirstOrDefault(m => m.Component == ".edit-cost").View)
+                    {
+                        <span class="edit-cost" data-purchaseserviceid="@PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().PurchaseServiceID" data-purchaseservicedetailid="@PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().Units.FirstOrDefault().PurchaseServiceDetailID"></span>
+                    }
+                    <span data-format="currency">@PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().Units.FirstOrDefault().Cost.FirstOrDefault(c => c.Currency == "USD").Amount USD</span>
+                </td>
+                <td class="@(PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().Units.FirstOrDefault().CustomCost ? "custom-cost" : "")">
+                    @if (Model.Privileges.FirstOrDefault(m => m.Component == ".edit-cost") == null || Model.Privileges.FirstOrDefault(m => m.Component == ".edit-cost").View)
+                    {
+                        <span class="edit-cost" data-purchaseserviceid="@PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().PurchaseServiceID" data-purchaseservicedetailid="@PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().Units.FirstOrDefault().PurchaseServiceDetailID"></span>
+                    }
+                    <span data-format="currency">@PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().Units.FirstOrDefault().Cost.FirstOrDefault(c => c.Currency == "MXN").Amount MXN</span>
+                </td>
+            </tr>
+
+                    //Units
+                    int u = 0;
+                    foreach (var unit in PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().Units)
+                    {
+
+                        if (u > 0)
+                        {
+                            <tr data-index="b">
+                                <td>@unit.Quantity.ToString().Replace(".00", "") </td>
+                                <td>@unit.Unit</td>
+                                <td>@unit.PriceType</td>
+                                <td>@unit.AccAccNumber</td>
+                                <td>@unit.AccAccName</td>
+                                <td>@unit.AccAccArticle</td>
+                                <td><span data-format="currency" title="@unit.UnitRule.FirstOrDefault(c => c.Currency == "USD").Rule">@unit.UnitCost.FirstOrDefault(c => c.Currency == "USD").Amount USD</span></td>
+                                <td><span data-format="currency" title="@unit.UnitRule.FirstOrDefault(c => c.Currency == "MXN").Rule">@unit.UnitCost.FirstOrDefault(c => c.Currency == "MXN").Amount MXN</span></td>
+                                <td class="@(unit.CustomCost ? "custom-cost" : "")">
+                                    <span class="edit-cost" data-purchaseserviceid="@PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().PurchaseServiceID" data-purchaseservicedetailid="@unit.PurchaseServiceDetailID"></span>
+                                    <span data-format="currency">@unit.Cost.FirstOrDefault(c => c.Currency == "USD").Amount USD</span>
+                                </td>
+                                <td class="@(unit.CustomCost ? "custom-cost" : "")">
+                                    <span class="edit-cost" data-purchaseserviceid="@PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().PurchaseServiceID" data-purchaseservicedetailid="@unit.PurchaseServiceDetailID"></span>
+                                    <span data-format="currency">@unit.Cost.FirstOrDefault(c => c.Currency == "MXN").Amount MXN</span>
+                                </td>
+                            </tr>
+                        }
+                        u++;
+                    }
+
+                    <tr data-index="c" style="border-top: #ddd solid 1px; border-bottom: #ddd solid 1px; background-color: rgb(250, 255, 255);">
+                        <td>@PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().NumberOfUnits.ToString().Replace(".00", "")</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><span data-format="currency">@PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().Cost.FirstOrDefault(c => c.Currency == "USD").Amount.ToString("0.00") USD </span></td>
+                        <td><span data-format="currency">@PoS.Services.FirstOrDefault().Coupons.FirstOrDefault().Cost.FirstOrDefault(c => c.Currency == "MXN").Amount.ToString("0.00") MXN </span></td>
+                    </tr>
+
+                    //Coupons
+                    int i = 0;
+                    foreach (var coupon in PoS.Services.FirstOrDefault().Coupons)
+                    {
+                        if (i > 0)
+                        {
+                            <tr data-index="d">
+                                <td rowspan="@(coupon.Units.Count() + 1)" style="background-color: rgb(250, 255, 255);">
+                                    @coupon.Folio
+                                    @if (coupon.CouponReference != null && coupon.CouponReference != "")
+                                    {
+                                        <br />
+                                        <span>[@coupon.CouponReference]</span>
+                                    }
+                                </td>
+
+                                <td rowspan="@(coupon.Units.Count() + 1)" style="background-color:rgb(250, 255, 255);">@coupon.Date</td>
+                                <td rowspan="@(coupon.Units.Count() + 1)" style="background-color:rgb(250, 255, 255);">@coupon.CurrencyOfSale</td>
+                                <td rowspan="@(coupon.Units.Count() + 1)" style="background-color:rgb(250, 255, 255);">@(coupon.CultureOfSale == "es-MX" ? "Español" : "English")</td>
+                                <td rowspan="@(coupon.Units.Count() + 1)" style="background-color:rgb(250, 255, 255);"><span data-format="currency">@coupon.Total.FirstOrDefault(c => c.Currency == "USD").Amount.ToString("0.00") USD</span></td>
+                                <td rowspan="@(coupon.Units.Count() + 1)" style="background-color:rgb(250, 255, 255);"><span data-format="currency">@coupon.Total.FirstOrDefault(c => c.Currency == "MXN").Amount.ToString("0.00") MXN</span></td>
+                                <td>@coupon.Units.FirstOrDefault().Quantity.ToString().Replace(".00", "") </td>
+                                <td>@coupon.Units.FirstOrDefault().Unit</td>
+                                <td>@coupon.Units.FirstOrDefault().PriceType</td>
+                                <td>@coupon.Units.FirstOrDefault().AccAccNumber</td>
+                                <td>@coupon.Units.FirstOrDefault().AccAccName</td>
+                                <td>@coupon.Units.FirstOrDefault().AccAccArticle</td>
+                                <td><span data-format="currency" title="@coupon.Units.FirstOrDefault().UnitRule.FirstOrDefault(c => c.Currency == "USD").Rule">@coupon.Units.FirstOrDefault().UnitCost.FirstOrDefault(c => c.Currency == "USD").Amount USD</span></td>
+                                <td><span data-format="currency" title="@coupon.Units.FirstOrDefault().UnitRule.FirstOrDefault(c => c.Currency == "MXN").Rule">@coupon.Units.FirstOrDefault().UnitCost.FirstOrDefault(c => c.Currency == "MXN").Amount MXN</span></td>
+                                <td class="@(coupon.Units.FirstOrDefault().CustomCost ? "custom-cost" : "")">
+                                    <span class="edit-cost" data-purchaseserviceid="@coupon.PurchaseServiceID" data-purchaseservicedetailid="@coupon.Units.FirstOrDefault().PurchaseServiceDetailID"></span>
+                                    <span data-format="currency">@coupon.Units.FirstOrDefault().Cost.FirstOrDefault(c => c.Currency == "USD").Amount USD</span>
+                                </td>
+                                <td class="@(coupon.Units.FirstOrDefault().CustomCost ? "custom-cost" : "")">
+                                    <span class=" edit-cost" data-purchaseserviceid="@coupon.PurchaseServiceID" data-purchaseservicedetailid="@coupon.Units.FirstOrDefault().PurchaseServiceDetailID">
+                                    </span>
+                                    <span data-format="currency">@coupon.Units.FirstOrDefault().Cost.FirstOrDefault(c => c.Currency == "MXN").Amount MXN</span>
+                                </td>
+                            </tr>
+
+                                    //Units
+                                    int un = 0;
+                                    foreach (var unit in coupon.Units)
+                                    {
+
+                                        if (un > 0)
+                                        {
+                                            <tr data-index="e">
+                                                <td>@unit.Quantity.ToString().Replace(".00", "") </td>
+                                                <td>@unit.Unit</td>
+                                                <td>@unit.PriceType</td>
+                                                <td>@unit.AccAccNumber</td>
+                                                <td>@unit.AccAccName</td>
+                                                <td>@unit.AccAccArticle</td>
+                                                <td><span data-format="currency" title="@unit.UnitRule.FirstOrDefault(c => c.Currency == "USD").Rule">@unit.UnitCost.FirstOrDefault(c => c.Currency == "USD").Amount USD</span></td>
+                                                <td><span data-format="currency" title="@unit.UnitRule.FirstOrDefault(c => c.Currency == "MXN").Rule">@unit.UnitCost.FirstOrDefault(c => c.Currency == "MXN").Amount MXN</span></td>
+                                                <td class="@(unit.CustomCost ? "custom-cost" : "")">
+                                                    <span class="edit-cost" data-purchaseserviceid="@coupon.PurchaseServiceID" data-purchaseservicedetailid="@unit.PurchaseServiceDetailID"></span>
+                                                    <span data-format="currency">@unit.Cost.FirstOrDefault(c => c.Currency == "USD").Amount USD</span>
+                                                </td>
+                                                <td class="@(unit.CustomCost ? "custom-cost" : "")">
+                                                    <span class="edit-cost" data-purchaseserviceid="@coupon.PurchaseServiceID" data-purchaseservicedetailid="@unit.PurchaseServiceDetailID"></span>
+                                                    <span data-format="currency">@unit.Cost.FirstOrDefault(c => c.Currency == "MXN").Amount MXN</span>
+                                                </td>
+                                            </tr>
+                                        }
+                                        un++;
+                                    }
+
+                                    <tr data-index="f" style="border-top: #ddd solid 1px; border-bottom: #ddd solid 1px; background-color: rgb(250, 255, 255);">
+                                        <td>@coupon.NumberOfUnits.ToString().Replace(".00", "")</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><span data-format="currency">@coupon.Cost.FirstOrDefault(c => c.Currency == "USD").Amount.ToString("0.00") USD</span></td>
+                                        <td><span data-format="currency">@coupon.Cost.FirstOrDefault(c => c.Currency == "MXN").Amount.ToString("0.00") MXN</span></td>
+                                    </tr>
+
+                        }
+                        i++;
+                    }
+
+                    //Total del primer servicio
+                    <tr data-index="g" style="border-top: #ddd solid 1px; border-bottom: #ddd solid 1px; background-color:rgb(235, 253, 255);">
+                        <td>@PoS.Services.FirstOrDefault().NumberOfCoupons Coupon@(PoS.Services.FirstOrDefault().NumberOfCoupons > 1 ? "s" : "")</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><span data-format="currency">@PoS.Services.FirstOrDefault().Total.FirstOrDefault(c => c.Currency == "USD").Amount USD</span></td>
+                        <td><span data-format="currency">@PoS.Services.FirstOrDefault().Total.FirstOrDefault(c => c.Currency == "MXN").Amount MXN</span></td>
+                        <td>@PoS.Services.FirstOrDefault().NumberOfUnits.ToString().Replace(".00", "")</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><span data-format="currency">@PoS.Services.FirstOrDefault().Cost.FirstOrDefault(c => c.Currency == "USD").Amount USD</span></td>
+                        <td><span data-format="currency">@PoS.Services.FirstOrDefault().Cost.FirstOrDefault(c => c.Currency == "MXN").Amount MXN</span></td>
+                    </tr>
+
+                    //Services
+                    int s = 0;
+                    foreach (var service in PoS.Services)
+                    {
+                        if (s > 0)
+                        {
+                            <tr data-index="h">
+                                <td rowspan="@(service.Coupons.Count() + 1 + service.Coupons.SelectMany(x => x.Units).Count())" style="background-color:rgb(235, 253, 255) ;">@service.Service</td>
+                                <td rowspan="@(service.Coupons.FirstOrDefault().Units.Count() + 1)" style="background-color: rgb(250, 255, 255);">
+                                    @service.Coupons.FirstOrDefault().Folio
+                                    @if (@service.Coupons.FirstOrDefault().CouponReference != null && @service.Coupons.FirstOrDefault().CouponReference != "")
+                                    {
+                                        <br />
+                                        <span>[@service.Coupons.FirstOrDefault().CouponReference]</span>
+                                    }
+                                </td>
+
+                                <td rowspan="@(service.Coupons.FirstOrDefault().Units.Count() + 1)" style="background-color:rgb(250, 255, 255);">@service.Coupons.FirstOrDefault().Date</td>
+                                <td rowspan="@(service.Coupons.FirstOrDefault().Units.Count() + 1)" style="background-color:rgb(250, 255, 255);">@service.Coupons.FirstOrDefault().CurrencyOfSale</td>
+                                <td rowspan="@(service.Coupons.FirstOrDefault().Units.Count() + 1)" style="background-color:rgb(250, 255, 255);">@(service.Coupons.FirstOrDefault().CultureOfSale == "es-MX" ? "Español" : "English")</td>
+                                <td rowspan="@(service.Coupons.FirstOrDefault().Units.Count() + 1)" style="background-color:rgb(250, 255, 255);"><span data-format="currency">@service.Coupons.FirstOrDefault().Total.FirstOrDefault(c => c.Currency == "USD").Amount.ToString("0.00") USD</span></td>
+                                <td rowspan="@(service.Coupons.FirstOrDefault().Units.Count() + 1)" style="background-color:rgb(250, 255, 255);"><span data-format="currency">@service.Coupons.FirstOrDefault().Total.FirstOrDefault(c => c.Currency == "MXN").Amount.ToString("0.00") MXN</span></td>
+                                <td>@service.Coupons.FirstOrDefault().Units.FirstOrDefault().Quantity.ToString().Replace(".00", "") </td>
+                                <td>@service.Coupons.FirstOrDefault().Units.FirstOrDefault().Unit</td>
+                                <td>@service.Coupons.FirstOrDefault().Units.FirstOrDefault().PriceType </td>
+                                <td>@service.Coupons.FirstOrDefault().Units.FirstOrDefault().AccAccNumber</td>
+                                <td>@service.Coupons.FirstOrDefault().Units.FirstOrDefault().AccAccName</td>
+                                <td>@service.Coupons.FirstOrDefault().Units.FirstOrDefault().AccAccArticle</td>
+                                <td><span data-format="currency" title="@service.Coupons.FirstOrDefault().Units.FirstOrDefault().UnitRule.FirstOrDefault(c => c.Currency == "USD").Rule">@service.Coupons.FirstOrDefault().Units.FirstOrDefault().UnitCost.FirstOrDefault(c => c.Currency == "USD").Amount USD</span></td>
+                                <td><span data-format="currency" title="@service.Coupons.FirstOrDefault().Units.FirstOrDefault().UnitRule.FirstOrDefault(c => c.Currency == "MXN").Rule">@service.Coupons.FirstOrDefault().Units.FirstOrDefault().UnitCost.FirstOrDefault(c => c.Currency == "MXN").Amount MXN</span></td>
+                                <td class="@(service.Coupons.FirstOrDefault().Units.FirstOrDefault().CustomCost ? "custom-cost" : "")">
+                                    <span class="edit-cost" data-purchaseserviceid="@service.Coupons.FirstOrDefault().PurchaseServiceID" data-purchaseservicedetailid="@service.Coupons.FirstOrDefault().Units.FirstOrDefault().PurchaseServiceDetailID"></span>
+                                    <span data-format="currency">@service.Coupons.FirstOrDefault().Units.FirstOrDefault().Cost.FirstOrDefault(c => c.Currency == "USD").Amount USD</span>
+                                </td>
+                                <td class="@(service.Coupons.FirstOrDefault().Units.FirstOrDefault().CustomCost ? "custom-cost" : "")">
+                                    <span class=" edit-cost" data-purchaseserviceid="@service.Coupons.FirstOrDefault().PurchaseServiceID" data-purchaseservicedetailid="@service.Coupons.FirstOrDefault().Units.FirstOrDefault().PurchaseServiceDetailID">
+                                    </span>
+                                    <span data-format="currency">@service.Coupons.FirstOrDefault().Units.FirstOrDefault().Cost.FirstOrDefault(c => c.Currency == "MXN").Amount MXN</span>
+                                </td>
+                            </tr>
+
+                                    //Units
+                                    int vn = 0;
+                                    foreach (var unit in service.Coupons.FirstOrDefault().Units)
+                                    {
+
+                                        if (vn > 0)
+                                        {
+                                            <tr data-index="i">
+                                                <td>@unit.Quantity.ToString().Replace(".00", "") </td>
+                                                <td>@unit.Unit</td>
+                                                <td>@unit.PriceType </td>
+                                                <td>@unit.AccAccNumber </td>
+                                                <td>@unit.AccAccName</td>
+                                                <td>@unit.AccAccArticle</td>
+                                                <td><span data-format="currency" title="@unit.UnitRule.FirstOrDefault(c => c.Currency == "USD").Rule">@unit.UnitCost.FirstOrDefault(c => c.Currency == "USD").Amount USD</span></td>
+                                                <td><span data-format="currency" title="@unit.UnitRule.FirstOrDefault(c => c.Currency == "MXN").Rule">@unit.UnitCost.FirstOrDefault(c => c.Currency == "MXN").Amount MXN</span></td>
+                                                <td class="@(unit.CustomCost ? "custom-cost" : "")">
+                                                    <span class="edit-cost" data-purchaseserviceid="@service.Coupons.FirstOrDefault().PurchaseServiceID" data-purchaseservicedetailid="@unit.PurchaseServiceDetailID"></span>
+                                                    <span data-format="currency">@unit.Cost.FirstOrDefault(c => c.Currency == "USD").Amount USD</span>
+                                                </td>
+                                                <td class="@(unit.CustomCost ? "custom-cost" : "")">
+                                                    <span class="edit-cost" data-purchaseserviceid="@service.Coupons.FirstOrDefault().PurchaseServiceID" data-purchaseservicedetailid="@unit.PurchaseServiceDetailID"></span>
+                                                    <span data-format="currency">@unit.Cost.FirstOrDefault(c => c.Currency == "MXN").Amount MXN</span>
+                                                </td>
+                                            </tr>
+                                        }
+                                        vn++;
+                                    }
+
+                                    <tr data-index="j" style="border-top: #ddd solid 1px; border-bottom: #ddd solid 1px; background-color: rgb(250, 255, 255);">
+                                        <td>@service.Coupons.FirstOrDefault().NumberOfUnits.ToString().Replace(".00", "")</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><span data-format="currency">@service.Coupons.FirstOrDefault().Cost.FirstOrDefault(c => c.Currency == "USD").Amount.ToString("0.00") USD</span></td>
+                                        <td><span data-format="currency">@service.Coupons.FirstOrDefault().Cost.FirstOrDefault(c => c.Currency == "MXN").Amount.ToString("0.00") MXN</span></td>
+                                    </tr>
+
+                                    int j = 0;
+                                    foreach (var coupon in service.Coupons)
+                                    {
+                                        if (j > 0)
+                                        {
+                                            <tr data-index="k" style="border-top: #ddd solid 1px; border-bottom: #ddd solid 1px;">
+                                                <td rowspan="@(coupon.Units.Count() + 1)" style="background-color: rgb(250, 255, 255);">
+                                                    @coupon.Folio
+                                                    @if (coupon.CouponReference != null && coupon.CouponReference != "")
+                                                    {
+                                                        <br />
+                                                        <span>[@coupon.CouponReference]</span>
+                                                    }
+                                                </td>
+
+                                                <td rowspan="@(coupon.Units.Count() + 1)" style="background-color:rgb(250, 255, 255);">@coupon.Date</td>
+                                                <td rowspan="@(coupon.Units.Count() + 1)" style="background-color:rgb(250, 255, 255);">@coupon.CurrencyOfSale</td>
+                                                <td rowspan="@(coupon.Units.Count() + 1)" style="background-color:rgb(250, 255, 255);">@(coupon.CultureOfSale == "es-MX" ? "Español" : "English")</td>
+                                                <td rowspan="@(coupon.Units.Count() + 1)" style="background-color:rgb(250, 255, 255);"><span data-format="currency">@coupon.Total.FirstOrDefault(c => c.Currency == "USD").Amount.ToString("0.00") USD</span></td>
+                                                <td rowspan="@(coupon.Units.Count() + 1)" style="background-color:rgb(250, 255, 255);"><span data-format="currency">@coupon.Total.FirstOrDefault(c => c.Currency == "MXN").Amount.ToString("0.00") MXN</span></td>
+                                                <td>@coupon.Units.FirstOrDefault().Quantity.ToString().Replace(".00", "") </td>
+                                                <td>@coupon.Units.FirstOrDefault().Unit</td>
+                                                <td>@coupon.Units.FirstOrDefault().PriceType</td>
+                                                <td>@coupon.Units.FirstOrDefault().AccAccNumber</td>
+                                                <td>@coupon.Units.FirstOrDefault().AccAccName</td>
+                                                <td>@coupon.Units.FirstOrDefault().AccAccArticle</td>
+                                                <td><span data-format="currency" title="@coupon.Units.FirstOrDefault().UnitRule.FirstOrDefault(c => c.Currency == "USD").Rule">@coupon.Units.FirstOrDefault().UnitCost.FirstOrDefault(c => c.Currency == "USD").Amount USD</span></td>
+                                                <td><span data-format="currency" title="@coupon.Units.FirstOrDefault().UnitRule.FirstOrDefault(c => c.Currency == "MXN").Rule">@coupon.Units.FirstOrDefault().UnitCost.FirstOrDefault(c => c.Currency == "MXN").Amount MXN</span></td>
+                                                <td class="@(coupon.Units.FirstOrDefault().CustomCost ? "custom-cost" : "")">
+                                                    <span class="edit-cost" data-purchaseserviceid="@coupon.PurchaseServiceID" data-purchaseservicedetailid="@coupon.Units.FirstOrDefault().PurchaseServiceDetailID"></span>
+                                                    <span data-format="currency">@coupon.Units.FirstOrDefault().Cost.FirstOrDefault(c => c.Currency == "USD").Amount USD</span>
+                                                </td>
+                                                <td class="@(coupon.Units.FirstOrDefault().CustomCost ? "custom-cost" : "")">
+                                                    <span class="edit-cost" data-purchaseserviceid="@coupon.PurchaseServiceID" data-purchaseservicedetailid="@coupon.Units.FirstOrDefault().PurchaseServiceDetailID"></span>
+                                                    <span data-format="currency">@coupon.Units.FirstOrDefault().Cost.FirstOrDefault(c => c.Currency == "MXN").Amount MXN</span>
+                                                </td>
+                                            </tr>
+
+                                                    //Units
+                                                    int v = 0;
+                                                    foreach (var unit in coupon.Units)
+                                                    {
+
+                                                        if (v > 0)
+                                                        {
+                                                            <tr data-index="l">
+                                                                <td>@unit.Quantity.ToString().Replace(".00", "") </td>
+                                                                <td>@unit.Unit</td>
+                                                                <td>@unit.PriceType</td>
+                                                                <td>@unit.AccAccNumber</td>
+                                                                <td>@unit.AccAccName</td>
+                                                                <td>@unit.AccAccArticle</td>
+                                                                <td><span data-format="currency" title="@unit.UnitRule.FirstOrDefault(c => c.Currency == "USD").Rule">@unit.UnitCost.FirstOrDefault(c => c.Currency == "USD").Amount USD</span></td>
+                                                                <td><span data-format="currency" title="@unit.UnitRule.FirstOrDefault(c => c.Currency == "MXN").Rule">@unit.UnitCost.FirstOrDefault(c => c.Currency == "MXN").Amount MXN</span></td>
+                                                                <td class="@(unit.CustomCost ? "custom-cost" : "")">
+                                                                    <span class="edit-cost" data-purchaseserviceid="@coupon.PurchaseServiceID" data-purchaseservicedetailid="@unit.PurchaseServiceDetailID"></span>
+                                                                    <span data-format="currency">@unit.Cost.FirstOrDefault(c => c.Currency == "USD").Amount USD</span>
+                                                                </td>
+                                                                <td class="@(unit.CustomCost ? "custom-cost" : "")">
+                                                                    <span class="edit-cost" data-purchaseserviceid="@coupon.PurchaseServiceID" data-purchaseservicedetailid="@unit.PurchaseServiceDetailID"></span>
+                                                                    <span data-format="currency">@unit.Cost.FirstOrDefault(c => c.Currency == "MXN").Amount MXN</span>
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                        v++;
+                                                    }
+
+                                                    <tr data-index="m" style="border-top: #ddd solid 1px; border-bottom: #ddd solid 1px; background-color: rgb(250, 255, 255);">
+                                                        <td>@coupon.NumberOfUnits.ToString().Replace(".00", "")</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td><span data-format="currency">@coupon.Cost.FirstOrDefault(c => c.Currency == "USD").Amount.ToString("0.00") USD</span></td>
+                                                        <td><span data-format="currency">@coupon.Cost.FirstOrDefault(c => c.Currency == "MXN").Amount.ToString("0.00") MXN</span></td>
+                                                    </tr>
+
+                                        }
+                                        j++;
+                                    }
+
+                                    //Total del servicio
+                                    <tr data-index="n" style="border-top: #ddd solid 1px; border-bottom: #ddd solid 1px; background-color: rgb(235, 253, 255);">
+                                        <td>@service.NumberOfCoupons Coupon@(service.NumberOfCoupons > 1 ? "s" : "")</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><span data-format="currency">@service.Total.FirstOrDefault(c => c.Currency == "USD").Amount USD</span></td>
+                                        <td><span data-format="currency">@service.Total.FirstOrDefault(c => c.Currency == "MXN").Amount MXN</span></td>
+                                        <td>@service.NumberOfUnits.ToString().Replace(".00", "")</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><span data-format="currency">@service.Cost.FirstOrDefault(c => c.Currency == "USD").Amount USD</span></td>
+                                        <td><span data-format="currency">@service.Cost.FirstOrDefault(c => c.Currency == "MXN").Amount MXN</span></td>
+                                    </tr>
+                        }
+                        s++;
+                    }
+
+                    //total del punto de venta
+                    <tr data-index="o" style="border-top: #ddd solid 1px; border-bottom: #ddd solid 1px; font-weight: bold; background-color: rgb(217, 252, 255);">
+                        <td></td>
+                        <td>@PoS.NumberOfCoupons Coupon@(PoS.NumberOfCoupons > 1 ? "s" : "")</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><span data-format="currency">@PoS.Total.FirstOrDefault(c => c.Currency == "USD").Amount USD</span></td>
+                        <td><span data-format="currency">@PoS.Total.FirstOrDefault(c => c.Currency == "MXN").Amount MXN</span></td>
+                        <td>@PoS.NumberOfUnits.ToString().Replace(".00", "")</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><span data-format="currency">@PoS.Cost.FirstOrDefault(c => c.Currency == "USD").Amount USD</span></td>
+                        <td><span data-format="currency">@PoS.Cost.FirstOrDefault(c => c.Currency == "MXN").Amount MXN</span></td>
+                    </tr>
+        }
+    </tbody>
+    <tfoot>
+        @*Total de invoice*@
+        <tr style="font-weight: bold;">
+            <td>Total</td>
+            <td></td>
+            <td>@Model.PointsOfSale.SelectMany(x => x.Services.SelectMany(y => y.Coupons)).Count() Coupon@(Model.PointsOfSale.SelectMany(x => x.Services.SelectMany(y => y.Coupons)).Count() > 1 ? "s" : "")</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><span data-format="currency">@Model.Total.FirstOrDefault(c => c.Currency == "USD").Amount USD</span></td>
+            <td><span data-format="currency">@Model.Total.FirstOrDefault(c => c.Currency == "MXN").Amount MXN</span></td>
+            <td>@Model.NumberOfUnits.ToString().Replace(".00", "")</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><span data-format="currency">@Model.Cost.FirstOrDefault(c => c.Currency == "USD").Amount USD</span></td>
+            <td><span data-format="currency">@Model.Cost.FirstOrDefault(c => c.Currency == "MXN").Amount MXN</span></td>
+        </tr>
+
+        @*Total por actividad*@
+        @foreach (var service in Model.TotalServices)
+        {
+            <tr>
+                <td></td>
+                <td>@service.Service</td>
+                <td>@service.NumberOfCoupons Coupon@(service.NumberOfCoupons > 1 ? "s" : "")</td>
+                <td></td>
+                <td></td>
+                <td>
+                    <span class="block">Subtotal</span>
+                    <span class="block">IVA</span>
+                    <span class="block">Total</span>
+                </td>
+                <td>
+                    <span data-format="currency">@service.TotalNoIVA.FirstOrDefault(c => c.Currency == "USD").Amount USD</span>
+                    <span data-format="currency">@service.TotalIVA.FirstOrDefault(c => c.Currency == "USD").Amount USD</span>
+                    <span data-format="currency">@service.Total.FirstOrDefault(c => c.Currency == "USD").Amount USD</span>
+                </td>
+                <td>
+                    <span data-format="currency">@service.TotalNoIVA.FirstOrDefault(c => c.Currency == "MXN").Amount MXN</span>
+                    <span data-format="currency">@service.TotalIVA.FirstOrDefault(c => c.Currency == "MXN").Amount MXN</span>
+                    <span data-format="currency">@service.Total.FirstOrDefault(c => c.Currency == "MXN").Amount MXN</span>
+                </td>
+                <td>@service.NumberOfUnits.ToString().Replace(".00", "")</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <span class="block">Subtotal</span>
+                    <span class="block">IVA</span>
+                    <span class="block">Total</span>
+                </td>
+                <td>
+                    <span data-format="currency">@service.CostNoIVA.FirstOrDefault(c => c.Currency == "USD").Amount USD</span>
+                    <span data-format="currency">@service.CostIVA.FirstOrDefault(c => c.Currency == "USD").Amount USD</span>
+                    <span data-format="currency">@service.Cost.FirstOrDefault(c => c.Currency == "USD").Amount USD</span>
+                </td>
+                <td>
+                    <span data-format="currency">@service.CostNoIVA.FirstOrDefault(c => c.Currency == "MXN").Amount MXN</span>
+                    <span data-format="currency">@service.CostIVA.FirstOrDefault(c => c.Currency == "MXN").Amount MXN</span>
+                    <span data-format="currency">@service.Cost.FirstOrDefault(c => c.Currency == "MXN").Amount MXN</span>
+                </td>
+            </tr>
+        }
+
+        @*Total por cuenta*@
+        @foreach (var account in Model.TotalAccAcc)
+        {
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>@account.AccAccPriceType</td>
+                <td>@account.AccAccNumber</td>
+                <td>@account.AccAccName</td>
+                <td>@account.AccAccArticle</td>
+                <td></td>
+                <td></td>
+                <td>
+                    <span class="block">Subtotal</span>
+                    <span class="block">IVA</span>
+                    <span class="block">Total</span>
+                </td>
+                <td>
+                    <span data-format="currency">@account.CostNoIVA.FirstOrDefault(c => c.Currency == "USD").Amount USD</span>
+                    <span data-format="currency">@account.CostIVA.FirstOrDefault(c => c.Currency == "USD").Amount USD</span>
+                    <span data-format="currency">@account.Cost.FirstOrDefault(c => c.Currency == "USD").Amount USD</span>
+                </td>
+                <td>
+                    <span data-format="currency">@account.CostNoIVA.FirstOrDefault(c => c.Currency == "MXN").Amount MXN</span>
+                    <span data-format="currency">@account.CostIVA.FirstOrDefault(c => c.Currency == "MXN").Amount MXN</span>
+                    <span data-format="currency">@account.Cost.FirstOrDefault(c => c.Currency == "MXN").Amount MXN</span>
+                </td>
+            </tr>
+        }
+    </tfoot>
+
+
+
+</table>

@@ -1,0 +1,9 @@
+﻿@model ePlatBack.Models.ViewModels.TransportationQuotes
+<div class="card-panel yellow lighten-5">
+    @Html.HiddenFor(model => model.TransportationServiceID)
+    <span>@ePlatFront.Resources.Views.Shared.SharedStrings.Transportation_Quotes</span><br />
+    <div class="chips chips-autocomplete"></div>
+    <table id="tblZonePrices">
+        <tbody></tbody>
+    </table>
+</div>

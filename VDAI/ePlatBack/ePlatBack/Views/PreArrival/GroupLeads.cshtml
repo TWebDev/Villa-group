@@ -1,0 +1,32 @@
+﻿@model ePlatBack.Models.ViewModels.GroupLeadsModel
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+
+}
+
+@section Scripts{
+    <script src="https://code.jquery.com/jquery-migrate-3.0.0.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/crm/prearrival/group-leads.js?ts=@DateTime.Now" type="text/javascript"></script>
+}
+
+<h3>Group Leads</h3>
+<div id="app" class="form-row my-5">
+    <div class="form-group col-md-4">
+        @Html.LabelFor(model => model.GroupName)
+        @Html.HiddenFor(model => model.GroupID, new { @v_model = "GroupID" })
+        @Html.HiddenFor(model => model.Leads, new { @v_model = "leads" })
+    </div>
+    <div class="form-group col-md-4">
+        @Html.TextBoxFor(model => model.GroupName, new { @class = "form-control", @v_model = "GroupName" })<label>({{GroupType}})</label>
+    </div>
+</div>
+<div class="form-row">
+    <div class="form-group col-md-4"></div>
+    <div class="form-group col-md-4">
+        <div class="float-right">
+            <button type="button" id="btnSaveLeadGroup" v-on:click="saveLeadGroup()" class="btn btn-primary px-4">Save</button>
+            <button type="button" class="btn btn-secondary px-4" v-on:click="closeModal()">Close</button>
+        </div>
+    </div>
+</div>

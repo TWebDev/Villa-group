@@ -1,0 +1,34 @@
+﻿@model ePlatBack.Models.ViewModels.ArrivalsViewModel.SearchGlobalPenetrationReport
+
+@using (Ajax.BeginForm("SearchGlobalPenetrationReport", "Hostess", new AjaxOptions { UpdateTargetId = "divGlobalPenetrationResults", OnSuccess = "UI.exportToExcel(\"Global Penetration Report\")" }, new { id = "frmSearchGlobalPenetrationReport" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="non-printable search-params">
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SearchGlobalPenetration_I_ArrivalDate)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.SearchGlobalPenetration_I_ArrivalDate, new { data_uses_date_picker = "true" })
+                @Html.TextBoxFor(model => model.SearchGlobalPenetration_F_ArrivalDate, new { data_uses_date_picker = "true" })
+            </div>
+        </div>
+        @*<div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SearchGlobalPenetration_ProgramID)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.SearchGlobalPenetration_ProgramID, Model.Programs, new { multiple = "multiple" })
+            </div>
+        </div>*@
+        <div class="editor-alignment align-from-top">
+            <div class="editor-field">
+                <input type="submit" class="button" id="btnGetGlobalPenetration" value="get" />
+            </div>
+        </div>
+    </div>
+    <div id="divGlobalPenetrationResults" class="align-from-top">
+    </div>
+}

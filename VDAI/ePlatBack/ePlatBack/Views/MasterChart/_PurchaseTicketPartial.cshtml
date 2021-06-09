@@ -1,0 +1,370 @@
+﻿@model ePlatBack.Models.ViewModels.PurchasesModel.TicketInfoModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Purchase Ticket</title>
+    <script>
+        var style = document.createElement('link');
+        style.rel = "stylesheet";
+        style.type = "text/css";
+        style.setAttribute("class","print-css");
+        var terminalid = @Model.TicketInfo_TerminalID;
+        var _timespan = new Date().getTime();
+        switch (terminalid) {
+            case 26:{
+                style.href = "/content/themes/eplat/ticket/purchase-ticket-vea.css?v=" + _timespan;
+                break;
+            }
+            case 32: case 43: {
+                style.href = "/content/themes/eplat/ticket/purchase-ticket-mca.css?v=" + _timespan;
+                break;
+            }
+            default: {
+                style.href = "/content/themes/eplat/ticket/purchase-ticket.css?v=" + _timespan;
+                break;
+            }
+        }
+        if(document.getElementsByClassName('print-css')[0] != undefined){
+            document.getElementsByTagName('head')[0].removeChild(document.getElementsByClassName('print-css')[0]);
+        }
+        document.getElementsByTagName('head')[0].appendChild(style);
+
+        if(window.location.hash.indexOf('#') != -1){
+            var handle = window.setInterval(function(){
+                if(document.getElementsByClassName('print-css')[0] != undefined){
+                    window.print();
+                    window.clearInterval(handle);
+                }
+            }, (60*5));
+        }
+    </script>
+</head>
+<body>
+    <div id="page" class="printable">
+        <div id="container">
+            <div id="ticket">
+                <div class="ticket-section ticket-header">
+                    <div class="display-item">
+                        <div class="display-label">
+                            @Html.DisplayFor(model => model.TicketInfo_Terminal)
+                        </div>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.TicketInfo_Company)
+                        </div>
+                    </div>
+                </div>
+                <div class="ticket-section comercial-name">
+                    @Html.Raw(Model.TicketInfo_ComercialName)
+                </div>
+                <div class="ticket-section ticket-generals">
+                    <div class="display-item">
+                        <div class="display-label">
+                            @Html.DisplayNameFor(model => model.TicketInfo_DateSaved)
+                        </div>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.TicketInfo_DateSaved)
+                        </div>
+                    </div>
+                    <div class="display-item">
+                        <div class="display-label">
+                            @Html.DisplayNameFor(model => model.TicketInfo_DateIssued)
+                        </div>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.TicketInfo_DateIssued)
+                        </div>
+                    </div>
+                    <div class="display-item">
+                        <div class="display-label">
+                            @Html.DisplayNameFor(model => model.TicketInfo_Customer)
+                        </div>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.TicketInfo_Customer)
+                        </div>
+                    </div>
+                    <div class="display-item">
+                        <div class="display-label">
+                            @Html.DisplayNameFor(model => model.TicketInfo_TicketNumber)
+                        </div>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.TicketInfo_TicketNumber)
+                        </div>
+                    </div>
+                    <div class="display-item">
+                        <div class="display-label">
+                            @Html.DisplayNameFor(model => model.TicketInfo_UserName)
+                        </div>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.TicketInfo_UserName)
+                        </div>
+                    </div>
+                    <div class="display-item">
+                        <div class="display-label">
+                            @Html.DisplayNameFor(model => model.TicketInfo_PointOfSale)
+                        </div>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.TicketInfo_PointOfSale)
+                        </div>
+                    </div>
+                    <div class="display-item">
+                        <div class="display-label">
+                            @Html.DisplayNameFor(model => model.TicketInfo_ExchangeRate)
+                        </div>
+                        <div class="display-field">
+                            $@Html.DisplayFor(model => model.TicketInfo_ExchangeRate)
+                        </div>
+                    </div>
+                </div>
+                <div class="ticket-section">
+                    <div class="ticket-section-title">@Html.DisplayNameFor(model => model.TicketInfo_PurchaseDetails)</div>
+                    <div class="display-item-full ticket-details">
+                        @foreach (var i in Model.TicketInfo_Services)
+                        {
+                            var _service = i.Text.Split('_')[0];
+                            var _class = int.Parse(i.Value) > 3 ? "cursive" : "";
+                            <div class="display-label full-width @_class">
+                                <div class="truncate">
+                                    @Html.DisplayFor(model => _service)
+                                </div>
+                                @if (i.Text.Split('_')[1] != "")
+                                {
+                                    <span class="right">
+                                        @Html.DisplayFor(model => i.Text.Split('_')[1])
+                                    </span>
+                                }
+                            </div>
+                            @*<div class="display-label full-width">
+                                    @Html.DisplayFor(model => i.Split('|')[0])
+                                    @if (i.Split('|')[1] != "")
+                                    {
+                                        <span class="right">
+                                            $@Html.DisplayFor(model => i.Split('|')[1])
+                                        </span>
+                                    }
+                                </div>*@
+                        }
+                    </div>
+                    <div class="display-item-full ticket-subtotals" id="t_subtotals">
+                        <div class="ticket-section-title">@Html.DisplayNameFor(model => model.TicketInfo_Transactions)</div>
+                        @if (Model.TicketInfo_CashPayments.Count() > 0)
+                        {
+                            <div class="display-label full-width">
+                                <span class="subtotal-name">@Html.DisplayNameFor(model => model.TicketInfo_CashPayments)</span>
+                                @foreach (var i in Model.TicketInfo_CashPayments)
+                                {
+                                    <span class="display-subtotal">$@Html.DisplayFor(model => i.Amount) @Html.DisplayFor(model => i.Currency)</span>
+                                }
+                            </div>
+                        }
+                        @if (Model.TicketInfo_CCPayments.Count() > 0)
+                        {
+                            <div class="display-label full-width">
+                                <span class="subtotal-name">
+                                    @Html.DisplayNameFor(model => model.TicketInfo_CCPayments)
+                                </span>
+                                @foreach (var i in Model.TicketInfo_CCPayments)
+                                {
+                                    <span class="display-subtotal">
+                                        <span>@Html.DisplayFor(model => i.CardType) - @Html.DisplayFor(model => i.CardNumber)</span><span> $@Html.DisplayFor(model => i.Amount) @Html.DisplayFor(model => i.Currency)</span>
+                                    </span>
+                                }
+                            </div>
+                        }
+                        @if (Model.TicketInfo_TCPayments.Count() > 0)
+                        {
+                            <div class="display-label full-width">
+                                <span class="subtotal-name">
+                                    @Html.DisplayNameFor(model => model.TicketInfo_TCPayments)
+                                </span>
+                                @foreach (var i in Model.TicketInfo_TCPayments)
+                                {
+                                    <span class="display-subtotal">
+                                        <span>$@Html.DisplayFor(model => i.Amount) @Html.DisplayFor(model => i.Currency)</span>
+                                    </span>
+                                }
+                            </div>
+                        }
+                        @if (Model.TicketInfo_WTPayments.Count() > 0)
+                        {
+                            <div class="display-label full-width">
+                                <span class="subtotal-name">
+                                    @Html.DisplayNameFor(model => model.TicketInfo_WTPayments)
+                                </span>
+                                @foreach (var i in Model.TicketInfo_WTPayments)
+                                {
+                                    <span class="display-subtotal">
+                                        <span>$@Html.DisplayFor(model => i.Amount) @Html.DisplayFor(model => i.Currency)</span>
+                                    </span>
+                                }
+                            </div>
+                        }
+                        @if (Model.TicketInfo_CashRefunds.Count() > 0)
+                        {
+                            <div class="display-label full-width">
+                                <span class="subtotal-name">
+                                    @Html.DisplayNameFor(model => model.TicketInfo_CashRefunds)
+                                </span>
+                                @foreach (var i in Model.TicketInfo_CashRefunds)
+                                {
+                                    <span class="display-subtotal">
+                                        $@Html.DisplayFor(model => i.Amount) @Html.DisplayFor(model => i.Currency)
+                                    </span>
+                                }
+                            </div>
+                        }
+                        @if (Model.TicketInfo_CCRefunds.Count() > 0)
+                        {
+                            <div class="display-label full-width">
+                                <span class="subtotal-name">
+                                    @Html.DisplayNameFor(model => model.TicketInfo_CCRefunds)
+                                </span>
+                                @foreach (var i in Model.TicketInfo_CCRefunds)
+                                {
+                                    <span class="display-subtotal">
+                                        <span>@Html.DisplayFor(model => i.CardType) - @Html.DisplayFor(model => i.CardNumber)</span><span> $@Html.DisplayFor(model => i.Amount) @Html.DisplayFor(model => i.Currency)</span>
+                                    </span>
+                                }
+                            </div>
+                        }
+                        @if (Model.TicketInfo_TCRefunds.Count() > 0)
+                        {
+                            <div class="display-label full-width">
+                                <span class="subtotal-name">
+                                    @Html.DisplayNameFor(model => model.TicketInfo_TCRefunds)
+                                </span>
+                                @foreach (var i in Model.TicketInfo_TCRefunds)
+                                {
+                                    <span class="display-subtotal">
+                                        <span>$@Html.DisplayFor(model => i.Amount) @Html.DisplayFor(model => i.Currency)</span>
+                                    </span>
+                                }
+                            </div>
+                        }
+                        @if (Model.TicketInfo_WTRefunds.Count() > 0)
+                        {
+                            <div class="display-label full-width">
+                                <span class="subtotal-name">
+                                    @Html.DisplayNameFor(model => model.TicketInfo_WTRefunds)
+                                </span>
+                                @foreach (var i in Model.TicketInfo_WTRefunds)
+                                {
+                                    <span class="display-subtotal">
+                                        <span>$@Html.DisplayFor(model => i.Amount) @Html.DisplayFor(model => i.Currency)</span>
+                                    </span>
+                                }
+                            </div>
+                        }
+                    </div>
+                    <div class="display-item-full ticket-totals">
+                        @*mike*@
+                        <div class="display-label total-item" style="text-align:left">
+                            <span class="total-name" style="text-align:left">@Html.DisplayNameFor(model => model.TicketInfo_PurchaseTotal)</span>
+                            <span class="right" style="text-align:right; max-width:50%">
+                                $@Html.DisplayFor(model => model.TicketInfo_PurchaseTotalMXN) MXN / $@Html.DisplayFor(model => model.TicketInfo_PurchaseTotal) USD
+                            </span>
+                        </div>
+                        @*end mike*@
+                        @if (Model.TicketInfo_TotalPaidUSD != 0 | Model.TicketInfo_TotalPaidMXN != 0 | Model.TicketInfo_TotalPaidCAD != 0)
+                        {
+                            <div class="display-label total-item" style="text-align:left">
+                                <span class="total-name" style="text-align:left">@Html.DisplayNameFor(model => model.TicketInfo_TotalPaid)</span>
+
+                                @if (Model.TicketInfo_TotalPaidUSD != 0)
+                                {
+                                    <div class="" style="text-align:right">
+                                        $@Html.DisplayFor(model => model.TicketInfo_TotalPaidUSD) USD
+                                    </div>
+                                }
+                                @if (Model.TicketInfo_TotalPaidMXN != 0)
+                                {
+                                    <div class="" style="text-align:right">
+                                        $@Html.DisplayFor(model => model.TicketInfo_TotalPaidMXN) MXN
+                                    </div>
+                                }
+                                @if (Model.TicketInfo_TotalPaidCAD != 0)
+                                {
+                                    <div class="" style="text-align:right">
+                                        $@Html.DisplayFor(model => model.TicketInfo_TotalPaidCAD) CAD
+                                    </div>
+                                }
+                            </div>
+                        }
+                        @if (Model.TicketInfo_TotalRefundUSD != 0 | Model.TicketInfo_TotalRefundMXN != 0 | Model.TicketInfo_TotalRefundCAD != 0)
+                        {
+                            <div class="display-label total-item" style="text-align:left">
+                                <span class="total-name">@Html.DisplayNameFor(model => model.TicketInfo_TotalRefund)</span>
+
+                                @if (Model.TicketInfo_TotalRefundUSD != 0)
+                                {
+                                    <div class="" style="text-align:right">
+                                        $@Html.DisplayFor(model => model.TicketInfo_TotalRefundUSD) USD
+                                    </div>
+                                }
+                                @if (Model.TicketInfo_TotalRefundMXN != 0)
+                                {
+                                    <div class="" style="text-align:right">
+                                        $@Html.DisplayFor(model => model.TicketInfo_TotalRefundMXN) MXN
+                                    </div>
+                                }
+                                @if (Model.TicketInfo_TotalRefundCAD != 0)
+                                {
+                                    <div class="" style="text-align:right">
+                                        $@Html.DisplayFor(model => model.TicketInfo_TotalRefundCAD) CAD
+                                    </div>
+                                }
+                            </div>
+                        }
+                        <div class="display-label total-item total-cash-usd" style="text-align:left">
+                            <span class="total-name">@Html.DisplayNameFor(model => model.TicketInfo_TotalPaidCashUSD)</span>
+                            <div class="" style="text-align:right">$@Html.DisplayFor(model => model.TicketInfo_TotalPaidCashUSD) USD</div>
+                        </div>
+                        <div class="display-label total-item change-due" style="text-align:left">
+                            <span class="total-name">@Html.DisplayNameFor(model => model.TicketInfo_ChangeDue)</span>
+                            <div class="" style="text-align:right">$@Html.DisplayFor(model => model.TicketInfo_ChangeDueMXN) MXN / $@Html.DisplayFor(model => model.TicketInfo_ChangeDue) USD</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ticket-section signature-section">
+                    <div class="signature left">
+                        @Html.DisplayNameFor(model => model.TicketInfo_Signature)
+                    </div>
+                    <div class="signature right">
+                        @Html.DisplayNameFor(model => model.TicketInfo_SignatureAgent)
+                    </div>
+                </div>
+                <div class="ticket-section">
+                    <div class="display-item">
+                        <div class="display-label">
+                            @Html.DisplayFor(model => model.TicketInfo_Comments)
+                        </div>
+                    </div>
+
+                </div>
+                <div class="ticket-section ticket-greetings">
+                    <div class="display-item">
+                        <span class="display-label" id="t_gratitude">
+                            @Html.DisplayNameFor(model => model.TicketInfo_Gratitude)
+                        </span>
+                        <span class="display-label" id="t_policies">
+                            @Html.DisplayNameFor(model => model.TicketInfo_Policies)
+                        </span>
+                        <span class="display-label" id="t_comments">
+                            @Html.DisplayNameFor(model => model.TicketInfo_Comments)
+                        </span>
+                        <span class="display-field" id="t_url">
+                            @Html.Raw(Model.TicketInfo_URL)
+                        </span>
+                    </div>
+                </div>
+                <div id="bankLegend" class="ticket-section">
+                    <span>
+                        @Html.DisplayNameFor(model => model.TicketInfo_BankLegend)
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

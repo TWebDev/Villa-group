@@ -1,0 +1,76 @@
+﻿@model IEnumerable<ePlatBack.Models.ViewModels.ActivitiesByCategory>
+
+<div class="row">
+    @foreach (var category in Model)
+    {
+        foreach (var item in category.Activities)
+        {
+            <div class="col s12 m12 l6 xl4">
+                <div class="card hoverable">
+                    <div class="card-image">
+                        @if (@item.Tag != null && @item.Tag != "")
+                        {
+                            <div class="activity-tag" style="background-color:@item.TagColor">@item.Tag</div>
+                        }
+                        <a href="@item.Url">
+                            <img src="//eplatfront.villagroup.com/@item.Pictures.FirstOrDefault().Picture?width=392&height=220&mode=crop&quality=50">
+                            <span class="card-title">@Html.DisplayFor(modelItem => item.Activity)</span>
+                        </a>
+                        @*<a class="btn-floating halfway-fab waves-effect waves-light red" onclick="UI.BookingEngine.book(@item.ActivityID,'@item.Activity.Replace("'", "")')"><i class="material-icons">add_shopping_cart</i></a>*@
+                    </div>
+                    <div class="card-content">
+                        <div class="row">
+                            <div class="col s6">
+                                <span class="zone">
+                                    @if (item.Zone != null)
+                                    {
+                                        @ePlatFront.Resources.Views.Activities.ActivitiesStrings.At <span>@item.Zone</span>
+                                    }
+                                    else
+                                    {
+                                        @ePlatFront.Resources.Views.Activities.ActivitiesStrings.Multiple_Locations
+                                    }
+                                </span>
+                                <span class="rating">
+                                    @if (item.Rating != null)
+                                    {
+                                        for (int s = 1; s <= Math.Floor(Math.Abs(item.Rating)); s++)
+                                        {
+                                            <i class="material-icons tiny">star</i>
+                                        }
+                                        if (item.Rating % 1 != 0)
+                                        {
+                                            <i class="material-icons tiny">star_half</i>
+                                        }
+                                        for (int v = 1; v <= Math.Floor(Math.Abs(5 - item.Rating)); v++)
+                                        {
+                                            <i class="material-icons tiny">star_border</i>
+                                        }
+                                    }
+                                </span><br />
+                                <p><a href="@item.Url">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.See_Details.ToUpper()</a></p>
+                            </div>
+                            <div class="col s6">
+                                @if (item.RetailPrice > 0)
+                                {
+                                    <span class="retail-price">
+                                        $@item.RetailPrice.ToString("0.00").Replace(",", ".").Replace(".00", "") @item.Currency
+                                    </span>
+                                }
+                                <span class="offer-price">
+                                    $@item.OfferPrice.ToString("0.00").Replace(",", ".").Replace(".00", "") @item.Currency
+                                </span>
+                                @if (item.Savings > 0)
+                                {
+                                    <span class="savings light-green-text text-darken-2">
+                                        @ePlatFront.Resources.Views.Activities.ActivitiesStrings.Youll_Save @item.Savings%
+                                    </span>
+                                }                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>

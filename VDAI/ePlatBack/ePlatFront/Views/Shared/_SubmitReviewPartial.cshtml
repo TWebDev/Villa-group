@@ -1,0 +1,57 @@
+﻿@model ePlatBack.Models.ViewModels.ReviewListItem
+
+<div id="divRecentReviews"></div>
+
+@using (Ajax.BeginForm("ReviewSave", new { Controller = "Controls" }, new AjaxOptions { OnBegin = "Controls.sendingInfo('ReviewForm')", OnSuccess = "Controls.Reviews.onSuccess(data,'ReviewForm')", OnFailure = "Controls.showMessage({ResponseType : -1, ResponseMessage : '" + ePlatFront.Resources.Views.Home.FreeVacationStrings.Failure + "'},'FreeVacationForm')" }, new { id = "ReviewForm" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>ReviewListItem</legend>
+        <div class="review">
+            @Html.HiddenFor(model => model.ReviewItemTypeID)
+            @Html.HiddenFor(model => model.ReviewItemID)
+            <div class="review-info">
+                 @Html.LabelFor(model => model.AuthCode)
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.AuthCode)
+                    @Html.ValidationMessageFor(model => model.AuthCode)
+                </div>
+                @Html.LabelFor(model => model.Rating)
+                <div id="divRating">
+                    <img class="answer-button" data-value="1" src="~/Content/themes/mex/images/icon_star_empty.png" />
+                    <img class="answer-button" data-value="2" src="~/Content/themes/mex/images/icon_star_empty.png" />
+                    <img class="answer-button" data-value="3" src="~/Content/themes/mex/images/icon_star_empty.png" />
+                    <img class="answer-button" data-value="4" src="~/Content/themes/mex/images/icon_star_empty.png" />
+                    <img class="answer-button" data-value="5" src="~/Content/themes/mex/images/icon_star_empty.png" />
+                    <div style="position:absolute; width:0; height:0; overflow:hidden;">
+                        @Html.TextBoxFor(model => model.Rating)
+                    </div>
+                    <div>
+                        @Html.ValidationMessageFor(model => model.Rating)
+                    </div>
+                </div>
+                @Html.LabelFor(model => model.Author)
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Author)
+                    @Html.ValidationMessageFor(model => model.Author)
+                </div>
+                @Html.LabelFor(model => model.From)
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.From)
+                    @Html.ValidationMessageFor(model => model.From)
+                </div>
+            </div>
+            <div class="review-description">
+                @Html.LabelFor(model => model.Review)
+                <div class="editor-field">
+                    @Html.TextAreaFor(model => model.Review)
+                    @Html.ValidationMessageFor(model => model.Review)
+                </div>
+                <input type="submit" value="Publish My Opinion" />
+                <div class="interaction-message"></div>
+            </div>
+        </div>
+    </fieldset>
+}

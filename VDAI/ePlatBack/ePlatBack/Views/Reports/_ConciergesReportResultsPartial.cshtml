@@ -1,0 +1,76 @@
+﻿@model ePlatBack.Models.ViewModels.ConciergesModel
+
+<table id="tblSearchConciergesResults" class="table non-editable non-selectable">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Contract Number</th>
+            <th>Co Owner</th>
+            <th>Club Type</th>
+            <th>Number Of Adults</th>
+            <th>Number Of Children</th>
+            <th>Arrival Date</th>
+            <th>Flight Information</th>
+            <th>Assigned to User</th>
+            <th>Booking Status</th>
+            <th>Lead Source</th>
+            <th>Resort</th>
+            <th>Total Paid</th>
+            <th>Concierge Comments</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ListConciergesReportModel != null)
+        {
+            foreach (var i in Model.ListConciergesReportModel)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => i.ConciergeReport_Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.ConciergeReport_ContractNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.ConciergeReport_CoOwner)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.ConciergeReport_ClubType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.ConciergeReport_NumberAdults)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.ConciergeReport_NumberChildren)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.ConciergeReport_ArrivalDate)
+                    </td>
+                    <td>
+                        @Html.Raw(i.ConciergeReport_FlightInfo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.ConciergeReport_AssignedToUser)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.ConciergeReport_BookingStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.ConciergeReport_LeadSource)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.ConciergeReport_Resort)
+                    </td>
+                    <td>
+                        <span data-format="currency">
+                            @Html.DisplayFor(model => i.ConciergeReport_TotalPaid)
+                        </span>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.ConciergeReport_ConciergeComments)
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

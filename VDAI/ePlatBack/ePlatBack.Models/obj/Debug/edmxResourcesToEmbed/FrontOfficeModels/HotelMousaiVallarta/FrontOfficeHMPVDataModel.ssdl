@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FrontOfficeHMPVDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityType Name="tbaAgencia">
+    <Key>
+      <PropertyRef Name="idagencia" />
+    </Key>
+    <Property Name="idagencia" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
+    <Property Name="nameagencia" Type="char" MaxLength="50" />
+    <Property Name="codeagencia" Type="char" MaxLength="10" />
+    <Property Name="IdCompania" Type="int" />
+    <Property Name="idcodigodemercado" Type="int" />
+    <Property Name="Mayorista" Type="bit" Nullable="false" />
+    <Property Name="IdPerfilDelHuesped" Type="int" />
+    <Property Name="UltimaVisita" Type="datetime" />
+    <Property Name="UltimaTarifa" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="UltimaHabitacion" Type="varchar" MaxLength="10" />
+    <Property Name="TotalDeNoches" Type="int" />
+    <Property Name="TotalDeVisitas" Type="int" />
+    <Property Name="TotalDeCancelaciones" Type="int" />
+    <Property Name="TotalDeNoShow" Type="int" />
+    <Property Name="TotalDeIngresos" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="usualta" Type="char" MaxLength="60" />
+    <Property Name="fechaalta" Type="datetime" />
+    <Property Name="usumodi" Type="char" MaxLength="60" />
+    <Property Name="fechamodi" Type="datetime" />
+    <Property Name="clasifnoimprimible" Type="varchar" MaxLength="50" />
+    <Property Name="concredito" Type="bit" Nullable="false" />
+    <Property Name="tipodeagencia" Type="int" Nullable="false" />
+    <Property Name="Porcentajerenta" Type="numeric" Precision="5" Scale="2" />
+    <Property Name="cuentacontableagencia" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Activo" Type="bit" Nullable="false" />
+    <Property Name="interfas" Type="nvarchar" MaxLength="50" />
+    <Property Name="tipoagencia" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="tbaCodigosdeMercado">
+    <Key>
+      <PropertyRef Name="idcodigodemercado" />
+    </Key>
+    <Property Name="idcodigodemercado" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="namecodigodemercado" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="codigo" Type="varchar" MaxLength="10" />
+    <Property Name="IdMayor" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="usualta" Type="varchar" MaxLength="20" />
+    <Property Name="fechaalta" Type="datetime" />
+    <Property Name="usumodi" Type="varchar" MaxLength="20" />
+    <Property Name="fechamodi" Type="datetime" />
+    <Property Name="tarificadorservown" Type="varchar" MaxLength="30" />
+    <Property Name="idresort" Type="int" />
+    <Property Name="activo" Type="bit" Nullable="false" />
+    <Property Name="tipofix" Type="bit" Nullable="false" />
+    <Property Name="preasignacion" Type="bit" />
+    <Property Name="color" Type="char" MaxLength="6" />
+    <Property Name="segmentohotel" Type="smallint" Nullable="false" />
+    <Property Name="owner" Type="bit" Nullable="false" />
+    <Property Name="invitadoown" Type="bit" Nullable="false" />
+    <Property Name="idplantilladecargoinvown" Type="int" Nullable="false" />
+    <Property Name="rentalprogram" Type="bit" Nullable="false" />
+    <Property Name="orden" Type="int" Nullable="false" />
+    <Property Name="NameUVC" Type="varchar" MaxLength="50" />
+    <Property Name="callcenter" Type="bit" Nullable="false" />
+    <Property Name="walkin" Type="bit" Nullable="false" />
+    <Property Name="idmodocallcenter" Type="int" />
+    <Property Name="interfas" Type="bit" Nullable="false" />
+    <Property Name="EsCortecia" Type="bit" />
+    <Property Name="WidgetPreCheckIn" Type="bit" />
+  </EntityType>
+  <EntityType Name="tbaTiposdeHabitacion">
+    <Key>
+      <PropertyRef Name="idtipodehabitacion" />
+    </Key>
+    <Property Name="idtipodehabitacion" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nametipodehabitacion" Type="varchar" MaxLength="35" />
+    <Property Name="codetipodehabitacion" Type="varchar" MaxLength="10" />
+    <Property Name="cantidad" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="usualta" Type="varchar" MaxLength="20" />
+    <Property Name="fechaalta" Type="datetime" />
+    <Property Name="usumodi" Type="varchar" MaxLength="20" />
+    <Property Name="fechamodi" Type="datetime" />
+    <Property Name="idcolortipodehabitacion" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="idresort" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="clasificacion" Type="int" Nullable="false" />
+    <Property Name="idtipohabvillacompleta" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="text" />
+    <Property Name="ocupacionmaxima" Type="int" Nullable="false" />
+    <Property Name="numinternetgratis" Type="smallint" Nullable="false" />
+    <Property Name="Activa" Type="bit" />
+    <Property Name="Permitesplit" Type="bit" />
+  </EntityType>
+  <Function Name="spAgregaComentario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="V_idReservacion" Type="numeric" Mode="In" />
+    <Parameter Name="V_idRoomList" Type="int" Mode="In" />
+    <Parameter Name="V_Comentario" Type="text" Mode="In" />
+    <Parameter Name="V_Urgente" Type="bit" Mode="In" />
+    <Parameter Name="V_RESULTADO" Type="char" Mode="InOut" />
+  </Function>
+  <Function Name="spCorreoHuesped" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idhuesped" Type="int" Mode="In" />
+    <Parameter Name="email" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spHistorialReservaciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idhuesped" Type="int" Mode="In" />
+    <Parameter Name="email" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spLlegadas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fechaInicial" Type="datetime" Mode="In" />
+    <Parameter Name="fechafinal" Type="datetime" Mode="In" />
+  </Function>
+  <EntityContainer Name="FrontOfficeHMPVDataModelStoreContainer">
+    <EntitySet Name="tbaAgencia" EntityType="Self.tbaAgencia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbaCodigosdeMercado" EntityType="Self.tbaCodigosdeMercado" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbaTiposdeHabitacion" EntityType="Self.tbaTiposdeHabitacion" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

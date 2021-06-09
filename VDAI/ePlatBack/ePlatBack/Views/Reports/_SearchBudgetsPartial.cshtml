@@ -1,0 +1,62 @@
+﻿@model ePlatBack.Models.ViewModels.BudgetsViewModel.SearchBudgetsViewModel
+
+@using (Ajax.BeginForm("SearchBudgetsViewModel", "Reports", new AjaxOptions { OnSuccess = " REPORT.Budgets.budgetLoaded();", UpdateTargetId = "divBudgetsResults" }, new { id = "frmSearchBudgetsViewModel" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="non-printable search-params">
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_I_FromDate)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Search_I_FromDate, new { data_uses_date_picker = "true" })
+                @Html.TextBoxFor(model => model.Search_F_ToDate, new { data_uses_date_picker = "true" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_TerminalID)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Search_TerminalID, Model.Terminals, new
+           {
+               @class = "terminal-dependent-list onchange",
+               data_dependent_list = "Search_SelectedCompanies,Search_SelectedPointsOfSale",
+               data_onchange_route_parameter = "chargableCompaniesByTerminalID,pointOfSale",
+               data_route = "/crm/Reports/GetDDLData",
+               data_route_parameter = "selectedTerminals"
+           })
+            </div>
+        </div>
+
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_SelectedPointsOfSale)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Search_SelectedPointsOfSale, Model.PointsOfSale, new { multiple = "multiple" })
+            </div>
+        </div>
+
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_SelectedBudgetType)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Search_SelectedBudgetType, Model.BudgetsTypeListItem, new { multiple = "multiple" })
+            </div>
+        </div>
+
+        <div class="editor-alignment align-from-top">
+            <div class="editor-field">
+                <input type="submit" class="button" value="get" />
+            </div>
+        </div>
+    </div>
+       
+    <div id="divBudgetsResults">
+
+    </div>
+}

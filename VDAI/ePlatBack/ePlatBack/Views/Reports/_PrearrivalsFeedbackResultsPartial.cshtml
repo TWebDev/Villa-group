@@ -1,0 +1,54 @@
+﻿@model List<ePlatBack.Models.ViewModels.PreArrivalFeedbackModel.FeedbackResults>
+
+<table class="table exportable non-editable" style="width:100%;padding-top:10px;">
+    <thead>
+        <tr>
+            <th>Arrival Date</th>
+            <th>Resort</th>
+            <th>Lead Source</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Booking Status</th>
+            <th>Presentation Datetime</th>
+            <th>Assigned To</th>
+            <th>Reservation Status</th>
+            <th>Onsite Qualification</th>
+            <th>If NQ Reason</th>
+            <th>Team</th>
+            <th>Promotor</th>
+            <th>Onsite Booking Status</th>
+            <th>Onsite Presentation Datetime</th>
+            <th>Onsite Concierge Feedback</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var feedback in Model)
+        {
+            <tr>
+                <td>@feedback.ArrivalDate</td>
+                <td>@feedback.Resort</td>
+                <td>@feedback.LeadSource</td>
+                <td>@feedback.FirstName</td>
+                <td>@feedback.LastName</td>
+                <td>@feedback.PrearrivalBookingStatus</td>
+                <td>@feedback.PresentationDate</td>
+                <td>@feedback.AssignedTo</td>
+                <td>@feedback.ReservationStatus</td>
+                <td>@feedback.OnsiteQualification</td>
+                <td>@feedback.NQReason</td>
+                <td>@feedback.Team</td>
+                <td>@feedback.Promotor</td>
+                <td>@feedback.OnsiteBookingStatus</td>
+                <td>@feedback.OnsitePresentationDate</td>
+                @if (feedback.ReservationStatus != "CA")
+                {
+                    <td>@feedback.PrearrivalFeedback</td>
+                }
+                else
+                {
+                    <td>CANCELED <br />@feedback.PrearrivalFeedback</td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FrontOfficeVDPVModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="FrontOfficeVDPVEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="spLlegadas" ReturnType="Collection(FrontOfficeVDPVModel.spLlegadas_Result)">
+      <Parameter Name="fechaInicial" Mode="In" Type="DateTime" />
+      <Parameter Name="fechafinal" Mode="In" Type="DateTime" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="spLlegadas_Result">
+    <Property Type="Decimal" Name="idReservacion" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="CuartosNoche" Nullable="true" />
+    <Property Type="String" Name="TipoHab" Nullable="true" MaxLength="10" />
+    <Property Type="DateTime" Name="llegada" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="salida" Nullable="true" Precision="23" />
+    <Property Type="String" Name="NumHab" Nullable="true" MaxLength="6" />
+    <Property Type="String" Name="numconfirmacion" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Procedencia" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="CodigoMerc" Nullable="true" MaxLength="10" />
+    <Property Type="Decimal" Name="idresort" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Boolean" Name="Split" Nullable="true" />
+    <Property Type="String" Name="CRS" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="codeagencia" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="nameagencia" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Huesped" Nullable="true" MaxLength="160" />
+    <Property Type="Int32" Name="cuartos" Nullable="true" />
+    <Property Type="Int32" Name="Adultos" Nullable="true" />
+    <Property Type="Int32" Name="Ninos" Nullable="true" />
+    <Property Type="String" Name="apellidopaterno" Nullable="true" MaxLength="25" />
+    <Property Type="String" Name="apellidomaterno" Nullable="true" MaxLength="25" />
+    <Property Type="String" Name="nombres" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="codepais" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="namepais" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="codigostatusreservacion" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="X" Nullable="false" />
+    <Property Type="String" Name="Titulo" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="Infantes" Nullable="true" />
+    <Property Type="String" Name="HLlegada" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="HSalida" Nullable="false" MaxLength="1" />
+    <Property Type="Decimal" Name="idhuesped" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="String" Name="DistintivoPrecheckin" Nullable="true" MaxLength="10" />
+    <Property Type="DateTime" Name="FechaHoraCheckin" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Contrato" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="TipoPlan" Nullable="true" MaxLength="50" />
+  </ComplexType>
+</Schema>

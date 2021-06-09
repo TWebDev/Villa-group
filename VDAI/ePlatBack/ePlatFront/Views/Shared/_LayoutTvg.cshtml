@@ -1,0 +1,597 @@
+﻿<!DOCTYPE html>
+<html lang="@ViewBag.Culture">
+<head>
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="keywords" content="@ViewBag.Keywords">
+    <meta name="description" content="@ViewBag.Description">
+    <meta name="robots" content="@ViewBag.Index, @ViewBag.Follow">
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+    <link href="~/Content/themes/act/css/tvg.css" rel="stylesheet" />
+    @RenderSection("header", required: false)
+</head>
+<body>
+    @RenderSection("afterBody", required: false)
+    <header>
+        <section>
+            <nav class="white-nav">
+                <div class="top-nav hide-on-med-and-down">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col l5 top-menu">
+                                <ul>
+                                    <li>
+                                        <a href="//www.villagroupresorts.com.mx" hreflang="es">ES</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-button waves-effect" href="#!" data-activates="dropdown_social" title="Social Media">
+                                            <i class="material-icons">share</i>
+                                        </a><ul id="dropdown_social" class="dropdown-content" style="top: 31px !important;">
+                                            <li>
+                                                <a class="waves-effect" href="https://www.facebook.com/villagroup" title="Facebook">
+                                                    <i class="fa fa-facebook-official right" aria-hidden="true"></i>
+                                                    Facebook
+                                                </a>
+                                            </li>
+                                            <li class="divider"></li>
+                                            <li>
+                                                <a class="waves-effect" href="https://twitter.com/villagroup" title="Twitter">
+                                                    <i class="fa fa-twitter right" aria-hidden="true"></i>
+                                                    Twitter
+                                                </a>
+                                            </li>
+                                            <li class="divider"></li>
+                                            <li>
+                                                <a class="waves-effect" href="https://www.instagram.com/villagroupresorts/" title="Instagram">
+                                                    <i class="fa fa-instagram right" aria-hidden="true"></i>
+                                                    Instagram
+                                                </a>
+                                            </li>
+                                            <li class="divider"></li>
+                                            <li>
+                                                <a class="waves-effect" href="https://plus.google.com/116325984983783715126" title="Google Plus">
+                                                    <i class="fa fa-google-plus-official right" aria-hidden="true"></i>
+                                                    Google Plus
+                                                </a>
+                                            </li>
+                                            <li class="divider"></li>
+                                            <li>
+                                                <a class="waves-effect" href="https://www.youtube.com/user/VillaGroupResorts" title="Youtube">
+                                                    <i class="fa fa-youtube-play right" aria-hidden="true"></i>
+                                                    Youtube
+                                                </a>
+                                            </li>
+                                            <li class="divider"></li>
+                                            <li>
+                                                <a class="waves-effect" href="http://www.villagroupresorts.com/news/" title="Blog">
+                                                    <i class="fa fa-newspaper-o right" aria-hidden="true"></i>
+                                                    Blog
+                                                </a>
+                                            </li>
+                                            <li class="divider"></li>
+                                        </ul>
+
+                                    </li>
+                                    <li>
+                                        <a class="waves-effect" href="http://www.villagroupresorts.com/files/pdf/corporateBrochureFinalW.pdf" title="Brochure">
+                                            Brochure
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="waves-effect" href="http://booking.villagroupresorts.com/bookcore/agency" title="Agents">
+                                            Agents
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col l2 center-align">
+                                <img src="~/Content/themes/act/img/logo.png" />
+                            </div>
+                            <div class="col l5 right-align">
+                                <span class="phone">
+                                    <span class="text">TOLL FREE USA/CAN</span>
+                                    <span>1 855 229 0461</span>
+                                </span>
+                                @*<a href="#" class="book waves-effect waves-light btn-large" title="Book Now">Book Now</a>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sub-nav row hide-on-med-and-down">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col l1">
+
+                            </div>
+                            <div class="col l10 center-align">
+                                <ul>
+                                    <li>
+                                        <a class="waves-effect dropdown-button" data-activates="mega" href="#!" title="Our Resorts">Our Resorts <i class="material-icons right">keyboard_arrow_down</i></a>
+                                        <div id="mega" class="megamenu dropdown-content" style="width: 100%; position: absolute; top: 86px; left: -732.531px; opacity: 1; display: none;">
+                                            <div class="row">
+                                                <div class="container">
+                                                    <div class="col m2 l2 megamenu-titles">
+                                                        <h4>9 Resorts</h4>
+                                                        <h5>5 Incredible Destinations</h5>
+                                                        <h6>Begin your vacations now!</h6>
+                                                    </div>
+                                                    <ul class="col m2 l2">
+                                                        <li>
+                                                            <a class="waves-effect" href="#!" title="Los Cabos">
+                                                                <i class="material-icons right">keyboard_arrow_right</i>
+                                                                Los Cabos
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="waves-effect" href="http://villagroupresorts.com/resorts/villa-del-palmar-cabo" title="Villa del Palmar">
+                                                                <i class="material-icons left">keyboard_arrow_right</i>
+                                                                Villa del Palmar
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="waves-effect" href="http://villagroupresorts.com/resorts/villa-del-arco" title="Villa del Arco">
+                                                                <i class="material-icons left">keyboard_arrow_right</i>
+                                                                Villa del Arco
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="waves-effect" href="http://villagroupresorts.com/resorts/villa-la-estancia-cabo" title="Villa La Estancia">
+                                                                <i class="material-icons left">keyboard_arrow_right</i>
+                                                                Villa La Estancia
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                    <ul class="col m2 l2">
+                                                        <li>
+                                                            <a class="waves-effect" href="#!" title="Puerto Vallarta">
+                                                                <i class="material-icons right">keyboard_arrow_right</i>
+                                                                Puerto Vallarta
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="waves-effect" href="http://villagroupresorts.com/resorts/villa-del-palmar-puerto-vallarta" title="Villa del Palmar">
+                                                                <i class="material-icons left">keyboard_arrow_right</i>
+                                                                Villa del Palmar
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="waves-effect" href="http://villagroupresorts.com/resorts/villa-del-mar" title="Villa de Mar">
+                                                                <i class="material-icons left">keyboard_arrow_right</i>
+                                                                Villa de Mar
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                    <ul class="col m2 l2">
+                                                        <li>
+                                                            <a class="waves-effect" href="#!" title="Riviera Nayarit">
+                                                                <i class="material-icons right">keyboard_arrow_right</i>
+                                                                Riviera Nayarit
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="waves-effect" href="http://villagroupresorts.com/resorts/villa-del-palmar-flamingos" title="Villa del Palmar Flamingos">
+                                                                <i class="material-icons left">keyboard_arrow_right</i>
+                                                                Villa del Palmar Flamingos
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="waves-effect" href="http://villagroupresorts.com/resorts/villa-la-estancia-riviera-nayarit" title="Villa La Estancia">
+                                                                <i class="material-icons left">keyboard_arrow_right</i>
+                                                                Villa La Estancia
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                    <ul class="col m2 l2">
+                                                        <li>
+                                                            <a class="waves-effect" href="#!" title="Cancún">
+                                                                <i class="material-icons right">keyboard_arrow_right</i>
+                                                                Cancún
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="waves-effect" href="http://villagroupresorts.com/resorts/villa-del-palmar-cancun" title="Villa del Palmar">
+                                                                <i class="material-icons left">keyboard_arrow_right</i>
+                                                                Villa del Palmar
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                    <ul class="col m2 l2">
+                                                        <li>
+                                                            <a class="waves-effect" href="#!" title="Loreto">
+                                                                <i class="material-icons right">keyboard_arrow_right</i>
+                                                                Loreto
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="waves-effect" href="http://villagroupresorts.com/resorts/villa-del-palmar-loreto" title="Villa del Palmar">
+                                                                <i class="material-icons left">keyboard_arrow_right</i>
+                                                                Villa del Palmar
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a title="Spa Collection" class="waves-effect dropdown-button" data-activates="dropdown2" href="#!">Spa Collection<i class="material-icons right">keyboard_arrow_down</i></a>
+                                        <ul id="dropdown2" class="dropdown-content">
+                                            <li>
+                                                <a title="Desert Spa" href="//www.villagroupresorts.com/spa-collection/desert-spa">Desert Spa</a>
+                                            </li>
+                                            <li class="divider"></li>
+                                            <li>
+                                                <a title="Tatewari SPA" href="//www.villagroupresorts.com/spa-collection/tatewari-spa">Tatewari SPA</a>
+                                            </li>
+                                            <li class="divider"></li>
+                                            <li>
+                                                <a title="Bay Breeze Spa" href="//www.villagroupresorts.com/spa-collection/bay-breeze-spa">Bay Breeze Spa</a>
+                                            </li>
+                                            <li class="divider"></li>
+                                            <li>
+                                                <a title="Village Spa" href="//www.villagroupresorts.com/spa-collection/village-spa">Village Spa</a>
+                                            </li>
+                                            <li class="divider"></li>
+                                            <li>
+                                                <a title="Sabila Spa" href="//www.villagroupresorts.com/spa-collection/sabila-spa">Sabila Spa</a>
+                                            </li>
+                                            <li class="divider"></li>
+                                        </ul>
+
+                                    </li>
+                                    <li>
+                                        <a title="Groups" class="waves-effect " href="//www.villagroupresorts.com/groups">Groups</a>
+                                    </li>
+                                    <li>
+                                        <a title="Weddings" class="waves-effect " href="//www.villagroupresorts.com/weddings">Weddings</a>
+                                    </li>
+                                    <li>
+                                        <a title="Specials" class="waves-effect " href="http://specials.villagroupresorts.com/">Specials</a>
+                                    </li>
+                                    <li>
+                                        <a title="Contact Us" class="waves-effect " href="//www.villagroupresorts.com/contact"><i class="material-icons">email</i></a>
+                                    </li>
+                                    <li>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-l1">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mobile-nav row hide-on-large-only z-depth-1">
+                    <div class="col l12 m12 s12 center-align">
+                        <a href="#" data-activates="mobile-nav" class="button-collapse left">
+                            <i class="material-icons">menu</i>
+                        </a>
+                        <a class="logo-mobile left" href="http://villagroupresorts.com/resorts/villa-del-palmar-puerto-vallarta" title="Villa del Palmar, Beach Resort and Spa, Puerto Vallarta, México">
+                            <span class="icon-vdppv">
+                                <img src="~/Content/themes/act/img/logo.png" class="responsive-img" />
+                            </span>
+                        </a>
+                        <a href="tel:1 877 498 1491" class="right call" title="TOLL FREE USA/CAN1 877 498 1491">
+                            <i class="material-icons">phone</i>
+                        </a>
+                    </div>
+                </div>
+                <div class="side-nav" id="mobile-nav">
+                    <div class="mobile-logo">
+                        <a href="/">
+                            <span class="icon-vgr">
+                                <img src="~/Content/themes/act/img/logo.png" />
+                            </span>
+                        </a>
+                    </div>
+                    <ul class="collapsible" data-collapsible="accordion">
+                        <li>
+                            <div class="collapsible-header waves-effect">Our Resorts<i class="material-icons right">keyboard_arrow_down</i></div>
+                            <div class="collapsible-body">
+                                <ul class="collapsible" data-collapsible="accordion">
+                                    <li>
+                                        <div class="collapsible-header waves-effect">Cabo San Lucas<i class="material-icons right">keyboard_arrow_down</i></div>
+                                        <div class="collapsible-body">
+                                            <ul>
+                                                <li>
+                                                    <a href="/resorts/cabo-san-lucas/villa-del-palmar">Villa del Palmar Cabo San Lucas</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/resorts/cabo-san-lucas/villa-del-arco">Villa del Arco Cabo San Lucas</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/resorts/cabo-san-lucas/villa-la-estancia">Villa La Estancia Los Cabos</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="collapsible-header waves-effect">Riviera Nayarit<i class="material-icons right">keyboard_arrow_down</i></div>
+                                        <div class="collapsible-body">
+                                            <ul>
+                                                <li>
+                                                    <a href="/resorts/riviera-nayarit/villa-del-palmar-flamingos">Villa del Palmar Flamingos</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/resorts/riviera-nayarit/villa-la-estancia">Villa La Estancia Riviera Nayarit</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="collapsible-header waves-effect">Puerto Vallarta<i class="material-icons right">keyboard_arrow_down</i></div>
+                                        <div class="collapsible-body">
+                                            <ul>
+                                                <li>
+                                                    <a href="/resorts/puerto-vallarta/villa-del-mar">Villa del Mar Puerto Vallarta</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/resorts/puerto-vallarta/villa-del-palmar">Villa del Palmar Puerto Vallarta</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="collapsible-header waves-effect">Cancun<i class="material-icons right">keyboard_arrow_down</i></div>
+                                        <div class="collapsible-body">
+                                            <ul>
+                                                <li>
+                                                    <a href="/resorts/cancun/villa-del-palmar">Villa del Palmar Cancún</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="collapsible-header waves-effect">Islands of Loreto<i class="material-icons right">keyboard_arrow_down</i></div>
+                                        <div class="collapsible-body">
+                                            <ul>
+                                                <li>
+                                                    <a href="/resorts/islands-of-loreto/villa-del-palmar">Villa del Palmar At The Islands Of Loreto</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="collapsible-header waves-effect">Spa Collection<i class="material-icons right">keyboard_arrow_down</i></div>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li><a href="/spa-collection/desert-spa">Desert Spa</a></li>
+                                    <li><a href="/spa-collection/bay-breeze-spa">Bay Breeze Spa</a></li>
+                                    <li><a href="/spa-collection/tatewari-spa">Tatewari SPA</a></li>
+                                    <li><a href="/spa-collection/village-spa">Village Spa</a></li>
+                                    <li><a href="/spa-collection/sabila-spa">Sábila Spa</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="collapsible-header waves-effect">Weddings<i class="material-icons right">keyboard_arrow_down</i></div>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li><a href="/weddings/venues">Venues</a></li>
+                                    <li><a href="/weddings/packages">Packages</a></li>
+                                    <li><a href="/weddings/photo-gallery">Photo Gallery</a></li>
+                                    <li><a href="/weddings/contact">Contact</a></li>
+                                    <li><a href="/weddings/request-for-proposal">Request for proposal</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="/groups">Groups</a>
+                        </li>
+                        <li>
+                            <a href="http://specials.villagroupresorts.com/">Specials</a>
+                            <a href="/contact">Contact Us</a>
+                        </li>
+                    </ul>
+                    <div class="divider"></div>
+                    <ul class="social">
+                        <li>
+                            <a class="waves-effect" href="https://www.facebook.com/villagroup">
+                                <i class="fa fa fa-facebook-official" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="waves-effect" href="https://twitter.com/villagroup">
+                                <i class="fa fa fa-twitter" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="waves-effect" href="https://www.instagram.com/villagroupresorts/">
+                                <i class="fa fa fa-instagram" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="waves-effect" href="https://plus.google.com/116325984983783715126">
+                                <i class="fa fa fa-google-plus-official" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="waves-effect" href="https://www.youtube.com/user/VillaGroupResorts">
+                                <i class="fa fa fa-youtube-play" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="waves-effect" href="http://www.villagroupresorts.com/news/">
+                                <i class="fa fa fa-newspaper-o" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="divider"></div>
+                </div>
+            </nav>
+            
+        </section>
+    </header>
+    <div>
+        @RenderSection("featured", required: false)
+        @RenderBody()
+        @RenderSection("controls", required: false)
+    </div>
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row no-margin">
+                <div class="col five s12 m6 hide-on-med-and-down">
+                    <p class="white-text">THE VILLA GROUP</p>
+                    <ul>
+                        <li><a href="http://www.villagroupresorts.com/info">About Us</a></li>
+                        <li><a href="http://www.villagroupresorts.com/news/">Read Our Blog</a></li>
+                        <li><a href="http://www.villagroupresorts.com/media">Press Media</a></li>
+                        <li>
+                            <a href="http://www.villagroupresorts.com/info/eagles-wings-foundation">
+                                Eagle´s Wings
+                                Foundation
+                            </a>
+                        </li>
+                        <li><a href="http://jobs.villagroupresorts.com/">Work with Us</a></li>
+                        <li><a href="http://www.villagroupresorts.com/faq">FAQ</a></li>
+                        <li><a href="http://booking.villagroupresorts.com/bookcore/agency/">Travel Agents</a></li>
+                    </ul>
+                </div>
+                <div class="col five s6 m6">
+                    <p class="white-text">OUR RESORTS</p>
+                    <ul>
+                        <li>
+                            <a class="tooltipped" href="http://www.villagroupresorts.com/resorts/villa-la-estancia-cabo" data-tooltip-id="d21027cf-e9c8-e42d-076f-61c3bff2bf70" data-tooltip="<img width='150' src='http://specials.villagroupresorts.com/assets/img/logos/bco/villa-la-estancia-cabo-san-lucas.png'>" data-delay="50" data-position="right" data-html="true">Villa La Estancia Los Cabos </a>
+                        </li>
+                        <li>
+                            <a class="tooltipped" href="http://www.villagroupresorts.com/resorts/villa-del-arco" data-tooltip-id="87b15ec0-7295-8c59-cc15-540802aaec15" data-tooltip="<img width='150' src='http://specials.villagroupresorts.com/assets/img/logos/bco/villa-del-arco-cabo-san-lucas.png'>" data-delay="50" data-position="right" data-html="true">Villa del Arco Cabo San Lucas</a>
+                        </li>
+                        <li>
+                            <a class="tooltipped" href="http://www.villagroupresorts.com/resorts/villa-del-palmar-cabo" data-tooltip-id="12460870-ad29-02d7-c603-bb0a18ecfe84" data-tooltip="<img width='150' src='http://specials.villagroupresorts.com/assets/img/logos/bco/villa-del-palmar-cabo-san-lucas.png'>" data-delay="50" data-position="right" data-html="true">
+                                Villa del Palmar Cabo San
+                                Lucas
+                            </a>
+                        </li>
+                        <li>
+                            <a class="tooltipped" href="http://www.villagroupresorts.com/resorts/villa-la-estancia-riviera-nayarit" data-tooltip-id="07013471-ca91-5e4f-e317-bc470e784e43" data-tooltip="<img width='150' src='http://specials.villagroupresorts.com/assets/img/logos/bco/villa-la-estancia-riviera-nayarit.png'>" data-delay="50" data-position="right" data-html="true">
+                                Villa La Estancia Riviera
+                                Nayarit
+                            </a>
+                        </li>
+                        <li>
+                            <a class="tooltipped" href="http://www.villagroupresorts.com/resorts/villa-del-palmar-flamingos" data-tooltip-id="ff92b560-0b32-20ff-3b62-61b161bc1e43" data-tooltip="<img width='150' src='http://specials.villagroupresorts.com/assets/img/logos/bco/villa-del-palmar-flamingos.png'>" data-delay="50" data-position="right" data-html="true">Villa del Palmar Flamingos</a>
+                        </li>
+                        <li>
+                            <a class="tooltipped" href="http://www.villagroupresorts.com/resorts/villa-del-palmar-puerto-vallarta" data-tooltip-id="f68e8d5d-31a4-af49-38e8-3b5e4cf83816" data-tooltip="<img width='150' src='http://specials.villagroupresorts.com/assets/img/logos/bco/villa-del-palmar-puerto-vallarta.png'>" data-delay="50" data-position="right" data-html="true">
+                                Villa del Palmar Puerto
+                                Vallarta
+                            </a>
+                        </li>
+                        <li>
+                            <a class="tooltipped" href="http://www.villagroupresorts.com/resorts/villa-del-mar" data-tooltip-id="06469c48-2928-5fae-bb5c-485b55608b39" data-tooltip="<img width='150' src='http://specials.villagroupresorts.com/assets/img/logos/bco/villa-del-mar-puerto-vallarta.png'>" data-delay="50" data-position="right" data-html="true">Villa del Mar Puerto Vallarta</a>
+                        </li>
+                        <li>
+                            <a class="tooltipped" href="http://www.villagroupresorts.com/resorts/villa-del-palmar-loreto" data-tooltip-id="75ba69b4-0306-c32f-eb4b-706fd64b91d4" data-tooltip="<img width='150' src='http://specials.villagroupresorts.com/assets/img/logos/bco/villa-del-palmar-at-the-islands-of-loreto.png'>" data-delay="50" data-position="right" data-html="true">
+                                Villa del Palmar at the Islands of
+                                Loreto
+                            </a>
+                        </li>
+                        <li><a class="tooltipped" href="http://www.villagroupresorts.com/resorts/villa-del-palmar-cancun" data-tooltip-id="cf78309d-a932-b7be-f11a-174938e370e6" data-tooltip="<img width='150' src='http://specials.villagroupresorts.com/assets/img/logos/bco/villa-del-palmar-cabo-san-lucas.png'>" data-delay="50" data-position="right" data-html="true">Villa del Palmar Cancun</a></li>
+                    </ul>
+                </div>
+                <div class="col five s6 m6">
+                    <p class="white-text">DESTINATIONS</p>
+                    <ul>
+                        <li>
+                            <a href="http://www.villagroupresorts.com/destinations/cabo-san-lucas">Cabo San Lucas</a>
+                        </li>
+                        <li>
+                            <a href="http://www.villagroupresorts.com/destinations/puerto-vallarta">Puerto Vallarta</a>
+                        </li>
+                        <li>
+                            <a href="http://www.villagroupresorts.com/destinations/riviera-nayarit">Riviera Nayarit</a>
+                        </li>
+                        <li><a href="http://www.villagroupresorts.com/destinations/cancun">Cancun</a></li>
+                        <li><a href="http://www.villagroupresorts.com/destinations/loreto">Islands of Loreto</a></li>
+                    </ul>
+                </div>
+                <div class="col five s6 m6">
+                    <p class="white-text">SPA COLLECTION</p>
+                    <ul>
+                        <li>
+                            <a href="http://www.villagroupresorts.com/resorts/villa-del-arco/the-desert-spa">
+                                The Desert
+                                Spa
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.villagroupresorts.com/resorts/villa-del-palmar-flamingos/tatewari-spa">
+                                Tatewari
+                                Spa
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.villagroupresorts.com/resorts/villa-del-palmar-puerto-vallarta/bay-breeze-spa">
+                                Bay
+                                Breeze Spa
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.villagroupresorts.com/resorts/villa-del-palmar-cancun/spa">
+                                Village
+                                Spa
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.villagroupresorts.com/resorts/villa-del-palmar-loreto/spa">
+                                Sabila
+                                Spa
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col five s12 m6 hide-on-med-and-down">
+                    <p class="white-text">SERVICES</p>
+                    <ul>
+                        <li><a href="http://www.villagroupresorts.com/groups/weddings">Weddings</a></li>
+                        <li><a href="http://www.villagroupresorts.com/meetings">Groups</a></li>
+                        <li><a href="http://www.villagroupresorts.com/app/request-pickup">Request Pick Up</a></li>
+                        <li><a href="http://www.villagroupresorts.com/info">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-copyright footer-darken">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 l6">
+                        <ul class="footer-logo">
+                            <li><img alt="The Villa Group Resorts" src="data:image/png;base64,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" data-savepage-src="/assets/img/logos/bco/villa-group-resorts-logo.png"></li>
+                            <li>
+                                <a class="white-text left copy" style="top: -8px" href="http://www.villagroupresorts.com/info/copyright">
+                                    © 2017 | All Rights Reserved. <br>
+                                    Official Website.
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col s12 l6">
+
+                        <ul class="footer-links">
+                            <li><a href="http://www.villagroupresorts.com/info/privacy-policy">PRIVACY POLICY</a></li>
+                            <li><a href="http://www.villagroupresorts.com/info/copyright">TERMS OF USE</a></li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+    <script src="https://use.fontawesome.com/40bd8b9a45.js"></script>
+    <script src="~/Content/themes/act/js/ui.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

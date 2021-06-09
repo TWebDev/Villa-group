@@ -1,0 +1,46 @@
+﻿@model ePlatBack.Models.ViewModels.NotificationsModel.SearchNotificationsModel
+
+@using (Ajax.BeginForm("GetNotificationsReport", "Reports", new AjaxOptions { UpdateTargetId = "divNotificationsResults" }, new { id = "frmSearchNotifications"}))
+{
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SearchNotifications_I_Date)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.SearchNotifications_I_Date, new { data_uses_date_picker = "true" })
+            @Html.TextBoxFor(model => model.SearchNotifications_F_Date, new { data_uses_date_picker = "true" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SearchNotifications_Forms)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.SearchNotifications_Forms, Model.SearchNotifications_DrpForms, new { multiple = "multiple", @class = "terminal-dependent-list", data_route = "/crm/Reports/GetDDLData", data_route_parameter = "fieldGroups" })
+        </div>
+    </div>
+    
+    <div class="editor-alignment align-from-top">
+        <div class="editor-field">
+            <input type="submit" class="button" value="get" />
+        </div>
+    </div>
+    <div id="divNotificationsResults" style="margin-top: 14px;">
+        <table class="table dataTable">
+            <thead>
+                <tr>
+                    <th>Form</th>
+                    <th>Sent</th>
+                    <th>Received</th>
+                    <th>Opened</th>
+                    <th>Open Rate</th>
+                    <th>Clicked</th>
+                    <th>Click Rate</th>
+                    <th>Who Open Links</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+}

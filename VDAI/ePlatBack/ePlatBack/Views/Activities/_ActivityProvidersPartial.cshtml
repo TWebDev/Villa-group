@@ -1,0 +1,36 @@
+﻿@model ePlatBack.Models.ViewModels.ActivityViewModel
+
+<table id="tblActivityProviders" class="table dataTable">
+    <thead>
+        <tr>
+            <th>Comercial Name</th>
+            <th>Taxes Name</th>
+            <th>Destination</th>
+            <th>Provider Type</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ActivityProvidersResults != null)
+        {
+            foreach (var i in Model.ActivityProvidersResults)
+            {
+                var id = "provider" + i.ActivityProviderInfo_ProviderID;
+                <tr id="@id">
+                    <td>
+                        @Html.DisplayFor(model => i.ActivityProviderInfo_ComercialName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.ActivityProviderInfo_TaxesName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.ActivityProviderInfo_DestinationName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.ActivityProviderInfo_ProviderTypeName)
+                        <img src="/Content/themes/base/images/cross.png" class="delete-provider right" />
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

@@ -1,0 +1,125 @@
+﻿@model ePlatBack.Models.ViewModels.CouponsHistoryModel.SearchCouponsHistory
+
+@using (Ajax.BeginForm("SearchCouponsHistory", "Reports", new AjaxOptions { UpdateTargetId = "divCouponsHistoryResults", OnSuccess = "REPORT.addExtras(); REPORT.CouponsHistory.init();" }, new { id = "frmSearchCouponsHistory" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="non-printable search-params">
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_TerminalID)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Search_TerminalID, Model.Search_Terminals, new
+           {
+               @class = "terminal-dependent-list onchange",
+               data_route = "/crm/Reports/GetDDLData",
+               data_route_parameter = "selectedTerminals",
+               data_onchange_route_parameter = "pointOfSale,provider",
+               data_dependent_list = "Search_PointOfSaleID,Search_ProviderID"
+           })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_PointOfSaleID)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Search_PointOfSaleID, Model.Search_PointsOfSale, new
+           {
+               @class = "onchange",
+               data_route = "/crm/Reports/GetDDLData",
+               data_onchange_route_parameter = "getMinCouponNumber,getMaxCouponNumber",
+               data_dependent_list = "Search_FromCoupon,Search_ToCoupon",
+               multiple = "multiple",
+               data_onchange_validID_show = "divFromCoupon,divToCoupon"
+           })
+            </div>
+        </div>
+        <div class="editor-alignment" id="divFromCoupon">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_FromCoupon)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Search_FromCoupon)
+            </div>
+        </div>
+        <div class="editor-alignment" id="divToCoupon">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_ToCoupon)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Search_ToCoupon)
+            </div>
+        </div>
+        <div class="editor-alignment date">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_I_FromDate)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Search_I_FromDate, new { data_uses_date_picker = "true" })
+                @Html.TextBoxFor(model => model.Search_F_ToDate, new { data_uses_date_picker = "true" })
+            </div>
+        </div>
+        <div class="editor-alignment date">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_I_ActivityFromDate)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Search_I_ActivityFromDate, new { data_uses_date_picker = "true" })
+                @Html.TextBoxFor(model => model.Search_F_ActivityToDate, new { data_uses_date_picker = "true" })
+            </div>
+        </div>
+        <div class="editor-alignment date">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_I_AuditFromDate)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Search_I_AuditFromDate, new { data_uses_date_picker = "true" })
+                @Html.TextBoxFor(model => model.Search_F_AuditToDate, new { data_uses_date_picker = "true" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_Audited)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Search_Audited, Model.Search_AuditStatus, new { multiple = "multiple" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_CouponStatusID)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Search_CouponStatusID, Model.Search_CouponStatus, new { multiple = "multiple" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_ProviderID)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Search_ProviderID, Model.Search_Providers, new { multiple = "multiple" })
+            </div>
+        </div>
+        @Html.HiddenFor(model => model.Search_Cache)
+        @*<div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_Cache)
+            </div>
+            <div class="editor-field">
+                @Html.CheckBoxFor(model => model.Search_Cache)
+            </div>
+        </div>*@
+
+        <div class="editor-alignment align-from-top">
+            <div class="editor-field">
+                <input type="submit" class="button" value="get" />
+            </div>
+        </div>
+    </div>
+
+    <div id="divCouponsHistoryResults"></div>
+}

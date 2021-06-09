@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="@ViewBag.Culture">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title</title>
+        <link href="http://www.myvacationtomexico.com/blog-posts/wp-content/uploads/2014/05/my-vacationmexico.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="keywords" content="@ViewBag.Keywords">
+        <meta name="description" content="@ViewBag.Description">
+        <meta name="robots" content="@ViewBag.Index, @ViewBag.Follow">
+        <meta name="google-site-verification" content="qsyNYPlrJUsADJovW3q00D53BS0fcfG2Uh9i_gPmE0s" />
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        @Styles.Render("//fonts.googleapis.com/css?family=Open+Sans:400,700")
+        @Styles.Render("~/Content/themes/base/datepicker")
+        <link href="~/Content/themes/mvm/css/main.css" rel="stylesheet" />
+        @RenderSection("header", required: false)
+    </head>
+    <body>
+        @RenderSection("afterBody", required: false)
+        <header>
+            <span class="assistance">Any doubt? Need assistance? Want to book? <strong>1 800 607 7499</strong></span>
+            <div id="logo">
+                <a href="/">
+                <span class="logo-my">my</span>
+                <span class="logo-vacation">vacation</span>
+                <span class="logo-to">to</span>
+                <span class="logo-mexico">mexico</span>
+                </a>
+            </div>
+            <nav id="menu">
+                <ul>
+                    <li><a href="/puerto-vallarta">Puerto Vallarta</a></li>
+                    <li><a href="/cabo-san-lucas">Cabo San Lucas</a></li>
+                    <li><a href="/cancun">Cancun</a></li>
+                    <li><a href="/loreto">Loreto</a></li>
+                    <li><a href="/blog-posts">Blog</a></li>
+                </ul>
+            </nav>
+           
+        </header>
+        <div id="body">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+            @RenderSection("controls", required: false)
+        </div>
+        <footer></footer>
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryui")
+        @Scripts.Render("~/bundles/jqueryval")
+        <script src="~/Scripts/controls.js"></script>
+        <script src="~/Content/themes/dvh/js/dvh-slider.js"></script>
+        <script src="~/Content/themes/mvm/js/ui.js"></script>
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

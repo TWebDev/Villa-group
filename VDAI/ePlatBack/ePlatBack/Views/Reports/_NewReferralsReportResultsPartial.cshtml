@@ -1,0 +1,50 @@
+﻿@model ePlatBack.Models.ViewModels.NewReferralsModel
+
+<table id="tblNewReferralsReport" class="table">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Lead Source</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    @*<th>Email</th>*@
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Postal Code</th>
+                    <th>Country</th>
+                    <th>Date Created</th>
+                    @*<th>Home Phone</th>*@
+                    <th>Referred By</th>
+                    <th>Comments</th>
+                    @*<th>Office Phone</th>
+                    <th>Mobile Phone</th>*@
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.ListNewReferralsReport != null)
+                {
+                    foreach (var i in Model.ListNewReferralsReport)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(model => i.NewReferralsReport_User)</td>
+                            <td>@Html.DisplayFor(model => i.NewReferralsReport_LeadSource)</td>
+                            <td>@Html.DisplayFor(model => i.NewReferralsReport_ReferredFirstName)</td>
+                            <td>@Html.DisplayFor(model => i.NewReferralsReport_ReferredLastName)</td>
+                            @*<td>@Html.DisplayFor(model => i.NewReferralsReport_ReferredEmail)</td>*@
+                            <td>@Html.DisplayFor(model => i.NewReferralsReport_ReferredAddress)</td>
+                            <td>@Html.DisplayFor(model => i.NewReferralsReport_ReferredCity)</td>
+                            <td>@Html.DisplayFor(model => i.NewReferralsReport_ReferredState)</td>
+                            <td>@Html.DisplayFor(model => i.NewReferralsReport_ReferredZipCode)</td>
+                            <td>@Html.DisplayFor(model => i.NewReferralsReport_ReferredCountry)</td>
+                            <td>@Html.DisplayFor(model => i.NewReferralsReport_ReferredDateCreated)</td>
+                            @*<td>@Html.DisplayFor(model => i.NewReferralsReport_ReferredHomePhone)</td>*@
+                            <td>@Html.DisplayFor(model => i.NewReferralsReport_ReferredByLead)</td>
+                            <td>@Html.DisplayFor(model => i.NewReferralsReport_ReferredComments)</td>
+                            @*<td>@Html.DisplayFor(model => i.NewReferralsReport_ReferredWorkPhone)</td>
+                            <td>@Html.DisplayFor(model => i.NewReferralsReport_ReferredMobilePhone)</td>*@
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>

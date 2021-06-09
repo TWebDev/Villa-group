@@ -1,0 +1,477 @@
+﻿<!DOCTYPE html>
+<html lang="@ViewBag.Culture">
+<head>
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="keywords" content="@ViewBag.Keywords">
+    <meta name="description" content="@ViewBag.Description">
+    <meta name="robots" content="@ViewBag.Index, @ViewBag.Follow">
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+    <link href="~/Content/themes/gbr/css/main.css" rel="stylesheet" />
+    @RenderSection("header", required: false)
+</head>
+<body>
+    @RenderSection("afterBody", required: false)
+    <header>
+        <section>
+            <div class="navbar-fixed">
+                <nav class="white-nav">
+                    <div class="top-nav hide-on-med-and-down">
+                        <div class="container">
+                            <div id="topBar" class="row">
+                                <div class="col l8 top-menu social" style="height:25px;">
+                                    <ul>
+                                        <li></li>
+                                        <li style="margin-top: 4px;">
+                                            <a class=" dropdown-button waves-effect" href="#!" data-activates="dropdown_social" title="Social Media">
+                                                <i style="line-height:20px;" class="material-icons">share</i>
+                                            </a><ul id="dropdown_social" class="dropdown-content" style="top: 40px !important;">
+                                                <li>
+                                                    <a class="waves-effect" href="https://www.facebook.com/garzablancapvr" title="Facebook">
+                                                        <i class="fa fa-facebook-official right" aria-hidden="true"></i>
+                                                        Facebook
+                                                    </a>
+                                                </li>
+                                                <li class="divider"></li>
+                                                <li>
+                                                    <a class="waves-effect" href="https://twitter.com/garzablancapvr" title="Twitter">
+                                                        <i class="fa fa-twitter right" aria-hidden="true"></i>
+                                                        Twitter
+                                                    </a>
+                                                </li>
+                                                <li class="divider"></li>
+                                                <li>
+                                                    <a class="waves-effect" href="http://instagram.com/garzablancapv" title="Instagram">
+                                                        <i class="fa fa-instagram right" aria-hidden="true"></i>
+                                                        Instagram
+                                                    </a>
+                                                </li>
+                                                <li class="divider"></li>
+                                                <li>
+                                                    <a class="waves-effect" href="https://plus.google.com/+GarzaBlancaPreserveResortSpa" title="Google Plus">
+                                                        <i class="fa fa-google-plus-official right" aria-hidden="true"></i>
+                                                        Google Plus
+                                                    </a>
+                                                </li>
+                                                <li class="divider"></li>
+                                                <li>
+                                                    <a class="waves-effect" href="https://www.youtube.com/garzablancapvr" title="Youtube">
+                                                        <i class="fa fa-youtube-play right" aria-hidden="true"></i>
+                                                        Youtube
+                                                    </a>
+                                                </li>
+                                                <li class="divider"></li>
+                                                <li>
+                                                    <a class="waves-effect" href="https://www.tripadvisor.com.mx/UserReviewEdit-g150793-d1438800-ehttp:__2F____2F__www__2E__tripadvisor__2E__com__2E__mx__2F__Hotel__5F__Review__2D__g150793__2D__d1438800__2D__Reviews__2D__Garza__5F__Blanca__5F__Preserve__5F__Resort__5F__Spa__2D__Puerto__5F__Vallarta__2E__html-Garza_Blanca_Preserve_Resort_Spa-Puerto_Vallarta.html" title="Tripadvisor">
+                                                        <i class="fa fa-newspaper-o  right" aria-hidden="true"></i>
+                                                        Tripadvisor
+                                                    </a>
+                                                </li>
+                                                <li class=" divider"></li>
+                                            </ul>
+
+                                        </li>
+                                        <li>
+                                            <a class="waves-effect" href="https://www.garzablancaresort.com/blog" title="Blog">
+                                                Blog
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="waves-effect" href="https://www.garzablancaresort.com/live-webcam" title="@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Live_Cam">
+                                                @ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Live_Cam
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="waves-effect" href="https://www.garzablancaresort.com/puerto-vallarta-weather" title="@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Weather">
+                                                @ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Weather
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="waves-effect" href="https://www.garzablancaresort.com/transportation" title="@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Airport_Pickup">
+                                                @ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Airport_Pickup
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="waves-effect" href="https://www.garzablancaresort.com/why-book-with-us" title="@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Why_us_">
+                                                @ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Why_us_
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="waves-effect" href="https://www.garzablancaresort.com/contact" title="@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Contact">
+                                                @ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Contact
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <strong style=" font-weight: bolder;">
+                                                <a class="waves-effect" href="http://booking.garzablancaresort.com/bookcore/agency/iata/?_ga=2.78418583.2014782213.1517958688-1463839019.1515862730" title="Travel Agents">
+                                                    <strong> Travel Agents </strong>
+                                                </a>
+                                            </strong>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div id="topPanelRightSection" class=" col l4 right-align">
+                                    <i class=" material-icons">language</i><a href="" hreflang="@ViewBag.Culture" style="color:#132f6e; text-transform:uppercase">@ViewBag.Culture</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class=" col s2 offset-s5">
+                                    <img width="270" height="95" src="~/Content/themes/gbr/images/logo.png" />
+                                </div>
+                                <div class="col l5 right-align" style="padding-top:20px">
+                                    <div id="bannerPhone" class="phone">
+                                        <span class="text">@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Book_Now_or_Call</span>
+                                        <i style=" font-size: 1.5rem; padding-right:10px; height:20px;line-height: 2px; display:inline-block;" class="material-icons">call</i>
+
+                                        @if (ViewBag.Culture == "en")
+                                        {
+                                            <strong>1 855 229 0461</strong>
+                                            <div class="row" style="padding-top:1px">
+                                                <div class="col s4 offset-s5" style="padding-right:1px">
+                                                    <a href="https://booking.garzablancaresort.com/bookcore/availability/rooms/garzablanca" class="right-align white">
+                                                        @ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Hotel_Only
+                                                    </a>
+                                                </div>
+                                                <div class=" col s3 right-align" style="padding-left:1px;">
+                                                    <a href="https://www.reservhotel.com/puerto-vallarta-mexico/garza-blanca-preserve-resort/booking-engine/ibe4.main?currency=&lang=1&hotel=34017&airport=&rooms=1&adate=31-Dec-1969&ddate=31-Dec-1969&adults=2&child=" class="white-text right-align">
+                                                        @ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Hotel_Flight
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <strong> 322 22 38 383</strong>
+                                            <div class="row" style="padding-top:1px">
+                                                <div class="col s4 offset-s5" style="padding-right:1px">
+                                                    <a href="https://reservas.garzablancaresort.com.mx/bookcore/availability/rooms/garza/" class="right-align white">
+                                                        @ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Hotel_Only
+                                                    </a>
+                                                </div>
+                                                <div class=" col s3 right-align" style="padding-left:1px;">
+                                                    <a href="https://www.reservhotel.com/puerto-vallarta-mexico/garza-blanca-preserve-resort/booking-engine/ibe4.main?currency=MXN&lang=2&hotel=34017&airport=&rooms=1&adate=31-Dec-1969&ddate=31-Dec-1969&adults=2&child=" class="white-text right-align">
+                                                        @ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Hotel_Flight
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sub-nav row hide-on-med-and-down">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col l1">
+                                    <img class="logo-fixed" src="~/Content/themes/gbr/images/logo2.png" />
+                                </div>
+                                <div class="col l9 center-align">
+                                    <ul>
+                                        <li>
+                                            <a title="Land Activities" class="dropdown-button btnLandActivities" href="#land-activities">@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Land_Activities</a>
+                                        </li>
+                                        <li>
+                                            <a title="Water Activities" class="dropdown-button waves-effect btnWaterActivities" href="#water-activities">@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Water_Activities</a>
+                                        </li>
+                                        <li>
+                                            <a title="Transportation" class="dropdown-button waves-effect" href="/transportation" target="_self">@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Transportation</a>
+                                        </li>
+                                        <li>
+                                            <a class="btnShoppingCart" href="/Purchase/ShoppingCart"><i class="tiny material-icons right">shopping_cart</i>@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Shopping_Cart</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col l2 right-align phone-fixed">
+                                    <span class="phone">
+                                        <span class="text">@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Toll_Free_USA_CAN</span>
+                                        @if (ViewBag.Culture == "en")
+                                        {
+                                            <span>1 855 229 0461</span>
+                                        }
+                                        else
+                                        {
+                                            <span>322 22 38 383</span>
+                                        }
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mobile-nav row hide-on-large-only z-depth-1">
+                        <div class="col l12 m12 s12 center-align">
+                            <a href="#" data-activates="mobile-nav" class="button-collapse left">
+                                <i class="material-icons">menu</i>
+                            </a>
+                            <a class="logo-mobile left" href="https://www.garzablancaresort.com/" title="Garsa Blanca, Preserve Resort & Spa, Puerto Vallarta, México">
+                                <span class="icon-vdppv">
+                                    <img src="~/Content/themes/gbr/images/logo2.png" class="responsive-img" />
+                                </span>
+                            </a>
+                            <a href="tel:1 855 229 0461" class="right call" title="@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Toll_Free_USA_CAN ">
+                                <i class="material-icons">phone</i>
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="side-nav" id="mobile-nav">
+                <div class="mobile-logo">
+                    <a href="">
+                        <span class="icon-vgr">
+                            <img src="~/Content/themes/gbr/images/logo2.png" />
+                        </span>
+                    </a>
+                </div>
+
+                <div class="divider"></div>
+                <ul class="social">
+                    <li>
+                        <a class="waves-effect" href="https://www.facebook.com/garzablancapvr">
+                            <i class="fa fa fa-facebook-official" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="waves-effect" href="https://twitter.com/garzablancapvr">
+                            <i class="fa fa fa-twitter" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="waves-effect" href="http://instagram.com/garzablancapv">
+                            <i class="fa fa fa-instagram" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="waves-effect" href="https://plus.google.com/+GarzaBlancaPreserveResortSpa">
+                            <i class="fa fa fa-google-plus-official" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="waves-effect" href="https://www.youtube.com/garzablancapvr">
+                            <i class="fa fa fa-youtube-play" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="waves-effect" href="https://www.tripadvisor.com.mx/UserReviewEdit-g150793-d1438800-ehttp:__2F____2F__www__2E__tripadvisor__2E__com__2E__mx__2F__Hotel__5F__Review__2D__g150793__2D__d1438800__2D__Reviews__2D__Garza__5F__Blanca__5F__Preserve__5F__Resort__5F__Spa__2D__Puerto__5F__Vallarta__2E__html-Garza_Blanca_Preserve_Resort_Spa-Puerto_Vallarta.html">
+                            <i class=" fa fa-newspaper-o" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="waves-effect" href="https://www.garzablancaresort.com/blog/news">
+                            <i class="fa fa fa-newspaper-o" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
+                <div class="divider"></div>
+            </div>
+        </section>
+        <div id="submenu-land-activities" class="submenu white">
+            <div class="container">
+                <div class="row card-panel transparent z-depth-0" style="padding-top:80px">
+                    @Html.Raw(@ViewBag.Submenu1)
+                    <a id="btnCloseLandActivities" class="btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">expand_less</i></a>
+                </div>
+            </div>
+        </div>
+        <div id="submenu-water-activities" class="submenu white">
+            <div class="container">
+                <div class="row card-panel transparent z-depth-0" style="padding-top:80px">
+                    @Html.Raw(@ViewBag.Submenu2)
+                    <a id="btnCloseWaterActivities" class="btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">expand_less</i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+    @RenderSection("featured", required: false)
+    <div id="body" class=" container">
+        @RenderBody()
+        @RenderSection("controls", required: false)
+        @Html.Partial("_BookingEngineFormV2Partial")
+    </div>
+    <div id="CardV" class="">
+        <div class=" container">
+            <div class=" row">
+                <div class="col l3">
+                    <a href="https://www.garzablancaresort.com">
+                        Garza Blanca Preserve Resort & Spa
+                    </a>
+                    <br />
+                    <em>Be inspired, be here!</em>
+                    <br />
+                    <span>@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_ResortPhone: 1 855 229 0461</span>
+                    <br />
+                    <span>
+                        Carretera a Barra de Navidad Km. 7.5 Puerto Vallarta,
+                        <abbr class="region" title="Jalisco">JAL.</abbr>, 48390, Mexico.
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="separteBarLinks">
+        <div class="container">
+            <div class="row">
+                <div class="col l3" style="padding-top:5px;">
+                    @if (ViewBag.Culture == "en")
+                    {
+                        <span>@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Toll_Free_USA_CAN: 1 855 229 0461</span>
+                    }
+                    else
+                    {
+                        <span>@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Toll_Free_USA_CAN: 322 22 38 383</span>
+                    }
+                </div>
+                <div id="hovLinks" class="white-text col l6 offset-l2 right-align">
+                    <a class=" " href="https://www.garzablancaresort.com/about-us" target="_blank" title="@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_About_us">@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_About_us</a>
+                    <a href="https://www.garzablancaresort.com/frequently-asked-questions" target="_blank" title="@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_FAQS">@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_FAQS</a>
+                    <a href="http://jobs.taferresorts.com/" target="_blank" title="@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Jobs">@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Jobs</a>
+                    <a href="https://www.garzablancaresort.com/terms-and-conditions" target="_blank" title="@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Terms">@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Terms</a>
+                    <a href="https://www.garzablancaresort.com/privacy-policy" target="_blank" title="@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Policy">@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Policy</a>
+                    <a href="https://www.garzablancaresort.com/access" target="_blank" title="@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_My_Reservation">@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_My_Reservation</a> @if (ViewBag.Culture == "en")
+                    {
+                        <a href="http://booking.garzablancaresort.com/bookcore/agency/iata/?_ga=2.137912243.2014782213.1517958688-1463839019.1515862730" target="_blank" title="Travel_Agents">Travel Agents</a>
+                        <a href="https://www.garzablancaresort.com/website-feedback" target="_blank" title="Feedback">Feedback</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <footer class="page-footer">
+        <div class="container center-align">
+            <div id="images" class=" row no-margin right-align">
+                <div class="icon-vgr col s1  center-align">
+                    <a href="https://www.taferresorts.com/" target="_blank">
+                        <img width="90" height="60" src="~/Content/themes/gbr/images/tafer.png" />
+                    </a>
+                </div>
+                <div class=" icon-vgr col s2 offset-s1 center-align ">
+                    <a href="https://www.garzablancaresort.com/" target="_blank">
+                        <img height="38" width="130" src="~/Content/themes/gbr/images/garzaBlanca.png" />
+                    </a>
+                </div>
+                <div class=" icon-vgr col s1 center-align">
+                    <a href="https://www.hotelmousai.com/" target="_blank">
+                        <img height="60" width="80" src="~/Content/themes/gbr/images/hotelMousai.png" />
+                    </a>
+                </div>
+                <div class=" icon-vgr col s1 center-align">
+                    <a href="https://www.villapalmarcancun.com/" target="_blank">
+                        <img height="60" src="~/Content/themes/gbr/images/vpcLogo.png" />
+                    </a>
+                </div>
+                <div class=" icon-vgr col s1 center-align">
+                    <a href="http://www.pirateshipvallarta.com/" target="_blank">
+                        <img height="60" src="~/Content/themes/gbr/images/jollyRoger.png" />
+                    </a>
+                </div>
+                <div class=" icon-vgr col s1 center-align">
+                    <a href="https://www.sierralagoresort.com/" target="_blank">
+                        <img width="60" src="~/Content/themes/gbr/images/sierraLago.png" />
+                    </a>
+                </div>
+                <div class=" icon-vgr col s1 center-align">
+                    <a href="https://www.siankaanvillage.com/" target="_blank">
+                        <img height="35" width="150" src="~/Content/themes/gbr/images/sianVillage.png" />
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="footerLinks" class="container">
+            <div class="row no-margin">
+                <div class="col five s12 m6 hide-on-med-and-down">
+                    <p id="footerTitles">HOTEL & RESORTS</p>
+                    <ul>
+                        <li>
+                            <a href="https://www.garzablancaresort.com/">Garsa Blanca</a>
+                        </li>
+                        <li>
+                            <a href="https://www.hotelmousai.com/">Hotel Mousai</a>
+                        </li>
+                        <li>
+                            <a href="https://www.villapalmarcancun.com/">Villa del Palmar</a>
+                        </li>
+                        <li>
+                            <a href="https://www.sierralago.com/">Sierra Lago</a>
+                        </li>
+                        <li>
+                            <a href="https://www.siankaanvillage.com/">Sian Ka'an Village</a>
+                        </li>
+                        <li>
+                            <a href="https://www.villagroupresorts.com/">The Villa Group</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col five s6 m6">
+                    <p id="footerTitles">EXPERIENCES</p>
+                    <ul>
+                        <li><a href="http://romance.taferresorts.com/">Love Affair</a></li>
+                        <li><a href="https://wellness.taferresorts.com/">Wellness</a></li>
+                        <li><a href="https://taste.taferresorts.com/">Taste Buds</a></li>
+                    </ul>
+                </div>
+                <div class="col five s6 m6">
+                    <p id="footerTitles">MEMBER CLUBS</p>
+                    <ul>
+                        <li>
+                            <a href="http://www.garzablancaresidenceclub.com/">Garsa Blanca</a>
+                        </li>
+                        <li>
+                            <a href="http://www.clubcaribecancun.com/">Club Caribe</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col five s6 m6">
+                    <p id="footerTitles">REAL ESTATE</p>
+                    <ul>
+                        <li>
+                            <a href="http://www.garzablancarealestate.com/">Garza Blanca Residences</a>
+                        </li>
+                        <li>
+                            <a href="http://luxury.taferresorts.com/">Tafer Luxury Residences </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col five s12 m6 hide-on-med-and-down">
+                    <p id="footerTitles">ADVENTURES</p>
+                    <ul>
+                        <li><a href="http://www.pirateshipvallarta.com/">Pirate Ship Vallarta</a></li>
+                        <li><a href="https://www.pirateshowcancun.com/">Pirate Show Cancun</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class=" row" style="color:darkgray; font-size:.85em; border-top:1px solid #d2d2d2">
+            <div class=" col ">
+                <p>"Pegasus: W75211 | Amedeus: ISJ211 | Galileo: 61060 | Sabre: 136156 | Worldspan: CUNVI | PegasusODD/TravelWebNet: 75211"</p>
+            </div>
+        </div>
+        <div class=" row" style="color:darkgray; font-size:.85em; border-top:1px solid #d2d2d2">
+            <div class=" col ">
+                <spam>  Copyright © 2018 — All rights reserved</spam>
+            </div>
+        </div>
+
+    </footer>
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    @Scripts.Render("~/Scripts/jquery.json-2.3.min.js")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/bookingengine-1.5.js"></script>
+    <script src="~/Scripts/bookingengine-ui-1.5.js"></script>
+    <script src="/Content/themes/mex/js/language.@{@ViewBag.Culture}.js"></script>
+    <script src="~/Scripts/storage-1.0.js"></script>
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>*@
+    <script src="~/Content/plugins/materialize/js/materialize.js"></script>
+    <script src="https://use.fontawesome.com/40bd8b9a45.js"></script>
+    <script src="~/Content/themes/gbr/js/ui.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+

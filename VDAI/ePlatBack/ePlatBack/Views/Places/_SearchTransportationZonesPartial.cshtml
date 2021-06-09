@@ -1,0 +1,30 @@
+﻿@model ePlatBack.Models.ViewModels.TransportationZonesSearchModel
+
+<div class="full-width">
+    <input type="button" id="btnNewTransportationZonesInfo" class="submit fieldset-expander right" value="New">
+</div>
+@using (Ajax.BeginForm("SearchPlacesRelatedItems", "Places", new AjaxOptions { }, new { }))
+{
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Search_TransportationZones)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Search_TransportationZones)
+        </div>
+    </div>
+    <div class="editor-alignment align-from-top">
+        <input type="button" id="btnSearchTransportationZones" class="button search" value="Search" />
+    </div>
+    <div id="divSearchTransportationZonesResults">
+        <table id="tblSearchTransportationZonesResults" class="table search-results">
+            <thead>
+                <tr>
+                    <th colspan="2">Transportation Zone</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+}

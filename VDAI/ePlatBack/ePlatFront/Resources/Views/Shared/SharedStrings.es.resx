@@ -1,0 +1,455 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="All Rights Reserved" xml:space="preserve">
+    <value>Todos los Derechos Reservados</value>
+  </data>
+  <data name="Cabo San Lucas Packages" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Call Us" xml:space="preserve">
+    <value>Te ayudamos&lt;br /&gt;&lt;strong&gt;a planear&lt;br /&gt;tus vacaciones&lt;/strong&gt;&lt;br /&gt;Llámanos es&lt;br /&gt;&lt;strong&gt;gratis&lt;/strong&gt;</value>
+  </data>
+  <data name="Cancun Packages" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Click Here" xml:space="preserve">
+    <value>haz clic aquí</value>
+  </data>
+  <data name="Loreto Packages" xml:space="preserve">
+    <value />
+  </data>
+  <data name="More Info" xml:space="preserve">
+    <value>Más Información</value>
+  </data>
+  <data name="Orlando Packages" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Packages" xml:space="preserve">
+    <value>Paquetes</value>
+  </data>
+  <data name="Puerto Vallarta Packages" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Request a Quote" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TGA Description" xml:space="preserve">
+    <value>&lt;h1&gt;Paquetes Vacacionales a los Mejores Destinos&lt;/h1&gt;
+            &lt;p&gt;
+                En Today Getaway creemos que tus vacaciones deben ser tan accesibles como relajantes. Nos dedicamos a proveerte los &lt;strong&gt;mejores precios&lt;/strong&gt; para paquetes vacacionales del mercado. Podemos igualarte cualquier precio publicado en linea por cualquier resort en Mexico, ese es nuestro compromiso.
+            &lt;/p&gt;
+            &lt;p&gt;
+                El equipo de Today Getaway está compuesto por profesionales encargados de dar respuesta inmediata a tus necesidades ya sea por teléfono o email. Tenemos más de 20 de experiencia en el mercado.
+            &lt;/p&gt;
+            &lt;p&gt;
+                Cada uno de los miembros de nuestro equipo posee conocimiento de los resorts y servicios que vendemos, pueden darte recomendaciones de acuerdo a su experiencia. Cuenta con nosotros para encontrar la mejor solución para tus necesidades vacacionales &lt;strong&gt;llámanos hoy mismo!&lt;/strong&gt;</value>
+  </data>
+  <data name="To See Terms" xml:space="preserve">
+    <value>Para ver los Términos y Condiciones de esta Oferta por favor </value>
+  </data>
+  <data name="Why book with us" xml:space="preserve">
+    <value>&lt;h4&gt;¿Por qué reservar &lt;br /&gt;con nosotros?&lt;/h4&gt;
+                &lt;p&gt;
+                    - Te garantizamos el mejor precio.&lt;br /&gt;
+                    - Las transacciones son seguras.&lt;br /&gt;
+                    - Política flexible en cambio de fechas.&lt;br /&gt;
+                    - Servicio los 7 días de la semana.&lt;br /&gt;
+                    - Trabajamos directo con el Resort.&lt;br /&gt;
+                &lt;/p&gt;</value>
+  </data>
+  <data name="_for" xml:space="preserve">
+    <value>para</value>
+  </data>
+  <data name="Blog" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Mex_Close" xml:space="preserve">
+    <value>CERRAR</value>
+  </data>
+  <data name="Mex_Land Activities" xml:space="preserve">
+    <value>Actividades Terrestres</value>
+  </data>
+  <data name="Mex_Search Results" xml:space="preserve">
+    <value>RESULTADOS DE BÚSQUEDA</value>
+  </data>
+  <data name="Mex_Search your activities" xml:space="preserve">
+    <value>Búsqueda de Actividades</value>
+  </data>
+  <data name="Mex_Shopping Cart" xml:space="preserve">
+    <value>Carrito de Compras</value>
+  </data>
+  <data name="Mex_Transportation" xml:space="preserve">
+    <value>Transportación</value>
+  </data>
+  <data name="Mex_Travel Guide" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Mex_Water Activities" xml:space="preserve">
+    <value>Actividades Acuáticas</value>
+  </data>
+  <data name="Mex_Activity Total" xml:space="preserve">
+    <value>Total de la Actividad</value>
+  </data>
+  <data name="Mex_Arrival Airline" xml:space="preserve">
+    <value>Aerolínea de Llegada</value>
+  </data>
+  <data name="Mex_Arrival Flight" xml:space="preserve">
+    <value>Vuelo de Llegada</value>
+  </data>
+  <data name="Mex_Book" xml:space="preserve">
+    <value>RESERVAR</value>
+  </data>
+  <data name="Mex_Booking" xml:space="preserve">
+    <value>Reservando</value>
+  </data>
+  <data name="Mex_Checkout_Customer_Information" xml:space="preserve">
+    <value>Información del Cliente</value>
+  </data>
+  <data name="Mex_Checkout_Payment_Information" xml:space="preserve">
+    <value>Información de Pago</value>
+  </data>
+  <data name="Mex_Choose a Time" xml:space="preserve">
+    <value>Elige un Horario</value>
+  </data>
+  <data name="Mex_Close Terms" xml:space="preserve">
+    <value>Cerrar</value>
+  </data>
+  <data name="Mex_Continue" xml:space="preserve">
+    <value>Continuar</value>
+  </data>
+  <data name="Mex_Copyright" xml:space="preserve">
+    <value>Derechos Reservados</value>
+  </data>
+  <data name="Mex_Departure Airline" xml:space="preserve">
+    <value>Aerolínea de Regreso</value>
+  </data>
+  <data name="Mex_Departure Date" xml:space="preserve">
+    <value>Fecha de Regreso</value>
+  </data>
+  <data name="Mex_Departure Transportation Time" xml:space="preserve">
+    <value>Hora de Salida del Vuelo</value>
+  </data>
+  <data name="Mex_Go to Checkout" xml:space="preserve">
+    <value>Proceder a Pagar</value>
+  </data>
+  <data name="Mex_Hotel" xml:space="preserve">
+    <value>Hotel</value>
+  </data>
+  <data name="Mex_How_many" xml:space="preserve">
+    <value>¿Cuántos necesita?</value>
+  </data>
+  <data name="Mex_Pay Now" xml:space="preserve">
+    <value>Pagar Ahora</value>
+  </data>
+  <data name="Mex_Price" xml:space="preserve">
+    <value>PRECIO</value>
+  </data>
+  <data name="Mex_Qty" xml:space="preserve">
+    <value>#</value>
+  </data>
+  <data name="Mex_Read Terms" xml:space="preserve">
+    <value>Términos y Condiciones</value>
+  </data>
+  <data name="Mex_Reservation Request Confirmation" xml:space="preserve">
+    <value>Confirmación de Solicitud de Reservación</value>
+  </data>
+  <data name="Mex_Round_Trip" xml:space="preserve">
+    <value>¿Necesitas viaje redondo?</value>
+  </data>
+  <data name="Mex_RRC_Text1" xml:space="preserve">
+    <value>Tu Código de Confirmación de Pago es:</value>
+  </data>
+  <data name="Mex_RRC_Text2" xml:space="preserve">
+    <value>y tu tarjeta de crédito ha sido cargada con</value>
+  </data>
+  <data name="Mex_RRC_Text3" xml:space="preserve">
+    <value>bajo el nombre de </value>
+  </data>
+  <data name="Mex_RRC_Text4" xml:space="preserve">
+    <value>Una confirmación de pago por tu transacción ha sido enviada a tu dirección de correo electrónico, y recibirás un segundo correo dentro de las siguientes 48 horas con tus cupones y números de confirmación para imprimir y presentar cuando atiendas a las actividades. Si no recibes la confirmación en unos minutos, por favor revisa tu carpeta de Correo no deseado o Spam, tal vez está ahi en lugar de en tu bandeja de entrada.</value>
+  </data>
+  <data name="Mex_RRC_Text5" xml:space="preserve">
+    <value>Si requieres cualquier asistencia adicional, por favor siéntete libre de contactarnos a info@myvallartaexperience.com o llámanos a nuestros números gratuitos &lt;strong&gt;1 877 359 0443 (desde EUA/Canada) o 01 800 638 7774 (desde  el interior de la República Mexicana)&lt;/strong&gt;. Puedes encontrarnos de Lunes a Viernes de 9:00 a.m. a 5:00 p.m. y Sábados y Domingos de 9:00 a.m. a 2:00 p.m. hora del centro de México. Con gusto te atenderemos.</value>
+  </data>
+  <data name="Mex_Savings" xml:space="preserve">
+    <value>Ahorro</value>
+  </data>
+  <data name="Mex_Select a Date" xml:space="preserve">
+    <value>Elige una Fecha</value>
+  </data>
+  <data name="Mex_Terms_and_Conditions" xml:space="preserve">
+    <value>Términos y Condiciones</value>
+  </data>
+  <data name="Mex_Totals" xml:space="preserve">
+    <value>TOTALES</value>
+  </data>
+  <data name="Mex_Travel Information" xml:space="preserve">
+    <value>Información de Viaje</value>
+  </data>
+  <data name="Mex_Unit" xml:space="preserve">
+    <value>UNIDAD</value>
+  </data>
+  <data name="Mex_Zone" xml:space="preserve">
+    <value>Zona</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Enviar</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Sí</value>
+  </data>
+  <data name="Mex_Package" xml:space="preserve">
+    <value>Paquete</value>
+  </data>
+  <data name="Transportation_Quotes" xml:space="preserve">
+    <value>Escribe el nombre de tu hotel y selecciona para obtener la lista de precios:</value>
+  </data>
+  <data name="Mex_Car Rental" xml:space="preserve">
+    <value>Renta de Autos</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Aplicar</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="Clear Form" xml:space="preserve">
+    <value>Limpiar Formulario</value>
+  </data>
+  <data name="Mex_CheckOut" xml:space="preserve">
+    <value>Orden de Compra</value>
+  </data>
+  <data name="Mex_Checkout_Special" xml:space="preserve">
+    <value>Solicitud Especial</value>
+  </data>
+  <data name="Mex_Click_Place_Order_1" xml:space="preserve">
+    <value>Al hacer clic en "Proceder con el Pago", estás aceptando los</value>
+  </data>
+  <data name="Mex_Click_Place_Order_2" xml:space="preserve">
+    <value>aplicables a tu compra y nuestras</value>
+  </data>
+  <data name="Mex_Have PromoCode" xml:space="preserve">
+    <value>Tienes un código promocional?</value>
+  </data>
+  <data name="Mex_Place your Order" xml:space="preserve">
+    <value>Proceder con el Pago</value>
+  </data>
+  <data name="Mex_Privacy Policy Url" xml:space="preserve">
+    <value>/politica-de-privacidad</value>
+  </data>
+  <data name="Mex_Proceed to Checkout" xml:space="preserve">
+    <value>Proceder a Pagar</value>
+  </data>
+  <data name="Mex_Search" xml:space="preserve">
+    <value>Búsqueda</value>
+  </data>
+  <data name="Mex_Terms Url" xml:space="preserve">
+    <value>/terminos-y-condiciones</value>
+  </data>
+  <data name="Mex_Validation Issues" xml:space="preserve">
+    <value>Por favor revisa los siguientes campos obligatorios:</value>
+  </data>
+  <data name="Privacy Policy" xml:space="preserve">
+    <value>Políticas de Privacidad</value>
+  </data>
+  <data name="Publish" xml:space="preserve">
+    <value>Publicar</value>
+  </data>
+  <data name="Mex_Live_Cam" xml:space="preserve">
+    <value>Cámara en Vivo</value>
+  </data>
+  <data name="Mex_WhyUs?" xml:space="preserve">
+    <value>¿Por qué nosotros?</value>
+  </data>
+  <data name="Mex_About_us" xml:space="preserve">
+    <value>Acerca de</value>
+    <comment>_LayoutVpc</comment>
+  </data>
+  <data name="Mex_Airport_Pickup" xml:space="preserve">
+    <value>Transportacion</value>
+    <comment>_LayoutVpc</comment>
+  </data>
+  <data name="Mex_Book_Now_or_Call" xml:space="preserve">
+    <value>Reserva o llama</value>
+    <comment>_LayoutVpc</comment>
+  </data>
+  <data name="Mex_Contact" xml:space="preserve">
+    <value>Contacto</value>
+    <comment>_LayoutVpc</comment>
+  </data>
+  <data name="Mex_FAQS" xml:space="preserve">
+    <value>Preguntas Frecuentes</value>
+    <comment>_LayoutVpc</comment>
+  </data>
+  <data name="Mex_Hotel+Flight" xml:space="preserve">
+    <value>Hotel + Vuelo</value>
+    <comment>_LayoutVpc</comment>
+  </data>
+  <data name="Mex_Hotel_Only" xml:space="preserve">
+    <value>Solo Hotel</value>
+    <comment>_LayoutVpc</comment>
+  </data>
+  <data name="Mex_Jobs" xml:space="preserve">
+    <value>Empleos</value>
+    <comment>_LayoutVpc</comment>
+  </data>
+  <data name="Mex_My_Reservation" xml:space="preserve">
+    <value>Mi Reservacion</value>
+    <comment>_LayoutVpc</comment>
+  </data>
+  <data name="Mex_Policy" xml:space="preserve">
+    <value>Politicas</value>
+    <comment>_LayoutVpc</comment>
+  </data>
+  <data name="Mex_ResortPhone" xml:space="preserve">
+    <value>Teléfono del Resort</value>
+    <comment>_LayoutVpc</comment>
+  </data>
+  <data name="Mex_Terms" xml:space="preserve">
+    <value>Términos</value>
+    <comment>_LayoutVpc</comment>
+  </data>
+  <data name="Mex_Toll_Free_USA/CAN" xml:space="preserve">
+    <value>Lada sin costo</value>
+    <comment>_LayoutVpc</comment>
+  </data>
+  <data name="Mex_Weather" xml:space="preserve">
+    <value>Clima </value>
+    <comment>_LayoutVpc</comment>
+  </data>
+  <data name="Mex_Why_us?" xml:space="preserve">
+    <value>¿Porque Nosotros?</value>
+    <comment>_LayoutVpc</comment>
+  </data>
+  <data name="Mex_Privacy" xml:space="preserve">
+    <value>Privacidad</value>
+    <comment>_LayoutVpc</comment>
+  </data>
+  <data name="Mex_Talent" xml:space="preserve">
+    <value>Talento</value>
+    <comment>_LayoutVpc</comment>
+  </data>
+  <data name="Terms and Conditions" xml:space="preserve">
+    <value>Términos y Condiciones</value>
+  </data>
+</root>

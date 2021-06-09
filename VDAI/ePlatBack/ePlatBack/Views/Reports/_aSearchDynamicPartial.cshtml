@@ -1,0 +1,248 @@
+﻿@model ePlatBack.Models.ViewModels.DynamicModel.SearchDynamicModel
+
+@using (Ajax.BeginForm("SearchDynamic", "Reports", new AjaxOptions { }, new { id = "frmSearchDynamic" }))
+{
+    <div class="editor-alignment">
+    	<div class="editor-label">
+            @Html.LabelFor(model => model.SearchDynamic_FirstName)
+    	</div>
+    	<div class="editor-field">
+            @Html.TextBoxFor(model => model.SearchDynamic_FirstName)
+    	</div>
+    </div>
+    <div class="editor-alignment">
+    	<div class="editor-label">
+            @Html.LabelFor(model => model.SearchDynamic_LastName)
+    	</div>
+    	<div class="editor-field">
+            @Html.TextBoxFor(model => model.SearchDynamic_LastName)
+    	</div>
+    </div>
+    <div class="editor-alignment">
+    	<div class="editor-label">
+            @Html.LabelFor(model => model.GenericSearchFieldsReport_LeadSource)
+    	</div>
+    	<div class="editor-field">
+            @Html.ListBoxFor(model => model.GenericSearchFieldsReport_LeadSource, Model.GenericSearchFieldsReport_DrpLeadSources)
+    	</div>
+    </div>
+    <div class="editor-alignment">
+    	<div class="editor-label">
+            @Html.LabelFor(model => model.SearchDynamic_LeadStatus)
+    	</div>
+    	<div class="editor-field">
+            @Html.ListBoxFor(model => model.SearchDynamic_LeadStatus, Model.SearchDynamic_DrpLeadStatus)
+    	</div>
+    </div>
+    <div class="editor-alignment">
+    	<div class="editor-label">
+            @Html.LabelFor(model => model.SearchDynamic_AssignedToUser)
+    	</div>
+    	<div class="editor-field">
+            @Html.ListBoxFor(model => model.SearchDynamic_AssignedToUser, Model.SearchDynamic_DrpAssignedToUsers)
+    	</div>
+    </div>
+    <div class="editor-alignment">
+    	<div class="editor-label">
+            @Html.LabelFor(model => model.SearchDynamic_I_InputDateTime)
+    	</div>
+    	<div class="editor-field">
+            @Html.TextBoxFor(model => model.SearchDynamic_I_InputDateTime, new { data_uses_date_picker = "true" })
+            @Html.TextBoxFor(model => model.SearchDynamic_F_InputDateTime, new { data_uses_date_picker = "true" })
+    	</div>
+    </div>
+    <div class="editor-alignment">
+    	<div class="editor-label">
+            @Html.LabelFor(model => model.SearchDynamic_InputByUser)
+    	</div>
+    	<div class="editor-field">
+            @Html.ListBoxFor(model => model.SearchDynamic_InputByUser, Model.SearchDynamic_DrpInputByUsers)
+    	</div>
+    </div>
+    <div class="editor-alignment">
+    	<div class="editor-label">
+            @Html.LabelFor(model => model.SearchDynamic_I_ModificationDate)
+    	</div>
+    	<div class="editor-field">
+            @Html.TextBoxFor(model => model.SearchDynamic_I_ModificationDate, new { data_uses_date_picker = "true" })
+            @Html.TextBoxFor(model => model.SerchDynamic_F_ModifcationDate, new { data_uses_date_picker = "true" })
+    	</div>
+    </div>
+    <div class="editor-alignment">
+    	<div class="editor-label">
+            @Html.LabelFor(model => model.SearchDynamic_SubmissionForm)
+    	</div>
+    	<div class="editor-field">
+            <label for="SearchDynamic_SubmissionFormTrue">Yes</label>
+            @Html.RadioButtonFor(model => model.SearchDynamic_SubmissionForm, true)
+            <label for="SearchDynamic_SubmissionFormFalse">No</label>
+            @Html.RadioButtonFor(model => model.SearchDynamic_SubmissionForm, false)
+    	</div>
+    </div>
+    <div class="editor-alignment">
+    	<div class="editor-label">
+            @Html.LabelFor(model => model.SearchDynamic_TimeZone)
+    	</div>
+    	<div class="editor-field">
+            @Html.ListBoxFor(model => model.SearchDynamic_TimeZone, Model.SearchDynamic_DrpTimeZones)
+    	</div>
+    </div>
+    <div class="editor-alignment">
+    	<div class="editor-label">
+            @Html.LabelFor(model => model.GenericSearchFieldsReport_I_ArrivalDate)
+    	</div>
+    	<div class="editor-field">
+            @Html.TextBoxFor(model => model.GenericSearchFieldsReport_I_ArrivalDate, new { data_uses_date_picker = "true" })
+            @Html.TextBoxFor(model => model.GenericSearchFieldsReport_F_ArrivalDate, new { data_uses_date_picker = "true" })
+    	</div>
+    </div>
+    <div class="editor-alignment">
+    	<div class="editor-label">
+            @Html.LabelFor(model => model.GenericSearchFieldsReport_Resort)
+    	</div>
+    	<div class="editor-field">
+            @Html.ListBoxFor(model => model.GenericSearchFieldsReport_Resort, Model.GenericSearchFieldsReport_DrpResorts)
+    	</div>
+    </div>
+    <div class="editor-alignment">
+    	<div class="editor-label">
+            @Html.LabelFor(model => model.GenericSearchFieldsReport_BookingStatus)
+    	</div>
+    	<div class="editor-field">
+            @Html.ListBoxFor(model => model.GenericSearchFieldsReport_BookingStatus, Model.GenericSearchFieldsReport_DrpBookingStatus)
+    	</div>
+    </div>
+    <div class="editor-alignment">
+    	<div class="editor-label">
+            @Html.LabelFor(model => model.SearchDynamic_ReservationStatus)
+    	</div>
+    	<div class="editor-field">
+            @Html.ListBoxFor(model => model.SearchDynamic_ReservationStatus, Model.SearchDynamic_DrpReservationStatus)
+    	</div>
+    </div>
+    <div class="editor-alignment">
+    	<div class="editor-label">
+            @Html.LabelFor(model => model.SearchDynamic_GreetingRep)
+    	</div>
+    	<div class="editor-field">
+            @Html.ListBoxFor(model => model.SearchDynamic_GreetingRep, Model.SearhcDynamic_DrpGreetingReps)
+    	</div>
+    </div>
+    <div class="editor-alignment">
+    	<div class="editor-label">
+            @Html.LabelFor(model => model.SearchDynamic_OPC)
+    	</div>
+    	<div class="editor-field">
+            @Html.ListBoxFor(model => model.SearchDynamic_OPC, Model.SearchDynamic_DrpOPCS)
+    	</div>
+    </div>
+    <div class="editor-alignment">
+    	<div class="editor-label">
+            @Html.LabelFor(model => model.SearchDynamic_ConfirmationLetterOnArrival)
+    	</div>
+    	<div class="editor-field">
+            <label for="SearchDynamic_ConfirmationLetterOnArrivalTrue">Yes</label>
+            @Html.RadioButtonFor(model => model.SearchDynamic_ConfirmationLetterOnArrival, true)
+            <label for="SearchDynamic_ConfirmationLetterOnArrivalFalse">No</label>
+            @Html.RadioButtonFor(model => model.SearchDynamic_ConfirmationLetterOnArrival, false)
+    	</div>
+    </div>
+    <div class="editor-alignment">
+    	<div class="editor-label">
+            @Html.LabelFor(model => model.SearchDynamic_I_PresentationDate)
+    	</div>
+    	<div class="editor-field">
+            @Html.TextBoxFor(model => model.SearchDynamic_I_PresentationDate, new { data_uses_date_picker = "true" })
+            @Html.TextBoxFor(model => model.SearchDynamic_F_PresentationDate, new { data_uses_date_picker = "true"})
+    	</div>
+    </div>
+    <div class="editor-alignment">
+    	<div class="editor-label">
+            @Html.LabelFor(model => model.SearchDynamic_I_PresentationTime)
+    	</div>
+    	<div class="editor-field">
+            @Html.TextBoxFor(model => model.SearchDynamic_I_PresentationTime, new { data_uses_date_picker = "true" })
+            @Html.TextBoxFor(model => model.SearchDynamic_F_PresentationTime, new { data_uses_date_picker = "true" })
+    	</div>
+    </div>
+    <div class="editor-alignment">
+    	<div class="editor-label">
+            @Html.LabelFor(model => model.SearchDynamic_TourStatus)
+    	</div>
+    	<div class="editor-field">
+            @Html.ListBoxFor(model => model.SearchDynamic_TourStatus, Model.SearchDynamic_DrpTourStatus)
+    	</div>
+    </div>
+    <div class="editor-alignment">
+    	<div class="editor-label">
+            @Html.LabelFor(model => model.SearchDynamic_I_RealTourDate)
+    	</div>
+    	<div class="editor-field">
+            @Html.TextBoxFor(model => model.SearchDynamic_I_RealTourDate, new { data_uses_date_picker = "true" })
+            @Html.TextBoxFor(model => model.SearchDynamic_F_RealTourDate, new { data_uses_date_picker = "true" })
+    	</div>
+    </div>
+    <div class="editor-alignment">
+    	<div class="editor-label">
+            @Html.LabelFor(model => model.SearchDynamic_MemberNumber)
+    	</div>
+    	<div class="editor-field">
+            @Html.TextBoxFor(model => model.SearchDynamic_MemberNumber)
+    	</div>
+    </div>
+    <div class="editor-alignment">
+    	<div class="editor-label">
+            @Html.LabelFor(model => model.SearchDynamic_IsVIP)
+    	</div>
+    	<div class="editor-field">
+            <label for="Searchdynamic_IsVIPTrue">Yes</label>
+            @Html.RadioButtonFor(model => model.SearchDynamic_IsVIP, true)
+            <label for="SearchDynamic_IsVIPFalse">No</label>
+            @Html.RadioButtonFor(model => model.SearchDynamic_IsVIP, false)
+    	</div>
+    </div>
+    <div class="editor-alignment">
+    	<div class="editor-label">
+            @Html.LabelFor(model => model.SearchDynamic_IsAllInclusive)
+    	</div>
+    	<div class="editor-field">
+            <label for="SearchDynamic_IsAllInclusiveTrue">Yes</label>
+            @Html.RadioButtonFor(model => model.SearchDynamic_IsAllInclusive, true)
+            <label for="SearchDynamic_IsAllInclusiveFalse">No</label>
+            @Html.RadioButtonFor(model => model.SearchDynamic_IsAllInclusive, false)
+    	</div>
+    </div>
+    <div class="editor-alignment">
+    	<div class="editor-label">
+            @Html.LabelFor(model => model.SearchDynamic_NeedTransportation)
+    	</div>
+    	<div class="editor-field">
+            <label for="SearchDynamic_NeedTransportationTrue">Yes</label>
+            @Html.RadioButtonFor(model => model.SearchDynamic_NeedTransportation, true)
+            <label for="SearchDynamic_NeedTransportationFalse">No</label>
+            @Html.RadioButtonFor(model => model.SearchDynamic_NeedTransportation, false)
+    	</div>
+    </div>
+    <div class="editor-alignment">
+    	<div class="editor-label">
+            @Html.LabelFor(model => model.SearchDynamic_HasOptions)
+    	</div>
+    	<div class="editor-field">
+            <label for="SearchDynamic_HasOptionsTrue">Yes</label>
+            @Html.RadioButtonFor(model => model.SearchDynamic_HasOptions, true)
+            <label for="SearchDynamic_HasOptionsFalse">No</label>
+            @Html.RadioButtonFor(model => model.SearchDynamic_HasOptions, false)
+    	</div>
+    </div>
+    <div class="editor-alignment">
+    	<div class="editor-label">
+            @Html.LabelFor(model => model.SearchDynamic_IsReferral)
+    	</div>
+    	<div class="editor-field">
+            <label for="SearchDynamic_IsReferralTrue">Yes</label>
+            @Html.RadioButtonFor(model => model.SearchDynamic_IsReferral, true)
+            <label for="SearchDynamic_IsReferralFalse">No</label>
+            @Html.RadioButtonFor(model => model.SearchDynamic_IsReferral, false)
+    	</div>
+    </div>
+}

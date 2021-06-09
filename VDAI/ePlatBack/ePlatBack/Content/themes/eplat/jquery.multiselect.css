@@ -1,0 +1,32 @@
+.ui-multiselect { padding:2px 0 2px 4px; text-align:left; text-overflow: ellipsis; white-space: nowrap; overflow-x:hidden ; font-size: 1em; width: 200px !important;}
+.ui-multiselect span.ui-icon { float:right }
+.ui-multiselect-single .ui-multiselect-checkboxes input { position:absolute !important; top: auto !important; left:-9999px; }
+.ui-multiselect-single .ui-multiselect-checkboxes label { padding:5px !important }
+
+.ui-multiselect-header { margin-bottom:3px; padding: 5px 6px 7px;}
+.ui-multiselect-header ul { font-size:0.9em }
+.ui-multiselect-header ul li { float:left; padding:0 10px 0 0 }
+.ui-multiselect-header a { text-decoration:none ;font-weight: normal;}
+.ui-multiselect-header a:hover { text-decoration:underline }
+.ui-multiselect-header span.ui-icon { float:left }
+.ui-multiselect-header li.ui-multiselect-close { float:right; text-align:right; padding-right:0 ; margin-top: 0px;}
+
+.ui-multiselect-menu { display:none; padding:3px; position:absolute; z-index:10000; text-align: left ; width: auto !important; min-width: 300px;}
+.ui-multiselect-checkboxes { position:relative /* fixes bug in IE6/7 */; overflow-y:auto ; min-height: 260px;}
+.ui-multiselect-checkboxes label { cursor:default; display:block; border: none; padding: 4px 5px;}
+.ui-multiselect-checkboxes label input { position:relative; top:1px }
+.ui-multiselect-checkboxes li { clear:both; font-size:0.9em; padding-right:3px }
+.ui-multiselect-checkboxes li.ui-multiselect-optgroup-label { text-align:center; font-weight:bold; border-bottom:1px solid }
+.ui-multiselect-checkboxes li.ui-multiselect-optgroup-label a { display:block; padding:3px; margin:1px 0; text-decoration:none }
+
+/* remove label borders in IE6 because IE6 does not support transparency */
+* html .ui-multiselect-checkboxes label { border:none }
+
+
+.ui-state-hover-multiselect
+{
+    border: none;
+	background: #94d6f9 url(images/ui-bg_flat_75_94d6f9_40x100.png) 50% 50% repeat-x;
+	font-weight: normal;
+	color: #1d5987;
+}

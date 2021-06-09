@@ -1,0 +1,59 @@
+﻿@model ePlatBack.Models.ViewModels.PreBookedContactedLeadsModel.SearchPreBookedContactedLeadsModel
+
+@using (Ajax.BeginForm("SearchPreBookedContactedLeads", "Reports", new AjaxOptions { OnSuccess = "REPORT.searchResultsTable(data)", UpdateTargetId = "divTblPreBookedContactedLeadsResults" }, new { id = "frmSearchPreBookedContactedLeads", onSubmit = "return UI.showValidationSummary(this.id);" }))
+{
+    <div style="display:none" id="frmSearchPreBookedContactedLeads_ErrorMessages">
+        @Html.ValidationMessageFor(model => model.GenericSearchFieldsReport_Resort)
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.GenericSearchFieldsReport_I_ArrivalDate)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.GenericSearchFieldsReport_I_ArrivalDate, new { data_uses_date_picker = "true" })
+            @Html.TextBoxFor(model => model.GenericSearchFieldsReport_F_ArrivalDate, new { data_uses_date_picker = "true" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.GenericSearchFieldsReport_LeadSource)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.GenericSearchFieldsReport_LeadSource, Model.GenericSearchFieldsReport_DrpLeadSources, new { style = "height:68px", multiple = "multiple", @class = "workgroup-dependent-list", data_route = "/crm/Reports/GetDDLData", data_route_parameter = "leadSourceID" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.GenericSearchFieldsReport_Resort)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.GenericSearchFieldsReport_Resort, Model.GenericSearchFieldsReport_DrpResorts, new { style = "height:68px", multiple = "multiple", @class = "terminal-dependent-list", data_route = "/crm/Reports/GetDDLData", data_route_parameter = "placeID" })
+        </div>
+    </div>
+    @*<div class="editor-alignment">
+        <p class="editor-label">
+            @Html.LabelFor(model => model.SearchPreBookedContactedLeads_ExcludeDuplicated)
+        </p>
+        <p class="editor-field">
+            <label for="SearchPreBookedContactedLeads_ExcludeDuplicatedTrue">Yes</label>
+            @Html.RadioButtonFor(model => model.SearchPreBookedContactedLeads_ExcludeDuplicated, true)
+            <label for="SearchPreBookedContactedLeads_ExcludeDuplicatedFalse">No</label>
+            @Html.RadioButtonFor(model => model.SearchPreBookedContactedLeads_ExcludeDuplicated, false)
+        </p>
+    </div>*@
+    <div class="editor-alignment align-from-top">
+        <input type="submit" class="button" value="search" />
+    </div>
+    <div id="divTblPreBookedContactedLeadsResults" class="align-from-top">
+        <table id="tblPreBookedContactedLeadsReport" class="table">
+            <thead>
+                <tr>
+                    <th>Resort</th>
+                    <th>Pre-Booked</th>
+                    <th>Contacted</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+}

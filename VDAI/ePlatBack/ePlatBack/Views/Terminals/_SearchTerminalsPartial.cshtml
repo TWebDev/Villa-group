@@ -1,0 +1,34 @@
+﻿@model ePlatBack.Models.ViewModels.TerminalsSearchModel
+
+<div class="full-width">
+    <input type="button" id="btnNewTerminalsInfo" class="submit fieldset-expander right" value="New">
+</div>
+@using (Ajax.BeginForm("SearchTerminals", "Terminals", new AjaxOptions { OnSuccess = "TERMINAL.searchResultsTable(data)", OnComplete = "TERMINAL.makeTableRowsSelectable()", UpdateTargetId = "divTblExistingTerminals" }, new { id = "frmTerminalsSearch" }))
+{
+    <div class="editor-alignment">
+    	<div class="editor-label">
+            @Html.HiddenFor(model => model.Search_Terminals)
+            @Html.LabelFor(model => model.Search_Terminal)
+    	</div>
+    	<div class="editor-field">
+            @Html.TextBoxFor(model => model.Search_Terminal)
+    	</div>
+    </div>
+    <div class="editor-alignment align-from-top">
+    	<div class="editor-field">
+            <input type="submit" class="button terminals-dependent" id="btnSearchTerminals" value="search">
+    	</div>
+    </div>
+    <div id="divTblExistingTerminals" class="align-from-top">
+    	<table id="tblSearchTerminalsResults" class="table">
+    		<thead>
+    			<tr>
+    				<th>Prefix</th>
+    				<th>Terminal</th>
+                    <th></th>
+    			</tr>
+    		</thead>
+    		<tbody></tbody>
+    	</table>
+    </div>
+}

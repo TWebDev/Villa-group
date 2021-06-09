@@ -1,0 +1,38 @@
+﻿@model ePlatBack.Models.ViewModels.TransportationZonesModel.TransportationZonesInfoModel
+
+<fieldset id="fdsTransportationZonesInfo" class="primary-selected-row-dependent">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" alt="" class="fieldset-indicator fds-indicator-separator">
+        Transportation Zone Info
+    </legend>
+
+    <div style="display: none" class="align-from-top">
+        @using (Ajax.BeginForm("SaveTransportationZone", "Catalogs", new AjaxOptions { OnSuccess = "CATALOG.saveTransportationZoneSuccess(data)" }, new { id = "frmTransportationZoneInfo", onSubmit = "return UI.showValidationSummary(this.id);" }))
+        {
+            <div id="frmTransportationZoneInfo_ErrorMessages" style="display: none">
+                @Html.ValidationMessageFor(model => model.TransportationZoneInfo_TransportationZone)                
+                @Html.ValidationMessageFor(model => model.TransportationZoneInfo_Destination)
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.TransportationZoneInfo_TransportationZone)
+                    @Html.HiddenFor(model => model.TransportationZoneInfo_TransportationZoneID, new { @class = "secondary-selected-row-dependent" })
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.TransportationZoneInfo_TransportationZone)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.TransportationZoneInfo_Destination)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.TransportationZoneInfo_Destination, Model.TransportationZoneInfo_DrpDestinations, new { @class = "destination-dependent-list terminal-dependent-list", data_route = "/Catalogs/GetDDLData", data_route_parameter = "destination" })
+                </div>
+            </div>
+            <div class="editor-alignment full-width">
+                <input type="submit" class="submit right" value="Save" id="btnTransportationSaveZone"/>
+            </div>
+        }
+    </div>
+</fieldset>

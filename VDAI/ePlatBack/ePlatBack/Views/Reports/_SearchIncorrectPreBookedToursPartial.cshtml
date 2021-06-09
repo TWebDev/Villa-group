@@ -1,0 +1,46 @@
+﻿@model ePlatBack.Models.ViewModels.IncorrectlyPreBookedToursModel.SearchIncorrectPreBookedTours
+
+@using (Ajax.BeginForm("SearchIncorrectPreBookedTours", "Reports", new AjaxOptions { UpdateTargetId = "divTblToursResults", OnSuccess = "REPORT.addPluginToTable(data);REPORT.addExtras();" }, new { id = "frmSearchIncorrectPreBookedTours" }))
+{
+    <div class="non-printable search-params">
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_I_ArrivalDate)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Search_I_ArrivalDate, new { data_uses_date_picker = "true" })
+                @Html.TextBoxFor(model => model.Search_F_ArrivalDate, new { data_uses_date_picker = "true" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_Resorts)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Search_Resorts, Model.Search_DrpResorts, new { multiple = "multiple" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_LeadSources)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Search_LeadSources, Model.Search_DrpLeadSources, new { multiple = "multiple" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_Agents)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Search_Agents, Model.Search_DrpUsers, new { multiple = "multiple" })
+            </div>
+        </div>
+        <div class="editor-alignment align-from-top">
+            <div class="editor-field">
+                <input type="submit" class="button" value="get" />
+            </div>
+        </div>
+    </div>
+    <div id="divTblToursResults" class="align-from-top"></div>
+}

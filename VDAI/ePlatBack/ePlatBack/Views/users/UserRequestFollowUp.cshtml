@@ -1,0 +1,189 @@
+﻿@model ePlatBack.Models.ViewModels.UserRequest
+@{
+    if (!User.Identity.IsAuthenticated)
+    {
+        Layout = "~/Views/Shared/_Layout2Anonymous.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout2.cshtml";
+    }
+}
+
+@section Head {
+    <script>
+        window.UserRequest = JSON.parse('@Html.Raw(Json.Encode(Model))');
+        window.auth = @(User.Identity.IsAuthenticated ? "true" : "false");   
+        window.edit = @(Model.EditPermissions ? "true" : "false");
+    </script>
+}
+
+@section Scripts{
+    <script src="~/Content/plugins/fine-uploader5.16.2/fine-uploader.min.js"></script>
+    <script src="~/ViewModels/eplat.local.public.userrequestfu.js"></script>
+}
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="col">
+            <h1 class="font-weight-light">User Request Follow Up</h1>
+
+            <div class="row mt-4">
+                <div class="col-3">
+                    <div class="rounded-circle bg-success mx-auto text-center text-white px-4 pt-2" style="width: 180px; height: 180px;">
+                        <span class="display-4">1</span><br />
+                        <b>Registered</b><br />
+                        @Model.Saved
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="rounded-circle border bg-light mx-auto text-center pt-3 mt-3 @(Model.Checked != "" ? "d-none" : "")" style="width: 150px; height: 150px;" v-on:click="@(User.Identity.IsAuthenticated && Model.EditPermissions ? "triggerEvent(2)" : "")" id="event2-notchecked">
+                        <span class="display-4">2</span><br />
+                        Docs Checked
+                    </div>
+                    <div class="rounded-circle bg-success mx-auto text-center text-white px-4 pt-2 @(Model.Checked == "" ? "d-none" : "")" style="width: 180px; height: 180px;" id="event2-checked">
+                        <span class="display-4">2</span><br />
+                        <b>Docs Checked</b><br />
+                        <span v-html="UserRequest.Checked">@Model.Checked</span>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="rounded-circle border bg-light mx-auto text-center pt-3 mt-3 @(Model.Approved != "" ? "d-none" : "")" style="width: 150px; height: 150px;" v-on:click="@(User.Identity.IsAuthenticated && Model.EditPermissions ? "triggerEvent(3)" : "")" id="event3-notchecked">
+                        <span class="display-4">3</span><br />
+                        Approved
+                    </div>
+                    <div class="rounded-circle bg-success mx-auto text-center text-white px-4 pt-2 @(Model.Approved == "" ? "d-none" : "")" style="width: 180px; height: 180px;" id="event3-checked">
+                        <span class="display-4">3</span><br />
+                        <b>Approved</b><br />
+                        <span v-html="UserRequest.Approved">@Model.Approved</span>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="rounded-circle border bg-light mx-auto text-center pt-3 mt-3 @(Model.Delivered != "" ? "d-none" : "")" style="width: 150px; height: 150px;" v-on:click="@(User.Identity.IsAuthenticated && Model.EditPermissions ? "triggerEvent(4)" : "")" id="event4-notchecked">
+                        <span class="display-4">4</span><br />
+                        Delivered
+                    </div>
+                    <div class="rounded-circle bg-success mx-auto text-center text-white px-4 pt-2 @(Model.Delivered == "" ? "d-none" : "")" style="width: 180px; height: 180px;" id="event4-checked">
+                        <span class="display-4">4</span><br />
+                        <b>Delivered</b><br />
+                        <span v-html="UserRequest.Delivered">@Model.Delivered</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mt-4 mb-5">
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="form-group col-sm-6 col-lg-4">
+                            <label>Access to</label><br />
+                            <span>@Model.System</span>
+                        </div>
+                        <div class="form-group col-sm-6 col-lg-4">
+                            <label>Terminals</label><br />
+                            <span>@Model.TerminalsNames</span>
+                        </div>
+                        <div class="form-group col-sm-6 col-lg-4">
+                            <label>Destinations</label><br />
+                            <span>@Model.DestinationsNames</span>
+                        </div>
+                        <div class="form-group col-sm-6 col-lg-4">
+                            <label>Requested by</label><br />
+                            <span>@Model.RequestedBy</span>
+                        </div>
+                        <div class="form-group col-sm-6 col-lg-4">
+                            <label>@Model.RequestedBy Email</label><br />
+                            <span>@Model.NotifyTo</span>
+                        </div>
+                        <div class="form-group col-sm-6 col-lg-4">
+                            <label>Document</label><br />
+                            @if (User.Identity.IsAuthenticated && Model.EditPermissions)
+                            {
+                                <i class="material-icons" v-on:click="openUploadModal(1, 'User Request Form', null)" data-toggle="modal" data-target="#uploadModal" v-if="UserRequest.Checked == ''">attach_file</i>
+                                <i class="material-icons" v-if="UserRequest.Checked != ''">attach_file</i>
+                                <a target="_blank" :href="UserRequest.DocumentPath">{{ UserRequest.DocumentName }}</a>
+                            }
+                            else
+                            {
+                                <i class="material-icons">attach_file</i>
+                                <a target="_blank" href="@Model.DocumentPath">@Model.DocumentName</a>
+                            }
+                        </div>
+                        <div class="form-group col-sm-6 col-lg-8">
+                            @if (User.Identity.IsAuthenticated && Model.EditPermissions)
+                            {
+                                <span class="float-right">
+                                    <i class="material-icons" v-on:click="saveNotes">save</i>
+                                </span>
+                            }
+                            <label>Notes</label>
+                            <textarea class="form-control" v-model="UserRequest.Notes"></textarea>
+                        </div>
+
+                    </div>
+
+                    <table class="table mt-2 mb-0 table-bordered table-responsive table-sm">
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Email</th>
+                                <th>Job Position</th>
+                                <th>Based On</th>
+                                <th>Direct Supervisor</th>
+                                <th>Document</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="user in UserRequest.Users">
+                                <td>{{ user.FirstName }} {{ user.LastName }}</td>
+                                <td>{{ user.Email }}</td>
+                                <td>{{ user.JobPosition }}</td>
+                                <td>{{ user.BasedOnUser }}</td>
+                                <td>{{ user.DirectSupervisor }}</td>
+                                <td class="text-center">
+                                    @if (User.Identity.IsAuthenticated && Model.EditPermissions)
+                                    {
+                                        <i class="material-icons" v-on:click="openUploadModal(2, user.FirstName + ' ' + user.LastName + ' Confidenciality Letter', user.UserTemporalID)" data-toggle="modal" data-target="#uploadModal" v-if="UserRequest.Checked == ''">attach_file</i>
+                                        <i class="material-icons" v-if="UserRequest.Checked != ''">attach_file</i><br />
+                                        <a target="_blank" v-bind:href="user.DocumentPath">{{ user.DocumentName }}</a>
+                                    }
+                                    else
+                                    {
+                                        <i class="material-icons">attach_file</i><br />
+                                        <a target="_blank" v-bind:href="user.DocumentPath">{{ user.DocumentName }}</a>
+                                    }
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal Upload Document -->
+<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Upload File for </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <div id="fine-uploader-basic" class="btn btn-success">
+                    <i class="material-icons">file_upload</i>Browse
+                </div>
+                <div id="messages"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>

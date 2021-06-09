@@ -1,0 +1,28 @@
+﻿@model ePlatBack.Models.ViewModels.RoleInfoModel
+
+<fieldset id="fdsRolesInfo">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        Role Info
+    </legend>
+    <div class="main-div-container" style="display: none">
+        @using (Ajax.BeginForm("SaveRole", "Admin", new AjaxOptions { OnSuccess = "PROFILE.saveRoleSuccess(data)" }, new { id = "frmRole", onSubmit = "return UI.showValidationSummary(this.id);" }))
+        {
+            <div id="frmRole_ErrorMessages" style="display: none">
+                @Html.ValidationMessageFor(model => model.RoleInfo_Role)
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.RoleInfo_Role)
+                    @Html.HiddenFor(model => model.RoleInfo_RoleID, new { @class = "secondary-selected-row-dependent", data_keep_value="" })
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.RoleInfo_Role, new { data_format = "free-case" })
+                </div>
+            </div>
+            <div class="full-width">
+                <input type="submit" id="btnSaveRole" class="submit right" value="Save"/>
+            </div>
+        }
+    </div>
+</fieldset>

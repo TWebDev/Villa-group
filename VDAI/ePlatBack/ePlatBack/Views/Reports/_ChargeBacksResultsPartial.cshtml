@@ -1,0 +1,772 @@
+﻿@model ePlatBack.Models.ViewModels.ChargeBacksModel.ChargeBacksResults
+
+<div class="table-div">
+    <div class="table-row">
+        <div class="table-cell">
+            Dates<br />
+            @Model.Dates
+        </div>
+        <div class="table-cell">
+            Terminal<br />
+            @Model.Terminal
+        </div>
+        <div class="table-cell">
+            Funds<br />
+            @Html.Raw(Model.Funds)
+        </div>
+        <div class="table-cell">
+            Points of Sale<br />
+            @Html.Raw(Model.PointOfSale)
+        </div>
+        <div class="table-cell">
+            Charged to<br />
+            @Html.Raw(Model.ChargedTo)
+        </div>
+        <div class="table-cell">
+            Teams<br />
+            @Html.Raw(Model.Teams)
+        </div>
+        <div class="table-cell">
+            OPC<br />
+            @Html.Raw(Model.OPC)
+        </div>
+        <div class="table-cell">
+            Locations<br />
+            @Html.Raw(Model.Locations)
+        </div>
+        <div class="table-cell">
+            Agents<br />
+            @Html.Raw(Model.Agents)
+        </div>
+    </div>
+</div>
+
+@if (Model.Deposits.Count() > 0)
+{
+    <h2>Customer's Deposits</h2>
+
+    <table class="table exportable non-editable non-editable" style="width: 100%;">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Fund</th>
+                <th>Invitation</th>
+                <th>Customer</th>
+                <th>Agent</th>
+                <th>PoS</th>
+                <th>OPC</th>
+                <th>OPC AvanceID</th>
+                <th>Program</th>
+                <th>Team</th>
+                <th>Location</th>
+                <th>Charged to</th>
+                <th>Paying Company</th>
+                <th>Budget</th>
+                <th>Concept</th>
+                <th>Amount</th>
+                <th>Currency</th>
+                <th>Comments</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+    int l = 1;
+            }
+            @foreach (var deposit in Model.Deposits)
+            {
+            <tr class="@(l % 2 != 0 ? "odd" : "striped")">
+                <td>@deposit.Date</td>
+                <td>@deposit.Fund</td>
+                <td>@deposit.Invitation</td>
+                <td>@deposit.Customer</td>
+                <td>@deposit.Agent</td>
+                <td>@deposit.PointOfSale</td>
+                <td>@deposit.OPC</td>
+                <td>@deposit.OPCAvanceID</td>
+                <td>@deposit.Program</td>
+                <td>@deposit.PromoTeam</td>
+                <td>@deposit.Location</td>
+                <td>@deposit.ChargedTo</td>
+                <td>@deposit.PayingCompany</td>
+                <td>@deposit.Budget</td>
+                <td>@deposit.Concept</td>
+                <td><span data-format="currency">@deposit.Amount</span></td>
+                <td>@deposit.CurrencyCode</td>
+                <td class="comments">
+                    @if (@deposit.Comments != null)
+                        {
+                        <div class="comment-square"></div>
+                        <div class="comment-triangle"></div>
+                        <span class="comment" style="display: none;">
+                            @deposit.Comments
+                        </span>
+                        }
+                </td>
+            </tr>
+                        l = l + 1;
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="14" rowspan="4">
+                    <div class="table-div">
+                        <div class="table-row">
+                            @foreach (var concept in Model.DepositConceptsTotals)
+                            {
+                                if (@concept.AmountMXN.Amount > 0)
+                                {
+                            <div class="table-cell" style="padding: 0;">
+                                <table style="margin: 0 auto;">
+                                    <tr>
+                                        <th>Concept</th>
+                                        <th>Amount</th>
+                                        <th>Currency</th>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="3">@concept.Concept</td>
+                                        <td><span data-format="currency">@concept.Amount.First().Amount</span></td>
+                                        <td>@concept.Amount.First().Currency</td>
+                                    </tr>
+                                    @{
+                                    var i = 1;
+                                    foreach (var amount in @concept.Amount)
+                                    {
+                                        if (i > 1)
+                                        {
+                                            <tr>
+                                                <td><span data-format="currency">@amount.Amount</span></td>
+                                                <td>@amount.Currency</td>
+                                            </tr>
+                                        }
+                                        i++;
+                                    }
+                                    }
+                                    <tr>
+                                        <td>Total in @concept.AmountMXN.Currency</td>
+                                        <td><span data-format="currency">@concept.AmountMXN.Amount</span></td>
+                                        <td>@concept.AmountMXN.Currency</td>
+                                    </tr>
+                                </table>
+
+                            </div>
+                                }
+
+                            }
+                        </div>
+                    </div>
+                </td>
+                <td rowspan="3">Totals</td>
+                <td><span data-format="currency">@Model.DepositsTotals.Amount.FirstOrDefault().Amount</span></td>
+                <td>@Model.DepositsTotals.Amount.FirstOrDefault().Currency</td>
+                <td></td>
+            </tr>
+            @{
+                            int c = 1;
+                            foreach (var amount in Model.DepositsTotals.Amount)
+                            {
+                                if (c > 1)
+                                {
+            <tr>
+                <td><span data-format="currency">@amount.Amount</span></td>
+                <td>@amount.Currency</td>
+                <td></td>
+            </tr>
+                                }
+                                c++;
+                            }
+            }
+            <tr>
+                <td>Total in @Model.DepositsTotals.AmountMXN.Currency</td>
+                <td><span data-format="currency">@Model.DepositsTotals.AmountMXN.Amount</span></td>
+                <td>@Model.DepositsTotals.AmountMXN.Currency</td>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+}
+
+@if (Model.ChargeBacks.Count() > 0)
+{
+    <h2>Charge Backs</h2>
+    <table class="table exportable non-editable" style="width: 100%;">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Fund</th>
+                <th>Invitation</th>
+                <th>Customer</th>
+                <th>Agent</th>
+                <th>PoS</th>
+                <th>OPC</th>
+                <th>OPC AvanceID</th>
+                <th>Program</th>
+                <th>Team</th>
+                <th>Location</th>
+                <th>Charged to</th>
+                <th>Paying Company</th>
+                <th>Budget</th>
+                <th>Concept</th>
+                <th>Amount</th>
+                <th>Charge</th>
+                <th>Currency</th>
+                <th>Comments</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+    int k = 1;
+            }
+            @foreach (var charge in Model.ChargeBacks)
+            {
+            <tr class="@(k % 2 != 0 ? "odd" : "striped")">
+                <td>@charge.Date</td>
+                <td>@charge.Fund</td>
+                <td>@charge.Invitation</td>
+                <td>@charge.Customer</td>
+                <td>@charge.Agent</td>
+                <td>@charge.PointOfSale</td>
+                <td>@charge.OPC</td>
+                <td>@charge.OPCAvanceID</td>
+                <td>@charge.Program</td>
+                <td>@charge.PromoTeam</td>
+                <td>@charge.Location</td>
+                <td>@charge.ChargedTo</td>
+                <td>@charge.PayingCompany</td>
+                <td>@charge.Budget</td>
+                <td>@charge.Concept</td>
+                <td><span data-format="currency">@charge.Amount</span></td>
+                <td><span data-format="currency">@charge.Charge</span></td>
+                <td>@charge.CurrencyCode</td>
+                <td class="comments">
+                    @if (@charge.Comments != null)
+                    {
+                        <div class="comment-square"></div>
+                        <div class="comment-triangle"></div>
+                        <span class="comment" style="display: none;">
+                            @charge.Comments
+                        </span>
+                    }
+                </td>
+            </tr>
+                        k = k + 1;
+            }
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <td colspan="14" rowspan="4">
+                    <div class="table-div">
+                        <div class="table-row">
+                            @foreach (var concept in Model.ChargeBackConceptsTotals)
+                            {
+                                if (@concept.AmountMXN.Amount > 0)
+                                {
+                            <div class="table-cell" style="padding: 0;">
+                                <table style="margin: 0 auto;">
+                                    <tr>
+                                        <th>Concept</th>
+                                        <th>Amount</th>
+                                        <th>Charge</th>
+                                        <th>Currency</th>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="3">@concept.Concept</td>
+                                        <td><span data-format="currency">@concept.Amount.First().Amount</span></td>
+                                        <td><span data-format="currency">@concept.Charges.FirstOrDefault(x => x.Currency == @concept.Amount.First().Currency).Amount</span></td>
+                                        <td>@concept.Amount.First().Currency</td>
+                                    </tr>
+                                    @{
+                                    var i = 1;
+                                    foreach (var amount in @concept.Amount)
+                                    {
+                                        if (i > 1)
+                                        {
+                                            <tr>
+                                                <td><span data-format="currency">@amount.Amount</span></td>
+                                                <td><span data-format="currency">@concept.Charges.FirstOrDefault(x => x.Currency == @amount.Currency).Amount</span></td>
+                                                <td>@amount.Currency</td>
+                                            </tr>
+                                        }
+                                        i++;
+                                    }
+                                    }
+                                    <tr>
+                                        <td>Total in @concept.AmountMXN.Currency</td>
+                                        <td><span data-format="currency">@concept.AmountMXN.Amount</span></td>
+                                        <td><span data-format="currency">@concept.ChargesMXN.Amount</span></td>
+                                        <td>@concept.AmountMXN.Currency</td>
+                                    </tr>
+                                </table>
+
+                            </div>
+                                }
+
+                            }
+                        </div>
+                    </div>
+                </td>
+                <td rowspan="3">Totals</td>
+                <td><span data-format="currency">@Model.ChargeBacksTotals.Amount.FirstOrDefault().Amount</span></td>
+                <td><span data-format="currency">@Model.ChargeBacksTotals.Charges.FirstOrDefault(x => x.Currency == @Model.ChargeBacksTotals.Amount.FirstOrDefault().Currency).Amount</span></td>
+                <td>@Model.ChargeBacksTotals.Amount.FirstOrDefault().Currency</td>
+                <td></td>
+            </tr>
+            @{
+                            int c = 1;
+                            foreach (var amount in Model.ChargeBacksTotals.Amount)
+                            {
+                                if (c > 1)
+                                {
+            <tr>
+                <td><span data-format="currency">@amount.Amount</span></td>
+                <td><span data-format="currency">@Model.ChargeBacksTotals.Charges.FirstOrDefault(x => x.Currency == @amount.Currency).Amount</span></td>
+                <td>@amount.Currency</td>
+                <td></td>
+            </tr>
+                                }
+                                c++;
+                            }
+            }
+            <tr>
+                <td>Total in @Model.DepositsTotals.AmountMXN.Currency</td>
+                <td><span data-format="currency">@Model.ChargeBacksTotals.AmountMXN.Amount</span></td>
+                <td><span data-format="currency">@Model.ChargeBacksTotals.ChargesMXN.Amount</span></td>
+                <td>@Model.DepositsTotals.AmountMXN.Currency</td>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+}
+
+@if (Model.CouponsCxC.Count() > 0)
+{
+    <h2>Coupons CxC</h2>
+
+    <table class="table exportable" style="display: none;">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Invitation</th>
+                <th>Customer</th>
+                <th>Agent</th>
+                <th>PoS</th>
+                <th>OPC</th>
+                <th>OPC AvanceID</th>
+                <th>Program</th>
+                <th>Team</th>
+                <th>Location</th>
+                <th>Charged to</th>
+                <th>Budget</th>
+                <th>Concept</th>
+                <th>Folio</th>
+                <th>Amount</th>
+                <th>Balance</th>
+                <th>$</th>
+                <th>Comments</th>
+                <th>Paid</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var payment in Model.CouponsCxC)
+            {
+                <tr>
+                    <td>@payment.Date</td>
+                    <td>@payment.Invitation</td>
+                    <td>@payment.Customer</td>
+                    <td>@payment.Agent</td>
+                    <td>@payment.PointOfSale</td>
+                    <td>@payment.OPC</td>
+                    <td>@payment.OPCAvanceID</td>
+                    <td>@payment.Program</td>
+                    <td>@payment.PromoTeam</td>
+                    <td>@payment.Location</td>
+                    <td>@payment.ChargedTo</td>
+                    <td>@payment.Budget</td>
+                    <td>@payment.Concept</td>
+                    <td>@payment.Folio</td>
+                    <td><span data-chargeid="@payment.ChargeID" data-format="currency" class="cxc-amount">@payment.Amount</span></td>
+                    <td class="text-right">$<span data-chargeid="@payment.ChargeID" data-field="balance-payment" class="cxc-amount">@payment.Balance</span></td>
+                    <td>@payment.CurrencyCode</td>
+                    <td class="comments">
+                        @if (payment.Comments != null)
+                        {
+                            <div class="comment-square"></div>
+                            <div class="comment-triangle"></div>
+                            <span class="comment" style="display: none;">
+                                @payment.Comments
+                            </span>
+                        }
+                    </td>
+                    <td>
+                        @if (payment.Charged == true)
+                        {
+                            <span class="block">@payment.ChargedBy</span>
+                            <span class="block">@payment.ChargedDate</span>
+                        }
+                        else
+                        {
+                            <input type="button" data-chargeid="@payment.ChargeID" class="mini-button cxc-amount" value="CHARGE">
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="13" rowspan="4"></td>
+                <td rowspan="3">Totals</td>
+                <td><span data-format="currency">@Model.CouponsTotals.Amount.FirstOrDefault().Amount</span></td>
+                <td><span data-format="currency">@Model.CouponsTotals.Balance.FirstOrDefault().Amount</span></td>
+                <td>@Model.CouponsTotals.Amount.FirstOrDefault().Currency</td>
+                <td></td>
+                <td></td>
+            </tr>
+            @{
+            int d = 1;
+            foreach (var amount in Model.CouponsTotals.Amount)
+            {
+                if (d > 1)
+                {
+                    <tr>
+                        <td><span data-format="currency">@amount.Amount</span></td>
+                        <td><span data-format="currency">@Model.CouponsTotals.Balance.FirstOrDefault(x => x.Currency == amount.Currency).Amount</span></td>
+                        <td>@amount.Currency</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                }
+                d++;
+            }
+            }
+            <tr>
+                <td>Total in @Model.CouponsTotals.AmountMXN.Currency</td>
+                <td><span data-format="currency">@Model.CouponsTotals.AmountMXN.Amount</span></td>
+                <td><span data-format="currency">@Model.CouponsTotals.BalanceMXN.Amount</span></td>
+                <td>@Model.CouponsTotals.AmountMXN.Currency</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <table class="table non-editable" style="width: 100%;">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Invitation</th>
+                <th>Customer</th>
+                <th>Agent</th>
+                <th>PoS</th>
+                <th>OPC</th>
+                <th>OPC AvanceID</th>
+                <th>Program</th>
+                <th>Team</th>
+                <th>Location</th>
+                <th>Charged to</th>
+                <th>Budget</th>
+                <th>Concept</th>
+                <th>Folio</th>
+                <th>Amount</th>
+                <th>Balance</th>
+                <th>$</th>
+                <th>Comments</th>
+                <th>Paid</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+            int j = 1;
+            }
+            @foreach (var payment in Model.CouponsCxC)
+            {
+                <tr class="@(j % 2 != 0 ? "odd" : "striped")">
+                    <td>@payment.Date</td>
+                    <td>@payment.Invitation</td>
+                    <td>@payment.Customer</td>
+                    <td>@payment.Agent</td>
+                    <td>@payment.PointOfSale</td>
+                    <td>@payment.OPC</td>
+                    <td>@payment.OPCAvanceID</td>
+                    <td>@payment.Program</td>
+                    <td>@payment.PromoTeam</td>
+                    <td>@payment.Location</td>
+                    <td>@payment.ChargedTo</td>
+                    <td>@payment.Budget</td>
+                    <td>@payment.Concept</td>
+                    <td>@payment.Folio</td>
+                    <td><span data-chargeid="@payment.ChargeID" data-format="currency" class="cxc-amount">@payment.Amount</span></td>
+                    <td class="text-right">$<span data-chargeid="@payment.ChargeID" data-field="balance-payment" class="cxc-amount">@payment.Balance</span></td>
+                    <td>@payment.CurrencyCode</td>
+                    <td class="comments">
+                        @if (payment.Comments != null)
+                        {
+                            <div class="comment-square"></div>
+                            <div class="comment-triangle"></div>
+                            <span class="comment" style="display: none;">
+                                @payment.Comments
+                            </span>
+                        }
+                    </td>
+                    <td>
+                        @if (payment.Charged == true)
+                        {
+                            <span class="block">@payment.ChargedBy</span>
+                            <span class="block">@payment.ChargedDate</span>
+                        }
+                        else
+                        {
+                            <input type="button" data-chargeid="@payment.ChargeID" class="mini-button cxc-amount" value="CHARGE">
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="18" class="payment-partial">
+                        <div id="partials-@payment.ChargeID" class="partials" style="display:none;">
+                            <div class="right">
+                                <table style="width: 100%;" data-field="partials-table" data-chargeid="@payment.ChargeID">
+                                    <thead>
+                                        <tr>
+                                            <th>Description</th>
+                                            <th>Date</th>
+                                            <th>User</th>
+                                            <th>Amount</th>
+                                            <th>Transaction</th>
+                                            <th>Balance</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var partial in payment.PartialPayments)
+                                        {
+                                            <tr data-partialid="@partial.PartialID" class="@(partial.Deleted ? "partial-deleted" : "")">
+                                                <td>@partial.Description</td>
+                                                <td>@partial.PartialDate</td>
+                                                <td>@partial.User</td>
+                                                <td class="text-right">$@partial.Amount @partial.CurrencyCode</td>
+                                                <td class="text-right">$<span style="display: inline;" data-field="transaction-amount">@partial.AmountInPaymentCurrency</span> @payment.CurrencyCode</td>
+                                                <td class="text-right">$@(partial.Balance * -1) @payment.CurrencyCode</td>
+                                                <td class="text-center">
+                                                    @if (partial.Deleted)
+                                                    {
+                                                        @Html.Raw(partial.DeletedDetails)
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="material-icons delete-partial" data-partialid="@partial.PartialID" data-chargeid="@payment.ChargeID">delete</i>
+                                                    }
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td><input type="text" data-field="description" data-chargeid="@payment.ChargeID" /></td>
+                                            <td style="width: 70px; display: inline-block; border: 0;"><span data-field="date" data-chargeid="@payment.ChargeID">@DateTime.Today.ToString("yyyy-MM-dd")</span></td>
+                                            <td>Me</td>
+                                            <td style="width: 135px; display: block; border: none;">
+                                                $<input type="text" data-field="amount" data-chargeid="@payment.ChargeID" style="width:50px" />
+                                                <select data-field="currencyid" data-chargeid="@payment.ChargeID" style="width:60px;">
+                                                    <option value="1">USD</option>
+                                                    <option value="2">MXN</option>
+                                                </select>
+                                            </td>
+                                            <td class="text-right">$<span style="display: inline;" data-field="transaction" data-chargeid="@payment.ChargeID">0</span> @payment.CurrencyCode</td>
+                                            <td class="text-right">$<span style="display: inline;" data-field="transaction-balance" data-chargeid="@payment.ChargeID">0</span> @payment.CurrencyCode</td>
+                                            <td class="text-center"><input type="button" class="mini-button save-partial" data-chargeid="@payment.ChargeID" value="SAVE" style="float:none;"></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <div>
+                                <span>
+                                    <span class="big" data-field="payment" data-chargeid="@payment.ChargeID" data-currency="@payment.CurrencyCode">@(payment.Amount * -1)</span>
+                                    <br />CXC
+                                </span>
+                                <span>
+                                    <span class="big" data-field="partials" data-chargeid="@payment.ChargeID">@payment.Partials</span>
+                                    <br />Partials
+                                </span>
+                                <span>
+                                    <span class="big" data-field="balance" data-chargeid="@payment.ChargeID">
+                                        @(payment.Balance * -1)
+                                    </span>
+                                    <br />Balance
+                                </span>
+                                <span>
+                                    <span class="big exchange-rate" data-paymentcurrencyid="@payment.CurrencyID">@payment.ER</span>
+                                    <br />Exchange Rate
+                                </span>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </td>
+
+                </tr>
+                                        j = j + 1;
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="13" rowspan="4">
+                    <div class="table-div">
+                        <div class="table-row">
+                            @foreach (var concept in Model.CouponConceptsTotals)
+                            {
+                                if (@concept.AmountMXN.Amount != 0)
+                                {
+                            <div class="table-cell" style="padding: 0;">
+                                <table style="margin: 0 auto;">
+                                    <tr>
+                                        <th>Concept</th>
+                                        <th>Amount</th>
+                                        <th>Currency</th>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="3">@concept.Concept</td>
+                                        <td><span data-format="currency">@concept.Amount.First().Amount</span></td>
+                                        <td>@concept.Amount.First().Currency</td>
+                                    </tr>
+                                    @{
+                                    var i = 1;
+                                    foreach (var amount in @concept.Amount)
+                                    {
+                                        if (i > 1)
+                                        {
+                                    <tr>
+                                        <td><span data-format="currency">@amount.Amount</span></td>
+                                        <td>@amount.Currency</td>
+                                    </tr>
+                                        }
+                                        i++;
+                                    }
+                                    }
+                                    <tr>
+                                        <td>Total in @concept.AmountMXN.Currency</td>
+                                        <td><span data-format="currency">@concept.AmountMXN.Amount</span></td>
+                                        <td>@concept.AmountMXN.Currency</td>
+                                    </tr>
+                                </table>
+
+                            </div>
+                                }
+
+                            }
+                        </div>
+                    </div>
+                    <div class="table-div">
+                        <div class="table-cell">
+                            <table style="margin: 0 auto;">
+                                <thead>
+                                    <tr>
+                                        <th>Company</th>
+                                        <th colspan="3">Totals</th>
+                                        <th>Total MXN</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var total in Model.TotalCompanies)
+                                    {
+                                    <tr>
+                                        <td>@total.CxCCompany</td>
+                                        @foreach (var t in total.Totals)
+                                            {
+                                        <td data-format="currency">@t.Amount @t.Currency</td>
+                                            }
+                                        <td>@total.TotalMXN.Amount @total.TotalMXN.Currency</td>
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </td>
+                <td rowspan="3">Totals</td>
+                <td><span data-format="currency">@Model.CouponsTotals.Amount.FirstOrDefault().Amount</span></td>
+                <td><span data-format="currency">@Model.CouponsTotals.Balance.FirstOrDefault().Amount</span></td>
+                <td>@Model.CouponsTotals.Amount.FirstOrDefault().Currency</td>
+                <td></td>
+                <td></td>
+            </tr>
+            @{
+                                    int c = 1;
+                                    foreach (var amount in Model.CouponsTotals.Amount)
+                                    {
+                                        if (c > 1)
+                                        {
+            <tr>
+                <td><span data-format="currency">@amount.Amount</span></td>
+                <td><span data-format="currency">@Model.CouponsTotals.Balance.FirstOrDefault(x => x.Currency == amount.Currency).Amount</span></td>
+                <td>@amount.Currency</td>
+                <td></td>
+                <td></td>
+            </tr>
+                                        }
+                                        c++;
+                                    }
+            }
+            <tr>
+                <td>Total in @Model.CouponsTotals.AmountMXN.Currency</td>
+                <td><span data-format="currency">@Model.CouponsTotals.AmountMXN.Amount</span></td>
+                <td><span data-format="currency">@Model.CouponsTotals.BalanceMXN.Amount</span></td>
+                <td>@Model.CouponsTotals.AmountMXN.Currency</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+}
+
+@{var contentBuilder = new System.Text.StringBuilder(); }
+@foreach (var x in Model.Deposits.Where(x => x.OPCID != 0 && x.Budget == ""))
+{
+    if (contentBuilder.ToString() != string.Empty)
+    {
+        contentBuilder.Append("\r\n");
+    }
+    contentBuilder.Append(string.Format("{0},{1},{2},{3},{4},{5}", x.Date.ToString("yyyy-MM-dd"), x.OPCLegacyKey, x.ConceptID, x.Customer.Replace(". ", "").Replace(" .", "").Replace(",", ";").Replace("'", "") + " : " + (x.Invitation != null ? x.Invitation.Replace(",", ";") : ""), x.Amount, (x.CurrencyCode == "USD" ? 1 : (x.CurrencyCode == "CAD" ? 3 : 0))));
+
+    if (x.Charge > 0)
+    {
+        if (contentBuilder.ToString() != string.Empty)
+        {
+            contentBuilder.Append("\r\n");
+        }
+        contentBuilder.Append(string.Format("{0},{1},{2},{3},{4},{5}", x.Date.ToString("yyyy-MM-dd"), x.OPCLegacyKey, 9999, x.Customer.Replace(". ", "").Replace(" .", "").Replace(",", ";").Replace("'", "") + " : " + (x.Invitation != null ? x.Invitation.Replace(",", ";") : ""), x.Charge, (x.CurrencyCode == "USD" ? 1 : (x.CurrencyCode == "CAD" ? 3 : 0))));
+    }
+}
+@foreach (var x in Model.ChargeBacks.Where(x => x.OPCID != 0 && x.Budget == ""))
+{
+    if (contentBuilder.ToString() != string.Empty)
+    {
+        contentBuilder.Append("\r\n");
+    }
+    contentBuilder.Append(string.Format("{0},{1},{2},{3},{4},{5}", x.Date.ToString("yyyy-MM-dd"), x.OPCLegacyKey, x.ConceptID, x.Customer.Replace(". ", "").Replace(" .", "").Replace(",", ";").Replace("'", "") + " : " + (x.Invitation != null ? x.Invitation.Replace(",", ";") : ""), x.Amount, (x.CurrencyCode == "USD" ? 1 : (x.CurrencyCode == "CAD" ? 3 : 0))));
+
+    if (x.Charge > 0)
+    {
+        if (contentBuilder.ToString() != string.Empty)
+        {
+            contentBuilder.Append("\r\n");
+        }
+        contentBuilder.Append(string.Format("{0},{1},{2},{3},{4},{5}", x.Date.ToString("yyyy-MM-dd"), x.OPCLegacyKey, 9999, x.Customer.Replace(". ", "").Replace(" .", "").Replace(",", ";").Replace("'", "") + " : " + (x.Invitation != null ? x.Invitation.Replace(",", ";") : ""), x.Charge, (x.CurrencyCode == "USD" ? 1 : (x.CurrencyCode == "CAD" ? 3 : 0))));
+    }
+}
+@foreach (var x in Model.CouponsCxC.Where(x => x.OPCID != 0 && x.Budget == ""))
+{
+    if (contentBuilder.ToString() != string.Empty)
+    {
+        contentBuilder.Append("\r\n");
+    }
+    contentBuilder.Append(string.Format("{0},{1},{2},{3},{4},{5}", x.Date.ToString("yyyy-MM-dd"), x.OPCLegacyKey, x.ConceptID, x.Customer.Replace(". ", "").Replace(" .", "").Replace(",", ";").Replace("'", "") + " : " + (x.Invitation != null ? x.Invitation.Replace(",", ";") : ""), x.Amount, (x.CurrencyCode == "USD" ? 1 : (x.CurrencyCode == "CAD" ? 3 : 0))));
+
+    if (x.Charge > 0)
+    {
+        if (contentBuilder.ToString() != string.Empty)
+        {
+            contentBuilder.Append("\r\n");
+        }
+        contentBuilder.Append(string.Format("{0},{1},{2},{3},{4},{5}", x.Date.ToString("yyyy-MM-dd"), x.OPCLegacyKey, 9999, x.Customer.Replace(". ", "").Replace(" .", "").Replace(",", ";").Replace("'", "") + " : " + (x.Invitation != null ? x.Invitation.Replace(",", ";") : ""), x.Charge, (x.CurrencyCode == "USD" ? 1 : (x.CurrencyCode == "CAD" ? 3 : 0))));
+    }
+}
+
+<div style="display:none;" class="exportcsv" id="csvFile">@Html.Raw(contentBuilder.ToString())</div>

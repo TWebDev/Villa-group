@@ -1,0 +1,922 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{89ABF426-DD80-4D53-A27B-8BD1217E99E8}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ePlatFront</RootNamespace>
+    <AssemblyName>ePlatFront</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="ImageResizer, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImageResizer.4.0.5\lib\net45\ImageResizer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Helpers">
+      <HintPath>..\packages\microsoft-web-helpers.2.1.20710.2\lib\net40\Microsoft.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="MvcSiteMapProvider, Version=3.3.6.0, Culture=neutral, PublicKeyToken=1923abe4657913cc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MvcSiteMapProvider.3.3.6.0\lib\net40\MvcSiteMapProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bin\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebMatrix.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.2.0.20710.0\lib\net40\WebMatrix.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebPages.OAuth, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.OAuth.2.0.20710.0\lib\net40\Microsoft.Web.WebPages.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.2.0.20710.0\lib\net40\WebMatrix.WebData.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.AspNet, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.0.3.12153\lib\net40-full\DotNetOpenAuth.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OpenId.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.1.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\AuthConfig.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ActivitiesController.cs" />
+    <Compile Include="Controllers\ControlsController.cs" />
+    <Compile Include="Controllers\CouponsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PackagesController.cs" />
+    <Compile Include="Controllers\PagesController.cs" />
+    <Compile Include="Controllers\PrivateLabelController.cs" />
+    <Compile Include="Controllers\PurchaseController.cs" />
+    <Compile Include="Controllers\RegisterToWinController.cs" />
+    <Compile Include="Controllers\SurveyController.cs" />
+    <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\ReCaptchaV2.cs" />
+    <Compile Include="Models\SiteMapModels.cs" />
+    <Compile Include="Models\TransferResult.cs" />
+    <Compile Include="Models\UrlModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Views\Activities\ActivitiesStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ActivitiesStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Views\Activities\ActivitiesStrings.es.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ActivitiesStrings.es.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Views\Home\FreeVacationStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FreeVacationStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Views\Home\FreeVacationStrings.es.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FreeVacationStrings.es.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Views\Home\HomeStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HomeStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Views\Packages\PackagesStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PackagesStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Views\Packages\PackagesStrings.es.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PackagesStrings.es.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Views\Shared\SharedStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SharedStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Views\Shared\SharedStrings.es.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SharedStrings.es.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\files\tga01\index_mx.html" />
+    <Content Include="Content\files\tga01\todaygetawaymx_01.jpg" />
+    <Content Include="Content\files\tga01\todaygetawaymx_04.jpg" />
+    <Content Include="Content\files\tga01\todaygetawaymx_07.jpg" />
+    <Content Include="Content\files\tga01\todaygetawaymx_11.jpg" />
+    <Content Include="Content\files\tga01\todaygetawaymx_15.jpg" />
+    <Content Include="Content\files\tga02\emailusa_01.jpg" />
+    <Content Include="Content\files\tga02\emailusa_04.jpg" />
+    <Content Include="Content\files\tga02\emailusa_08.jpg" />
+    <Content Include="Content\files\tga02\emailusa_10.jpg" />
+    <Content Include="Content\files\tga02\emailusa_14.jpg" />
+    <Content Include="Content\files\tga02\emailusa_15.jpg" />
+    <Content Include="Content\files\tga02\emailusa_18.jpg" />
+    <Content Include="Content\files\tga02\emailusa_20.jpg" />
+    <Content Include="Content\files\tga02\emailusa_22.jpg" />
+    <Content Include="Content\files\tga02\emailusa_26.jpg" />
+    <Content Include="Content\files\tga02\emailusa_29.jpg" />
+    <Content Include="Content\files\tga02\index_usa.html" />
+    <Content Include="Content\plugins\ebcaptchaword\jquery.ebcaptchaword.js" />
+    <Content Include="Content\plugins\fancybox\blank.gif" />
+    <Content Include="Content\plugins\fancybox\fancybox_loading%402x.gif" />
+    <Content Include="Content\plugins\fancybox\fancybox_loading.gif" />
+    <Content Include="Content\plugins\fancybox\fancybox_overlay.png" />
+    <Content Include="Content\plugins\fancybox\fancybox_sprite%402x.png" />
+    <Content Include="Content\plugins\fancybox\fancybox_sprite.png" />
+    <Content Include="Content\plugins\fancybox\helpers\fancybox_buttons.png" />
+    <Content Include="Content\plugins\fancybox\helpers\jquery.fancybox-buttons.css" />
+    <Content Include="Content\plugins\fancybox\helpers\jquery.fancybox-buttons.js" />
+    <Content Include="Content\plugins\fancybox\helpers\jquery.fancybox-media.js" />
+    <Content Include="Content\plugins\fancybox\helpers\jquery.fancybox-thumbs.css" />
+    <Content Include="Content\plugins\fancybox\helpers\jquery.fancybox-thumbs.js" />
+    <Content Include="Content\plugins\fancybox\jquery.fancybox.css" />
+    <Content Include="Content\plugins\fancybox\jquery.fancybox.js" />
+    <Content Include="Content\plugins\fancybox\jquery.fancybox.pack.js" />
+    <Content Include="Content\plugins\gmap\gmap.js" />
+    <Content Include="Content\plugins\hashchange\jquery.ba-hashchange.min.js" />
+    <Content Include="Content\plugins\hashchange\jquery.hashchange.js" />
+    <Content Include="Content\plugins\hashchange\jquery.hashchange.min.js" />
+    <Content Include="Content\plugins\lwtcountdown\jquery.lwtCountdown-1.0.js" />
+    <Content Include="Content\plugins\materialize\css\materialize.min.css" />
+    <Content Include="Content\plugins\materialize\js\materialize.js" />
+    <Content Include="Content\plugins\scrollbar\jquery.mCustomScrollbar.concat.min.js" />
+    <Content Include="Content\plugins\scrollbar\jquery.mCustomScrollbar.css" />
+    <Content Include="Content\plugins\scrollbar\jquery.mCustomScrollbar.min.js" />
+    <Content Include="Content\plugins\scrollbar\jquery.mousewheel.min.js" />
+    <Content Include="Content\plugins\scrollbar\mCSB_buttons.png" />
+    <Content Include="Content\plugins\specialpromo\specialpromo.js" />
+    <Content Include="Content\themes\act\css\main.css" />
+    <Content Include="Content\themes\act\css\tvg.css" />
+    <Content Include="Content\themes\act\img\logo.png" />
+    <Content Include="Content\themes\act\js\ui.js" />
+    <Content Include="Content\themes\base\images\animated-overlay.gif" />
+    <Content Include="Content\themes\base\images\cabo-san-lucas\destination\cabo-san-lucas-01.jpg" />
+    <Content Include="Content\themes\base\images\cabo-san-lucas\destination\cabo-san-lucas-02.jpg" />
+    <Content Include="Content\themes\base\images\cabo-san-lucas\destination\cabo-san-lucas-03.jpg" />
+    <Content Include="Content\themes\base\images\cabo-san-lucas\destination\cabo-san-lucas-04.jpg" />
+    <Content Include="Content\themes\base\images\cabo-san-lucas\destination\cabo-san-lucas-05.jpg" />
+    <Content Include="Content\themes\base\images\cabo-san-lucas\destination\cabo-san-lucas-06.jpg" />
+    <Content Include="Content\themes\base\images\cabo-san-lucas\destination\cabo-san-lucas-07.jpg" />
+    <Content Include="Content\themes\base\images\cabo-san-lucas\destination\cabo-san-lucas-08.jpg" />
+    <Content Include="Content\themes\base\images\cabo-san-lucas\misc\couple-on-the-sand.jpg" />
+    <Content Include="Content\themes\base\images\cancun\destination\cancun-01.jpg" />
+    <Content Include="Content\themes\base\images\cancun\destination\cancun-02.jpg" />
+    <Content Include="Content\themes\base\images\cancun\destination\cancun-03.jpg" />
+    <Content Include="Content\themes\base\images\cancun\destination\cancun-04.jpg" />
+    <Content Include="Content\themes\base\images\cancun\destination\cancun-05.jpg" />
+    <Content Include="Content\themes\base\images\cancun\destination\cancun-06.jpg" />
+    <Content Include="Content\themes\base\images\cancun\destination\cancun-07.jpg" />
+    <Content Include="Content\themes\base\images\cancun\destination\cancun-08.jpg" />
+    <Content Include="Content\themes\base\images\cancun\misc\cancun-family-on-the-beach.jpg" />
+    <Content Include="Content\themes\base\images\cancun\misc\cancun-kayak.jpg" />
+    <Content Include="Content\themes\base\images\cancun\misc\cancun-relaxing.jpg" />
+    <Content Include="Content\themes\base\images\cancun\misc\family-on-cancun.jpg" />
+    <Content Include="Content\themes\base\images\cancun\resorts\villa-del-palmar\villa-del-palmar-cancun-at-night.jpg" />
+    <Content Include="Content\themes\base\images\cancun\resorts\villa-del-palmar\villa-del-palmar-cancun-camastros.jpg" />
+    <Content Include="Content\themes\base\images\cancun\resorts\villa-del-palmar\villa-del-palmar-cancun-couple-relaxing.jpg" />
+    <Content Include="Content\themes\base\images\cancun\resorts\villa-del-palmar\villa-del-palmar-cancun-hot-tub.jpg" />
+    <Content Include="Content\themes\base\images\cancun\resorts\villa-del-palmar\villa-del-palmar-cancun-pool.jpg" />
+    <Content Include="Content\themes\base\images\cancun\resorts\villa-del-palmar\villa-del-palmar-cancun-restaurants.jpg" />
+    <Content Include="Content\themes\base\images\cancun\resorts\villa-del-palmar\villa-del-palmar-cancun.jpg" />
+    <Content Include="Content\themes\base\images\loreto\destination\loreto-01.jpg" />
+    <Content Include="Content\themes\base\images\loreto\destination\loreto-02.jpg" />
+    <Content Include="Content\themes\base\images\loreto\destination\loreto-03.jpg" />
+    <Content Include="Content\themes\base\images\loreto\destination\loreto-04.jpg" />
+    <Content Include="Content\themes\base\images\loreto\destination\loreto-05.jpg" />
+    <Content Include="Content\themes\base\images\loreto\destination\loreto-06.jpg" />
+    <Content Include="Content\themes\base\images\loreto\destination\loreto-07.jpg" />
+    <Content Include="Content\themes\base\images\loreto\destination\loreto-08.jpg" />
+    <Content Include="Content\themes\base\images\loreto\destination\loreto-09.jpg" />
+    <Content Include="Content\themes\base\images\loreto\destination\loreto-10.jpg" />
+    <Content Include="Content\themes\base\images\loreto\destination\loreto-11.jpg" />
+    <Content Include="Content\themes\base\images\loreto\misc\family-on-villa-del-palmar-loreto.jpg" />
+    <Content Include="Content\themes\base\images\loreto\misc\loreto-bicking.jpg" />
+    <Content Include="Content\themes\base\images\loreto\misc\loreto-friends-taking-a-drink.jpg" />
+    <Content Include="Content\themes\base\images\loreto\misc\loreto-friends.jpg" />
+    <Content Include="Content\themes\base\images\loreto\misc\loreto-getaway.jpg" />
+    <Content Include="Content\themes\base\images\loreto\misc\loreto-hicking.jpg" />
+    <Content Include="Content\themes\base\images\loreto\misc\loreto-yoga-on-the-beach.jpg" />
+    <Content Include="Content\themes\base\images\loreto\misc\loreto-yoga.jpg" />
+    <Content Include="Content\themes\base\images\loreto\misc\snorkeling-at-loreto.jpg" />
+    <Content Include="Content\themes\base\images\loreto\misc\spa-at-loreto.jpg" />
+    <Content Include="Content\themes\base\images\loreto\resorts\villa-del-palmar\villa-del-palmar-loreto-gardens.jpg" />
+    <Content Include="Content\themes\base\images\loreto\resorts\villa-del-palmar\villa-del-palmar-loreto-members.jpg" />
+    <Content Include="Content\themes\base\images\loreto\resorts\villa-del-palmar\villa-del-palmar-loreto-overview.jpg" />
+    <Content Include="Content\themes\base\images\loreto\resorts\villa-del-palmar\villa-del-palmar-loreto-pool.jpg" />
+    <Content Include="Content\themes\base\images\loreto\resorts\villa-del-palmar\villa-del-palmar-loreto-spa.jpg" />
+    <Content Include="Content\themes\base\images\loreto\resorts\villa-del-palmar\villa-del-palmar-loreto-wellness-center.jpg" />
+    <Content Include="Content\themes\base\images\loreto\resorts\villa-del-palmar\villa-del-palmar-loreto.jpg" />
+    <Content Include="Content\themes\base\images\orlando\destination\orlando-01.jpg" />
+    <Content Include="Content\themes\base\images\orlando\destination\orlando-02.jpg" />
+    <Content Include="Content\themes\base\images\orlando\destination\orlando-03.jpg" />
+    <Content Include="Content\themes\base\images\orlando\destination\orlando-04.jpg" />
+    <Content Include="Content\themes\base\images\orlando\destination\orlando-05.jpg" />
+    <Content Include="Content\themes\base\images\orlando\destination\orlando-06.jpg" />
+    <Content Include="Content\themes\base\images\orlando\destination\orlando-07.jpg" />
+    <Content Include="Content\themes\base\images\puerto-vallarta\misc\puerto-vallarta-couple-on-the-beach.jpg" />
+    <Content Include="Content\themes\base\images\puerto-vallarta\misc\puerto-vallarta-family.jpg" />
+    <Content Include="Content\themes\base\images\puerto-vallarta\misc\puerto-vallarta-sea-lion-encounter.jpg" />
+    <Content Include="Content\themes\base\images\puerto-vallarta\misc\yelapa-beach.jpg" />
+    <Content Include="Content\themes\base\images\star1.png" />
+    <Content Include="Content\themes\base\images\star2.jpg" />
+    <Content Include="Content\themes\base\images\star3.jpg" />
+    <Content Include="Content\themes\base\images\puerto-vallarta\misc\puerto-vallarta-all-inclusive-package.jpg" />
+    <Content Include="Content\themes\base\images\puerto-vallarta\misc\puerto-vallarta-room-only-package.jpg" />
+    <Content Include="Content\themes\base\images\puerto-vallarta\destination\puerto-vallarta-01.jpg" />
+    <Content Include="Content\themes\base\images\puerto-vallarta\destination\puerto-vallarta-02.jpg" />
+    <Content Include="Content\themes\base\images\puerto-vallarta\destination\puerto-vallarta-03.jpg" />
+    <Content Include="Content\themes\base\images\puerto-vallarta\destination\puerto-vallarta-04.jpg" />
+    <Content Include="Content\themes\base\images\puerto-vallarta\destination\puerto-vallarta-05.jpg" />
+    <Content Include="Content\themes\base\images\puerto-vallarta\destination\puerto-vallarta-06.jpg" />
+    <Content Include="Content\themes\base\images\puerto-vallarta\destination\puerto-vallarta-07.jpg" />
+    <Content Include="Content\themes\base\images\puerto-vallarta\destination\puerto-vallarta-08.jpg" />
+    <Content Include="Content\themes\base\images\puerto-vallarta\resorts\villa-del-palmar\villa-del-palmar-puerto-vallarta-beach.jpg" />
+    <Content Include="Content\themes\base\images\puerto-vallarta\resorts\villa-del-palmar\villa-del-palmar-puerto-vallarta-breeze-spa.jpg" />
+    <Content Include="Content\themes\base\images\puerto-vallarta\resorts\villa-del-palmar\villa-del-palmar-puerto-vallarta-garden.jpg" />
+    <Content Include="Content\themes\base\images\puerto-vallarta\resorts\villa-del-palmar\villa-del-palmar-puerto-vallarta-junior-suite.jpg" />
+    <Content Include="Content\themes\base\images\puerto-vallarta\resorts\villa-del-palmar\villa-del-palmar-puerto-vallarta-lobby.jpg" />
+    <Content Include="Content\themes\base\images\puerto-vallarta\resorts\villa-del-palmar\villa-del-palmar-puerto-vallarta-overview.jpg" />
+    <Content Include="Content\themes\base\images\puerto-vallarta\resorts\villa-del-palmar\villa-del-palmar-puerto-vallarta-restaurant.jpg" />
+    <Content Include="Content\themes\base\images\puerto-vallarta\resorts\villa-del-palmar\villa-del-palmar-puerto-vallarta-room-01.jpg" />
+    <Content Include="Content\themes\base\images\puerto-vallarta\resorts\villa-del-palmar\villa-del-palmar-puerto-vallarta-room-02.jpg" />
+    <Content Include="Content\themes\base\images\puerto-vallarta\resorts\villa-del-palmar\villa-del-palmar-puerto-vallarta-swimming-pool-01.jpg" />
+    <Content Include="Content\themes\base\images\puerto-vallarta\resorts\villa-del-palmar\villa-del-palmar-puerto-vallarta-swimming-pool-02.jpg" />
+    <Content Include="Content\themes\base\images\puerto-vallarta\resorts\villa-del-palmar\villa-del-palmar-puerto-vallarta-welcome.jpg" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui-1.8.14.custom.css" />
+    <Content Include="Content\themes\base\jquery-ui-timepicker-addon.css" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.menu.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.spinner.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\jquery.ui.tooltip.css" />
+    <Content Include="Content\themes\base\minified\images\animated-overlay.gif" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.menu.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.spinner.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
+    <Content Include="Content\themes\dmv\css\main.css" />
+    <Content Include="Content\themes\dmv\images\bg_lo01.jpg" />
+    <Content Include="Content\themes\dmv\images\bg_lo02.jpg" />
+    <Content Include="Content\themes\dmv\images\bg_or01.jpg" />
+    <Content Include="Content\themes\dmv\images\bg_or02.jpg" />
+    <Content Include="Content\themes\dmv\images\bg_pv01.jpg" />
+    <Content Include="Content\themes\dmv\images\bg_pv02.jpg" />
+    <Content Include="Content\themes\dmv\images\pause.png" />
+    <Content Include="Content\themes\dmv\images\play.png" />
+    <Content Include="Content\themes\dmv\images\push-left-black.png" />
+    <Content Include="Content\themes\dmv\images\push-left-white.png" />
+    <Content Include="Content\themes\dmv\images\push-right-black.png" />
+    <Content Include="Content\themes\dmv\images\push-right-white.png" />
+    <Content Include="Content\themes\dmv\images\push-zoom-in-white.png" />
+    <Content Include="Content\themes\dmv\images\push-zoom-out-white.png" />
+    <Content Include="Content\themes\dmv\images\room_lo.jpg" />
+    <Content Include="Content\themes\dmv\images\room_or.jpg" />
+    <Content Include="Content\themes\dmv\images\room_pv.jpg" />
+    <Content Include="Content\themes\dmv\images\zoom-in.png" />
+    <Content Include="Content\themes\dmv\images\zoom-out.png" />
+    <Content Include="Content\themes\dmv\js\ui.js" />
+    <Content Include="Content\themes\dvh\css\main.css" />
+    <Content Include="Content\themes\dvh\css\main2.css" />
+    <Content Include="Content\themes\dvh\css\main3.css" />
+    <Content Include="Content\themes\dvh\images\appbar.overflowdots.png" />
+    <Content Include="Content\themes\dvh\images\best-price.jpg" />
+    <Content Include="Content\themes\dvh\images\black-friday\banner-black-friday.jpg" />
+    <Content Include="Content\themes\dvh\images\cabo-san-lucas-home.jpg" />
+    <Content Include="Content\themes\dvh\images\cabo-san-lucas-packages.jpg" />
+    <Content Include="Content\themes\dvh\images\call-us.jpg" />
+    <Content Include="Content\themes\dvh\images\call-us_.jpg" />
+    <Content Include="Content\themes\dvh\images\cancun-home.jpg" />
+    <Content Include="Content\themes\dvh\images\cancun-packages.jpg" />
+    <Content Include="Content\themes\dvh\images\chat_offline.gif" />
+    <Content Include="Content\themes\dvh\images\chat_offline.png" />
+    <Content Include="Content\themes\dvh\images\chat_online.gif" />
+    <Content Include="Content\themes\dvh\images\chat_online.png" />
+    <Content Include="Content\themes\dvh\images\down.png" />
+    <Content Include="Content\themes\dvh\images\dvh.png" />
+    <Content Include="Content\themes\dvh\images\footer_book.jpg" />
+    <Content Include="Content\themes\dvh\images\logo.jpg" />
+    <Content Include="Content\themes\dvh\images\loreto-home.jpg" />
+    <Content Include="Content\themes\dvh\images\loreto-packages.jpg" />
+    <Content Include="Content\themes\dvh\images\more-info.png" />
+    <Content Include="Content\themes\dvh\images\puerto-vallarta-home.jpg" />
+    <Content Include="Content\themes\dvh\images\puerto-vallarta-packages.jpg" />
+    <Content Include="Content\themes\dvh\images\special.jpg" />
+    <Content Include="Content\themes\dvh\images\up.png" />
+    <Content Include="Content\themes\dvh\js\dvh-slider.js" />
+    <Content Include="Content\themes\dvh\js\dvh-slider2.js" />
+    <Content Include="Content\themes\dvh\js\dvh-ui.js" />
+    <Content Include="Content\themes\dvh\js\dvh-ui3.js" />
+    <Content Include="Content\themes\dvh\js\package-details.js" />
+    <Content Include="Content\themes\efe\css\main.css" />
+    <Content Include="Content\themes\gbr\css\main.css" />
+    <Content Include="Content\themes\gbr\images\garzaBlanca.png" />
+    <Content Include="Content\themes\gbr\images\hotelMousai.png" />
+    <Content Include="Content\themes\gbr\images\jollyRoger.png" />
+    <Content Include="Content\themes\gbr\images\logo.png" />
+    <Content Include="Content\themes\gbr\images\logo2.png" />
+    <Content Include="Content\themes\gbr\images\sianVillage.png" />
+    <Content Include="Content\themes\gbr\images\sierraLago.png" />
+    <Content Include="Content\themes\gbr\images\tafer.png" />
+    <Content Include="Content\themes\gbr\images\vpcLogo.png" />
+    <Content Include="Content\themes\gbr\js\ui.js" />
+    <Content Include="Content\themes\hex\css\main.css" />
+    <Content Include="Content\themes\hex\js\activities-by-promo.js" />
+    <Content Include="Content\themes\hex\js\language.en.js" />
+    <Content Include="Content\themes\hex\js\language.es.js" />
+    <Content Include="Content\themes\hex\js\ui.js" />
+    <Content Include="Content\themes\hm\css\main.css" />
+    <Content Include="Content\themes\hm\images\awards.png" />
+    <Content Include="Content\themes\hm\images\garzaBlanca.png" />
+    <Content Include="Content\themes\hm\images\hotelMousai.png" />
+    <Content Include="Content\themes\hm\images\jollyRoger.png" />
+    <Content Include="Content\themes\hm\images\logo.png" />
+    <Content Include="Content\themes\hm\images\sianVillage.png" />
+    <Content Include="Content\themes\hm\images\sierraLago.png" />
+    <Content Include="Content\themes\hm\images\tafer.png" />
+    <Content Include="Content\themes\hm\images\vpcLogo.png" />
+    <Content Include="Content\themes\hm\js\ui.js" />
+    <Content Include="Content\themes\mex\css\coupon-page-ead.css" />
+    <Content Include="Content\themes\mex\css\coupon-page-gbc.css" />
+    <Content Include="Content\themes\mex\css\coupon-page-mca.css" />
+    <Content Include="Content\themes\mex\css\coupon-page-vea.css" />
+    <Content Include="Content\themes\mex\css\coupon-page.css" />
+    <Content Include="Content\themes\mex\css\coupon-ticket.css" />
+    <Content Include="Content\themes\mex\css\main.css" />
+    <Content Include="Content\themes\mex\css\main2.css" />
+    <Content Include="Content\themes\mex\images\banner_01.jpg" />
+    <Content Include="Content\themes\mex\images\banner_top_01.png" />
+    <Content Include="Content\themes\mex\images\down.png" />
+    <Content Include="Content\themes\mex\images\icon_baby.png" />
+    <Content Include="Content\themes\mex\images\icon_best_price.png" />
+    <Content Include="Content\themes\mex\images\icon_calendar.jpg" />
+    <Content Include="Content\themes\mex\images\icon_children.png" />
+    <Content Include="Content\themes\mex\images\icon_delete.png" />
+    <Content Include="Content\themes\mex\images\icon_edit.png" />
+    <Content Include="Content\themes\mex\images\icon_location.png" />
+    <Content Include="Content\themes\mex\images\icon_next.png" />
+    <Content Include="Content\themes\mex\images\icon_oldies.png" />
+    <Content Include="Content\themes\mex\images\icon_pic.png" />
+    <Content Include="Content\themes\mex\images\icon_plus12.png" />
+    <Content Include="Content\themes\mex\images\icon_pregnant.png" />
+    <Content Include="Content\themes\mex\images\icon_prev.png" />
+    <Content Include="Content\themes\mex\images\icon_search.png" />
+    <Content Include="Content\themes\mex\images\icon_send.png" />
+    <Content Include="Content\themes\mex\images\icon_star_empty.png" />
+    <Content Include="Content\themes\mex\images\icon_star_full.png" />
+    <Content Include="Content\themes\mex\images\icon_star_half.png" />
+    <Content Include="Content\themes\mex\images\icon_time.png" />
+    <Content Include="Content\themes\mex\images\icon_timepicker.jpg" />
+    <Content Include="Content\themes\mex\images\icon_vid.png" />
+    <Content Include="Content\themes\mex\images\loadingAnimation.gif" />
+    <Content Include="Content\themes\mex\images\logo.png" />
+    <Content Include="Content\themes\mex\images\stars_empty.png" />
+    <Content Include="Content\themes\mex\images\stars_full.png" />
+    <Content Include="Content\themes\mex\images\stars_half.png" />
+    <Content Include="Content\themes\mex\js\activities-by-promo.js" />
+    <Content Include="Content\themes\mex\js\language.en.js" />
+    <Content Include="Content\themes\mex\js\language.es.js" />
+    <Content Include="Content\themes\mex\js\ui.js" />
+    <Content Include="Content\themes\mex\js\ui2.js" />
+    <Content Include="Content\themes\mnv\css\main.css" />
+    <Content Include="Content\themes\mnv\images\logo.png" />
+    <Content Include="Content\themes\mnv\images\logo2.png" />
+    <Content Include="Content\themes\mnv\js\ui.js" />
+    <Content Include="Content\themes\mvm\css\main.css" />
+    <Content Include="Content\themes\mvm\images\my-vacationmexico.ico" />
+    <Content Include="Content\themes\mvm\js\ui.js" />
+    <Content Include="Content\themes\pvo\css\main.css" />
+    <Content Include="Content\themes\pvo\css\main2.css" />
+    <Content Include="Content\themes\pvo\images\fathersday.png" />
+    <Content Include="Content\themes\pvo\images\logo.png" />
+    <Content Include="Content\themes\pvo\images\patricksday.png" />
+    <Content Include="Content\themes\pvo\js\package-details.js" />
+    <Content Include="Content\themes\pvo\js\pvo-banners.js" />
+    <Content Include="Content\themes\pvo\js\pvo-slider.js" />
+    <Content Include="Content\themes\pvo\js\pvo-slider2.js" />
+    <Content Include="Content\themes\pvo\js\pvo-ui.js" />
+    <Content Include="Content\themes\tga\css\main.css" />
+    <Content Include="Content\themes\tga\css\main2.css" />
+    <Content Include="Content\themes\tga\images\appbar.overflowdots.png" />
+    <Content Include="Content\themes\tga\images\cabo-san-lucas-home.jpg" />
+    <Content Include="Content\themes\tga\images\cabo-san-lucas-packages.jpg" />
+    <Content Include="Content\themes\tga\images\call-us.jpg" />
+    <Content Include="Content\themes\tga\images\cancun-home.jpg" />
+    <Content Include="Content\themes\tga\images\cancun-packages.jpg" />
+    <Content Include="Content\themes\tga\images\chat_offline.gif" />
+    <Content Include="Content\themes\tga\images\chat_offline.png" />
+    <Content Include="Content\themes\tga\images\chat_online.gif" />
+    <Content Include="Content\themes\tga\images\chat_online.png" />
+    <Content Include="Content\themes\tga\images\down.png" />
+    <Content Include="Content\themes\tga\images\footer_book.jpg" />
+    <Content Include="Content\themes\tga\images\logo.png" />
+    <Content Include="Content\themes\tga\images\loreto-home.jpg" />
+    <Content Include="Content\themes\tga\images\loreto-packages.jpg" />
+    <Content Include="Content\themes\tga\images\more-info.png" />
+    <Content Include="Content\themes\tga\images\orlando-packages.jpg" />
+    <Content Include="Content\themes\tga\images\puerto-vallarta-home.jpg" />
+    <Content Include="Content\themes\tga\images\puerto-vallarta-packages.jpg" />
+    <Content Include="Content\themes\tga\images\special.jpg" />
+    <Content Include="Content\themes\tga\images\tga.png" />
+    <Content Include="Content\themes\tga\images\up.png" />
+    <Content Include="Content\themes\tga\js\ui.js" />
+    <Content Include="Content\themes\vdai\css\main.css" />
+    <Content Include="Content\themes\vdai\images\creditcards.png" />
+    <Content Include="Content\themes\vdai\images\logo-adeprotur.png" />
+    <Content Include="Content\themes\vdai\images\logo-asudestico.png" />
+    <Content Include="Content\themes\vdai\images\logo.png" />
+    <Content Include="Content\themes\vdai\js\slider.js" />
+    <Content Include="Content\themes\vdai\js\ui.js" />
+    <Content Include="Content\themes\vdai\js\package-details.js" />
+    <Content Include="Content\themes\vgr\css\privatelabel-1.0.css" />
+    <Content Include="Content\themes\vms\css\main.css" />
+    <Content Include="Content\themes\vms\images\logo.png" />
+    <Content Include="Content\themes\vpc\css\main.css" />
+    <Content Include="Content\themes\vpc\images\garzaBlanca.png" />
+    <Content Include="Content\themes\vpc\images\hotelMousai.png" />
+    <Content Include="Content\themes\vpc\images\jollyRoger.png" />
+    <Content Include="Content\themes\vpc\images\logo.png" />
+    <Content Include="Content\themes\vpc\images\sianVillage.png" />
+    <Content Include="Content\themes\vpc\images\sierraLago.png" />
+    <Content Include="Content\themes\vpc\images\tafer.png" />
+    <Content Include="Content\themes\vpc\images\vpcLogo.png" />
+    <Content Include="Content\themes\vpc\js\ui.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\close.png" />
+    <Content Include="Mvc.sitemap">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Content\themes\dmv\cache.manifest" />
+    <Content Include="Content\plugins\hashchange\jquery.hashchange.min.js.map">
+      <DependentUpon>jquery.hashchange.js</DependentUpon>
+    </Content>
+    <Content Include="Content\plugins\materialize\LICENSE" />
+    <Content Include="Content\plugins\materialize\README.md" />
+    <None Include="MvcSiteMapSchema.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\PublishProfiles\ePlatFront.pubxml" />
+    <Content Include="robots.txt" />
+    <Content Include="Scripts\bookingengine-1.0.js" />
+    <Content Include="Scripts\bookingengine-1.5.js" />
+    <Content Include="Scripts\controls.js" />
+    <Content Include="Scripts\bookingengine-ui-1.5.js" />
+    <None Include="Scripts\jquery-2.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.1.js" />
+    <Content Include="Scripts\jquery-2.1.1.min.js" />
+    <Content Include="Scripts\jquery-2.1.1.min.map" />
+    <Content Include="Scripts\jquery-1.7.2.min.js" />
+    <None Include="Scripts\jquery-1.8.0.intellisense.js" />
+    <Content Include="Scripts\jquery-1.8.0.js" />
+    <Content Include="Scripts\jquery-1.8.0.min.js" />
+    <Content Include="Scripts\jquery-ui-1.10.4.js" />
+    <Content Include="Scripts\jquery-ui-1.10.4.min.js" />
+    <Content Include="Scripts\jquery-ui-timepicker-addon.js" />
+    <Content Include="Scripts\jquery.ba-throttle-debounce.min.js" />
+    <Content Include="Scripts\jquery.easing.1.3.js" />
+    <Content Include="Scripts\jquery.easing.1.3.min.js" />
+    <Content Include="Scripts\jquery.json-2.3.min.js" />
+    <Content Include="Scripts\jquery.ui.timepicker.js" />
+    <Content Include="Scripts\jquery.ui.touch-punch.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\knockout-2.1.0.debug.js" />
+    <Content Include="Scripts\knockout-2.1.0.js" />
+    <Content Include="Scripts\modernizr-2.7.2.js" />
+    <Content Include="Scripts\privatelabel-1.0.js" />
+    <Content Include="Scripts\reviews.js" />
+    <Content Include="Scripts\surveyengine-1.0.js" />
+    <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.ascx" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapHelperModel.ascx" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModel.ascx" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModelList.ascx" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapPathHelperModel.ascx" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapTitleHelperModel.ascx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Images\accent.png" />
+    <Content Include="Images\bullet.png" />
+    <Content Include="Images\heroAccent.png" />
+    <Content Include="Images\orderedList0.png" />
+    <Content Include="Images\orderedList1.png" />
+    <Content Include="Images\orderedList2.png" />
+    <Content Include="Images\orderedList3.png" />
+    <Content Include="Images\orderedList4.png" />
+    <Content Include="Images\orderedList5.png" />
+    <Content Include="Images\orderedList6.png" />
+    <Content Include="Images\orderedList7.png" />
+    <Content Include="Images\orderedList8.png" />
+    <Content Include="Images\orderedList9.png" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Shared\_LayoutDvh.cshtml" />
+    <Content Include="Views\Packages\Index.cshtml" />
+    <Content Include="Views\Packages\Detail.cshtml" />
+    <Content Include="Views\Home\ConversionCode.cshtml" />
+    <Content Include="Views\Pages\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutTga.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapTitleHelperModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapPathHelperModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModelList.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapHelperModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.cshtml" />
+    <Content Include="Views\Shared\_LayoutMex.cshtml" />
+    <Content Include="Views\Activities\Category.cshtml" />
+    <Content Include="Views\Activities\Detail.cshtml" />
+    <Content Include="Views\RegisterToWin\Index.cshtml" />
+    <Content Include="Views\Packages\Brief.cshtml" />
+    <Content Include="Views\Shared\_BlockContentPartial.cshtml" />
+    <Content Include="Views\Shared\_BlogContentPartial.cshtml" />
+    <Content Include="Views\Shared\_BookingFormPartial.cshtml" />
+    <Content Include="Views\Shared\_FreeVacationPartial.cshtml" />
+    <Content Include="Views\Shared\_LayoutDmv.cshtml" />
+    <Content Include="Views\Shared\_LayoutMvm.cshtml" />
+    <Content Include="Views\Shared\_LayoutVms.cshtml" />
+    <Content Include="Views\Shared\_PurchaseProcessPartial.cshtml" />
+    <Content Include="Views\Shared\_QuoteRequestPartial.cshtml" />
+    <Content Include="Views\Shared\_SpecialPromoForCity.cshtml" />
+    <Content Include="Views\Shared\_SubmitReviewPartial.cshtml" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js.map">
+      <DependentUpon>jquery.validate.unobtrusive.js</DependentUpon>
+    </Content>
+    <Content Include="Views\Shared\_ContactFormPartial.cshtml" />
+    <Content Include="Views\Coupons\Index.cshtml" />
+    <Content Include="Views\Controls\ApproveReview.cshtml" />
+    <Content Include="Views\Pages\IndexV2.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Survey\Index.cshtml" />
+    <Content Include="Views\Shared\_ActivitiesListPartial.cshtml" />
+    <Content Include="Views\Shared\_AllPackagesListPartial.cshtml" />
+    <Content Include="Views\Shared\_BestDealsCarouselDestinationsPartial.cshtml" />
+    <Content Include="Views\Shared\_BestDealsCarouselPartial.cshtml" />
+    <Content Include="Views\Shared\_BestDealsListPartial.cshtml" />
+    <Content Include="Views\Shared\_FreeGetawayPartialV2.cshtml" />
+    <Content Include="Views\Shared\_FreeVacationPartialV2.cshtml" />
+    <Content Include="Views\Shared\_LayoutDvh2.cshtml" />
+    <Content Include="Views\Shared\_LayoutDvh3.cshtml" />
+    <Content Include="Views\Shared\_LayoutEfe.cshtml" />
+    <Content Include="Views\Shared\_LayoutPvo.cshtml" />
+    <Content Include="Views\Shared\_LayoutPvo2.cshtml" />
+    <Content Include="Views\Shared\_LayoutTga2.cshtml" />
+    <Content Include="Views\Shared\_QuoteRequestPartialV2.cshtml" />
+    <Content Include="Views\Shared\_ReviewsListPartial.cshtml" />
+    <Content Include="Views\Shared\_TransportationQuotesPartial.cshtml" />
+    <Content Include="Views\Packages\DetailV2.cshtml" />
+    <Content Include="Views\Packages\DetailV3.cshtml" />
+    <Content Include="Views\Packages\DetailV4.cshtml" />
+    <Content Include="Views\Packages\IndexV2.cshtml" />
+    <Content Include="Views\Packages\IndexV3.cshtml" />
+    <Content Include="Views\Activities\Reviews.cshtml" />
+    <Content Include="Views\Shared\_LayoutMnv.cshtml" />
+    <Content Include="Views\Shared\_ActivitiesByCategoryPartial.cshtml" />
+    <Content Include="Views\Shared\_LayoutMex2.cshtml" />
+    <Content Include="Views\Activities\CategoryV2.cshtml" />
+    <Content Include="Views\Activities\DetailV2.cshtml" />
+    <Content Include="Views\Shared\_SubmitReviewPartialV2.cshtml" />
+    <Content Include="Views\Shared\_BookingEngineFormV2Partial.cshtml" />
+    <Content Include="Scripts\storage-1.0.js" />
+    <Content Include="Views\Purchase\ShoppingCart.cshtml" />
+    <Content Include="Views\Purchase\CheckOut.cshtml" />
+    <Content Include="Views\Shared\_ActivitiesByPromoPartial.cshtml" />
+    <Content Include="Views\Shared\_LayoutAct.cshtml" />
+    <Content Include="Views\Shared\_ActivitiesByCategoryPartialV2.cshtml" />
+    <Content Include="Views\Shared\_LayoutTvg.cshtml" />
+    <Content Include="Views\Purchase\ConfirmationPage.cshtml" />
+    <Content Include="Views\Shared\_TransportationQuotesPartialV2.cshtml" />
+    <Content Include="Views\Shared\_ActivitiesSearchPartial.cshtml" />
+    <Content Include="Views\Shared\_LayoutVdai.cshtml" />
+    <Content Include="Views\Shared\_LayoutGbr.cshtml" />
+    <Content Include="Views\Shared\_LayoutHM.cshtml" />
+    <Content Include="Views\Shared\_LayoutVpc.cshtml" />
+    <Content Include="Views\Shared\_GroupsFormPartial.cshtml" />
+    <Content Include="Views\Shared\_LayoutAct2.cshtml" />
+    <Content Include="Views\Shared\_RedeemMyPackage.cshtml" />
+    <Content Include="Views\Shared\_LayoutHex.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="CodeTemplates\Scaffolders\DevelopmentDebugServer\" />
+    <Folder Include="CodeTemplates\Scaffolders\XSocketController\" />
+    <Folder Include="Content\landings\" />
+    <Folder Include="Content\themes\base\images\cabo-san-lucas\resorts\villa-del-palmar\" />
+    <Folder Include="Content\themes\base\images\loreto\resorts\villa-del-palmar\guests-pictures\" />
+    <Folder Include="Content\themes\efe\js\" />
+    <Folder Include="Content\themes\hex\images\" />
+    <Folder Include="Resources\Views\Pages\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ePlatBack.Models\ePlatBack.Models.csproj">
+      <Project>{a7c86e4d-498d-4322-9521-7a34965b8239}</Project>
+      <Name>ePlatBack.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Views\Activities\ActivitiesStrings.es.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ActivitiesStrings.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Views\Activities\ActivitiesStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ActivitiesStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Views\Home\FreeVacationStrings.es.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FreeVacationStrings.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Views\Home\FreeVacationStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FreeVacationStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Views\Home\HomeStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>HomeStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Views\Packages\PackagesStrings.es.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PackagesStrings.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Views\Packages\PackagesStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PackagesStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Views\Shared\SharedStrings.es.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SharedStrings.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Views\Shared\SharedStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SharedStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>37532</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:1367/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

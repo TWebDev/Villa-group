@@ -1,0 +1,21 @@
+﻿
+<table>
+    <thead>
+        <tr>
+            @foreach (var i in Model.HistoryJson.FirstOrDefault())
+            {
+                <td>i.Key</td>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var i in Model.HistoryJson)
+        {
+            <tr>
+                <td>
+                    i.Value
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

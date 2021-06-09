@@ -1,0 +1,60 @@
+﻿@model ePlatBack.Models.ViewModels.RoomTypeInfoModel
+
+<fieldset id="fdsRoomTypes" data-close-siblings="true" class="primary-selected-row-dependent view-restricted" style="display: none">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        Room Types
+    </legend>
+    <div style="display: none">
+        <div class="full-width align-from-bottom">
+            <input type="button" class="submit fieldset-expander right" id="btnNewRoomTypeInfo" value="New" />
+        </div>
+        <ul id="ulRoomTypes" class="primary-selected-row-dependent"></ul>
+        <fieldset id="fdsRoomTypeInfo">
+            <legend>
+                <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+                Room Type Info
+            </legend>
+            <div style="display: none">
+                @using (Ajax.BeginForm("SaveRoomType", "Places", new AjaxOptions { OnSuccess = "PLACE.saveRoomTypeSuccess(data)" }, new { id = "frmRoomType", onSubmit = "UI.showValidationSummary(this.id);" }))
+                {
+                    <div id="frmRoomType_ErrorMessages" style="display: none">
+                        @Html.ValidationMessageFor(model => model.RoomTypeInfo_RoomType)
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.RoomTypeInfo_RoomType)
+                            @Html.HiddenFor(model => model.RoomTypeInfo_PlaceID, new { @class = "primary-selected-row-dependent", data_keep_value = "" })
+                            @Html.HiddenFor(model => model.RoomTypeInfo_RoomTypeID, new { @class = "secondary-selected-row-dependent" })
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.RoomTypeInfo_RoomType)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.RoomTypeInfo_Quantity)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.RoomTypeInfo_Quantity)
+                        </div>
+                    </div>
+                    <div class="full-width align-from-top align-from-bottom">
+                        <input type="submit" class="submit right" id="btnSaveRoomType" value="Save" />
+                    </div>
+                }
+                @Html.Partial("_RoomTypeDescriptionsPartial", Model.RoomTypeDescriptionModel)
+                
+                <fieldset id="fdsRoomTypePictures" class="view-restricted primary-selected-row-dependent" style="display: none">
+                    <legend>
+                        <img class="fieldset-indicator fds-indicator-separator" src="/Content/themes/base/images/eplat_show.jpg" />
+                        Pictures Management
+                    </legend>
+                    <div style="display: none" class="roomTypes-pictures">
+                        @Html.Action("RenderPicturesInRoomTypes", "Pictures")
+                    </div>
+                </fieldset>
+            </div>
+        </fieldset>
+    </div>
+</fieldset>

@@ -1,0 +1,69 @@
+﻿@model ePlatBack.Models.ViewModels.OptionsSoldModel.SearchOptionsSoldModel
+
+@using (Ajax.BeginForm("SearchOptionsSold", "Reports", new AjaxOptions { OnSuccess = "REPORT.searchResultsTable(data)", UpdateTargetId = "divTblOptionsSoldResults" }, new { id = "frmSearchOptionsSold", onSubmit = "return UI.showValidationSummary(this.id);" }))
+{
+    <div style="display:none" id="frmSearchOptionsSold_ErrorMessages">
+        @Html.ValidationMessageFor(model => model.GenericSearchFieldsReport_Resort)
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.GenericSearchFieldsReport_I_ArrivalDate)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.GenericSearchFieldsReport_I_ArrivalDate, new { data_uses_date_picker = "true" })
+            @Html.TextBoxFor(model => model.GenericSearchFieldsReport_F_ArrivalDate, new { data_uses_date_picker = "true" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.GenericSearchFieldsReport_LeadSource)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.GenericSearchFieldsReport_LeadSource, Model.GenericSearchFieldsReport_DrpLeadSources, new { style = "height:68px", multiple = "multiple", @class = "workgroup-dependent-list", data_route = "/crm/Reports/GetDDLData", data_route_parameter = "leadSourceID" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.GenericSearchFieldsReport_LeadStatus)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.GenericSearchFieldsReport_LeadStatus, Model.GenericSearchFieldsReport_DrpLeadStatus, new { style = "height:68px", multiple = "multiple" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.GenericSearchFieldsReport_Resort)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.GenericSearchFieldsReport_Resort, Model.GenericSearchFieldsReport_DrpResorts, new { style = "height:68px", @class = "terminal-dependent-list", data_route = "/crm/Reports/GetDDLData", data_route_parameter = "placeID", multiple = "multiple" })
+        </div>
+    </div>
+    @*<div class="editor-alignment">
+        <p class="editor-label">
+            @Html.LabelFor(model => model.SearchOptionsSold_User)
+        </p>
+        <p class="editor-field">
+            @Html.DropDownListFor(model => model.SearchOptionsSold_User, Model.SearchOptionsSold_DrpUsers, new { style = "height:68px", multiple = "multiple" })
+        </p>
+    </div>*@
+    <div class="editor-alignment align-from-top">
+        <div class="editor-field">
+            <input type="submit" class="button" value="search" />
+        </div>
+    </div>
+ <div id="divTblOptionsSoldResults" class="align-from-top">
+     <table id="tblOptionsSoldReport" class="table">
+         <thead>
+             <tr>
+                 <th>Resort</th>
+                 <th>Arrivals</th>
+                 <th>Arrivals With Options</th>
+                 <th>% Options Capture</th>
+                 <th>Total Paid Volume</th>
+                 <th>Total Nights</th>
+             </tr>
+         </thead>
+         <tbody></tbody>
+     </table>
+ </div>
+}

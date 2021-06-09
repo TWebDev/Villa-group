@@ -1,0 +1,49 @@
+﻿@model ePlatBack.Models.ViewModels.ReservationsMadeModel.SearchReservationsMadeModel
+
+@using (Ajax.BeginForm("SearchReservationsMade", "Reports", new AjaxOptions { OnSuccess = "REPORT.searchResultsTable(data)", UpdateTargetId = "divTblReservationsMadeResults" }, new { id = "frmSearchReservationsMade" }))
+{
+    <div class="editor-alignment">
+        <span class="editor-label">
+            @Html.LabelFor(model => model.SearchReservationsMade_I_InputDate)
+        </span>
+        <span class="editor-field">
+            @Html.TextBoxFor(model => model.SearchReservationsMade_I_InputDate, new { data_uses_date_picker = "true" })
+            @Html.TextBoxFor(model => model.SearchReservationsMade_F_InputDate, new { data_uses_date_picker = "true" })
+        </span>
+    </div>
+    <div class="editor-alignment">
+        <span class="editor-label">
+            @Html.LabelFor(model => model.SearchReservationsMade_I_ReservationMadeDate)
+        </span>
+        <span class="editor-field">
+            @Html.TextBoxFor(model => model.SearchReservationsMade_I_ReservationMadeDate, new { data_uses_date_picker = "true" })
+            @Html.TextBoxFor(model => model.SearchReservationsMade_F_ReservationMadeDate, new { data_uses_date_picker = "true" })
+        </span>
+    </div>
+    @*<div class="editor-alignment">
+        <span class="editor-label">
+            @Html.LabelFor(model => model.SearchReservationsMade_User)
+        </span>
+        <span class="editor-field">
+            @Html.DropDownListFor(model => model.SearchReservationsMade_User, Model.SearchReservationsMade_DrpUsers, new { multiple = "multiple" })
+        </span>
+    </div>*@
+    <div class="editor-alignment align-from-top">
+        <span class="editor-field">
+            <input type="submit" class="button" value="search" />
+        </span>
+    </div>
+    <div class="align-from-top" id="divTblReservationsMadeResults">
+        <table id="tblReservationsMadeReport" class="table">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Input Date</th>
+                    <th>Reservation Made Date</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+}

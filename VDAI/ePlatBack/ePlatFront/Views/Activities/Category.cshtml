@@ -1,0 +1,109 @@
+﻿@model ePlatBack.Models.ViewModels.CategoryActivitiesViewModel
+
+@{
+    ViewBag.Culture = Model.Culture;
+    ViewBag.Title = Model.Seo_Title;
+    ViewBag.Keywords = Model.Seo_Keywords;
+    ViewBag.Description = Model.Seo_Description;
+    ViewBag.Index = Model.Seo_Index;
+    ViewBag.Follow = Model.Seo_Follow;
+
+    ViewBag.Header = Model.Template_Header;
+    ViewBag.Footer = Model.Template_Footer;
+    ViewBag.Logo = Model.Template_Logo;
+
+    ViewBag.Submenu1 = Model.Submenu1;
+    ViewBag.Submenu2 = Model.Submenu2;
+    ViewBag.Submenu3 = Model.Submenu3;
+}
+
+@section header{
+    @Html.Raw(Model.Scripts_Header)
+}
+
+@section afterBody{
+    @Html.Raw(Model.Scripts_AfterBody)
+}
+
+@section scripts{
+    @Html.Raw(Model.Scripts_Footer)
+}
+
+@section controls{}
+
+@section featured {}
+
+<div class="left-column">
+    <span class="zones-filter">
+        <span class="label">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Show_activities_from</span>
+        @Html.DropDownListFor(model => model.ZoneID, Model.Zones)
+    </span>
+    <h1>@Html.DisplayFor(model => model.Category)</h1>
+    @Html.Raw(Model.Description)
+    @if (Model.Activities != null)
+    {
+        foreach (var item in Model.Activities)
+        {
+            <figure class="tile-activity" id="@item.ActivityID">
+                @if (@item.Tag != null && @item.Tag != "")
+                {
+                    <div class="tile-activity-tag" style="background-color:@item.TagColor">@item.Tag</div>
+                }
+                <a href="@item.Url" title="@item.Activity" class="tile-activity-images">
+                    @foreach (var picture in @item.Pictures)
+                    {
+                        <img alt="@item.Activity" src="//eplatfront.villagroup.com/@picture.Picture?width=392&height=220&mode=crop&quality=50" width="196" height="110" />
+                    }
+                    <span class="tile-progress"><span class="tile-progress-indicator"></span></span>
+                </a>
+                <figcaption class="tile-text">
+                    <a href="@item.Url" title="@item.Activity">
+                        <h2>@Html.DisplayFor(modelItem => item.Activity)</h2>
+                        <span class="tile-activity-zone">
+                            @if (item.Zone != null)
+                            {
+                                @ePlatFront.Resources.Views.Activities.ActivitiesStrings.At <span>@item.Zone</span>
+                            }
+                            else
+                            {
+                                @ePlatFront.Resources.Views.Activities.ActivitiesStrings.Multiple_Locations
+                            }                            
+                        </span>
+                        <span class="retail-price">
+                            $@item.RetailPrice.ToString("0.00").Replace(",", ".")
+                        </span>
+                        <span class="offer-price">
+                            $@item.OfferPrice.ToString("0.00").Replace(",", ".")
+                        </span>
+                        <span class="rating">
+                            @if (item.Rating != null)
+                            {
+                                for (int s = 1; s <= Math.Floor(Math.Abs(item.Rating)); s++)
+                                {
+                                    <img src="~/Content/themes/mex/images/stars_full.png" />
+                                }
+                                if (item.Rating % 1 != 0)
+                                {
+                                    <img src="~/Content/themes/mex/images/stars_half.png" />
+                                }
+                                for (int v = 1; v <= Math.Floor(Math.Abs(5 - item.Rating)); v++)
+                                {
+                                    <img src="~/Content/themes/mex/images/stars_empty.png" />
+                                }
+                            }
+                        </span>
+                        <span class="savings">
+                            @ePlatFront.Resources.Views.Activities.ActivitiesStrings.Youll_Save @item.Savings%
+                        </span>
+                    </a>
+                    <a class="a-info" href="@item.Url" title="More Info about @item.Activity">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.See_Details</a><a class="a-book" href="#shopping-cart" onclick="BookingEngine.Service.book(@item.ActivityID,'@item.Activity.Replace("'","")')" title="Book @item.Activity">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Book_This</a>
+                </figcaption>
+            </figure>
+        }
+    }
+</div>
+<div class="right-column">
+    @Html.Raw(@Model.RightColumn)
+</div>
+
+

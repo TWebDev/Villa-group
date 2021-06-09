@@ -1,0 +1,673 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A7C86E4D-498D-4322-9521-7A34965B8239}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ePlatBack.Models</RootNamespace>
+    <AssemblyName>ePlatBack.Models</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AsterNET, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AsterNET.1.3.0\lib\net40\AsterNET.dll</HintPath>
+    </Reference>
+    <Reference Include="ClosedXML, Version=0.93.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ClosedXML.0.93.1\lib\net40\ClosedXML.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.7.2\lib\net40\DocumentFormat.OpenXml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelNumberFormat, Version=1.0.3.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelNumberFormat.1.0.3\lib\net20\ExcelNumberFormat.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FastMember.Signed, Version=1.3.0.0, Culture=neutral, PublicKeyToken=9e8f22703bef9a29, processorArchitecture=MSIL">
+      <HintPath>..\packages\FastMember.Signed.1.3.0\lib\net45\FastMember.Signed.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GenCode128, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\GenCode128.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Ads.Common, Version=9.5.1.0, Culture=neutral, PublicKeyToken=52807268f2b614dc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Ads.Common.9.5.1\lib\net452\Google.Ads.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.AdWords, Version=24.4.0.0, Culture=neutral, PublicKeyToken=52807268f2b614dc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.AdWords.24.4.0\lib\net452\Google.AdWords.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis, Version=1.38.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.1.38.0\lib\net45\Google.Apis.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth, Version=1.38.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Auth.1.38.0\lib\net45\Google.Apis.Auth.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth.PlatformServices, Version=1.38.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Auth.1.38.0\lib\net45\Google.Apis.Auth.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Core, Version=1.38.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Core.1.38.0\lib\net45\Google.Apis.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.PlatformServices, Version=1.38.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.1.38.0\lib\net45\Google.Apis.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="mexHash, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\mexHash.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Scaffolding.12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Microsoft Web Tools\ReferenceAssemblies\12.0\Microsoft.AspNet.Scaffolding.12.0.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Client">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Client.2.2.0\lib\net40\Microsoft.AspNet.SignalR.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.1.2.2\lib\net40\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Owin.1.2.2\lib\net40\Microsoft.AspNet.SignalR.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.1.1.2\lib\netstandard1.1\Microsoft.Extensions.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.1.1.2\lib\netstandard1.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.1.1.1\lib\netstandard1.0\Microsoft.Extensions.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="NCalc, Version=1.3.8.0, Culture=neutral, PublicKeyToken=973cde3f1cafed03, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\NCalc.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Office, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <HintPath>..\packages\Office.12.0.0\lib\net40\Office.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="OpenPop">
+      <HintPath>..\packages\OpenPop.NET.2.0.6.1120\lib\net40\OpenPop.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="QRCoder, Version=1.3.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QRCoder.1.3.9\lib\net40\QRCoder.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=106.11.8.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.106.11.8-alpha.0.12\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Linq.Dynamic">
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.0\lib\net40\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.3.0\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccountDataModel.cs" />
+    <Compile Include="AccountModels.cs">
+      <SubType>
+      </SubType>
+    </Compile>
+    <Compile Include="AdminModel.cs">
+      <SubType>
+      </SubType>
+    </Compile>
+    <Compile Include="DataModels\AdminDataModel.cs" />
+    <Compile Include="DataModels\ApiReferralsDataModel.cs" />
+    <Compile Include="DataModels\ApiValidationDataModel.cs" />
+    <Compile Include="DataModels\ArrivalsDataModel.cs" />
+    <Compile Include="DataModels\BlockDataModel.cs" />
+    <Compile Include="DataModels\BookingStatusDataModel.cs" />
+    <Compile Include="DataModels\BrokerDataModel.cs" />
+    <Compile Include="DataModels\CallClasificationDataModel.cs" />
+    <Compile Include="DataModels\CatalogsDataModel.cs" />
+    <Compile Include="DataModels\ChargesDataModel.cs" />
+    <Compile Include="DataModels\ContentManagement.cs" />
+    <Compile Include="DataModels\CountryDataModel.cs" />
+    <Compile Include="DataModels\CouponDataModel.cs" />
+    <Compile Include="DataModels\CreditCardsDataModel.cs" />
+    <Compile Include="DataModels\DashboardDataModel.cs" />
+    <Compile Include="DataModels\EmailsDataModel.cs" />
+    <Compile Include="DataModels\FollowUpDataModel.cs" />
+    <Compile Include="DataModels\FrequestGuestsDataModel.cs" />
+    <Compile Include="DataModels\FrontOfficeDataModel.cs" />
+    <Compile Include="DataModels\GoogleAdsDataModel.cs" />
+    <Compile Include="DataModels\GreetingRepDataModel.cs" />
+    <Compile Include="DataModels\GuestDataModel.cs" />
+    <Compile Include="DataModels\GuestExperienceDataModel.cs" />
+    <Compile Include="DataModels\HubDataModel.cs" />
+    <Compile Include="DataModels\InteractionDataModel.cs" />
+    <Compile Include="DataModels\InvitationDataModel.cs" />
+    <Compile Include="DataModels\LeadSourceDataModel.cs" />
+    <Compile Include="DataModels\LeadStatusDataModel.cs" />
+    <Compile Include="DataModels\MailingDataModel.cs" />
+    <Compile Include="DataModels\MarketPlaceDataModel.cs" />
+    <Compile Include="DataModels\MasterChartDataModel.cs" />
+    <Compile Include="DataModels\ControlsDataModel.cs" />
+    <Compile Include="DataModels\MembershipDataModel.cs" />
+    <Compile Include="DataModels\MerchantAccountDataModel.cs" />
+    <Compile Include="DataModels\NetCenterDataModel.cs" />
+    <Compile Include="DataModels\NotificationsDataModel.cs" />
+    <Compile Include="DataModels\OpcDataModel.cs" />
+    <Compile Include="DataModels\PackageDataModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataModels\PageDataModel.cs" />
+    <Compile Include="DataModels\PaymentAssignationDataModel.cs" />
+    <Compile Include="DataModels\PhoneDataModel.cs" />
+    <Compile Include="DataModels\PictureDataModel.cs" />
+    <Compile Include="DataModels\PlaceDataModel.cs" />
+    <Compile Include="DataModels\PreArrivalDataModel.cs" />
+    <Compile Include="DataModels\PriceDataModel.cs" />
+    <Compile Include="DataModels\PricesEditorDataModel.cs" />
+    <Compile Include="DataModels\PrivateLabelDataModel.cs" />
+    <Compile Include="DataModels\PromoDataModel.cs" />
+    <Compile Include="DataModels\PublicDataModel.cs" />
+    <Compile Include="DataModels\PurchaseDataModel.cs" />
+    <Compile Include="DataModels\RemindersDataModel.cs" />
+    <Compile Include="DataModels\ReportDataModel.cs" />
+    <Compile Include="DataModels\CustomDataAnnotations.cs" />
+    <Compile Include="DataModels\RescomDataModel.cs" />
+    <Compile Include="DataModels\ReservationStatusDataModel.cs" />
+    <Compile Include="DataModels\RoomDataModel.cs" />
+    <Compile Include="DataModels\SeoItemDataModel.cs" />
+    <Compile Include="DataModels\SPIDataModel.cs" />
+    <Compile Include="DataModels\StructureDataModel.cs" />
+    <Compile Include="DataModels\SurveyDataModel.cs" />
+    <Compile Include="DataModels\TaskSchedulerDataModel.cs" />
+    <Compile Include="DataModels\TerminalDataModel.cs" />
+    <Compile Include="DataModels\TicketDataModel.cs" />
+    <Compile Include="DataModels\TimeShareDataModel.cs" />
+    <Compile Include="DataModels\TimeZoneDataModel.cs" />
+    <Compile Include="DataModels\TourStatusDataModel.cs" />
+    <Compile Include="DataModels\TrialsDataModel.cs" />
+    <Compile Include="DataModels\WikiFieldDataModel.cs" />
+    <Compile Include="DataModels\WorkflowDataModel.cs" />
+    <Compile Include="Dynamic.cs" />
+    <Compile Include="ePlatDataModel.Designer.cs">
+      <DependentUpon>ePlatDataModel.edmx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="ePlatDataModel.Views.cs" />
+    <Compile Include="eplatformDataModel\eplatformDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>eplatformDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="FrontOfficeModels\GarzaBlancaResortCabo\FrontOfficeGBCDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FrontOfficeGBCDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="FrontOfficeModels\GarzaBlancaResortVallarta\FrontOfficeGBRVDataModel1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FrontOfficeGBRVDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="FrontOfficeModels\HotelMousaiVallarta\FrontOfficeHMPVDataModel1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FrontOfficeHMPVDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="FrontOfficeModels\VillaDelPalmarCancun\FrontOfficeVDPCancunDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FrontOfficeVDPCancunDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="FrontOfficeVDPVDataModel1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FrontOfficeVDPVDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="resortConnectDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>resortConnectDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Models\Controls\ContactFormStrings.Designer.cs" />
+    <Compile Include="Resources\Models\Controls\ContactFormStrings.es.Designer.cs" />
+    <Compile Include="Resources\Models\Controls\FreeVacationStrings.Designer.cs" />
+    <Compile Include="Resources\Models\Controls\FreeVacationStrings.es.Designer.cs" />
+    <Compile Include="Resources\Models\Controls\GroupsFormStrings.Designer.cs" />
+    <Compile Include="Resources\Models\Controls\GroupsFormStrings.es.Designer.cs" />
+    <Compile Include="Resources\Models\Controls\SubmitReview.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SubmitReview.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Models\Controls\SubmitReview.es.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SubmitReview.es.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Models\Coupon\CouponStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CouponStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Models\Coupon\CouponStrings.es.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CouponStrings.es.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Models\Promo\PromoStrings.Designer.cs" />
+    <Compile Include="Resources\Models\Promo\PromoStrings.es.Designer.cs" />
+    <Compile Include="Resources\Models\Shared\PurchaseProcess.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PurchaseProcess.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Models\Shared\PurchaseProcess.es.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PurchaseProcess.es.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Models\Shared\PurchaseTicket.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PurchaseTicket.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Models\Shared\PurchaseTicket.es.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PurchaseTicket.es.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Models\Shared\SharedStrings.Designer.cs" />
+    <Compile Include="Resources\Models\Shared\SharedStrings.es.Designer.cs" />
+    <Compile Include="Resources\Models\Shared\ValidationStrings.Designer.cs" />
+    <Compile Include="Resources\Models\Shared\ValidationStrings.es.Designer.cs" />
+    <Compile Include="SPIModels\TheVillaGroup\SpiTvgDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SpiTvgDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="UserSession.cs" />
+    <Compile Include="DataModels\ActivityDataModel.cs">
+      <SubType>
+      </SubType>
+    </Compile>
+    <Compile Include="DataModels\UserDataModel.cs" />
+    <Compile Include="ePlatRepository.cs">
+      <SubType>
+      </SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserData_Validation.cs">
+      <SubType>
+      </SubType>
+    </Compile>
+    <Compile Include="Utils.cs" />
+    <Compile Include="ViewModels\ActivityViewModel.cs">
+      <SubType>
+      </SubType>
+    </Compile>
+    <Compile Include="ViewModels\AdminViewModel.cs" />
+    <Compile Include="ViewModels\APIReferralsViewModel.cs" />
+    <Compile Include="ViewModels\ArrivalsViewModel.cs" />
+    <Compile Include="ViewModels\BlockViewModel.cs" />
+    <Compile Include="ViewModels\CatalogsViewModel.cs" />
+    <Compile Include="ViewModels\CouponViewModel.cs" />
+    <Compile Include="ViewModels\DashboardViewModel.cs" />
+    <Compile Include="ViewModels\EmailsViewModel.cs" />
+    <Compile Include="ViewModels\FollowUpViewModel.cs" />
+    <Compile Include="ViewModels\FrequentGuestsViewModel.cs" />
+    <Compile Include="ViewModels\FrontOfficeViewModel.cs" />
+    <Compile Include="ViewModels\GoogleAdsViewModel.cs" />
+    <Compile Include="ViewModels\GuestExperienceViewModel.cs" />
+    <Compile Include="ViewModels\GuestViewModel.cs" />
+    <Compile Include="ViewModels\HubViewModel.cs" />
+    <Compile Include="ViewModels\InteractionsViewModel.cs" />
+    <Compile Include="ViewModels\InvitationViewModel.cs" />
+    <Compile Include="ViewModels\LeadsGenerationViewModel.cs" />
+    <Compile Include="ViewModels\MailingViewModel.cs" />
+    <Compile Include="ViewModels\MarketPlaceViewModel.cs" />
+    <Compile Include="ViewModels\MasterChartViewModel.cs" />
+    <Compile Include="ViewModels\ControlsViewModel.cs" />
+    <Compile Include="ViewModels\MemberReservationsViewModel.cs" />
+    <Compile Include="ViewModels\NetCenterViewModel.cs" />
+    <Compile Include="ViewModels\NotificationsViewModel.cs" />
+    <Compile Include="ViewModels\PackageViewModel.cs" />
+    <Compile Include="ViewModels\PageViewModel.cs" />
+    <Compile Include="ViewModels\PaymentAssignationViewModel.cs" />
+    <Compile Include="ViewModels\PictureViewModel.cs" />
+    <Compile Include="ViewModels\PlaceViewModel.cs" />
+    <Compile Include="ViewModels\PreArrivalViewModel.cs" />
+    <Compile Include="ViewModels\PricesEditorViewModel.cs" />
+    <Compile Include="ViewModels\PriceViewModel.cs" />
+    <Compile Include="ViewModels\PrivateLabelViewModel.cs" />
+    <Compile Include="ViewModels\PromoViewModel.cs" />
+    <Compile Include="ViewModels\PublicViewModel.cs" />
+    <Compile Include="ViewModels\PurchaseViewModel.cs" />
+    <Compile Include="ViewModels\RemindersViewModel.cs" />
+    <Compile Include="ViewModels\ReportViewModel.cs" />
+    <Compile Include="ViewModels\SeoItemViewModel.cs" />
+    <Compile Include="ViewModels\SPIViewModel.cs" />
+    <Compile Include="ViewModels\StructureViewModel.cs" />
+    <Compile Include="ViewModels\SurveyViewModel.cs" />
+    <Compile Include="ViewModels\TaskSchedulerViewModel.cs" />
+    <Compile Include="ViewModels\TerminalViewModel.cs" />
+    <Compile Include="ViewModels\TicketViewModel.cs" />
+    <Compile Include="ViewModels\TimeShareViewModel.cs" />
+    <Compile Include="ViewModels\TrialsViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
+    <Compile Include="ViewModels\WebhooksViewModel.cs" />
+    <Compile Include="ViewModels\WikiFieldViewModel.cs" />
+    <Compile Include="ViewModels\WorkflowViewModel.cs" />
+    <Compile Include="Web References\ccservice\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <EntityDeploy Include="ePlatDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ePlatDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="eplatformDataModel\eplatformDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>eplatformDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DataModels\BookingStatusDataModel.cs.bak" />
+    <None Include="ePlatDataModel.edmx.diagram">
+      <DependentUpon>ePlatDataModel.edmx</DependentUpon>
+    </None>
+    <None Include="eplatformDataModel\eplatformDataModel.edmx.diagram">
+      <DependentUpon>eplatformDataModel.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="FrontOfficeVDPVDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FrontOfficeVDPVDataModel1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="FrontOfficeModels\VillaDelPalmarCancun\FrontOfficeVDPCancunDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FrontOfficeVDPCancunDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="FrontOfficeModels\GarzaBlancaResortVallarta\FrontOfficeGBRVDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FrontOfficeGBRVDataModel1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="FrontOfficeModels\GarzaBlancaResortCabo\FrontOfficeGBCDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FrontOfficeGBCDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="FrontOfficeModels\GarzaBlancaResortCabo\FrontOfficeGBCDataModel.edmx.diagram">
+      <DependentUpon>FrontOfficeGBCDataModel.edmx</DependentUpon>
+    </None>
+    <None Include="FrontOfficeModels\GarzaBlancaResortVallarta\FrontOfficeGBRVDataModel.edmx.diagram">
+      <DependentUpon>FrontOfficeGBRVDataModel.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="FrontOfficeModels\HotelMousaiVallarta\FrontOfficeHMPVDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FrontOfficeHMPVDataModel1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="FrontOfficeModels\HotelMousaiVallarta\FrontOfficeHMPVDataModel.edmx.diagram">
+      <DependentUpon>FrontOfficeHMPVDataModel.edmx</DependentUpon>
+    </None>
+    <None Include="FrontOfficeModels\VillaDelPalmarCancun\FrontOfficeVDPCancunDataModel.edmx.diagram">
+      <DependentUpon>FrontOfficeVDPCancunDataModel.edmx</DependentUpon>
+    </None>
+    <None Include="FrontOfficeVDPVDataModel.edmx.diagram">
+      <DependentUpon>FrontOfficeVDPVDataModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <EntityDeploy Include="resortConnectDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>resortConnectDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="resortConnectDataModel.edmx.diagram">
+      <DependentUpon>resortConnectDataModel.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="SPIModels\TheVillaGroup\SpiTvgDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SpiTvgDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="SPIModels\TheVillaGroup\SpiTvgDataModel.edmx.diagram">
+      <DependentUpon>SpiTvgDataModel.edmx</DependentUpon>
+    </None>
+    <None Include="Web References\ccservice\bankservice.wsdl" />
+    <None Include="Web References\ccservice\CardAuthorizationPubResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ccservice\CRMAcctInfo.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ccservice\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\ccservice\bankservice.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Models\Controls\ContactFormStrings.es.resx" />
+    <EmbeddedResource Include="Resources\Models\Controls\ContactFormStrings.resx" />
+    <EmbeddedResource Include="Resources\Models\Controls\FreeVacationStrings.es.resx" />
+    <EmbeddedResource Include="Resources\Models\Controls\FreeVacationStrings.resx" />
+    <EmbeddedResource Include="Resources\Models\Controls\GroupsFormStrings.es.resx" />
+    <EmbeddedResource Include="Resources\Models\Controls\GroupsFormStrings.resx" />
+    <EmbeddedResource Include="Resources\Models\Controls\SubmitReview.es.resx">
+      <LastGenOutput>SubmitReview.es.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Models\Controls\SubmitReview.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SubmitReview.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Models\Coupon\CouponStrings.es.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CouponStrings.es.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Models\Coupon\CouponStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CouponStrings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Models\Promo\PromoStrings.es.resx" />
+    <EmbeddedResource Include="Resources\Models\Promo\PromoStrings.resx" />
+    <EmbeddedResource Include="Resources\Models\Shared\PurchaseProcess.es.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PurchaseProcess.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Models\Shared\PurchaseProcess.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PurchaseProcess.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Models\Shared\PurchaseTicket.es.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PurchaseTicket.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Models\Shared\PurchaseTicket.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PurchaseTicket.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Models\Shared\SharedStrings.es.resx" />
+    <EmbeddedResource Include="Resources\Models\Shared\SharedStrings.resx" />
+    <EmbeddedResource Include="Resources\Models\Shared\ValidationStrings.es.resx" />
+    <EmbeddedResource Include="Resources\Models\Shared\ValidationStrings.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="https://www.resortcom.com/ccservice/bankservice.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\ccservice\</RelPath>
+      <UpdateFromURL>https://www.resortcom.com/ccservice/bankservice.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>ePlatBack_Models_ccservice_BankService</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="obj\Debug\edmxResourcesToEmbed\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\AsterNET.dll" />
+    <Content Include="bin\GenCode128.dll" />
+    <Content Include="bin\mexHash.dll" />
+    <Content Include="bin\NCalc.dll" />
+    <Content Include="bin\QRCoder.dll" />
+    <Content Include="bin\RestSharp.dll" />
+    <Content Include="bin\RestSharp.xml" />
+    <Content Include="bin\System.Web.Helpers.dll" />
+    <Content Include="bin\System.Web.Helpers.xml" />
+    <Content Include="bin\System.Web.Mvc.dll" />
+    <Content Include="bin\System.Web.WebPages.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,576 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SpiTvgDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <Function Name="spCustomer_check_tours" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="last_name" Type="varchar" Mode="In" />
+          <Parameter Name="first_name" Type="varchar" Mode="In" />
+          <Parameter Name="phone1" Type="varchar" Mode="In" />
+          <Parameter Name="phone2" Type="varchar" Mode="In" />
+          <Parameter Name="phone3" Type="varchar" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="invitation" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spCustomer_History" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CustomerID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spCustomer_tracking" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usuario" Type="varchar" Mode="In" />
+          <Parameter Name="cus_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spEP_Categoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="equipo_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spEP_Cliente_alta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usuario_SPI" Type="varchar" Mode="In" />
+          <Parameter Name="equipo_id" Type="int" Mode="In" />
+          <Parameter Name="primer_nombre" Type="varchar" Mode="In" />
+          <Parameter Name="segundo_nombre" Type="varchar" Mode="In" />
+          <Parameter Name="apellidos" Type="varchar" Mode="In" />
+          <Parameter Name="primer_nombre2" Type="varchar" Mode="In" />
+          <Parameter Name="segundo_nombre2" Type="varchar" Mode="In" />
+          <Parameter Name="apellidos2" Type="varchar" Mode="In" />
+          <Parameter Name="pais" Type="varchar" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="grupo_id" Type="int" Mode="In" />
+          <Parameter Name="pais_id" Type="int" Mode="In" />
+          <Parameter Name="idioma_id" Type="varchar" Mode="In" />
+          <Parameter Name="invitacion" Type="varchar" Mode="In" />
+          <Parameter Name="hotel_id" Type="int" Mode="In" />
+          <Parameter Name="locacion_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spEP_Cliente_modifica" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cliente_id" Type="int" Mode="In" />
+          <Parameter Name="usuario_SPI" Type="varchar" Mode="In" />
+          <Parameter Name="equipo_id" Type="int" Mode="In" />
+          <Parameter Name="grupo_id" Type="int" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="invitacion" Type="varchar" Mode="In" />
+          <Parameter Name="hotel_id" Type="int" Mode="In" />
+          <Parameter Name="locacion_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spEP_Equipo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usuario_SPI" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spEP_Hotel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spEP_Idioma" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spEP_Locacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spEP_OPC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usuario_SPI" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spEP_Pais" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spEP_Premanifiesto_alta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usuario_SPI" Type="varchar" Mode="In" />
+          <Parameter Name="cliente_id" Type="int" Mode="In" />
+          <Parameter Name="equipo_id" Type="int" Mode="In" />
+          <Parameter Name="grupo_id" Type="int" Mode="In" />
+          <Parameter Name="categoria_id" Type="int" Mode="In" />
+          <Parameter Name="primer_nombre" Type="varchar" Mode="In" />
+          <Parameter Name="segundo_nombre" Type="varchar" Mode="In" />
+          <Parameter Name="apellidos" Type="varchar" Mode="In" />
+          <Parameter Name="primer_nombre2" Type="varchar" Mode="In" />
+          <Parameter Name="segundo_nombre2" Type="varchar" Mode="In" />
+          <Parameter Name="apellidos2" Type="varchar" Mode="In" />
+          <Parameter Name="pais" Type="varchar" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="pais_id" Type="int" Mode="In" />
+          <Parameter Name="idioma_id" Type="varchar" Mode="In" />
+          <Parameter Name="invitacion" Type="varchar" Mode="In" />
+          <Parameter Name="opc_id" Type="int" Mode="In" />
+          <Parameter Name="fecha_tour" Type="datetime" Mode="In" />
+          <Parameter Name="sala_ventas_id" Type="int" Mode="In" />
+          <Parameter Name="hotel_id" Type="int" Mode="In" />
+          <Parameter Name="locacion_id" Type="int" Mode="In" />
+          <Parameter Name="deposito" Type="money" Mode="In" />
+          <Parameter Name="tour_id" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="spEP_Reservacion_alta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usuario_SPI" Type="varchar" Mode="In" />
+          <Parameter Name="cliente_id" Type="int" Mode="In" />
+          <Parameter Name="opc_id" Type="int" Mode="In" />
+          <Parameter Name="fecha_tour" Type="datetime" Mode="In" />
+          <Parameter Name="equipo_id" Type="int" Mode="In" />
+          <Parameter Name="grupo_id" Type="int" Mode="In" />
+          <Parameter Name="categoria_id" Type="int" Mode="In" />
+          <Parameter Name="sala_ventas_id" Type="int" Mode="In" />
+          <Parameter Name="deposito" Type="money" Mode="In" />
+          <Parameter Name="hotel" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spEP_Sala_ventas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usuario_SPI" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spManifest_Info" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CustomerID" Type="int" Mode="In" />
+          <Parameter Name="TourDate" Type="datetime" Mode="In" />
+          <Parameter Name="IDRegion" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spManifest_Info_Customer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CustomerID" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="SpiTvgDataModelStoreContainer" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SpiTvgDataModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="SpiTvgEntities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="spCustomer_tracking" ReturnType="Collection(SpiTvgDataModel.spCustomer_tracking_Result)">
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="cus_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spCustomer_History" ReturnType="Collection(SpiTvgDataModel.spCustomer_History_Result)">
+          <Parameter Name="CustomerID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spCustomer_check_tours" ReturnType="Collection(SpiTvgDataModel.spCustomer_check_tours_Result)">
+            <Parameter Name="last_name" Mode="In" Type="String" />
+            <Parameter Name="first_name" Mode="In" Type="String" />
+            <Parameter Name="phone1" Mode="In" Type="String" />
+            <Parameter Name="phone2" Mode="In" Type="String" />
+            <Parameter Name="phone3" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="invitation" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spEP_Cliente_alta">
+            <Parameter Name="usuario_SPI" Mode="In" Type="String" />
+            <Parameter Name="equipo_id" Mode="In" Type="Int32" />
+            <Parameter Name="primer_nombre" Mode="In" Type="String" />
+            <Parameter Name="segundo_nombre" Mode="In" Type="String" />
+            <Parameter Name="apellidos" Mode="In" Type="String" />
+            <Parameter Name="primer_nombre2" Mode="In" Type="String" />
+            <Parameter Name="segundo_nombre2" Mode="In" Type="String" />
+            <Parameter Name="apellidos2" Mode="In" Type="String" />
+            <Parameter Name="pais" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="grupo_id" Mode="In" Type="Int32" />
+            <Parameter Name="pais_id" Mode="In" Type="Int32" />
+            <Parameter Name="idioma_id" Mode="In" Type="String" />
+            <Parameter Name="invitacion" Mode="In" Type="String" />
+            <Parameter Name="hotel_id" Mode="In" Type="Int32" />
+            <Parameter Name="locacion_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spEP_Cliente_modifica">
+            <Parameter Name="cliente_id" Mode="In" Type="Int32" />
+            <Parameter Name="usuario_SPI" Mode="In" Type="String" />
+            <Parameter Name="equipo_id" Mode="In" Type="Int32" />
+            <Parameter Name="grupo_id" Mode="In" Type="Int32" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="invitacion" Mode="In" Type="String" />
+            <Parameter Name="hotel_id" Mode="In" Type="Int32" />
+            <Parameter Name="locacion_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spEP_Equipo" ReturnType="Collection(SpiTvgDataModel.spEP_Equipo_Result)">
+          <Parameter Name="usuario_SPI" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spEP_Hotel" ReturnType="Collection(SpiTvgDataModel.spEP_Hotel_Result)" />
+          <FunctionImport Name="spEP_Idioma" ReturnType="Collection(SpiTvgDataModel.spEP_Idioma_Result)" />
+          <FunctionImport Name="spEP_Locacion" ReturnType="Collection(SpiTvgDataModel.spEP_Locacion_Result)" />
+          <FunctionImport Name="spEP_OPC" ReturnType="Collection(SpiTvgDataModel.spEP_OPC_Result)">
+          <Parameter Name="usuario_SPI" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spEP_Pais" ReturnType="Collection(SpiTvgDataModel.spEP_Pais_Result)" />
+          <FunctionImport Name="spEP_Premanifiesto_alta">
+            <Parameter Name="usuario_SPI" Mode="In" Type="String" />
+            <Parameter Name="cliente_id" Mode="In" Type="Int32" />
+            <Parameter Name="equipo_id" Mode="In" Type="Int32" />
+            <Parameter Name="grupo_id" Mode="In" Type="Int32" />
+            <Parameter Name="categoria_id" Mode="In" Type="Int32" />
+            <Parameter Name="primer_nombre" Mode="In" Type="String" />
+            <Parameter Name="segundo_nombre" Mode="In" Type="String" />
+            <Parameter Name="apellidos" Mode="In" Type="String" />
+            <Parameter Name="primer_nombre2" Mode="In" Type="String" />
+            <Parameter Name="segundo_nombre2" Mode="In" Type="String" />
+            <Parameter Name="apellidos2" Mode="In" Type="String" />
+            <Parameter Name="pais" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="pais_id" Mode="In" Type="Int32" />
+            <Parameter Name="idioma_id" Mode="In" Type="String" />
+            <Parameter Name="invitacion" Mode="In" Type="String" />
+            <Parameter Name="opc_id" Mode="In" Type="Int32" />
+            <Parameter Name="fecha_tour" Mode="In" Type="DateTime" />
+            <Parameter Name="sala_ventas_id" Mode="In" Type="Int32" />
+            <Parameter Name="hotel_id" Mode="In" Type="Int32" />
+            <Parameter Name="locacion_id" Mode="In" Type="Int32" />
+            <Parameter Name="deposito" Mode="In" Type="Decimal" />
+            <Parameter Name="tour_id" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spEP_Reservacion_alta">
+            <Parameter Name="usuario_SPI" Mode="In" Type="String" />
+            <Parameter Name="cliente_id" Mode="In" Type="Int32" />
+            <Parameter Name="opc_id" Mode="In" Type="Int32" />
+            <Parameter Name="fecha_tour" Mode="In" Type="DateTime" />
+            <Parameter Name="equipo_id" Mode="In" Type="Int32" />
+            <Parameter Name="grupo_id" Mode="In" Type="Int32" />
+            <Parameter Name="categoria_id" Mode="In" Type="Int32" />
+            <Parameter Name="sala_ventas_id" Mode="In" Type="Int32" />
+            <Parameter Name="deposito" Mode="In" Type="Decimal" />
+            <Parameter Name="hotel" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spEP_Sala_ventas" ReturnType="Collection(SpiTvgDataModel.spEP_Sala_ventas_Result)">
+          <Parameter Name="usuario_SPI" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spManifest_Info" ReturnType="Collection(SpiTvgDataModel.spManifest_Info_Result)">
+            <Parameter Name="CustomerID" Mode="In" Type="Int32" />
+            <Parameter Name="TourDate" Mode="In" Type="DateTime" />
+            <Parameter Name="IDRegion" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spManifest_Info_Customer" ReturnType="Collection(SpiTvgDataModel.spManifest_Info_Customer_Result)">
+          <Parameter Name="CustomerID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spEP_Categoria" ReturnType="Collection(SpiTvgDataModel.spEP_Categoria_Result)">
+            <Parameter Name="equipo_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="spCustomer_tracking_Result">
+          <Property Type="Int32" Name="cus_id" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="92" />
+          <Property Type="String" Name="calificacion" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="Comentario" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Contrato" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="volumen" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="String" Name="Estatus" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="Closer" Nullable="true" MaxLength="107" />
+        </ComplexType>
+        <ComplexType Name="spCustomer_History_Result">
+          <Property Name="ContractNumber" Nullable="true" MaxLength="50" Type="String" />
+          <Property Name="LegalNames" Nullable="true" MaxLength="225" Type="String" />
+          <Property Name="SalesCenter" Nullable="true" MaxLength="75" Type="String" />
+          <Property Name="TourDate" Nullable="true" Precision="16" Type="DateTime" />
+          <Property Name="SourceGroup" Nullable="true" MaxLength="100" Type="String" />
+          <Property Name="Source" Nullable="true" MaxLength="75" Type="String" />
+          <Property Name="SourceItem" Nullable="true" MaxLength="100" Type="String" />
+          <Property Name="VLO" Nullable="true" MaxLength="107" Type="String" />
+          <Property Name="Volume" Nullable="true" Precision="38" Scale="2" Type="Decimal" />
+          <Property Name="Qualification" Nullable="true" MaxLength="200" Type="String" />
+          <Property Name="FrontOfficeIdCliente" Nullable="true" Type="Int32" />
+          <Property Name="FrontOfficeIdResort" Nullable="true" Type="Int32" />
+        </ComplexType>
+        <ComplexType Name="spCustomer_check_tours_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="customer_name" Nullable="false" MaxLength="92" />
+          <Property Type="String" Name="customer_name2" Nullable="false" MaxLength="92" />
+          <Property Type="String" Name="city" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="st" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="country" Nullable="true" MaxLength="255" />
+          <Property Type="DateTime" Name="tour_date" Nullable="true" Precision="16" />
+          <Property Type="Int32" Name="tour" Nullable="false" />
+          <Property Type="String" Name="sales_center" Nullable="false" MaxLength="75" />
+          <Property Type="String" Name="source" Nullable="true" MaxLength="75" />
+          <Property Type="Decimal" Name="Volumen" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="String" Name="match" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="contract_type" Nullable="false" MaxLength="6" />
+          <Property Type="String" Name="contract_status" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="Account_no" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="spEP_Equipo_Result">
+          <Property Type="Int32" Name="grupo_id" Nullable="false" />
+          <Property Type="String" Name="grupo" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="equipo_id" Nullable="false" />
+          <Property Type="String" Name="equipo" Nullable="false" MaxLength="75" />
+        </ComplexType>
+        <ComplexType Name="spEP_Hotel_Result">
+          <Property Type="Int32" Name="hotel_id" Nullable="false" />
+          <Property Type="String" Name="hotel" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="spEP_Idioma_Result">
+          <Property Type="String" Name="idioma_id" Nullable="false" MaxLength="2" />
+          <Property Type="String" Name="idioma" Nullable="false" MaxLength="80" />
+        </ComplexType>
+        <ComplexType Name="spEP_Locacion_Result">
+          <Property Type="Int32" Name="locacion_id" Nullable="false" />
+          <Property Type="String" Name="locacion" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="spEP_OPC_Result">
+          <Property Type="Int32" Name="opc_id" Nullable="false" />
+          <Property Type="String" Name="nombre_opc" Nullable="false" MaxLength="107" />
+        </ComplexType>
+        <ComplexType Name="spEP_Pais_Result">
+          <Property Type="Int32" Name="pais_id" Nullable="false" />
+          <Property Type="String" Name="pais" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="spEP_Sala_ventas_Result">
+          <Property Type="Int32" Name="sala_ventas_id" Nullable="false" />
+          <Property Type="String" Name="sala_ventas" Nullable="false" MaxLength="75" />
+        </ComplexType>
+        <ComplexType Name="spManifest_Info_Result">
+          <Property Type="Int32" Name="CustomerID" Nullable="false" />
+          <Property Type="DateTime" Name="PurchaseDate" Nullable="true" Precision="16" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="LegacyKey" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="VLOID" Nullable="true" />
+          <Property Type="String" Name="VLO" Nullable="true" MaxLength="107" />
+          <Property Type="String" Name="Nationality" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="ContractStatus" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="Qualification" Nullable="true" MaxLength="200" />
+          <Property Type="Decimal" Name="Volume" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="String" Name="SalesCenter" Nullable="true" MaxLength="75" />
+          <Property Type="String" Name="Closer" Nullable="true" MaxLength="107" />
+          <Property Type="Int32" Name="FrontOfficeIdCliente" Nullable="true" />
+          <Property Type="Int32" Name="FrontOfficeIdResort" Nullable="true" />
+          <Property Type="String" Name="RoomNumber" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="MarketingProgram" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Subdivision" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SourceGroup" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Source" Nullable="true" MaxLength="75" />
+          <Property Type="String" Name="SourceItem" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="OPCID" Nullable="true" />
+          <Property Type="String" Name="OPC" Nullable="true" MaxLength="107" />
+          <Property Type="Int32" Name="TourID" Nullable="false" />
+          <Property Type="DateTime" Name="TourDate" Nullable="true" Precision="16" />
+        </ComplexType>
+        <ComplexType Name="spManifest_Info_Customer_Result">
+          <Property Type="Int32" Name="CustomerID" Nullable="false" />
+          <Property Type="DateTime" Name="PurchaseDate" Nullable="true" Precision="16" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="LegacyKey" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="VLOID" Nullable="true" />
+          <Property Type="String" Name="VLO" Nullable="true" MaxLength="107" />
+          <Property Type="String" Name="Nationality" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="ContractStatus" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="Qualification" Nullable="true" MaxLength="200" />
+          <Property Type="Decimal" Name="Volume" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="String" Name="SalesCenter" Nullable="true" MaxLength="75" />
+          <Property Type="String" Name="Closer" Nullable="true" MaxLength="107" />
+          <Property Type="Int32" Name="FrontOfficeIdCliente" Nullable="true" />
+          <Property Type="Int32" Name="FrontOfficeIdResort" Nullable="true" />
+          <Property Type="String" Name="RoomNumber" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="MarketingProgram" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Subdivision" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SourceGroup" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Source" Nullable="true" MaxLength="75" />
+          <Property Type="String" Name="SourceItem" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="OPCID" Nullable="true" />
+          <Property Type="String" Name="OPC" Nullable="true" MaxLength="107" />
+          <Property Type="Int32" Name="TourID" Nullable="false" />
+          <Property Type="DateTime" Name="TourDate" Nullable="true" Precision="16" />
+        </ComplexType>
+        <ComplexType Name="spEP_Categoria_Result">
+          <Property Type="Int32" Name="categoria_id" Nullable="false" />
+          <Property Type="String" Name="categoria" Nullable="true" MaxLength="100" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SpiTvgDataModelStoreContainer" CdmEntityContainer="SpiTvgEntities" >
+          <FunctionImportMapping FunctionImportName="spCustomer_tracking" FunctionName="SpiTvgDataModel.Store.spCustomer_tracking">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SpiTvgDataModel.spCustomer_tracking_Result">
+                <ScalarProperty Name="cus_id" ColumnName="cus_id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="calificacion" ColumnName="calificacion" />
+                <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+                <ScalarProperty Name="Contrato" ColumnName="Contrato" />
+                <ScalarProperty Name="volumen" ColumnName="volumen" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="Closer" ColumnName="Closer" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spCustomer_History" FunctionName="SpiTvgDataModel.Store.spCustomer_History">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SpiTvgDataModel.spCustomer_History_Result">
+                <ScalarProperty Name="ContractNumber" ColumnName="ContractNumber" />
+                <ScalarProperty Name="LegalNames" ColumnName="LegalNames" />
+                <ScalarProperty Name="SalesCenter" ColumnName="SalesCenter" />
+                <ScalarProperty Name="TourDate" ColumnName="TourDate" />
+                <ScalarProperty Name="SourceGroup" ColumnName="SourceGroup" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="SourceItem" ColumnName="SourceItem" />
+                <ScalarProperty Name="VLO" ColumnName="VLO" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+                <ScalarProperty Name="FrontOfficeIdCliente" ColumnName="FrontOfficeIdCliente" />
+                <ScalarProperty Name="FrontOfficeIdResort" ColumnName="FrontOfficeIdResort" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spCustomer_check_tours" FunctionName="SpiTvgDataModel.Store.spCustomer_check_tours">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SpiTvgDataModel.spCustomer_check_tours_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+                <ScalarProperty Name="customer_name2" ColumnName="customer_name2" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="st" ColumnName="st" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="tour_date" ColumnName="tour_date" />
+                <ScalarProperty Name="tour" ColumnName="tour" />
+                <ScalarProperty Name="sales_center" ColumnName="sales_center" />
+                <ScalarProperty Name="source" ColumnName="source" />
+                <ScalarProperty Name="Volumen" ColumnName="Volumen" />
+                <ScalarProperty Name="match" ColumnName="match" />
+                <ScalarProperty Name="contract_type" ColumnName="contract_type" />
+                <ScalarProperty Name="contract_status" ColumnName="contract_status" />
+                <ScalarProperty Name="Account_no" ColumnName="Account_no" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spEP_Cliente_alta" FunctionName="SpiTvgDataModel.Store.spEP_Cliente_alta" />
+          <FunctionImportMapping FunctionImportName="spEP_Cliente_modifica" FunctionName="SpiTvgDataModel.Store.spEP_Cliente_modifica" />
+          <FunctionImportMapping FunctionImportName="spEP_Equipo" FunctionName="SpiTvgDataModel.Store.spEP_Equipo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SpiTvgDataModel.spEP_Equipo_Result">
+                <ScalarProperty Name="grupo_id" ColumnName="grupo_id" />
+                <ScalarProperty Name="grupo" ColumnName="grupo" />
+                <ScalarProperty Name="equipo_id" ColumnName="equipo_id" />
+                <ScalarProperty Name="equipo" ColumnName="equipo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spEP_Hotel" FunctionName="SpiTvgDataModel.Store.spEP_Hotel">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SpiTvgDataModel.spEP_Hotel_Result">
+                <ScalarProperty Name="hotel_id" ColumnName="hotel_id" />
+                <ScalarProperty Name="hotel" ColumnName="hotel" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spEP_Idioma" FunctionName="SpiTvgDataModel.Store.spEP_Idioma">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SpiTvgDataModel.spEP_Idioma_Result">
+                <ScalarProperty Name="idioma_id" ColumnName="idioma_id" />
+                <ScalarProperty Name="idioma" ColumnName="idioma" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spEP_Locacion" FunctionName="SpiTvgDataModel.Store.spEP_Locacion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SpiTvgDataModel.spEP_Locacion_Result">
+                <ScalarProperty Name="locacion_id" ColumnName="locacion_id" />
+                <ScalarProperty Name="locacion" ColumnName="locacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spEP_OPC" FunctionName="SpiTvgDataModel.Store.spEP_OPC">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SpiTvgDataModel.spEP_OPC_Result">
+                <ScalarProperty Name="opc_id" ColumnName="opc_id" />
+                <ScalarProperty Name="nombre_opc" ColumnName="nombre_opc" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spEP_Pais" FunctionName="SpiTvgDataModel.Store.spEP_Pais">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SpiTvgDataModel.spEP_Pais_Result">
+                <ScalarProperty Name="pais_id" ColumnName="pais_id" />
+                <ScalarProperty Name="pais" ColumnName="pais" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spEP_Premanifiesto_alta" FunctionName="SpiTvgDataModel.Store.spEP_Premanifiesto_alta" />
+          <FunctionImportMapping FunctionImportName="spEP_Reservacion_alta" FunctionName="SpiTvgDataModel.Store.spEP_Reservacion_alta" />
+          <FunctionImportMapping FunctionImportName="spEP_Sala_ventas" FunctionName="SpiTvgDataModel.Store.spEP_Sala_ventas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SpiTvgDataModel.spEP_Sala_ventas_Result">
+                <ScalarProperty Name="sala_ventas_id" ColumnName="sala_ventas_id" />
+                <ScalarProperty Name="sala_ventas" ColumnName="sala_ventas" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spManifest_Info" FunctionName="SpiTvgDataModel.Store.spManifest_Info">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SpiTvgDataModel.spManifest_Info_Result">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="LegacyKey" ColumnName="LegacyKey" />
+                <ScalarProperty Name="VLOID" ColumnName="VLOID" />
+                <ScalarProperty Name="VLO" ColumnName="VLO" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="ContractStatus" ColumnName="ContractStatus" />
+                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="SalesCenter" ColumnName="SalesCenter" />
+                <ScalarProperty Name="Closer" ColumnName="Closer" />
+                <ScalarProperty Name="FrontOfficeIdCliente" ColumnName="FrontOfficeIdCliente" />
+                <ScalarProperty Name="FrontOfficeIdResort" ColumnName="FrontOfficeIdResort" />
+                <ScalarProperty Name="RoomNumber" ColumnName="RoomNumber" />
+                <ScalarProperty Name="MarketingProgram" ColumnName="MarketingProgram" />
+                <ScalarProperty Name="Subdivision" ColumnName="Subdivision" />
+                <ScalarProperty Name="SourceGroup" ColumnName="SourceGroup" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="SourceItem" ColumnName="SourceItem" />
+                <ScalarProperty Name="OPCID" ColumnName="OPCID" />
+                <ScalarProperty Name="OPC" ColumnName="OPC" />
+                <ScalarProperty Name="TourID" ColumnName="TourID" />
+                <ScalarProperty Name="TourDate" ColumnName="TourDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spManifest_Info_Customer" FunctionName="SpiTvgDataModel.Store.spManifest_Info_Customer">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SpiTvgDataModel.spManifest_Info_Customer_Result">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="LegacyKey" ColumnName="LegacyKey" />
+                <ScalarProperty Name="VLOID" ColumnName="VLOID" />
+                <ScalarProperty Name="VLO" ColumnName="VLO" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="ContractStatus" ColumnName="ContractStatus" />
+                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="SalesCenter" ColumnName="SalesCenter" />
+                <ScalarProperty Name="Closer" ColumnName="Closer" />
+                <ScalarProperty Name="FrontOfficeIdCliente" ColumnName="FrontOfficeIdCliente" />
+                <ScalarProperty Name="FrontOfficeIdResort" ColumnName="FrontOfficeIdResort" />
+                <ScalarProperty Name="RoomNumber" ColumnName="RoomNumber" />
+                <ScalarProperty Name="MarketingProgram" ColumnName="MarketingProgram" />
+                <ScalarProperty Name="Subdivision" ColumnName="Subdivision" />
+                <ScalarProperty Name="SourceGroup" ColumnName="SourceGroup" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="SourceItem" ColumnName="SourceItem" />
+                <ScalarProperty Name="OPCID" ColumnName="OPCID" />
+                <ScalarProperty Name="OPC" ColumnName="OPC" />
+                <ScalarProperty Name="TourID" ColumnName="TourID" />
+                <ScalarProperty Name="TourDate" ColumnName="TourDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spEP_Categoria" FunctionName="SpiTvgDataModel.Store.spEP_Categoria">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SpiTvgDataModel.spEP_Categoria_Result">
+                <ScalarProperty Name="categoria_id" ColumnName="categoria_id" />
+                <ScalarProperty Name="categoria" ColumnName="categoria" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Default" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

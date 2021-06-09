@@ -1,0 +1,70 @@
+﻿@model ePlatBack.Models.ViewModels.MarketCodes.SearchMarketCodes
+
+<fieldset id="fdsMarketCodesManagement" class="fds-active">
+    <legend>
+        Market Codes
+    </legend>
+    <div class="align-from-top">
+        <div class="full-width">
+            <input type="button" class="submit right fieldset-expander" value="new" id="btnNewMarketCodesInfo" />
+        </div>
+
+        @using (Ajax.BeginForm("SearchMarketCodes", "Catalogs", new AjaxOptions { OnSuccess = "CATALOG.marketCodesResultsTable(data)", OnComplete = "CATALOG.makeTblMarketCodesSelectable()", UpdateTargetId = "divTblMarketCodes" }, new { id = "frmMarketCodesSearch" }))
+        {
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.MarketCodeSearch_MarketCode)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.MarketCodeSearch_MarketCode)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.MarketCodeSearch_Places)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.MarketCodeSearch_Places, Model.MarketCodeSearch_DrpPlaces, new { multiple = "multiple" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.MarketCodeSearch_LeadSources)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.MarketCodeSearch_LeadSources, Model.MarketCodeSearch_DrpLeadSources, new {multiple ="multiple"})
+                </div>
+            </div>
+            @*<div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.MarketCodeSearch_Users)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.MarketCodeSearch_Users, Model.MarketCodeSearch_DrpUsers, new { multiple = "multiple", data_not_set = "true" })
+                </div>
+            </div>*@
+            <div class="editor-alignment align-from-top">
+                <div class="editor-field">
+                    <input type="submit" class="button search" value="search" />
+                </div>
+            </div>
+            <div id="divTblMarketCodes">
+                <table id="tblMarketCodes" class="table dataTable">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Market Code</th>
+                            @*<th>Assigned To User(s)</th>*@
+                            <th>Resort</th>
+                            <th>Lead Source</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        }
+
+        @Html.Action("RenderMarketCodesManagement", "Catalogs")
+
+    </div>
+</fieldset>

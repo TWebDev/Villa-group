@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html lang="@ViewBag.Culture">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="keywords" content="@ViewBag.Keywords">
+    <meta name="description" content="@ViewBag.Description">
+    <meta name="robots" content="@ViewBag.Index, @ViewBag.Follow">
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="~/Content/themes/tga/css/main2.css" rel="stylesheet" />
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+    @Styles.Render("~/Content/themes/base/datepicker")
+    <link href="~/Content/plugins/vegas2/vegas.css" rel="stylesheet" />
+    <link href="~/Content/plugins/wow/animate.css" rel="stylesheet" />
+
+    @RenderSection("header", required: false)
+</head>
+<body>
+    @RenderSection("afterBody", required: false)
+    <header class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/" class="navbar-brand">
+                    <img src="@ViewBag.Logo" class="logo-image" width="150" alt="TodayGetaway.com" />
+                </a>
+            </div>
+            <nav id="bs-navbar" class="collapse navbar-collapse">
+                <div class="nav navbar-right hidden-xs">
+                    @Html.Raw(@ViewBag.Header)
+                    <div class="timer" style="display:none;">
+                        Ask for our Limited Time Special
+                        <div id="timer">
+                            <div id="countdown_dashboard">
+                                <div class="dash days_dash">
+                                    <div class="digit">
+                                        <div class="top" style="display: none;">0</div>
+                                        <div class="bottom" style="display: block;">0</div>
+                                    </div>
+                                    <div class="digit">
+                                        <div class="top" style="display: none;">0</div>
+                                        <div class="bottom" style="display: block;">0</div>
+                                    </div>
+                                    <span class="dash_title">D</span>
+                                </div>
+
+                                <div class="dash hours_dash">
+                                    <div class="digit">
+                                        <div class="top" style="display: none;">0</div>
+                                        <div class="bottom" style="display: block;">0</div>
+                                    </div>
+                                    <div class="digit">
+                                        <div class="top" style="display: none;">0</div>
+                                        <div class="bottom" style="display: block;">0</div>
+                                    </div>
+                                    <span class="dash_title">H</span>
+                                </div>
+
+                                <div class="dash minutes_dash">
+                                    <div class="digit">
+                                        <div class="top" style="display: none;">0</div>
+                                        <div class="bottom" style="display: block;">0</div>
+                                    </div>
+                                    <div class="digit">
+                                        <div class="top" style="display: none;">0</div>
+                                        <div class="bottom" style="display: block;">0</div>
+                                    </div>
+                                    <span class="dash_title">M</span>
+                                </div>
+
+                                <div class="dash seconds_dash">
+                                    <div class="digit">
+                                        <div class="top" style="display: none;">0</div>
+                                        <div class="bottom" style="display: block;">0</div>
+                                    </div>
+                                    <div class="digit">
+                                        <div class="top" style="display: none;">0</div>
+                                        <div class="bottom" style="display: block;">0</div>
+                                    </div>
+                                    <span class="dash_title">S</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="hidden-sm"><a href="/">Packages</a></li>
+                    <li><a id="aQuoteRequest" title="Request a Quote" data-toggle="modal" data-target="#quoteRequest">@ePlatFront.Resources.Views.Shared.SharedStrings.Request_a_Quote</a></li>
+                    <li><a id="aFreeVacation" title="Win a Free Vacation" data-toggle="modal" data-target="#freeVacation">Win a Free Vacation</a></li>
+                    <li><a id="aRedeemMyPackage" title="Redeem My Package" data-toggle="modal" data-target="#redeemMyPackage" class="btn-menu-2">Redeem My Package</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    @RenderSection("featured", required: false)
+
+    @RenderBody()
+    <footer>
+        <div class="call-to-action hidden-sm hidden-md hidden-lg">
+            @Html.Raw(@ViewBag.Header)
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <p>
+                        Copyright &copy; @DateTime.Now.Year Today Getaway. @ePlatFront.Resources.Views.Shared.SharedStrings.All_Rights_Reserved.<br />All prices are US Dollars.<br /><span class="footer-terms">
+                                                                                                                                                                                          <a href="/terms-and-conditions">Terms &amp; Conditions</a>
+                            @*@Html.Raw(@ViewBag.Footer)*@
+                        </span>
+                    </p>
+                </div>
+                <div class="col-sm-6">
+                    <img src="/Content/themes/dvh/images/logo-adeprotur.png" alt="Adeprotur">
+                    <img src="/Content/themes/dvh/images/logo-asudestico.png" alt="Asudestico">
+                    <a href="http://www.bbb.org/mexico/business-reviews/hotels-reservations/net-center-in-puerto-vallarta-ja-332?bluerefx=1" target="_blank">
+                        <img src="/images/ab-seal-horizontal-large.jpg?w=100" alt="Better Business Bureau" style="border:none;" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    @RenderSection("controls", required: false)
+
+    @*@Scripts.Render("~/bundles/modernizr")*@
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery.json-2.3.min.js"></script>
+    <script src="~/Scripts/controls.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="~/Content/plugins/vegas2/vegas.min.js"></script>
+    <script src="~/Content/plugins/wow/wow.min.js"></script>
+    <script src="~/Content/themes/tga/js/ui.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,71 @@
+﻿@model ePlatBack.Models.ViewModels.AccountingAccountsModel.SearchAccountingAccountsModel
+
+<h3>Summary</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Accounting Account</th>
+            <th>Income Accounts</th>
+            <th>Outcome Accounts</th>
+            <th>Terminal Price Types</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var acc in Model.ListAccountingAccountsSummary)
+        {
+            <tr>
+                <td>@acc.AccountingAccountName</td>
+                <td>@acc.IncomeRegisteredAccounts</td>
+                <td>@acc.OutcomeRegisteredAccounts</td>
+                <td>@acc.NumberOfPriceTypes</td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+
+<h3>Search Results</h3>
+
+<table id="tblSearchAccountingAccountsResults" class="table search-results">
+    <thead>
+        <tr>
+            <th>Accounting Account</th>
+            <th>Account Name</th>
+            <th>Account Type</th>
+            <th>Company</th>
+            <th>Price Type</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ListAccountingAccounts != null)
+        {
+            foreach (var i in Model.ListAccountingAccounts)
+            {
+                var id = "accountingAccount_" + i.AccountingAccountInfo_AccountingAccountID;
+                <tr id="@id">
+                    <td>
+                        @Html.DisplayFor(model => i.AccountingAccountInfo_Account)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.AccountingAccountInfo_AccountName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.AccountingAccountInfo_AccountTypeText)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.AccountingAccountInfo_CompanyText)
+                        
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.AccountingAccountInfo_PriceTypeText)
+                    </td>
+                    <td>
+                        <img src="/Content/themes/base/images/cross.png" class="right delete-item" />
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

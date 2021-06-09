@@ -1,0 +1,70 @@
+﻿@model ePlatBack.Models.ViewModels.WeeklyModel
+
+<table id="tblNewWeeklyReport" class="table non-editable">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Lead Source</th>
+            <th>User</th>
+            <th>Member Number</th>
+            <th>Tour Status</th>
+            <th>Final Tour Status</th>
+            <th>Tour Date</th>
+            <th>Real Tour Date</th>
+            <th>Sales Volume</th>
+            <th>Arrival Date</th>
+            <th>Booking Status</th>
+            <th>Resort</th>
+            <th>Total Paid</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ListWeeklyReport != null)
+        {
+            foreach (var i in Model.ListWeeklyReport)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => i.WeeklyReport_Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.WeeklyReport_LeadSource)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.WeeklyReport_User)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.WeeklyReport_MemberNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.WeeklyReport_TourStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.WeeklyReport_FinalTourStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.WeeklyReport_TourDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.WeeklyReport_RealTourDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.WeeklyReport_SalesVolume)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.WeeklyReport_ArrivalDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.WeeklyReport_BookingStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.WeeklyReport_Resort)
+                    </td>
+                    <td  data-format="currency">
+                        @Html.DisplayFor(model => i.WeeklyReport_TotalPaid)
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

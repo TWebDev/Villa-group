@@ -1,0 +1,139 @@
+﻿@model ePlatBack.Models.ViewModels.BudgetsModel.BudgetInfoModel
+
+@{
+    var Privileges = ViewData["Privileges"] as List<ePlatBack.Models.ViewModels.SysComponentsPrivilegesModel>;
+}
+
+@if (Model.Privileges.FirstOrDefault(m => m.Component == "fdsBudgetsInfo" && m.View == true) != null)
+{
+    <fieldset id="fdsBudgetsInfo" class="primary-selected-row-dependent">
+        <legend>
+            <img src="~/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+            Budget Info
+        </legend>
+        <div style="display:none" class="align-from-top">
+            @using (Ajax.BeginForm("SaveBudget", "Catalogs", new AjaxOptions { OnSuccess = "CATALOG.saveBudgetSuccess(data)" }, new { id = "frmBudgetInfo", onSubmit = "return UI.showValidationSummary(this.id);" }))
+            {
+                <div id="frmBudgetInfo_ErrorMessages" style="display:none">
+                    @Html.ValidationMessageFor(model => model.BudgetInfo_Budget)
+                    @Html.ValidationMessageFor(model => model.BudgetInfo_ToDate)
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.BudgetInfo_LeadCode)
+                        @Html.HiddenFor(model => model.BudgetInfo_BudgetID, new { @class = "secondary-selected-row-dependent" })
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.BudgetInfo_LeadCode, new { maxlength = "5" })
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.BudgetInfo_LeadQualification)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.BudgetInfo_LeadQualification)
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.BudgetInfo_Budget)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.BudgetInfo_Budget, new { @class = "numeric-field" })
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.BudgetInfo_Currency)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.BudgetInfo_Currency, Model.BudgetInfo_DrpCurrencies)
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.BudgetInfo_BudgetExt)
+                    </div>
+                    <div class="editor-field">
+                        <label>Yes</label>
+                        @Html.RadioButtonFor(model => model.BudgetInfo_BudgetExt, true, new { data_keep_value = "" })
+                        <label>No</label>
+                        @Html.RadioButtonFor(model => model.BudgetInfo_BudgetExt, false, new { data_keep_value = "" })
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.BudgetInfo_FromDate)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.BudgetInfo_FromDate, new { data_uses_date_picker = "true" })
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.BudgetInfo_Permanent)
+                    </div>
+                    <div class="editor-field">
+                        <label>Yes</label>
+                        @Html.RadioButtonFor(model => model.BudgetInfo_Permanent, true, new { data_keep_value = "" })
+                        <label>No</label>
+                        @Html.RadioButtonFor(model => model.BudgetInfo_Permanent, false, new { data_keep_value = "" })
+                    </div>
+                </div>
+                <div id="divBudgetToDate" class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.BudgetInfo_ToDate)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.BudgetInfo_ToDate, new { data_uses_date_picker = "true" })
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.BudgetInfo_PerClient)
+                    </div>
+                    <div class="editor-field">
+                        <label>Yes</label>
+                        @Html.RadioButtonFor(model => model.BudgetInfo_PerClient, true, new { data_keep_value = "" })
+                        <label>No</label>
+                        @Html.RadioButtonFor(model => model.BudgetInfo_PerClient, false, new { data_keep_value = "" })
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.BudgetInfo_PerWeek)
+                    </div>
+                    <div class="editor-field">
+                        <label>Yes</label>
+                        @Html.RadioButtonFor(model => model.BudgetInfo_PerWeek, true, new { data_keep_value = "" })
+                        <label>No</label>
+                        @Html.RadioButtonFor(model => model.BudgetInfo_PerWeek, false, new { data_keep_value = "" })
+                    </div>
+                </div>
+                <div id="divBudgetResetDayOfWeek" class="editor-alignment" style="display:none">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.BudgetInfo_ResetDayOfWeek)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.BudgetInfo_ResetDayOfWeek, Model.BudgetInfo_DrpWeekDays)
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.BudgetInfo_PromotionTeam)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.BudgetInfo_PromotionTeam, Model.BudgetInfo_DrpPromotionTeams, new { @class = "terminal-dependent-list", multiple = "multiple", data_route = "/Catalogs/GetDDLData", data_route_parameter = "promotionTeam" })
+                    </div>
+                </div>
+                <div class="editor-alignment full-width align-from-top">
+                   @if (Model.Privileges.FirstOrDefault(m => m.Component == "btnSaveBudget" && m.View==true) != null)
+                    {
+                        <input type="submit" class="submit right" value="save" id="btnSaveBudget" />
+                   }
+                </div>
+            }
+        </div>
+    </fieldset>
+}

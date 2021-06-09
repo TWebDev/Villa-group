@@ -1,0 +1,116 @@
+<html>
+<body>
+    <table style="width: 100%; font-family: Helvetica;">
+        <tr>
+            <td>
+                <p>Add your Info</p>
+                <span style="font-size:9pt;">Name:</span><br>
+                <input type="text" id="Name" style="width: 180px;"><br>
+                <span style="font-size:9pt;">Position:</span><br>
+                <input type="text" id="Position" style="width: 180px;"><br>
+                <span style="font-size:9pt;">Phone:</span> <br>
+                <input type="text" id="Phone1" style="width: 180px;"><br>
+                <span style="font-size:9pt;">Extension:</span> <br>
+                <input type="text" id="Ext1" style="width: 180px;"><br>
+                <span style="font-size:9pt;">Email:</span><br>
+                <input type="text" id="Email" style="width: 180px;"><br>
+                <span style="font-size:9pt;">Destinations:</span><br>
+                <select id="Destinations" style="width: 180px;">
+                    <option value="3">PVR, CSL, LTO</option>
+                    <option value="4">PVR, CSL, LTO, CUN</option>
+                </select><br>
+                <span style="font-size:9pt;">Logo:</span><br />
+                <select id="Logo" style="width: 180px;">
+                    <option value="logo.png">The Villa Group</option>
+                    <option value="logotga.png">Today Getaway</option>
+                    <option value="logodvh.png">Discount Vacation Hotels</option>
+                </select><br />
+                <span style="display: block; border: #ddd solid 1px; width: 179px; margin-top: 15px;">
+                    <input type="checkbox" id="SafeTravels" checked /><span style="font-size:9pt;">Safe Travels Logo</span>
+                </span>
+            </td>
+            <td>
+                <div id="tblSignature" style="border: #ddd dashed 1px; padding: 20px;">
+                    <table style="font-family: Helvetica;">
+                        <tbody>
+                            <tr>
+                                <td style="vertical-align: top;">
+                                    <img id="lblLogo" src="http://eplatfront.villagroup.com/Content/themes/act/img/logo.png">
+                                </td>
+                                <td>
+                                    <span style="font-size: 14pt;" id="lblName">Claudia Wilton</span><br>
+                                    <span style="font-size: 9pt;" id="lblPosition">Head VLO &amp; Reservations Net Center VDP</span><br>
+                                    <span style="color: #888;font-size: 9pt;line-height: 20px;">Direct Phone: <a href="tel:018002694488" id="lblPhone1" style="text-decoration:none; color:#03A9F4;">01 800 269 4488</a> Ext. <span id="lblExt1">405</span></span><br>
+                                    <span style="font-size: 9pt;">
+                                        <a href="mailto:cwilton@villagroup.com" id="lblEmail" style="text-decoration:none; color:#03A9F4;">cwilton@villagroup.com</a> |
+                                        <a target="_blank" id="lblWebsite" href="https://www.villagroupresorts.com" style="text-decoration: none; color:#03A9F4;">www.villagroupresorts.com</a>
+                                    </span><br><br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="font-size: 8pt; color: #888;">
+                                    <img id="lblDestinations" src="http://eplatfront.villagroup.com/Content/themes/act/img/footer3.jpg" />
+                                    <br>
+                                    <a id="lblSafeTravels" href="https://wttc.org/COVID-19/Safe-Travels-Global-Protocols-Stamp" target="_blank" style="margin-top:1px; display: block;">
+                                        <img src="http://eplatfront.villagroup.com/Content/files/signature/safe-travel.jpg" width="479" />
+                                    </a>
+                                    <br>
+                                    <i>
+                                        Aviso Legal: La informaci&oacute;n contenida en este mensaje es confidencial.<br>
+                                        Disclaimer: The information contained in this communication is confidential.
+                                    </i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+    <script>
+        $(function () {
+            $('select').off('change').on('change', function () {
+                let id = 'lbl' + $(this).attr('id');
+                let valor = $(this).val();
+                if (id == "lblDestinations") {
+                    $('#' + id).attr('src', 'http://eplatfront.villagroup.com/Content/themes/act/img/footer' + valor + '.jpg');
+                } else if (id == "lblLogo") {
+                    $('#' + id).attr('src', 'http://eplatfront.villagroup.com/Content/themes/act/img/' + valor);
+                    if (valor == 'logo.png') {
+                        $('#lblWebsite').text('www.villagroupresorts.com').attr('href', 'https://www.villagroupresorts.com');
+                    } else if (valor == 'logodvh.png') {
+                        $('#lblWebsite').text('www.discountvacationhotels.com').attr('href', 'https://www.discountvacationhotels.com');
+                    } else if (valor == 'logotga.png') {
+                        $('#lblWebsite').text('www.todaygetaway.com').attr('href', 'http://www.todaygetaway.com');
+                    }
+                }
+            });
+            $('input[type=checkbox]').on('click', function () {
+                let id = 'lbl' + $(this).attr('id');
+                if ($(this).is(':checked')) {
+                    $('#' + id).show();
+                } else {
+                    $('#' + id).hide();
+                }
+            });
+            $('input').off('keyup').on('keyup', function () {
+                let id = 'lbl' + $(this).attr('id');
+                let valor = $(this).val();
+                if ($(this).val() != "") {
+                    $('#' + id).text(valor);
+                    //si es ancla cambiar href
+                    if (id == 'lblPhone1') {
+                        $('#' + id).attr('href', 'tel:' + valor.replace(/ /g, ''));
+                    }
+                    if (id == 'lblEmail') {
+                        $('#' + id).attr('href', 'mailto:' + valor);
+                    }
+                }                
+            });
+
+        });
+    </script>
+</body>
+</html>

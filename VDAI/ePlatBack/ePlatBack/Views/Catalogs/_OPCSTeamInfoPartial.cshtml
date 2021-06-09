@@ -1,0 +1,83 @@
+﻿@model ePlatBack.Models.ViewModels.OPCSModel.OPCTeamInfoModel
+@Html.HiddenFor(model => model.OPCPromotionTeamID)
+@Html.HiddenFor(model => model.OPCTeamInfo_TemporalID)
+<div class="editor-alignment">
+    <div class="editor-label">
+        @Html.LabelFor(model => model.OPCTeamInfo_PromotionTeam)
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.OPCTeamInfo_PromotionTeam, Model.OPCTeamInfo_DrpPromotionTeams, new { @class = "promotionTeam-dependent-list terminal-dependent-list", data_route = "/Catalogs/GetDDLData", data_route_parameter = "promotionTeam"})
+    </div>
+</div>
+<div class="editor-alignment">
+    <div class="editor-label">
+        @Html.LabelFor(model => model.OPCTeamInfo_ParentOpc)
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.OPCTeamInfo_ParentOpc, Model.OPCTeamInfo_DrpParentOpcs, new { @class = "opc-dependent-list" })
+    </div>
+</div>
+<div class="editor-alignment">
+    <div class="editor-label">
+        @Html.LabelFor(model => model.OPCTeamInfo_JobPosition)
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.OPCTeamInfo_JobPosition, Model.OPCTeamInfo_DrpJobPositions)
+    </div>
+</div>
+<div class="editor-alignment">
+    <div class="editor-label">
+        @Html.LabelFor(model => model.OPCTeamInfo_EnlistDate)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.OPCTeamInfo_EnlistDate)
+    </div>
+</div>
+<div class="editor-alignment">
+    <div class="editor-label">
+        @Html.LabelFor(model => model.OPCTeamInfo_Deleted)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.OPCTeamInfo_Deleted)
+    </div>
+</div>
+
+<div class="editor-alignment" data-showon="OPCTeamInfo_Deleted">
+    <div class="editor-label">
+        @Html.LabelFor(model => model.OPCTeamInfo_TerminateDate)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.OPCTeamInfo_TerminateDate)
+    </div>
+</div>
+<div class="editor-alignment" data-showon="OPCTeamInfo_Deleted">
+    <div class="editor-label">
+        @Html.LabelFor(model => model.OPCTeamInfo_TerminateReason)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.OPCTeamInfo_TerminateReason)
+    </div>
+</div>
+<div class="editor-alignment" data-showon="OPCTeamInfo_Deleted">
+    <div class="invisible">
+    @Html.EditorFor(model => model.OPCTeamInfo_HasSubs)
+    </div>
+    <div data-showon="OPCTeamInfo_HasSubs">
+    <div class="editor-label">
+        Assign <span id="OPCTeamInfo_Subs">@Html.DisplayFor(model => model.OPCTeamInfo_Subs)</span> subordinate(s) to:
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.OPCTeamInfo_AssignToParentOpc, Model.OPCTeamInfo_DrpParentOpcs, new { @class = "opc-dependent-list" })
+    </div>
+    </div>
+</div>
+
+<div class="editor-alignment">
+    <div class="editor-label">
+        &nbsp;
+    </div>
+    <div class="editor-field">
+        <input type="button" class="button" id="btnSaveTeamInfo" value="Add Info" />
+        <input type="button" class="button" id="btnCancelTeamInfo" value="Cancel" />
+    </div>
+</div>

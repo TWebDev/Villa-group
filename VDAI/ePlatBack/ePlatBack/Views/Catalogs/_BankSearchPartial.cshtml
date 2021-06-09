@@ -1,0 +1,84 @@
+﻿@model ePlatBack.Models.ViewModels.Banks.SearchBanks
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 border-bottom">
+    <h1 class="h2">Banks</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <button type="button" class="btn btn-sm mr-2" id="btnSearchBankInfo" v-on:click="UI().showSearchCard()">
+            <i class="material-icons">search</i>
+        </button>
+        <button type="button" class="btn btn-sm btn-primary" id="btnNewBankInfo" v-on:click="newBank()">
+            <i class="material-icons">add</i>
+            New Bank
+        </button>
+    </div>
+</div>
+
+@using (Ajax.BeginForm("SearchBanks", "Catalogs", new AjaxOptions
+        {
+            OnSuccess = "Banks.setSearchResults(data)"
+        },
+        new { id = "frmBanksPartiesSearch" }))
+{
+    <div class="card mb-2 search-card" v-bind:class="{ 'd-none' : !UIData.showSearchCard }">
+        <div class="card-body">
+            <h5 class="card-title">Search Banks</h5>
+            <div class="form-row">
+                <div class="form-group col-md-3 col-lg-2">
+                    @Html.LabelFor(model => model.SearchBank)
+                    @Html.TextBoxFor(model => model.SearchBank, new { @class = "form-control" })
+                </div>
+                <div class="form-group col-md-3 col-lg-2">
+                    @Html.LabelFor(model => model.SearchFromDate, new { @class = "text-truncate d-block" })
+                    @Html.TextBoxFor(model => model.SearchFromDate, new { @class = "form-control datetimepicker-input", placeholder = "yyyy-mm-dd", data_toggle = "datetimepicker", data_target = "#SearchFromDate" })
+                </div>
+                <div class="form-group col-md-3 col-lg-2">
+                    @Html.LabelFor(model => model.SearchToDate)
+                    @Html.TextBoxFor(model => model.SearchToDate, new { @class = "form-control datetimepicker-input", placeholder = "yyyy-mm-dd", data_toggle = "datetimepicker", data_target = "#SearchToDate" })
+                </div>
+                <div class="form-group col-md-3 col-lg-2">
+                    @Html.LabelFor(model => model.SearchTerminal)
+                    @Html.DropDownListFor(model => model.SearchTerminal, new List<SelectListItem>(), new
+                    {
+                        multiple = "multiple",
+                        @class = "form-control terminal-dependent-list"
+                    })
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="text-right col">
+                    <input type="reset" class="btn" value="Clear" />
+                    <input type="submit" id="btnSearchBanks" class="btn btn-primary" value="Search" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="mt-3 card" v-if="Banks.length > 0">
+    <div class="card-body">
+        <b-table id="tblBanks" responsive
+                 v-bind:items="Banks"
+                 v-bind:fields="DataTable.fields"
+                 v-bind:bordered="DataTable.bordered"
+                 v-bind:striped="DataTable.striped"
+                 v-bind:hover="DataTable.hover"
+                 v-bind:sort-by.sync="DataTable.sortBy"
+                 v-bind:sort-desc.sync="DataTable.sortDesc"
+                 v-bind:current-page="DataTable.currentPage"
+                 v-bind:per-page="DataTable.perPage"
+                 v-on:row-clicked="openBank">
+            <template slot="FromDate" slot-scope="data">
+                {{ data.value | dateYYYYMMDD }}
+            </template>
+            <template slot="ToDate" slot-scope="data">
+                {{ data.value | dateYYYYMMDD }}
+            </template>
+            <template slot="actions" slot-scope="row">
+                <i class="material-icons" v-on:click.stop="deleteBank(row.item)" style="cursor:pointer;">delete</i>
+            </template>
+        </b-table>
+        <b-pagination v-bind:total-rows="Banks.length" v-bind:per-page="DataTable.perPage" v-model="DataTable.currentPage" class="my-0" />
+    </div>
+</div>
+
+@Html.Action("RenderBankInfo", "Catalogs")

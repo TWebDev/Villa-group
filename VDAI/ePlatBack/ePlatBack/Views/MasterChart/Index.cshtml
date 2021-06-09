@@ -1,0 +1,50 @@
+﻿@model ePlatBack.Models.ViewModels.MasterChartViewModel
+
+@{
+    ViewBag.Title = "ePlat > CRM > MasterChart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+    ViewData["Privileges"] = Model.Privileges;
+    var Privileges = ViewData["Privileges"] as List<ePlatBack.Models.ViewModels.SysComponentsPrivilegesModel>;
+}
+
+@section Head {
+    <link href="/Content/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/fineuploader.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/jquery-ui-timepicker-addon.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/dataTables.tableTools.min.css" rel="stylesheet" />
+}
+@section Scripts{
+    <script src="@Url.Content("~/Scripts/jquery.dataTables.js")" type="text/javascript"></script>
+    <script src="/Scripts/jquery.fineuploader-3.0.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.fineuploader-3.0.min.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.numeric.js" type="text/javascript"></script>
+    @*<script src="~/Scripts/jquery-ui-timepicker-addon.js" type="text/javascript"></script>*@
+    <script src="/Scripts/Common.js" type="text/javascript"></script>
+    <script src="/Scripts/Settings.js" type="text/javascript"></script>
+    <script src="/Scripts/Utils.js" type="text/javascript"></script>
+    <script src="~/Scripts/dataTables.tableTools.min.js"></script>
+    <script src="/Scripts/crm/masterchart/leads.js?v=@DateTime.Now" type="text/javascript"></script>
+    @*<script src="/Scripts/crm/timeshare/timeshare.js?v=@DateTime.Now" type="text/javascript"></script>*@
+    <script src="~/Scripts/crm/masterchart/fastsale.js?v=@DateTime.Now" type="text/javascript"></script>
+}
+<h1 id="pageTitle" class="non-printable">MasterChart</h1>
+<input type="hidden" id="hdnPrivileges" value="@Model.Privileges" />
+@Html.Partial("_LeadSearchPartial", Model.leadSearch)
+@Html.Partial("_LeadGeneralInformationPartial", Model.leadGeneralInformation)
+@if (Privileges.FirstOrDefault(m => m.Component == "frmReservationGeneralInformation") == null || Privileges.FirstOrDefault(m => m.Component == "frmReservationGeneralInformation").View)
+{
+    @Html.Partial("_HotelReservationsPartial", Model.hotelReservations)
+}
+@Html.Partial("_BillingInformationPartial", Model.billingInformation)
+@Html.Partial("_ReservationChargesPartial", Model.reservationCharges)
+@if (Privileges.FirstOrDefault(m => m.Component == "fdsPurchasesManagement") == null || Privileges.FirstOrDefault(m => m.Component == "fdsPurchasesManagement").View)
+{
+    @Html.Partial("_PurchasesPartial", Model.PurchaseInfoModel)
+}
+
+@if (Privileges.FirstOrDefault(m => m.Component == "fdsMassUpdate") == null || Privileges.FirstOrDefault(m => m.Component == "fdsMassUpdate").View)
+{
+    @Html.Partial("_LeadMassUpdatePartial", Model.massUpdate)
+}
+@Html.Partial("_ImportPartial", Model.leadGeneralInformation)

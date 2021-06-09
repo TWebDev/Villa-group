@@ -1,0 +1,106 @@
+﻿@model ePlatBack.Models.ViewModels.PriceViewModel
+
+
+<table id="tblSearchPricesResults" class="table dataTable">
+    @if (Model.PricesTableModel.SearchResultsModel == null)
+    {
+        <thead>
+            <tr>
+                <th>Unit</th>
+                <th>Terminal</th>
+                <th>BW Vigency</th>
+                <th>TW Vigency</th>
+                @*@foreach (var priceType in Model.PricesTableModel.PriceTypes.OrderBy(m => m.Order))*@
+                @foreach (var priceType in Model.PricesTableModel.Prices.FirstOrDefault().PricesPerType)
+                {
+                    var pType = priceType.PriceType + " (P" + priceType.PriceTypeID + ")";
+                    <th>@pType</th>
+                    @*var pType = priceType.Type + " (P" + priceType.PriceTypeID + ")";
+                        <th>@pType</th>*@
+                }
+                <th></th>
+            </tr>
+        </thead>
+        <tbody class="primary-selected-row-dependent">
+            @foreach (var row in Model.PricesTableModel.Prices)
+            {
+                var id = "trPrice" + row.PriceID;
+                var _id = "delP" + row.PriceID;
+                var selectable = row.PricesPerType.Where(m => m.Base).Count() > 0 ? "selectable-row" : "";
+                <tr id="@id" class="@selectable">
+                    <td>@row.Unit</td>
+                    <td>@Model.PricesTableModel.Terminal</td>
+                    <td>@row.Vigency</td>
+                    <td>@row.TWVigency</td>
+                    @foreach (var promo in row.PricesPerType.GroupBy(m => m.PromoID))
+                    {
+                        var lowestPrice = promo.Where(m => m.IsCost).Select(m => m.Amount).FirstOrDefault();
+                        foreach (var price in row.PricesPerType.Where(m => m.PromoID == promo.Key))
+                        {
+                            var base_ = price.Base ? price.Active ? "mb-warning mb-confirmation" : "mb-warning" : "";
+                            var lowerThanCost = price.Amount < lowestPrice && !price.IsCost ? "mb-error" : "";
+                            var _message = price.Amount < lowestPrice && !price.IsCost ? "Price CANNOT be lower than Cost" : "";
+                            <td class="@base_ @lowerThanCost">
+                                <span class="block price" data-format="currency">@price.Amount @price.Currency</span>
+                                <span class="block rule">@price.Rule<br />@_message</span>
+                            </td>
+                        }
+                    }
+
+                    <td class="tds">
+                        @if (selectable != "")
+                        {
+                            <i class="material-icons" id="@_id">delete</i>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    }
+    else
+    {
+        <thead>
+            <tr>
+                <th>Price</th>
+                <th>Currency</th>
+                <th>Terminal</th>
+                <th>Vigency</th>
+                <th>Price Type</th>
+                <th>Price Clasification</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody class="primary-selected-row-dependent">
+            @foreach (var i in Model.PricesTableModel.SearchResultsModel)
+            {
+                var trID = "trPrice" + i.PriceInfo_PriceID;
+                var tdID = "delP" + i.PriceInfo_PriceID;
+                var date = "date" + i.PriceInfo_PriceID;
+                var toDate = i.PriceInfo_ToDate != "" ? (i.PriceInfo_FromDate + " / " + i.PriceInfo_ToDate) : i.PriceInfo_FromDate + " / Permanent";
+                <tr id="@trID">
+                    <td>
+                        @Html.DisplayFor(model => i.PriceInfo_Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.PriceInfo_Currency)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.PriceInfo_TerminalName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => toDate)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(model => i.PriceInfo_PriceTypeName)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(model => i.PriceInfo_PriceClasificationName)
+                    </td>
+                    <td class="tds">
+                        <i class="material-icons" id="@tdID">delete</i>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    }
+</table>

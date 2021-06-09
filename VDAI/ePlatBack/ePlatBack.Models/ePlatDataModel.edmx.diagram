@@ -1,0 +1,1714 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="35b7bedbc1304d5bb5722cd2082b0e24" Name="Diagram1" ZoomLevel="18" ShowGrid="true">
+        <AssociationConnector Association="ePlatModel.FK_tblLocations_tblLocations" />
+        <AssociationConnector Association="ePlatModel.FK_tblFields_tblFields" />
+        <AssociationConnector Association="ePlatModel.FK_tblIncomes_tblIncomes" />
+        <EntityTypeShape EntityType="ePlatModel.C__MigrationHistory" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ePlatModel.aspnet_Applications" Width="1.5" PointX="0.75" PointY="384.125" />
+        <EntityTypeShape EntityType="ePlatModel.aspnet_Membership" Width="1.5" PointX="13.5" PointY="381.5" />
+        <EntityTypeShape EntityType="ePlatModel.aspnet_Paths" Width="1.5" PointX="3" PointY="393" />
+        <EntityTypeShape EntityType="ePlatModel.aspnet_PersonalizationAllUsers" Width="1.5" PointX="5.25" PointY="396.375" />
+        <EntityTypeShape EntityType="ePlatModel.aspnet_PersonalizationPerUser" Width="1.5" PointX="16.5" PointY="386" />
+        <EntityTypeShape EntityType="ePlatModel.aspnet_Profile" Width="1.5" PointX="13.5" PointY="756.5" />
+        <EntityTypeShape EntityType="ePlatModel.aspnet_Roles" Width="1.5" PointX="3" PointY="381.75" />
+        <EntityTypeShape EntityType="ePlatModel.aspnet_SchemaVersions" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="ePlatModel.aspnet_Users" Width="1.5" PointX="11.25" PointY="365" />
+        <EntityTypeShape EntityType="ePlatModel.aspnet_WebEvent_Events" Width="1.5" PointX="11.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ePlatModel.AspNetRoles" Width="1.5" PointX="0.75" PointY="5.25" />
+        <EntityTypeShape EntityType="ePlatModel.AspNetUserClaims" Width="1.5" PointX="5.25" PointY="3.875" />
+        <EntityTypeShape EntityType="ePlatModel.AspNetUserLogins" Width="1.5" PointX="5.25" PointY="9.125" />
+        <EntityTypeShape EntityType="ePlatModel.AspNetUsers" Width="1.5" PointX="3" PointY="4" />
+        <EntityTypeShape EntityType="ePlatModel.tblAccountingAccounts" Width="1.5" PointX="16.5" PointY="390.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblActivityLogsModules" Width="1.5" PointX="9.75" PointY="10.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblAdditionalServices" Width="1.5" PointX="24.75" PointY="425" />
+        <EntityTypeShape EntityType="ePlatModel.tblAgeRanges" Width="1.5" PointX="40.5" PointY="358.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblAirLines" Width="1.5" PointX="23.25" PointY="418.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblAnswers" Width="1.5" PointX="36" PointY="457.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblApiAuthorizedDomains" Width="1.5" PointX="5.25" PointY="1.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblApiAuthorizedIPs" Width="1.5" PointX="5.25" PointY="6.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblAppliedSurveys" Width="1.5" PointX="33.75" PointY="357.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblAreaCodes" Width="1.5" PointX="46.75" PointY="411.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblAreas" Width="1.5" PointX="44.5" PointY="411.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblArrivalGuestCompanions" Width="1.5" PointX="35.25" PointY="392.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblArrivals" Width="1.5" PointX="33" PointY="371.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblArrivalsGuestTypes" Width="1.5" PointX="30.75" PointY="422.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblArrivalsTravelSources" Width="1.5" PointX="30.75" PointY="345.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblAssignationSettings" Width="1.5" PointX="28.5" PointY="396.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblBanks" Width="1.5" PointX="28.5" PointY="540.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblBannerGroups" Width="1.5" PointX="27.75" PointY="443.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblBanners" Width="1.5" PointX="49" PointY="410.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblBillingInfo" Width="1.5" PointX="45.75" PointY="369.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblBlackOutDates" Width="1.5" PointX="2.75" PointY="11.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblBlockDescriptions" Width="1.5" PointX="39.75" PointY="352.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblBlocks" Width="1.5" PointX="37.5" PointY="338.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblBlockSettings" Width="1.5" PointX="24.75" PointY="359.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblBoats" Width="1.5" PointX="25.5" PointY="394.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblBookingStatus" Width="1.5" PointX="6" PointY="369" />
+        <EntityTypeShape EntityType="ePlatModel.tblBookingStatusHistory" Width="1.5" PointX="24.75" PointY="383" />
+        <EntityTypeShape EntityType="ePlatModel.tblBracelets" Width="1.5" PointX="25.5" PointY="452.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblBrokerContactInformation" Width="1.5" PointX="27.25" PointY="431.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblBrokerContracts" Width="1.5" PointX="20.25" PointY="424.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblBrokerContracts_SysWorkGroups" Width="1.5" PointX="22.5" PointY="407.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblBrokerContracts_Terminals" Width="1.5" PointX="53.5" PointY="401.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblBrokerDestinationSettings" Width="1.5" PointX="13.5" PointY="401.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblBrokerJobPositions" Width="1.5" PointX="25" PointY="455.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblBrokerPricesAndFeeTypes" Width="1.5" PointX="11.25" PointY="404.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblBrokers" Width="1.5" PointX="18" PointY="425.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblBrokersLogs" Width="1.5" PointX="13.5" PointY="746.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblBrokerWash" Width="1.5" PointX="34.5" PointY="397.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblCalendarEvents" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblCallClasifications" Width="1.5" PointX="20.25" PointY="422.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblCallDestinationSettings" Width="1.5" PointX="46.75" PointY="408.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblCallLogs" Width="1.5" PointX="49" PointY="387.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblCampaigns" Width="1.5" PointX="54.75" PointY="350.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblCardTypes" Width="1.5" PointX="43.5" PointY="349" />
+        <EntityTypeShape EntityType="ePlatModel.tblCatalogs" Width="1.5" PointX="47.5" PointY="348.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblCatalogs_Terminals" Width="1.5" PointX="50.75" PointY="344.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblCategories" Width="1.5" PointX="49.75" PointY="347.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblCategories_Packages" Width="1.5" PointX="36.75" PointY="358.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblCategories_Services" Width="1.5" PointX="52" PointY="377.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblCategoryDescriptions" Width="1.5" PointX="52" PointY="333" />
+        <EntityTypeShape EntityType="ePlatModel.tblChargeDescriptions" Width="1.5" PointX="45.75" PointY="352.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblChargeTypes" Width="1.5" PointX="45.75" PointY="340.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblCloseOuts" Width="1.5" PointX="28.5" PointY="403.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblCloseOuts_Egresses" Width="1.5" PointX="51.25" PointY="390.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblCloseOuts_PaymentDetails" Width="1.5" PointX="51" PointY="400.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblCloseOuts_Purchases" Width="1.5" PointX="30.75" PointY="413.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblCommissionExclusions" Width="1.5" PointX="54" PointY="374.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblCommissions" Width="1.5" PointX="31.5" PointY="362.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblCommissions_PointsOfSale" Width="1.5" PointX="36.75" PointY="366.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblCompanies" Width="1.5" PointX="1.5" PointY="367.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblCompanies_Destinations" Width="1.5" PointX="7.75" PointY="350.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblCompanies_PayingCompanies" Width="1.5" PointX="30.75" PointY="394.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblCompaniesGroups" Width="1.5" PointX="0.75" PointY="339.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblCompaniesGroupsDivisions" Width="1.5" PointX="0.75" PointY="346.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblCompanyAccounts" Width="1.5" PointX="3.75" PointY="358.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblCompanyDepartments" Width="1.5" PointX="0.75" PointY="356" />
+        <EntityTypeShape EntityType="ePlatModel.tblCompanyTypes" Width="1.5" PointX="1.5" PointY="378.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblContentPageDescriptions" Width="1.5" PointX="36.75" PointY="399.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblContentPages" Width="1.5" PointX="16.5" PointY="379.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblContractPrizes" Width="1.5" PointX="48.75" PointY="371.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblContracts" Width="1.5" PointX="48.75" PointY="352.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblContracts_Places" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblContracts_PriceClasifications" Width="1.5" PointX="54" PointY="355.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblContractsCommissions" Width="1.5" PointX="51" PointY="368" />
+        <EntityTypeShape EntityType="ePlatModel.tblContractsHistory" Width="1.5" PointX="70.75" PointY="375" />
+        <EntityTypeShape EntityType="ePlatModel.tblConversationMessages" Width="1.5" PointX="30" PointY="357.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblCountries" Width="1.5" PointX="1.5" PointY="325.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblCouponFolios" Width="1.5" PointX="30.5" PointY="373.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblCouponInfoUnits" Width="1.5" PointX="3" PointY="14.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblCreditLimits" Width="1.5" PointX="3.75" PointY="369.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblCurrencies" Width="1.5" PointX="23.25" PointY="322.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblDestinationDescriptions" Width="1.5" PointX="25.5" PointY="340" />
+        <EntityTypeShape EntityType="ePlatModel.tblDestinations" Width="1.5" PointX="1.5" PointY="330.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblDialOutPrefixes" Width="1.5" PointX="56.75" PointY="356.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblDiscardReasons" Width="1.5" PointX="20.25" PointY="428.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblDiscountCards" Width="1.5" PointX="3.75" PointY="335.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblDocumentTypes" Width="1.5" PointX="63.25" PointY="402.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblEgressConcepts" Width="1.5" PointX="13.5" PointY="373.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblEgresses" Width="1.5" PointX="44" PointY="375.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblEmailNotificationEvents" Width="1.5" PointX="36" PointY="408" />
+        <EntityTypeShape EntityType="ePlatModel.tblEmailNotificationLogs" Width="1.5" PointX="27.75" PointY="389.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblEmailNotifications" Width="1.5" PointX="25.5" PointY="386.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblEmailNotifications_BookingStatus" Width="1.5" PointX="42.75" PointY="405.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblEmailNotifications_BrokerContracts" Width="1.5" PointX="39.75" PointY="404.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblEmailNotifications_Destinations" Width="1.5" PointX="39.75" PointY="407.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblEmailNotifications_LeadSources" Width="1.5" PointX="45.75" PointY="405.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblEmailNotifications_LeadStatus" Width="1.5" PointX="46.75" PointY="392.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblEmailNotifications_Places" Width="1.5" PointX="46.75" PointY="389.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblEmailNotifications_PointsOfSale" Width="1.5" PointX="49" PointY="376.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblEmailNotifications_Roles" Width="1.5" PointX="8.25" PointY="376.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblEmails" Width="1.5" PointX="23.25" PointY="410.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblEmails_Terminals" Width="1.5" PointX="34.5" PointY="355.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblEmailTemplates" Width="1.5" PointX="21" PointY="411.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblErrorEvents" Width="1.5" PointX="25.5" PointY="416" />
+        <EntityTypeShape EntityType="ePlatModel.tblEventsOrientations" Width="1.5" PointX="4.75" PointY="11.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblExchangeRates" Width="1.5" PointX="28.5" PointY="366.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblExchangeRates_PointsOfSales" Width="1.5" PointX="39.75" PointY="371.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblFeatures" Width="1.5" PointX="11.75" PointY="10.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblFeaturesTypes" Width="1.5" PointX="11.75" PointY="5.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblFieldGroups" Width="1.5" PointX="47.75" PointY="395.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblFields" Width="1.5" PointX="50" PointY="404.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblFieldsValues" Width="1.5" PointX="55.25" PointY="404.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblFlights" Width="1.5" PointX="25.5" PointY="376.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblFlightTypes" Width="1.5" PointX="23.25" PointY="420.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblFreeNights" Width="1.5" PointX="38.75" PointY="410.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblFrontOfficeSync" Width="1.5" PointX="13.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblFunds" Width="1.5" PointX="25.5" PointY="371.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblGenderDescriptions" Width="1.5" PointX="42.75" PointY="324.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblGenders" Width="1.5" PointX="40.5" PointY="345.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblGreetingReps" Width="1.5" PointX="58" PointY="390.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblGuestHub_FrontOffice" Width="1.5" PointX="33.75" PointY="325.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblGuestPreferences" Width="1.5" PointX="21" PointY="568.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblGuestsHub" Width="1.5" PointX="31.5" PointY="351.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblGuestsPayments" Width="1.5" PointX="41.25" PointY="375.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblHarvesting" Width="1.5" PointX="13.75" PointY="5.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblImportantDates" Width="1.5" PointX="23.25" PointY="568.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblIncomeRanges" Width="1.5" PointX="40.5" PointY="339.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblIncomes" Width="1.5" PointX="37.75" PointY="394.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblInputMethods" Width="1.5" PointX="20.25" PointY="431.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblInteractions" Width="1.5" PointX="30.75" PointY="386.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblInteractionTypes" Width="1.5" PointX="20.25" PointY="419.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblInterchangeNetworks" Width="1.5" PointX="13.75" PointY="10.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblInterestLevels" Width="1.5" PointX="20.25" PointY="414" />
+        <EntityTypeShape EntityType="ePlatModel.tblInvitationDeposits" Width="1.5" PointX="12.75" PointY="13.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblInvitations" Width="1.5" PointX="36" PointY="376.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblInvitationsSettings" Width="1.5" PointX="55.75" PointY="383.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblInvoiceInfo" Width="1.5" PointX="30.75" PointY="539.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblIPsIndex" Width="1.5" PointX="14.75" PointY="13.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblItemTypes" Width="1.5" PointX="36.5" PointY="411.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblJobPositions" Width="1.5" PointX="29.25" PointY="349" />
+        <EntityTypeShape EntityType="ePlatModel.tblLanguageDescriptions" Width="1.5" PointX="18.75" PointY="553.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblLanguages" Width="1.5" PointX="16.5" PointY="553.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblLastContractInfo" Width="1.5" PointX="24.75" PointY="433" />
+        <EntityTypeShape EntityType="ePlatModel.tblLastNames_Countries" Width="1.5" PointX="3.75" PointY="326.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblLeadAssignations" Width="1.5" PointX="30.75" PointY="383" />
+        <EntityTypeShape EntityType="ePlatModel.tblLeadEmails" Width="1.5" PointX="30.75" PointY="378.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblLeadOrientations" Width="1.5" PointX="15.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblLeadProfiles" Width="1.5" PointX="42.75" PointY="356" />
+        <EntityTypeShape EntityType="ePlatModel.tblLeadProfiles_TravelerDocuments" Width="1.5" PointX="45" PointY="356.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblLeads" Width="1.5" PointX="22.5" PointY="371.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblLeads_QualificationRequirements" Width="1.5" PointX="25.5" PointY="404" />
+        <EntityTypeShape EntityType="ePlatModel.tblLeadSources" Width="1.5" PointX="3" PointY="386.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblLeadSources_SysWorkGroups" Width="1.5" PointX="5.25" PointY="378.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblLeadSourcesChannels" Width="1.5" PointX="52.5" PointY="350.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblLeadSourcesSettings" Width="1.5" PointX="25.5" PointY="421.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblLeadStatus" Width="1.5" PointX="20.25" PointY="343.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblLeadTypes" Width="1.5" PointX="20.25" PointY="350.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblLeadTypes_SysWorkGroups" Width="1.5" PointX="31.5" PointY="335.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblLikes" Width="1.5" PointX="15.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblLiveHelpSchedules" Width="1.5" PointX="25.5" PointY="344.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblLiveHelpSettings" Width="1.5" PointX="22.5" PointY="403.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblLocations" Width="1.5" PointX="54.75" PointY="346.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblMailingSettings" Width="1.5" PointX="16.5" PointY="361.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblMailMessages" Width="1.5" PointX="50" PointY="380.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblMandatoryTasks" Width="1.5" PointX="66.25" PointY="370.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblMandatoryTasks_SysWorkGroups" Width="1.5" PointX="68.5" PointY="358.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblMaritalStatus" Width="1.5" PointX="40.5" PointY="342.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblMaritalStatusDescriptions" Width="1.5" PointX="42.75" PointY="327.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblMarketCodes" Width="1.5" PointX="22.5" PointY="398" />
+        <EntityTypeShape EntityType="ePlatModel.tblMarketCodes_Users" Width="1.5" PointX="48.75" PointY="400" />
+        <EntityTypeShape EntityType="ePlatModel.tblMaxPointsPerOptions" Width="1.5" PointX="66.25" PointY="366.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblMeetingPoints" Width="1.5" PointX="52.25" PointY="404.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblMemberContactInfo" Width="1.5" PointX="24.75" PointY="437.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblMemberInfo_AdditionalServices" Width="1.5" PointX="27" PointY="429.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblMembershipCards" Width="1.5" PointX="53.5" PointY="411" />
+        <EntityTypeShape EntityType="ePlatModel.tblMembershipSales" Width="1.5" PointX="55.75" PointY="409.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblMerchantAccounts" Width="1.5" PointX="45.75" PointY="343.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblMerchantAccountSettings" Width="1.5" PointX="48" PointY="357.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblMinimumNights" Width="1.5" PointX="42.75" PointY="333.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblMoneyTransactions" Width="1.5" PointX="54" PointY="364" />
+        <EntityTypeShape EntityType="ePlatModel.tblMoneyTransactionTypes" Width="1.5" PointX="51.75" PointY="360.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblNotificationPreferences" Width="1.5" PointX="16.5" PointY="367.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblNotificationRules" Width="1.5" PointX="15.75" PointY="6.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblNotifications" Width="1.5" PointX="19.5" PointY="392.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblNotificationTypes" Width="1.5" PointX="14.25" PointY="354.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblNqReasons" Width="1.5" PointX="13.5" PointY="357.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblOccupations" Width="1.5" PointX="40.5" PointY="356.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblOcupancyCombinations" Width="1.5" PointX="27.75" PointY="408.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblOffers" Width="1.5" PointX="20.25" PointY="347" />
+        <EntityTypeShape EntityType="ePlatModel.tblOffers_Terminals" Width="1.5" PointX="28.5" PointY="344.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblOPC_PromotionTeams" Width="1.5" PointX="47" PointY="382.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblOPCS" Width="1.5" PointX="27.75" PointY="379.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblOperators" Width="1.5" PointX="19.5" PointY="380.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblOptions_Places" Width="1.5" PointX="68.5" PointY="371.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblOrientations" Width="1.5" PointX="15.75" PointY="10.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblPackageDescriptions" Width="1.5" PointX="27.75" PointY="358.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblPackages" Width="1.5" PointX="25.5" PointY="364.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblPackageSettings" Width="1.5" PointX="38.75" PointY="390" />
+        <EntityTypeShape EntityType="ePlatModel.tblPageStructures" Width="1.5" PointX="34.5" PointY="415" />
+        <EntityTypeShape EntityType="ePlatModel.tblPageTypes" Width="1.5" PointX="14.25" PointY="405.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblPayingCompanies" Width="1.5" PointX="25.5" PointY="410" />
+        <EntityTypeShape EntityType="ePlatModel.tblPaymentDetailsPartials" Width="1.5" PointX="56" PointY="393.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblPaymentTypes" Width="1.5" PointX="13.5" PointY="713.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblPaymentTypes_Components" Width="1.5" PointX="18.75" PointY="714.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblPersonalReminders" Width="1.5" PointX="10" PointY="13.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblPersonalTitles" Width="1.5" PointX="20.25" PointY="354.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblPhones" Width="1.5" PointX="45.75" PointY="400.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblPhoneTypes" Width="1.5" PointX="43.5" PointY="408.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblPictureDescriptions" Width="1.5" PointX="31.5" PointY="429.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblPictures" Width="1.5" PointX="29.25" PointY="426.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblPictures_SysItemTypes" Width="1.5" PointX="31.5" PointY="417.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblPlaceAdditionals" Width="1.5" PointX="39.75" PointY="335.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblPlaceClasifications" Width="1.5" PointX="35.25" PointY="348.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblPlaceDescriptions" Width="1.5" PointX="39.75" PointY="328.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblPlaces_PlanTypes" Width="1.5" PointX="42.75" PointY="340.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblPlaces_Terminals" Width="1.5" PointX="42.75" PointY="343.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblPlacesEvents" Width="1.5" PointX="16.75" PointY="13.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblPlacesFeatures" Width="1.5" PointX="14.75" PointY="16.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblPlacesOrientations" Width="1.5" PointX="16.75" PointY="16.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblPlacesSimpleAuthentication" Width="1.5" PointX="17.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblPlaceTerms" Width="1.5" PointX="45.75" PointY="337.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblPlaceTypes" Width="1.5" PointX="33" PointY="348.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblPlanTypeDescriptions" Width="1.5" PointX="25.5" PointY="319.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblPlanTypes" Width="1.5" PointX="23.25" PointY="319" />
+        <EntityTypeShape EntityType="ePlatModel.tblPointsOfSale" Width="1.5" PointX="39.75" PointY="362" />
+        <EntityTypeShape EntityType="ePlatModel.tblPointsOfSale_PaymentTypes" Width="1.5" PointX="42" PointY="352.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblPointsOfSale_PriceTypes" Width="1.5" PointX="45" PointY="359" />
+        <EntityTypeShape EntityType="ePlatModel.tblPointsRedemptionRates" Width="1.5" PointX="3" PointY="339.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblPreferences" Width="1.5" PointX="15.75" PointY="561.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblPreferences_Places" Width="1.5" PointX="18" PointY="556.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblPreferencesDescriptions" Width="1.5" PointX="18" PointY="569" />
+        <EntityTypeShape EntityType="ePlatModel.tblPreferenceTypes" Width="1.5" PointX="13.5" PointY="759.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblPreferenceTypes_Places" Width="1.5" PointX="15.75" PointY="759.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblPreferenceTypesDescriptions" Width="1.5" PointX="15.75" PointY="762.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblPresentations" Width="1.5" PointX="65.5" PointY="373.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblPriceClasifications" Width="1.5" PointX="17.25" PointY="357.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblPrices" Width="1.5" PointX="31.5" PointY="397.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblPricesList" Width="1.5" PointX="19.5" PointY="361.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblPricesReportLayouts" Width="1.5" PointX="56" PointY="377.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblPricesReportLayouts_PriceTypes" Width="1.5" PointX="63.25" PointY="373.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblPricesReportLayouts_Roles" Width="1.5" PointX="8.25" PointY="382.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblPricesReportLayouts_Services" Width="1.5" PointX="66.25" PointY="381.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblPriceTypes" Width="1.5" PointX="37.5" PointY="330.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblPriceTypesGroups" Width="1.5" PointX="48.75" PointY="339.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblPriceUnits" Width="1.5" PointX="33.75" PointY="406.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblPrizes" Width="1.5" PointX="46.75" PointY="376" />
+        <EntityTypeShape EntityType="ePlatModel.tblPrizes_Logs" Width="1.5" PointX="68.5" PointY="392.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblPrizeTypes" Width="1.5" PointX="34.5" PointY="363.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblPromoDescriptions" Width="1.5" PointX="37.5" PointY="326.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblPromoPrices" Width="1.5" PointX="33.75" PointY="411" />
+        <EntityTypeShape EntityType="ePlatModel.tblPromos" Width="1.5" PointX="35.25" PointY="328.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblPromos_PromoTypes" Width="1.5" PointX="40.5" PointY="332.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblPromos_RelatedItems" Width="1.5" PointX="48.5" PointY="367.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblPromotionTeams" Width="1.5" PointX="25.5" PointY="353.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblPromoTypes" Width="1.5" PointX="38.25" PointY="323.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblProspectationPrograms" Width="1.5" PointX="11.25" PointY="358.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblProviders" Width="1.5" PointX="22.5" PointY="361.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblProvidersDescriptions" Width="1.5" PointX="17.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblProviderTypes" Width="1.5" PointX="20.25" PointY="358.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblPurchaseGifts" Width="1.5" PointX="59.25" PointY="368.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblPurchases" Width="1.5" PointX="57" PointY="363.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblPurchases_Services" Width="1.5" PointX="63.25" PointY="380.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblPurchases_Services_MoneyTransactions" Width="1.5" PointX="68.5" PointY="374.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblPurchaseServiceDetails" Width="1.5" PointX="33.75" PointY="538.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblPurchaseServiceStatus" Width="1.5" PointX="61" PointY="362" />
+        <EntityTypeShape EntityType="ePlatModel.tblPurchaseServiceStatus_Terminals" Width="1.5" PointX="63.25" PointY="346.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblPurchaseStatus" Width="1.5" PointX="54.75" PointY="343.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblPurchaseTickets" Width="1.5" PointX="63.25" PointY="377" />
+        <EntityTypeShape EntityType="ePlatModel.tblQualificationRequirements" Width="1.5" PointX="23.25" PointY="441.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblQualifications" Width="1.5" PointX="18.75" PointY="560.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblQualifications_Genders" Width="1.5" PointX="24" PointY="559.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblQualifications_PlaceClasifications" Width="1.5" PointX="24" PointY="562.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblQualifications_ResortMembers" Width="1.5" PointX="21" PointY="562.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblQualifications_WorkingStatus" Width="1.5" PointX="21" PointY="559.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblQualificationsAgeRanges" Width="1.5" PointX="21" PointY="565.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblQualificationStatus" Width="1.5" PointX="20.25" PointY="416.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblQuestions" Width="1.5" PointX="15.75" PointY="557.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblQuestions_Terminals" Width="1.5" PointX="36.75" PointY="361.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblQuotas" Width="1.5" PointX="53" PointY="393.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblQuotations" Width="1.5" PointX="42.75" PointY="365.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblRecordings" Width="1.5" PointX="65.5" PointY="384.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblReferralInformation" Width="1.5" PointX="42.75" PointY="400.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblReferralsPointsRedemption" Width="1.5" PointX="48" PointY="364.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblRegions" Width="1.5" PointX="1.5" PointY="322.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblRegions_Destinations" Width="1.5" PointX="3.75" PointY="331.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblRelatedPrices" Width="1.5" PointX="50.75" PointY="394.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblReminders" Width="1.5" PointX="53" PointY="382.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblReportLayouts" Width="1.5" PointX="19.5" PointY="398.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblReservationNotes" Width="1.5" PointX="17.75" PointY="6.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblReservations" Width="1.5" PointX="60.25" PointY="372" />
+        <EntityTypeShape EntityType="ePlatModel.tblReservations_MandatoryTasks" Width="1.5" PointX="68.5" PointY="378" />
+        <EntityTypeShape EntityType="ePlatModel.tblReservations_VerificationAgreements" Width="1.5" PointX="68.5" PointY="387.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblReservationStatus" Width="1.5" PointX="58" PointY="398.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblReservationStatus_SysWorkGroups" Width="1.5" PointX="63.25" PointY="370.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblReservationStatus_Terminals" Width="1.5" PointX="60.25" PointY="365.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblResortAges" Width="1.5" PointX="39.75" PointY="319.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblResortFeeTypes" Width="1.5" PointX="3" PointY="344" />
+        <EntityTypeShape EntityType="ePlatModel.tblReviews" Width="1.5" PointX="65.5" PointY="393.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblRoomAvailabilities" Width="1.5" PointX="30.75" PointY="409.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblRoomTypeDescriptions" Width="1.5" PointX="27.75" PointY="411.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblRoomTypes" Width="1.5" PointX="25.5" PointY="399.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblSalesChannels" Width="1.5" PointX="13.5" PointY="388" />
+        <EntityTypeShape EntityType="ePlatModel.tblSalesRooms" Width="1.5" PointX="14.25" PointY="408.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblSalesRoomsParties" Width="1.5" PointX="16.5" PointY="402.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblSchemas" Width="1.5" PointX="13.5" PointY="753.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblSchemas_Destinations" Width="1.5" PointX="15.75" PointY="753.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblSchemas_Hotels" Width="1.5" PointX="18.75" PointY="753.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblSeasons" Width="1.5" PointX="17.75" PointY="9.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblSeoItems" Width="1.5" PointX="51.5" PointY="355.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblSeoSysItems" Width="1.5" PointX="53.75" PointY="337.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblServerExtensions" Width="1.5" PointX="5.25" PointY="355.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblServers" Width="1.5" PointX="29.25" PointY="328" />
+        <EntityTypeShape EntityType="ePlatModel.tblServiceDescriptions" Width="1.5" PointX="55" PointY="387" />
+        <EntityTypeShape EntityType="ePlatModel.tblServices" Width="1.5" PointX="38.75" PointY="376.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblServices_AccountingAccounts" Width="1.5" PointX="51" PointY="372.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblServices_Allotment" Width="1.5" PointX="41" PointY="380.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblServices_PricesCache" Width="1.5" PointX="54" PointY="369.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblServices_PriceTypes" Width="1.5" PointX="36.75" PointY="369.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblShared" Width="1.5" PointX="9.75" PointY="17.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblSharedLeads" Width="1.5" PointX="36.75" PointY="404" />
+        <EntityTypeShape EntityType="ePlatModel.tblSignatures" Width="1.5" PointX="65.5" PointY="387.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblSimpleAuthentication" Width="1.5" PointX="5.25" PointY="450" />
+        <EntityTypeShape EntityType="ePlatModel.tblSPIHotelsPickUps" Width="1.5" PointX="16.5" PointY="395.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblSPIPremanifest" Width="1.5" PointX="44.25" PointY="387" />
+        <EntityTypeShape EntityType="ePlatModel.tblStates" Width="1.5" PointX="29.25" PointY="353" />
+        <EntityTypeShape EntityType="ePlatModel.tblStocks" Width="1.5" PointX="52" PointY="386.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblStockTransactions" Width="1.5" PointX="54.25" PointY="453.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblSupervisors_Agents" Width="1.5" PointX="13.5" PointY="762.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblSupportTicketSources" Width="1.5" PointX="18.75" PointY="12.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblSupportTicketTypes" Width="1.5" PointX="18.75" PointY="15.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblSurveys" Width="1.5" PointX="28.5" PointY="361.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblSurveySaved" Width="1.5" PointX="13.5" PointY="718.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblSurveysCache" Width="1.5" PointX="18.75" PointY="18.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblSysComponentAliases" Width="1.5" PointX="13.5" PointY="351.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblSysComponents" Width="1.5" PointX="11.25" PointY="352.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblSysComponentTypes" Width="1.5" PointX="9" PointY="354.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblSysEvents" Width="1.5" PointX="23.25" PointY="414.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblSysEvents_Terminals" Width="1.5" PointX="51" PointY="363.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblSysItemsOrientations" Width="1.5" PointX="19.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblSysItemTypes" Width="1.5" PointX="29.25" PointY="417.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblSysProfiles" Width="1.5" PointX="8.25" PointY="385.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblSysProfilesSettings" Width="1.5" PointX="5.25" PointY="374.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblSysWorkGroups" Width="1.5" PointX="3" PointY="347" />
+        <EntityTypeShape EntityType="ePlatModel.tblSysWorkGroups_BookingStatus" Width="1.5" PointX="8.25" PointY="379.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblSysWorkGroups_QualificationRequirements" Width="1.5" PointX="28.5" PointY="415" />
+        <EntityTypeShape EntityType="ePlatModel.tblSysWorkGroups_ReportLayouts" Width="1.5" PointX="24.75" PointY="407.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblSysWorkGroups_ResortFeeTypes" Width="1.5" PointX="5.25" PointY="349.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblSysWorkGroups_Servers" Width="1.5" PointX="5.25" PointY="346.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblSysWorkGroups_TourStatus" Width="1.5" PointX="5.25" PointY="386.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblSysWorkGroups_VerificationAgreements" Width="1.5" PointX="71.5" PointY="372" />
+        <EntityTypeShape EntityType="ePlatModel.tblSysWorkGroupsTeams" Width="1.5" PointX="3" PointY="362.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblTasks" Width="1.5" PointX="19.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblTaskScheduler" Width="1.5" PointX="7.75" PointY="11.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblTerminalDomains" Width="1.5" PointX="25.5" PointY="441.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblTerminalExtensions" Width="1.5" PointX="25.5" PointY="412.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblTerminalFlows" Width="1.5" PointX="5.75" PointY="19.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblTerminalGoals" Width="1.5" PointX="25.5" PointY="336.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblTerminalPhones" Width="1.5" PointX="57.75" PointY="345" />
+        <EntityTypeShape EntityType="ePlatModel.tblTerminals" Width="1.5" PointX="23.25" PointY="330.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblTerminals_BookingStatus" Width="1.5" PointX="34.5" PointY="338.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblTerminals_CallClasifications" Width="1.5" PointX="53.5" PointY="398.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblTerminals_Companies" Width="1.5" PointX="34.5" PointY="341.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblTerminals_Destinations" Width="1.5" PointX="28.5" PointY="340.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblTerminals_InteractionTypes" Width="1.5" PointX="52.5" PointY="348" />
+        <EntityTypeShape EntityType="ePlatModel.tblTerminals_Languages" Width="1.5" PointX="28.5" PointY="439.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblTerminals_LeadSources" Width="1.5" PointX="25.5" PointY="350.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblTerminals_LeadSourcesChannels" Width="1.5" PointX="54.75" PointY="340.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblTerminals_LeadStatus" Width="1.5" PointX="28.5" PointY="337.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblTerminals_LeadTypes" Width="1.5" PointX="31.5" PointY="341.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblTerminals_MerchantAccounts" Width="1.5" PointX="48" PointY="343.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblTerminals_PaymentTypes" Width="1.5" PointX="15.75" PointY="714.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblTerminals_PriceTypes" Width="1.5" PointX="34.5" PointY="402" />
+        <EntityTypeShape EntityType="ePlatModel.tblTerminals_PromotionTeams" Width="1.5" PointX="30.75" PointY="332.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblTerminals_ProspectationPrograms" Width="1.5" PointX="28.5" PointY="334.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblTerminals_Servers" Width="1.5" PointX="31.5" PointY="338.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblTerminals_SysWorkGroups" Width="1.5" PointX="19.5" PointY="373" />
+        <EntityTypeShape EntityType="ePlatModel.tblTimeZones" Width="1.5" PointX="20.25" PointY="408.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblTopicQuestions" Width="1.5" PointX="13.5" PointY="750.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblTopServices" Width="1.5" PointX="54.5" PointY="360.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblTourStatus" Width="1.5" PointX="63.25" PointY="367.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblTransportationZones" Width="1.5" PointX="35.25" PointY="345" />
+        <EntityTypeShape EntityType="ePlatModel.tblTravelerDocuments" Width="1.5" PointX="42.75" PointY="346.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblTravelInfo" Width="1.5" PointX="39.75" PointY="399.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblTrials" Width="1.5" PointX="13.5" PointY="391.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblUserDocumentation" Width="1.5" PointX="15.75" PointY="545.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblUserIPs" Width="1.5" PointX="13.5" PointY="732.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblUserLogsYYYYMM" Width="1.5" PointX="13.5" PointY="363.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblUserProfiles" Width="1.5" PointX="16.5" PointY="371.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblUserRequests" Width="1.5" PointX="13.5" PointY="724.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblUsers_Destinations" Width="1.5" PointX="13.5" PointY="398" />
+        <EntityTypeShape EntityType="ePlatModel.tblUsers_JobPositions" Width="1.5" PointX="19.5" PointY="389" />
+        <EntityTypeShape EntityType="ePlatModel.tblUsers_Leads" Width="1.5" PointX="44.75" PointY="397" />
+        <EntityTypeShape EntityType="ePlatModel.tblUsers_LeadSources" Width="1.5" PointX="13.5" PointY="368.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblUsers_NotificationTypes" Width="1.5" PointX="19.5" PointY="377" />
+        <EntityTypeShape EntityType="ePlatModel.tblUsers_Places" Width="1.5" PointX="13.5" PointY="378.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblUsers_SysWorkGroups" Width="1.5" PointX="5.25" PointY="382" />
+        <EntityTypeShape EntityType="ePlatModel.tblUsers_Terminals" Width="1.5" PointX="34.5" PointY="368" />
+        <EntityTypeShape EntityType="ePlatModel.tblVehicleTypeDescriptions" Width="1.5" PointX="10" PointY="7.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblVehicleTypes" Width="1.5" PointX="7.75" PointY="8.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblVerificationAgreements" Width="1.5" PointX="66.25" PointY="403.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblVideos" Width="1.5" PointX="32.25" PointY="426.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblVideos_SysItemTypes" Width="1.5" PointX="34.5" PointY="418.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblWebhooks" Width="1.5" PointX="19.5" PointY="366.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblWebhooksLog" Width="1.5" PointX="42.75" PointY="371" />
+        <EntityTypeShape EntityType="ePlatModel.tblWeeklyAvailability" Width="1.5" PointX="41" PointY="414.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblWidgets" Width="1.5" PointX="23.25" PointY="315.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblWidgetsCache" Width="1.5" PointX="25.5" PointY="347.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblWikiFields" Width="1.5" PointX="19.5" PointY="403.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblWorkflows" Width="1.5" PointX="25.5" PointY="448.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblWorkflows_Destinations" Width="1.5" PointX="51.75" PointY="414.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblWorkflows_Places" Width="1.5" PointX="41.75" PointY="411.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblWorkingStatus" Width="1.5" PointX="40.5" PointY="349.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblWorkingStatusDescriptions" Width="1.5" PointX="42.75" PointY="330.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblZones" Width="1.5" PointX="35.25" PointY="351.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblZones_Terminals" Width="1.5" PointX="43.5" PointY="337.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblGuestContractReservartions" Width="1.5" PointX="19.75" PointY="9.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblGuestHubMemberInfo" Width="1.5" PointX="13.75" PointY="19.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblUserSettings" Width="1.5" PointX="7.75" PointY="20.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblZone_zoneSOM" Width="1.5" PointX="20.75" PointY="12.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblZoneSOM" Width="1.5" PointX="20.75" PointY="15.75" />
+        <EntityTypeShape EntityType="ePlatModel.vw_aspnet_Applications" Width="1.5" PointX="20.75" PointY="18.75" />
+        <EntityTypeShape EntityType="ePlatModel.vw_aspnet_MembershipUsers" Width="1.5" PointX="21.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ePlatModel.vw_aspnet_Profiles" Width="1.5" PointX="21.75" PointY="7.75" />
+        <EntityTypeShape EntityType="ePlatModel.vw_aspnet_Roles" Width="1.5" PointX="17.75" PointY="21.75" />
+        <EntityTypeShape EntityType="ePlatModel.vw_aspnet_Users" Width="1.5" PointX="19.75" PointY="21.75" />
+        <EntityTypeShape EntityType="ePlatModel.vw_aspnet_UsersInRoles" Width="1.5" PointX="21.75" PointY="21.75" />
+        <EntityTypeShape EntityType="ePlatModel.vw_aspnet_WebPartState_Paths" Width="1.5" PointX="22.75" PointY="10.75" />
+        <EntityTypeShape EntityType="ePlatModel.vw_aspnet_WebPartState_Shared" Width="1.5" PointX="22.75" PointY="13.75" />
+        <EntityTypeShape EntityType="ePlatModel.vw_aspnet_WebPartState_User" Width="1.5" PointX="22.75" PointY="16.75" />
+        <EntityTypeShape EntityType="ePlatModel.vw_ConflictoTotales" Width="1.5" PointX="23.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ePlatModel.vw_FreeGetaways" Width="1.5" PointX="23.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ePlatModel.vw_NetCenterSurveyReferrals" Width="1.5" PointX="5.75" PointY="23.75" />
+        <EntityTypeShape EntityType="ePlatModel.vw_QuoteRequests" Width="1.5" PointX="7.75" PointY="23.75" />
+        <EntityTypeShape EntityType="ePlatModel.vw_RegisterToWin" Width="1.5" PointX="13.75" PointY="23.75" />
+        <EntityTypeShape EntityType="ePlatModel.vw_Sweepstakes" Width="1.5" PointX="23.75" PointY="19.75" />
+        <AssociationConnector Association="ePlatModel.FK__aspnet_Me__Appli__5B438874" />
+        <AssociationConnector Association="ePlatModel.FK__aspnet_Pa__Appli__0CDAE408" />
+        <AssociationConnector Association="ePlatModel.FK__aspnet_Ro__Appli__79C80F94" />
+        <AssociationConnector Association="ePlatModel.FK__aspnet_Us__Appli__4B0D20AB" />
+        <AssociationConnector Association="ePlatModel.FK__aspnet_Me__UserI__5C37ACAD" />
+        <AssociationConnector Association="ePlatModel.FK__aspnet_Pe__PathI__1293BD5E" />
+        <AssociationConnector Association="ePlatModel.FK__aspnet_Pe__PathI__16644E42" />
+        <AssociationConnector Association="ePlatModel.FK__aspnet_Pe__UserI__1758727B" />
+        <AssociationConnector Association="ePlatModel.FK__aspnet_Pr__UserI__703EA55A" />
+        <AssociationConnector Association="ePlatModel.FK_tblEmailNotifications_Roles_aspnet_Roles" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadSources_SysWorkGroups_aspnet_Roles" />
+        <AssociationConnector Association="ePlatModel.FK_tblPricesReportLayouts_Roles_aspnet_Roles" />
+        <AssociationConnector Association="ePlatModel.FK_tblSimpleAuthentication_aspnet_Roles" />
+        <AssociationConnector Association="ePlatModel.FK_tblSysProfiles_aspnet_Roles" />
+        <AssociationConnector Association="ePlatModel.FK_tblSysProfilesSettings_aspnet_Roles" />
+        <AssociationConnector Association="ePlatModel.FK_tblSysWorkGroups_BookingStatus_aspnet_Roles" />
+        <AssociationConnector Association="ePlatModel.FK_tblSysWorkGroups_TourStatus_aspnet_Roles" />
+        <AssociationConnector Association="ePlatModel.FK_tblUsers_SysWorkGroups_aspnet_Roles" />
+        <AssociationConnector Association="ePlatModel.FK_tblAccountingAccounts_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblArrivals_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblArrivals_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblArrivals_aspnet_Users2" />
+        <AssociationConnector Association="ePlatModel.FK_tblArrivals_aspnet_Users3" />
+        <AssociationConnector Association="ePlatModel.FK_tblArrivals_aspnet_Users4" />
+        <AssociationConnector Association="ePlatModel.FK_tblArrivals_aspnet_Users5" />
+        <AssociationConnector Association="ePlatModel.FK_tblAssignationSettings_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblBoats_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblBookingStatusHistory_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblBrokerDestinationSettings_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblBrokersLogs_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblBrokerWash_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblCloseOuts_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblCloseOuts_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblCommissions_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblCommissions_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblContentPages_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblCouponFolios_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblEgressConcepts_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblEgresses_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblEgresses_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblEmailNotificationLogs_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblEmailNotifications_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblExchangeRates_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblExchangeRates_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblExchangeRates_PointsOfSales_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblExchangeRates_PointsOfSales_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblFieldGroups_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblFieldGroups_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblFlights_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblFlights_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblFunds_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblGuestsPayments_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblIncomes_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblIncomes_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblIncomes_aspnet_Users2" />
+        <AssociationConnector Association="ePlatModel.FK_tblInteractions_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblInteractions_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblInvitations_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblInvitations_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblInvitations_aspnet_Users2" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadAssignations_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadAssignations_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadEmails_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeads_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeads_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeads_aspnet_Users2" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeads_aspnet_Users3" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeads_aspnet_Users4" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeads_QualificationRequirements_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblLiveHelpSettings_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblMailingSettings_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblMailMessages_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblMailMessages_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblMarketCodes_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblMarketCodes_Users_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblNotificationPreferences_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblNotifications_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblNotifications_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblNqReasons_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblNqReasons_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblOPCS_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblOPCS_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblOperators_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblPackages_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblPackages_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblPaymentDetailsPartials_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblPaymentDetailsPartials_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblPaymentTypes_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblPhones_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblPreferences_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblPreferenceTypes_aspnet_User" />
+        <AssociationConnector Association="ePlatModel.FK_tblPresentations_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblPresentations_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblPrices_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblPrices_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblPricesList_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblPricesReportLayouts_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblPricesReportLayouts_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblPrize_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblPrize_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblPrize_aspnet_Users2" />
+        <AssociationConnector Association="ePlatModel.FK_tblPrize_aspnet_Users3" />
+        <AssociationConnector Association="ePlatModel.FK_tblPrizeTypes_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblProviders_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblProviders_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchases_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchases_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchases_aspnet_Users2" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchases_Services_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchases_Services_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchases_Services_aspnet_Users2" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchases_Services_aspnet_Users3" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchases_Services_aspnet_Users4" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchases_Services_aspnet_Users6" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchases_Services_aspnet_Users7" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchaseTickets_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblQualifications_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblQualifications_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblQuestions_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblQuotas_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblReferralInformation_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblRelatedPrices_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblReminders_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblReportLayouts_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservations_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservations_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservations_aspnet_Users2" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservations_aspnet_Users3" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservations_aspnet_Users4" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservations_MandatoryTasks_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservations_VerificationAgreements_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblRoomTypes_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblSalesChannels_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblSalesRoomsParties_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblSchemas_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblServiceDescriptions_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblServices_AccountingAccounts_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblServices_Allotment_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblServices_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblServices_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblServices_PricesCache_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblServices_PriceTypes_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblServices_PriceTypes_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblSharedLeads_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblSharedLeads_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblSPIHotelsPickUps_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblSPIHotelsPickUps_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblStocks_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblStockTransactions_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblSupervisors_Agents_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblSupervisors_Agents_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblSurveys_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblSurveySaved_aspnet_user" />
+        <AssociationConnector Association="ePlatModel.FK_tblSysProfiles_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblSysWorkGroups_Users_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_PriceTypes_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_SysWorkGroups_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblTopicQuestions_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblTrials_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblTrials_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblUserDocumentation_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblUserIPs_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblUserIPs_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblUserLogsYYYYMM_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblUserProfiles_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblUserRequests_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblUsers_Destinations_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblUsers_Destinations_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblUsers_JobPositions_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblUsers_Leads_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblUsers_LeadSources_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblUsers_LeadSources_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblUsers_LeadSources_aspnet_Users2" />
+        <AssociationConnector Association="ePlatModel.FK_tblUsers_NotificationTypes_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblUsers_Places_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblUsers_SysWorkGroups_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblUsers_Terminals_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblUsers_Terminals_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblWebhooks_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblWikiFields_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblWikiFields_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="ePlatModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="ePlatModel.FK_tblApiAuthorizedDomains_AspNetUsers" />
+        <AssociationConnector Association="ePlatModel.FK_tblApiAuthorizedIPs_AspNetUsers" />
+        <AssociationConnector Association="ePlatModel.FK_tblAccountingAccounts_tblCompanies" />
+        <AssociationConnector Association="ePlatModel.FK_tblAccountingAccounts_tblPriceTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblServices_AccountingAccounts_tblAccountingAccounts" />
+        <AssociationConnector Association="ePlatModel.FK_tblMemberInfo_AdditionalServices_tblAdditionalServices" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadProfiles_tblAgeRanges" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadProfiles_tblAgeRanges2" />
+        <AssociationConnector Association="ePlatModel.FK_tblQualifications_AgeRanges_tblAgeRanges" />
+        <AssociationConnector Association="ePlatModel.FK_tblFlights_tblAirLines" />
+        <AssociationConnector Association="ePlatModel.FK_tblAnswers_tblAppliedSurveys" />
+        <AssociationConnector Association="ePlatModel.FK_tblAnswers_tblQuestions" />
+        <AssociationConnector Association="ePlatModel.FK_tblAppliedSurveys_tblGuestsHub" />
+        <AssociationConnector Association="ePlatModel.FK_tblAppliedSurveys_tblSurveys" />
+        <AssociationConnector Association="ePlatModel.FK_tblAreaCodes_tblAreas" />
+        <AssociationConnector Association="ePlatModel.FK_tblAreaCodes_tblTimeZones" />
+        <AssociationConnector Association="ePlatModel.FK_tblCallLogs_tblAreaCodes" />
+        <AssociationConnector Association="ePlatModel.FK_tblAreas_tblStates" />
+        <AssociationConnector Association="ePlatModel.FK_tblArrivalGuestCompanions_tblArrivals" />
+        <AssociationConnector Association="ePlatModel.FK_tblArrivals_tblArrivals" />
+        <AssociationConnector Association="ePlatModel.FK_tblArrivals_tblArrivalsGuestTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblArrivals_tblArrivalsTravelSources" />
+        <AssociationConnector Association="ePlatModel.FK_tblArrivals_tblBookingStatus" />
+        <AssociationConnector Association="ePlatModel.FK_tblArrivals_tblCountries" />
+        <AssociationConnector Association="ePlatModel.FK_tblArrivals_tblCurrencies" />
+        <AssociationConnector Association="ePlatModel.FK_tblArrivals_tblGuestsHub" />
+        <AssociationConnector Association="ePlatModel.FK_tblArrivals_tblLeads" />
+        <AssociationConnector Association="ePlatModel.FK_tblArrivals_tblNqReasons" />
+        <AssociationConnector Association="ePlatModel.FK_tblArrivals_tblOPCS" />
+        <AssociationConnector Association="ePlatModel.FK_tblArrivals_tblPromotionTeams" />
+        <AssociationConnector Association="ePlatModel.FK_tblArrivals_tblProspectationPrograms" />
+        <AssociationConnector Association="ePlatModel.FK_tblArrivals_tblQualificationStatus" />
+        <AssociationConnector Association="ePlatModel.FK_tblArrivals_tblQualificationStatus1" />
+        <AssociationConnector Association="ePlatModel.FK_tblArrivals_tblSalesRoomsParties" />
+        <AssociationConnector Association="ePlatModel.FK_tblArrivals_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblArrivals_tblTourStatus" />
+        <AssociationConnector Association="ePlatModel.FK_tblGuestsPayments_tblArrivals" />
+        <AssociationConnector Association="ePlatModel.FK_tblArrivalsGuestTypes_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblArrivalsTravelSources_tblArrivalsGuestTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblArrivalsTravelSources_tblProspectationPrograms" />
+        <AssociationConnector Association="ePlatModel.FK_tblMarketCodes_tblArrivalsTravelSources" />
+        <AssociationConnector Association="ePlatModel.FK_tblAssignationSettings_tblLeadTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblAssignationSettings_tblSysWorkGroupsTeams" />
+        <AssociationConnector Association="ePlatModel.FK_tblAssignationSettings_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblBanks_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblInvoiceInfo_tblBanks" />
+        <AssociationConnector Association="ePlatModel.FK_tblOperators_tblBanks" />
+        <AssociationConnector Association="ePlatModel.FK_tblBannerGroups_tblBannerGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblBanners_tblBannerGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblBanners_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblBillingInfo_tblCardTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblBillingInfo_tblCountries" />
+        <AssociationConnector Association="ePlatModel.FK_tblBillingInfo_tblLeads" />
+        <AssociationConnector Association="ePlatModel.FK_tblMoneyTransactions_tblBillingInfo" />
+        <AssociationConnector Association="ePlatModel.FK_tblBlockDescriptions_tblBlocks" />
+        <AssociationConnector Association="ePlatModel.FK_tblBlocks_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblBlockSettings_tblBlocks" />
+        <AssociationConnector Association="ePlatModel.FK_tblPackages_tblBlocks" />
+        <AssociationConnector Association="ePlatModel.FK_tblPlaceAdditionals_tblBlocks" />
+        <AssociationConnector Association="ePlatModel.FK_tblPlaceTerms_tblBlocks" />
+        <AssociationConnector Association="ePlatModel.FK_tblPointsOfSale_tblBlocks" />
+        <AssociationConnector Association="ePlatModel.FK_tblBlockSettings_tblContentPages" />
+        <AssociationConnector Association="ePlatModel.FK_tblBoats_tblProviders" />
+        <AssociationConnector Association="ePlatModel.FK_tblBoats_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblBookingStatus_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblBookingStatusHistory_tblBookingStatus" />
+        <AssociationConnector Association="ePlatModel.FK_tblEmailNotifications_BookingStatus_tblBookingStatus" />
+        <AssociationConnector Association="ePlatModel.FK_tblInteractions_tblBookingStatus" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeads_tblBookingStatus" />
+        <AssociationConnector Association="ePlatModel.FK_tblPresentations_tblBookingStatus" />
+        <AssociationConnector Association="ePlatModel.FK_tblSysWorkGroups_BookingStatus_tblBookingStatus" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_BookingStatus_tblBookingStatus" />
+        <AssociationConnector Association="ePlatModel.FK_tblTrials_tblBookingStatus" />
+        <AssociationConnector Association="ePlatModel.FK_tblBookingStatusHistory_tblLeads" />
+        <AssociationConnector Association="ePlatModel.FK_tblBracelets_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblBrokerContactInformation_tblBrokerJobPositions" />
+        <AssociationConnector Association="ePlatModel.FK_tblBrokerContactInformation_tblBrokers" />
+        <AssociationConnector Association="ePlatModel.FK_tblBrokerContracts_tblBrokers" />
+        <AssociationConnector Association="ePlatModel.FK_tblBrokerContractsSysWorkGroups_tblBrokerContracts" />
+        <AssociationConnector Association="ePlatModel.FK_tblBrokerContractsTerminals_tblBrokerContracts" />
+        <AssociationConnector Association="ePlatModel.FK_tblBrokerDestinationSettings_tblBrokerContracts" />
+        <AssociationConnector Association="ePlatModel.FK_tblBrokerWash_tblBrokerContracts" />
+        <AssociationConnector Association="ePlatModel.FK_tblEmailNotifications_BrokerContracts_tblBrokerContracts" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeads_tblBrokerContracts" />
+        <AssociationConnector Association="ePlatModel.FK_tblBrokerContractsSysWorkGroups_tblSysWorkGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblBrokerContractsTerminals_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblBrokerDestinationSettings_tblBrokerPricesAndFeeTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblBrokerWash_tblPlanTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblCalendarEvents_tblCalendarEvents" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeads_tblCallClasifications" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_CallClasifications_tblCallClasifications" />
+        <AssociationConnector Association="ePlatModel.FK_tblCallDestinationSettings_tblDestinations" />
+        <AssociationConnector Association="ePlatModel.FK_tblCallDestinationSettings_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblCallLogs_tblCallDestinationSettings" />
+        <AssociationConnector Association="ePlatModel.FK_tblCallLogs_tblCampaigns" />
+        <AssociationConnector Association="ePlatModel.FK_tblCallLogs_tblInteractions" />
+        <AssociationConnector Association="ePlatModel.FK_tblCallLogs_tblLeads" />
+        <AssociationConnector Association="ePlatModel.FK_tblCallLogs_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblCampaigns_tblDestinations" />
+        <AssociationConnector Association="ePlatModel.FK_tblCampaigns_tblLeadSourcesChannels" />
+        <AssociationConnector Association="ePlatModel.FK_tblCampaigns_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchases_tblCampaigns" />
+        <AssociationConnector Association="ePlatModel.FK_tblCatalogs_Terminals_tblCatalogs" />
+        <AssociationConnector Association="ePlatModel.FK_tblCategories_tblCatalogs" />
+        <AssociationConnector Association="ePlatModel.FK_tblCatalogs_Terminals_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblCategories_Packages_tblCategories" />
+        <AssociationConnector Association="ePlatModel.FK_tblCategories_Services_tblCategories" />
+        <AssociationConnector Association="ePlatModel.FK_tblCategories_tblCategories" />
+        <AssociationConnector Association="ePlatModel.FK_tblCategoryDescriptions_tblCategories" />
+        <AssociationConnector Association="ePlatModel.FK_tblCategories_Packages_tblPackages" />
+        <AssociationConnector Association="ePlatModel.FK_tblCategories_Services_tblServices" />
+        <AssociationConnector Association="ePlatModel.FK_tblMerchantAccountSettings_tblChargeDescriptions" />
+        <AssociationConnector Association="ePlatModel.FK_tblMerchantAccountSettings_tblChargeTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblCloseOut_PaymentDetails_tblCloseOuts" />
+        <AssociationConnector Association="ePlatModel.FK_tblCloseOuts_Egresses_tblCloseOuts" />
+        <AssociationConnector Association="ePlatModel.FK_tblCloseOuts_Purchases_tblCloseOuts" />
+        <AssociationConnector Association="ePlatModel.FK_tblCloseOuts_tblPointsOfSale" />
+        <AssociationConnector Association="ePlatModel.FK_tblCloseOuts_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblCloseOuts_Egresses_tblEgresses" />
+        <AssociationConnector Association="ePlatModel.FK_tblCloseOuts_Purchases_tblPurchases" />
+        <AssociationConnector Association="ePlatModel.FK_tblCloseOuts_Purchases_tblPurchases_Services" />
+        <AssociationConnector Association="ePlatModel.FK_tblCommissionExclusions_tblJobPositions" />
+        <AssociationConnector Association="ePlatModel.FK_tblCommissionExclusions_tblServices" />
+        <AssociationConnector Association="ePlatModel.FK_tblCommissions_PointsOfSale_tblCommissions" />
+        <AssociationConnector Association="ePlatModel.FK_tblCommissions_tblCurrencies" />
+        <AssociationConnector Association="ePlatModel.FK_tblCommissions_tblJobPositions" />
+        <AssociationConnector Association="ePlatModel.FK_tblCommissions_tblPriceTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblCommissions_tblSysWorkGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblCommissions_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblCommissions_PointsOfSale_tblPointsOfSale" />
+        <AssociationConnector Association="ePlatModel.FK_tblCompanies_Destinations_tblCompanies" />
+        <AssociationConnector Association="ePlatModel.FK_tblCompanies_PayingCompanies_tblCompanies" />
+        <AssociationConnector Association="ePlatModel.FK_tblCompanies_tblCompanyTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblCompanies_tblCountries" />
+        <AssociationConnector Association="ePlatModel.FK_tblCompanyAccounts_tblCompanyAccounts" />
+        <AssociationConnector Association="ePlatModel.FK_tblCompanyDepartments_tblCompanies" />
+        <AssociationConnector Association="ePlatModel.FK_tblContracts_tblCompanies" />
+        <AssociationConnector Association="ePlatModel.FK_tblCouponFolios_tblCompanies" />
+        <AssociationConnector Association="ePlatModel.FK_tblCreditLimit_tblCompanies" />
+        <AssociationConnector Association="ePlatModel.FK_tblEgressConcepts_tblCompanies" />
+        <AssociationConnector Association="ePlatModel.FK_tblEgresses_tblCompanies" />
+        <AssociationConnector Association="ePlatModel.FK_tblFunds_tblCompanies" />
+        <AssociationConnector Association="ePlatModel.FK_tblInvoiceInfo_tblCompanies" />
+        <AssociationConnector Association="ePlatModel.FK_tblOPCS_tblCompanies" />
+        <AssociationConnector Association="ePlatModel.FK_tblOPCS_tblCompanies1" />
+        <AssociationConnector Association="ePlatModel.FK_tblOperators_tblCompanies" />
+        <AssociationConnector Association="ePlatModel.FK_tblPrize_tblCompanies" />
+        <AssociationConnector Association="ePlatModel.FK_tblPrizes_Logs_tblCompanies" />
+        <AssociationConnector Association="ePlatModel.FK_tblPromotionTeams_tblCompanies" />
+        <AssociationConnector Association="ePlatModel.FK_tblProviders_tblCompanies" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchases_tblCompanies" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_Companies_tblCompanies" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_tblCompanies" />
+        <AssociationConnector Association="ePlatModel.FK_tblUserProfiles_tblCompanies" />
+        <AssociationConnector Association="ePlatModel.FK_tblCompanies_Destinations_tblDestinations" />
+        <AssociationConnector Association="ePlatModel.FK_tblCompanies_PayingCompanies_tblPayingCompanies" />
+        <AssociationConnector Association="ePlatModel.FK_tblCompaniesGroupsDivisions_tblCompaniesGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblDiscountCards_tblCompaniesGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblLocations_tblCompaniesGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblNqReasons_tblCompaniesGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblPointsRedemptionRates_tblCompaniesGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblProspectationPrograms_tblCompaniesGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblSysWorkGroups_tblCompaniesGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_tblCompaniesGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblCompaniesGroupsDivisions_tblDestinations" />
+        <AssociationConnector Association="ePlatModel.FK_tblCompanyDepartments_tblCompaniesGroupsDivisions" />
+        <AssociationConnector Association="ePlatModel.FK_tblSysWorkGroups_tblCompaniesGroupsDivisions" />
+        <AssociationConnector Association="ePlatModel.FK_tblSysWorkGroups_tblCompanyDepartments" />
+        <AssociationConnector Association="ePlatModel.FK_tblUserProfiles_tblCompanyDepartments" />
+        <AssociationConnector Association="ePlatModel.FK_tblUserProfiles_tblCompanyTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblContentPageDescriptions_tblContentPages" />
+        <AssociationConnector Association="ePlatModel.FK_tblContentPageDescriptions_tblPageStructures" />
+        <AssociationConnector Association="ePlatModel.FK_tblContentPages_tblContentPages" />
+        <AssociationConnector Association="ePlatModel.FK_tblContentPages_tblPageTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblContentPages_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblContractPrizes_tblOperators" />
+        <AssociationConnector Association="ePlatModel.FK_tblContractPrizes_tblPrizeTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblContracts_PriceClasifications_tblContracts" />
+        <AssociationConnector Association="ePlatModel.FK_tblContractsCommissions_tblContracts" />
+        <AssociationConnector Association="ePlatModel.FK_tblInvoiceInfo_tblContracts" />
+        <AssociationConnector Association="ePlatModel.FK_tblContracts_Places_tblContracts_Places" />
+        <AssociationConnector Association="ePlatModel.FK_tblContracts_PriceClasifications_tblPriceClasifications" />
+        <AssociationConnector Association="ePlatModel.FK_tblContractsCommissions_tblServices" />
+        <AssociationConnector Association="ePlatModel.FK_tblContractsHistory_tblPresentations" />
+        <AssociationConnector Association="ePlatModel.FK_tblContractsHistory_tblQualificationStatus" />
+        <AssociationConnector Association="ePlatModel.FK_tblDestinations_tblCountries" />
+        <AssociationConnector Association="ePlatModel.FK_tblDialOutPrefixes_tblCountries" />
+        <AssociationConnector Association="ePlatModel.FK_tblGuestsHub_tblCountries" />
+        <AssociationConnector Association="ePlatModel.FK_tblInvitations_tblCountries" />
+        <AssociationConnector Association="ePlatModel.FK_tblLastNames_Countries_tblCountries" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadProfiles_tblCountries" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeads_tblCountries" />
+        <AssociationConnector Association="ePlatModel.FK_tblQualifications_tblCountries" />
+        <AssociationConnector Association="ePlatModel.FK_tblStates_tblCountries" />
+        <AssociationConnector Association="ePlatModel.FK_tblCouponFolios_tblPointsOfSale" />
+        <AssociationConnector Association="ePlatModel.FK_tblEgresses_tblCurrencies" />
+        <AssociationConnector Association="ePlatModel.FK_tblEgresses_tblCurrencies1" />
+        <AssociationConnector Association="ePlatModel.FK_tblExchangeRates_tblCurrencies" />
+        <AssociationConnector Association="ePlatModel.FK_tblExchangeRates_tblCurrencies1" />
+        <AssociationConnector Association="ePlatModel.FK_tblFunds_tblCurrencies" />
+        <AssociationConnector Association="ePlatModel.FK_tblIncomes_tblCurrencies" />
+        <AssociationConnector Association="ePlatModel.FK_tblInvoiceInfo_tblCurrencies" />
+        <AssociationConnector Association="ePlatModel.FK_tblInvoiceInfo_tblCurrencies1" />
+        <AssociationConnector Association="ePlatModel.FK_tblPaymentDetailsPartials_tblCurrencies" />
+        <AssociationConnector Association="ePlatModel.FK_tblPrices_tblCurrencies" />
+        <AssociationConnector Association="ePlatModel.FK_tblPromos_tblCurrencies" />
+        <AssociationConnector Association="ePlatModel.FK_tblPromotionTeams_tblCurrencies" />
+        <AssociationConnector Association="ePlatModel.FK_tblProviders_tblCurrencies" />
+        <AssociationConnector Association="ePlatModel.FK_tblProviders_tblCurrencies1" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchases_Services_tblCurrencies" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchases_tblCurrencies" />
+        <AssociationConnector Association="ePlatModel.FK_tblQuotations_tblCurrencies" />
+        <AssociationConnector Association="ePlatModel.FK_tblServices_PricesCache_tblCurrencies" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminalGoals_tblCurrencies" />
+        <AssociationConnector Association="ePlatModel.FK_tblDestinationDescriptions_tblDestinations" />
+        <AssociationConnector Association="ePlatModel.FK_tblDestinationDescriptions_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblDiscountCards_tblDestinations" />
+        <AssociationConnector Association="ePlatModel.FK_tblEmailNotifications_Destinations_tblDestinations" />
+        <AssociationConnector Association="ePlatModel.FK_tblEmailNotifications_tblDestinations" />
+        <AssociationConnector Association="ePlatModel.FK_tblFlights_tblDestinations" />
+        <AssociationConnector Association="ePlatModel.FK_tblInvitations_tblDestinations" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeads_tblDestinations" />
+        <AssociationConnector Association="ePlatModel.FK_tblLocations_tblDestinations" />
+        <AssociationConnector Association="ePlatModel.FK_tblMerchantAccountSettings_tblDestinations" />
+        <AssociationConnector Association="ePlatModel.FK_tblNqReasons_tblDestinations" />
+        <AssociationConnector Association="ePlatModel.FK_tblPresentations_tblDestinations" />
+        <AssociationConnector Association="ePlatModel.FK_tblPromotionTeams_tblDestinations" />
+        <AssociationConnector Association="ePlatModel.FK_tblProviders_tblDestinations" />
+        <AssociationConnector Association="ePlatModel.FK_tblQuotations_tblDestinations" />
+        <AssociationConnector Association="ePlatModel.FK_tblRegions_Destinations_tblRegions_Destinations" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservations_tblDestinations" />
+        <AssociationConnector Association="ePlatModel.FK_tblSchemas_Destinations_tblDestinations" />
+        <AssociationConnector Association="ePlatModel.FK_tblServices_tblDestinations" />
+        <AssociationConnector Association="ePlatModel.FK_tblSPIHotelsPickUps_tblDestinations" />
+        <AssociationConnector Association="ePlatModel.FK_tblSysWorkGroups_tblDestinations" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_Destinations_tblDestinations" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_MerchantAccounts_tblDestinations" />
+        <AssociationConnector Association="ePlatModel.FK_tblTransportationZones_tblDestinations" />
+        <AssociationConnector Association="ePlatModel.FK_tblUserProfiles_tblDestinations" />
+        <AssociationConnector Association="ePlatModel.FK_tblUsers_Destinations_tblDestinations" />
+        <AssociationConnector Association="ePlatModel.FK_tblWorkflows_Destinations_tblDestinations" />
+        <AssociationConnector Association="ePlatModel.FK_tblZones_tblDestinations" />
+        <AssociationConnector Association="ePlatModel.FK_tblDialOutPrefixes_tblLeadSources" />
+        <AssociationConnector Association="ePlatModel.FK_tblDialOutPrefixes_tblLeadSourcesChannels" />
+        <AssociationConnector Association="ePlatModel.FK_tblDialOutPrefixes_tblSysWorkGroupsTeams" />
+        <AssociationConnector Association="ePlatModel.FK_tblInteractions_tblDiscardReasons" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeads_tblDiscardReasons" />
+        <AssociationConnector Association="ePlatModel.FK_tblSignatures_tblDocumentTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblEgresses_tblEgressConcepts" />
+        <AssociationConnector Association="ePlatModel.FK_tblEgresses_tblFunds" />
+        <AssociationConnector Association="ePlatModel.FK_tblEgresses_tblLocations" />
+        <AssociationConnector Association="ePlatModel.FK_tblEgresses_tblOPCS" />
+        <AssociationConnector Association="ePlatModel.FK_tblEgresses_tblPointsOfSale" />
+        <AssociationConnector Association="ePlatModel.FK_tblEgresses_tblPromotionTeams" />
+        <AssociationConnector Association="ePlatModel.FK_tblEmailNotificationEvents_tblEmailNotificationLogs" />
+        <AssociationConnector Association="ePlatModel.FK_tblEmailNotificationEvents_tblSysEvents" />
+        <AssociationConnector Association="ePlatModel.FK_tblEmailNotificationLogs_tblEmailNotifications" />
+        <AssociationConnector Association="ePlatModel.FK_tblEmailNotificationLogs_tblInvitations" />
+        <AssociationConnector Association="ePlatModel.FK_tblEmailNotificationLogs_tblLeads" />
+        <AssociationConnector Association="ePlatModel.FK_tblEmailNotificationLogs_tblPurchases" />
+        <AssociationConnector Association="ePlatModel.FK_tblEmailNotificationLogs_tblReservations" />
+        <AssociationConnector Association="ePlatModel.FK_tblEmailNofications_LeadStatus_tblEmailNotifications" />
+        <AssociationConnector Association="ePlatModel.FK_tblEmailNotifications_BookingStatus_tblEmailNotifications" />
+        <AssociationConnector Association="ePlatModel.FK_tblEmailNotifications_BrokerContracts_tblEmailNotifications" />
+        <AssociationConnector Association="ePlatModel.FK_tblEmailNotifications_Destinations_tblEmailNotifications" />
+        <AssociationConnector Association="ePlatModel.FK_tblEmailNotifications_LeadSources_tblEmailNotifications" />
+        <AssociationConnector Association="ePlatModel.FK_tblEmailNotifications_Places_tblEmailNotifications" />
+        <AssociationConnector Association="ePlatModel.FK_tblEmailNotifications_PointsOfSale_tblEmailNotifications" />
+        <AssociationConnector Association="ePlatModel.FK_tblEmailNotifications_Roles_tblEmailNotifications" />
+        <AssociationConnector Association="ePlatModel.FK_tblEmailNotifications_tblEmails" />
+        <AssociationConnector Association="ePlatModel.FK_tblEmailNotifications_tblSysEvents" />
+        <AssociationConnector Association="ePlatModel.FK_tblEmailNotifications_tblTerminals1" />
+        <AssociationConnector Association="ePlatModel.FK_tblFieldGroups_tblEmailNotifications" />
+        <AssociationConnector Association="ePlatModel.FK_tblEmailNotifications_LeadSources_tblLeadSources" />
+        <AssociationConnector Association="ePlatModel.FK_tblEmailNofications_LeadStatus_tblLeadStatus" />
+        <AssociationConnector Association="ePlatModel.FK_tblEmailNotifications_PointsOfSale_tblPointsOfSale" />
+        <AssociationConnector Association="ePlatModel.FK_tblEmails_tblEmailTemplates" />
+        <AssociationConnector Association="ePlatModel.FK_tblEmails_Terminals_tblEmails" />
+        <AssociationConnector Association="ePlatModel.FK_tblEmails_Terminals_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblErrorEvents_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblExchangeRates_PointsOfSales_tblExchangeRates" />
+        <AssociationConnector Association="ePlatModel.FK_tblExchangeRates_tblProviders" />
+        <AssociationConnector Association="ePlatModel.FK_tblExchangeRates_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblInvoiceInfo_tblExchangeRates" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchaseServiceDetails_tblExchangeRates" />
+        <AssociationConnector Association="ePlatModel.FK_tblExchangeRates_PointsOfSales_tblPointsOfSale" />
+        <AssociationConnector Association="ePlatModel.FK_tblFields_tblFieldGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblFields_tblFields1" />
+        <AssociationConnector Association="ePlatModel.FK_tblFieldsValues_tblFields" />
+        <AssociationConnector Association="ePlatModel.FK_tblFieldsValues_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblFlights_tblFlightTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblFlights_tblProviders" />
+        <AssociationConnector Association="ePlatModel.FK_tblFlights_tblReservations" />
+        <AssociationConnector Association="ePlatModel.FK_tblFreeNights_tblRoomTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblFreeNights_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblIncomes_tblFunds" />
+        <AssociationConnector Association="ePlatModel.FK_tblPointsOfSale_tblFunds" />
+        <AssociationConnector Association="ePlatModel.FK_tblGenderDescriptions_tblGenders" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadProfiles_tblGenders" />
+        <AssociationConnector Association="ePlatModel.FK_tblQualifications_Genders_tblGenders" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservations_tblGreetingReps" />
+        <AssociationConnector Association="ePlatModel.FK_tblGuestHub_FrontOffice_tblGuestHub" />
+        <AssociationConnector Association="ePlatModel.FK_tblGuestPreference_tblGuestHub" />
+        <AssociationConnector Association="ePlatModel.FK_tblGuestPreferences_tblPreferences" />
+        <AssociationConnector Association="ePlatModel.FK_tblImportantDates_tblGuestPreferences" />
+        <AssociationConnector Association="ePlatModel.FK_tblGuestsHub_tblStates" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeads_tblGuestsHub" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadProfiles_tblIncomeRanges" />
+        <AssociationConnector Association="ePlatModel.FK_tblQualifications_tblIncomeRanges" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeads_tblInputMethods" />
+        <AssociationConnector Association="ePlatModel.FK_tblInteractions_tblInteractions" />
+        <AssociationConnector Association="ePlatModel.FK_tblInteractions_tblInteractionTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblInteractions_tblInterestLevels" />
+        <AssociationConnector Association="ePlatModel.FK_tblInteractions_tblLeads" />
+        <AssociationConnector Association="ePlatModel.FK_tblInteractions_tblTrials" />
+        <AssociationConnector Association="ePlatModel.FK_tblMailMessages_tblInteractions" />
+        <AssociationConnector Association="ePlatModel.FK_tblRecordings_tblInteractions" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeads_tblInteractionTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_InteractionTypes_tblInteractionTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeads_tblInterestLevels" />
+        <AssociationConnector Association="ePlatModel.FK_tblInvitations_tblLocations" />
+        <AssociationConnector Association="ePlatModel.FK_tblInvitations_tblOPCS" />
+        <AssociationConnector Association="ePlatModel.FK_tblInvitations_tblPromotionTeams" />
+        <AssociationConnector Association="ePlatModel.FK_tblInvitations_tblProspectationPrograms" />
+        <AssociationConnector Association="ePlatModel.FK_tblInvitations_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblSPIPremanifest_tblInvitations" />
+        <AssociationConnector Association="ePlatModel.FK_tblInvitationsSettings_tblProspectationPrograms" />
+        <AssociationConnector Association="ePlatModel.FK_tblInvitationsSettings_tblSysEvents" />
+        <AssociationConnector Association="ePlatModel.FK_tblInvoiceInfo_tblPaymentTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblInvoiceInfo_tblPaymentTypes1" />
+        <AssociationConnector Association="ePlatModel.FK_tblServices_tblItemTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblOPC_PromotionTeams_tblJobPositions" />
+        <AssociationConnector Association="ePlatModel.FK_tblUsers_JobPositions_tblJobPositions" />
+        <AssociationConnector Association="ePlatModel.FK_tblLanguageDescriptions_tblLanguages" />
+        <AssociationConnector Association="ePlatModel.FK_tblQualifications_tblLanguages" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_Languages_tblLanguages" />
+        <AssociationConnector Association="ePlatModel.FK_tblLastContractInfo_tblLeads" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadAssignations_tblLeads" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadEmails_tblLeads" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadProfiles_tblLeads" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadProfiles_tblMaritalStatus" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadProfiles_tblNqReasons" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadProfiles_tblOccupations" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadProfiles_tblOccupations1" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadProfiles_tblWorkingStatus" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadProfiles_TravelerDocuments_tblLeadProfiles" />
+        <AssociationConnector Association="ePlatModel.FK_tblPresentations_tblLeadProfiles" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadProfiles_TravelerDocuments_tblTravelerDocuments" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeads_tblLeads" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeads_tblLeads1" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeads_tblLeadSources" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeads_tblLeadSourcesChannels" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeads_tblLeadStatus" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeads_tblLeadTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeads_tblOffers" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeads_tblPersonalTitles" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeads_tblQualificationStatus" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeads_tblStates" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeads_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeads_tblTimeZones" />
+        <AssociationConnector Association="ePlatModel.FK_tblMailMessages_tblLeads" />
+        <AssociationConnector Association="ePlatModel.FK_tblMemberContactInfo_tblLeads" />
+        <AssociationConnector Association="ePlatModel.FK_tblPhones_tblLeads" />
+        <AssociationConnector Association="ePlatModel.FK_tblPresentations_tblLeads" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchases_tblLeads" />
+        <AssociationConnector Association="ePlatModel.FK_tblQuotations_tblLeads" />
+        <AssociationConnector Association="ePlatModel.FK_tblReferralInformation_tblLeads" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservations_tblLeads" />
+        <AssociationConnector Association="ePlatModel.FK_tblSharedLeads_tblLeads" />
+        <AssociationConnector Association="ePlatModel.FK_tblTravelInfo_tblLeads" />
+        <AssociationConnector Association="ePlatModel.FK_tblUsers_Leads_tblLeads" />
+        <AssociationConnector Association="ePlatModel.FK_tblWebhooksLog_tblLeads" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeads_QualificationRequirements_tblQualificationRequirements" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadSources_SysWorkGroups_tblLeadSources" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadSourcesChannels_tblLeadSources" />
+        <AssociationConnector Association="ePlatModel.FK_tblMarketCodes_tblLeadSources" />
+        <AssociationConnector Association="ePlatModel.FK_tblMerchantAccountSettings_tblLeadSources" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminalGoals_tblLeadSources" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_LeadSources_tblLeadSources" />
+        <AssociationConnector Association="ePlatModel.FK_tblUsers_LeadSources_tblLeadSources" />
+        <AssociationConnector Association="ePlatModel.FK_tblWebhooks_tblLeadSources" />
+        <AssociationConnector Association="ePlatModel.FK_tblMarketingSources_SysWorkGroups_tblSysWorkGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminalPhones_tblLeadSourcesChannels" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_LeadSourcesChannels_tblLeadSourcesChannels" />
+        <AssociationConnector Association="ePlatModel.FK_tblWebhooks_tblLeadSourcesChannels" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadSourcesSettings_tblLeadSourcesSettings" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadSourcesSettings_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_LeadStatus_tblLeadStatus" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadTypes_SysWorkGroups_tblLeadTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblMerchantAccountSettings_tblLeadTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_LeadTypes_tblLeadTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblWebhooks_tblLeadTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadTypes_SysWorkGroups_tblSysWorkGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblLiveHelpSchedules_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblLiveHelpSettings_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblLocations_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchases_tblLocations" />
+        <AssociationConnector Association="ePlatModel.FK_tblMailingSettings_tblMailingSettings" />
+        <AssociationConnector Association="ePlatModel.FK_tblMailingSettings_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblMandatoryTasks_SysWorkGroups_tblMandatoryTasks" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservations_MandatoryTasks_tblMandatoryTasks" />
+        <AssociationConnector Association="ePlatModel.FK_tblMandatoryTasks_SysWorkGroups_tblSysWorkGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblMaritalStatusDescriptions_tblMaritalStatus" />
+        <AssociationConnector Association="ePlatModel.FK_tblQualifications_tblMaritalStatus" />
+        <AssociationConnector Association="ePlatModel.FK_tblMarketCodes_tblMarketCodes" />
+        <AssociationConnector Association="ePlatModel.FK_tblMarketCodes_tblProspectationPrograms" />
+        <AssociationConnector Association="ePlatModel.FK_tblMarketCodes_Users_tblMarketCodes" />
+        <AssociationConnector Association="ePlatModel.FK_tblMarketCodes_Users_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblMaxPointsPerOptions_tblPointsRedemptionRates" />
+        <AssociationConnector Association="ePlatModel.FK_tblMeetingPoints_tblServices" />
+        <AssociationConnector Association="ePlatModel.FK_tblMeetingPoints_tblWeeklyAvailability" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchases_Services_tblMeetingPoints" />
+        <AssociationConnector Association="ePlatModel.FK_tblMembershipSales_tblMembershipCards" />
+        <AssociationConnector Association="ePlatModel.FK_tblMerchantAccountSettings_tblMerchantAccounts" />
+        <AssociationConnector Association="ePlatModel.FK_tblMoneyTransactions_tblMerchantAccounts" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_MerchantAccounts_tblMerchantAccounts" />
+        <AssociationConnector Association="ePlatModel.FK_tblMerchantAccountSettings_tblPointsOfSale" />
+        <AssociationConnector Association="ePlatModel.FK_tblMerchantAccountSettings_tblSysWorkGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblMerchantAccountSettings_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblMinimumNights_tblPlanTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblMinimumNights_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblMoneyTransactions_tblMoneyTransactionTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblMoneyTransactions_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchases_Services_MoneyTransactions_tblMoneyTransactions" />
+        <AssociationConnector Association="ePlatModel.FK_tblNotificationPreferences_tblNotificationTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblNotificationPreferences_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblNotifications_tblSysItemTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblNotifications_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblUsers_NotificationTypes_tblNotificationTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblNqReasons_tblProspectationPrograms" />
+        <AssociationConnector Association="ePlatModel.FK_tblOcupancyCombinations_tblRoomTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblOffers_Terminals_tblOffers" />
+        <AssociationConnector Association="ePlatModel.FK_tblOffers_Terminals_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblOPC_PromotionTeams_tblOPCS" />
+        <AssociationConnector Association="ePlatModel.FK_tblOPC_PromotionTeams_tblOPCS1" />
+        <AssociationConnector Association="ePlatModel.FK_tblOPC_PromotionTeams_tblOPCS2" />
+        <AssociationConnector Association="ePlatModel.FK_tblOPC_PromotionTeams_tblPromotionTeams" />
+        <AssociationConnector Association="ePlatModel.FK_tblOPCS_tblOperators" />
+        <AssociationConnector Association="ePlatModel.FK_tblOPCS_tblPayingCompanies" />
+        <AssociationConnector Association="ePlatModel.FK_tblOPCS_tblPromotionTeams" />
+        <AssociationConnector Association="ePlatModel.FK_tblPrize_tblOPCS" />
+        <AssociationConnector Association="ePlatModel.FK_tblPrizes_Logs_tblOPCS" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchases_tblOPCS" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservations_tblOPCS" />
+        <AssociationConnector Association="ePlatModel.FK_tblOperators_tblSalesChannels" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchases_tblOperators" />
+        <AssociationConnector Association="ePlatModel.FK_tblPackageDescriptions_tblPackages" />
+        <AssociationConnector Association="ePlatModel.FK_tblPackages_tblPlanTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblPackages_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblPackageSettings_tblPackages" />
+        <AssociationConnector Association="ePlatModel.FK_tblQuotations_tblPackages" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservations_tblPackages" />
+        <AssociationConnector Association="ePlatModel.FK_tblPackageSettings_tblPrices" />
+        <AssociationConnector Association="ePlatModel.FK_tblPackageSettings_tblRoomTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblPageStructures_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblPaymentTypes_Components_tblPaymentTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblPaymentTypes_tblPaymentTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchaseServiceDetails_tblPaymentTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_PaymentTypes_tblPaymentTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblPaymentTypes_Components_tblSysComponents" />
+        <AssociationConnector Association="ePlatModel.FK_tblPaymentTypes_Components_tblSysWorkGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblPaymentTypes_Components_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblPersonalReminders_tblTaskScheduler" />
+        <AssociationConnector Association="ePlatModel.FK_tblPersonalTitles_tblPersonalTitles" />
+        <AssociationConnector Association="ePlatModel.FK_tblPhones_tblPhoneTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblPictureDescriptions_tblPictures" />
+        <AssociationConnector Association="ePlatModel.FK_tblPictures_SysItemTypes_tblPictures" />
+        <AssociationConnector Association="ePlatModel.FK_tblPictures_SysItemTypes_tblSysItemTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblPlaceClasifications_tblPlaceTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblQualifications_PlaceClasifications_tblPlaceClasifications" />
+        <AssociationConnector Association="ePlatModel.FK_tblPlaces_PlanTypes_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblPlaces_Terminals_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblPlanTypeDescriptions_tblPlanTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservations_tblPlanTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblPointsOfSale_PaymentTypes_tblPointsOfSale" />
+        <AssociationConnector Association="ePlatModel.FK_tblPointsOfSale_PriceTypes_tblPointsOfSale" />
+        <AssociationConnector Association="ePlatModel.FK_tblPointsOfSale_tblPointsOfSale" />
+        <AssociationConnector Association="ePlatModel.FK_tblPointsOfSale_tblPriceTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblPointsOfSale_tblPriceTypes1" />
+        <AssociationConnector Association="ePlatModel.FK_tblPointsOfSale_tblPriceTypes2" />
+        <AssociationConnector Association="ePlatModel.FK_tblPointsOfSale_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblPricesReportLayouts_tblPointsOfSale" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchases_tblPointsOfSale" />
+        <AssociationConnector Association="ePlatModel.FK_tblServices_AccountingAccounts_tblPointsOfSale" />
+        <AssociationConnector Association="ePlatModel.FK_tblSysEvents_Terminals_tblPointsOfSale" />
+        <AssociationConnector Association="ePlatModel.FK_tblPointsOfSale_PriceTypes_tblPriceTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblPointsRedemptionRates_tblPointsRedemptionRates" />
+        <AssociationConnector Association="ePlatModel.FK_tblPreferences_Places_tblPreferences" />
+        <AssociationConnector Association="ePlatModel.FK_tblPreferences_tblPreferenceTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblPreferencesDescriptions_tblPreferences" />
+        <AssociationConnector Association="ePlatModel.FK_tblPreferenceTypes_Places_tblPreferenceTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblPreferenceTypesDescriptions_tblPreferenceTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblPresentations_tblReservations" />
+        <AssociationConnector Association="ePlatModel.FK_tblPresentations_tblTourStatus" />
+        <AssociationConnector Association="ePlatModel.FK_tblPresentations_tblTourStatus1" />
+        <AssociationConnector Association="ePlatModel.FK_tblPriceClasifications_tblSysWorkGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblPriceClasifications_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblPrices_tblPriceClasifications" />
+        <AssociationConnector Association="ePlatModel.FK_tblPricesList_tblPriceClasifications" />
+        <AssociationConnector Association="ePlatModel.FK_tblPrices_tblPriceTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblPrices_tblSysItemTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblPrices_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblPrices_tblTransportationZones" />
+        <AssociationConnector Association="ePlatModel.FK_tblPrices_tblTransportationZones1" />
+        <AssociationConnector Association="ePlatModel.FK_tblPriceUnits_tblPrices" />
+        <AssociationConnector Association="ePlatModel.FK_tblPromoPrices_tblPrices" />
+        <AssociationConnector Association="ePlatModel.FK_tblPromoPrices_tblPrices1" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchaseServiceDetails_tblPrices" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchaseServiceDetails_tblPrices1" />
+        <AssociationConnector Association="ePlatModel.FK_tblRelatedPrices_tblPrices" />
+        <AssociationConnector Association="ePlatModel.FK_tblRelatedPrices_tblPrices1" />
+        <AssociationConnector Association="ePlatModel.FK_tblRelatedPrices_tblPrices2" />
+        <AssociationConnector Association="ePlatModel.FK_tblRelatedPrices_tblPrices3" />
+        <AssociationConnector Association="ePlatModel.FK_tblRelatedPrices_tblPrices4" />
+        <AssociationConnector Association="ePlatModel.FK_tblPricesList_tblServices" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchases_Services_tblPricesList" />
+        <AssociationConnector Association="ePlatModel.FK_tblPricesReportLayouts_PriceTypes_tblPricesReportLayouts" />
+        <AssociationConnector Association="ePlatModel.FK_tblPricesReportLayouts_Roles_tblPricesReportLayouts" />
+        <AssociationConnector Association="ePlatModel.FK_tblPricesReportLayouts_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblServices_PricesReportLayouts_tblServices_PricesReportLayouts" />
+        <AssociationConnector Association="ePlatModel.FK_tblPricesReportLayouts_PriceTypes_tblPriceTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblServices_PricesReportLayouts_tblServices" />
+        <AssociationConnector Association="ePlatModel.FK_tblPriceTypes_tblPromos" />
+        <AssociationConnector Association="ePlatModel.FK_tblPriceTypesGroups_tblPriceTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblPriceTypesGroups_tblPriceTypes1" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchaseServiceDetails_tblPriceTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblServices_Allotment_tblPriceTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblServices_PricesCache_tblPriceTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblServices_PriceTypes_tblPriceTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblServices_PriceTypes_tblPriceTypes1" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_PriceTypes_tblPriceTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblPriceTypesGroups_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblPrize_tblPrizeTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblPrizes_Logs_tblPurchases_Services" />
+        <AssociationConnector Association="ePlatModel.FK_tblPrizeTypes_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblPromoDescriptions_tblPromos" />
+        <AssociationConnector Association="ePlatModel.FK_tblPromoPrices_tblPromos" />
+        <AssociationConnector Association="ePlatModel.FK_tblPromos_PromoTypes_tblPromos" />
+        <AssociationConnector Association="ePlatModel.FK_tblPromos_RelatedItems_tblPromos" />
+        <AssociationConnector Association="ePlatModel.FK_tblPromos_tblPromos" />
+        <AssociationConnector Association="ePlatModel.FK_tblPromos_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchases_Services_tblPromos" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchases_tblPromos" />
+        <AssociationConnector Association="ePlatModel.FK_tblPromos_PromoTypes_tblPromoTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblPromos_RelatedItems_tblSysItemTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblPromotionTeams_tblProspectationPrograms" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_PromotionTeams_tblPromotionTeams" />
+        <AssociationConnector Association="ePlatModel.FK_tblSalesRoomsParties_tblProspectationPrograms" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_ProspectationPrograms_tblProspectationPrograms" />
+        <AssociationConnector Association="ePlatModel.FK_tblProviders_tblProviderTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblProviders_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblServices_Allotment_tblProviders" />
+        <AssociationConnector Association="ePlatModel.FK_tblServices_PriceTypes_tblProviders" />
+        <AssociationConnector Association="ePlatModel.FK_tblServices_tblProviders" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchaseGifts_tblPurchases" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchases_Services_tblPurchases" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchases_tblPurchaseStatus" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchases_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchaseTickets_tblPurchases" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservations_tblPurchases" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchases_Services_MoneyTransactions_tblPurchases_Services" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchases_Services_tblPurchases_Services" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchases_Services_tblPurchaseServiceStatus" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchases_Services_tblServices" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchases_Services_tblTransportationZones" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchases_Services_tblWeeklyAvailability" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchaseServiceDetails_tblPurchases_Services" />
+        <AssociationConnector Association="ePlatModel.FK_tblReviews_tblPurchases_Services" />
+        <AssociationConnector Association="ePlatModel.FK_tblStockTransactions_tblPurchaseServiceDetails" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchaseServiceStatus_Terminals_tblPurchaseServiceStatus" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchaseServiceStatus_Terminals_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblSysWorkGroups_QualificationRequirements_tblQualificationRequirements" />
+        <AssociationConnector Association="ePlatModel.FK_tblQualifications_AgeRanges_tblQualifications" />
+        <AssociationConnector Association="ePlatModel.FK_tblQualifications_Genders_tblQualifications" />
+        <AssociationConnector Association="ePlatModel.FK_tblQualifications_PlaceClasifications_tblQualifications" />
+        <AssociationConnector Association="ePlatModel.FK_tblQualifications_ResortMembers_tblQualifications" />
+        <AssociationConnector Association="ePlatModel.FK_tblQualifications_tblSchemas" />
+        <AssociationConnector Association="ePlatModel.FK_tblQualifications_WorkingStatus_tblQualifications" />
+        <AssociationConnector Association="ePlatModel.FK_tblQualifications_WorkingStatus_tblWorkingStatus" />
+        <AssociationConnector Association="ePlatModel.FK_tblQuestions_tblTopicQuestions" />
+        <AssociationConnector Association="ePlatModel.FK_tblQuestions_Terminals_tblSurveys" />
+        <AssociationConnector Association="ePlatModel.FK_tblQuestions_Terminals_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblQuotas_tblServices" />
+        <AssociationConnector Association="ePlatModel.FK_tblRecordings_tblReservations" />
+        <AssociationConnector Association="ePlatModel.FK_tblRegions_Destinations_tblRegions" />
+        <AssociationConnector Association="ePlatModel.FK_tblRelatedPrices_tblSysItemTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblReminders_tblServices" />
+        <AssociationConnector Association="ePlatModel.FK_tblReminders_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblReportLayouts_tblSysComponents" />
+        <AssociationConnector Association="ePlatModel.FK_tblSysWorkGroups_ReportLayouts_tblReportLayouts" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservations_MandatoryTasks_tblReservations" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservations_tblReservations" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservations_tblReservations1" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservations_tblReservationStatus" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservations_tblRoomTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservations_tblRoomTypes1" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservations_tblSysWorkGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservations_VerificationAgreements_tblReservations" />
+        <AssociationConnector Association="ePlatModel.FK_tblSignatures_tblReservations" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservations_VerificationAgreements_tblReservations_VerificationAgreements" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservations_VerificationAgreements_tblVerificationAgreements" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservationStatus_SysWorkGroups_tblReservationStatus" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservationStatus_Terminals_tblReservationStatus" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservationStatus_SysWorkGroups_tblSysWorkGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservationStatus_Terminals_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblSysWorkGroups_ResortFeeTypes_tblResortFeeTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblRoomAvailabilities_tblRoomTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblRoomAvailabilities_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblRoomTypeDescriptions_tblRoomTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblSalesChannels_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblSalesRoomsParties_tblSalesRooms" />
+        <AssociationConnector Association="ePlatModel.FK_tblSalesRoomsParties_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblSchemas_Destinations_tblSchemas" />
+        <AssociationConnector Association="ePlatModel.FK_tblSchemas_Hotels_tblSchemas" />
+        <AssociationConnector Association="ePlatModel.FK_tblSchemas_Destinations_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblSchemas_Hotels_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblSeoItems_tblSysItemTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblSeoItems_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblSeoSysItems_tblSeoItems" />
+        <AssociationConnector Association="ePlatModel.FK_tblServerExtensions_tblServers" />
+        <AssociationConnector Association="ePlatModel.FK_tblServerExtensions_tblSysWorkGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblServerExtensions_tblSysWorkGroupsTeams" />
+        <AssociationConnector Association="ePlatModel.FK_tblSysWorkGroups_Servers_tblServers" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_Servers_tblServers" />
+        <AssociationConnector Association="ePlatModel.FK_tblServiceDescriptions_tblServices" />
+        <AssociationConnector Association="ePlatModel.FK_tblServices_AccountingAccounts_tblServices" />
+        <AssociationConnector Association="ePlatModel.FK_tblServices_Allotment_tblServices" />
+        <AssociationConnector Association="ePlatModel.FK_tblServices_PricesCache_tblServices" />
+        <AssociationConnector Association="ePlatModel.FK_tblServices_PriceTypes_tblServices" />
+        <AssociationConnector Association="ePlatModel.FK_tblServices_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblServices_tblZones" />
+        <AssociationConnector Association="ePlatModel.FK_tblStocks_tblServices" />
+        <AssociationConnector Association="ePlatModel.FK_tblWeeklyAvailability_tblServices" />
+        <AssociationConnector Association="ePlatModel.FK_tblServices_Allotment_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblServices_PriceTypes_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblSignatures_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblSPIHotelsPickUps_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblSPIHotelsPickUps_tblZones" />
+        <AssociationConnector Association="ePlatModel.FK_tblSPIPremanifest_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblStockTransactions_tblStocks" />
+        <AssociationConnector Association="ePlatModel.FK_tblSysComponentAliases_tblSysComponents" />
+        <AssociationConnector Association="ePlatModel.FK_tblSysComponentAliases_tblSysWorkGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblSysComponents_tblSysComponents" />
+        <AssociationConnector Association="ePlatModel.FK_tblSysComponents_tblSysComponentTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblSysProfiles_tblSysComponents" />
+        <AssociationConnector Association="ePlatModel.FK_tblUserLogsYYYYMM_tblSysComponents" />
+        <AssociationConnector Association="ePlatModel.FK_tblWikiFields_tblSysComponents" />
+        <AssociationConnector Association="ePlatModel.FK_tblSysEvents_Terminals_tblSysEvents" />
+        <AssociationConnector Association="ePlatModel.FK_tblWebhooks_tblSysEvents" />
+        <AssociationConnector Association="ePlatModel.FK_tblSysEvents_Terminals_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblTopServices_tblSysItemTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblVideos_SysItemTypes_tblSysItemTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblSysProfiles_tblSysWorkGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblSysProfiles_tblSysWorkGroupsTeams" />
+        <AssociationConnector Association="ePlatModel.FK_tblSysProfilesSettings_tblSysWorkGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblSysProfilesSettings_tblSysWorkGroupsTeams" />
+        <AssociationConnector Association="ePlatModel.FK_tblSysWorkGroups_BookingStatus_tblSysWorkGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblSysWorkGroups_QualificationRequirements_tblSysWorkGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblSysWorkGroups_ReportLayouts_tblSysWorkGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblSysWorkGroups_ResortFeeTypes_tblSysWorkGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblSysWorkGroups_Servers_tblSysWorkGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblSysWorkGroups_TourStatus_tblSysWorkGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblSysWorkGroups_Users_tblSysWorkGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblSysWorkGroups_VerificationAgreements_tblSysWorkGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblSysWorkGroupsTeams_tblSysWorkGroupsTeams" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_SysWorkGroups_tblSysWorkGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblSysWorkGroups_TourStatus_tblTourStatus" />
+        <AssociationConnector Association="ePlatModel.FK_tblSysWorkGroups_VerificationAgreements_tblVerificationAgreements" />
+        <AssociationConnector Association="ePlatModel.FK_tblUsers_SysWorkGroups_tblSysWorkGroupsTeams" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminalDomains_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminalExtensions_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminalGoals_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminalPhones_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_BookingStatus_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_CallClasifications_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_Companies_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_Destinations_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_InteractionTypes_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_Languages_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_LeadSources_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblterminals_LeadSourcesChannels_tblterminals_LeadSourcesChannels" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_LeadStatus_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_LeadTypes_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_MerchantAccounts_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_PaymentTypes_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_PriceTypes_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_PromotionTeams_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_ProspectationPrograms_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_Servers_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_SysWorkGroups_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblTopServices_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblTrials_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblUsers_LeadSources_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblUsers_NotificationTypes_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblUsers_Terminals_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblWebhooks_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblWidgetsCache_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblWikiFields_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblWorkflows_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblZones_Terminals_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblUserDocumentation_tblUserRequests" />
+        <AssociationConnector Association="ePlatModel.FK_tblUsers_LeadSources_tblUsers_LeadSources" />
+        <AssociationConnector Association="ePlatModel.FK_tblVehicleTypeDescriptions_tblVehicleTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblVideos_SysItemTypes_tblVideos" />
+        <AssociationConnector Association="ePlatModel.FK_tblWebhooksLog_tblWebhooks" />
+        <AssociationConnector Association="ePlatModel.FK_tblWidgetsCache_tblWidgets" />
+        <AssociationConnector Association="ePlatModel.FK_tblWorkflows_Destinations_tblWorkflows" />
+        <AssociationConnector Association="ePlatModel.FK_tblWorkflows_Places_tblWorkflows" />
+        <AssociationConnector Association="ePlatModel.FK_tblWorkingStatusDescriptions_tblWorkingStatus" />
+        <AssociationConnector Association="ePlatModel.FK_tblZones_Terminals_tblZones" />
+        <AssociationConnector Association="ePlatModel.aspnet_UsersInRoles" />
+        <AssociationConnector Association="ePlatModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="ePlatModel.tblOptions" Width="1.5" PointX="66.25" PointY="406.375" />
+        <AssociationConnector Association="ePlatModel.FK_tblOptions_tblItemTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblOptions_Places_tblOptions" />
+        <EntityTypeShape EntityType="ePlatModel.tblTaskSchedulerEvents" Width="1.5" PointX="16.375" PointY="24.75" />
+        <AssociationConnector Association="ePlatModel.FK_tblDialOutPrefixes_tblTerminals" />
+        <EntityTypeShape EntityType="ePlatModel.tblLeadsCampaignDetails" Width="1.5" PointX="24.75" PointY="310.625" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadsCampaignDetails_tblLeads" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeads_tblBookingStatus1" />
+        <EntityTypeShape EntityType="ePlatModel.tblAsteriskLog" Width="1.5" PointX="31.5" PointY="324.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblCampaignsCosts" Width="1.5" PointX="57" PointY="350.75" />
+        <AssociationConnector Association="ePlatModel.FK_tblAsteriskLog_tblServers" />
+        <AssociationConnector Association="ePlatModel.FK_tblInteractions_tblAsteriskLog" />
+        <AssociationConnector Association="ePlatModel.FK_tblCampaignsCosts_tblCampaigns" />
+        <EntityTypeShape EntityType="ePlatModel.tblSmsEvents" Width="1.5" PointX="22.375" PointY="24.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblSmsMessages" Width="1.5" PointX="13.5" PointY="411.375" />
+        <AssociationConnector Association="ePlatModel.FK_tblSmsMessages_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblInvitations_tblArrivals" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservations_aspnet_Users11" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservations_tblBookingStatus" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservations_tblBrokerContracts" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservations_tblQualificationStatus" />
+        <EntityTypeShape EntityType="ePlatModel.tblFieldGroupsAnswers" Width="1.5" PointX="64" PointY="360.875" />
+        <AssociationConnector Association="ePlatModel.FK_tblFieldGroupsAnswers_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblFieldGroupsAnswers_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblFieldGroupsAnswers_tblFieldGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblFieldGroupsAnswers_tblLeads" />
+        <AssociationConnector Association="ePlatModel.FK_tblFieldGroupsAnswers_tblLocations" />
+        <AssociationConnector Association="ePlatModel.FK_tblFieldGroupsAnswers_tblMembershipSales" />
+        <AssociationConnector Association="ePlatModel.FK_tblFieldGroupsAnswers_tblTerminals" />
+        <EntityTypeShape EntityType="ePlatModel.tblEmailNotifications_SecondaryBookingStatus" Width="1.5" PointX="24.375" PointY="23.75" />
+        <AssociationConnector Association="ePlatModel.FK_tblCampaigns_tblLeadSources" />
+        <AssociationConnector Association="ePlatModel.FK_tblContractsCommissions_tblPricesList" />
+        <AssociationConnector Association="ePlatModel.FK_tblPricesList_tblCurrencies" />
+        <AssociationConnector Association="ePlatModel.FK_tblEmailNotifications_SecondaryBookingStatus_tblBookingStatus" />
+        <AssociationConnector Association="ePlatModel.FK_tblEmailNotifications_SecondaryBookingStatus_tblEmailNotifications" />
+        <EntityTypeShape EntityType="ePlatModel.tblCatalogs_Places" Width="1.5" PointX="51.75" PointY="341.75" />
+        <AssociationConnector Association="ePlatModel.FK_tblCatalogs_Places_tblCatalogs" />
+        <EntityTypeShape EntityType="ePlatModel.tblMemberInfo" Width="1.5" PointX="27.75" PointY="196.5" />
+        <AssociationConnector Association="ePlatModel.FK_tblMemberInfo_tblLeads" />
+        <AssociationConnector Association="ePlatModel.FK_tblMemberInfo_AdditionalServices_tblMemberInfo" />
+        <EntityTypeShape EntityType="ePlatModel.tblClubTypes" Width="1.5" PointX="3" PointY="319" />
+        <EntityTypeShape EntityType="ePlatModel.tblContractTypes" Width="1.5" PointX="46.5" PointY="335" />
+        <AssociationConnector Association="ePlatModel.FK_tblClubTypes_tblCompaniesGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblMemberInfo_tblClubTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblContracts_tblContractTypes" />
+        <EntityTypeShape EntityType="ePlatModel.tblSPIManifest" Width="1.5" PointX="58.25" PointY="401.5" />
+        <AssociationConnector Association="ePlatModel.FK_tblSPIManifest_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblSPIManifest_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblSPIManifest_tblArrivals" />
+        <EntityTypeShape EntityType="ePlatModel.tblIdentity_Leads" Width="1.5" PointX="24.75" PointY="204.25" />
+        <AssociationConnector Association="ePlatModel.FK_tblIdentity_Leads_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblIdentity_Leads_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblIdentity_Leads_aspnet_Users2" />
+        <AssociationConnector Association="ePlatModel.FK_tblIdentity_Leads_aspnet_Users3" />
+        <AssociationConnector Association="ePlatModel.FK_tblMemberInfo_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblIdentity_Leads_AspNetUsers" />
+        <AssociationConnector Association="ePlatModel.FK_tblIdentity_Leads_tblLeads" />
+        <EntityTypeShape EntityType="ePlatModel.tblAttachments" Width="1.5" PointX="10.375" PointY="20.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblCarrierNumbers" Width="1.5" PointX="5.25" PointY="390.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblDialersLog" Width="1.5" PointX="10.375" PointY="23.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblDncBypassTeams" Width="1.5" PointX="5.25" PointY="366.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblDncExceptionStatuses" Width="1.5" PointX="58.25" PointY="327.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblDncExceptionStatusReasons" Width="1.5" PointX="58.25" PointY="330.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblDncExceptionStatusReasonTypes" Width="1.5" PointX="56" PointY="331.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblDncLog" Width="1.5" PointX="60.5" PointY="345.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblDncLogHistory" Width="1.5" PointX="70.75" PointY="379.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblDncLogHits" Width="1.5" PointX="65.75" PointY="345.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblEmailInvitationCopies" Width="1.5" PointX="25.375" PointY="12.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblEmailReplies" Width="1.5" PointX="25.375" PointY="16.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblEmails_Roles" Width="1.5" PointX="18.375" PointY="25.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblFacebookLeads" Width="1.5" PointX="26.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblGenericUnit_Clasifications" Width="1.5" PointX="25.375" PointY="9" />
+        <EntityTypeShape EntityType="ePlatModel.tblGenericUnits_Statistics" Width="1.5" PointX="27.625" PointY="9" />
+        <EntityTypeShape EntityType="ePlatModel.tblInteractionDispositions" Width="1.5" PointX="28.5" PointY="421.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblInteractionsFiles" Width="1.5" PointX="58" PointY="385.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblInvitationsShots" Width="1.5" PointX="26.375" PointY="4.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblInvoiceDetails" Width="1.5" PointX="61.75" PointY="445.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblInvoiceFactorTypes" Width="1.5" PointX="26.375" PointY="19.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblInvoicePaymentMethods" Width="1.5" PointX="26.375" PointY="22.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblInvoicePaymentTypes" Width="1.5" PointX="11.25" PointY="715" />
+        <EntityTypeShape EntityType="ePlatModel.tblInvoiceProductService" Width="1.5" PointX="59.5" PointY="445.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblInvoiceRelationshipTypes" Width="1.5" PointX="24.375" PointY="26.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblInvoices" Width="1.5" PointX="59.5" PointY="352.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblInvoiceTaxRegime" Width="1.5" PointX="26.375" PointY="25.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblInvoiceTaxTypes" Width="1.5" PointX="59.5" PointY="450.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblInvoiceUnits" Width="1.5" PointX="59.5" PointY="448.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblInvoiceVouchersUse" Width="1.5" PointX="28.5" PointY="537.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblInvoiceVoucherTypes" Width="1.5" PointX="27.375" PointY="12.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblInvoiceVoucherTypes_Terminals" Width="1.5" PointX="12.375" PointY="27.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblLeadsList_Users" Width="1.5" PointX="68.75" PointY="366.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblLeadsListDetails" Width="1.5" PointX="66.75" PointY="363.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblLeadsLists" Width="1.5" PointX="59.5" PointY="340" />
+        <EntityTypeShape EntityType="ePlatModel.tblLeadsLists_EmailNotifications" Width="1.5" PointX="25.5" PointY="327.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblLeadStatusRules" Width="1.5" PointX="60.5" PointY="399" />
+        <EntityTypeShape EntityType="ePlatModel.tblMemberBenefitsRedemption" Width="1.5" PointX="51.25" PointY="409.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblMemberBenefitsTypes" Width="1.5" PointX="49" PointY="415.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblOPC_Operators" Width="1.5" PointX="61" PointY="413.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblOperators_Terminals" Width="1.5" PointX="27.375" PointY="15.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblOperatorsMicroSites" Width="1.5" PointX="21.75" PointY="434" />
+        <EntityTypeShape EntityType="ePlatModel.tblOrder_Reports" Width="1.5" PointX="64.25" PointY="411.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblOrder_ReportTypes" Width="1.5" PointX="62" PointY="416.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblOrder_Types" Width="1.5" PointX="59" PointY="417.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblOrderDetails" Width="1.5" PointX="68.5" PointY="396.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblOrders" Width="1.5" PointX="61.25" PointY="405.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblOrders_Status" Width="1.5" PointX="59" PointY="421.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblOrdersLogs" Width="1.5" PointX="71.5" PointY="393" />
+        <EntityTypeShape EntityType="ePlatModel.tblPhoneMaskingRules" Width="1.5" PointX="49.5" PointY="333.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblPreInvoices" Width="1.5" PointX="13.5" PointY="422" />
+        <EntityTypeShape EntityType="ePlatModel.tblRCReservationOptions" Width="1.5" PointX="20.375" PointY="27.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblReferralsPointsRules" Width="1.5" PointX="45.75" PointY="331" />
+        <EntityTypeShape EntityType="ePlatModel.tblReferralsPointsTransactionTypes" Width="1.5" PointX="43.5" PointY="321.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblReservationsCallStatus" Width="1.5" PointX="28.375" PointY="4.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblReservationsCancellationReason" Width="1.5" PointX="58" PointY="415.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblReservationsComments" Width="1.5" PointX="14.375" PointY="28.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblReservationsFrontStatus" Width="1.5" PointX="16.375" PointY="28.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblServices_Commissions" Width="1.5" PointX="58" PointY="382.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblSmsSendingRules" Width="1.5" PointX="8.5" PointY="373.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblSmsTemplates" Width="1.5" PointX="6.25" PointY="362.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblSmsTemplates_Roles" Width="1.5" PointX="28.375" PointY="18.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblSPIManifestSyncLog" Width="1.5" PointX="28.375" PointY="21.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblStock_MonthEndClosingDetails" Width="1.5" PointX="41" PointY="421.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblStock_MothEndClosings" Width="1.5" PointX="13.5" PointY="347.375" />
+        <EntityTypeShape EntityType="ePlatModel.tblTerminalBudgets" Width="1.5" PointX="56.5" PointY="336.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblTerminals_Roles" Width="1.5" PointX="49.5" PointY="336.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblTerminalsAgentTypes" Width="1.5" PointX="25.5" PointY="331.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblTerminalTransfers" Width="1.5" PointX="59.5" PointY="335.5" />
+        <EntityTypeShape EntityType="ePlatModel.tblTerminalTypes" Width="1.5" PointX="21" PointY="340.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblUserExtensionsHistory" Width="1.5" PointX="13.5" PointY="425.25" />
+        <EntityTypeShape EntityType="ePlatModel.tblUserTimeshareSettings" Width="1.5" PointX="13.5" PointY="417.875" />
+        <EntityTypeShape EntityType="ePlatModel.tblWikiSearchLog" Width="1.5" PointX="28.375" PointY="24.75" />
+        <EntityTypeShape EntityType="ePlatModel.tblTerminalsRelationships" Width="1.5" PointX="26.375" PointY="28.75" />
+        <AssociationConnector Association="ePlatModel.FK_tblPhoneMaskingRules_aspnet_Roles" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_Roles_aspnet_Roles" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminalsAgentTypes_aspnet_Roles" />
+        <AssociationConnector Association="ePlatModel.FK_tblDncExceptionStatusReasons_tblDncExceptionStatusReasons" />
+        <AssociationConnector Association="ePlatModel.FK_tblDncLog_tblDncLog" />
+        <AssociationConnector Association="ePlatModel.FK_tblDncLogHistory_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblInteractionsFiles_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblInteractionsFiles_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblInvoices_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadsList_Users_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadsLists_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadsLists_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblMemberBenefitsRedemption_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblOrder_Reports_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblOrders_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblOrdersLogs_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblPreInvoices_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblStock_MothEndClosings_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminalBudgets_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminalTransfers_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblUserExtensionsHistory_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblUserExtensionsHistory_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblUserTimeshareSettings_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblUserTimeshareSettings_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblAccountingAccounts_tblOrder_ReportTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblAccountingAccounts_tblOrder_Types" />
+        <AssociationConnector Association="ePlatModel.FK_tblMemberBenefitsRedemption_tblArrivals" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadStatusRules_tblBookingStatus" />
+        <AssociationConnector Association="ePlatModel.FK_tblCarrierNumbers_tblSysWorkGroupsTeams" />
+        <AssociationConnector Association="ePlatModel.FK_tblSmsSendingRules_tblCarrierNumbers" />
+        <AssociationConnector Association="ePlatModel.FK_tblServices_Commissions_tblCommissions" />
+        <AssociationConnector Association="ePlatModel.FK_tblReferralsPointsRules_tblCompaniesGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblDncLog_tblCompanyDepartments" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminalBudgets_tblCurrencies" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadStatusRules_tblDiscardReasons" />
+        <AssociationConnector Association="ePlatModel.FK_tblDncBypassTeams_tblSysWorkGroupsTeams" />
+        <AssociationConnector Association="ePlatModel.FK_tblDncLog_tblDncExceptionStatuses" />
+        <AssociationConnector Association="ePlatModel.FK_tblDncLogHistory_tblDncExceptionStatuses" />
+        <AssociationConnector Association="ePlatModel.FK_tblDncLogHits_tblDncExceptionStatuses" />
+        <AssociationConnector Association="ePlatModel.FK_tblDncExceptionStatusReasons_tblDncExceptionStatusReasonTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblDncLog_tblDncExceptionStatusReasons" />
+        <AssociationConnector Association="ePlatModel.FK_tblDncLogHistory_tblDncExceptionStatusReasons" />
+        <AssociationConnector Association="ePlatModel.FK_tblDncLogHits_tblDncExceptionStatusReasons" />
+        <AssociationConnector Association="ePlatModel.FK_tblDncLog_tblServers" />
+        <AssociationConnector Association="ePlatModel.FK_tblDncLog_tblSysWorkGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblDncLog_tblSysWorkGroupsTeams" />
+        <AssociationConnector Association="ePlatModel.FK_tblDncLog_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblDncLogHistory_tblDncLog" />
+        <AssociationConnector Association="ePlatModel.FK_tblDncLogHits_tblDncLog" />
+        <AssociationConnector Association="ePlatModel.FK_tblDncLogHistory_tblSysWorkGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblDncLogHistory_tblSysWorkGroupsTeams" />
+        <AssociationConnector Association="ePlatModel.FK_tblDncLogHits_tblServers" />
+        <AssociationConnector Association="ePlatModel.FK_tblDncLogHits_tblSysWorkGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblDncLogHits_tblSysWorkGroupsTeams" />
+        <AssociationConnector Association="ePlatModel.FK_tblEmailNotificationLogs_tblLeadsLists_EmailNotifications" />
+        <AssociationConnector Association="ePlatModel.FK_tblGenericUnits_Statics_tblGenericUnit_Clasifications1" />
+        <AssociationConnector Association="ePlatModel.FK_tblInteractionDispositions_tblInteractionTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblInteractions_tblInteractionDispositions" />
+        <AssociationConnector Association="ePlatModel.FK_tblInteractionsFiles_tblInteractions" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadStatusRules_tblInterestLevels" />
+        <AssociationConnector Association="ePlatModel.FK_tblInvoiceDetails_tblInvoiceProductService" />
+        <AssociationConnector Association="ePlatModel.FK_tblInvoiceDetails_tblInvoices" />
+        <AssociationConnector Association="ePlatModel.FK_tblInvoiceDetails_tblInvoiceTaxTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblInvoiceDetails_tblInvoiceUnits" />
+        <AssociationConnector Association="ePlatModel.FK_tblInvoiceDetails_tblPricesList" />
+        <AssociationConnector Association="ePlatModel.FK_tblInvoiceDetails_tblPurchaseServiceDetails" />
+        <AssociationConnector Association="ePlatModel.FK_tblInvoiceInfo_tblInvoiceVouchersUse" />
+        <AssociationConnector Association="ePlatModel.FK_tblPaymentTypes_tblInvoicePaymentTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblInvoices_tblInvoices" />
+        <AssociationConnector Association="ePlatModel.FK_tblInvoices_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblInvoiceVouchersUse_tblInvoiceVouchersUse" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadsListDetails_tblLeads" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminalTransfers_tblLeads" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadsList_Users_tblLeadsLists" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadsListDetails_tblLeadsLists" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadsLists_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadsLists_EmailNotifications_tblLeadsLists_EmailNotifications" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminalBudgets_tblLeadSources" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadStatusRules_tblLeadStatus1" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadStatusRules_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblPhoneMaskingRules_tblLeadTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblMemberBenefitsRedemption_tblMemberBenefitsTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblOPC_Operators_tblOPCS" />
+        <AssociationConnector Association="ePlatModel.FK_tblOPC_Operators_tblOperators" />
+        <AssociationConnector Association="ePlatModel.FK_tblOperatorsMicroSites_tblOperators" />
+        <AssociationConnector Association="ePlatModel.FK_tblOrder_Reports_tblOrder_ReportTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblOrder_Reports_tblWeeklyAvailability" />
+        <AssociationConnector Association="ePlatModel.FK_tblOrder_Types_tblOrder_Types" />
+        <AssociationConnector Association="ePlatModel.FK_tblOrders_tblOrder_Types" />
+        <AssociationConnector Association="ePlatModel.FK_tblOrdersLogs_tblOrder_Types" />
+        <AssociationConnector Association="ePlatModel.FK_tblOrderDetails_tblOrders" />
+        <AssociationConnector Association="ePlatModel.FK_tblOrderDetails_tblServices" />
+        <AssociationConnector Association="ePlatModel.FK_tblStockTransactions_tblOrderDetails" />
+        <AssociationConnector Association="ePlatModel.FK_tblOrders_tblOrders_Status" />
+        <AssociationConnector Association="ePlatModel.FK_tblOrders_tblProviders" />
+        <AssociationConnector Association="ePlatModel.FK_tblOrders_tblWeeklyAvailability" />
+        <AssociationConnector Association="ePlatModel.FK_tblOrdersLogs_tblOrders" />
+        <AssociationConnector Association="ePlatModel.FK_tblOrdersLogs_tblOrders_Status" />
+        <AssociationConnector Association="ePlatModel.FK_tblPhoneMaskingRules_tblSysWorkGroupsTeams" />
+        <AssociationConnector Association="ePlatModel.FK_tblReferralsPointsRules_tblReferralsPointsTransactionTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservations_tblReservationsCancellationReason" />
+        <AssociationConnector Association="ePlatModel.FK_tblServices_Commissions_tblServices" />
+        <AssociationConnector Association="ePlatModel.FK_tblStock_MonthEndClosingDetails_tblServices" />
+        <AssociationConnector Association="ePlatModel.FK_tblSmsSendingRules_tblSmsTemplates" />
+        <AssociationConnector Association="ePlatModel.FK_tblSmsSendingRules_tblSysWorkGroupsTeams" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminalsAgentTypes_tblSysWorkGroupsTeams" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminalBudgets_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_Roles_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminals_tblTerminalTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminalsAgentTypes_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminalTransfers_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblTerminalTransfers_tblTerminals1" />
+        <EntityTypeShape EntityType="ePlatModel.tblContractPrefix" Width="1.5" PointX="39.75" PointY="316" />
+        <EntityTypeShape EntityType="ePlatModel.tblConversations" Width="1.5" PointX="62.5" PointY="354.625" />
+        <EntityTypeShape EntityType="ePlatModel.tblPlaces" Width="1.5" PointX="37.5" PointY="343.375" />
+        <AssociationConnector Association="ePlatModel.FK_tblConversations_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblCatalogs_Places_tblPlaces" />
+        <AssociationConnector Association="ePlatModel.FK_tblContractPrefix_tblPlaces" />
+        <AssociationConnector Association="ePlatModel.FK_tblConversationMessages_tblConversations" />
+        <AssociationConnector Association="ePlatModel.FK_tblConversations_tblLeads" />
+        <AssociationConnector Association="ePlatModel.FK_tblConversations_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblPlaces_tblDestinations" />
+        <AssociationConnector Association="ePlatModel.FK_tblEmailNotifications_Places_tblPlaces" />
+        <AssociationConnector Association="ePlatModel.FK_tblInvitations_tblPlaces" />
+        <AssociationConnector Association="ePlatModel.FK_tblInvitationsSettings_tblPlaces" />
+        <AssociationConnector Association="ePlatModel.FK_tblMeetingPoints_tblPlaces" />
+        <AssociationConnector Association="ePlatModel.FK_tblMerchantAccountSettings_tblPlaces" />
+        <AssociationConnector Association="ePlatModel.FK_tblMinimumNights_tblPlaces" />
+        <AssociationConnector Association="ePlatModel.FK_tblOptions_Places_tblPlaces" />
+        <AssociationConnector Association="ePlatModel.FK_tblPackageSettings_tblPlaces" />
+        <AssociationConnector Association="ePlatModel.FK_tblPlaces_tblPlaceClasifications" />
+        <AssociationConnector Association="ePlatModel.FK_tblPlaceDescriptions_tblPlaces" />
+        <AssociationConnector Association="ePlatModel.FK_tblPlaces_PlanTypes_tblPlaces" />
+        <AssociationConnector Association="ePlatModel.FK_tblPlaces_tblPlaces" />
+        <AssociationConnector Association="ePlatModel.FK_tblPlaces_tblPlaces1" />
+        <AssociationConnector Association="ePlatModel.FK_tblPlaces_tblPlaceTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblPlaces_tblTransportationZones" />
+        <AssociationConnector Association="ePlatModel.FK_tblPlaces_tblZones" />
+        <AssociationConnector Association="ePlatModel.FK_tblPlaces_Terminals_tblPlaces" />
+        <AssociationConnector Association="ePlatModel.FK_tblPlaceTerms_tblPlaces" />
+        <AssociationConnector Association="ePlatModel.FK_tblPointsOfSale_tblPlaces" />
+        <AssociationConnector Association="ePlatModel.FK_tblPreferences_Places_tblPlaces" />
+        <AssociationConnector Association="ePlatModel.FK_tblPreferenceTypes_Places_tblPlaces" />
+        <AssociationConnector Association="ePlatModel.FK_tblPurchases_tblPlaces" />
+        <AssociationConnector Association="ePlatModel.FK_tblQualifications_ResortMembers_tblPlaces" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservations_tblPlaces" />
+        <AssociationConnector Association="ePlatModel.FK_tblResortAges_tblPlaces" />
+        <AssociationConnector Association="ePlatModel.FK_tblRoomTypes_tblPlaces" />
+        <AssociationConnector Association="ePlatModel.FK_tblSalesRooms_tblPlaces" />
+        <AssociationConnector Association="ePlatModel.FK_tblSalesRoomsParties_tblPlaces" />
+        <AssociationConnector Association="ePlatModel.FK_tblSchemas_Hotels_tblPlaces" />
+        <AssociationConnector Association="ePlatModel.FK_tblSurveys_tblPlaces" />
+        <AssociationConnector Association="ePlatModel.FK_tblTravelInfo_tblPlaces" />
+        <AssociationConnector Association="ePlatModel.FK_tblUsers_Places_tblPlaces" />
+        <AssociationConnector Association="ePlatModel.FK_tblWorkflows_Places_tblPlaces" />
+        <EntityTypeShape EntityType="ePlatModel.tblTeamsRelationships" Width="1.5" PointX="5.25" PointY="343.25" />
+        <AssociationConnector Association="ePlatModel.FK_tblTeamsRelationships_tblSysWorkGroupsTeams" />
+        <AssociationConnector Association="ePlatModel.FK_tblTeamsRelationships_tblSysWorkGroupsTeams1" />
+        <EntityTypeShape EntityType="ePlatModel.tblMailingAccount" Width="1.5" PointX="28.375" PointY="29" />
+        <EntityTypeShape EntityType="ePlatModel.tblMailingAccountDomains" Width="1.5" PointX="30.625" PointY="28.875" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeads_aspnet_Users5" />
+        <AssociationConnector Association="ePlatModel.FK_tblAssignationSettings_tblWebhooks" />
+        <AssociationConnector Association="ePlatModel.FK_tblMailingAccountDomains_tblMailingAccount" />
+        <AssociationConnector Association="ePlatModel.FK_tblMailingSettings_tblMailingAccount" />
+        <AssociationConnector Association="ePlatModel.FK_tblOperators_Terminals_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblOrder_Reports_tblOrder_Types" />
+        <AssociationConnector Association="ePlatModel.FK_tblUserProfiles_tblTimeZones" />
+        <EntityTypeShape EntityType="ePlatModel.tblOptionsSold" Width="1.5" PointX="71.5" PointY="386.625" />
+        <AssociationConnector Association="ePlatModel.FK_tblOptionsSold_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblOptionsSold_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblOptionsSold_tblOptions" />
+        <AssociationConnector Association="ePlatModel.FK_tblOptionsSold_tblReservations" />
+        <AssociationConnector Association="ePlatModel.FK_tblUserRequests_aspnet_Users1" />
+        <EntityTypeShape EntityType="ePlatModel.tblLeadGroups" Width="1.5" PointX="5.375" PointY="30" />
+        <AssociationConnector Association="ePlatModel.FK_tblContractPrefix_tblCompaniesGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeads_tblLeadGroups" />
+        <AssociationConnector Association="ePlatModel.FK_tblLeadSources_SysWorkGroups_tblSysWorkGroupsTeams" />
+        <EntityTypeShape EntityType="ePlatModel.tblPaymentDetails" Width="1.5" PointX="71.5" PointY="357.75" />
+        <AssociationConnector Association="ePlatModel.FK_tblPaymentDetails_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblPaymentDetails_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblPaymentDetails_aspnet_Users2" />
+        <AssociationConnector Association="ePlatModel.FK_tblPaymentDetails_aspnet_Users3" />
+        <AssociationConnector Association="ePlatModel.FK_tblPaymentDetails_tblCardTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservationPaymentDetails_tblChargeDescriptions" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservationPaymentDetails_tblChargeTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblCloseOut_PaymentDetails_tblPaymentDetails" />
+        <AssociationConnector Association="ePlatModel.FK_tblPaymentDetails_tblCompanies" />
+        <AssociationConnector Association="ePlatModel.FK_tblPaymentDetails_tblCurrencies" />
+        <AssociationConnector Association="ePlatModel.FK_tblPaymentDetails_tblPaymentDetails" />
+        <AssociationConnector Association="ePlatModel.FK_tblPaymentDetails_tblExchangeRates" />
+        <AssociationConnector Association="ePlatModel.FK_tblPaymentDetails_tblLeads" />
+        <AssociationConnector Association="ePlatModel.FK_tblPaymentDetails_tblLocations" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservationPaymentDetails_tblMoneyTransactions" />
+        <AssociationConnector Association="ePlatModel.FK_tblPaymentDetails_tblOPCS" />
+        <AssociationConnector Association="ePlatModel.FK_tblPaymentDetails_tblPromotionTeams" />
+        <AssociationConnector Association="ePlatModel.FK_tblPaymentDetails_tblPurchases" />
+        <AssociationConnector Association="ePlatModel.FK_tblPaymentDetailsPartials_tblPaymentDetails" />
+        <AssociationConnector Association="ePlatModel.FK_tblReservationPaymentDetails_tblReservations" />
+        <EntityTypeShape EntityType="ePlatModel.tblOptionTypes" Width="1.5" PointX="41.5" PointY="386.5" />
+        <AssociationConnector Association="ePlatModel.FK_tblMaxPointsPerOptions_tblOptionTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblOptions_tblOptionTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblOptionsSold_tblOptionTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblOptionTypes_tblSysEvents" />
+        <AssociationConnector Association="ePlatModel.FK_tblOptionTypes_tblTerminals" />
+        <AssociationConnector Association="ePlatModel.FK_tblReferralsPointsTransactionTypes_tblSysEvents" />
+        <EntityTypeShape EntityType="ePlatModel.tblCouponInfo" Width="1.5" PointX="0.75" PointY="14.75" />
+        <AssociationConnector Association="ePlatModel.FK_tblCouponInfoUnits_tblCouponInfo" />
+        <EntityTypeShape EntityType="ePlatModel.tblReferralsPoints" Width="1.5" PointX="64.75" PointY="352.125" />
+        <EntityTypeShape EntityType="ePlatModel.tblSPIRegions" Width="1.5" PointX="62.5" PointY="342.75" />
+        <AssociationConnector Association="ePlatModel.FK_tblReferralsPoints_aspnet_Users" />
+        <AssociationConnector Association="ePlatModel.FK_tblReferralsPoints_aspnet_Users1" />
+        <AssociationConnector Association="ePlatModel.FK_tblReferralsPoints_aspnet_Users2" />
+        <AssociationConnector Association="ePlatModel.FK_tblReferralsPoints_tblLeads" />
+        <AssociationConnector Association="ePlatModel.FK_tblReferralsPoints_tblLeads1" />
+        <AssociationConnector Association="ePlatModel.FK_tblReferralsPoints_tblPlaces" />
+        <AssociationConnector Association="ePlatModel.FK_tblReferralsPoints_tblReferralPointsTransactionTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblReferralsPoints_tblSPIRegions" />
+        <AssociationConnector Association="ePlatModel.FK_tblReferralsPointsRedemption_tblReferralsPoints1" />
+        <EntityTypeShape EntityType="ePlatModel.tblBankCommissions" Width="1.5" PointX="48.75" PointY="329.5" />
+        <AssociationConnector Association="ePlatModel.FK_tblMailingSettings_aspnet_Users_modifiedByUserID" />
+        <AssociationConnector Association="ePlatModel.FK_tblMailingSettings_aspnet_Users_savedByUserID" />
+        <AssociationConnector Association="ePlatModel.FK_tblBankCommissions_tblCardTypes" />
+        <AssociationConnector Association="ePlatModel.FK_tblBankCommissions_tblTerminals" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,87 @@
+﻿@model ePlatBack.Models.ViewModels.EmailInfoModel
+@{
+    var Privileges = ViewData["Privileges"] as List<ePlatBack.Models.ViewModels.SysComponentsPrivilegesModel>;
+}
+
+<fieldset id="fdsEmailsInfo" class="primary-selected-row-dependent">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        Email Info
+    </legend>
+    <div class="align-from-top" style="display:none">
+        @using(Ajax.BeginForm("SaveEmail", "Emails", new AjaxOptions{OnSuccess = "EMAIL.saveEmailSuccess(data)"}, new { id ="frmEmailsInfo", onSubmit = "return UI.showValidationSummary(this.id);"}))
+        {
+            <div id="frmEmail_ErrorMessage" style="display:none">
+
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.EmailInfo_Terminals)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.EmailInfo_Terminals, Model.EmailInfo_DrpTerminals, new { multiple = "multiple", @class = "terminal-dependent-list", data_route = "/Emails/GetDDLData", data_route_parameter = "activeTerminals" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.EmailInfo_Culture)
+                    @Html.HiddenFor(model => model.EmailInfo_EmailID)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.EmailInfo_Culture, Model.EmailInfo_DrpCultures)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.EmailInfo_EmailTemplate)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.EmailInfo_EmailTemplate, Model.EmailInfo_DrpEmailTemplates)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.EmailInfo_Subject)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.EmailInfo_Subject, new { data_format = "free-case" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.EmailInfo_Sender)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.EmailInfo_Sender, new { data_format = "lower-case", placeholder = "empty = sender" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.EmailInfo_Alias)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.EmailInfo_Alias, new { data_format = "free-case"})
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.EmailInfo_Description)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.EmailInfo_Description, new { data_format = "free-case" })
+                </div>
+            </div>
+            <div class="editor-alignment full-width">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.EmailInfo_Content)
+                </div>
+                <div class="editor-field">
+                    @Html.TextAreaFor(model => model.EmailInfo_Content)
+                </div>
+            </div>
+            <div class="align-from-top full-width">
+                <input type="submit" id="btnSaveEmail" class="submit right" value="save" />
+            </div>
+        }
+    </div>
+</fieldset>

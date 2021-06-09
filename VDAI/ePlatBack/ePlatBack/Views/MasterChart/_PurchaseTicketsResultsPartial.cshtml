@@ -1,0 +1,43 @@
+﻿@model ePlatBack.Models.ViewModels.PurchasesModel
+
+<table id="tblPurchaseTickets" class="table dataTable non-editable" style="width:auto !important">
+    <thead>
+        <tr>
+            <th colspan="5">Purchase Tickets</th>
+        </tr>
+        <tr>
+            <th>Date Saved</th>
+            <th>Saved By User</th>
+            <th>Purchase Total</th>
+            <th>Prints Counter</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ListPurchaseTickets != null)
+        {
+            foreach (var i in Model.ListPurchaseTickets)
+            {
+                var id = "purchaseTicket_" + i.PurchaseTicketID;
+
+                <tr id="@id">
+                    <td>
+                        @Html.DisplayFor(model => i.DateSaved)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.SavedByUser)
+                    </td>
+                    <td data-format="currency">
+                        @Html.DisplayFor(model => i.PurchaseTotal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.Reprints)
+                    </td>
+                    <td>
+                        <span class="table-cell"><input type="button" value="reprint" class="print-ticket reprint button" /></span>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

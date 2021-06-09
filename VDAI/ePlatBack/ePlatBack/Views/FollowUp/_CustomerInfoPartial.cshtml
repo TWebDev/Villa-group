@@ -1,0 +1,249 @@
+﻿@model ePlatBack.Models.ViewModels.FollowUpViewModel.LeadInfo
+
+<div class="form-row">
+    <div class="col-12">
+        <h5>Contact Information</h5>
+    </div>
+    <div class="col-12">
+        @Html.LabelFor(model => model.ContactInfo.Phones)
+        <table class="table w-100 table-sm">
+            <thead class="thead-light">
+                <tr class="text-center">
+                    <th class="align-middle">Type</th>
+                    <th class="align-middle">Phone</th>
+                    <th class="align-middle">Ext</th>
+                    <th>Main</th>
+                    <th>DNC</th>
+                    <th style="width: 85px;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(phone, p) in Lead.ContactInfo.Phones">
+                    <td class="text-center" v-bind:class="{ deleted : phone.DoNotCall }">
+                        <template v-if="!phone.Editing">
+                            {{ phone.PhoneType }}
+                        </template>
+                        <template v-else>
+                            <select class="form-control form-control-sm" v-model="phone.PhoneTypeID">
+                                <option v-for="type in Lists.PhoneTypes" v-bind:value="type.Value">{{ type.Text }}</option>
+                            </select>
+                        </template>
+                    </td>
+                    <td class="text-center" v-bind:class="{ deleted : phone.DoNotCall }">
+                        <template v-if="!phone.Editing">
+                            {{ phone.Phone }}
+                        </template>
+                        <template v-else>
+                            <input type="text" class="form-control form-control-sm" v-model="phone.Phone" v-on:keyup.enter="updatePhoneToLead(p)" maxlength="10" />
+                        </template>
+                    </td>
+                    <td class="text-center" v-bind:class="{ deleted : phone.DoNotCall }">
+                        <template v-if="!phone.Editing">
+                            {{ phone.Ext }}
+                        </template>
+                        <template v-else>
+                            <input id="Ext" type="text" class="form-control form-control-sm" v-model="phone.Ext" style="width:60px;" v-on:keyup.enter="updatePhoneToLead(p)" />
+                        </template>
+                    </td>
+                    <td class="text-center">
+                        <template v-if="!phone.Editing">
+                            <i class="material-icons" v-show="phone.Main">bookmark</i>
+                        </template>
+                        <template v-else>
+                            <i class="material-icons" v-on:click="phone.Main = true" v-bind:class="{ 'text-so-muted' : !phone.Main }">bookmark</i>
+                        </template>
+                    </td>
+                    <td class="text-center">
+                        <template v-if="!phone.Editing">
+                            <i class="material-icons" v-show="phone.DoNotCall">block</i>
+                        </template>
+                        <template v-else>
+                            <i class="material-icons" v-on:click="phone.DoNotCall = !phone.DoNotCall" v-bind:class="{ 'text-so-muted' : !phone.DoNotCall }">block</i>
+                        </template>
+                    </td>
+                    <td class="text-center">
+                        <button class="btn btn-sm btn-light" v-on:click="editPhone(p)" v-show="!phone.Editing">
+                            <i class="material-icons">edit</i>
+                        </button>
+                        <button class="btn btn-sm btn-light"
+                                v-show="phone.Editing"
+                                v-on:click="updatePhoneToLead(p)">
+                            <i class="material-icons">check</i>
+                        </button>
+                        <button class="btn btn-sm btn-light" v-on:click="deletePhone(p)">
+                            <i class="material-icons">delete</i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>
+                        <select id="PhoneTypeID" class="form-control form-control-sm" v-model="Phone.PhoneTypeID" style="width: 110px;">
+                            <option v-for="type in Lists.PhoneTypes" v-bind:value="type.Value">{{ type.Text }}</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control form-control-sm" v-model="Phone.Phone" v-on:keyup.enter="addPhoneToLead()" maxlength="10" />
+                    </td>
+                    <td>
+                        <input id="Ext" type="text" class="form-control form-control-sm" v-bind:disabled="Phone.PhoneTypeID != 2" v-model="Phone.Ext" style="width:60px;" v-on:keyup.enter="addPhoneToLead()" />
+                    </td>
+                    <td class="text-center">
+                        <i class="material-icons mt-1" v-on:click="Phone.Main = !Phone.Main" v-bind:class="{ 'text-so-muted' : !Phone.Main }">bookmark</i>
+                    </td>
+                    <td class="text-center">
+                        <i class="material-icons mt-1" v-on:click="Phone.DoNotCall = !Phone.DoNotCall" v-bind:class="{ 'text-so-muted' : !Phone.DoNotCall }">block</i>
+                    </td>
+                    <td class="text-right">
+                        <button 
+                                class="btn btn-sm btn-light" 
+                                v-on:click="addPhoneToLead()">
+                            <i class="material-icons">add</i>
+                        </button>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div class="col-12">
+        @Html.LabelFor(model => model.ContactInfo.Emails)
+        <table class="table w-100 table-sm">
+            <thead class="thead-light">
+                <tr class="text-center">
+                    <th>Email</th>
+                    <th>Is Main</th>
+                    <th style="width: 85px;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(email, e) in Lead.ContactInfo.Emails">
+                    <td>
+                        <template v-if="!email.Editing">
+                            {{ email.Email }}
+                        </template>
+                        <template v-else>
+                            <input type="text" class="form-control form-control-sm" v-model="email.Email" v-on:keyup.enter="updateEmailToLead(e)" />
+                        </template>
+                    </td>
+                    <td class="text-center">
+                        <template v-if="!email.Editing">
+                            <i class="material-icons" v-show="email.Main">bookmark</i>
+                        </template>
+                        <template v-else>
+                            <i class="material-icons" v-on:click="email.Main = true" v-bind:class="{ 'text-so-muted' : !email.Main }">bookmark</i>
+                        </template>
+                    </td>
+                    <td>
+                        <button class="btn btn-sm btn-light" v-on:click="editEmail(e)" v-show="!email.Editing">
+                            <i class="material-icons">edit</i>
+                        </button>
+                        <button class="btn btn-sm btn-light"
+                                v-show="email.Editing"
+                                v-on:click="updateEmailToLead(e)">
+                            <i class="material-icons">check</i>
+                        </button>
+                        <button class="btn btn-sm btn-light" v-on:click="deleteEmail(e)">
+                            <i class="material-icons">delete</i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>
+                        <input type="text" class="form-control form-control-sm" v-model="Email.Email" v-on:keyup.enter="addEmailToLead()" />
+                    </td>
+                    <td class="align-middle text-center">
+                        <i class="material-icons mt-1" v-on:click="Email.Main = !Email.Main" v-bind:class="{ 'text-so-muted' : !Email.Main }">bookmark</i>
+                    </td>
+                    <td class="text-right">
+                        <button class="btn btn-sm btn-light" v-on:click="addEmailToLead()">
+                            <i class="material-icons">add</i>
+                        </button>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+<div class="form-row">
+    <div class="col-12">
+        <h5>Customer Info</h5>
+    </div>
+    <div class="form-group col-md-4">
+        @Html.LabelFor(model => model.CustomerInfo.FirstName)
+        @Html.TextBoxFor(model => model.CustomerInfo.FirstName, new { @class = "form-control", v_model = "Lead.CustomerInfo.FirstName" })
+    </div>
+    <div class="form-group col-md-4">
+        @Html.LabelFor(model => model.CustomerInfo.LastName)
+        @Html.TextBoxFor(model => model.CustomerInfo.LastName, new { @class = "form-control", v_model = "Lead.CustomerInfo.LastName" })
+    </div>
+    <div class="form-group col-md-4">
+        @Html.LabelFor(model => model.CustomerInfo.CountryID)
+        <select id="CountryID" class="form-control" v-model="Lead.CustomerInfo.CountryID">
+            <option v-for="country in Lists.Countries" v-bind:value="country.Value">{{ country.Text }}</option>
+        </select>
+    </div>
+    <div class="form-group col-md-4">
+        @Html.LabelFor(model => model.CustomerInfo.StateID)
+        <select id="StateID" class="form-control" v-model="Lead.CustomerInfo.StateID"></select>
+    </div>
+    <div class="form-group col-md-4">
+        @Html.LabelFor(model => model.CustomerInfo.City)
+        @Html.TextBoxFor(model => model.CustomerInfo.City, new { @class = "form-control", v_model = "Lead.CustomerInfo.City" })
+    </div>
+    <div class="form-group col-md-4">
+        @Html.LabelFor(model => model.CustomerInfo.LeadSourceID)
+        <select id="LeadSourceID" class="form-control" v-model="Lead.CustomerInfo.LeadSourceID">
+            <option v-for="leadSource in Lists.LeadSources" v-bind:value="leadSource.Value">{{ leadSource.Text }}</option>
+        </select>
+    </div>
+    <div class="form-group col-md-4">
+        @Html.LabelFor(model => model.CustomerInfo.LeadSourceChannelID)
+        <select id="LeadSourceChannelID" class="form-control" v-model="Lead.CustomerInfo.LeadSourceChannelID"></select>
+    </div>
+    <div class="form-group col-md-4">
+        @Html.LabelFor(model => model.CustomerInfo.LeadTypeID)
+        <select id="LeadTypeID" class="form-control" v-model="Lead.CustomerInfo.LeadTypeID">
+            <option v-for="type in Lists.LeadTypes" v-bind:value="type.Value">{{ type.Text }}</option>
+        </select>
+    </div>
+    <div class="form-group col-md-4">
+        @Html.LabelFor(model => model.CustomerInfo.DestinationID)
+        <select id="InterestedInDestinationID" class="form-control" v-model="Lead.CustomerInfo.InterestedInDestinationID">
+            <option v-for="destination in Lists.Destinations" v-bind:value="destination.Value">{{ destination.Text }}</option>
+        </select>
+    </div>
+    <div class="form-group col-md-4">
+        @Html.LabelFor(model => model.CustomerInfo.InputMethodID)
+        <select id="InputMethodID" class="form-control" v-model="Lead.CustomerInfo.InputMethodID" disabled="disabled">
+            <option v-for="method in Lists.InputMethods" v-bind:value="method.Value">{{ method.Text }}</option>
+        </select>
+    </div>
+    <div class="form-group col-md-4">
+        @Html.LabelFor(model => model.CustomerInfo.BookingStatusID)
+        @Html.TextBoxFor(model => model.CustomerInfo.BookingStatus, new { @class = "form-control", v_model = "Lead.CustomerInfo.BookingStatus", @readonly = "readonly" })
+    </div>
+    <div class="form-group col-md-4">
+        @Html.LabelFor(model => model.CustomerInfo.InterestLevelID)
+        @Html.TextBoxFor(model => model.CustomerInfo.InterestLevel, new { @class = "form-control", v_model = "Lead.CustomerInfo.InterestLevel", @readonly = "readonly" })
+    </div>
+    <div class="form-group col-md-4">
+        @Html.LabelFor(model => model.CustomerInfo.DateSaved)
+        @Html.TextBoxFor(model => model.CustomerInfo.DateSaved, new { @class = "form-control", v_model = "DateInputYYYYMMDD", @readonly = "readonly" })
+    </div>
+    <div class="form-group col-md-4">
+        @Html.LabelFor(model => model.CustomerInfo.AssignedToUserID)
+        <select id="AssignedToUserID" class="form-control" v-model="Lead.CustomerInfo.AssignedToUserID">
+            <option v-for="agent in Lists.Agents" v-bind:value="agent.Value">{{ agent.Text }}</option>
+        </select>
+    </div>
+    <div class="form-group col-md-4">
+        @Html.LabelFor(model => model.CustomerInfo.LeadStatusID)
+        <select id="LeadStatusID" class="form-control" v-model="Lead.CustomerInfo.LeadStatusID" disabled="disabled">
+            <option v-for="status in Lists.LeadStatus" v-bind:value="status.Value">{{ status.Text }}</option>
+        </select>
+    </div>
+</div>

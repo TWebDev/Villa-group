@@ -1,0 +1,100 @@
+﻿@model ePlatBack.Models.ViewModels.AccountingAccountsModel.AccountingAccountInfoModel
+@{
+    var Privileges = ViewData["Privileges"] as List<ePlatBack.Models.ViewModels.SysComponentsPrivilegesModel>;
+}
+
+@*@Html.Partial("_AccountingAccountsSearchCatalogPartial", Model.SearchAccountingAccountsModel)*@
+
+
+@*<p class="full-width align-from-bottom">
+        <input type="button" id="btnNewAccountingAccountsInfo" class="submit fieldset-expander right" value="new" />
+    </p>*@
+@*<div id="divTblExistingAccountingAccounts"></div>*@
+@if (Privileges.FirstOrDefault(m => m.Component == "fdsAccountingAccountsInfo") == null || Privileges.FirstOrDefault(m => m.Component == "fdsAccountingAccountsInfo").View)
+{
+    <fieldset id="fdsAccountingAccountsInfo" class="primary-selected-row-dependent" data-close-siblings="true">
+        <legend>
+            <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+            Accounting Account Info
+        </legend>
+        <div style="display: none">
+            @if (Privileges.FirstOrDefault(m => m.Component == "frmAccountingAccountInfo") == null || Privileges.FirstOrDefault(m => m.Component == "frmAccountingAccountInfo").View)
+            {
+                using (Ajax.BeginForm("SaveAccountingAccount", "Catalogs", new AjaxOptions { OnSuccess = "CATALOG.saveAccountingAccountSuccess(data)" }, new { id = "frmAccountingAccountsInfo", onSubmit = "return UI.showValidationSummary(this.id);" }))
+                {
+                    <div id="frmAccountingAccountInfo_ErrorMessages" style="display: none">
+                        @Html.ValidationMessageFor(model => model.AccountingAccountInfo_Account)
+                        @Html.ValidationMessageFor(model => model.AccountingAccountInfo_AccountName)
+                        @Html.ValidationMessageFor(model => model.AccountingAccountInfo_Company)
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.AccountingAccountInfo_Account)
+                            @Html.HiddenFor(model => model.AccountingAccountInfo_AccountingAccountID, new { @class = "secondary-selected-row-dependent" })
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.AccountingAccountInfo_Account)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.AccountingAccountInfo_AccountName)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.AccountingAccountInfo_AccountName)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.AccountingAccountInfo_Company)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.AccountingAccountInfo_Company, Model.AccountingAccountInfo_DrpCompanies, new { @class = "terminal-dependent-list", data_route = "/Catalogs/GetDDLData", data_route_parameter = "company" })
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.AccountingAccountInfo_PriceType)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.AccountingAccountInfo_PriceType, Model.AccountingAccountInfo_DrpPriceTypes, new { @class = "terminal-dependent-list", data_route = "/Catalogs/GetDDLData", data_route_parameter = "priceType", multiple = "multiple" })
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.AccountingAccountInfo_ArticleMXN)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.AccountingAccountInfo_ArticleMXN)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.AccountingAccountInfo_ArticleUSD)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.AccountingAccountInfo_ArticleUSD)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.AccountingAccountInfo_AccountType)
+                        </div>
+                        <div class="editor-field">
+                            <label>Income</label>
+                            @Html.RadioButtonFor(model => model.AccountingAccountInfo_AccountType, true)
+                            <label>Outcome</label>
+                            @Html.RadioButtonFor(model => model.AccountingAccountInfo_AccountType, false)
+                        </div>
+                    </div>
+                    if (Privileges.FirstOrDefault(m => m.Component == "btnSaveAccountingAccountInfo") != null && Privileges.FirstOrDefault(m => m.Component == "btnSaveAccountingAccountInfo").View)
+                    {
+                        <div class="editor-alignment full-width">
+                            <input type="submit" class="submit right" value="save" id="btnSaveAccountingAccountInfo" />
+                        </div>
+                    }
+                }
+            }
+        </div>
+    </fieldset>
+}

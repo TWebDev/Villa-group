@@ -1,0 +1,58 @@
+﻿@model ePlatBack.Models.ViewModels.ArrivalsReport.SearchArrivalsModel
+
+@using (Ajax.BeginForm("SearchArrivals", "Reports", new AjaxOptions { UpdateTargetId = "divTblArrivalsResults", OnSuccess = "REPORT.addPluginToTable(data);REPORT.addExtras();" }, new { id = "frmSearchArrivals" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="non-printable search-params">
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SearchArrival_I_ArrivalDate)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.SearchArrival_I_ArrivalDate, new { data_uses_date_picker = "true"})
+                @Html.TextBoxFor(model => model.SearchArrival_F_ArrivalDate, new { data_uses_date_picker = "true"})
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SearchArrival_Resort)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.SearchArrival_Resort, Model.SearchArrival_DrpResorts, new { multiple= "multiple"})
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SearchArrival_BookingStatus)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.SearchArrival_BookingStatus, Model.SearchArrival_DrpBookinStatus, new {multiple = "multiple"})
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SearchArrival_LeadSource)
+            </div>
+            <div class="editor-field">
+             @Html.DropDownListFor(model => model.SearchArrival_LeadSource, Model.SearchArrival_DrpLeadSources, new { multiple = "multiple"})
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SearchArrival_AssignedToUser)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.SearchArrival_AssignedToUser, Model.SearchArrival_DrpAssignedToUsers, new { multiple = "multiple" })
+            </div>
+        </div>
+        <div class="editor-alignment align-from-top">
+            <div class="editor-field">
+                <input type="submit" class="button" value="get" />
+            </div>
+        </div>
+    </div>
+    <div id="divTblArrivalsResults" class="align-from-top">
+    </div>
+}

@@ -1,0 +1,151 @@
+﻿@model ePlatBack.Models.ViewModels.AuditCouponsModel.InvoiceItem
+
+
+<div id="divProviderInvoice">
+    <h3>Provider Invoice</h3>
+    <table id="tblCouponsReport" class="no-plugin" style="width: 100%">
+        <thead>
+            <tr>
+                <th>
+                    Coupon
+                </th>
+                <th>
+                    Terminal
+                </th>
+                <th>
+                    Guest
+                </th>
+                <th>Purchase Date</th>
+                <th>
+                    Service
+                </th>
+                <th>
+                    Activity Date
+                </th>
+                <th>
+                    Units
+                </th>
+                <th>
+                    Confirmation
+                </th>
+                <th>
+                    Sales Agent
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                    Close Out
+                </th>
+                <th class="cost-usd" colspan="2">
+                    Cost USD
+                </th>
+                <th class="cost-mxn" colspan="2">
+                    Cost MXN
+                </th>
+                <th colspan="2">
+                    Sale
+                </th>
+                <th>
+                    Invitation
+                </th>
+                <th>
+                    Audit
+                    <input type="checkbox" id="chkAuditAll" />
+                </th>
+                <th>
+                    Paid
+                    <input type="checkbox" id="chkPaidAll" />
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="search-coupon">
+                <td colspan="11">
+                    @using (Ajax.BeginForm("SearchCoupon", "Reports", new AjaxOptions { OnSuccess = "REPORT.Audit.couponSearchResponse(data);" }, new { id = "frmSearchCoupon" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                        <div class="editor-alignment">
+                            <input type="text" id="Search_Folio" data-format="upper-case" name="Search_Folio" placeholder="Coupon Folio(s)" />
+                        </div>
+                        @*<div class="editor-alignment">
+                    <div class="editor-label">
+                        <label for="Search_Cache">Use Cache</label>
+                    </div>
+                    <div class="editor-field">
+                        <input id="Search_Cache" name="Search_Cache" type="checkbox" value="true">
+                    </div>
+                </div>*@
+                        <input type="submit" id="btnAddCoupon" value="ADD" class="button" style="display:none;" />
+                    }
+                </td>
+                <td class="cost-usd" colspan="2"></td>
+                <td class="cost-mxn" colspan="2"></td>
+                <td colspan="2"></td>
+                <td></td>
+                <td colspan="3"></td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="11">
+                    @using (Ajax.BeginForm("SaveProviderInvoice", "Reports", new AjaxOptions { OnSuccess = "REPORT.Audit.invoiceSaved(data);" }, new { id = "frmProviderInvoice" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                        @Html.HiddenFor(model => model.ProviderInvoiceID)
+                        @Html.HiddenFor(model => model.PurchaseServicesIDs)
+                        @Html.HiddenFor(model => model.PurchaseSelectedServicesIDs)
+                        @Html.HiddenFor(model => model.PaidPurchaseServicesIDs)
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ProviderID)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.ProviderID, Model.ProvidersList)
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label" title="This field can be modified in Provider's Catalog.'">
+                                @Html.LabelFor(model => model.InvoiceCurrency)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.InvoiceCurrency, new { disabled = "disabled" })
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.Invoice)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.Invoice)
+                            </div>
+                        </div>
+                        <div class="editor-alignment align-from-top">
+                            <div class="editor-field">
+                                @if (Model.Privileges.FirstOrDefault(m => m.Component == "btnSaveProviderInvoice") == null || Model.Privileges.FirstOrDefault(m => m.Component == "btnSaveProviderInvoice").View)
+                                {
+                                    <input type="submit" class="button submit" id="btnSaveProviderInvoice" value="SAVE" />
+                                }
+                                <input type="button" class="button" value="GET DETAILS" id="btnGetDetails" style="display:none;" />
+                            </div>
+                        </div>
+                    }
+                </td>
+                <td class="cost-usd"><span id="spnTotalUSD" data-format="currency">0</span></td>
+                <td class="cost-usd">USD</td>
+                <td class="cost-mxn"><span id="spnTotalMXN" data-format="currency">0</span></td>
+                <td class="cost-mxn">MXN</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td colspan="4"></td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+<div id="divAuditDetails"></div>

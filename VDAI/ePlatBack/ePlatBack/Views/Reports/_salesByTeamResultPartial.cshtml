@@ -1,0 +1,224 @@
+﻿@model ePlatBack.Models.ViewModels.SalesByTeam.SalesByTeamResult
+
+@if (Model.Summary.Count() > 0)
+{
+
+    <h2>Percentage</h2>
+    <div>
+        <table class=" dataTable">
+            <thead>
+                <tr>
+                    <th rowspan="4">Program/Team</th>
+                </tr>
+                <tr>
+                    @{ var col = Model.tableWithPercentage.prices.Count() * 2; }
+                    <th colspan="@col"> Prices </th>
+
+                    <th rowspan="3">Total General</th>
+                </tr>
+                <tr>
+                    @foreach (var item in Model.tableWithPercentage.prices.OrderBy(x => x.priceTypeGroup))
+                    {
+                        <th colspan="2" id="@item.priceTypeGroupID">@item.priceTypeGroup</th>
+                    }
+                </tr>
+                <tr>
+                    @for (int x = 1; x <= Model.tableWithPercentage.prices.Count(); x++)
+                    {
+                        <th>%</th>
+                        <th>Total</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var programInfo in Model.tableWithPercentage.programs)
+                {
+                    <tr>
+                        <td><strong>@programInfo.program</strong></td>
+                        @foreach (var pricesInPro in programInfo.priceTypes.OrderBy(x => x.priceTypeGroup))
+                        {
+                            if (pricesInPro.totalPriceTypes.Amount > 0)
+                            {
+                                var percentage = (float)Math.Round(pricesInPro.totalPriceTypes.Amount / programInfo.programTotal.Amount * 100, 2);
+                                <td>@percentage %</td>
+                                <td data-format="currency"> @pricesInPro.totalPriceTypes.Amount </td>
+                            }
+                            else
+                            {
+                                <td></td>
+                                <td data-format="currency">0</td>
+                            }
+                        }
+                        @* @{var percentageTotalPro = (float)Math.Round(programInfo.programTotal.Amount/Model.tableWithPercentage.tfoot.totalGrand.Amount * 100);}
+                            <td>@percentageTotalPro %</td>*@
+                        <td data-format="currency">@programInfo.programTotal.Amount</td>
+                    </tr>
+                    foreach (var team in programInfo.teamList)
+                    {
+                        <tr>
+                            <td>@team.Team </td>
+                            @foreach (var price in team.totalpriceTypesByTeam.OrderBy(x => x.priceTypeGroup))
+                            {
+                                if (price.totalPriceTypes.Amount > 0)
+                                {
+                                    var percentageTeam = (float)Math.Round(price.totalPriceTypes.Amount / team.totalTeam.Amount * 100, 2);
+                                    <td>@percentageTeam  %</td>
+                                    <td data-format="currency">@price.totalPriceTypes.Amount</td>
+                                }
+                                else
+                                {
+                                    <td></td>
+                                    <td data-format="currency">0</td>
+                                }
+                            }
+                            @* @{ var percentageTotalTeam = (float)Math.Round(programInfo.programTotal.Amount / Model.tableWithPercentage.tfoot.totalGrand.Amount * 100);}
+                                <td>@percentageTotalTeam %</td>*@
+                            <td data-format="currency">@team.totalTeam.Amount</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+            <tfood>
+                <tr>
+                    <td><strong>Total</strong></td>
+                    @foreach (var n in Model.tableWithPercentage.prices.OrderBy(x => x.priceTypeGroup))
+                    {
+                        if (n.totalPriceTypes.Amount > 0)
+                        {
+                            var percentageTfoot = (float)Math.Round(n.totalPriceTypes.Amount / Model.tableWithPercentage.tfoot.totalGrand.Amount * 100, 2);
+                            <td>@percentageTfoot %</td>
+                            <td data-format="currency">@n.totalPriceTypes.Amount </td>
+                        }
+                        else
+                        {
+                            <td></td>
+                            <td data-format="currency">0</td>
+                        }
+                    }
+                    <td data-format="currency">@Model.tableWithPercentage.tfoot.totalGrand.Amount</td>
+                </tr>
+            </tfood>
+        </table>
+
+    </div>
+
+
+    <h2>Totals</h2>
+   <div>     
+        <table class="no-plugin non-editable" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Program</th>
+                    <th>Team</th>
+                    <th>Price Types</th>
+                    <th>Total by Price Type </th>
+                    <th>Currency</th>
+                    <th>Total by Team</th>
+                    <th>Total by Program</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ( var programs in Model.totalByProgram)
+                {                                                            
+                    var contTeam = 0;           
+                       var rowProgram = programs.listTeam.Sum( x => x.totalpriceTypesByTeam.Count() );;
+                       @:<tr>
+                       @:<td rowspan="@rowProgram">@programs.program</td>                         
+                       foreach( var team in programs.listTeam )
+                       {                               
+                               var rowTeam = team.totalpriceTypesByTeam.Count();
+                               var contPrice = 0;                                                       
+                               if(contTeam > 0)
+                               {
+                                   @:<tr>
+                               }                                   
+                               @:<td rowspan="@rowTeam">@team.Team</td>                                                                                              
+                              foreach(var price in team.totalpriceTypesByTeam.OrderByDescending(x=> x.totalPriceTypes.Amount))
+                              {
+                                  if (contTeam == 0 && contPrice == 0)
+                                  {
+                                       @:<td id="@price.priceTypeGroupID"> @price.priceTypeGroup </td>                                     
+                                             @:<td data-format="currency">@price.totalPriceTypes.Amount</td>
+                                             @:<td>@price.totalPriceTypes.Currency</td>
+                                             @:<td data-format="currency" rowspan="@rowTeam">@team.totalTeam.Amount </td>
+                                             @:<td data-format="currency" rowspan="@rowProgram">@programs.totalByProgram.Amount </td>
+                                            @:</tr>
+                                     
+                                  }                                  
+                                  if(contPrice > 0)
+                                  {
+                                         @:<tr>
+                                            @:<td id="@price.priceTypeGroupID">@price.priceTypeGroup </td>
+                                                                                   
+                                                @:<td data-format ="currency">@price.totalPriceTypes.Amount </td>
+                                                @:<td>@price.totalPriceTypes.Currency</td>                                                                                    
+                                          @:</tr>
+                                  }                                            
+                                  if(contTeam > 0 && contPrice == 0)
+                                  {                                     
+                                            @:<td id="@price.priceTypeGroupID">@price.priceTypeGroup </td>                                                                                   
+                                                @:<td data-format="currency">@price.totalPriceTypes.Amount </td>
+                                                @:<td>@price.totalPriceTypes.Currency</td> 
+                                                @:<td rowspan="@rowTeam" data-format="currency">@team.totalTeam.Amount </td>
+                                            @:</tr>                                     
+                                  }                                                                                                           
+                                     contPrice++;                               
+                              }                                                                                                                           
+                               contTeam++;                               
+                        }                                                 
+                }
+           </tbody>
+        </table>
+   </div>     
+    <h2>Details</h2>
+    <div>
+        <table id="searchByTeamResultTable" class=" dataTable">
+            <thead>
+               <tr>
+                   <th>Date</th>
+                   <th>Program</th>
+                   <th>Team</th>
+                   <th>Folio</th>
+                   <th>Reference</th>
+                   <th>Unit</th>
+                   <th>Total</th>
+                   <th>Currency</th>
+                   <th>Price Type</th>
+                   <th>Status</th>
+               </tr>
+            </thead>
+            <tbody>
+                @foreach(var purchase in Model.Summary.OrderByDescending(x=>x.datePurchase))
+                { 
+                    <tr id="@purchase.purchaseID">
+                        <td>@purchase.datePurchase</td>
+                        <td>@purchase.marketingProgram</td>
+                        <td>@purchase.subDivisionTeam</td>
+                        <td>@purchase.folio</td>
+                        <td>@purchase.couponReference</td>
+                        <td>@purchase.unit</td>
+                        <td data-format="currency">@purchase.unitTotal.Amount </td>
+                        <td>@purchase.unitTotal.Currency</td>
+                        <td id="@purchase.priceTypeID">@purchase.priceType</td>
+                        <td>@purchase.status</td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6" align="right">Total</td>
+                    @if (@Model.total.Count(x => x.Currency == "USD") == 1)
+                    {
+                        <td data-format="currency"> @Model.total.FirstOrDefault(x => x.Currency == "USD").Amount </td>
+                        <td colspan="3">USD</td>
+                    }
+                    else
+                    {
+                        <td data-format="currency"> @Model.total.FirstOrDefault(x => x.Currency == "MXN").Amount </td>
+                        <td colspan="3">MXN</td>
+                    }
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+}

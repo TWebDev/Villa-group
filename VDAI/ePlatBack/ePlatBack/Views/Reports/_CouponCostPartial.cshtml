@@ -1,0 +1,415 @@
+﻿@model ePlatBack.Models.ViewModels.AuditCouponsModel.CouponCostViewModel
+
+<div class="cost-frame">
+    @Html.HiddenFor(model => model.PurchaseServiceID)
+    @Html.HiddenFor(model => model.PurchaseServiceDetailID)
+    <table class="table-coupon">
+        <tr>
+            <td rowspan="2"><span class="folio">@Html.DisplayFor(model => model.Folio)</span></td>
+            <td><h4>@Html.DisplayFor(model => model.Service)</h4></td>
+        </tr>
+        <tr>
+            <td><span class="by-provider">by @Html.DisplayFor(model => model.Provider)</span></td>
+        </tr>
+    </table>
+
+    <div class="editor-alignment full-width">
+        <p class="editor-label">
+            @Html.LabelFor(model => model.ConfirmationDateTime)
+        </p>
+        <p class="editor-field">
+            @Html.DisplayFor(model => model.ConfirmationDateTime)
+        </p>
+    </div>
+    <div class="editor-alignment">
+        <p class="editor-label">
+            @Html.LabelFor(model => model.CurrencyCode)
+        </p>
+        <p class="editor-field">
+            @Html.DisplayFor(model => model.CurrencyCode)
+        </p>
+    </div>
+    <div class="editor-alignment">
+        <p class="editor-label">
+            @Html.LabelFor(model => model.Culture)
+        </p>
+        <p class="editor-field">
+            @Html.DisplayFor(model => model.Culture)
+        </p>
+    </div>
+    <div class="editor-alignment">
+        <p class="editor-label">
+            @Html.LabelFor(model => model.ProviderContract)
+        </p>
+        <p class="editor-field">
+            @Html.DisplayFor(model => model.ProviderContract)
+        </p>
+    </div>
+    <div class="editor-alignment double-width">
+        <p class="editor-label">
+            @Html.LabelFor(model => model.ExchangeRateType)
+        </p>
+        <p class="editor-field">
+            @Html.DisplayFor(model => model.ExchangeRateType)
+        </p>
+    </div>
+    <div class="editor-alignment">
+        <p class="editor-label">
+            @Html.LabelFor(model => model.ExchangeRate)
+        </p>
+        <p class="editor-field">
+            @Html.TextBoxFor(model => model.ExchangeRate)
+        </p>
+    </div>
+
+
+    <table class="table-cost">
+        <tbody>
+            <tr>
+                <td class="text-right">@Model.BasePriceType No IVA</td>
+                <td><span data-format="currency">@Model.BasePriceNoIVA.FirstOrDefault(x => x.Currency == "MXN").Amount MXN</span></td>
+                <td><span data-format="currency">@Model.BasePriceNoIVA.FirstOrDefault(x => x.Currency == "USD").Amount USD</span></td>
+            </tr>
+            <tr>
+                <td class="text-right">@Model.BasePriceType IVA</td>
+                <td><span data-format="currency">@Model.BasePriceIVA.FirstOrDefault(x => x.Currency == "MXN").Amount MXN</span></td>
+                <td><span data-format="currency">@Model.BasePriceIVA.FirstOrDefault(x => x.Currency == "USD").Amount USD</span></td>
+            </tr>
+            <tr>
+                <td class="text-right">@Model.BasePriceType</td>
+                <td class="@(Model.BasePriceCurrency == "MXN" ? "mb-confirmation" : "")">
+                    <span data-format="currency">@Model.BasePriceTotal.FirstOrDefault(x => x.Currency == "MXN").Amount MXN</span>
+                </td>
+                <td class="@(Model.BasePriceCurrency == "USD" ? "mb-confirmation" : "")">
+                    <span data-format="currency">@Model.BasePriceTotal.FirstOrDefault(x => x.Currency == "USD").Amount USD</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-right">Percentage</td>
+                <td colspan="2" class="text-center">
+                   - @Html.TextBoxFor(model => model.CostPercentage) %
+                </td>
+            </tr>
+            <tr>
+                <td class="text-right">Cost No IVA</td>
+                <td>
+                    @if (Model.BasePriceCurrency == "MXN")
+                    {
+                        <span class="money-currency">
+                            <span class="money-char" style="margin-top: 5px;">$</span>
+                            <span class="money-amount">
+                                <input type="text" id="txtCostNoIVAMXN" value="@Model.CostPriceNoIVA.FirstOrDefault(x => x.Currency == "MXN").Amount" /> MXN
+                            </span>
+                        </span>
+                    }
+                    else
+                    {
+                        <span id="spnCostNoIVAMXN" data-format="currency">@Model.CostPriceNoIVA.FirstOrDefault(x => x.Currency == "MXN").Amount MXN</span>
+                    }
+                </td>
+                <td>
+                    @if (Model.BasePriceCurrency == "USD")
+                    {
+                        <span class="money-currency">
+                            <span class="money-char" style="margin-top: 5px;">$</span>
+                            <span class="money-amount">
+                                <input type="text" id="txtCostNoIVAUSD" value="@Model.CostPriceNoIVA.FirstOrDefault(x => x.Currency == "USD").Amount" />
+                                USD
+                            </span>
+                        </span>
+                    }
+                    else
+                    {
+                        <span id="spnCostNoIVAUSD" data-format="currency">@Model.CostPriceNoIVA.FirstOrDefault(x => x.Currency == "USD").Amount USD</span>
+                    }
+                </td>
+            </tr>
+
+
+
+            <tr>
+                <td class="text-right">Cost IVA</td>
+                <td>
+                    <span id="spnCostIVAMXN" data-format="currency">@Model.CostPriceIVA.FirstOrDefault(x => x.Currency == "MXN").Amount MXN</span>
+                </td>
+                <td>
+                    <span id="spnCostIVAUSD" data-format="currency">@Model.CostPriceIVA.FirstOrDefault(x => x.Currency == "USD").Amount USD</span>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="text-right">Cost</td>
+                <td>
+                    @if (Model.BasePriceCurrency == "MXN")
+                    {
+                        <span class="money-currency">
+                            <span class="money-char" style="margin-top: 5px;">$</span><span class="money-amount">
+                                <input type="text" id="txtCostMXN" value="@Model.CostPriceTotal.FirstOrDefault(x => x.Currency == "MXN").Amount" />
+                                MXN
+                            </span>
+                        </span>
+                    }
+                    else
+                    {
+                        <span id="spnCostMXN" data-format="currency">@Model.CostPriceTotal.FirstOrDefault(x => x.Currency == "MXN").Amount MXN</span>
+                    }
+                </td>
+                <td>
+                    @if (Model.BasePriceCurrency == "USD")
+                    {
+                        <span class="money-currency">
+                            <span class="money-char" style="margin-top: 5px;">$</span><span class="money-amount">
+                                <input type="text" id="txtCostUSD" value="@Model.CostPriceTotal.FirstOrDefault(x => x.Currency == "USD").Amount" />
+                                USD
+                            </span>
+                        </span>
+                    }
+                    else
+                    {
+                        <span id="spnCostUSD" data-format="currency">@Model.CostPriceTotal.FirstOrDefault(x => x.Currency == "USD").Amount USD</span>
+                    }
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="editor-alignment full-width">
+        <span class="editor-label">
+            @Html.LabelFor(model => model.Notes)
+        </span>
+        <span class="editor-field">
+            @Html.TextAreaFor(model => model.Notes, new { style = "min-height: 50px;" })
+        </span>
+    </div>
+
+    <div class="editor-alignment align-from-top div-button">
+        <input type="button" id="btnSaveCost" class="submit button" value="SAVE" />
+    </div>
+</div>
+<script>
+    $(function () {
+        $('#txtCostNoIVAMXN').off('keyup').on('keyup', function () {
+            if ($(this).val() != "") {
+                var costNoIVA = $(this).val();
+                var IVA = $('#spnCostIVAMXN .money-amount').text().replace(' MXN', '');
+                var costTotal = $('#txtCostMXN').val();
+                var maxPrice = $('td.mb-confirmation .money-amount').text().replace(' MXN', '').replace(',', '');
+                if (!isNaN(costNoIVA)) {
+                    IVA = costNoIVA * .16;
+                    costTotal = parseFloat(costNoIVA) + parseFloat(IVA);
+                    IVA = parseFloat(IVA).toFixed(2);
+                    costTotal = parseFloat(costTotal).toFixed(2);
+                }
+                if (parseFloat(costTotal) <= parseFloat(maxPrice)) {
+                    $('#spnCostIVAMXN .money-amount').text(IVA + ' MXN');
+                    $('#txtCostMXN').val(costTotal);
+                    //calcular porcentaje
+                    calculatePercentage(maxPrice, costTotal);
+                    //calcular pesos
+                    $('#ExchangeRate').trigger('keyup');
+                } else {
+                    alert('Cost can\'t be bigger than ' + maxPrice);
+                    if (e.keyCode != undefined) {
+                        //calcular en base a porcentaje
+                        $('#CostPercentage').trigger('keyup');
+                    }
+                }
+            }
+        }).off('blur').on('blur', function () {
+            if ($(this).val() != "") {
+                $(this).val(parseFloat($(this).val()).toFixed(2));
+            } else {
+                $(this).val(parseFloat(0).toFixed(2)).trigger('keyup');
+            } $(this).val(parseFloat($(this).val()).toFixed(2));
+        });
+
+        $('#txtCostMXN').off('keyup').on('keyup', function (e) {
+            if ($(this).val() != "") {
+                var costNoIVA = 0;
+                var IVA = 0;
+                var costTotal = $(this).val();
+                var maxPrice = $('td.mb-confirmation .money-amount').text().replace(' MXN', '').replace(',', '');
+                if (!isNaN(costTotal) && parseFloat(costTotal) <= parseFloat(maxPrice)) {
+                    costNoIVA = parseFloat(costTotal) / 1.16;
+                    costNoIVA = parseFloat(costNoIVA).toFixed(2);
+                    IVA = costNoIVA * .16;
+                    IVA = parseFloat(IVA).toFixed(2);
+                    $('#spnCostIVAMXN .money-amount').text(IVA + ' MXN');
+                    $('#txtCostNoIVAMXN').val(costNoIVA);
+                    //calcular porcentaje
+                    if (e.keyCode != undefined) {
+                        calculatePercentage(maxPrice, costTotal);
+                    }
+                    //calcular pesos
+                    $('#ExchangeRate').trigger('keyup');
+                } else {
+                    if (parseFloat(costTotal) > parseFloat(maxPrice)) {
+                        alert('Cost must be smaller than ' + maxPrice);
+                    } 
+                    if (e.keyCode != undefined) {
+                        $('#CostPercentage').trigger('keyup');
+                    }                                      
+                }
+            }            
+        }).off('blur').on('blur', function () {
+            if ($(this).val() != "") {
+                $(this).val(parseFloat($(this).val()).toFixed(2));
+            } else {
+                $(this).val(parseFloat(0).toFixed(2)).trigger('keyup');
+            }
+        });;
+        /**/
+        $('#txtCostNoIVAUSD').off('keyup').on('keyup', function () {
+            if ($(this).val() != "") {
+                var costNoIVA = $(this).val();
+                var IVA = $('#spnCostIVAUSD .money-amount').text().replace(' USD', '');
+                var costTotal = $('#txtCostUSD').val();
+                var maxPrice = $('td.mb-confirmation .money-amount').text().replace(' USD', '').replace(',', '');
+                if (!isNaN(costNoIVA)) {
+                    IVA = costNoIVA * .16;
+                    costTotal = parseFloat(costNoIVA) + parseFloat(IVA);
+                    IVA = parseFloat(IVA).toFixed(2);
+                    costTotal = parseFloat(costTotal).toFixed(2);
+                }
+                if (parseFloat(costTotal) <= parseFloat(maxPrice)) {
+                    $('#spnCostIVAUSD .money-amount').text(IVA + ' USD');
+                    $('#txtCostUSD').val(costTotal);
+                    //calcular porcentaje
+                    calculatePercentage(maxPrice, costTotal);
+                    //calcular pesos
+                    $('#ExchangeRate').trigger('keyup');
+                } else {
+                    alert('Cost can\'t be bigger than ' + maxPrice);
+                    if (e.keyCode != undefined) {
+                        //calcular en base a porcentaje
+                        $('#CostPercentage').trigger('keyup');
+                    }
+                }
+            }
+        }).off('blur').on('blur', function () {
+            if ($(this).val() != "") {
+                $(this).val(parseFloat($(this).val()).toFixed(2));
+            } else {
+                $(this).val(parseFloat(0).toFixed(2)).trigger('keyup');
+            }
+        });
+
+        $('#txtCostUSD').off('keyup').on('keyup', function (e) {
+            if ($(this).val() != "") {
+                var costNoIVA = 0;
+                var IVA = 0;
+                var costTotal = $(this).val();
+                var maxPrice = $('td.mb-confirmation .money-amount').text().replace(' USD', '').replace(',', '');
+                if (!isNaN(costTotal) && parseFloat(costTotal) <= parseFloat(maxPrice)) {
+                    costNoIVA = parseFloat(costTotal) / 1.16;
+                    costNoIVA = parseFloat(costNoIVA).toFixed(2);
+                    IVA = costNoIVA * .16;
+                    IVA = parseFloat(IVA).toFixed(2);
+                    $('#spnCostIVAUSD .money-amount').text(IVA + ' USD');
+                    $('#txtCostNoIVAUSD').val(costNoIVA);
+                    //calcular porcentaje
+                    if (e.keyCode != undefined) {
+                        calculatePercentage(maxPrice, costTotal);
+                    }
+                    //calcular pesos
+                    $('#ExchangeRate').trigger('keyup');
+                } else {
+                    if (parseFloat(costTotal) > parseFloat(maxPrice)) {
+                        alert('Cost must be smaller than ' + maxPrice);
+                    }
+                    if (e.keyCode != undefined) {
+                        //calcular en base a porcentaje
+                        $('#CostPercentage').trigger('keyup');
+                    }
+                }
+            }
+        }).off('blur').on('blur', function () {
+            if ($(this).val() != "") {
+                $(this).val(parseFloat($(this).val()).toFixed(2));
+            } else {
+                $(this).val(parseFloat(0).toFixed(2)).trigger('keyup');
+            }
+        });;
+
+        function calculatePercentage(maxPrice, costTotal) {
+            var percentage = (parseFloat(maxPrice) - parseFloat(costTotal)) * 100 / parseFloat(maxPrice);
+            percentage = parseFloat(percentage).toFixed(2);
+            $('#CostPercentage').val(percentage);
+        }
+
+        $('#CostPercentage').off('keyup').on('keyup', function (e) {
+            if (!isNaN($(this).val()) && $(this).val() != "") {
+                if ($('td.mb-confirmation .money-amount').text().indexOf('USD') > -1) {
+                    //USD
+                    var maxPrice = $('td.mb-confirmation .money-amount').text().replace(' USD', '').replace(',', '');
+                    var percentage = $('#CostPercentage').val();
+                    $('#txtCostUSD').val(parseFloat(parseFloat(maxPrice) - (parseFloat(maxPrice) * parseFloat(percentage) / 100)).toFixed(2)).trigger('keyup');
+                } else {
+                    //MXN
+                    var maxPrice = $('td.mb-confirmation .money-amount').text().replace(' MXN', '').replace(',','');
+                    var percentage = $('#CostPercentage').val();
+                    $('#txtCostMXN').val(parseFloat(parseFloat(maxPrice) - (parseFloat(maxPrice) * parseFloat(percentage) / 100)).toFixed(2)).trigger('keyup');
+                }
+            }
+        });
+
+        $('#ExchangeRate').off('keyup').on('keyup', function () {
+            if ($('td.mb-confirmation .money-amount').text().indexOf('USD') > -1) {
+                var costTotalMXN = parseFloat(parseFloat($('#txtCostUSD').val()) * parseFloat($('#ExchangeRate').val())).toFixed(2);
+                $('#spnCostMXN .money-amount').text(costTotalMXN + ' MXN');
+                var costNoIVAMXN = parseFloat(costTotalMXN / 1.16).toFixed(2);
+                $('#spnCostNoIVAMXN .money-amount').text(costNoIVAMXN + ' MXN');
+                var costIVAMXN = parseFloat(costTotalMXN - costNoIVAMXN).toFixed(2);
+                $('#spnCostIVAMXN .money-amount').text(costIVAMXN + ' MXN');
+            } else {
+                var costTotalUSD = parseFloat(parseFloat($('#txtCostMXN').val()) / parseFloat($('#ExchangeRate').val())).toFixed(2);
+                $('#spnCostUSD .money-amount').text(costTotalUSD + ' USD');
+                var costNoIVAUSD = parseFloat(costTotalUSD / 1.16).toFixed(2);
+                $('#spnCostNoIVAUSD .money-amount').text(costNoIVAUSD + ' USD');
+                var costIVAUSD = parseFloat(costTotalUSD - costNoIVAUSD).toFixed(2);
+                $('#spnCostIVAUSD .money-amount').text(costIVAUSD + ' USD');
+            }
+        }).off('blur').on('blur', function () {
+            if ($(this).val() != "") {
+                $(this).val(parseFloat($(this).val()).toFixed(2));
+            } else {
+                $(this).val(parseFloat(0).toFixed(2)).trigger('keyup');
+            }
+        });
+
+        $('#btnSaveCost').off('click').on('click', function () {
+            let dataObject = {};
+            if ($('td.mb-confirmation .money-amount').text().indexOf('USD') > -1) {
+                //Moneda del Contrato USD
+                dataObject = {
+                    PurchaseServiceDetailID: $('#PurchaseServiceDetailID').val(),
+                    CustomCost: $('#txtCostUSD').val(),
+                    CustomCostNoIVA: $('#txtCostNoIVAUSD').val(),
+                    CustomCostAlt: $('#spnCostMXN .money-amount').text().replace(' MXN', ''),
+                    CustomCostAltNoIVA: $('#spnCostNoIVAMXN .money-amount').text().replace(' MXN', ''),
+                    CustomCostPercentage: $('#CostPercentage').val(),
+                    CustomCostExchangeRate: $('#ExchangeRate').val(),
+                    CustomCostNote: $('#Notes').val()
+                }
+            } else {
+                //Moneda del Contrato MXN
+                dataObject = {
+                    PurchaseServiceDetailID: $('#PurchaseServiceDetailID').val(),
+                    CustomCost: $('#txtCostMXN').val(),
+                    CustomCostNoIVA: $('#txtCostNoIVAMXN').val(),
+                    CustomCostAlt: $('#spnCostUSD .money-amount').text().replace(' USD',''),
+                    CustomCostAltNoIVA: $('#spnCostNoIVAUSD .money-amount').text().replace(' USD',''),
+                    CustomCostPercentage: $('#CostPercentage').val(),
+                    CustomCostExchangeRate: $('#ExchangeRate').val(),
+                    CustomCostNote: $('#Notes').val()
+                }
+            }
+            $.post('/crm/Reports/SaveCustomCost', dataObject, function (data) {
+                if (data.ResponseType == 1) {
+                    parent.$.fancybox.close();
+                    $('#btnGetDetails').trigger('click');
+                }
+            }, 'json');
+        });
+    });
+</script>

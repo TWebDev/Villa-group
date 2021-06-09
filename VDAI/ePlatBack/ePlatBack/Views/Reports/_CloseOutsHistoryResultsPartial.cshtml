@@ -1,0 +1,221 @@
+﻿@model ePlatBack.Models.ViewModels.CloseOutHistoryModel.CloseOutsHistoryResults
+
+<div id="historyCloseOut">
+    <div class="table-div">
+        <div class="table-row">
+            <div class="table-cell">
+                Company<br />
+                @Model.Company
+            </div>
+            <div class="table-cell">
+                Dates Range<br />
+                @Model.DatesRange
+            </div>
+            <div class="table-cell">
+                Point of Sale<br />
+                @Html.Raw(Model.PointOfSale)
+            </div>
+            <div class="table-cell">
+                Sales Agent<br />
+                @Model.SalesAgent
+            </div>
+            <div class="table-cell">
+                Terminal<br />
+                @Model.Terminal
+            </div>
+            <div class="table-cell">
+                Number of Coupons<br />
+                @Model.NumberOfCoupons
+            </div>
+        </div>
+    </div>
+
+    <table id="tblCloseOutsHistory" class="table no-plugin" style="width: 100%;">
+        <thead>
+            <tr>
+                <th>Close Out Date</th>
+                <th>Point of Sale</th>
+                <th>Agent</th>
+                <th>Sales/Incomes</th>
+                <th>Refunds</th>
+                <th>Totals</th>
+                <th>CC Commissions</th>
+                <th>Notes</th>
+                <th>Saved by</th>
+                <th>Total In Cache</th>
+                @if (Model.Privileges.FirstOrDefault(m => m.Component == ".delete-row") == null || Model.Privileges.FirstOrDefault(m => m.Component == ".delete-row").View)
+{
+                <th></th>
+}
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var closeout in Model.CloseOuts)
+            {
+            <tr id="@closeout.CloseOutID">
+                <td>@closeout.Date</td>
+                <td>@closeout.PointOfSale</td>
+                <td>@closeout.Agent</td>
+                <td>
+                    @foreach (var total in closeout.Sales)
+                    {
+                    <span data-format="currency">@total.Amount @total.Currency</span>
+                    }
+                </td>
+                <td>
+                    @foreach (var total in closeout.Refunds)
+                    {
+                    <span data-format="currency">@total.Amount @total.Currency</span>
+                    }
+                </td>
+                <td>
+                    @foreach (var total in closeout.Totals)
+                    {
+                    <span data-format="currency">@total.Amount @total.Currency</span>
+                    }
+                </td>
+                <td>
+                    @foreach (var total in closeout.CCCommissions)
+                        {
+                    <span data-format="currency">@total.Amount @total.Currency</span>
+                        }
+                </td>
+                <td>
+                    @if (closeout.Notes != null && closeout.Notes != "")
+                        {
+                    <div class="comment-square"></div>
+                    <div class="comment-triangle"></div>
+                    <span class="comment" style="display: none; position: absolute">
+                        @closeout.Notes
+                    </span>
+                        }
+                </td>
+                <td>
+                    <span class="block">@closeout.SavedBy</span>
+                    <span class="block">@closeout.SavedOnDate</span>
+                </td>
+                <td style="@(closeout.TotalInCache.Amount != decimal.Round(closeout.Totals.FirstOrDefault(x => x.Currency == "USD").Amount, 2) ? "color: red;" : "")" title="
+                    @foreach(var c in closeout.CouponsInCache)
+                    {
+                        @(c.Purchase_ServiceID + " - " + c.Folio  + " - $" +  c.COTotal + " - $" +  c.Total  + "\n")
+                    }
+                    ">
+                    @*<span>@closeout.TotalInCache.Amount</span>
+                    <span>@decimal.Round(closeout.Totals.FirstOrDefault(x => x.Currency == "USD").Amount, 2)</span>*@
+                    <span data-format="currency">@closeout.TotalInCache.Amount @closeout.TotalInCache.Currency</span>
+                    <span style="display:none;">
+                        @Html.Raw(Json.Encode(@closeout.CouponsInCache));
+                    </span>
+                </td>
+                @if (Model.Privileges.FirstOrDefault(m => m.Component == ".delete-row") == null || Model.Privileges.FirstOrDefault(m => m.Component == ".delete-row").View)
+{
+                <td>
+                    <i class="material-icons right delete-item delete-row">delete</i>
+                </td>
+}
+            </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="th-footer">Sales/Incomes</td>
+                <td class="th-footer">Refunds</td>
+                <td class="th-footer">Totals</td>
+                <td class="th-footer">CC Commissions</td>
+                <td colspan="4"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    @foreach (var total in Model.Sales)
+                    {
+
+                    <span data-format="currency">@total.Amount @total.Currency</span>
+
+                    }
+                </td>
+                <td>
+                    @foreach (var total in Model.Refunds)
+                    {
+
+                    <span data-format="currency">@total.Amount @total.Currency</span>
+
+                    }
+                </td>
+                <td>
+                    @foreach (var total in Model.Totals)
+                    {
+
+                    <strong><span data-format="currency">@total.Amount @total.Currency</span></strong>
+                    }
+                </td>
+                <td>
+                    @foreach (var total in Model.CCCommissions)
+                    {
+
+                    <strong><span data-format="currency">@total.Amount @total.Currency</span></strong>
+                    }
+                </td>
+                <td colspan="4"></td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div class="table-div">
+        <div class="table-row">
+            <div class="table-cell">
+                Cash<br />
+                @foreach (var cash in Model.TotalDetails.Cash)
+                {
+                    <span class="block" data-format="currency">@cash.Amount @cash.Currency</span>
+                }
+            </div>
+            <div class="table-cell">
+                Credit Card<br />
+                @foreach (var card in Model.TotalDetails.CreditCard)
+                {
+                    <span class="block" data-format="currency">@card.Amount @card.Currency</span>
+                }
+            </div>
+            <div class="table-cell">
+                Charge Back<br />
+                @foreach (var cb in Model.TotalDetails.ChargeBack)
+                {
+                    <span class="block" data-format="currency">@cb.Amount @cb.Currency</span>
+                }
+            </div>
+            <div class="table-cell">
+                Resort Credit<br />
+                @foreach (var credit in Model.TotalDetails.TravelerCheck)
+                {
+                    <span class="block" data-format="currency">@credit.Amount @credit.Currency</span>
+                }
+            </div>
+            <div class="table-cell">
+                Wire Transfers<br />
+                @foreach (var transfer in Model.TotalDetails.WireTransfer)
+                {
+                    <span class="block" data-format="currency">@transfer.Amount @transfer.Currency</span>
+                }
+            </div>
+            <div class="table-cell">
+                Certificate<br />
+                @foreach (var certificate in Model.TotalDetails.Certificate)
+                {
+                    <span class="block" data-format="currency">@certificate.Amount @certificate.Currency</span>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<div id="savedCloseOut" style="display:none;">
+    <h2><span class="back non-printable"></span> Close Out</h2>
+    <div id="displayCloseOut">
+    </div>
+</div>

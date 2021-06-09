@@ -1,0 +1,40 @@
+﻿@model ePlatBack.Models.ViewModels.SurveyViewModel.SurveyInfoField
+
+<div class="design-mode-panel">
+    @Html.HiddenFor(model => model.I_FieldID)
+    <div class="editor-alignment">
+        <div class="editor-label design-mode">
+            @Html.LabelFor(model => model.I_Visibility)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.I_Visibility, Model.I_VisibilityOptions, new { @class = "design-mode" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label design-mode">
+            @Html.LabelFor(model => model.I_FieldName)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.I_FieldName, new { @class = "design-mode", placeholder = "FieldNameID", data_format="free-case" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label design-mode">
+            @Html.LabelFor(model => model.I_FieldSubTypeID)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.I_FieldSubTypeID, Model.I_FieldSubTypes, new { @class = "design-mode" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div id="divI_Question" style="display:none;">
+            <div class="editor-label design-mode">
+                @Html.LabelFor(model => model.I_Question)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.I_Question, new { @class = "design-mode", placeholder = "Field Name" })
+            </div>
+        </div>
+    </div>
+    <input id="btnSaveInfoField" type="button" class="mini-secondary-button" value="SAVE FIELD" />
+</div>

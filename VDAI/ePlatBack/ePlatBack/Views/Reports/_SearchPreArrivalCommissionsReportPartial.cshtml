@@ -1,0 +1,58 @@
+﻿@model ePlatBack.Models.ViewModels.PreArrivalReport.SearchPreArrivalReport
+
+@using (Ajax.BeginForm("SearchPreArrivalCommissionsReport", "Reports", new AjaxOptions { OnBegin= "REPORT.clearTable('tblArrivalsResults')", OnSuccess = "REPORT.addExtras();", UpdateTargetId = "divTblPreArrivalResults" }, new { id = "frmSearchPreArrivalArrivals", onSubmit = "return UI.showValidationSummary(this.id);" }))
+{
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Search_I_PurchaseDate)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Search_I_PurchaseDate, new { data_uses_date_picker = "true" })
+            @Html.TextBoxFor(model => model.Search_F_PurchaseDate, new { data_uses_date_picker = "true" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Search_Resorts)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Search_Resorts, Model.Search_DrpResorts, new { multiple ="multiple" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Search_AssignedToUsers)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Search_AssignedToUsers, Model.Search_DrpUsers, new { multiple = "multiple" })
+        </div>
+    </div>
+    <div class="editor-alignment align-from-top">
+        <div class="editor-field">
+            <input type="submit" class="button" value="search" />
+        </div>
+    </div>
+    <div id="divTblPreArrivalResults" class="align-from-top">
+        <table id="tblArrivalsResults" class="table dataTable">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Lead Source</th>
+                    <th>Certificate Number</th>
+                    <th>Resort</th>
+                    <th>Resort Confirmation</th>
+                    <th>Arrival Date</th>
+                    <th>Departure Date</th>
+                    <th>Total Nights</th>
+                    <th>Option Types</th>
+                    <th>Options</th>
+                    <th>Volume Sold</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+    </div>
+}
+

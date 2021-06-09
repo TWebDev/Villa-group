@@ -1,0 +1,11 @@
+﻿@model ePlatBack.Models.ViewModels.ArrivalsViewModel.SearchInBinnacle
+<div class="search-filters-over-datatable">
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SearchInBinnacle_ProgramID)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.SearchInBinnacle_ProgramID, Model.Programs)
+        </div>
+    </div>
+</div>

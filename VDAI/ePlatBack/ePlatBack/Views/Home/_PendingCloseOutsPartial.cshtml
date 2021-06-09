@@ -1,0 +1,68 @@
+﻿@model ePlatBack.Models.ViewModels.PendingCloseOuts
+
+<div class="dashboard-panel">
+    <h3 class="title">Pending Close Outs</h3>
+    <div class="content">
+        @if (Model.PendingAgentCOs != null)
+        {
+            foreach (var agent in Model.PendingAgentCOs)
+            {
+                <div class="content-item">
+                    <span class="agent-name">
+                        @agent.Agent
+                    </span>
+                    @foreach (var PoS in agent.PendingCloseOuts.OrderBy(x => x.CloseOutDate))
+                    {
+                        <div class="agent-pos">
+                            @if (PoS.CloseOutDate != DateTime.Today.ToString("yyyy-MM-dd"))
+                            {
+                                <div class="pos-closeout mb-error">
+                                    <span class="right">@PoS.CloseOutDate</span>
+                                    @PoS.PointOfSale
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="pos-closeout">
+                                    <span class="right">@PoS.CloseOutDate</span>
+                                    @PoS.PointOfSale
+                                </div>
+                            }
+                            @if (PoS.PendingCoupons != null && PoS.PendingCoupons.Count() > 0)
+                            {
+                                <div class="pos-coupons" style="display:none;">
+                                    <div>Coupons</div>
+                                    @foreach (var coupon in @PoS.PendingCoupons)
+                                    {
+                                        <div class="pos-coupon">
+                                            <span class="coupon-status">@coupon.Status</span>
+                                            <span class="coupon-folio">@coupon.Folio</span>
+                                            <span class="coupon-customer">@coupon.Customer</span>
+                                            <span class="coupon-service">@coupon.Service</span>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            @if (@PoS.PendingRefunds != null && PoS.PendingRefunds.Count() > 0)
+                            {
+                                <div class="pos-refunds" style="display:none;">
+                                    <div>Refunds</div>
+                                    @foreach (var refund in @PoS.PendingRefunds)
+                                    {
+                                        <div class="pos-refund">
+                                            <span data-format="currency" class="refund-currency">@refund.Refund.Amount @refund.Refund.Currency</span>
+                                            <span class="refund-type">@refund.Type</span>
+                                            <span class="refund-customer">@refund.Customer</span>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            }
+        }
+
+    </div>
+
+</div>

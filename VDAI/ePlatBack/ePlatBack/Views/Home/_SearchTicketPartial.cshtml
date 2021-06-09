@@ -1,0 +1,40 @@
+﻿@model ePlatBack.Models.ViewModels.TicketViewModel.Search_Ticket
+
+@using (Ajax.BeginForm("SearchTickets", "Dashboard", new AjaxOptions { OnSuccess = "Tickets.loaded(data)", OnBegin = "Tickets.seachBegin()" }, new { id = "frmSearchTickets" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="non-printable search-params">
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_CreatedByUserID)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Search_CreatedByUserID, Model.Search_Users)
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_AssignedToUserID)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Search_AssignedToUserID, Model.Search_AdministratorUsers)
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_SupportTicketStatusID)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Search_SupportTicketStatusID, Model.Search_TicketStatus, new { multiple = "multiple" })
+            </div>
+        </div>
+        <div class="editor-alignment align-from-top">
+            <div class="editor-field">
+                <input type="submit" class="button" value="get" />
+            </div>
+        </div>
+    </div>
+    <div id="divTicketsResults"></div>
+}

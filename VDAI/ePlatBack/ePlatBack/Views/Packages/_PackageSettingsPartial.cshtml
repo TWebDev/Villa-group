@@ -1,0 +1,68 @@
+﻿@model ePlatBack.Models.ViewModels.PackageSettingsInfoModel
+ @*class="view-restricted"*@
+<fieldset id="fdsPackageSettings" style="display: none" class="view-restricted">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator"/>
+        Package Settings
+    </legend>
+    <div style="display: none">
+        <div class="full-width align-from-bottom">
+            <input type="button" id="btnNewPackageSettingsInfo" class="submit fieldset-expander right" value="New">
+        </div>
+        <ul id="ulPackageSettings" class="primary-selected-row-dependent half-width">
+        </ul>
+        <fieldset id="fdsPackageSettingsInfo">
+            <legend>
+                <img src="/Content/themes/base/images/eplat_show.jpg" alt="" class="fieldset-indicator fds-indicator-separator">
+                Settings Info
+            </legend>
+            <div style="display: none">
+                @using (Ajax.BeginForm("SavePackageSettings", "Packages", new AjaxOptions { OnSuccess = "PACKAGE.savePackageSettingSuccess(data)" }, new { id = "frmPackageSettings", onSubmit = "return UI.showValidationSummary(this.id);" }))
+                {
+                    <div id="frmPackageSettings_ErrorMessages" style="display:none">
+                        @Html.ValidationMessageFor(model => model.PackageSettingsInfo_Place)
+                        @Html.ValidationMessageFor(model => model.PackageSettingsInfo_RoomType)
+                        @Html.ValidationMessageFor(model => model.PackageSettingsInfo_Price)
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.PackageSettingsInfo_Destination)
+                            @Html.HiddenFor(model => model.PackageSettingsInfo_PackageSettingsID, new { @class = "secondary-selected-row-dependent" })
+                            @Html.HiddenFor(model => model.PackageSettingsInfo_PackageID, new { @class = "primary-selected-row-dependent", data_keep_value="" })
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.PackageSettingsInfo_Destination, Model.PackageSettingsInfo_DrpDestinations)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.PackageSettingsInfo_Place)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.PackageSettingsInfo_Place, Model.PackageSettingsInfo_DrpPlaces)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.PackageSettingsInfo_RoomType)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.PackageSettingsInfo_RoomType, Model.PackageSettingsInfo_DrpRoomTypes)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.PackageSettingsInfo_Price)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.PackageSettingsInfo_Price, Model.PackageSettingsInfo_DrpPrices, new { @class="prices-related" })
+                        </div>
+                    </div>
+                    <div class="align-from-top full-width">
+                        <input type="submit" class="submit right" id="btnSavePackageSettings" value="Save"/>
+                    </div>
+                }
+            </div>
+        </fieldset>
+    </div>
+</fieldset>

@@ -1,0 +1,62 @@
+﻿@model ePlatBack.Models.ViewModels.NotificationsViewModel
+
+@{
+    var _display = Model.ListNotificationHistory.Select(m => m.NotificationHistory_SentByUser).Distinct().Count() > 1 ? "table-cell" : "none";
+    var isAdmin = ePlatBack.Models.Utils.GeneralFunctions.IsUserInRole("Administrator");
+    var show = isAdmin ? "table-cell" : "none";
+    <table id="tblNotificationsHistoryResults" class="table dataTable full-width non-editable">
+        <thead>
+            <tr>
+                <th>Client Name</th>
+                <th>Email</th>
+                <th>Date Sent</th>
+                <th>Date Received</th>
+                <th>Date Opened</th>
+                <th>Clicks</th>
+                <th>Links Clicked</th>
+                <th style="display:@_display">Sent By User</th>
+                <th style="display:@show"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.ListNotificationHistory != null)
+            {
+                foreach (var i in Model.ListNotificationHistory)
+                {
+                    var name = i.NotificationHistory_Clicks != null ? i.NotificationHistory_Clicks.FirstOrDefault().Value : "";
+                    var links = string.Join(", ", i.NotificationHistory_Clicks.Select(m => m.Key).Distinct().ToArray());
+                    <tr id="@i.NotificationHistory_Transaction">
+                        <td>
+                            @Html.DisplayFor(model => i.NotificationHistory_Receiver)
+                        </td>
+                        @*<td style="display:@show">
+                            @Html.DisplayFor(model => i.NotificationHistory_Email)
+                        </td>*@
+                        <td>
+                            @Html.DisplayFor(model => i.NotificationHistory_DateSent)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => i.NotificationHistory_DateReceived)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => i.NotificationHistory_DateOpened)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => i.NotificationHistory_Clicks.Count)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => @links)
+                        </td>
+                        <td style="display:@_display">
+                            @Html.DisplayFor(model => i.NotificationHistory_SentByUser)
+                        </td>
+                        <td style="display:@show">
+                            <i class="material-icons delete-notification right">delete_forever</i>
+                            @*<img src="/content/themes/base/images/trash.png" class="delete-notification right" />*@
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+}

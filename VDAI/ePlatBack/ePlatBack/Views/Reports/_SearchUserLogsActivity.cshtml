@@ -1,0 +1,110 @@
+﻿@model ePlatBack.Models.ViewModels.UserLogsActivityYYYYMM.SearchUserLogsActivity
+
+@using (Ajax.BeginForm("SearchActivityLogs", "Reports", new AjaxOptions { OnSuccess = "REPORT.addExtras();", UpdateTargetId = "divUserLogsActivityResultPartial" }, new { id = "frmActivityLogs" }))
+{
+   @* <p class="full-width align-from-bottom ">
+        <input id="btnCurrentActivity" type="button" class="button right" value="Current Activity" />
+    </p>*@
+    <div class="non-printable search-params">
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SearchFromDate)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.SearchFromDate, new {@class = "DateFormat"}) 
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SearchToDate)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.SearchToDate, new {@class = "DateFormat"})
+                </div>
+            </div>
+
+            <div class="editor-alignment" style="min-width:60px">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SearchUserID)
+                </div>
+                <div class=" editor-field">
+                    @Html.DropDownListFor(model => model.SearchUserID, Model.DropSubordinateUsersList.OrderBy(x => x.Value), new { multiple = "multiple" })
+                </div>
+            </div>
+        
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.searchTerminalID)
+                </div>
+                <div class=" editor-field">
+                    @Html.DropDownListFor(model => model.searchTerminalID, Model.TerminalList.OrderBy(x => x.Value), new 
+               {
+                   @class = "terminal-dependent-list",
+                   data_route = "/Catalogs/GetDDLData",
+                   data_route_parameter = "selectedTerminals"
+               })
+                </div>
+            </div>        
+
+            <div class=" editor-alignment">
+                <div class=" editor-label">
+                    @Html.LabelFor(model => model.pageID)
+                </div>
+                <div class=" editor-field">
+                    @Html.DropDownListFor(model => model.pageID, Model.pagesList.OrderBy(x => x.Value), new 
+                    {                      
+                        @class="onchange",
+                        data_route = "/Reports/GetDDLData",
+                        data_onchange_route_parameter = "Pages",
+                        data_dependent_list = "moduleID"
+                    })
+                </div>
+            </div>
+            
+            <div class="editor-alignment">
+                <div class=" editor-label">
+                    @Html.LabelFor(model => model.moduleID)
+                </div>
+                <div class=" editor-field">
+                    @Html.DropDownListFor(model => model.moduleID, Model.ModuleList.OrderBy(x => x.Value))
+                </div>
+            </div>      
+
+            <div class="editor-alignment" style="min-width:60px">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SearchConctactInfo)
+                </div>
+                <div class="editor-field">
+                    @Html.CheckBoxFor(model => model.SearchConctactInfo)
+                </div>
+            </div>    
+                                        
+            <div class="editor-alignment">
+                <div class="editor-field">
+                    <input type="reset" class="button" value="Reset" />
+                    <input type="submit" class="button" value="Search" />                         
+                </div> 
+            </div>
+       </div>
+
+        <div id="divUserLogsActivityResultPartial">
+            <table id="tblActivityLogs">
+                <thead>
+                    <tr>
+                        <th style ="display:none"></th>
+                        <th>DateSaved</th>
+                        <th>Saved by User</th>
+                        <th>Controller</th>
+                        <th>Method</th>
+                        <th>Description</th>
+                        <th>Url - Method</th>
+                        <th>Url</th>
+                        <th>Contact Info</th>
+                        <th>Terminal</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+                <tfoot></tfoot>
+            </table>
+        </div>    
+}

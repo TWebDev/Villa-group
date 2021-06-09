@@ -1,0 +1,129 @@
+﻿#page {
+    width: 70mm;
+    font-family: Arial;
+    /*line-height: 1.0em;*/
+    margin: 0 auto;
+    background-color: white;
+    font-size: 1.5em;
+    min-height: 700px;
+    /*border: 1px solid black;*/
+}
+
+#ticket {
+    padding: 0 15px 0;
+    margin-bottom: 30px;
+    margin-top: 57px;
+}
+
+.comercial-name{
+    display:none;
+}
+
+.ticket-section {
+    border-bottom: double;
+    text-align: center;
+}
+
+.ticket-header {
+    text-align: center;
+}
+
+.ticket-generals .display-item {
+    width: 100%;
+    text-align: left;
+}
+
+.ticket-generals .display-field {
+    padding-left: 5px;
+}
+
+.ticket-details .display-label {
+    display: list-item !important;
+    list-style-type: square;
+    text-transform: capitalize !important;
+    text-align: left;
+    margin-left: 15px;
+}
+
+.ticket-section-title {
+    display: none;
+}
+
+.display-item {
+    display: inline-block;
+    width: 190px;
+    vertical-align: top;
+    margin-bottom: 10px;
+    /*text-align:left;*/
+}
+
+.display-item-full {
+    width: 100%;
+    text-align: left;
+    border-bottom: #eee solid 1px;
+    padding-top: 10px;
+    margin-bottom: 20px;
+}
+
+.display-label {
+    display: inline;
+}
+
+.display-field {
+    display: inline-block;
+    font-weight: bold;
+}
+
+.display-subtotal{
+    display:block;
+    text-align:right;
+    padding-bottom:5px;
+}
+
+.display-item-full .display-field {
+    display: block;
+    text-align: right;
+    margin-right: 10px;
+}
+
+.ticket-subtotals .display-label{
+    display:block;
+}
+
+.signature {
+    width: 100%;
+    border-top: solid 1px;
+    text-align: center;
+    margin: 70px 2px 0px;
+    padding-bottom: 0;
+}
+
+.ticket-greetings .display-label {
+    font-size: .8em;
+    display: block !important;
+}
+
+.ticket-totals{
+    width:100%;
+}
+.total-item{
+    display:block;
+    padding-bottom:5px;
+    padding-top:5px;
+}
+
+#bankLegend{
+    display:none;
+}
+
+.total-cash-usd, .change-due{
+    display:none;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.right {
+    float: right;
+}

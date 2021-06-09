@@ -1,0 +1,106 @@
+﻿@model ePlatBack.Models.ViewModels.ExchangeRatesModel.ExchangeRatesInfoModel
+
+
+@if (Model.Privileges.FirstOrDefault(m => m.Component == "fdsExchangeRatesInfo" && m.View == true) != null)
+{
+    <fieldset id="fdsExchangeRatesInfo" class="primary-selected-row-dependent">
+        <legend>
+            <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+            Exchange Rate Info
+        </legend>
+        <div class="align-from-top" style="display:none">
+            @using (Ajax.BeginForm("SaveExchangeRate", "Catalogs", new AjaxOptions { OnSuccess = "CATALOG.saveExchangeRateSuccess(data)" }, new { id = "frmExchangeRateInfo", onSubmit = "return UI.showValidationSummary(this.id);" }))
+            {
+                <div id="frmExchangeRateInfo_ErrorMessages" style="display:none">
+                    @Html.ValidationMessageFor(model => model.ExchangeRatesInfo_ExchangeRate)
+                    @Html.ValidationMessageFor(model => model.ExchangeRatesInfo_I_Date)
+                    @Html.ValidationMessageFor(model => model.ExchangeRatesInfo_FromCurrency)
+                    @Html.ValidationMessageFor(model => model.ExchangeRatesInfo_ToCurrency)
+                    @Html.ValidationMessageFor(model => model.ExchangeRatesInfo_Terminal)
+                    @Html.ValidationMessageFor(model => model.ExchangeRatesInfo_Provider)
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.ExchangeRatesInfo_ExchangeRateType)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.ExchangeRatesInfo_ExchangeRateType, Model.ExchangeRatesInfo_DrpExchangeRateTypes)
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        <label>Exchange Rate</label>
+                        @Html.HiddenFor(model => model.ExchangeRatesInfo_ExchangeRateID, new { @class = "secondary-selected-row-dependent" })
+                        @Html.HiddenFor(model => model.ExchangeRatesInfo_RateToBeCloned, new { @class = "secondary-selected-row-dependent" })
+                        @Html.HiddenFor(model => model.ExchangeRatesInfo_IsClonation, new { @class = "secondary-selected-row-dependent" })
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.ExchangeRatesInfo_FromCurrency, Model.ExchangeRatesInfo_DrpFromCurrencies)
+                        <label> = </label>
+                        @Html.TextBoxFor(model => model.ExchangeRatesInfo_ExchangeRate, new { style = "width:100px" })
+                        @Html.DropDownListFor(model => model.ExchangeRatesInfo_ToCurrency, Model.ExchangeRatesInfo_DrpToCurrencies)
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.ExchangeRatesInfo_Permanent)
+                    </div>
+                    <div class="editor-field">
+                        <label>Yes</label>
+                        @Html.RadioButtonFor(model => model.ExchangeRatesInfo_Permanent, true, new { data_keep_value = "" })
+                        <label>No</label>
+                        @Html.RadioButtonFor(model => model.ExchangeRatesInfo_Permanent, false, new { data_keep_value = "" })
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.ExchangeRatesInfo_I_Date)
+                        
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.ExchangeRatesInfo_I_Date, new { data_uses_date_picker = "true" })
+                        
+                    </div>
+                </div>
+                <div class="editor-alignment rate-visibility-controlled" style="display:none">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.ExchangeRatesInfo_F_Date)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.ExchangeRatesInfo_F_Date, new { data_uses_date_picker = "true" })
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.ExchangeRatesInfo_Terminal)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.ExchangeRatesInfo_Terminal, Model.ExchangeRatesInfo_DrpTerminals, new { @class = "terminal-dependent-list", data_route = "/Catalogs/GetDDLData", data_route_parameter = "selectedTerminals" })
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.ExchangeRatesInfo_Provider)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.ExchangeRatesInfo_Provider, Model.ExchangeRatesInfo_DrpProviders)
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.ExchangeRatesInfo_PointsOfSale)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.ExchangeRatesInfo_PointsOfSale, Model.ExchangeRatesInfo_DrpPointsOfSale, new { multiple = "multiple" })
+                    </div>
+                </div>
+                if (Model.Privileges.FirstOrDefault(m => m.Component == "btnSaveExchangeRate" && m.View == true) != null)
+                {
+                    <div class="editor-alignment full-width align-from-top">
+                        <input type="submit" id="btnSaveExchangeRate" class="submit right" value="save" />
+                    </div>
+                }
+            }
+        </div>
+    </fieldset>
+}

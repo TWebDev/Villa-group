@@ -1,0 +1,213 @@
+﻿@model ePlatBack.Models.ViewModels.IncomeOutcomeModel
+
+<div class="table-div">
+    <div class="table-row">
+        <div class="table-cell">
+            @Html.DisplayNameFor(model => model.Terminal)<br />
+            @Html.DisplayFor(model => model.Terminal)
+        </div>
+        <div class="table-cell">
+            @Html.DisplayNameFor(model => model.PointsOfSale)<br />
+            @Html.Raw(Model.PointsOfSale)
+        </div>
+        <div class="table-cell">
+            @Html.DisplayNameFor(model => model.Currency)<br />
+            @Html.DisplayFor(model => model.Currency)
+        </div>
+        <div class="table-cell">
+            @Html.DisplayNameFor(model => model.Date)<br />
+            @Html.DisplayFor(model => model.Date)
+        </div>
+    </div>
+</div>
+@if (Model.Details.Count() == 0)
+{
+    <div class="mb-error">
+        @Html.Raw(Model.Message)
+    </div>
+}
+
+@if (Model.Details.Count() > 0)
+{
+    <h3>Coupons</h3>
+    <table style="width:100%" class="table exportable non-editable">
+        <thead>
+            <tr>
+                <th>Point of Sale</th>
+                <th>Customer</th>
+                <th>Folio</th>
+                <th>Coupon Reference</th>
+                <th>Confirmed on</th>
+                <th>Canceled on</th>
+                <th>Service</th>
+                <th>Status</th>
+                <th>Confirmation Close Out</th>
+                <th>Cancelation Close Out</th>
+                <th>Quantity</th>
+                <th>Unit</th>
+                <th>Price Type</th>
+                <th>Unit Total</th>
+                <th>Unit Currency</th>
+                <th>Income Account Number</th>
+                <th>Income Account Name</th>
+                <th>Income Exchange Rate</th>
+                <th>Total</th>
+                <th>Total Currency</th>
+                <th>Outcome Account Number</th>
+                <th>Outcome Account Name</th>
+                <th>Outcome Exchange Rate</th>
+                <th>Cost</th>
+                <th>Cost Currency</th>
+                <th>Audited</th>
+                <th>Invoice</th>
+                <th>Program</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var detail in Model.Details)
+            {
+            <tr data-purchaseid="@detail.PurchaseID" data-purchaseserviceid="@detail.PurchaseServiceID">
+                <td>@detail.PointOfSale</td>
+                <td>@detail.Customer</td>
+                <td>@detail.Folio</td>
+                <td>@detail.CouponReference</td>
+                <td>@detail.Date</td>
+                <td>@detail.CancelationDate</td>
+                <td>@detail.Service</td>
+                <td>@detail.Status</td>
+                <td>@Html.Raw(detail.CloseOut)</td>
+                <td>@Html.Raw(detail.CancelationCloseOut)</td>
+                <td>@detail.Quantity.ToString().Replace(".00", "")</td>
+                <td>@detail.Unit</td>
+                <td>@detail.PriceType</td>
+                <td>@detail.UnitTotal.Amount</td>
+                <td>@detail.UnitTotal.Currency</td>
+                <td>@detail.IncomeAccAccNumber</td>
+                <td>@detail.IncomeAccAccName</td>
+                <td>@detail.IncomeExchangeRate</td>
+                <td>@detail.Total.Amount</td>
+                <td>@detail.Total.Currency</td>
+                <td>@detail.OutcomeAccAccNumber</td>
+                <td>@detail.OutcomeAccAccName</td>
+                <td class="@(detail.CustomCost ? "custom-cost" : "")">@detail.OutcomeExchangeRate</td>
+                <td class="@(detail.CustomCost ? "custom-cost" : "")">@detail.Cost.Amount</td>
+                <td class="@(detail.CustomCost ? "custom-cost" : "")">@detail.Cost.Currency</td>
+                <td>@Html.Raw(detail.Audited)</td>
+                <td>@detail.InvoiceNumber</td>
+                <td>@detail.MarketingProgram</td>
+            </tr>
+            }
+        </tbody>
+
+    </table>
+}
+
+@if (Model.Totals.Count() > 0)
+{
+    <h3>Summary</h3>
+    <table class="table exportable non-editable">
+        <thead>
+            <tr>
+                <th>Account Name</th>
+                <th>Price Type</th>
+                <th>Income Account Number</th>
+                <th colspan="2">Income Subtotal</th>
+                <th colspan="2">Income IVA</th>
+                <th colspan="2">Income Total</th>
+                <th>Outcome Account Number</th>
+                <th colspan="2">Outcome Subtotal</th>
+                <th colspan="2">Outcome IVA</th>
+                <th colspan="2">Outcome Total</th>
+                <th colspan="2">Utility</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Totals)
+            {
+                <tr>
+                    <td>@item.AccAccName</td>
+                    <td>@item.PriceType</td>
+                    <td>@item.AccAccIncomeNumber</td>
+                    <td><span data-format="currency">@item.IncomeSubtotal.Amount</span></td>
+                    <td>@item.IncomeSubtotal.Currency</td>
+                    <td><span data-format="currency">@item.IncomeIVA.Amount</span></td>
+                    <td>@item.IncomeIVA.Currency</td>
+                    <td><span data-format="currency">@item.IncomeTotal.Amount</span></td>
+                    <td>@item.IncomeTotal.Currency</td>
+                    <td>@item.AccAccOutcomeNumber</td>
+                    <td><span data-format="currency">@item.OutcomeSubtotal.Amount</span></td>
+                    <td>@item.OutcomeSubtotal.Currency</td>
+                    <td><span data-format="currency">@item.OutcomeIVA.Amount</span></td>
+                    <td>@item.OutcomeIVA.Currency</td>
+                    <td><span data-format="currency">@item.OutcomeTotal.Amount</span></td>
+                    <td>@item.OutcomeTotal.Currency</td>
+                    <td><span data-format="currency">@item.Utility.Amount</span></td>
+                    <td>@item.Utility.Currency</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><span data-format="currency">@Model.IncomeSubtotal.Amount</span></td>
+                <td>@Model.IncomeSubtotal.Currency</td>
+                <td><span data-format="currency">@Model.IncomeIVA.Amount</span></td>
+                <td>@Model.IncomeIVA.Currency</td>
+                <td><span data-format="currency">@Model.IncomeTotal.Amount</span></td>
+                <td>@Model.IncomeTotal.Currency</td>
+                <td></td>
+                <td><span data-format="currency">@Model.OutcomeSubtotal.Amount</span></td>
+                <td>@Model.OutcomeSubtotal.Currency</td>
+                <td><span data-format="currency">@Model.OutcomeIVA.Amount</span></td>
+                <td>@Model.OutcomeIVA.Currency</td>
+                <td><span data-format="currency">@Model.OutcomeTotal.Amount</span></td>
+                <td>@Model.OutcomeTotal.Currency</td>
+                <td><span data-format="currency">@Model.UtilityTotal.Amount</span></td>
+                <td>@Model.UtilityTotal.Currency</td>
+            </tr>
+        </tfoot>
+    </table>
+}
+
+@if(Model.Profits.Count() > 0)
+{
+    <h3>Profits</h3>
+    <table class="table exportable non-editable">
+        <thead>
+        <th>Card Type</th>
+        <th>Amount USD</th>
+        <th>Commission USD</th>
+        <th>Profit USD</th>
+        <th>Amount MXN</th>
+        <th>Commission MXN</th>
+        <th>Profit MXN</th>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Profits)
+            {
+                <tr>
+                    <td>@item.CardType</td>
+                    <td data-format="currency">@item.AmountUSD</td>
+                    <td data-format="currency">@item.CommissionVolumeUSD</td>
+                    <td data-format="currency">@item.ProfitVolumeUSD</td>
+                    <td data-format="currency">@item.AmountMXN</td>
+                    <td data-format="currency">@item.CommissionVolumeMXN</td>
+                    <td data-format="currency">@item.ProfitVolumeMXN</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>Totals</td>
+                <td data-format="currency">@Model.Profits.Sum(m => m.AmountUSD)</td>
+                <td data-format="currency">@Model.Profits.Sum(m => m.CommissionVolumeUSD)</td>
+                <td data-format="currency">@Model.Profits.Sum(m => m.ProfitVolumeUSD)</td>
+                <td data-format="currency">@Model.Profits.Sum(m => m.AmountMXN)</td>
+                <td data-format="currency">@Model.Profits.Sum(m => m.CommissionVolumeMXN)</td>
+                <td data-format="currency">@Model.Profits.Sum(m => m.ProfitVolumeMXN)</td>
+            </tr>
+        </tfoot>
+    </table>
+}

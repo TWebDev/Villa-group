@@ -1,0 +1,54 @@
+﻿
+@model ePlatBack.Models.ViewModels.UserLogsActivityYYYYMM
+
+        <div class="table-div">
+            <div class="table-row">   
+                    Date Range <br />             
+                    From Date:
+                    @Html.Raw(Model.FromDate)
+                    to
+                    @Html.Raw(Model.ToDate)               
+            </div>
+        </div>
+        @if(Model.Summary.Count()>0)
+        {
+            <table id="tblActivityLogs" class="dataTable">
+                <thead>
+                    <tr>
+                        <th style="display:none"></th>
+                        <th>DateSaved</th>
+                        <th>Saved by User</th>
+                        <th>Controller</th>
+                        <th>Method</th>
+                        <th>Description</th>
+                        <th>Url - Method</th>
+                        <th>Url</th>
+                        <th>Contact Info</th>
+                        <th>Terminal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var logs in Model.Summary)
+                    {
+                        <tr id="@logs.UserLogActivityIDInfo">
+                            <td style="display:none">@logs.UserLogActivityIDInfo</td>
+                            <td>@logs.DateSavedInfo</td>
+                            <td>
+                               @*<a target="_blank" href=" ">*@  @logs.UserName 
+                            </td>
+                            <td>@logs.ControllerInfo</td>
+                            <td>@logs.MethodInfo</td>
+                            <td><div style="width:400px; max-height:150px; overflow:auto">@logs.DescriptionInfo</div></td>
+                            <td>
+                               @logs.UrlMethodInfo
+                            </td>
+                            <td><a target="_blank" href="@logs.UrlInfo">@logs.UrlInfo</td>
+                            <td><input type="checkbox" checked="@logs.ContactInfo"  disabled /></td>
+                            <td>@logs.terminalInfo</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+         }
+
+

@@ -1,0 +1,291 @@
+﻿@model ePlatBack.Models.ViewModels.SPIInvitationReport.invitationReportResult
+
+
+<div class="container" style="display:none">
+    <div class="row text-center align-middle">
+        <div class=" col-md-3 col-lg-3">
+
+        </div>
+        <div class="col-md-2 col-lg-2">
+            @Html.LabelFor(model => model.shift)
+            @Html.Label(Model.shift)
+        </div>
+        <div class=" col-md-2 col-lg-2">
+            @Html.LabelFor(model => model.premanifestDate)
+            @Html.Label(Model.premanifestDate)
+        </div>
+        <div class=" col-md-2 col-lg-2">
+            @Html.LabelFor(model => model.premanifestUser)
+            @Html.Label(Model.premanifestUser)
+        </div>
+    </div>
+    <br />
+</div>
+
+<table id="tbldepositsTable"
+       class="dataTable table table-bordered exportable"
+       style="overflow:auto">
+    <thead>
+        <tr style="display:none;">
+            <td colspan="28"></td>
+        </tr>
+        <tr style="display:none;">
+            <td colspan="4"></td>
+            <td>Shift</td>
+            <td>Premanifest Date</td>
+            <td>User</td>
+            <td colspan="11"></td>
+        </tr>
+        <tr style="display:none;">
+            <td colspan="4"></td>
+            <td>@Model.shift</td>
+            <td>@Model.premanifestDate</td>
+            <td>@Model.premanifestUser</td>
+            <td colspan="19"></td>
+        </tr>
+        <tr  style="display:none;">
+            <td colspan="18"></td>
+        </tr>
+        <tr>
+            <th>N°</th>
+            <th>P. Place</th>
+            <th>Program</th>
+            <th>Group</th>
+            <th>Team</th>
+            <th>Folio</th>
+            <th>Guest</th>
+            <th>Hotel SPI</th>
+            <th>OPC</th>
+            <th>Pick Up Time</th>
+            <th>Pax</th>
+            <th>Pick Up Notes</th>
+            <th>Comments</th>
+            <th>Delivered</th>
+            <th>Received</th>
+            <th>Currency</th>
+            <th>Cash/TDC</th>
+            <th>Date Saved</th>
+            <th>Saved By User</th>
+            <th>Last Modification</th>
+            <th>Modified By User</th>
+            <th>State</th>
+            <th>Jalador</th>
+            <th>Manifest Folio</th>
+            <th>Date Saved</th>
+            <th>Saved By User</th>
+            <th>Date Modified</th>
+            <th>Modified By User</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ 
+            var cont = 1;
+            var x = 1;
+         }
+        @foreach (var invitations in Model.Result)
+        {
+            if (invitations.deposits.Count() == 0)
+            {
+                <tr>
+                    <td>@cont</td>
+                    <td>@invitations.presentationPlace</td>
+                    <td>@invitations.program</td>
+                    <td>@invitations.group</td>
+                    <td>@invitations.team</td>
+                    <td>@invitations.invitationFolio</td>
+                    <td>@invitations.guest</td>
+                    <td>@invitations.spiHotel</td>
+                    <td>@invitations.opc</td>
+                    <td>@invitations.pickUpTime</td>
+                    <td>@invitations.pax</td>
+                    <td>@invitations.pickUpType</td>
+                    <td>@invitations.comments</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>@invitations.state</td>
+                    <td>@invitations.jalador</td>
+                    <td>@invitations.manifestFolio</td>
+                    <td>@invitations.dateSaved</td>
+                    <td>@invitations.savedByUser</td>
+                    <td>@invitations.dateModified</td>
+                    <td>@invitations.modifiedByUser</td>
+                </tr>
+            }
+            else if (invitations.deposits.Count() == 1)
+            {
+                <tr>
+                    <td>@cont</td>
+                    <td>@invitations.presentationPlace</td>
+                    <td>@invitations.program</td>
+                    <td>@invitations.group</td>
+                    <td>@invitations.team</td>
+                    <td>@invitations.invitationFolio</td>
+                    <td>@invitations.guest</td>
+                    <td>@invitations.spiHotel</td>
+                    <td>@invitations.opc</td>
+                    <td>@invitations.pickUpTime</td>
+                    <td>@invitations.pax</td>
+                    <td>@invitations.pickUpType</td>
+                    <td>@invitations.comments</td>
+                    @foreach (var deposits in invitations.deposits)
+                    {
+                        var payment = deposits.paymentTypeID == 2 ? deposits.amount.ToString() + " TC(" + (deposits.ccReferenceNumber) + ")" : deposits.amount.ToString() + " " + deposits.currency;
+                        var paymentType = deposits.paymentTypeID == 2 ? "TDC" : "CASH";
+                        var lastModificationDate = deposits.dateLastModification.HasValue ? deposits.dateLastModification.Value.ToString("yyyy-MM-dd hh:mm tt") : "";
+                        var deleted = deposits.deleted.HasValue ? deposits.deleted.Value ? "yes" : "no" : "";
+                        var deleteDate = deposits.deletedDateTime.HasValue ? deposits.deletedDateTime.Value.ToString("yyyy-MM-dd") : "";
+                        <td>@payment</td>
+                        <td>@deposits.amount</td>
+                        <td>@deposits.currency</td>
+                        <td>@paymentType</td>
+                        <td>@deposits.dateSaved.ToString("yyyy-MM-dd hh:mm tt")</td>
+                        <td>@deposits.saveUser</td>
+                        <td>@lastModificationDate</td>
+                        <td>@deposits.modifiedByUser</td>
+                    }
+                    <td>@invitations.state</td>
+                    <td>@invitations.jalador</td>
+                    <td>@invitations.manifestFolio</td>
+                    <td>@invitations.dateSaved</td>
+                    <td>@invitations.savedByUser</td>
+                    <td>@invitations.dateModified</td>
+                    <td>@invitations.modifiedByUser</td>
+                </tr>
+            }
+            else
+            {
+                var dep = 0;
+                @:<tr>
+                    <td rowspan="@invitations.deposits.Count()">@cont</td>
+                    <td rowspan="@invitations.deposits.Count()">@invitations.presentationPlace</td>
+                    <td rowspan="@invitations.deposits.Count()">@invitations.program</td>
+                    <td rowspan="@invitations.deposits.Count()">@invitations.group</td>
+                    <td rowspan="@invitations.deposits.Count()">@invitations.team</td>
+                    <td rowspan="@invitations.deposits.Count()">@invitations.invitationFolio</td>
+                    <td rowspan="@invitations.deposits.Count()">@invitations.guest</td>
+                    <td rowspan="@invitations.deposits.Count()">@invitations.spiHotel</td>
+                    <td rowspan="@invitations.deposits.Count()">@invitations.opc</td>
+                    <td rowspan="@invitations.deposits.Count()">@invitations.pickUpTime</td>
+                    <td rowspan="@invitations.deposits.Count()">@invitations.pax</td>
+                    <td rowspan="@invitations.deposits.Count()">@invitations.pickUpType</td>
+                    <td rowspan="@invitations.deposits.Count()">@invitations.comments</td>
+                foreach (var deposits in invitations.deposits)
+                {
+                    var lastModificationDate = deposits.dateLastModification.HasValue ? deposits.dateLastModification.Value.ToString("yyyy-MM-dd hh:mm tt") : "";
+                    var deleted = deposits.deleted.HasValue ? deposits.deleted.Value ? "yes" : "no" : "";
+                    var deleteDate = deposits.deletedDateTime.HasValue ? deposits.deletedDateTime.Value.ToString("yyyy-MM-dd") : "";
+
+                    if (dep == 0)
+                    {
+                        var payment = deposits.paymentTypeID == 2 ? deposits.amount.ToString() + " TC(" + (deposits.ccReferenceNumber) + ")" : deposits.amount.ToString() + " " + deposits.currency;
+                        var paymentType = deposits.paymentTypeID == 2 ? "TDC" : "CASH";
+                            <td>@payment</td>
+                            <td>@deposits.amount</td>
+                            <td>@deposits.currency</td>
+                            <td>@paymentType</td>
+                            <td>@deposits.dateSaved.ToString("yyyy-MM-dd hh:mm tt")</td>
+                            <td>@deposits.saveUser</td>
+                            <td>@lastModificationDate</td>
+                            <td>@deposits.modifiedByUser</td>
+                            <td rowspan="@invitations.deposits.Count()">@invitations.state</td>
+                            <td rowspan="@invitations.deposits.Count()">@invitations.jalador</td>
+                            <td rowspan="@invitations.deposits.Count()">@invitations.manifestFolio</td>
+                            <td rowspan="@invitations.deposits.Count()">@invitations.dateSaved</td>
+                            <td rowspan="@invitations.deposits.Count()">@invitations.savedByUser</td>
+                            <td rowspan="@invitations.deposits.Count()">@invitations.dateModified</td>
+                            <td rowspan="@invitations.deposits.Count()">@invitations.modifiedByUser</td>
+                        @:</tr>
+                        dep++;
+                    }
+                    else
+                    {
+                        var payment = deposits.paymentTypeID == 2 ? deposits.amount.ToString() + " TC(" + (deposits.ccReferenceNumber) + ")" : deposits.amount.ToString() + " " + deposits.currency;
+                        var paymentType = deposits.paymentTypeID == 2 ? "TDC" : "CASH";
+                            <tr>
+                                <td>@payment</td>
+                                <td>@deposits.amount</td>
+                                <td>@deposits.currency</td>
+                                <td>@paymentType</td>
+                                <td>@deposits.dateSaved.ToString("yyyy-MM-dd hh:mm tt")</td>
+                                <td>@deposits.saveUser</td>
+                                <td>@lastModificationDate</td>
+                                <td>@deposits.modifiedByUser</td>
+                            </tr>
+                    }
+                }
+            }
+            cont++;
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td></td>
+        </tr>
+        <tr>
+            <th colspan="4">Totals By Payment Type</th>
+        </tr>
+        @foreach (var item in Model.totalP)
+        {
+         <tr id="@item.paymentTypeID">
+            <td></td>
+            <td>@item.paymentType</td>
+            <td>@item.amount</td>
+            <td id="@item.currencyID">@item.currency</td>
+         </tr>
+        }
+        <tr>
+            <th colspan="4">Totals By Currencies</th>
+        </tr>
+        @foreach(var item in Model.totalC)
+        {
+          <tr dir="@item.currencyID">
+              <td></td>
+              <td>@item.currency</td>
+              <td>@item.amount</td>
+              <td></td>
+          </tr>
+        }
+    </tfoot>
+    @*<tfoot>
+        <tr>
+            <th colspan="4">Totals</th>
+        </tr>
+        <tr>
+            <th></th>
+            <th>Cash</th>
+            <th>Credit</th>
+        </tr>
+            @foreach (var item in Model.currencies)
+            {
+                <tr>
+
+                    <td></td>
+                    <td>@item.Currency</td>
+                    <td>@item.Amount</td>
+                    }
+
+                </tr>
+            }
+            @foreach (var invitations in Model.Result)
+            {
+                foreach (var deposits in invitations.deposits.Where(y => y.deleted == false).ToList())
+                {
+                    var paymentType = deposits.paymentTypeID == 2 ? "TDC" : "CASH";
+                    @:<tr>
+                        @:<td>@x</td>
+                        @:<td>@invitations.presentationPlace</td>
+                        @:<td>@paymentType</td>
+                        @:<td>@deposits.currency</td>
+                        @:<td>$ @deposits.amount</td>
+                    @:</tr>
+                    x++;
+                }
+            }
+        </tfoot>*@
+</table>

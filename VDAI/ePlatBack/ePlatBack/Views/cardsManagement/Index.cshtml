@@ -1,0 +1,18 @@
+﻿@model  List<ePlatBack.Models.tblMembershipCards>
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    Random rand = new Random();
+}
+
+
+<div id="app">
+
+    <cardsmanagement cards="@Json.Encode(Model)"></cardsmanagement>
+
+</div>
+@section Scripts
+{
+<script src="~/ViewModels/Components/cardsmanagement.js?_=@rand.Next()"></script>
+}
+
+

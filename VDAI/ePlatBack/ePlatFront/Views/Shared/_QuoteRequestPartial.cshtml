@@ -1,0 +1,131 @@
+﻿@model ePlatBack.Models.ViewModels.QuoteRequestViewModel
+
+@using (Ajax.BeginForm("QuoteRequestSave", new { Controller = "Controls" }, new AjaxOptions { OnBegin = "Controls.sendingInfo('QuoteRequestForm')", OnSuccess = "Controls.showOffer(data,'QuoteRequestForm', false, 2)", OnFailure = "Controls.showMessage({ResponseType : -1, ResponseMessage : 'Failure trying to send the information to the server, please try again.'},'QuoteRequestForm')" }, new { id = "QuoteRequestForm" }))
+{
+    <div class="classic-form">
+    <fieldset>
+        <legend>QuoteRequestViewModel</legend>
+            <h2>Quote Request</h2><br />
+        <p><strong>Do you need a customized package?</strong></p>
+        <p>
+Maybe number of guests or number of nights you want to travel, don't match with our standard packages. Don't worry, you can fill the next form to request a quote according to your needs.
+        </p><p>
+Please enter your information and one of our reservations specialists will contact you by phone or email to bring you a customized quote.</p>
+        <div class="editor-item">
+            @Html.LabelFor(model => model.QuoteRequest_FirstName)
+            <div class="editor-field">
+                @Html.EditorFor(model => model.QuoteRequest_FirstName)
+                @Html.ValidationMessageFor(model => model.QuoteRequest_FirstName)
+            </div>
+        </div>
+        <div class="editor-item">
+            @Html.LabelFor(model => model.QuoteRequest_LastName)
+
+            <div class="editor-field">
+                @Html.EditorFor(model => model.QuoteRequest_LastName)
+                @Html.ValidationMessageFor(model => model.QuoteRequest_LastName)
+            </div>
+        </div>
+        <div class="editor-item">
+            @Html.LabelFor(model => model.QuoteRequest_Email)
+
+            <div class="editor-field">
+                @Html.EditorFor(model => model.QuoteRequest_Email)
+                @Html.ValidationMessageFor(model => model.QuoteRequest_Email)
+            </div>
+        </div>
+        <div class="editor-item">
+            @Html.LabelFor(model => model.QuoteRequest_Phone)
+
+            <div class="editor-field">
+                @Html.EditorFor(model => model.QuoteRequest_Phone)
+                @Html.ValidationMessageFor(model => model.QuoteRequest_Phone)
+            </div>
+        </div>
+        <div class="editor-item">
+            @Html.LabelFor(model => model.QuoteRequest_Destination)
+
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.QuoteRequest_Destination, Model.Destinations)
+                @Html.ValidationMessageFor(model => model.QuoteRequest_Destination)
+            </div>
+        </div>
+        <div class="editor-item">
+            @Html.LabelFor(model => model.QuoteRequest_Resort)
+
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.QuoteRequest_Resort,Model.Resorts)
+                @Html.ValidationMessageFor(model => model.QuoteRequest_Resort)
+            </div>
+        </div>
+        <div class="editor-item">
+            @Html.LabelFor(model => model.QuoteRequest_Arrival)
+
+            <div class="editor-field">
+                @Html.EditorFor(model => model.QuoteRequest_Arrival)
+                @Html.ValidationMessageFor(model => model.QuoteRequest_Arrival)
+            </div>
+        </div>
+        <div class="editor-item">
+            @Html.LabelFor(model => model.QuoteRequest_Departure)
+
+            <div class="editor-field">
+                @Html.EditorFor(model => model.QuoteRequest_Departure)
+                @Html.ValidationMessageFor(model => model.QuoteRequest_Departure)
+            </div>
+        </div>
+        <div class="editor-item">
+            @Html.LabelFor(model => model.QuoteRequest_Adults)
+
+            <div class="editor-field">
+                @Html.EditorFor(model => model.QuoteRequest_Adults)
+                @Html.ValidationMessageFor(model => model.QuoteRequest_Adults)
+            </div>
+        </div>
+        <div class="editor-item">
+            @Html.LabelFor(model => model.QuoteRequest_Children)
+
+            <div class="editor-field">
+                @Html.EditorFor(model => model.QuoteRequest_Children)
+                @Html.ValidationMessageFor(model => model.QuoteRequest_Children)
+            </div>
+        </div>
+        <div class="editor-item">
+            @Html.LabelFor(model => model.QuoteRequest_TimeToReach)
+            <div class="editor-field">
+                @Html.EditorFor(model => model.QuoteRequest_TimeToReach)
+                @Html.ValidationMessageFor(model => model.QuoteRequest_TimeToReach)
+            </div>
+        </div>
+        <div class="editor-item-area">
+            @Html.LabelFor(model => model.QuoteRequest_Comments)
+
+            <div class="editor-field">
+                @Html.TextAreaFor(model => model.QuoteRequest_Comments)
+                @Html.ValidationMessageFor(model => model.QuoteRequest_Comments)
+            </div>
+        </div>
+        @*@ReCaptcha.GetHtml(theme:"red")*@
+        <div id="divQR_Recaptcha"></div>
+        <div class="validation-errors">
+            @Html.ValidationSummary(true)
+            
+        </div>
+        <div class="interaction-message"></div>
+        <input type="submit" value="Send Request" />        
+    </fieldset>
+    </div>
+}
+
+<script>
+    var onloadQRReCaptchaCallback = function () {
+        var widgetQR;
+
+        widgetQR = grecaptcha.render('divQR_Recaptcha', {
+            'sitekey': '6LfsSlEUAAAAAFA7qAyNVL2KuoUTmCowDTkwghNz'
+        });
+    }
+</script>
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadQRReCaptchaCallback&render=explicit"
+        async defer>
+</script>

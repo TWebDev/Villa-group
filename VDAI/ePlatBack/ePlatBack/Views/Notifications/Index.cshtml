@@ -1,0 +1,26 @@
+﻿@model ePlatBack.Models.ViewModels.NotificationsViewModel
+
+@{
+    ViewBag.Title = "ePlat > Settings > Notifications";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //ViewData["Privileges"] = Model.Privileges;
+}
+
+@section Scripts{
+<script src="/Scripts/jquery.dataTables.js" type="text/javascript"></script>
+    <script src="/Scripts/crm/notifications/notifications.js" type="text/javascript"></script>
+}
+
+<h1>Notifications Management</h1>
+<div class="align-from-top">
+    <fieldset id="fdsFieldGroupsManagement">
+        <legend>
+            <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+            Forms Management
+        </legend>
+        <div class="align-from-top" style="display:none">
+            @Html.Partial("_NotificationsSearchPartial", Model.FormsSearchModel)
+            
+        </div>
+    </fieldset>
+</div>

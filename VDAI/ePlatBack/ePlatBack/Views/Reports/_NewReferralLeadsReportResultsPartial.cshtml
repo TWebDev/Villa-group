@@ -1,0 +1,33 @@
+﻿@model ePlatBack.Models.ViewModels.NewReferralLeadsModel
+
+<table id="tblNewReferralLeadsReport" class="table">
+    <thead>
+        <tr>
+            <th>Input Date</th>
+            <th>Agent</th>
+            <th>Referrals</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ListNewReferralLeadsReportModel != null)
+        {
+            foreach (var i in Model.ListNewReferralLeadsReportModel)
+            {
+            <tr id="@i.NewReferralLeadsReport_AgentID">
+                <td>
+                    @Html.DisplayFor(model => i.NewReferralLeadsReport_InputDate)
+                    @Html.HiddenFor(model => i.NewReferralLeadsReport_Referrals)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.NewReferralLeadsReport_Agent)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.NewReferralLeadsReport_ReferralsNumber)
+                </td>
+            </tr>
+            }
+        }
+    </tbody>
+</table>
+
+

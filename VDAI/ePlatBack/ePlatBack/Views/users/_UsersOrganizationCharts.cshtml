@@ -1,0 +1,74 @@
+﻿@model ePlatBack.Models.ViewModels.SystemUsers.SearchSubordinates
+@{
+    ViewBag.Title = "ePlat > Settings > Users > UserOrganizationCharts";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    Html.EnableClientValidation(true);
+    @*var Privileges = ViewData["Privileges"] as List<ePlatBack.Models.ViewModels.SysComponentsPrivilegesModel>;*@
+}
+@section Head
+{
+
+    <link href="/Content/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+}
+@section Scripts{
+    <script src="~/Content/plugins/fine-uploader5.16.2/fine-uploader.min.js"></script>
+    @*verificar scripts*@
+    <script src="~/Scripts/jquery.dataTables.js" type="text/javascript"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="~/ViewModels/eplat.local.settings.users.usersCharts.js"></script>
+}
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 border-bottom">
+        <h1 class="h2">Users Organization Charts</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <button type="button" class="btn btn-sm mr-2" id="searchOrgnizationButton" v-on:click="UI().showSearchCard()">
+                <i class="material-icons">search</i>
+            </button>
+        </div>
+    </div>
+
+    @using (Ajax.BeginForm("SearchUsersSubordinates", "Users", new AjaxOptions
+        {
+            OnSuccess = "usersOrgCharts.setUsers(data)"
+        },
+        new { id = "frmUsersOrganizationCharts" }))
+        {
+            <div>
+                <div class="card mb-2 search-card" v-bind:class="{ 'd-none' : !UIData.showSearchCard }">
+                    <div class="card-body">
+                        <h5 class="card-title"> Search Users</h5>
+                        <div class=" form-row">
+                            <div class="form-group col-md-3 col-lg-3">
+                                @Html.LabelFor(model => model.system)
+                                @Html.DropDownListFor(model => model.system, Model.systemList, new
+                                {
+                                    @class = "form-control"
+                                })
+                            </div>
+                            <div class=" form-group col-md-3 col-lg-3">
+                                @Html.LabelFor(model => model.userID)
+                                @Html.DropDownListFor(model => model.userID, Model.userList, new
+                                {
+                                    @class = "form-control",
+                                })
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="text-right col">
+                                <input type="reset" class="btn" value="Clear" />
+                                <input type="submit" id="btnSearchUsers" class="btn btn-primary" value="Search" />
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                <div class=" card mb-2">
+                     <div class="card-body" style="overflow:auto">
+                          <div id="chart_div"></div>
+                      </div>       
+                </div>               
+            </div>                  
+        }
+
+<b-modal ref="ModalRef" centered size="lg" hide-footer title="User Info">
+    @Html.Action("RenderSystemUsersInfo", "Users")
+</b-modal>
+            

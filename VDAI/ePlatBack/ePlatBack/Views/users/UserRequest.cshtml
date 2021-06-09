@@ -1,0 +1,578 @@
+﻿@model ePlatBack.Models.ViewModels.UserRequest
+@{
+    Layout = "~/Views/Shared/_Layout2Anonymous.cshtml";
+}
+
+@section Head {
+    @if (ViewData["UserRequest"] != null)
+    {
+        <script type="text/javascript">
+        window.UserRequestModel = JSON.parse('@Html.Raw(ViewData["UserRequest"])');
+        </script>
+    }
+}
+
+@section Scripts {
+    <script src="~/Content/plugins/fine-uploader5.16.2/fine-uploader.min.js"></script>
+    <script src="~/ViewModels/eplat.local.public.userrequest.js"></script>
+}
+
+@section Header {
+    <img src="~/images/concierge.png" class="img-fluid non-printable" style="margin: -10px 0 0 0;" />
+}
+
+<div class="container mt-5 non-printable-mt-0">
+    <div class="row non-printable">
+        <div class="col-md-8">
+            <h1 class="font-weight-light">User Request</h1>
+            <p>
+                With the intention of improving the security of ePlatform, we have reinforced our user registration and deregistration policies. That's why as of July 2018, the process for a user's request is as follows:
+            </p>
+
+            <h5>Step 1. Request Form</h5>
+            <p>
+                Fill out the form. You can add one or more users to the request using the blue "+ Add User Info" button. When you click on "+ Add User Info", a form is displayed to capture the user's data. Fill in the user's data and click Add. Once you have filled out the form and captured the list of users, click on Save and Continue.
+            </p>
+            <h5>Step 2. Printing and Signature</h5>
+            <p>
+                In this step, the preview of the documentation to be signed is generated. Print the documents and proceed with the signatures. Confidentiality letters must be signed by the people who will be given access to the systems. It is important that all the pages of the letter are signed. The Application Form must be signed by the person requesting the registration. The user's signature (s) is not necessary in the Application Form.
+            </p>
+            <h5>Step 3. Attach the Documents</h5>
+            <p>
+                Once the documents have been signed, scan them and add them to the application as attachments. After attaching the files, click Continue.
+            </p>
+            <h5> Step 4. Follow Up Key</h5>
+            <p>
+                The system will send you an email with the URL that will help you to review and follow up on your request.
+            </p>
+            <p>
+                From this point, a human of the ePlat team will proceed to review the documentation and request the approval of the vice president. If there is a problem with the application or if there is any doubt about the purpose or position of the user, the applicant will be contacted by email.
+            </p>
+            <p>
+                Once the application is approved, we will proceed to configure the access and send by mail the requested credentials.
+            </p>
+            <div class="alert alert-warning" role="alert">
+
+                <p><strong>IMPORTANT</strong></p>
+                <p>
+                    <small>
+                        It is the responsibility of the person requesting the registration of a user, to request the cancellation of the same credentials. If the person who requested the credentials, no longer works with the company, the responsibility falls on the person who inherits the position and his direct boss.
+                    </small>
+                </p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Any Doubt?<br />Contact Us</h4>
+                    <p>If you have any doubt, identify your IT executive and contact him. He will gladly help you with any question.</p>
+                    <p class="card-text h2 font-weight-light">01 800 953 1334</p>
+                    <h5 class="my-4">ePlat Development Team</h5>
+                    <p class="card-text">
+                        <b>Gerardo Guerra Pulido</b><br />
+                        <i>gguerrap@villagroup.com</i><br />
+                        Extension 303
+                    </p>
+                    <p class="card-text">
+                        <b>Francisco Leonel Jimenez Velazco</b><br />
+                        <i>fjimenezv@villagroup.com</i><br />
+                        Extension 302
+                    </p>
+                    <p class="card-text">
+                        <b>Edgar Miguel Falcón Amezcua</b><br />
+                        <i>efalcon@villagroup.com</i><br />
+                        Extension 304
+                    </p>
+                    <p class="card-text">
+                        <b>Mauricio Esparza Zarco</b><br />
+                        <i>mauricio.esparza@villagroup.com</i><br />
+                        Extension 301
+                    </p>
+                    <p class="card-text">
+                        <b>Richar Alfredo Salinas Santiago</b><br />
+                        <i>rsalinas@villagroup.com</i><br />
+                        Extension 305
+                    </p>
+                    <p class="card-text">
+                        <b>Jorge Eduardo Orozco Marrón</b><br />
+                        <i>jorozco@mynextvacations.com</i>
+                    </p>
+                    <p class="card-text">
+                        <b>Fredy Oscar Escobar Alvarado</b><br />
+                        <i>fredy.escobar@villagroup.com</i><br />
+                        Extension 305
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <div id="divUserRequest" class="card mt-3 mb-3 non-printable-border non-printable-mt-0">
+                <div class="card-header non-printable">
+                    <ul class="nav nav-pills nav-fill card-header-pills">
+                        <li class="nav-item">
+                            <span class="nav-link" v-bind:class="{ active : step == 1 }">
+                                <b>Step 1.</b><br />
+                                Request Form
+                            </span>
+                        </li>
+                        <li class="nav-item">
+                            <span class="nav-link" v-bind:class="{ active : step == 2 }">
+                                <b>Step 2.</b><br />
+                                Printing and Signature
+                            </span>
+                        </li>
+                        <li class="nav-item">
+                            <span class="nav-link" v-bind:class="{ active : step == 3 }">
+                                <b>Step 3.</b><br />
+                                Attach Documentation
+                            </span>
+                        </li>
+                        <li class="nav-item">
+                            <span class="nav-link" v-bind:class="{ active : step == 4 }">
+                                <b>Step 4.</b><br />
+                                Follow Up Key
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body" v-show="step == 1">
+                    <div class="form-row mb-3">
+                        <div class="form-group col-md-6 col-lg-2">
+                            <label for="System">Access to</label>
+                            <select id="System" class="form-control" v-model="UserRequest.System">
+                                <option v-for="system in Systems" v-bind:value="system.Value">{{ system.Text }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6 col-lg-2">
+                            <label for="Terminals">Terminals</label>
+                            <select id="Terminals" class="form-control" v-model="UserRequest.Terminals" multiple="multiple"></select>
+                        </div>
+                        <div class="form-group col-md-6 col-lg-2">
+                            <label for="Destinations">Destinations</label>
+                            <select id="Destinations" class="form-control" v-model="UserRequest.Destinations" multiple="multiple"></select>
+                        </div>
+                        <div class="form-group col-md-6 col-lg-2">
+                            <label for="RequestedBy">Who is requesting?</label>
+                            <input type="text" id="RequestedBy" class="form-control" v-model="UserRequest.RequestedBy" />
+                        </div>
+                        <div class="form-group col-md-6 col-lg-4">
+                            <label for="NotifyTo">{{ UserRequest.RequestedBy }} Email</label>
+                            <input type="text" id="NotifyTo" class="form-control" v-model="UserRequest.NotifyTo" />
+                        </div>
+                    </div>
+                    <b-table id="tblUsers" responsive
+                             v-bind:items="UserRequest.Users"
+                             v-bind:fields="UsersDataTable.fields"
+                             v-bind:bordered="UsersDataTable.bordered"
+                             v-bind:striped="UsersDataTable.striped"
+                             v-bind:hover="UsersDataTable.hover"
+                             v-bind:sort-by.sync="UsersDataTable.sortBy"
+                             v-bind:sort-desc.sync="UsersDataTable.sortDesc"
+                             v-bind:current-page="UsersDataTable.currentPage"
+                             v-bind:per-page="UsersDataTable.perPage">
+                        <template slot="actions" slot-scope="row">
+                            <i class="material-icons" v-on:click="deleteUser(row.index)">delete</i>
+                        </template>
+                    </b-table>
+                    <div class="card search-card mb-3" style="margin-top:-1rem;">
+                        <div class="card-body">
+                            <div id="divAddUser" class="text-center" v-show="!showUserInfo">
+                                <button class="btn btn-sm btn-primary" v-on:click="showUserInfo = true">
+                                    <i class="material-icons">add</i> Add User Info
+                                </button>
+                            </div>
+                            <div id="divUserInfo" v-show="showUserInfo">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6 col-lg-3">
+                                        <label for="FirstName">First Name</label>
+                                        <input type="text" id="FirstName" class="form-control" v-model="UserInfo.FirstName" />
+                                    </div>
+                                    <div class="form-group col-md-6 col-lg-3">
+                                        <label for="LastName">Last Name</label>
+                                        <input type="text" id="LastName" class="form-control" v-model="UserInfo.LastName" />
+                                    </div>
+                                    <div class="form-group col-md-6 col-lg-3">
+                                        <label for="Email">Email Address</label>
+                                        <input type="text" id="Email" class="form-control" v-model="UserInfo.Email" />
+                                    </div>
+                                    <div class="form-group col-md-6 col-lg-3">
+                                        <label for="JobPosition">Job Position</label>
+                                        <input type="text" id="JobPosition" class="form-control" v-model="UserInfo.JobPosition" />
+                                    </div>
+                                    <div class="form-group col-md-6 col-lg-3">
+                                        <label for="BasedOn">Same Permissions than</label>
+                                        <select id="BasedOn" class="form-control" v-model="UserInfo.BasedOn"></select>
+                                    </div>
+                                    <div class="form-group col-md-6 col-lg-3">
+                                        <label for="DirectSupervisor">Direct Supervisor</label>
+                                        <input type="text" id="DirectSupervisor" class="form-control" v-model="UserInfo.DirectSupervisor" />
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="text-right col">
+                                        <input type="button" class="btn btn-outline-secondary mr-1" value="Cancel" v-on:click="showUserInfo = false" />
+                                        <input type="button" class="btn btn-outline-secondary" value="Add" v-on:click="addUser" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="text-right col">
+                            <input id="btnSaveUserRequest" type="submit" class="btn btn-primary" value="Save and Continue" v-on:click="saveUserRequest" />
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body" v-show="step == 2">
+                    <template v-for="(user, index) in UserRequest.Users">
+                        <div class="row" v-bind:class="{ 'mt-5 pt-5': index > 0 }" style="page-break-before: always;">
+                            <div class="col-md-6 text-justify">
+                                <p class="text-right">
+                                    <input type="text" class="form-control w-50 d-inline text-right" placeholder="Ciudad, Estado." v-model="location" v-bind:class="{ 'is-invalid': !location, 'border-0': location }" /> {{ getTodayDate('es-MX') }}
+                                </p>
+                                <h3>Carta de Confidencialidad</h3>
+                                <p>
+                                    Por medio de la presente de acuerdo a la relación laboral/comercial que tengo con el consorcio <b>“The Villa Group”</b>, sus filiales, holdings, partes relacionadas y/o subsidiarias (en lo sucesivo <b>“The Villa Group”</b>) manifiesto que tendré acceso a información y/o documentación, que podrá tener el carácter de confidencial y son propiedad de <b>“The Villa Group”</b>. Por motivo de dicha relación laboral/comercial me obligo a utilizar y disponer de dicha Información únicamente para el desarrollo de mis actividades para las que fui asignado por <b>“The Villa Group”</b> y en ningún caso utilizaré, trasmitiré, comunicaré o, en general dispondré, de la Información Confidencial para mi beneficio personal o para el beneficio de cualquier otra persona o entidad, o divulgarla a terceras personas en ningún tiempo o lugar, salvo autorización expresa y por escrito de un representante legal de <b>“The Villa Group”</b>.
+                                </p>
+                                <p>
+                                    <b>1. Confidencialidad.</b> Reconozco que tendré acceso al software <b>ePlat, ePlatform, SPI y/o SPI Reporteador</b>, por lo que me será proporcionada (ya sea de manera escrita o por cualquier otro medio electrónico, óptico o electromagnético) información que incluye Información Confidencial (en lo sucesivo, “Información Confidencial”). La Información Confidencial puede consistir de manera enunciativa más no limitativa en: secretos técnicos, administrativos, contratos, convenios, comerciales, de información financiera, información técnica, fabricación, descubrimientos, invenciones, mejoras, fórmulas, archivos, programas computacionales, patentes, listas de clientes actuales o potenciales, ruta crítica, negocios, productos, servicios, proyectos, cotizaciones de los mismos, políticas y procedimientos administrativos, información, métodos, tecnologías, metodológicas de análisis e interpretación, estudios, dibujos, diseños, sistemas, planos, fotografías, inventos o mejoras a los mismos, maquetas, modelos, cálculos, datos, notas, base de datos, entre otros.
+                                </p>
+                                <p>
+                                    En ningún momento y bajo ninguna circunstancia podré, divulgar, revelar o de cualquier otra manera hacer del conocimiento de cualquier tercero, directa o indirectamente, la Información Confidencial; ni podré explotar por sí o por interpósita persona, ya sea en forma directa o indirecta, cualquier parte o la totalidad de la Información Confidencial, sin la previa autorización por escrito de <b>“The Villa Group”</b>.
+                                </p>
+                                <p>
+                                    En caso de que incumpla con las obligaciones acordadas respecto a la Información Confidencial, seré responsable por los daños y perjuicios que dicho incumplimiento ocasione a <b>“The Villa Group”</b>.
+                                </p>
+                                <p>
+                                    <b>2. Identificación de la Información y Subsistencia de las Obligaciones.</b> Mantendré la Información Confidencial en secrecía por un periodo indefinido, obligándome a utilizar tal información sólo en relación a mis responsabilidades bajo este acuerdo y de cualquier otro convenio o contrato que emane en relación a/o del acuerdo.
+                                </p>
+                                <p>
+                                    <b>Me obligo a:</b><br />
+                                    -No revelar, divulgar y/o transmitir la Información Confidencial a terceros, funcionarios, empleados, representantes, asesores o agentes a quienes no sea indispensable revelarles la Información Confidencial.
+                                </p>
+                                <p>
+                                    -No utilizaré en beneficio propio y/o de terceros la Información Confidencial que sea de alguna manera revelada por <b>“The Villa Group”</b>; en el entendido de que solo la utilizaré conforme a lo previsto en el presente Acuerdo e instrucciones proporcionadas por <b>“The Villa Group”</b>.
+                                </p>
+                                <p>
+                                    - No comercializar o dar a conocer las bases de datos a las que tenga acceso de clientes o posibles clientes.
+                                </p>
+                                <p>
+                                    <b>3. Daños y perjuicios.</b> En caso de violación o incumplimiento, por mi parte a las obligaciones de confidencialidad aquí acordadas, me obligo en este acto a indemnizar y a resarcir todos los daños y perjuicios que se causen a <b>“The Villa Group”</b>, incluyendo el pago de todos aquellos gastos y honorarios que se ocasionaren, lo anterior sin perjuicio de que <b>“The Villa Group”</b> pueda ejercer las acciones penales, administrativas y civiles a que el incumplimiento de esta obligación de a lugar.
+                                </p>
+                                <p>
+                                    Reconozco que la Información y/o documentación con carácter confidencial es considerada como <b>“secreto industrial”</b> de conformidad con los artículos 82 a 86 de la Ley de la Propiedad Industrial, por lo que también acepto que soy directamente responsable por el mal uso o incumplimiento de las obligaciones pactadas en el presente documento, así como sus consecuencias civiles o penales que puedan surgir por dicha situación; tales como el pago de multas por el importe de diez mil días de salario mínimo general vigente en el Distrito Federal, el arresto administrativo, la prisión, la reparación del daño material y/o el pago de la indemnización de daños y prejuicios. Esto, de conformidad con lo establecido por los artículos 214, 220, 221, 221 bis, 223, 224, 226, 229 y demás relativos de la Ley de la Propiedad Industrial, o de otras leyes aplicables.
+                                </p>
+                                <p>
+                                    Lo anteriormente mencionado será independientemente de las consecuencias laborales que se deriven del incumplimiento incurrido por las partes, en los términos de lo dispuesto por los artículos 134, fracción XII, 47 Fracción IX y demás relativos y aplicables de la Ley Federal del Trabajo.
+                                </p>
+                                <p>
+                                    <b>4. Información de Terceros.</b> La información confidencial de terceras partes en mi posesión se mantendrá en confidencial.
+                                </p>
+                                <p>
+                                    En caso de que la información confidencial incluya datos personales y/o Datos Personales Sensibles (en adelante los <u>“Datos Personales”</u>) en los términos del artículo 3 Fracción V y VI de la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (en lo sucesivo <u>“LFPDPPP”</u>), me comprometo a cumplir con las obligaciones que correspondan y que se prevean en dicha legislación.
+                                </p>
+                                <p>
+                                    <b>5. Excepciones.</b> La Información Confidencial propiedad de <b>“The Villa Group”</b> estará sujeta a la protección de este acuerdo salvo que:
+                                </p>
+                                <p>
+                                    a) Sea información que al tiempo de su revelación a la parte receptora, estuviera ya en el dominio público sin culpa de la parte receptora,<br />
+                                    b) Sea información que después de su revelación a la parte receptora, pase al dominio público sin culpa de la parte receptora,<br />
+                                    c) Sea información que la parte receptora legítimamente adquirió de una tercera parte sin restricción sobre su uso y / o sobre su revelación,<br />
+                                    d) Sea información que la parte receptora pueda demostrar por medio de registros escritos que la desarrollo independiente de la parte transmisora, o que,<br />
+                                    e) Sea información que se revele en respuesta a un requerimiento legal.
+                                </p>
+                                <p>
+                                    <b>6. Devolución de Información Confidencial.</b> Me obligo a devolver dentro de los dos (2) días siguientes a la fecha en que me lo solicite <b>“The Villa Group”</b>, toda la Información Confidencial y reproducciones de la misma que se encuentren en mi poder, en el entendido de que dicha devolución no terminará con las obligaciones de confidencialidad señaladas en este acuerdo.
+                                </p>
+                                <p>
+                                    <b>7. Propiedad Intelectual.</b> Acepto que este acuerdo no me otorga licencia alguna o algún tipo de derecho sobre la “Propiedad Intelectual” de <b>“The Villa Group”</b>. Para efectos del acuerdo, “Propiedad Intelectual” incluye todas las marcas registradas y/o usadas en México o en el extranjero por las partes, así como todo derecho sobre invenciones (patentadas o no), diseños industriales, modelos de utilidad, información confidencial, nombres comerciales, avisos comerciales, nombres de dominio, así como todo tipo de derechos patrimoniales sobre obras protegidas por derechos de autor y demás formas de propiedad industrial o intelectual reconocida o que lleguen a reconocer las leyes correspondientes. Me obligo a no usar, comercializar, revelar a terceros, distribuir, regalar, o de cualquier otro modo disponer de cualquier desarrollo por la otra parte, ni de cualquier Material o Material excedente que sea resultado de la Propiedad Intelectual de la otra, sin tener permiso previo y por escrito por “The Villa Group”.
+                                </p>
+                                <p>
+                                    <b>8. Reconocimiento de Validez del Acuerdo y Personalidad.</b> Reconozco que para la firma de este acuerdo no existe error, dolo, mala fe, lesión, violencia, ignorancia, inexperiencia, lucro excesivo o incapacidad de alguna de las partes.
+                                </p>
+                                <p>
+                                    <b>9. Conflictos de Interés.</b> En todos los casos, deberé cumplir con las normas éticas y políticas sobre conflictos de interés en su relación, por lo que me obligo a evitar todo tipo de situaciones en las que se antepongan o parezca que se anteponen intereses personales a los intereses.
+                                </p>
+                                <p>
+                                    <b>10. Modificaciones y Reformas.</b> Ninguna modificación o reforma al presente acuerdo será válido o tendrá efecto legal alguno a menos que sea por escrito y se encuentre debidamente firmada por ambas partes o sus representantes debidamente autorizados y se especifique la naturaleza de dichas modificaciones o reformas.
+                                </p>
+                                <p>
+                                    <b>11. Legislación y Jurisdicción Aplicables.</b> Este acuerdo será regido e interpretado de acuerdo con las leyes correspondientes y a la jurisdicción exclusiva de los tribunales competentes de Puerto Vallarta, Jalisco, México o el Estado de Nevada en U.S.A., por lo que renuncian a cualquier otra jurisdicción que sea aplicable en virtud de sus domicilios presentes o futuros.
+                                </p>
+                                <p>
+                                    <b>12. Vigencia.</b> El presente Acuerdo estará vigente de manera indefinida en el entendido de que la obligación de confidencialidad consignada en el presente Acuerdo será aplicable y comienza a surtir efectos desde el momento en que tenga conocimiento de cualquier información confidencial proporcionada por <b>“The Villa Group”</b>.
+                                </p>
+                                <p>
+                                    <b>13. Encabezados.</b> Los encabezados de cada cláusula de este acuerdo se establecen solo en concepto de referencia exclusivamente y no limitaran o definirán el significado y alcance de la cláusula que encabecen.
+                                </p>
+                                <p>
+                                    <b>14. Traducción.</b> Este acuerdo es preparado en español e inglés. En caso de conflicto entre la traducción al Español y demás traducciones de este documento, la traducción al Español regirá.
+                                </p>
+                                <p>
+                                    Si está de acuerdo con lo anterior, favor de indicarlo por medio de su firma y regrese una copia de este acuerdo. Cuando lo haga, este acuerdo constituirá nuestro acuerdo con respecto a este tema.
+                                </p>
+                            </div>
+                            <div class="col-md-6 text-justify">
+                                <p class="text-right">
+                                    <input type="text" class="form-control w-50 d-inline text-right" placeholder="City, State." v-model="location" v-bind:class="{ 'is-invalid': !location, 'border-0': location }" /> {{ getTodayDate('en-US') }}
+                                </p>
+                                <h3>Non Disclosure Agreement</h3>
+                                <p>
+                                    By this means and according the labor/commercial relationship that I have with the business <b>“The Villa Group”</b>, its affiliates, holdings, third parties and/or subsidiaries (hereinafter referred to as <b>“The Villa Group”</b>), declare that I will have access to information or/and documentation, that may be considered confidential and are property of  <b>“The Villa Group”</b>. For such labor/commercial relationship I bind myself to use and dispose of such information only for the development of the activities I was assigned by <b>“The Villa Group”</b> and in no case will use, transmit, communicate or in general will use the Confidential Information for my personal benefit or the benefit of any other person or entity, or disclose it to third parties at any time or place, unless is expressly authorized in writing by a legal representative of <b>“The Villa Group”</b>.
+                                </p>
+                                <br />
+                                <p>
+                                    <b>1. Confidentiality.</b> I acknowledge that I will have access to the software <b>ePlat, ePlatform, SPI and/or SPI Reporteador</b>, so I will be provided (whether in writing or by any other means, electronic, optical or electromagnetic) information including Confidential Information (hereinafter referred as "Information Confidential"). The Confidential Information may consist of but not limited as: technical secrets, administrative, contracts, agreements, commercial, financial, technical, manufacturing, discoveries, inventions, improvements, formulas, files, computer programs, patents, data bases of actual or potential clients, business, products, services, projects, market rates, policies and administrative procedures, information, methods, technologies, methodology of analysis and interpretation, studies, drawings, designs, systems, plans, photographs, inventions, clients or improvements, layout, models, calculations, data, notes, database, among others.
+                                </p>
+                                <br /><br />
+                                <p>
+                                    At no time and under no circumstances can I, disclose, or otherwise make known to third parties directly or indirectly, the Confidential Information; neither operate by me or through another person, either directly or indirectly, any part or all of the Confidential Information without the prior written permission of <b>“The Villa Group”</b>.
+                                </p><br />
+                                <p>
+                                    If I breach the agreed obligations regarding Confidential Information, I will be responsible for the damages that such failure causes to <b>“The Villa Group”</b>.
+                                </p><br />
+                                <p>
+                                    <b>2. Identifying Information and Survival of Obligations.</b> I will keep the Confidential Information in secrecy for an indefinite period of time, forcing me to use such information only in connection to my responsibilities under this agreement and any other agreement or contract regarding to/or this agreement.
+                                </p>
+                                <p>
+                                    <b>I bind myself to:</b><br />
+                                    -Not reveal, disclose and/or transfer Confidential Information to third parties, officers, employees, agents, consultants or agents that are not required to reveal such Confidential Information.
+                                </p>
+                                <p>
+                                    - I will not use for my own benefit and/or third party the Confidential Information somehow revealed by <b>“The Villa Group”</b>; being understood that I only will use it in accordance with the provisions of this Agreement and instructions provided by “The Villa Group”.
+                                </p>
+                                <p>
+                                    - Not commercialize or disclose the databases to which I have access from clients or potential clients.
+                                </p>
+                                <p>
+                                    <b>3. Damages and detriment.</b> In case of any violation or failure on my part to the confidentiality obligations here agreed, I force myself in this act to indemnify and compensate all damages caused to <b>“The Villa Group”</b>, including the payment of all expenses and fees occasioned, without limited to <b>“The Villa Group”</b> to carry out criminal, administrative and civil actions for the breach of these obligations.
+                                </p><br /><br />
+                                <p>
+                                    I acknowledge that the information and/or documentation in confidence is considered as <b>"trade and industrial secret"</b> in accordance with articles 82 to 86 of the Industrial Property Law, also agree that I am directly responsible for the misuse or breach of the obligations agreed herein as well as all civil or criminal consequences that may arise from the breach of the obligations contained in this document; such as fines in the amount of ten thousand days of general minimum wage in Mexico´s Distrito Federal, administrative detention, incarceration, compensation for material damage and/or payment of damages and detriment, in accordance with the provisions of Articles 214, 220, 221, 221 bis, 223, 224, 226, 229 and other relevant articles of the Law of Industrial Property, or any other applicable laws.
+                                </p><br />
+                                <p>
+                                    The above mentioned should be considered independently from the labor consequences derived from the non-compliance in terms established on articles 134, fraction XII, 47 fraction IX and others relative and applicable to the Federal Labor Law.
+                                </p>
+                                <p>
+                                    <b>4. Third party information.</b> Confidential Information of third parties in my possession will be kept as confidential.
+                                </p>
+                                <p>
+                                    In the event that the Confidential Information includes personal data and/or Sensitive Personal Data (hereinafter the "Personal Data") under the terms of Article 3 Section V and VI of the Federal Law of Protection of Personal Data Held by Private Parties (hereinafter "LFPDPPP"), I agree to comply with the obligations that may correspond and provided in such legislation.
+                                </p>
+                                <p>
+                                    <b>5. Exceptions.</b> Confidential information belonging of <b>“The Villa Group”</b> will be subject to the protection of this agreement unless:
+                                </p>
+                                <p>
+                                    a) It is information that at the time of disclosure to the receiving party was already in the public domain without fault of the receiving party,<br />
+                                    b) Is information that after the disclosure to the receiving party, goes to the public domain through no fault of the receiving party,<br />
+                                    c) Is information that the receiving party lawfully acquired from a third party without restriction on its use and/or disclosure,<br />
+                                    d) Is information that the receiving party can demonstrate by written records that develops independently of the transmitting party, or <br />
+                                    e) It is information that is disclosed in response to a legal requirement.
+                                </p><br />
+                                <p>
+                                    <b>6. Return of confidential information.</b> I bind myself to return within two (2) days following to the date on which is requested by <b>“The Villa Group”</b>, all Confidential Information and copies thereof which are in my possession, on the understanding that such return won’t end with the confidentiality obligations set forth in this agreement.
+                                </p><br />
+                                <p>
+                                    <b>7. Intellectual property.</b> I agree that this agreement does not give me any license or any kind of rights on the "Intellectual Property" of <b>“The Villa Group”</b>. For purposes of the agreement, "Intellectual Property" includes all trademarks and/or used in Mexico or abroad by the parties as well as all rights to inventions (patented or not), industrial designs, utility models, confidential information, trade names, notices, domain names, as well as all kinds of economic rights protected by copyright and other forms of industrial or intellectual property recognized or come to recognize by the laws. I force myself to not use, sell, disclose to third parties, distribute, give away or otherwise dispose of any development by the other party, or any material or surplus material that is a result of the intellectual property of another, without prior written permission of <b>“The Villa Group”</b>.
+                                </p><br /><br /><br />
+                                <p>
+                                    <b>8. Recognition Agreement and Personality.</b> I acknowledge that signing this agreement there is no mistake, fraud, bad faith, injury, violence, ignorance, inexperience or inability by either party.
+                                </p>
+                                <p>
+                                    <b>9. Conflicts of Interest.</b> In all cases, I must comply with ethical standards and policies on conflicts of interest in their relationship, so I force myself to avoid all situations that come before or appearing interests personal interests take precedence.
+                                </p>
+                                <p>
+                                    <b>10. Modifications and Repairs.</b> No modification or amendment to this Agreement shall be valid or have any legal effect unless it is in writing and duly signed by both parties or their duly authorized representatives and the nature of such alteration or amendment specified.
+                                </p><br />
+                                <p>
+                                    <b>11. Applicable Law and Jurisdiction.</b> This agreement shall be governed with applicable laws and interpreted and submitted to the exclusive jurisdiction of the courts of the city of Puerto Vallarta, Jalisco, México or the State of Nevada, U.S.A. and waive any other jurisdiction that is applicable under their present or future residences.
+                                </p>
+                                <p>
+                                    <b>12. Effectiveness.</b> This Agreement shall remain in force indefinitely in the understanding that the confidentiality obligation contained in this Agreement shall apply and begins to take effect from the time we become aware of any confidential information provided by <b>“The Villa Group”</b>.
+                                </p><br />
+                                <p>
+                                    <b>13. Headings.</b> The headings of this agreement are established only as an exclusive reference, and they shall neither limit nor define the meaning and scope of the clause relative to that heading.
+                                </p>
+                                <p>
+                                    <b>14. Translation.</b> This agreement is prepared in Spanish and English.  In the event of any conflict between the Spanish and the other translations of this document, the Spanish translation shall govern.
+                                </p>
+                                <p>
+                                    If you are in agreement with the foregoing, please indicate by signing and returning one copy of this agreement. When you do so, this agreement will constitute our agreement with respect this matter.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col"></div>
+                            <div class="col text-center">
+                                <br /><br /><br /><br />
+                                _________________________________<br />
+                                {{ user.FirstName }} {{ user.LastName }}<br />
+                                Firma y huella dactilar<br />
+                                Signature and fingerprint
+                            </div>
+                            <div class="col"></div>
+                        </div>
+                    </template>
+                    <div class="row mt-5" style="page-break-before: always;">
+                        <div class="col-md-12">
+                            <br /><br />
+                            <h1 class="h2 font-weight-light mb-5">User Request</h1>
+                        </div>
+                        <template v-if="UserRequest.Users.length == 1">
+                            <div class="col-md-3 mb-3">
+                                <label>Name:</label><br />
+                                {{ UserRequest.Users[0].FirstName }} {{ UserRequest.Users[0].LastName }}
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label>Email:</label><br />
+                                {{ UserRequest.Users[0].Email }}
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label>Job Position:</label><br />
+                                {{ UserRequest.Users[0].JobPosition }}
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label>Same Permissions than:</label><br />
+                                {{ UserRequest.Users[0].BasedOnUser }}
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label>Direct Supervisor</label><br />
+                                {{ UserRequest.Users[0].DirectSupervisor }}
+                            </div>
+                        </template>
+                        <template v-if="UserRequest.Users.length > 1">
+                            <div class="col-md-12">
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Job Position</th>
+                                            <th>Same Permissions than</th>
+                                            <th>Direct Supervisor</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="user in UserRequest.Users">
+                                            <td>{{ user.FirstName }} {{ user.LastName }}</td>
+                                            <td>{{ user.Email }}</td>
+                                            <td>{{ user.JobPosition }}</td>
+                                            <td>{{ user.BasedOnUser }}</td>
+                                            <td>{{ user.DirectSupervisor }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </template>
+                        <div class="col-md-3">
+                            <label>Access to:</label><br />
+                            {{ UserRequest.System }}
+                        </div>
+                        <div class="col-md-3">
+                            <label>Terminals:</label><br />
+                            {{ UserRequest.TerminalsNames }}
+                        </div>
+                        <div class="col-md-3">
+                            <label>Destinations:</label><br />
+                            {{ UserRequest.DestinationsNames }}
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col"></div>
+                        <div class="col text-center">
+                            <label>Requested by:</label>
+                            <br /><br /><br />
+                            ____________________________________<br />
+                            {{ UserRequest.RequestedBy }}
+                        </div>
+                        <div class="col"></div>
+                    </div>
+                    <div class="row non-printable mt-5">
+                        <div class="col text-right">
+                            <input class="btn btn-primary" type="button" value="Print and Continue" v-on:click="printRequest" />
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body" v-show="step == 3">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Document</th>
+                                <th>Attach</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>User Request Form</td>
+                                <td>
+                                    <i class="material-icons" v-on:click="openUploadModal(1, 'User Request Form', null)" data-toggle="modal" data-target="#uploadModal">attach_file</i>
+                                    <template v-if="UserRequest.DocumentPath">
+                                        <a v-bind:href="UserRequest.DocumentPath">{{ UserRequest.DocumentName }}</a>
+                                    </template>
+                                </td>
+                            </tr>
+                            <tr v-for="user in UserRequest.Users">
+                                <td>{{ user.FirstName }} {{ user.LastName }} Confidenciality Letter</td>
+                                <td>
+                                    <i class="material-icons" v-on:click="openUploadModal(2, user.FirstName + ' ' + user.LastName + ' Confidenciality Letter', user.UserTemporalID)" data-toggle="modal" data-target="#uploadModal">attach_file</i>
+                                    <template v-if="user.DocumentPath">
+                                        <a v-bind:href="user.DocumentPath">{{ user.DocumentName }}</a>
+                                    </template>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <div class="col text-left">
+                            <input class="btn btn-primary" type="button" value="Previous Step" v-on:click="goToStep(2)" />
+                        </div>
+                        <div class="col text-right">
+                            <input class="btn btn-outline-secondary mr-2" type="button" value="Put in Hold" v-on:click="putInHold" />
+                            <input class="btn btn-primary" type="button" value="Continue" v-on:click="getFollowUpKey" />
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body text-center my-3" v-show="step == 4">
+                    <h4>Thank you. Your request has been received.</h4>
+                    <p>
+                        This is your Follow Up Key:<br />
+                        <strong>{{ UserRequest.UserRequestID }}</strong>
+                    </p>
+                    <p>
+                        You can use the link below to follow up your request:
+                        <br />
+                        <a target="_blank" v-bind:href="'https://eplat.villagroup.com/Users/UserRequestFollowUp/' + UserRequest.UserRequestID">
+                            https://eplat.villagroup.com/Users/UserRequestFollowUp/{{ UserRequest.UserRequestID }}
+                        </a>
+                    </p>
+                    <p>This link has been sent to your email. Once the requested credentials have been approved and created, they will be sent to the new user through the registered email.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Upload Document -->
+<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Upload File for </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <div id="fine-uploader-basic" class="btn btn-success">
+                    <i class="material-icons">file_upload</i>Browse
+                </div>
+                <div id="messages"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>

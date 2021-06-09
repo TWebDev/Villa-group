@@ -1,0 +1,1221 @@
+﻿@model ePlatBack.Models.ViewModels.PreArrivalWeeklyReportModel
+@using System.Globalization;
+
+@if (Model.Response != null)
+{
+    var iDate = Model.Response.FirstOrDefault().Results.FirstOrDefault().Range.Split('-').Select(m => int.Parse(m)).ToArray();
+    var iMonth = new DateTime(iDate[0], iDate[1], iDate[2]).ToString("MMMM", CultureInfo.InvariantCulture);
+    var fMonth = new DateTime(iDate[3], iDate[4], iDate[5]).ToString("MMMM", CultureInfo.InvariantCulture);
+    var year = iDate[0];
+    var lYear = (iDate[0] - 1).ToString();
+    var range = iMonth != fMonth ? iMonth + " - " + fMonth : iMonth + " " + iDate[2] + "-" + iDate[5] + " ";
+
+    foreach (var team in Model.Response)
+    {
+        var colspan = 0;
+        var reporting = team.Results.FirstOrDefault();
+        var cols = team.Results.FirstOrDefault().ItemsPerResort.Select(m => m.Results).Sum(m => m.Count()) + 2;
+        colspan = cols;//cols > 21 ? cols : 21;
+        var item = team.Results.FirstOrDefault();
+
+        <h1 class="align-from-top">@team.Terminal</h1>
+        <table id="tblPreArrivalWeekly" class="table dataTable exportable">
+            <thead>
+                <tr>
+                    <th colspan="@colspan">@range @year</th>
+                </tr>
+                <tr>
+                    <th>Resort</th>
+                    @foreach (var ls in item.ItemsPerResort.OrderBy(m => m.Resort))
+                    {
+                        foreach (var i in ls.Results)
+                        {
+                            var colHeader = i.Resort + "<br />" + i.LeadSource;
+                            <th>@Html.Raw(colHeader)</th>
+                        }
+                    }
+                    <th>Total</th>
+                    @for (var x = 0; x < (colspan - cols); x++)
+                    {
+                        <th></th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Total Arrivals</td>
+                    @foreach (var ls in item.ItemsPerResort.OrderBy(m => m.Resort))
+                    {
+                        foreach (var i in ls.Results)
+                        {
+                            <td>@Html.DisplayFor(model => i.TotalArrivals)</td>
+                        }
+                    }
+                    <td>
+                        @{ var sumTotalArrivals = item.ItemsPerResort.Sum(m => m.Results.Sum(x => int.Parse(x.TotalArrivals)));}
+                        @Html.DisplayFor(model => sumTotalArrivals)
+                    </td>
+                    @for (var x = 0; x < (colspan - cols); x++)
+                    {
+                        <td></td>
+                    }
+                </tr>
+                <tr>
+                    <td>Non Contactable</td>
+                    @foreach (var ls in item.ItemsPerResort.OrderBy(m => m.Resort))
+                    {
+                        foreach (var i in ls.Results)
+                        {
+                            <td>@Html.DisplayFor(model => i.NonContactable)</td>
+                        }
+                    }
+                    <td>
+                        @{ var sumNonContactable = item.ItemsPerResort.Sum(m => m.Results.Sum(x => int.Parse(x.NonContactable)));}
+                        @Html.DisplayFor(model => sumNonContactable)
+                    </td>
+                    @for (var x = 0; x < (colspan - cols); x++)
+                    {
+                        <td></td>
+                    }
+                </tr>
+                <tr>
+                    <td>Contactable Arrivals</td>
+                    @foreach (var ls in item.ItemsPerResort.OrderBy(m => m.Resort))
+                    {
+                        foreach (var i in ls.Results)
+                        {
+                            <td>@Html.DisplayFor(model => i.Contactable)</td>
+                        }
+                    }
+                    <td>
+                        @{ var sumContactable = item.ItemsPerResort.Sum(m => m.Results.Sum(x => int.Parse(x.Contactable)));}
+                        @Html.DisplayFor(model => sumContactable)
+                    </td>
+                    @for (var x = 0; x < (colspan - cols); x++)
+                    {
+                        <td></td>
+                    }
+                </tr>
+                <tr>
+                    <td>Contacted</td>
+                    @foreach (var ls in item.ItemsPerResort.OrderBy(m => m.Resort))
+                    {
+                        foreach (var i in ls.Results)
+                        {
+                            <td>@Html.DisplayFor(model => i.Contacted)</td>
+                        }
+                    }
+                    <td>
+                        @{ var sumContacted = item.ItemsPerResort.Sum(m => m.Results.Sum(x => int.Parse(x.Contacted)));}
+                        @Html.DisplayFor(model => sumContacted)
+                    </td>
+                    @for (var x = 0; x < (colspan - cols); x++)
+                    {
+                        <td></td>
+                    }
+                </tr>
+                <tr>
+                    <td>Contact Penetration</td>
+                    @foreach (var ls in item.ItemsPerResort.OrderBy(m => m.Resort))
+                    {
+                        foreach (var i in ls.Results)
+                        {
+                            <td data-format="percentage">@Html.DisplayFor(model => i.ContactPenetration)</td>
+                        }
+                    }
+                    <td data-format="percentage">
+                        @{ var sumContactPenetration = item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.Contactable))) > 0 ? Decimal.Round((item.ItemsPerResort.Sum(m => m.Results.Sum(x => int.Parse(x.Contacted))) / item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.Contactable)))) * 100, 2) : 0; }
+                        @Html.DisplayFor(model => sumContactPenetration)
+                    </td>
+                    @for (var x = 0; x < (colspan - cols); x++)
+                    {
+                        <td></td>
+                    }
+                </tr>
+                <tr>
+                    <td>Arrivals Sold</td>
+                    @foreach (var ls in item.ItemsPerResort.OrderBy(m => m.Resort))
+                    {
+                        foreach (var i in ls.Results)
+                        {
+                            <td>@Html.DisplayFor(model => i.ArrivalsSold)</td>
+                        }
+                    }
+                    <td>
+                        @{ var sumArrivalsSold = item.ItemsPerResort.Sum(m => m.Results.Sum(x => int.Parse(x.ArrivalsSold)));}
+                        @Html.DisplayFor(model => sumArrivalsSold)
+                    </td>
+                    @for (var x = 0; x < (colspan - cols); x++)
+                    {
+                        <td></td>
+                    }
+                </tr>
+                <tr>
+                    <td>Sales Penetration</td>
+                    @foreach (var ls in item.ItemsPerResort.OrderBy(m => m.Resort))
+                    {
+                        foreach (var i in ls.Results)
+                        {
+                            <td data-format="percentage">@Html.DisplayFor(model => i.Penetration)</td>
+                        }
+                    }
+                    <td data-format="percentage">
+                        @{ var sumSalesPenetration = item.ItemsPerResort.Sum(m => m.Results.Sum(x => int.Parse(x.Contacted))) != 0 ? Decimal.Round((item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.ArrivalsSold))) / item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.Contacted)))) * 100, 2) : 0;}
+                        @Html.DisplayFor(model => sumSalesPenetration)
+                    </td>
+                    @for (var x = 0; x < (colspan - cols); x++)
+                    {
+                        <td></td>
+                    }
+                </tr>
+                <tr>
+                    <td>VOLUME ARRIVALS</td>
+                    @foreach (var ls in item.ItemsPerResort.OrderBy(m => m.Resort))
+                    {
+                        foreach (var i in ls.Results)
+                        {
+                            <td data-format="currency">@Html.DisplayFor(model => i.ArrivalsTotalSold)</td>
+                        }
+                    }
+                    <td data-format="currency">
+                        @{ var sumArrivalsTotalSold = item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.ArrivalsTotalSold)));}
+                        @Html.DisplayFor(model => sumArrivalsTotalSold)
+                    </td>
+                    @for (var x = 0; x < (colspan - cols); x++)
+                    {
+                        <td></td>
+                    }
+                </tr>
+                <tr>
+                    <th colspan="@colspan" style="text-align:center;">AVERAGES</th>
+                </tr>
+                <tr>
+                    <td>Per Arrival</td>
+                    @foreach (var ls in item.ItemsPerResort.OrderBy(m => m.Resort))
+                    {
+                        foreach (var i in ls.Results)
+                        {
+                            <td data-format="currency">@Html.DisplayFor(model => i.AvgPerContactableArrival)</td>
+                        }
+                    }
+                    <td data-format="currency">
+                        @{ var sumPerContactable = item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.Contactable))) > 0 ? Decimal.Round(item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.ArrivalsTotalSold))) / item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.Contactable))), 2) : 0;}
+                        @Html.DisplayFor(model => sumPerContactable)
+                    </td>
+                    @for (var x = 0; x < (colspan - cols); x++)
+                    {
+                        <td></td>
+                    }
+                </tr>
+                <tr>
+                    <td>Per Contacted Arrival</td>
+                    @foreach (var ls in item.ItemsPerResort.OrderBy(m => m.Resort))
+                    {
+                        foreach (var i in ls.Results)
+                        {
+                            <td data-format="currency">@Html.DisplayFor(model => i.AvgPerContactedArrival)</td>
+                        }
+                    }
+                    <td data-format="currency">
+                        @{ var sumPerContacted = item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.Contacted))) > 0 ? Decimal.Round(item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.ArrivalsTotalSold))) / item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.Contacted))), 2) : 0;}
+                        @Html.DisplayFor(model => sumPerContacted)
+                    </td>
+                    @for (var x = 0; x < (colspan - cols); x++)
+                    {
+                        <td></td>
+                    }
+                </tr>
+                <tr>
+                    <td>Per Purchase</td>
+                    @foreach (var ls in item.ItemsPerResort.OrderBy(m => m.Resort))
+                    {
+                        foreach (var i in ls.Results)
+                        {
+                            <td data-format="currency">@Html.DisplayFor(model => i.AvgPerPurchase)</td>
+                        }
+                    }
+                    <td data-format="currency">
+                        @{ var sumPerPurchase = item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.ArrivalsSold))) > 0 ? Decimal.Round(item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.ArrivalsTotalSold))) / item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.ArrivalsSold))), 2) : 0;}
+                        @Html.DisplayFor(model => sumPerPurchase)
+                    </td>
+                    @for (var x = 0; x < (colspan - cols); x++)
+                    {
+                        <td></td>
+                    }
+                </tr>
+                @{ var lItem = team.ResultsLY.FirstOrDefault();}
+                <tr>
+                    <th colspan="@colspan">
+                        OPTIONS SOLD ARRIVALS @range @lYear
+                    </th>
+                </tr>
+                <tr>
+                    <td>Contactable Arrivals</td>
+                    @foreach (var ls in item.ItemsPerResort.OrderBy(m => m.Resort))
+                    {
+                        foreach (var i in ls.Results)
+                        {
+                            var _contactable = lItem.ItemsPerResort.Count(m => m.Resort == i.Resort) > 0 ? lItem.ItemsPerResort.FirstOrDefault(m => m.Resort == i.Resort).Results.Count(m => m.LeadSource == i.LeadSource) > 0 ? lItem.ItemsPerResort.FirstOrDefault(m => m.Resort == i.Resort).Results.FirstOrDefault(m => m.LeadSource == i.LeadSource).Contactable : "0" : "0";
+                            <td>@Html.DisplayFor(model => _contactable)</td>
+                        }
+                    }
+                    <td>
+                        @{ var sumContactable1 = lItem.ItemsPerResort.Sum(m => m.Results.Sum(x => int.Parse(x.Contactable)));}
+                        @Html.DisplayFor(model => sumContactable1)
+                    </td>
+                    @for (var x = 0; x < (colspan - cols); x++)
+                    {
+                        <td></td>
+                    }
+                </tr>
+                <tr>
+                    <td>Contacted</td>
+                    @foreach (var ls in item.ItemsPerResort.OrderBy(m => m.Resort))
+                    {
+                        foreach (var i in ls.Results)
+                        {
+                            var _contacted = lItem.ItemsPerResort.Count(m => m.Resort == i.Resort) > 0 ? lItem.ItemsPerResort.FirstOrDefault(m => m.Resort == i.Resort).Results.Count(m => m.LeadSource == i.LeadSource) > 0 ? lItem.ItemsPerResort.FirstOrDefault(m => m.Resort == i.Resort).Results.FirstOrDefault(m => m.LeadSource == i.LeadSource).Contacted : "0" : "0";
+                            <td>@Html.DisplayFor(model => _contacted)</td>
+                        }
+                    }
+                    <td>
+                        @{ var sumContacted1 = lItem.ItemsPerResort.Sum(m => m.Results.Sum(x => int.Parse(x.Contacted)));}
+                        @Html.DisplayFor(model => sumContacted1)
+                    </td>
+                    @for (var x = 0; x < (colspan - cols); x++)
+                    {
+                        <td></td>
+                    }
+                </tr>
+                <tr>
+                    <td>Contact Penetration</td>
+                    @foreach (var ls in item.ItemsPerResort.OrderBy(m => m.Resort))
+                    {
+                        foreach (var i in ls.Results)
+                        {
+                            var _contactPenetration = lItem.ItemsPerResort.Count(m => m.Resort == i.Resort) > 0 ? lItem.ItemsPerResort.FirstOrDefault(m => m.Resort == i.Resort).Results.Count(m => m.LeadSource == i.LeadSource) > 0 ? lItem.ItemsPerResort.FirstOrDefault(m => m.Resort == i.Resort).Results.FirstOrDefault(m => m.LeadSource == i.LeadSource).ContactPenetration : "0" : "0";
+                            <td data-format="percentage">@Html.DisplayFor(model => _contactPenetration)</td>
+                        }
+                    }
+                    <td data-format="percentage">
+                        @{ var sumContactPenetration1 = lItem.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.Contactable))) > 0 ? Decimal.Round((lItem.ItemsPerResort.Sum(m => m.Results.Sum(x => int.Parse(x.Contacted))) / lItem.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.Contactable)))) * 100, 2) : 0; }
+                        @Html.DisplayFor(model => sumContactPenetration1)
+                    </td>
+                    @for (var x = 0; x < (colspan - cols); x++)
+                    {
+                        <td></td>
+                    }
+                </tr>
+                <tr>
+                    <td>Arrivals Sold</td>
+                    @foreach (var ls in item.ItemsPerResort.OrderBy(m => m.Resort))
+                    {
+                        foreach (var i in ls.Results)
+                        {
+                            var _arrivalsSold = lItem.ItemsPerResort.Count(m => m.Resort == i.Resort) > 0 ? lItem.ItemsPerResort.FirstOrDefault(m => m.Resort == i.Resort).Results.Count(m => m.LeadSource == i.LeadSource) > 0 ? lItem.ItemsPerResort.FirstOrDefault(m => m.Resort == i.Resort).Results.FirstOrDefault(m => m.LeadSource == i.LeadSource).ArrivalsSold : "0" : "0";
+                            <td>@Html.DisplayFor(model => _arrivalsSold)</td>
+                        }
+                    }
+                    <td>
+                        @{ var sumArrivalsSold1 = lItem.ItemsPerResort.Sum(m => m.Results.Sum(x => int.Parse(x.ArrivalsSold)));}
+                        @Html.DisplayFor(model => sumArrivalsSold1)
+                    </td>
+                    @for (var x = 0; x < (colspan - cols); x++)
+                    {
+                        <td></td>
+                    }
+                </tr>
+                <tr>
+                    <td>VOLUME SOLD ARRIVALS @lYear</td>
+                    @foreach (var ls in item.ItemsPerResort.OrderBy(m => m.Resort))
+                    {
+                        foreach (var i in ls.Results)
+                        {
+                            var _volumeSold = lItem.ItemsPerResort.Count(m => m.Resort == i.Resort) > 0 ? lItem.ItemsPerResort.FirstOrDefault(m => m.Resort == i.Resort).Results.Count(m => m.LeadSource == i.LeadSource) > 0 ? lItem.ItemsPerResort.FirstOrDefault(m => m.Resort == i.Resort).Results.FirstOrDefault(m => m.LeadSource == i.LeadSource).ArrivalsTotalSold : "0" : "0";
+                            <td data-format="currency">@Html.DisplayFor(model => _volumeSold)</td>
+                        }
+                    }
+                    <td data-format="currency">
+                        @{ var sumArrivalsTotalSold1 = lItem.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.ArrivalsTotalSold)));}
+                        @Html.DisplayFor(model => sumArrivalsTotalSold1)
+                    </td>
+                    @for (var x = 0; x < (colspan - cols); x++)
+                    {
+                        <td></td>
+                    }
+                </tr>
+                <tr>
+                    <td>DIFF @year  vs @lYear</td>
+                    @foreach (var ls in item.ItemsPerResort.OrderBy(m => m.Resort))
+                    {
+                        foreach (var i in ls.Results)
+                        {
+                            var ly =lItem.ItemsPerResort.Count(m => m.Resort == i.Resort) > 0 ? lItem.ItemsPerResort.FirstOrDefault(m => m.Resort == ls.Resort).Results.Count(m => m.LeadSource == i.LeadSource) > 0 ? lItem.ItemsPerResort.FirstOrDefault(m => m.Resort == ls.Resort).Results.FirstOrDefault(m => m.LeadSource == i.LeadSource).ArrivalsTotalSold : "0" : "0";
+                            //var _dif = Decimal.Parse(ly) - Decimal.Parse(i.ArrivalsTotalSold);
+                            var _dif = Decimal.Parse(i.ArrivalsTotalSold) - Decimal.Parse(ly);
+                            var _c = _dif <= 0 ? "error" : "";
+
+                            <td class="@_c" data-format="currency">
+                                @Html.DisplayFor(model => _dif)
+                            </td>
+                        }
+                    }
+                </tr>
+                @if (team.Results1 != null)
+                {
+                    <tr>
+                        @{
+                            var ccolspan = colspan > 21 ? colspan : 21;
+                            var manifest = team.Results1;
+                        }
+                        <th colspan="@colspan" align="center">MANIFIESTO</th>
+                    </tr>
+                    <tr>
+
+                        <th colspan="15" align="center">Arrivals: @manifest.Count()</th>
+                        <th>Booked: @manifest.Count(m => m.Hooked == "Yes")</th>
+                        <th>Qualified: @manifest.Count(m => m.TourStatus != null && m.TourStatus.IndexOf("Full") != -1)</th>
+                        <th></th>
+                        <th>Sold: @manifest.Count(m => m.SalesVolume != "0.00")<br />Volume: @manifest.Where(m => m.SalesVolume != "0.00").Sum(m => decimal.Parse(m.SalesVolume))</th>
+                        <th></th>
+                        <th></th>
+                        @for (var x = 0; x < (ccolspan - 21); x++)
+                        {
+                            <th></th>
+                        }
+                    </tr>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Resort</th>
+                        <th>Agency Name</th>
+                        <th>Confirmation Number</th>
+                        <th>Booking Status</th>
+                        <th>Secondary Booking Status</th>
+                        <th>Arrival Date</th>
+                        <th>Total Nights</th>
+                        <th>Source</th>
+                        <th>Service Type</th>
+                        <th>Service Details</th>
+                        <th>Total Sold</th>
+                        <th>Flight Information</th>
+                        <th>Assigned To User</th>
+                        <th>Booked</th>
+                        <th>Final Tour Status</th>
+                        <th>Real Tour Date</th>
+                        <th>Volume Sold</th>
+                        <th>Concierge</th>
+                        <th>Concierge Comments</th>
+                        @for (var x = 0; x < (ccolspan - 21); x++)
+                        {
+                            <th></th>
+                        }
+                    </tr>
+                    var bySource = manifest.GroupBy(m => m.LeadSource);
+                    foreach (var ls in bySource)
+                    {
+                        var count = ls.Count();
+                        <tr>
+                            <th colspan="@ccolspan">
+                                @Html.DisplayFor(model => ls.Key): @Html.DisplayFor(model => count)
+                            </th>
+                        </tr>
+                        foreach (var i in ls)
+                        {
+                            var comment = i.PresentationModifiedByUser + " " + i.PresentationModificationDate;
+                            var id = "https://eplat.villagroup.com/crm/prearrival#id" + i.ReservationID.ToString();
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(model => i.FirstName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => i.LastName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => i.Resort)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => i.FrontAgencyName)
+                                </td>
+                                <td>
+                                    <a href="@id" target="_blank">@i.ConfirmationNumber</a>
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => i.BookingStatus)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => i.SecondaryBookingStatus)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => i.ArrivalDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => i.NumberNights)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => i.Source)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => i.OptionTypes)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => i.Options)
+                                </td>
+                                <td data-format="currency">
+                                    @Html.DisplayFor(model => i.OptionsTotal)
+                                </td>
+                                <td>
+                                    @Html.Raw(i.FlightInfo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => i.AssignedToUser)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => i.Hooked)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => i.TourStatus)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => i.TourDate)
+                                </td>
+                                <td data-format="currency">
+                                    @Html.DisplayFor(model => i.SalesVolume)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => i.Concierge)
+                                </td>
+                                <td title="@comment">
+                                    @Html.DisplayFor(model => i.ConciergeComments)
+                                </td>
+                                @for (var x = 0; x < (ccolspan - 21); x++)
+                                {
+                                    <td></td>
+                                }
+                            </tr>
+                        }
+                    }
+                }
+                @if (team.Results2 != null)
+                {
+                    var optionals = team.Results2;
+                    var optionalsLY = team.Results2LY;
+                    <tr>
+                        <th colspan="@colspan" align="center">WEEKLY OPTIONS SALES @range  @year</th>
+                    </tr>
+                    <tr>
+                        <td>Volume Sold</td>
+                        @foreach (var ls in item.ItemsPerResort.OrderBy(m => m.Resort))
+                        {
+                            foreach (var i in ls.Results)
+                            {
+                                var vs = optionals.Where(m => m.Resort == ls.Resort && m.LeadSource == i.LeadSource && m.Paid).Sum(m => decimal.Parse(m.SalesVolume));
+                                <td data-format="currency">
+                                    @Html.DisplayFor(model => vs)
+                                </td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <td>Budget</td>
+                        @foreach (var ls in item.ItemsPerResort.OrderBy(m => m.Resort))
+                        {
+                            foreach (var i in ls.Results)
+                            {
+                                <td data-format="currency">
+                                </td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <td>Diff Sold vs Budget</td>
+                        @foreach (var ls in item.ItemsPerResort.OrderBy(m => m.Resort))
+                        {
+                            foreach (var i in ls.Results)
+                            {
+                                <td data-format="currency">
+                                </td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <td>Volume Sold @lYear</td>
+                        @foreach (var ls in item.ItemsPerResort.OrderBy(m => m.Resort))
+                        {
+                            foreach (var i in ls.Results)
+                            {
+                                var vs = optionalsLY.Where(m => m.Resort == ls.Resort && m.LeadSource == i.LeadSource && m.Paid).Sum(m => decimal.Parse(m.SalesVolume));
+                                <td data-format="currency">
+                                    @Html.DisplayFor(model => vs)
+                                </td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <td>Diff @year  vs @lYear</td>
+                        @foreach (var ls in item.ItemsPerResort.OrderBy(m => m.Resort))
+                        {
+                            foreach (var i in ls.Results)
+                            {
+                                var vsy = optionals.Where(m => m.Resort == ls.Resort && m.LeadSource == i.LeadSource && m.Paid).Sum(m => decimal.Parse(m.SalesVolume));
+                                var vsly = optionalsLY.Where(m => m.Resort == ls.Resort && m.LeadSource == i.LeadSource && m.Paid).Sum(m => decimal.Parse(m.SalesVolume));
+                                var vs = vsy - vsly;
+                                <td data-format="currency">
+                                    @Html.DisplayFor(model => vs)
+                                </td>
+                            }
+                        }
+                    </tr>
+                }
+                @if (team.Results2 == null)
+                {
+                    <tr>
+                        @{ var colspann = colspan > 21 ? colspan : 21;
+                            var optionals = team.Results2;
+                        }
+                        <th colspan="@colspann" align="center">Opcionales</th>
+                    </tr>
+                    var listPerResort = optionals.GroupBy(m => m.Resort);
+                    foreach (var resort in listPerResort)
+                    {
+                        var listsPerSource = resort.GroupBy(m => m.LeadSource);
+                        var totalSum = listsPerSource.Sum(m => m.Sum(x => x.Paid ? decimal.Parse(x.SalesVolume) : 0));
+                        <tr>
+                            <th colspan="@colspann">@resort.Key</th>
+                        </tr>
+                        foreach (var i in listsPerSource)
+                        {
+                            var count = i.Count(m => (m.Options != "" && m.Paid == true));
+                            var sum = Decimal.Round(i.Sum(m => (m.Paid ? decimal.Parse(m.SalesVolume) : 0)), 2);
+                            <tr>
+                                <th colspan="9">@Html.DisplayFor(model => i.Key)</th>
+                                <th>Sales: @Html.DisplayFor(model => count)</th>
+                                <th data-format="currency">@Html.DisplayFor(model => sum)</th>
+                                @for (var x = 0; x < (colspann - 11); x++)
+                                {
+                                    <th></th>
+                                }
+                            </tr>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Certificate Number</th>
+                                <th>Resort</th>
+                                <th>Resort Confirmation</th>
+                                <th>Arrival Date</th>
+                                <th>Departure Date</th>
+                                <th>Total Nights</th>
+                                <th>Option Types</th>
+                                <th>Options</th>
+                                <th>Volume Sold</th>
+                                @for (var x = 0; x < (colspann - 11); x++)
+                                {
+                                    <th></th>
+                                }
+                            </tr>
+                            foreach (var a in i.OrderBy(m => m.FirstName))
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(model => a.FirstName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => a.LastName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => a.CertificateNumber)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => a.Resort)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => a.ConfirmationNumber)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => a.ArrivalDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => a.DepartureDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => a.NumberNights)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => a.OptionTypes)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => a.Options)
+                                    </td>
+                                    <td data-format="currency">
+                                        @Html.DisplayFor(model => a.SalesVolume)
+                                    </td>
+                                    @for (var x = 0; x < (colspann - 11); x++)
+                                    {
+                                        <td></td>
+                                    }
+                                </tr>
+                            }
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+    }
+}
+
+
+
+
+@if (Model.Response == null)
+{
+    foreach (var team in Model.Response)
+    {
+        var colspan = 0;
+        <h1 class="align-from-top">@team.Terminal</h1>
+
+        if (team.Results != null)
+        {
+            var counter = 0;
+            var iDate = team.Results.FirstOrDefault().Range.Split('-').Select(m => int.Parse(m)).ToArray();
+            var fDate = team.Results.LastOrDefault().Range.Split('-').Select(m => int.Parse(m)).ToArray();
+            var iMonth = new DateTime(iDate[0], iDate[1], iDate[2]).ToString("MMMM", CultureInfo.InvariantCulture);
+            var fMonth = new DateTime(fDate[0], fDate[1], fDate[2]).ToString("MMMM", CultureInfo.InvariantCulture);
+            var range = iMonth != fMonth ? iMonth + " - " + fMonth : iMonth;
+            var id = "table" + counter;
+
+            foreach (var item in team.Results)
+            {
+                var cols = item.ItemsPerResort.Count() + item.ItemsPerResort.Select(m => m.Results).Sum(m => m.Count()) + 2;
+                <table id="@id" class="dataTable non-editable exportable">
+                    <thead>
+                        <tr>
+                            <th colspan="@cols">@Html.DisplayFor(model => item.Range)</th>
+                        </tr>
+                        <tr>
+                            <th>
+                                Resort
+                            </th>
+                            @foreach (var i in item.ItemsPerResort.OrderBy(m => m.Resort))
+                            {
+
+                                foreach (var x in i.Results)
+                                {
+                                    var colHeader = i.Resort + "<br />" + x.LeadSource;
+                                    <th>@Html.Raw(@colHeader)</th>
+                                }
+                            }
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-right">
+                        <tr>
+                            <td>
+                                Total Arrivals
+                            </td>
+                            @foreach (var i in item.ItemsPerResort.OrderBy(m => m.Resort))
+                            {
+                                foreach (var x in i.Results)
+                                {
+                                    <td>
+                                        @Html.DisplayFor(model => x.TotalArrivals)
+                                    </td>
+                                }
+                            }
+                            <td>
+                                @{ var sumA = item.ItemsPerResort.Sum(m => m.Results.Sum(x => int.Parse(x.TotalArrivals)));}
+                                @Html.DisplayFor(model => @sumA)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Non Contactable</td>
+                            @foreach (var i in item.ItemsPerResort.OrderBy(m => m.Resort))
+                            {
+                                foreach (var x in i.Results)
+                                {
+                                    <td>
+                                        @Html.DisplayFor(model => x.NonContactable)
+                                    </td>
+                                }
+                            }
+                            <td>
+                                @{ var sumNC = item.ItemsPerResort.Sum(m => m.Results.Sum(x => int.Parse(x.NonContactable)));}
+                                @Html.DisplayFor(model => @sumNC)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Contactable Arrivals</td>
+                            @foreach (var i in item.ItemsPerResort.OrderBy(m => m.Resort))
+                            {
+                                foreach (var x in i.Results)
+                                {
+                                    <td>
+                                        @Html.DisplayFor(model => x.Contactable)
+                                    </td>
+                                }
+                            }
+                            <td>
+                                @{ var sumCA = item.ItemsPerResort.Sum(m => m.Results.Sum(x => int.Parse(x.Contactable)));}
+                                @Html.DisplayFor(model => @sumCA)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Contacted</td>
+                            @foreach (var i in item.ItemsPerResort.OrderBy(m => m.Resort))
+                            {
+                                foreach (var x in i.Results)
+                                {
+                                    <td>
+                                        @Html.DisplayFor(model => x.Contacted)
+                                    </td>
+                                }
+                            }
+                            <td>
+                                @{ var sumC = item.ItemsPerResort.Sum(m => m.Results.Sum(x => int.Parse(x.Contacted)));}
+                                @Html.DisplayFor(model => @sumC)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Contact Penetration</td>
+                            @foreach (var i in item.ItemsPerResort.OrderBy(m => m.Resort))
+                            {
+                                foreach (var x in i.Results)
+                                {
+                                    <td data-format="percentage">
+                                        @Html.DisplayFor(model => x.ContactPenetration)
+                                    </td>
+                                }
+                            }
+                            <td data-format="percentage">
+                                @{
+                                    var sumCP = Decimal.Round((item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.Contacted))) / item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.Contactable)))) * 100, 2);
+                                }
+                                @Html.DisplayFor(model => @sumCP)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Arrivals Sold</td>
+                            @foreach (var i in item.ItemsPerResort.OrderBy(m => m.Resort))
+                            {
+                                foreach (var x in i.Results)
+                                {
+                                    <td>
+                                        @Html.DisplayFor(model => x.ArrivalsSold)
+                                    </td>
+                                }
+                            }
+                            <td>
+                                @{ var sumAS = item.ItemsPerResort.Sum(m => m.Results.Sum(x => int.Parse(x.ArrivalsSold)));}
+                                @Html.DisplayFor(model => @sumAS)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Sales Penetration</td>
+                            @foreach (var i in item.ItemsPerResort.OrderBy(m => m.Resort))
+                            {
+                                foreach (var x in i.Results)
+                                {
+                                    <td data-format="percentage">
+                                        @Html.DisplayFor(model => x.Penetration)
+                                    </td>
+                                }
+                            }
+                            <td data-format="percentage">
+                                @{
+                                    var sumP = item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.Contacted))) != 0 ? Decimal.Round((item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.ArrivalsSold))) / item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.Contacted)))) * 100, 2) : 0;
+                                }
+                                @Html.DisplayFor(model => @sumP)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>VOLUME ARRIVALS</td>
+                            @foreach (var i in item.ItemsPerResort.OrderBy(m => m.Resort))
+                            {
+                                foreach (var x in i.Results)
+                                {
+                                    <td data-format="currency">
+                                        @Html.DisplayFor(model => x.ArrivalsTotalSold)
+                                    </td>
+                                }
+                            }
+                            <td data-format="currency">
+                                @{ var sumTS = item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.ArrivalsTotalSold)));}
+                                @Html.DisplayFor(model => @sumTS)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th colspan="@cols" style="text-align:center;">AVERAGES</th>
+                        </tr>
+                        <tr>
+                            <td>Per Arrival</td>
+                            @foreach (var i in item.ItemsPerResort.OrderBy(m => m.Resort))
+                            {
+                                foreach (var x in i.Results)
+                                {
+                                    <td data-format="currency">
+                                        @Html.DisplayFor(model => x.AvgPerContactableArrival)
+                                    </td>
+                                }
+                            }
+                            <td data-format="currency">
+                                @{ var sumPCA = Decimal.Round((item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.AvgPerContactableArrival))) / (cols - 2)), 2);}
+                                @Html.DisplayFor(model => @sumPCA)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Per Contacted Arrival</td>
+                            @foreach (var i in item.ItemsPerResort.OrderBy(m => m.Resort))
+                            {
+                                foreach (var x in i.Results)
+                                {
+                                    <td data-format="currency">
+                                        @Html.DisplayFor(model => x.AvgPerContactedArrival)
+                                    </td>
+                                }
+                            }
+                            <td data-format="currency">
+                                @{ var sumPCAA = Decimal.Round((item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.AvgPerContactedArrival))) / (cols - 2)), 2);}
+                                @Html.DisplayFor(model => @sumPCAA)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Per Purchase</td>
+                            @foreach (var i in item.ItemsPerResort.OrderBy(m => m.Resort))
+                            {
+                                foreach (var x in i.Results)
+                                {
+                                    <td data-format="currency">
+                                        @Html.DisplayFor(model => x.AvgPerPurchase)
+                                    </td>
+                                }
+                            }
+                            <td data-format="currency">
+                                @{ var sumPP = Decimal.Round((item.ItemsPerResort.Sum(m => m.Results.Sum(x => decimal.Parse(x.AvgPerPurchase))) / (cols - 2)), 2);}
+                                @Html.DisplayFor(model => @sumPP)
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            }
+        }
+        else
+        {
+            <table class="table">
+                <tr>
+                    <th></th>
+                </tr>
+            </table>
+        }
+        if (team.Results1 != null)
+        {
+            <table id="tblManifestResults" class="table no-plugin full-width exportable">
+                <thead>
+                    <tr>
+                        <th colspan="15" align="center">Arrivals: @team.Results1.Count()</th>
+                        <th>Booked: @team.Results1.Count(m => m.Hooked == "Yes")</th>
+                        <th>Qualified: @team.Results1.Count(m => m.TourStatus != null && m.TourStatus.IndexOf("Full") != -1)</th>
+                        <th></th>
+                        <th>Sold: @team.Results1.Count(m => m.SalesVolume != "0.00")<br />Volume: @team.Results1.Where(m => m.SalesVolume != "0.00").Sum(m => decimal.Parse(m.SalesVolume))</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Resort</th>
+                        <th>Agency Name</th>
+                        <th>Confirmation Number</th>
+                        <th>Booking Status</th>
+                        <th>Secondary Booking Status</th>
+                        <th>Arrival Date</th>
+                        <th>Total Nights</th>
+                        <th>Source</th>
+                        <th>Service Type</th>
+                        <th>Service Details</th>
+                        <th>Total Sold</th>
+                        <th>Flight Information</th>
+                        <th>Assigned To User</th>
+                        <th>Booked</th>
+                        <th>Final Tour Status</th>
+                        <th>Real Tour Date</th>
+                        <th>Volume Sold</th>
+                        <th>Concierge</th>
+                        <th>Concierge Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (team.Results1 != null)
+                    {
+                        var bySource = team.Results1.GroupBy(m => m.LeadSource);
+                        foreach (var a in bySource)
+                        {
+                            var count = a.Count();
+                            <tr>
+                                <th colspan="21">
+                                    @Html.DisplayFor(model => a.Key): @Html.DisplayFor(model => count)
+                                </th>
+                            </tr>
+                            foreach (var i in a)
+                            {
+                                var comment = i.PresentationModifiedByUser + " " + i.PresentationModificationDate;
+                                var id = "https://eplat.villagroup.com/crm/prearrival#id=" + i.ReservationID.ToString();
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(model => i.FirstName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => i.LastName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => i.Resort)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => i.FrontAgencyName)
+                                    </td>
+                                    <td>
+                                        <a href="@id" target="_blank">@i.ConfirmationNumber</a>
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => i.BookingStatus)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => i.SecondaryBookingStatus)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => i.ArrivalDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => i.NumberNights)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => i.Source)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => i.OptionTypes)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => i.Options)
+                                    </td>
+                                    <td data-format="currency">
+                                        @Html.DisplayFor(model => i.OptionsTotal)
+                                    </td>
+                                    <td>
+                                        @Html.Raw(i.FlightInfo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => i.AssignedToUser)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => i.Hooked)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => i.TourStatus)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => i.TourDate)
+                                    </td>
+                                    <td data-format="currency">
+                                        @Html.DisplayFor(model => i.SalesVolume)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => i.Concierge)
+                                    </td>
+                                    <td title="@comment">
+                                        @Html.DisplayFor(model => i.ConciergeComments)
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <table id="tblManifestResults" class="table no-plugin full-width exportable">
+                <thead>
+                    <tr>
+                        <th colspan="15" align="center">Arrivals: 0</th>
+                        <th>Booked: 0</th>
+                        <th>Qualified: 0</th>
+                        <th></th>
+                        <th>Sold: 0.00<br />Volume: 0.00</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Resort</th>
+                        <th>Agency Name</th>
+                        <th>Confirmation Number</th>
+                        <th>Booking Status</th>
+                        <th>Secondary Booking Status</th>
+                        <th>Arrival Date</th>
+                        <th>Total Nights</th>
+                        <th>Source</th>
+                        <th>Service Type</th>
+                        <th>Service Details</th>
+                        <th>Total Sold</th>
+                        <th>Flight Information</th>
+                        <th>Assigned To User</th>
+                        <th>Booked</th>
+                        <th>Final Tour Status</th>
+                        <th>Real Tour Date</th>
+                        <th>Volume Sold</th>
+                        <th>Concierge</th>
+                        <th>Concierge Comments</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        }
+        if (team.Results2 != null)
+        {
+            if (team.Results2.Count() > 0)
+            {
+                var listsPerResort = team.Results2.GroupBy(m => m.Resort);
+                var counter = 0;
+                foreach (var resort in listsPerResort)
+                {
+                    <h2 class="align-center">@resort.Key</h2>
+                    var listsPerSource = resort.GroupBy(m => m.LeadSource);
+                    var totalSum = listsPerSource.Sum(m => m.Sum(x => x.Paid ? decimal.Parse(x.SalesVolume) : 0));
+                    var displayAnchor = resort.Key + "-*";
+                    <table class="table dataTable">
+                        <thead>
+                            <tr>
+                                <th colspan="3">@resort.Key</th>
+                            </tr>
+                            <tr>
+                                <th>Lead Source</th>
+                                <th data-format="currency">
+                                    @Html.DisplayFor(model => totalSum)
+                                </th>
+                                <th><i class="material-icons" data-display="@displayAnchor">+</i></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var i in listsPerSource)
+                            {
+                                var sum = Decimal.Round(i.Sum(m => (m.Paid ? decimal.Parse(m.SalesVolume) : 0)), 2);
+                                displayAnchor = resort.Key + "-" + i.Key;
+                                <tr>
+                                    <td>@i.Key</td>
+                                    <td data-format="currency">
+                                        @Html.DisplayFor(model => sum)
+                                    </td>
+                                    <td><i class="material-icons" data-display="@displayAnchor">+</i></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+
+                    foreach (var i in listsPerSource)
+                    {
+                        var count = i.Count(m => (m.Options != "" && m.Paid == true));
+                        var sum = Decimal.Round(i.Sum(m => (m.Paid ? decimal.Parse(m.SalesVolume) : 0)), 2);
+                        var id = "hdnChart_" + counter;
+                        var container = "chartContainer_" + counter;
+                        var dataItem = resort.Key + "-" + i.Key;
+
+                        @Html.Hidden(id, i.Last().Chart, new { @class = "chart-info" })
+                        <div id="@container" class="chart-container" data-info-id="@id" style="margin:15px;display:none;" data-display-item="@dataItem"></div>
+
+                        @*<table id="tblArrivalsResults" class="table dataTable exportable" style="display:none;" data-display-item="@dataItem">*@
+                        <table id="tblArrivalsResults" class="table dataTable exportable" data-display-item="@dataItem">
+                            <thead>
+                                <tr>
+                                    <th colspan="9">@Html.DisplayFor(model => i.Key)</th>
+                                    <th>Sales: @Html.DisplayFor(model => count)</th>
+                                    <th data-format="currency">@Html.DisplayFor(model => sum)</th>
+                                </tr>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Certificate Number</th>
+                                    <th>Resort</th>
+                                    <th>Resort Confirmation</th>
+                                    <th>Arrival Date</th>
+                                    <th>Departure Date</th>
+                                    <th>Total Nights</th>
+                                    <th>Option Types</th>
+                                    <th>Options</th>
+                                    <th>Volume Sold</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var a in i.OrderBy(m => m.FirstName))
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(model => a.FirstName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => a.LastName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => a.CertificateNumber)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => a.Resort)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => a.ConfirmationNumber)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => a.ArrivalDate)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => a.DepartureDate)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => a.NumberNights)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => a.OptionTypes)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => a.Options)
+                                        </td>
+                                        <td data-format="currency">
+                                            @Html.DisplayFor(model => a.SalesVolume)
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        counter++;
+                    }
+                }
+            }
+            else
+            {
+                <table id="tblArrivalsResults" class="table dataTable exportable">
+                    <thead>
+                        <tr>
+                            <th colspan="9"></th>
+                            <th>Sales: </th>
+                            <th data-format="currency"></th>
+                        </tr>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Certificate Number</th>
+                            <th>Resort</th>
+                            <th>Resort Confirmation</th>
+                            <th>Arrival Date</th>
+                            <th>Departure Date</th>
+                            <th>Total Nights</th>
+                            <th>Option Types</th>
+                            <th>Options</th>
+                            <th>Volume Sold</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            }
+        }
+    }
+}
+

@@ -1,0 +1,23 @@
+﻿<fieldset id="fdsUpload">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+       UPLOAD REPORTS
+    </legend>
+    <br />
+    <div class="editor-alignment">
+        UPLOAD HOTEL EXPERT REPORT
+        @using(Html.BeginForm("UploadHotelExpert", "Hub", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <input type="file" name="file" class="button-form" />
+            <input type="submit" name="Submit" id="Submit" value="Upload" class="button-form" />
+        }
+        </div>
+    <div class="editor-alignment">
+        UPLOAD CLARABRIDGE REPORT
+        @using (Html.BeginForm("UploadSurveys", "Hub", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <input type="file" name="file" class="button-form" />
+            <input type="submit" name="Submit" id="Submit" value="Upload" class="button-form" />
+        }
+    </div>
+</fieldset>

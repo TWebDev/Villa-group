@@ -1,0 +1,112 @@
+﻿@model ePlatBack.Models.ViewModels.ExchangeRatesModel.SearchExchangeRatesModel
+@{
+    var Privileges = new ePlatBack.Models.ViewModels.CatalogsViewModel().Privileges;
+}
+<fieldset id="fdsExchangeRatesManagement">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        Exchange Rates Management
+    </legend>
+    <div class="align-from-top">
+        <div class="full-width">
+            @if (Privileges.FirstOrDefault(m => m.Component == "btnNewExchangeRatesInfo") != null && Privileges.FirstOrDefault(m => m.Component == "btnNewExchangeRatesInfo").View)
+            {
+                <input type="button" id="btnNewExchangeRatesInfo" class="submit fieldset-expander right" value="new" />
+            }
+        </div>
+        @using (Ajax.BeginForm("SearchExchangeRates", "Catalogs", new AjaxOptions { OnSuccess = "CATALOG.exchangeRatesResultsTable(data)", OnComplete = "CATALOG.makeExchangeRatesSelectable()", UpdateTargetId = "divTblExistingExchangeRates" }, new { id = "frmExchangeRatesSearch" }))
+        {
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SearchExchangeRates_FromDate)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.SearchExchangeRates_FromDate)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SearchExchangeRates_Terminal)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.SearchExchangeRates_Terminal, Model.SearchExchangeRates_DrpTerminals, new { @class = "terminal-dependent-list onchange", data_route = "/Catalogs/GetDDLData", data_route_parameter = "selectedTerminals", data_onchange_route_parameter = "providersPerTerminals", data_dependent_list = "SearchExchangeRates_Providers", multiple = "multiple" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SearchExchangeRates_OptionProvider)
+                </div>
+                <div id="radio" class="editor-field ">
+                    <label>Yes</label>
+                    @Html.RadioButtonFor(model => model.SearchExchangeRates_OptionProvider, true, new { data_keep_value = "" })
+                    <label>No</label>
+                    @Html.RadioButtonFor(model => model.SearchExchangeRates_OptionProvider, false, new { data_keep_value = "" })
+                </div>
+            </div>
+
+
+            <div id="divProvider" class="editor-alignment" style="display:none">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SearchExchangeRates_Providers)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.SearchExchangeRates_Providers, Model.SearchExchangeRates_DrpProviders, new { multiple = "multiple" })
+                </div>
+            </div>
+
+
+
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SearchExchangeRates_ExchangeRateType)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.SearchExchangeRates_ExchangeRateType, Model.ExchangeRates_DrpExchangeRateTypes, new { multiple = "multiple" })
+                </div>
+            </div>
+
+
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SearchExchangeRates_FromCurrency)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.SearchExchangeRates_FromCurrency, Model.SearchExchangeRates_DrpCurrencies, new { multiple = "multiple" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SearchExchangeRates_ToCurrency)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.SearchExchangeRates_ToCurrency, Model.SearchExchangeRates_DrpCurrencies, new { multiple = "multiple" })
+                </div>
+            </div>
+            <div class="editor-alignment align-from-top">
+                <div class="editor-field">
+                    <input type="submit" class="button search" value="search" />
+                </div>
+            </div>
+            <div id="divTblExistingExchangeRates" class="align-from-top">
+                <table id="tblSearchExchangeRatesResults" class="dataTable table search-results">
+                    <thead>
+                        <tr>
+                            <th>Exchange Rate</th>
+                            <th>From Date</th>
+                            <th>Vigency</th>
+                            <th>Currencies</th>
+                            <th>Exchange Rate Type</th>
+                            <th>Date Saved</th>
+                            <th>Saved By User</th>
+                            <th>Last Modified By Date</th>
+                            <th>Last Modified By User</th>
+                            <th>Terminal / Provider</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        }
+        @Html.Action("RenderExchangeRatesManagement", "Catalogs")
+    </div>
+</fieldset>

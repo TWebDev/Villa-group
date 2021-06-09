@@ -1,0 +1,124 @@
+﻿<div id="divBookingEngineForm" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <h4 class="booking">Booking...</h4>
+        <input type="hidden" id="ServiceType" />
+        <div class="row">
+            <div class="col s6 input-field">
+                <input id="ActivityDate" type="text" class="datepicker" placeholder="yyyy-mm-dd">
+                <label for="ActivityDate">@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Select_a_Date</label>
+            </div>
+            <div class="col s6 input-field">
+                <select id="ActivitySchedule" class="fixed-time">
+                </select>
+                <input id="ActivityFlexibleSchedule" class="flexible-time timepicker" style="display:none;" type="text" placeholder="HH:mm" />
+                <label for="ActivitySchedule">
+                    @ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Choose_a_Time
+                </label>
+            </div>
+        </div>
+        <div class="row transportation" style="display:none;">
+            <div id="divOffersRoundTrip" class="col s6">
+                <label>@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Round_Trip</label><br />
+                <input type="radio" id="RoundTrue" name="Round" value="true" />
+                <label for="RoundTrue">@ePlatFront.Resources.Views.Shared.SharedStrings.Yes</label>
+                <input type="radio" id="RoundFalse" name="Round" value="false" />
+                <label for="RoundFalse">@ePlatFront.Resources.Views.Shared.SharedStrings.No</label>
+            </div>
+            <div id="divTransportationHotel" class="col s6 input-field">
+                <select id="TransportationHotelID"></select>
+                <label for="TransportationHotelID">
+                    @ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Hotel
+                </label>
+            </div>
+            <div id="divTransportationZone" class="col s6 input-field">
+                <select id="TransportationZoneID"></select>
+                <label for="TransportationZoneID">
+                    @ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Zone
+                </label>
+            </div>
+            <div class="col s6 input-field">
+                <input type="text" id="TransportationAirline" />
+                <label for="TransportationAirline">
+                    @ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Arrival_Airline
+                </label>
+            </div>
+            <div class="col s6 input-field">
+                <input type="text" id="TransportationFlight" />
+                <label for="TransportationFlight">
+                    @ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Arrival_Flight
+                </label>
+            </div>
+            <div class="col s6 round-trip input-field">
+                <input type="text" id="RoundDate" class="datepicker" />
+                <label for="RoundDate">
+                    @ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Departure_Date
+                </label>
+            </div>
+            <div class="col s6 round-trip input-field">
+                <input type="text" id="RoundAirline" />
+                <label for="RoundAirline">
+                    @ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Departure_Airline
+                </label>
+            </div>
+            <div class="col s6 round-trip input-field">
+                <input type="text" id="RoundFlightNumber" />
+                <label for="RoundFlightNumber">
+                    @ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Departure_Flight
+                </label>
+            </div>
+            <div class="col s6 round-trip input-field">
+                <label for="RoundMeetingTime">
+                    @ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Departure_Transportation_Time
+                </label>
+                <input type="text" id="RoundMeetingTime" class="timepicker" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                @ePlatFront.Resources.Views.Shared.SharedStrings.Mex_How_many
+                <table id="ActivityDetails" class="striped highlight centered">
+                    <thead>
+                        <tr>
+                            <th>@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Qty</th>
+                            <th>@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Unit</th>
+                            <th>@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Price</th>
+                            <th>@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Totals</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2" class="right-align">@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Activity_Total</td>
+                            <td class="center-align" style="width: 140px" colspan="2">
+                                <span class="offer-price" id="ActivityTotal"></span>
+                                <input type="hidden" id="ActivitySavings" />
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="status-bar">
+            <div class="preloader-wrapper small interaction-loading">
+                <div class="spinner-layer spinner-green-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="interaction-message"></div>
+        </div>
+        <a id="btnAddActivity" class="modal-action waves-effect waves-light btn amber black-text">
+            @ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Book
+        </a>
+        <a id="btnCancelBooking" class="modal-action modal-close waves-effect waves-green btn-flat">
+            @ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Close
+        </a>
+    </div>
+</div>

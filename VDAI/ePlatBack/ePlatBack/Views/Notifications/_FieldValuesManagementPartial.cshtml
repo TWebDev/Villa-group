@@ -1,0 +1,77 @@
+﻿@model ePlatBack.Models.ViewModels.NotificationsViewModel
+
+<div class="align-from-top align-from-bottom" style="width:600px;padding:30px;">
+    <h2 style="text-align:center">
+        @ViewBag.FormName
+    </h2>
+    <div class="align-from-bottom align-from-top" style="margin-left: 80px;">
+        @using (Ajax.BeginForm("SaveFieldValues", "Notifications", new AjaxOptions { OnSuccess = "NOTIFICATION.saveFieldValueSuccess(data)" }, new { id = "frmFieldValueInfo", onSubmit = "return UI.showValidationSummary(this.id);" }))
+        {
+            @Html.HiddenFor(model => model.ListFieldValues.FirstOrDefault().FieldValue_FieldValues)
+            var doubleWidth = new int[] { 5, 7, 18 };//selects and textareas
+            var counter = 0;
+            foreach (var i in Model.ListFieldValues)
+            {
+                counter++;
+                var _class = doubleWidth.Contains(i.FieldValue_FieldSubType) ? "double-width" : "";
+                var _style = counter % 2 == 0 && _class != "" ? "align-content:left;" : "align-content:right;";
+                if (i.FieldValue_FieldType == 1)
+                {
+                    <div class="editor-alignment align-from-bottom @_class" style="@_style">
+                        <div class="editor-label @_class">
+                            @Html.Label(i.FieldValue_Description)
+                        </div>
+                        <div class="editor-field @_class">
+                            @switch (i.FieldValue_FieldSubType)
+                            {
+                                case 5:
+                                case 18:
+                                    {
+
+                                        @Html.DropDownList(i.FieldValue_Field, i.FieldValue_Options, new { data_fieldID = i.FieldValue_FieldID, @class = "full-width", required="required" })
+                                        break;
+                                    }
+                                case 6:
+                                case 11:
+                                case 16:
+                                case 17:
+                                    {
+                                        var id = string.Join("_", i.FieldValue_Field.Split(' '));
+                                        var datePicker = "";
+                                        var timePicker = "";
+                                        var dateTimePicker = "";
+
+                                        if (i.FieldValue_Field.ToLower().IndexOf("datetime") != -1)
+                                        {
+                                            dateTimePicker = "true";
+                                        }
+                                        else if (i.FieldValue_Field.ToLower().IndexOf("date") != -1)
+                                        {
+                                            datePicker = "true";
+                                        }
+                                        else if (i.FieldValue_Field.ToLower().IndexOf("time") != -1)
+                                        {
+                                            timePicker = "true";
+                                        }
+
+                                        @Html.TextBox(id, null, new { data_fieldID = i.FieldValue_FieldID, data_uses_date_picker = @datePicker, data_uses_datetime_picker = @dateTimePicker, data_uses_time_picker = @timePicker, required = "required" })
+                                        break;
+                                    }
+                                case 7:
+                                    {
+                                        @Html.TextArea(i.FieldValue_Field, new { data_fieldID = i.FieldValue_FieldID, required = "required" })
+                                        break;
+                                    }
+                            }
+                        </div>
+                    </div>
+                }
+            }
+
+            <div class="align-from-top marg-left">
+                <input type="button" id="btnCancelSingleSending" class="button" value="cancel" style="margin-right: 20px; margin-left: 30px;"/>
+                <input type="button" id="btnConfirmSingleSending" class="submit" value="send" style="margin-left:80px;" />
+            </div>
+        }
+    </div>
+</div>

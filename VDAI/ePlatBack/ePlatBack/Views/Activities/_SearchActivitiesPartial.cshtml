@@ -1,0 +1,121 @@
+﻿@model ePlatBack.Models.ViewModels.ActivitiesSearchModel
+@{
+    var Privileges = ViewData["Privileges"] as List<ePlatBack.Models.ViewModels.SysComponentsPrivilegesModel>;
+}
+
+<div class="full-width">
+    @if (Privileges.FirstOrDefault(m => m.Component == "btnImportActivitiesInfo") == null || Privileges.FirstOrDefault(m => m.Component == "btnImportActivitiesInfo").View)
+    {
+        <div id="pBtnImportActivitiesInfo" class="editor-alignment right">
+            <input type="button" id="btnImportActivitiesInfo" class="submit right" value="import" />
+        </div>
+    }
+    <div class="editor-alignment right">
+        <input type="button" id="btnNewActivitiesInfo" class="submit fieldset-expander right" value="new" />
+    </div>
+</div>
+@if (Privileges.FirstOrDefault(m => m.Component == "frmSearchActivities") == null || Privileges.FirstOrDefault(m => m.Component == "frmSearchActivities").View)
+{
+    using (Ajax.BeginForm("SearchActivities", "Activities", new AjaxOptions { OnBegin = "UI.checkForPendingRequests(xhr)", OnSuccess = "ACTIVITY.searchResultsTable(data)", OnComplete = "ACTIVITY.makeTableRowsSelectable()", UpdateTargetId = "divTblExistingActivities" }, new { id = "frmSearchActivities" }))
+    {
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_ActivityID)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Search_ActivityID)
+            </div>
+        </div>
+        if (Privileges.FirstOrDefault(m => m.Component == "Search_Activity") == null || Privileges.FirstOrDefault(m => m.Component == "Search_Activity").View)
+        {
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.HiddenFor(model => model.Search_Terminals)
+                    @Html.LabelFor(model => model.Search_Activity)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Search_Activity)
+                </div>
+            </div>
+        }
+        if (Privileges.FirstOrDefault(m => m.Component == "Search_Category") == null || Privileges.FirstOrDefault(m => m.Component == "Search_Category").View)
+        {
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Search_Category)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.Search_Category, Model.Search_DrpCategories, new { @class = "terminal-dependent-list", data_route_parameter = "category", data_route = "/cms/Activities/GetDDLData" })
+                </div>
+            </div>
+        }
+        if (Privileges.FirstOrDefault(m => m.Component == "Search_Region") == null || Privileges.FirstOrDefault(m => m.Component == "Search_Region").View)
+        {
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Search_Region)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.Search_Region, Model.Search_DrpRegions, new { @class = "terminal-dependent-list", data_route_parameter = "region", data_route = "/cms/Activities/GetDDLData" })
+                </div>
+            </div>
+        }
+        if (Privileges.FirstOrDefault(m => m.Component == "Search_Provider") == null || Privileges.FirstOrDefault(m => m.Component == "Search_Provider").View)
+        {
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Search_Provider)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.Search_Provider, Model.Search_DrpProviders, new { @class = "provider-dependent-list" })
+                </div>
+            </div>
+        }
+        if (Privileges.FirstOrDefault(m => m.Component == "Search_Place") == null || Privileges.FirstOrDefault(m => m.Component == "Search_Place").View)
+        {
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Search_Destination)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.Search_Destination, Model.Search_DrpDestinations, new { @class = "terminal-dependent-list", data_route_parameter = "destinationsPerSelectedTerminals", data_route = "/cms/Activities/GetDDLData", multiple = "multiple" })
+                </div>
+            </div>
+        }
+        <div class="editor-alignment align-from-top">
+            <div class="editor-field">
+                <input type="reset" class="button" value="clear" />
+                <input type="submit" id="btnSearchActivities" class="button" value="Search">
+            </div>
+        </div>
+        if (Privileges.FirstOrDefault(m => m.Component == "divTblExistingActivities") == null || Privileges.FirstOrDefault(m => m.Component == "divTblExistingActivities").View)
+        {
+            <div id="divTblExistingActivities" class="align-from-top">
+                @*<p>Press SEARCH button to get the activities list according to your search parameters.</p>*@
+                <table id="tblSearchActivitiesResults" class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Provider</th>
+                            <th>Activity</th>
+                            <th>Terminal</th>
+                            <th>Category(ies)</th>
+                            <th>Acc. Acc.</th>
+                            <th>On Line</th>
+                            <th>Rules</th>
+                            <th title="Number of Descriptions">DE</th>
+                            <th title="Number of Categories">CA</th>
+                            <th title="Number of On Line Categories">OC</th>
+                            <th title="Number of Images">IM</th>
+                            <th title="Number of Seo Settings">SE</th>
+                            <th title="Number of Schedules">SH</th>
+                            <th title="Number of Meeting Points">MP</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        }
+    }
+}

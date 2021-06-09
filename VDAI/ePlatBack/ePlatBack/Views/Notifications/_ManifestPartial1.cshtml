@@ -1,0 +1,20 @@
+﻿@model ePlatBack.Models.ViewModels.VLOManifestModel
+
+@Html.TextBoxFor(model => model.RequestDate, new { })
+<table id="tblVLOManifest" class="table dataTable non-stripable non-editable" >
+    <thead>
+        <tr>
+            <th ><span class="left">Manifest From: <span id="lastRequestDate" style="vertical-align:bottom;width:48px;height:31px;padding:0 9px 0 0;"></span></span>
+            <span class="right">Last Update: <span id="lastUpdate"></span><button id="btnGetManifest" style="vertical-align:bottom;width:48px;height:31px;padding:0 9px 0 0;"><i class="material-icons sm" title="refresh manifest results" style="margin-top:5px;">refresh</i></button></span></th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<div class="full-width" style="text-align:right">
+    <div class="editor-field">
+        <input type="button" value="send all" class="submit send-all"/>
+    </div>
+</div>

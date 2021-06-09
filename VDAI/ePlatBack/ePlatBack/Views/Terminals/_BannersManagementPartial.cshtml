@@ -1,0 +1,93 @@
+﻿@model ePlatBack.Models.ViewModels.BannerInfoModel
+
+@*<fieldset id="fdsBannerInfo" class="secondary-selected-row-dependent">*@
+@*<fieldset id="fdsBannerInfo" class="secondary-selected-row-dependent">
+    <legend>
+        <img class="fieldset-indicator fds-indicator-separator" src="/Content/themes/base/images/eplat_show.jpg" />
+        Banner Info
+    </legend>
+    <div class="align-from-top" style="display: none">*@
+@using (Ajax.BeginForm("UpdateBanner", "Terminals", new AjaxOptions { OnSuccess = "TERMINAL.saveBannerSuccess(data)" }, new { id = "frmBanner", onSubmit = "return UI.showValidationSummary(this.id);" }))
+{
+    <div id="frmBanner_ErrorMessages" style="display: none">
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BannerInfo_Culture)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.BannerInfo_Culture, Model.BannerInfo_DrpCultures)
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BannerInfo_BannerName)
+            @Html.HiddenFor(model => model.BannerInfo_BannerGroupID, new { data_keep_value = "", @class = "secondary-selected-row-dependent skip-one-level" })
+            @*@Html.HiddenFor(model => model.BannerInfo_BannerGroupID, new { data_keep_value = "", @class = "secondary-selected-row-dependent" })*@
+            @Html.HiddenFor(model => model.BannerInfo_BannerID, new { @class = "secondary-selected-row-dependent" })
+            @*@Html.HiddenFor(model => model.BannerInfo_BannerName, new { @class = "secondary-selected-row-dependent" })*@
+            @Html.HiddenFor(model => model.BannerInfo_Path, new { @class = "secondary-selected-row-dependent" })
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.BannerInfo_BannerName)
+        </div>
+    </div>
+    @*<div class="editor-alignment">
+        <p class="editor-label">
+            @Html.LabelFor(model => model.BannerInfo_Path)
+        </p>
+        <p class="editor-field">
+            @Html.TextBoxFor(model => model.BannerInfo_Path)
+        </p>
+    </div>*@
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BannerInfo_Url)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.BannerInfo_Url, new { data_format = "lower-case" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BannerInfo_Permanent)
+        </div>
+        <div class="editor-field">
+            <label for="BannerInfo_PermanentTrue">Yes</label>
+            @Html.RadioButtonFor(model => model.BannerInfo_Permanent, true, new { data_keep_value = "" })
+            <label for="BannerInfo_PermanentFalse">No</label>
+            @Html.RadioButtonFor(model => model.BannerInfo_Permanent, false, new { dataq_keep_value = "" })
+        </div>
+    </div>
+    <div id="divBannerFromDate" class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BannerInfo_FromDate)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.BannerInfo_FromDate)
+        </div>
+    </div>
+    <div id="divBannerToDate" class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BannerInfo_ToDate)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.BannerInfo_ToDate)
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BannerInfo_TerminalID)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.BannerInfo_TerminalID, Model.BannerInfo_DrpTerminals)
+        </div>
+    </div>
+    <div style="display: none" id="bannerUploader" class="full-width align-from-bottom">
+    </div>
+    <div id="pBtnUpdateBanner" class="full-width align-from-bottom">
+        <input id="btnSaveBanner" type="button" class="submit right" value="save" />
+    </div>
+}
+@*    </div>
+</fieldset>*@

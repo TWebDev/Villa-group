@@ -1,0 +1,31 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ePlatBack.Models.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="FrontOfficeVDPVEntities" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=187.174.136.121;Initial Catalog=FrontOffice ;User ID=eplatform;Password=3btw4pm7&lt;/ConnectionString&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=187.174.136.121;Initial Catalog=FrontOffice ;User ID=eplatform;Password=3btw4pm7</Value>
+    </Setting>
+    <Setting Name="FrontOfficeGBRVEntities" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=201.144.24.213;Initial Catalog=FrontOffice ;User ID=crmuser;Password=dK6Y7xz3&lt;/ConnectionString&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=201.144.24.213;Initial Catalog=FrontOffice ;User ID=crmuser;Password=dK6Y7xz3</Value>
+    </Setting>
+    <Setting Name="ePlatEdgarConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=MIGUEL\SQLEXPRESS;Initial Catalog=ePlatEdgar;User ID=sa;Password=c53613b6-c8b8-400d-95c6-274e6e60a14a&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=MIGUEL\SQLEXPRESS;Initial Catalog=ePlatEdgar;User ID=sa;Password=c53613b6-c8b8-400d-95c6-274e6e60a14a</Value>
+    </Setting>
+    <Setting Name="ePlatBack_Models_ccservice_BankService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://www.resortcom.com/ccservice/bankservice.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

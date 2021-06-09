@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FrontOfficeGBCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityType Name="dtproperties">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="property" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="objectid" Type="int" />
+    <Property Name="property" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="value" Type="varchar" MaxLength="255" />
+    <Property Name="uvalue" Type="nvarchar" MaxLength="255" />
+    <Property Name="lvalue" Type="image" />
+    <Property Name="version" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbaAgencia">
+    <Key>
+      <PropertyRef Name="idagencia" />
+    </Key>
+    <Property Name="idagencia" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
+    <Property Name="nameagencia" Type="char" MaxLength="50" />
+    <Property Name="codeagencia" Type="char" MaxLength="10" />
+    <Property Name="IdCompania" Type="int" />
+    <Property Name="idcodigodemercado" Type="int" />
+    <Property Name="Mayorista" Type="bit" Nullable="false" />
+    <Property Name="IdPerfilDelHuesped" Type="int" />
+    <Property Name="UltimaVisita" Type="datetime" />
+    <Property Name="UltimaTarifa" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="UltimaHabitacion" Type="varchar" MaxLength="10" />
+    <Property Name="TotalDeNoches" Type="int" />
+    <Property Name="TotalDeVisitas" Type="int" />
+    <Property Name="TotalDeCancelaciones" Type="int" />
+    <Property Name="TotalDeNoShow" Type="int" />
+    <Property Name="TotalDeIngresos" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="usualta" Type="char" MaxLength="60" />
+    <Property Name="fechaalta" Type="datetime" />
+    <Property Name="usumodi" Type="char" MaxLength="60" />
+    <Property Name="fechamodi" Type="datetime" />
+    <Property Name="clasifnoimprimible" Type="varchar" MaxLength="50" />
+    <Property Name="concredito" Type="bit" Nullable="false" />
+    <Property Name="tipodeagencia" Type="int" Nullable="false" />
+    <Property Name="Porcentajerenta" Type="numeric" Precision="5" Scale="2" />
+    <Property Name="cuentacontableagencia" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Activo" Type="bit" Nullable="false" />
+    <Property Name="interfas" Type="nvarchar" MaxLength="50" />
+    <Property Name="tipoagencia" Type="varchar" MaxLength="10" />
+    <Property Name="nombreContacto" Type="varchar" MaxLength="50" />
+    <Property Name="MostrarModuloPresup" Type="bit" />
+  </EntityType>
+  <EntityType Name="tbaCodigosdeMercado">
+    <Key>
+      <PropertyRef Name="idcodigodemercado" />
+    </Key>
+    <Property Name="idcodigodemercado" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="namecodigodemercado" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="codigo" Type="varchar" MaxLength="10" />
+    <Property Name="IdMayor" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="usualta" Type="varchar" MaxLength="20" />
+    <Property Name="fechaalta" Type="datetime" />
+    <Property Name="usumodi" Type="varchar" MaxLength="20" />
+    <Property Name="fechamodi" Type="datetime" />
+    <Property Name="tarificadorservown" Type="varchar" MaxLength="30" />
+    <Property Name="idresort" Type="int" />
+    <Property Name="activo" Type="bit" Nullable="false" />
+    <Property Name="tipofix" Type="bit" Nullable="false" />
+    <Property Name="preasignacion" Type="bit" />
+    <Property Name="color" Type="char" MaxLength="6" />
+    <Property Name="segmentohotel" Type="smallint" Nullable="false" />
+    <Property Name="owner" Type="bit" Nullable="false" />
+    <Property Name="invitadoown" Type="bit" Nullable="false" />
+    <Property Name="idplantilladecargoinvown" Type="int" Nullable="false" />
+    <Property Name="rentalprogram" Type="bit" Nullable="false" />
+    <Property Name="orden" Type="int" Nullable="false" />
+    <Property Name="NameUVC" Type="varchar" MaxLength="50" />
+    <Property Name="callcenter" Type="bit" Nullable="false" />
+    <Property Name="walkin" Type="bit" Nullable="false" />
+    <Property Name="idmodocallcenter" Type="int" />
+    <Property Name="interfas" Type="bit" Nullable="false" />
+    <Property Name="EsCortecia" Type="bit" />
+    <Property Name="idSegmentoPpto" Type="int" />
+  </EntityType>
+  <EntityType Name="tbaCxRxR1">
+    <Key>
+      <PropertyRef Name="idconsecutivo" />
+    </Key>
+    <Property Name="idconsecutivo" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idreservacion" Type="numeric" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="tbaCxRxR2">
+    <Key>
+      <PropertyRef Name="idconsecutivo" />
+    </Key>
+    <Property Name="idconsecutivo" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idreservacion" Type="numeric" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="tbaCxRxR3">
+    <Key>
+      <PropertyRef Name="idconsecutivo" />
+    </Key>
+    <Property Name="idconsecutivo" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idreservacion" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbaCxRxR4">
+    <Key>
+      <PropertyRef Name="idconsecutivo" />
+    </Key>
+    <Property Name="idconsecutivo" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idreservacion" Type="numeric" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="tbaCxRxR5">
+    <Key>
+      <PropertyRef Name="idconsecutivo" />
+    </Key>
+    <Property Name="idconsecutivo" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idreservacion" Type="numeric" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="tbaCxRxR7">
+    <Key>
+      <PropertyRef Name="idconsecutivo" />
+    </Key>
+    <Property Name="idconsecutivo" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idreservacion" Type="numeric" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="tbaPlantilladeCargos">
+    <Key>
+      <PropertyRef Name="idplantilla" />
+    </Key>
+    <Property Name="idplantilla" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombredeplantilla" Type="varchar" MaxLength="50" />
+    <Property Name="codigodeplantilla" Type="varchar" MaxLength="50" />
+    <Property Name="usualta" Type="varchar" MaxLength="50" />
+    <Property Name="fechaalta" Type="datetime" />
+    <Property Name="usumodi" Type="varchar" MaxLength="50" />
+    <Property Name="fechamodi" Type="datetime" />
+    <Property Name="idresort" Type="int" />
+    <Property Name="cargotelefonico" Type="bit" Nullable="false" />
+    <Property Name="numerodedias" Type="int" Nullable="false" />
+    <Property Name="tipoalimentos" Type="bit" />
+    <Property Name="plantillaactiva" Type="bit" Nullable="false" />
+    <Property Name="allinclusive" Type="bit" Nullable="false" />
+    <Property Name="Upgrade" Type="bit" />
+  </EntityType>
+  <EntityType Name="tbaTiposdeHabitacion">
+    <Key>
+      <PropertyRef Name="idtipodehabitacion" />
+    </Key>
+    <Property Name="idtipodehabitacion" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nametipodehabitacion" Type="varchar" MaxLength="35" />
+    <Property Name="codetipodehabitacion" Type="varchar" MaxLength="10" />
+    <Property Name="cantidad" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="usualta" Type="varchar" MaxLength="20" />
+    <Property Name="fechaalta" Type="datetime" />
+    <Property Name="usumodi" Type="varchar" MaxLength="20" />
+    <Property Name="fechamodi" Type="datetime" />
+    <Property Name="idcolortipodehabitacion" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="idresort" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="clasificacion" Type="int" Nullable="false" />
+    <Property Name="idtipohabvillacompleta" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="text" />
+    <Property Name="ocupacionmaxima" Type="int" Nullable="false" />
+    <Property Name="numinternetgratis" Type="smallint" Nullable="false" />
+    <Property Name="Activa" Type="bit" />
+    <Property Name="Permitesplit" Type="bit" />
+  </EntityType>
+  <Function Name="dt_addtosourcecontrol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="vchSourceSafeINI" Type="varchar" Mode="In" />
+    <Parameter Name="vchProjectName" Type="varchar" Mode="In" />
+    <Parameter Name="vchComment" Type="varchar" Mode="In" />
+    <Parameter Name="vchLoginName" Type="varchar" Mode="In" />
+    <Parameter Name="vchPassword" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="dt_addtosourcecontrol_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="vchSourceSafeINI" Type="nvarchar" Mode="In" />
+    <Parameter Name="vchProjectName" Type="nvarchar" Mode="In" />
+    <Parameter Name="vchComment" Type="nvarchar" Mode="In" />
+    <Parameter Name="vchLoginName" Type="nvarchar" Mode="In" />
+    <Parameter Name="vchPassword" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="dt_adduserobject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="dt_adduserobject_vcs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="vchProperty" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="dt_checkinobject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="chObjectType" Type="char" Mode="In" />
+    <Parameter Name="vchObjectName" Type="varchar" Mode="In" />
+    <Parameter Name="vchComment" Type="varchar" Mode="In" />
+    <Parameter Name="vchLoginName" Type="varchar" Mode="In" />
+    <Parameter Name="vchPassword" Type="varchar" Mode="In" />
+    <Parameter Name="iVCSFlags" Type="int" Mode="In" />
+    <Parameter Name="iActionFlag" Type="int" Mode="In" />
+    <Parameter Name="txStream1" Type="text" Mode="In" />
+    <Parameter Name="txStream2" Type="text" Mode="In" />
+    <Parameter Name="txStream3" Type="text" Mode="In" />
+  </Function>
+  <Function Name="dt_checkinobject_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="chObjectType" Type="char" Mode="In" />
+    <Parameter Name="vchObjectName" Type="nvarchar" Mode="In" />
+    <Parameter Name="vchComment" Type="nvarchar" Mode="In" />
+    <Parameter Name="vchLoginName" Type="nvarchar" Mode="In" />
+    <Parameter Name="vchPassword" Type="nvarchar" Mode="In" />
+    <Parameter Name="iVCSFlags" Type="int" Mode="In" />
+    <Parameter Name="iActionFlag" Type="int" Mode="In" />
+    <Parameter Name="txStream1" Type="text" Mode="In" />
+    <Parameter Name="txStream2" Type="text" Mode="In" />
+    <Parameter Name="txStream3" Type="text" Mode="In" />
+  </Function>
+  <Function Name="dt_checkoutobject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="chObjectType" Type="char" Mode="In" />
+    <Parameter Name="vchObjectName" Type="varchar" Mode="In" />
+    <Parameter Name="vchComment" Type="varchar" Mode="In" />
+    <Parameter Name="vchLoginName" Type="varchar" Mode="In" />
+    <Parameter Name="vchPassword" Type="varchar" Mode="In" />
+    <Parameter Name="iVCSFlags" Type="int" Mode="In" />
+    <Parameter Name="iActionFlag" Type="int" Mode="In" />
+  </Function>
+  <Function Name="dt_checkoutobject_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="chObjectType" Type="char" Mode="In" />
+    <Parameter Name="vchObjectName" Type="nvarchar" Mode="In" />
+    <Parameter Name="vchComment" Type="nvarchar" Mode="In" />
+    <Parameter Name="vchLoginName" Type="nvarchar" Mode="In" />
+    <Parameter Name="vchPassword" Type="nvarchar" Mode="In" />
+    <Parameter Name="iVCSFlags" Type="int" Mode="In" />
+    <Parameter Name="iActionFlag" Type="int" Mode="In" />
+  </Function>
+  <Function Name="dt_displayoaerror" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="iObject" Type="int" Mode="In" />
+    <Parameter Name="iresult" Type="int" Mode="In" />
+  </Function>
+  <Function Name="dt_displayoaerror_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="iObject" Type="int" Mode="In" />
+    <Parameter Name="iresult" Type="int" Mode="In" />
+  </Function>
+  <Function Name="dt_droppropertiesbyid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="property" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="dt_dropuserobjectbyid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="dt_generateansiname" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="name" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="dt_getobjwithprop" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="property" Type="varchar" Mode="In" />
+    <Parameter Name="value" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="dt_getobjwithprop_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="property" Type="varchar" Mode="In" />
+    <Parameter Name="uvalue" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="dt_getpropertiesbyid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="property" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="dt_getpropertiesbyid_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="property" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="dt_getpropertiesbyid_vcs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="property" Type="varchar" Mode="In" />
+    <Parameter Name="value" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="dt_getpropertiesbyid_vcs_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="property" Type="varchar" Mode="In" />
+    <Parameter Name="value" Type="nvarchar" Mode="InOut" />
+  </Function>
+  <Function Name="dt_isundersourcecontrol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="vchLoginName" Type="varchar" Mode="In" />
+    <Parameter Name="vchPassword" Type="varchar" Mode="In" />
+    <Parameter Name="iWhoToo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="dt_isundersourcecontrol_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="vchLoginName" Type="nvarchar" Mode="In" />
+    <Parameter Name="vchPassword" Type="nvarchar" Mode="In" />
+    <Parameter Name="iWhoToo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="dt_removefromsourcecontrol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="dt_setpropertybyid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="property" Type="varchar" Mode="In" />
+    <Parameter Name="value" Type="varchar" Mode="In" />
+    <Parameter Name="lvalue" Type="image" Mode="In" />
+  </Function>
+  <Function Name="dt_setpropertybyid_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="property" Type="varchar" Mode="In" />
+    <Parameter Name="uvalue" Type="nvarchar" Mode="In" />
+    <Parameter Name="lvalue" Type="image" Mode="In" />
+  </Function>
+  <Function Name="dt_validateloginparams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="vchLoginName" Type="varchar" Mode="In" />
+    <Parameter Name="vchPassword" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="dt_validateloginparams_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="vchLoginName" Type="nvarchar" Mode="In" />
+    <Parameter Name="vchPassword" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="dt_vcsenabled" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="dt_verstamp006" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="dt_verstamp007" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="dt_whocheckedout" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="chObjectType" Type="char" Mode="In" />
+    <Parameter Name="vchObjectName" Type="varchar" Mode="In" />
+    <Parameter Name="vchLoginName" Type="varchar" Mode="In" />
+    <Parameter Name="vchPassword" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="dt_whocheckedout_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="chObjectType" Type="char" Mode="In" />
+    <Parameter Name="vchObjectName" Type="nvarchar" Mode="In" />
+    <Parameter Name="vchLoginName" Type="nvarchar" Mode="In" />
+    <Parameter Name="vchPassword" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="spAgregaComentario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="V_idReservacion" Type="numeric" Mode="In" />
+    <Parameter Name="V_idRoomList" Type="int" Mode="In" />
+    <Parameter Name="V_Comentario" Type="text" Mode="In" />
+    <Parameter Name="V_Urgente" Type="bit" Mode="In" />
+    <Parameter Name="V_RESULTADO" Type="char" Mode="InOut" />
+  </Function>
+  <Function Name="spCorreoHuesped" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idhuesped" Type="int" Mode="In" />
+    <Parameter Name="email" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spHistorialReservaciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idhuesped" Type="int" Mode="In" />
+    <Parameter Name="email" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spLlegadas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fechaInicial" Type="datetime" Mode="In" />
+    <Parameter Name="fechafinal" Type="datetime" Mode="In" />
+  </Function>
+  <EntityContainer Name="FrontOfficeGBCModelStoreContainer">
+    <EntitySet Name="dtproperties" EntityType="Self.dtproperties" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbaAgencia" EntityType="Self.tbaAgencia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbaCodigosdeMercado" EntityType="Self.tbaCodigosdeMercado" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbaCxRxR1" EntityType="Self.tbaCxRxR1" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbaCxRxR2" EntityType="Self.tbaCxRxR2" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbaCxRxR3" EntityType="Self.tbaCxRxR3" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbaCxRxR4" EntityType="Self.tbaCxRxR4" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbaCxRxR5" EntityType="Self.tbaCxRxR5" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbaCxRxR7" EntityType="Self.tbaCxRxR7" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbaPlantilladeCargos" EntityType="Self.tbaPlantilladeCargos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbaTiposdeHabitacion" EntityType="Self.tbaTiposdeHabitacion" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

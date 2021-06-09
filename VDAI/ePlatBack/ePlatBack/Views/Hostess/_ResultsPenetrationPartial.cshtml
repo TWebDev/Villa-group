@@ -1,0 +1,48 @@
+﻿@model ePlatBack.Models.ViewModels.ArrivalsViewModel.PenetrationReport
+
+<table class="table exportable">
+    <thead>
+        <tr><th>@Model.MonthName</th><th colspan="16">@Model.Resort</th></tr>
+        <tr>
+            <th>@Model.DatesRange</th>
+            @foreach (var group in Model.Totals)
+            {
+                <th colspan="4">@group.Group</th>
+            }
+        </tr>
+        <tr>
+            <th></th>
+            @for (var i = 0; i < Model.Totals.Count(); i++)
+            {
+                <th>BKD</th><th>TT</th><th>Total</th><th>%</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var promoter in Model.PromotersPenetration)
+        {
+            <tr>
+                <td>@promoter.Promoter</td>
+                @foreach (var group in promoter.DimensionGroups)
+                {
+                    <td>@group.Booked</td>
+                    <td>@group.TalkedTo</td>
+                    <td>@group.Total</td>
+                    <td>@group.Percentage%</td>
+                }
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td>Total</td>
+            @foreach (var group in Model.Totals)
+            {
+                <td>@group.Booked</td>
+                <td>@group.TalkedTo</td>
+                <td>@group.Total</td>
+                <td>@group.Percentage%</td>
+            }
+        </tr>
+    </tfoot>
+</table>

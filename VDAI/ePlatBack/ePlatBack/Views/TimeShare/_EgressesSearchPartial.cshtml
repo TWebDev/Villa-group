@@ -1,0 +1,113 @@
+﻿@model ePlatBack.Models.ViewModels.OutcomeSearchModel
+@{
+    var Privileges = ViewData["Privileges"] as List<ePlatBack.Models.ViewModels.SysComponentsPrivilegesModel>;
+}
+<span class="full-width">
+    <input type="button" id="btnNewEgressInfo" class="submit right fieldset-expander" value="new" data-trigger-change-on-clear="true" />
+</span>
+@using (Ajax.BeginForm("SearchEgresses", "TimeShare", new AjaxOptions { OnSuccess = "ACCOUNT.searchResultsTable(data)", OnComplete = "ACCOUNT.makeTableEgressesRowsSelectable()", UpdateTargetId = "divTblEgressesSearchResults" }, new { id = "frmSearchEgresses" }))
+{
+    if (Privileges.FirstOrDefault(m => m.Component == "OutcomeSearch_Date") != null && Privileges.FirstOrDefault(m => m.Component == "OutcomeSearch_Date").View)
+    {
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.OutcomeSearch_I_Date)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.OutcomeSearch_I_Date, new { data_uses_date_picker = "true" })
+                @Html.TextBoxFor(model => model.OutcomeSearch_F_Date, new { data_uses_date_picker = "true" })
+            </div>
+        </div>
+    }
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.OutcomeSearch_Folio)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.OutcomeSearch_Folio)
+        </div>
+    </div>
+    if (Privileges.FirstOrDefault(m => m.Component == "OutcomeSearch_Customer") != null && Privileges.FirstOrDefault(m => m.Component == "OutcomeSearch_Customer").View)
+    {
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.OutcomeSearch_Customer)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.OutcomeSearch_Customer)
+            </div>
+        </div>
+    }
+    if (Privileges.FirstOrDefault(m => m.Component == "OutcomeSearch_InvitationNumber") != null && Privileges.FirstOrDefault(m => m.Component == "OutcomeSearch_InvitationNumber").View)
+    {
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.OutcomeSearch_InvitationNumber)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.OutcomeSearch_InvitationNumber)
+            </div>
+        </div>
+    }
+    if (Privileges.FirstOrDefault(m => m.Component == "OutcomeSearch_Opc") != null && Privileges.FirstOrDefault(m => m.Component == "OutcomeSearch_Opc").View)
+    {
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.OutcomeSearch_Opc)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.OutcomeSearch_Opc, Model.OutcomeSearch_DrpOpcs, new { multiple = "multiple", @class = "terminal-dependent-list", data_route = "/crm/TimeShare/GetDDLData", data_route_parameter = "opcsPerSelectedTerminals" })
+            </div>
+        </div>
+    }
+    if (Privileges.FirstOrDefault(m => m.Component == "OutcomeSearch_Agent") != null && Privileges.FirstOrDefault(m => m.Component == "OutcomeSearch_Agent").View)
+    {
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.OutcomeSearch_Agent)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.OutcomeSearch_Agent, Model.OutcomeSearch_DrpAgents, new { multiple = "multiple", @class = "terminal-dependent-list", data_route ="/crm/TimeShare/GetDDLData", data_route_parameter = "agents" })
+            </div>
+        </div>
+    }
+    if (Privileges.FirstOrDefault(m => m.Component == "OutcomeSearch_PointOfSale") != null && Privileges.FirstOrDefault(m => m.Component == "OutcomeSearch_PointOfSale").View)
+    {
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.OutcomeSearch_PointOfSale)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.OutcomeSearch_PointOfSale, Model.OutcomeSearch_DrpPointsOfSale, new { multiple = "multiple",  @class = "terminal-dependent-list", data_route = "/crm/TimeShare/GetDDLData", data_route_parameter = "pointsOfSale" })
+            </div>
+        </div>
+    }
+    <div class="editor-alignment">
+        <span class="editor-label">&nbsp;</span>
+        <div class="editor-field">
+            <input type="submit" class="button" value="search" />
+        </div>
+    </div>
+    if (Privileges.FirstOrDefault(m => m.Component == "tblEgressesSearchResults") != null && Privileges.FirstOrDefault(m => m.Component == "tblEgressesSearchResults").View)
+    {
+        <div id="divTblEgressesSearchResults" class="align-from-top">
+            <table id="tblEgressesSearchResults" class="table dataTable">
+                <thead>
+                    <tr>
+                        <th>Date Saved</th>
+                        <th>OPC</th>
+                        <th>Company</th>
+                        <th>Customer</th>
+                        <th>Amount</th>
+                        <th>Agent</th>
+                        <th>Invitation</th>
+                        <th>Gifting > Concept</th>
+                        <th>Point Of Sale</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    }
+}

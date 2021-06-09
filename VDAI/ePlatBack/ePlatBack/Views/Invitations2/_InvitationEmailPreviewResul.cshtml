@@ -1,0 +1,9 @@
+﻿@model ePlatBack.Models.ViewModels.spiInvitation.emailPreview
+
+@{
+    HtmlString body = new HtmlString(Model.email);
+}
+<div id="emailPreviewBody">
+    @body
+</div>
+

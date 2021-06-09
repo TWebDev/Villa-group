@@ -1,0 +1,56 @@
+﻿@model ePlatBack.Models.ViewModels.NewReferralsModel.SearchNewReferralsModel
+
+@using (Ajax.BeginForm("SearchNewReferrals", "Reports", new AjaxOptions { OnSuccess = "REPORT.searchResultsTable(data)", UpdateTargetId = "divTblNewReferralsResults" }, new { id = "frmSearchNewReferrals" }))
+{
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SearchNewReferrals_I_DateRange)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.SearchNewReferrals_I_DateRange, new { data_uses_date_picker = "true" })
+            @Html.TextBoxFor(model => model.SearchNewReferrals_F_DateRange, new {data_uses_date_picker = "true" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SearchNewReferrals_InputByUser)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.SearchNewReferrals_InputByUser, Model.SearchNewReferrals_DrpInputByUser, new {style="height:68px", multiple = "multiple"})
+        </div>
+    </div>
+    <div class="editor-alignment align-from-top">
+        <div class="editor-field">
+            <input type="submit" class="button" value="search" />
+        </div>
+    </div>
+    <div class="download-file" style="display:none">
+        <a href="/content/files/data/New_Referrals_Report.csv" target="_blank">Download File</a>
+    </div>
+    <div id="divTblNewReferralsResults" class="align-from-top full-width">
+        <table id="tblNewReferralsReport" class="table">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Lead Source</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    @*<th>Email</th>*@
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Postal Code</th>
+                    <th>Country</th>
+                    <th>Date Created</th>
+                    @*<th>Home Phone</th>*@
+                    <th>Referred By</th>
+                    <th>Comments</th>
+                    @*<th>Office Phone</th>
+                    <th>Mobile Phone</th>*@
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    
+}

@@ -1,0 +1,90 @@
+﻿@model ePlatBack.Models.ViewModels.DestinationsModel.DestinationDescriptionsModel
+
+@{
+    var Privileges = Model.Privileges;
+}
+@if (Privileges.FirstOrDefault(m => m.Component == "fdsDestinationDescriptions") == null || Privileges.FirstOrDefault(m => m.Component == "fdsDestinationDescriptions").View)
+{
+    <fieldset id="fdsDestinationDescriptions" data-close-siblings="true" class="primary-selected-row-dependent view-restricted" style="display: none">
+        <legend>
+            <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+            Destination Descriptions
+        </legend>
+        <div style="display: none">
+            <div class="full-width align-from-bottom">
+                <input type="button" id="btnNewDestinationDescriptionsInfo" class="submit fieldset-expander right" value="new" />
+            </div>
+            @if (Privileges.FirstOrDefault(m => m.Component == "ulDestinationDesriptions") == null || Privileges.FirstOrDefault(m => m.Component == "ulDestinationDescriptions").View)
+            {
+                <ul id="ulDestinationDescriptions" class="primary-selected-row-dependent"></ul>
+            }
+            @if (Privileges.FirstOrDefault(m => m.Component == "fdsDestinationDescriptionsInfo") == null || Privileges.FirstOrDefault(m => m.Component == "fdsDestinationDescriptionsInfo").View)
+            {
+                <fieldset id="fdsDestinationDescriptionsInfo">
+                    <legend>
+                        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+                        Description Info
+                    </legend>
+                    <div style="display: none">
+                        @using (Ajax.BeginForm("SaveDestinationDescription", "Catalogs", new AjaxOptions { OnSuccess = "CATALOG.saveDestinationDescriptionSuccess(data)" }, new { id = "frmDestinationDescription", onSubmit = "return UI.showValidationSummary(this.id);" }))
+                        {
+                            <div id="frmDestinationDescription_ErrorMessages" style="display: none">
+                                @Html.ValidationMessageFor(model => model.DestinationDescription_Description)
+                                @Html.ValidationMessageFor(model => model.DestinationDescription_Culture)
+                                @Html.ValidationMessageFor(model => model.DestinationDescription_Terminal)
+                            </div>
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.DestinationDescription_Culture)
+                                    @Html.HiddenFor(model => model.DestinationDescription_DestinationID, new { @class = "ignore-validation primary-selected-row-dependent", data_keep_value = "" })
+                                    @Html.HiddenFor(model => model.DestinationDescription_DestinationDescriptionID, new { @class = "secondary-selected-row-dependent", data_keep_value = "" })
+                                </div>
+                                <div class="editor-field">
+                                    @Html.DropDownListFor(model => model.DestinationDescription_Culture, Model.DestinationDescription_DrpCultures)
+                                </div>
+                            </div>
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.DestinationDescription_Terminal)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.DropDownListFor(model => model.DestinationDescription_Terminal, Model.DestinationDescription_DrpTerminals)
+                                </div>
+                            </div>
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.DestinationDescription_VideoURL)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(model => model.DestinationDescription_VideoURL)
+                                </div>
+                            </div>
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.DestinationDescription_VideoTitle)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextBoxFor(model => model.DestinationDescription_VideoTitle)
+                                </div>
+                            </div>
+                            <div class="full-width">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.DestinationDescription_Description)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextAreaFor(model => model.DestinationDescription_Description)
+                                </div>
+                            </div>
+                            <div class="full-width align-from-top">
+                                @if (Privileges.FirstOrDefault(m => m.Component == "btnSaveDestionationDescription") != null && Privileges.FirstOrDefault(m => m.Component == "btnSaveDestinationDescription").View)
+                                {
+                                    <input type="submit" id="btnSaveDestinationDescription" class="submit right" value="save" />
+                                }
+                            </div>
+                        }
+                    </div>
+                </fieldset>
+            }
+        </div>
+    </fieldset>
+}

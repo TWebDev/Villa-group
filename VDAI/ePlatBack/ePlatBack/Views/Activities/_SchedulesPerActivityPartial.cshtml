@@ -1,0 +1,176 @@
+﻿@model ePlatBack.Models.ViewModels.ActivityScheduleInfoModel
+@{
+    var Privileges = ViewData["Privileges"] as List<ePlatBack.Models.ViewModels.SysComponentsPrivilegesModel>;
+}
+@if (Privileges.FirstOrDefault(m => m.Component == "fdsActivitySchedule") == null || Privileges.FirstOrDefault(m => m.Component == "fdsActivitySchedule").View)
+{
+    <fieldset id="fdsActivitySchedule" data-close-siblings="true" style="display: none" class="view-restricted">
+        <legend>
+            <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+            Activity Schedules
+        </legend>
+        <div style="display: none">
+            <div class="full-width align-from-bottom">
+                <input type="button" id="btnNewActivityScheduleInfo" class="submit fieldset-expander right" value="New">
+            </div>
+            <ul id="ulActivitySchedules" class="primary-selected-row-dependent half-width"></ul>
+            @if (Privileges.FirstOrDefault(m => m.Component == "fdsActivityScheduleInfo") == null || Privileges.FirstOrDefault(m => m.Component == "fdsActivityScheduleInfo").View)
+            {
+                <fieldset id="fdsActivityScheduleInfo">
+                    <legend>
+                        <img src="/Content/themes/base/images/eplat_show.jpg" alt="" class="fieldset-indicator fds-indicator-separator">
+                        Schedule Info
+                    </legend>
+                    <div style="display: none">
+                        @if (Privileges.FirstOrDefault(m => m.Component == "frmActivitySchedule") == null || Privileges.FirstOrDefault(m => m.Component == "frmActivitySchedule").View)
+                        {
+                            using (Ajax.BeginForm("SaveActivitySchedule", "Activities", new AjaxOptions { OnSuccess = "ACTIVITY.saveActivityScheduleSuccess(data)" }, new { id = "frmActivitySchedule", onSubmit = "return UI.showValidationSummary(this.id);" }))
+                            {
+                                <div id="frmPackageSettings_ErrorMessages" style="display: none">
+                                    @Html.ValidationMessageFor(model => model.ActivityScheduleInfo_FromDate)
+                                    @Html.ValidationMessageFor(model => model.ActivityScheduleInfo_ToDate)
+                                    @Html.ValidationMessageFor(model => model.ActivityScheduleInfo_IsSpecificTime)
+                                </div>
+                                <div class="weekdays-alignment">
+                                    <div class="editor-label">
+                                        <label>Check All</label>
+                                    </div>
+                                    <div class="editor-field" style="text-align:center">
+                                        <input type="checkbox" id="ActivityScheduleInfo_CheckAll" />
+                                    </div>
+                                </div>
+                                <div class="weekdays-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.ActivityScheduleInfo_Monday)
+                                        @Html.HiddenFor(model => model.ActivityScheduleInfo_ActivityScheduleID, new { @class = "secondary-selected-row-dependent" })
+                                        @Html.HiddenFor(model => model.ActivityScheduleInfo_ActivityID, new { @class = "primary-selected-row-dependent", data_keep_value = "" })
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.CheckBoxFor(model => model.ActivityScheduleInfo_Monday)
+                                    </div>
+                                </div>
+                                <div class="weekdays-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.ActivityScheduleInfo_Tuesday)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.CheckBoxFor(model => model.ActivityScheduleInfo_Tuesday)
+                                    </div>
+                                </div>
+                                <div class="weekdays-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.ActivityScheduleInfo_Wednesday)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.CheckBoxFor(model => model.ActivityScheduleInfo_Wednesday)
+                                    </div>
+                                </div>
+                                <div class="weekdays-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.ActivityScheduleInfo_Thursday)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.CheckBoxFor(model => model.ActivityScheduleInfo_Thursday)
+                                    </div>
+                                </div>
+                                <div class="weekdays-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.ActivityScheduleInfo_Friday)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.CheckBoxFor(model => model.ActivityScheduleInfo_Friday)
+                                    </div>
+                                </div>
+                                <div class="weekdays-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.ActivityScheduleInfo_Saturday)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.CheckBoxFor(model => model.ActivityScheduleInfo_Saturday)
+                                    </div>
+                                </div>
+                                <div class="weekdays-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.ActivityScheduleInfo_Sunday)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.CheckBoxFor(model => model.ActivityScheduleInfo_Sunday)
+                                    </div>
+                                </div>
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.ActivityScheduleInfo_IsPermanent)
+                                    </div>
+                                    <div class="editor-field">
+                                        <label for="ActivityScheduleInfo_IsPermanentTrue">Yes</label>
+                                        @Html.RadioButtonFor(model => model.ActivityScheduleInfo_IsPermanent, true, new { data_keep_value = "" })
+                                        <label for="ActivityScheduleInfo_IsPermanentFalse">No</label>
+                                        @Html.RadioButtonFor(model => model.ActivityScheduleInfo_IsPermanent, false, new { data_keep_value = "" })
+                                    </div>
+                                </div>
+                                <div id="divFromDate" class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.ActivityScheduleInfo_FromDate)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.ActivityScheduleInfo_FromDate)
+                                    </div>
+                                </div>
+                                <div id="divToDate" class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.ActivityScheduleInfo_ToDate)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.ActivityScheduleInfo_ToDate)
+                                    </div>
+                                </div>
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.ActivityScheduleInfo_IsSpecificTime)
+                                    </div>
+                                    <div class="editor-field">
+                                        <label for="ActivityScheduleInfo_IsSpecificTimeTrue">Yes</label>
+                                        @Html.RadioButtonFor(model => model.ActivityScheduleInfo_IsSpecificTime, true, new { data_keep_value = "" })
+                                        <label for="ActivityScheduleInfo_IsSpecificTimeFalse">No</label>
+                                        @Html.RadioButtonFor(model => model.ActivityScheduleInfo_IsSpecificTime, false, new { data_keep_value = "" })
+                                    </div>
+                                </div>
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        <label id="ActivityScheduleInfo_Time">From </label>
+                                        @Html.LabelFor(model => model.ActivityScheduleInfo_FromTime)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.ActivityScheduleInfo_FromTime)
+                                    </div>
+                                </div>
+                                <div id="divToTime" class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.ActivityScheduleInfo_ToTime)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.ActivityScheduleInfo_ToTime)
+                                    </div>
+                                </div>
+                                <div id="divIntervalTime" class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.ActivityScheduleInfo_IntervalTime)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.ActivityScheduleInfo_IntervalTime)
+                                    </div>
+                                </div>
+                                if (Privileges.FirstOrDefault(m => m.Component == "btnSaveActivitySchedule") == null || Privileges.FirstOrDefault(m => m.Component == "btnSaveActivitySchedule").View)
+                                {
+                                    <div class="align-from-top full-width">
+                                        <input type="submit" class="submit right" id="btnSaveActivitySchedule" value="Save" />
+                                    </div>
+                                }
+                            }
+                        }
+                    </div>
+                </fieldset>
+            }
+        </div>
+    </fieldset>
+}

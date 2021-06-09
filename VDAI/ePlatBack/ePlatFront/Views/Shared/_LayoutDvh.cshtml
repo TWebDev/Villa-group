@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html lang="@ViewBag.Culture">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title</title>
+        <meta name="google-site-verification" content="IoFe3y2AupVOpWUdX6BHg83Puy6RqxXM-35Z_T8em6o" />
+        <link href="~/content/themes/dvh/images/dvh.png" rel="shortcut icon" type="image/x-icon" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="keywords" content="@ViewBag.Keywords">
+        <meta name="description" content="@ViewBag.Description">
+        <meta name="robots" content="@ViewBag.Index, @ViewBag.Follow">
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        @Styles.Render("//fonts.googleapis.com/css?family=Open+Sans:400,700")
+        @Styles.Render("~/themes/dvh")
+        @Styles.Render("~/Content/themes/base/datepicker")
+        @RenderSection("header", required: false)
+    </head>
+<body onload="_googWcmGet('phone-desktop', '1-800-349-8208'); _googWcmGet('phone-mobile', '1-888-588-9705');">
+    @RenderSection("afterBody", required: false)
+    <header>
+        <div class="content-wrapper">
+            <div class="float-right">
+                <section id="login">
+                    @*@Html.Partial("_LoginPartial")*@
+                    @Html.Raw(@ViewBag.Header)
+                </section>
+            </div>
+            <div>
+                <p class="site-title">
+                    @{if (ViewBag.Culture == "en")
+                    {
+                        <a href="/">
+                            <img src="@ViewBag.Logo" class="logo-image" width="150" height="34" alt="DiscountVacationHotels.com" />
+                        </a>
+                    }
+                    else
+                    {
+                        <img src="@ViewBag.Logo" class="logo-image" width="150" height="34" alt="DiscountVacationHotels.com" />
+                    }}
+                </p>
+            </div>
+            <nav>
+                <ul id="menu">
+                    <li><a href="/packages/puerto-vallarta">@ePlatFront.Resources.Views.Shared.SharedStrings.Puerto_Vallarta_Packages</a></li>
+                    <li><a href="/packages/cabo-san-lucas">@ePlatFront.Resources.Views.Shared.SharedStrings.Cabo_San_Lucas_Packages</a></li>
+                    <li><a href="/packages/cancun">@ePlatFront.Resources.Views.Shared.SharedStrings.Cancun_Packages</a></li>
+                    <li><a href="/packages/loreto">@ePlatFront.Resources.Views.Shared.SharedStrings.Loreto_Packages</a></li>
+                    <li><a id="aQuoteRequest" class="fancybox" href="#quoteRequest">@ePlatFront.Resources.Views.Shared.SharedStrings.Request_a_Quote</a></li>
+                    <li><a href="/blog">@ePlatFront.Resources.Views.Shared.SharedStrings.Blog</a></li>
+                </ul>
+                <div id="showMenu"><img src="~/Content/themes/dvh/images/down.png" width="13" height="6" alt="Show Menu" /></div>
+            </nav>
+        </div>
+    </header>
+    <div id="body">
+        @RenderSection("featured", required: false)
+        <section class="content-wrapper main-content clear-fix">
+            @RenderBody()
+        </section>
+        @RenderSection("controls", required: false)
+    </div>
+    <footer>
+
+        <div class="book-with-us">
+            @Html.Raw(ePlatFront.Resources.Views.Shared.SharedStrings.Why_book_with_us)
+        </div>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p>Copyright &copy; @DateTime.Now.Year Discount Vacation Hotels. @ePlatFront.Resources.Views.Shared.SharedStrings.All_Rights_Reserved.<br /><a href="https://plus.google.com/112019808574595508474" rel="publisher">Google+</a><br /> <span class="footer-terms">@Html.Raw(@ViewBag.Footer)</span></p>
+            </div>
+        </div>
+    </footer>
+    @*@Html.Partial("../Home/_SpecialPromoForCity")*@
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/dvh")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

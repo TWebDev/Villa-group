@@ -1,0 +1,151 @@
+﻿#page {
+    width: 905px;
+    margin: 0 auto;
+    background-color: white;
+    font-size: 1.5em;
+    max-height: 150mm !important;
+}
+
+#container {
+    padding: 0 30px 0;
+}
+
+#ticket {
+    padding: 0 30px 0;
+    margin-bottom: 30px;
+    margin-top: 57px;
+}
+
+.ticket-header{
+    display:none;
+}
+
+.comercial-name{
+    display:block;
+    text-align:center;
+    text-transform: capitalize !important;
+    font-weight: bold;
+}
+
+.ticket-section {
+    border-bottom: double;
+    text-align: center;
+    /*padding-bottom: 3px;*/
+    position:relative;
+}
+
+.total-name {
+    margin-left: 40%;
+}
+
+.ticket-details{
+    padding-bottom:10px;
+}
+
+.ticket-details .display-label, .ticket-subtotals .display-label {
+    text-transform: capitalize !important;
+    text-align:left;
+    line-height:0.5em;
+}
+
+.ticket-section-title {
+    width: 100%;
+    text-align: center;
+    display: block;
+    font-weight: bold;
+}
+
+.display-item {
+    display: inline-block;
+    width: 190px;
+    vertical-align: top;
+    margin-bottom: 10px;
+}
+
+.display-item-full {
+    width: 100%;
+    text-align: center;
+    /*border-bottom: #eee solid 1px;*/
+    padding-top: 10px;
+    /*margin-top:5px;
+    margin-bottom:5px;*/
+}
+
+.ticket-subtotals > .display-label{
+    border-bottom: 1px dotted black;
+}
+
+.display-label {
+    display: block;
+}
+
+.display-field {
+    display: block;
+    font-weight: bold;
+}
+.subtotal-name{
+    display:block;
+    height:1.0em;
+}
+.display-subtotal{
+    display:block;
+    text-align:right;
+    padding-bottom:5px;
+}
+/*.signature {
+    width: 70%;
+    bottom: 0;
+    border-top: solid 1px;
+    text-align: center;
+    margin: 70px 2px 0px;
+}*/
+.signature-section{
+    height:100px;
+}
+.signature {
+    width: 40%;
+    height: 50px;
+    bottom: 0;
+    border-top: solid 1px;
+    text-align: center;
+    margin: 70px 5px 0px;
+    display:inline;
+}
+
+    .signature .display-item {
+        /*border: solid 1px;*/
+        position: relative;
+        margin: 0 auto;
+        vertical-align: bottom;
+    }
+
+.ticket-greetings .display-item {
+    width: 100%;
+}
+
+.ticket-greetings .display-label{
+    display:inline;
+}
+
+/*.ticket-totals{
+    width:50%;
+    float:right;
+}*/
+
+#bankLegend{
+    display:block;
+}
+.total-name + div{
+    float:right;
+}
+.full-width {
+    width: 100%;
+}
+
+.half-width{
+    width:50%;
+}
+
+.right {
+    float: right;
+}

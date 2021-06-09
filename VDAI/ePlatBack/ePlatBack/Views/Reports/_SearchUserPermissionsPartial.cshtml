@@ -1,0 +1,49 @@
+﻿@model ePlatBack.Models.ViewModels.UserPermissionsModel.SearchUserPermissions
+
+@using (Ajax.BeginForm("SearchUserPermissions", "Reports", new AjaxOptions { UpdateTargetId = "divPermissionsResults", OnSuccess = "REPORT.addExtras();" }, new { id = "frmSearchUserPermissions" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="non-printable search-params">
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_Status)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Search_Status, Model.Search_StatusList)
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_WorkGroups)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Search_WorkGroups, Model.Search_WorkGroupsList, new { multiple = "multiple" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_Roles)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Search_Roles, Model.Search_RolesList, new { multiple = "multiple" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_Terminals)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Search_Terminals, Model.Search_TerminalsList, new { multiple = "multiple" })
+            </div>
+        </div>
+        <div class="editor-alignment align-from-top">
+            <div class="editor-field">
+                <input type="submit" class="button" value="get" />
+            </div>
+        </div>
+    </div>
+    <div id="divPermissionsResults" class="align-from-top">
+    </div>
+}

@@ -1,0 +1,296 @@
+﻿@model ePlatBack.Models.ViewModels.spiInvitation.searchInvitation
+ 
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 border-bottom">
+        <h1 class="h2">Invitations</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <button type="button" class="btn btn-sm mr-2" id="btnSearchInvitation" v-on:click="UI().showSearchCard()">
+                <i class="material-icons">search</i>
+            </button>
+            <button type="button" class="btn btn-sm btn-primary " id="btnNewInvitation" v-on:click="newInvitation()">
+                <i class="material-icons">add</i>
+                New Invitation
+            </button>
+        </div>
+    </div>
+
+    @using (Ajax.BeginForm("SearchInvitations", "Invitations2", new AjaxOptions
+    {
+        OnSuccess = "invitation.setSearchInvitations(data)"
+    },
+    new
+    {
+        id = "frmInvitationSearchPartial"
+    }))
+    {
+        <div class="card mb-2 search-card" v-bind:class="{ 'd-none' : !UIData.showSearchCard }">
+            <div class="card-body">
+                <h5 class="card-title">Search Invitations</h5>
+                <div class="form-row" id="date">
+                    <div class="form-group col-md-3 col-lg-2">
+                        @Html.LabelFor(model => model.searchInvitationByDate, new { @class = "text-truncate d-block" })
+                        @Html.TextBoxFor(model => model.searchInvitationByDate, new
+                    {
+                        @class = "form-control datetimepicker-input",
+                        placeholder = "yyyy-mm-dd",
+                        data_toggle = "datetimepicker",
+                        data_target = "#searchInvitationByDate",
+                    })
+                    </div>
+                    <div class="form-group col-md-3 col-lg-2">
+                        @Html.LabelFor(model => model.searchPresentationDate,
+                        new { @class = "text-truncate d-block" })
+                        @Html.TextBoxFor(model => model.searchPresentationDate,
+                        new
+                            {
+                        @class = "form-control datetimepicker-input",
+                        placeholder = "yyyy-mm-dd",
+                        data_toggle = "datetimepicker",
+                        data_target = "#searchPresentationDate"
+                        })
+                    </div>
+                    <div class="form-group col-md-3 col-lg-2">
+                        @Html.LabelFor(model => model.searchInvitationNumber,new { @class = "text-truncate d-block" })
+                        @Html.TextBoxFor(model => model.searchInvitationNumber, new { @class = "form-control", placeholder="Folio"})
+                    </div>
+
+                    <div class="form-group col-md-3 col-lg-2">
+                        @Html.LabelFor(model => model.searchInvitationByHotel)
+                        @Html.DropDownListFor(model => model.searchInvitationByHotel, Model.hotelList,
+                    new
+                    {
+                        @class = "form-control",
+                    })
+                    </div>
+                    <div class="form-group col-md-3 col-lg-2">
+                        @Html.LabelFor(model => model.searchInvitationGroups)
+                        @Html.DropDownListFor(model => model.searchInvitationGroups, Model.groupList,
+                    new
+                    {
+                        @class = "form-control",
+                    })
+                    </div>
+                    <div class="form-group col-md-3 col-lg-2">
+                        @Html.LabelFor(model => model.searchInvitationByTeam)
+                        @Html.DropDownListFor(model => model.searchInvitationByTeam, new List<SelectListItem>(),
+                    new
+                    {
+                        @class = "form-control",
+                    })
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="text-right col">
+                        <input type="reset" class="btn" value="Clear" />
+                        <input type="submit" id="btnSearchInvitations" class="btn btn-primary" value="Search" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <div class=" mt-3 card">
+        <div class=" card-body">
+            <b-table id="tblInvitationsInfo" responsive
+                     v-bind:items="invitations"
+                     v-bind:fields="DataTable.fields"
+                     v-bind:bordered="DataTable.bordered"
+                     v-bind:striped="DataTable.striped"
+                     v-bind:hover="DataTable.hover"
+                     v-bind:sort-by.sync="DataTable.sortBy"
+                     v-bind:sort-desc.sync="DataTable.sortDesc"
+                     v-bind:current-page="DataTable.currentPage"
+                     v-bind:per-page="DataTable.perPage"
+                     v-on:row-clicked="openInvitation">
+                <template slot="dateSaved" slot-scope="data">
+                    {{data.value | dateYYYYMMDD}}
+                </template>
+                <template slot="dateModified" slot-scope="data">
+                    {{data.value | dateYYYYMMDD}}
+                </template>
+                <template slot="confirmed" slot-scope="data">
+                    <input v-if="data.value" type="checkbox" checked="checked" disabled />
+                    <input v-else type="checkbox" disabled />
+                </template>
+                <template slot="premanifest" slot-scope="row">
+                    @if (Model.Privileges.FirstOrDefault(m => m.ComponentID == 11770) == null || Model.Privileges.FirstOrDefault(m => m.ComponentID == 11770).View)
+                    {
+                        <b-btn v-show="row.item.premanifest" class="btn btn-outline-secondary" v-b-modal.moda-center="'modalInfo'" v-on:click.stop="info(row.item,row.index,$event.target)">Premanifest</b-btn>
+                    }
+                </template>
+                </b-table>
+            <b-pagination v-bind:total-row="invitations.length" v-bind:per-page="DataTable.perPage" v-model="DataTable.currentPage" class="my-0" />
+        </div>
+    </div>
+    @if (Model.Privileges.FirstOrDefault(m => m.ComponentID == 11770) == null || Model.Privileges.FirstOrDefault(m => m.ComponentID == 11770).View)
+    {
+        <b-modal id="modalInfo" centered size="lg" hide-footer title="Preanifest Invitation">
+            @Html.Action("RenderPreManifestInvitation", "Invitations2")
+        </b-modal>
+    }
+    <div id="previewInformation" style="display:none; position:fixed; z-index:1; left: 0; top: 0; width: 100%; height: 100%;background-color: rgb(0,0,0); background-color: rgba(0,0,0,0.4); overflow: auto;">
+        <div id="content" class="text-center" style=" background-color: #fefefe;margin: 10% auto;padding: 20px;border: 1px solid #888;width: 60%;">
+            <div class="modal-header">
+                <b-container class=" bv-example-row">
+                    <b-row class=" text-left">
+                        <h4>Confirm Guest Information </h4>
+                    </b-row>
+                </b-container>
+            </div>
+            <br />
+            <div class="form-group row">
+                <label class=" col-sm-2 col-form-label">Sales Rooms</label>
+                <div class="col-sm-4">
+                    @Html.DropDownListFor(model => model.spiSalesRoomID, Model.salesRoomsList,
+                    new
+                    {
+                        @class = "form-control oneValue",
+                        @v_model = "invitationModel.spiSalesRoomID"
+                    })
+                </div>
+            </div>
+            <br />
+            <div id="confirmModalBody" class=" moda-body" style=" align-items:center">
+                <div class=" form-group row">
+                    <label class=" col-sm-2 col-form-label">Presentation Date</label>
+                    <div class="col-sm-4">
+                        <input id="verPresentationDate" class=" form-control" v-model="invitationModel.presentationDateTimeFormat" disabled />
+                    </div>
+                    <label class="col-sm-2 col-form-label">Presentation Place</label>
+                    <div class="col-sm-4">
+                        <input id="verPresnetationPlace" class=" form-control" v-model="invitationModel.presentationPlace" disabled />
+                    </div>
+                </div>
+                <div class=" form-group row">
+                    <label class="col-sm-2 col-form-label">Hotel Pick Up</label>
+                    <div class="col-sm-4">
+                        <input id="verVerSpiHotel" class=" form-control" v-model="invitationModel.spiHotel" disabled />
+                    </div>
+                    <label class="col-sm-2 col-form-label">Pick Up Time</label>
+                    <div class="col-sm-4">
+                        <input id="verPickUpTimeFormat" class=" form-control" v-model="invitationModel.pickUpTimeFormat" disabled />
+                    </div>
+                </div>
+                <div class=" form-group row">
+                    <label class=" col-sm-2 col-form-label">First Name</label>
+                    <div class="col-sm-4">
+                        <input id="verFirstName" class=" form-control" v-model="invitationModel.firstName" disabled />
+                    </div>
+                    <label class=" col-sm-2 col-form-label">Last Name</label>
+                    <div class="col-sm-4">
+                        <input id="verLastName" class=" form-control" v-model="invitationModel.lastName" disabled />
+                    </div>
+                </div>
+                <div class=" form-group row">
+                    <label class=" col-sm-2 col-form-label">Spouse First Name</label>
+                    <div class="col-sm-4">
+                        <input id="verSpouseFirstName" class=" form-control" v-model="invitationModel.spouseFirstName" disabled />
+                    </div>
+                    <label class=" col-sm-2 col-form-label">Spouse Last Name</label>
+                    <div class="col-sm-4">
+                        <input id="verSpouseLastName" class=" form-control" v-model="invitationModel.spouseLastName" disabled />
+                    </div>
+                </div>
+                <div class=" form-group row">
+                    <label class=" col-sm-2 col-form-label">Invitation Number</label>
+                    <div class="col-sm-4">
+                        <input id="verInvitationNumber" class=" form-control" v-model="invitationModel.invitationNumber" disabled />
+                    </div>
+                    <label class=" col-sm-2 col-form-label">Deposit Amount</label>
+                    <div class="col-sm-4">
+                        <div class=" input-group mb-2">
+                            <div class=" input-group-prepend">
+                                <span class="input-group-text">$</span>
+                            </div>
+                            <input id="verDepostiAmount" class=" form-control" v-model="invitationModel.depositAmount" disabled />
+                            @*<div class="input-group-append">
+                                <span class=" input-group-text">.00</span>
+                            </div>*@
+                        </div>
+                    </div>
+                </div>
+                <div class=" form-group row">
+                    <label class=" col-sm-2 col-form-label">State</label>
+                    <div class="col-sm-4">
+                        <input id="verState" class=" form-control" v-model="invitationModel.state" disabled />
+                    </div>
+                    <label class=" col-sm-2 col-form-label">Country</label>
+                    <div class="col-sm-4">
+                        <input id="verSpiCountry" class=" form-control" v-model="invitationModel.spiCountry" disabled />
+                    </div>
+                </div>
+                <div class=" form-group row">
+                    <label class=" col-sm-2 col-form-label">Language</label>
+                    <div class="col-sm-4">
+                        <input id="verSpiLanguage" class=" form-control" v-model="invitationModel.spiLanguage" disabled />
+                    </div>
+                    <label class=" col-sm-2 col-form-label">Confirmed</label>
+                    <div class="form-check">
+                        <input id="verConfirmed" class="form-chek-input" type="checkbox" v-model="invitationModel.confirmed" disabled />
+                    </div>
+                </div>
+                <div class=" form-group row">
+                    <label class=" col-sm-2 col-form-label">Pick Up Notes</label>
+                    <div class="col-sm-4">
+                        <textarea style=" height: 90px;" id="verPickUpNotes" class=" form-control" v-model="invitationModel.pickUpNotes" disabled></textarea>
+                    </div>
+                    <label class=" col-sm-2 col-form-label"> Gifts </label>
+                    <div class="col-sm-4">
+                        <textarea style="height: 90px;" id="verGift" class=" form-control" v-model="invitationModel.gift" disabled></textarea>
+                    </div>
+                </div>
+
+
+                <br />
+                <div class=" modal-header">
+                    <b-container class=" bv-example-row">
+                        <b-row class=" text-left">
+                            <b-row col="1"><h4>OPC Information</h4></b-row>
+                            <b-row col="11"></b-row>
+                        </b-row>
+                    </b-container>
+                </div>
+
+                <br />
+                <div class=" form-group row">
+                    <label class=" col-sm-2 col-form-label">Program</label>
+                    <div class="col-sm-4">
+                        <input id="verProgram" class=" form-control" v-model="invitationModel.program" disabled />
+                    </div>
+
+                    <label class=" col-sm-2 col-form-label jaladorSH">Jalador</label>
+                    <div class="col-sm-4 jaladorSH">
+                        <input id="verJalador" class=" form-control " v-model="invitationModel.jaladorOpc" disabled />
+                    </div>
+
+                </div>
+                <div class=" form-group row">
+                    <label class=" col-sm-2 col-form-label">OPC</label>
+                    <div class="col-sm-4">
+                        <input id="verOPC" class=" form-control" v-model="invitationModel.opc" disabled />
+                    </div>
+                    <label class=" col-sm-2 col-form-label">Group</label>
+                    <div class="col-sm-4">
+                        <input id="verSpiGroup" class=" form-control" v-model="invitationModel.spiGroup" disabled />
+                    </div>
+                </div>
+                <div class=" form-group row">
+                    <label class=" col-sm-2 col-form-label">Team</label>
+                    <div class="col-sm-4">
+                        <input id="verSpiTeam" class=" form-control" v-model="invitationModel.spiTeam" disabled />
+                    </div>
+                    <label class=" col-sm-2 col-form-label">Location</label>
+                    <div class="col-sm-4">
+                        <input id="verSpiLocation" class=" form-control" v-model="invitationModel.spiLocation" disabled />
+                    </div>
+                </div>
+                <div class="text-right form-group row">
+                    <div class=" col-sm-6 col-form-label">
+                    </div>
+                    <div class=" col-sm-6">
+                        <input id="closePreview" class=" btn" type="button" value="Cancel" v-on:click="closePreview()" />
+                        <input id="btnPreManifest" class="btn btn-primary" type="button" value="OK" v-on:click="savePreManifest()">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.Action("RenderInvitationsInfo", "Invitations2")

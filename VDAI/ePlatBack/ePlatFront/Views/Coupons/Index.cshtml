@@ -1,0 +1,616 @@
+﻿@model ePlatBack.Models.ViewModels.CouponViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <title>My Coupon</title>
+    <link href="/Content/themes/mex/css/main.css" rel="stylesheet" />
+    <script>
+        var style = document.createElement('link');
+        style.rel = "stylesheet";
+        style.type = "text/css";
+        style.setAttribute("class","print-css");
+        var terminalid = @Model.TerminalID;
+        var _timespan = new Date().getTime();
+        if (window.location.hash == "#print") {
+            style.href = "/content/themes/mex/css/coupon-ticket.css";
+            //window.print();
+            //} else if (window.location.hash == "#a4") {
+        } else if (window.location.hash.indexOf("#a4") != -1) {
+            //window.location.hash.split('-')[1].trim()
+            switch (terminalid) {
+                case 26:
+                    style.href = "/content/themes/mex/css/coupon-page-vea.css";//?v="+_timespan;
+                    break;
+                case 43:
+                case 32:
+                    style.href = "/content/themes/mex/css/coupon-page-mca.css";//?v="+_timespan;
+                    break;
+                case 25:
+                    style.href = "/content/themes/mex/css/coupon-page-ead.css";//?v="+_timespan;
+                    break;
+					case 61:
+                    style.href = "/content/themes/mex/css/coupon-page-gbc.css";//?v="+_timespan;
+                    break;
+                default:
+                    style.href = "/content/themes/mex/css/coupon-page.css";//?v="+_timespan;
+                    break;
+            }
+            //style.href = "/content/themes/mex/css/coupon-page.css?v="+_timespan;
+            //window.print();
+        } else {
+            switch (terminalid) {
+                case 43:
+                case 32:
+                    style.href = "/content/themes/mex/css/coupon-page-mca.css";//?v="+_timespan;
+                    break;
+                case 25:
+                    style.href = "/content/themes/mex/css/coupon-page-ead.css";//?v="+_timespan;
+                    break;
+					case 61:
+                    style.href = "/content/themes/mex/css/coupon-page-gbc.css";//?v="+_timespan;
+                    break;
+                default:
+                    style.href = "/content/themes/mex/css/coupon-page.css";//?v="+_timespan;
+                    break;
+            }
+        }
+        if(document.getElementsByClassName('print-css')[0] != undefined){
+            document.getElementsByTagName('head')[0].removeChild(document.getElementsByClassName('print-css')[0]);
+        }
+        document.getElementsByTagName('head')[0].appendChild(style);
+
+        if(window.location.hash.indexOf('#') != -1){
+            var handle = window.setInterval(function(){
+                if(document.getElementsByClassName('print-css')[0] != undefined){
+                    setTimeout(function(){
+                        window.print();
+                    }, (60*5));
+                    window.clearInterval(handle);
+                }
+            }, (60*5));
+        }
+        //var handle = window.setInterval(function(){
+        //    if($('.print-css').length > 0){
+        //        setTimeout(function(){
+        //            window.print();
+        //        }, (60*5));
+        //        window.clearInterval(handle);
+        //    }
+        //}, (60*5));
+    </script>
+</head>
+<body>
+    <div id="page">
+        <div id="container">
+            <div id="coupon">
+                <div class="display-item">
+                    <img src="@Model.Logo" class="large-coupon" style="max-width: 180px;" />
+                    <h3 class="small-coupon">@Model.Website</h3>
+                    <span class="small-coupon">@Model.WebsiteUrl</span>
+                    <input type="hidden" id="username" value="" />
+                </div>
+
+                <div class="display-item">
+                    <div class="display-label">@Html.DisplayNameFor(model => model.CouponNumber)</div>
+                    <div class="display-field coupon-number">@Html.DisplayFor(model => model.CouponNumber)</div>
+                </div>
+
+                <div class="display-item">
+                    <div class="display-label">
+                        @Html.DisplayNameFor(model => model.ConfirmationNumber)
+                    </div>
+                    <div class="display-field">
+                        @Html.DisplayFor(model => model.ConfirmationNumber)
+                    </div>
+                </div>
+
+                <div class="display-item">
+                    <div class="display-label">@Html.DisplayNameFor(model => model.GuestName)</div>
+                    <div class="display-field">@Html.DisplayFor(model => model.ReservedFor)</div>
+                </div>
+
+                <div class="display-item large-coupon authcode">
+                    <div class="display-label">@Html.DisplayNameFor(model => model.FirstAuthCode)</div>
+                    <div class="display-field">@Html.DisplayFor(model => model.FirstAuthCode)</div>
+                </div>
+
+
+                @if (Model.PackageServices != null && Model.PackageServices.Count() > 0)
+                {
+                    <h3>
+                        @ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Package.ToUpper() @Model.PackageServices.Count()
+                    </h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>@Html.DisplayNameFor(model => model.Units)</th>
+                                <th>@Html.DisplayNameFor(model => model.ActivityName)</th>
+                                <th>@Html.DisplayNameFor(model => model.ActivityDateAndSchedule)</th>
+                                <th>@Html.DisplayNameFor(model => model.MeetingPoint)</th>
+                                <th>@Html.DisplayNameFor(model => model.MeetingTime)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var service in Model.PackageServices)
+                            {
+                                <tr class="service-info">
+                                    <td>@service.Units.Replace(".00", "")</td>
+                                    <td>@service.ActivityName</td>
+                                    <td>@service.ActivityDateAndSchedule</td>
+                                    <td>@service.MeetingTime</td>
+                                    <td>@service.MeetingPoint</td>
+                                </tr>
+                                if (@service.CouponNotes != null && @service.CouponNotes != "")
+                                {
+                                    <tr class="notes">
+                                        <td colspan="5">
+                                            @service.CouponNotes
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+
+
+
+                    </table>
+                }
+                else
+                {
+                    if (Model.Units != null)
+                    {
+                        <div class="display-item valid-for">
+                            <div class="display-label">
+                                @Html.DisplayNameFor(model => model.Units)
+                            </div>
+                            <div class="display-field">
+                                @Html.Raw(Model.Units.Replace(".00", ""))
+                            </div>
+                        </div>
+                    }
+
+                    <div class="display-item">
+                        <div class="display-label">
+                            @Html.DisplayNameFor(model => model.ActivityName)
+                        </div>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.ActivityName)
+                        </div>
+                    </div>
+
+                    <div class="display-item">
+                        <div class="display-label">
+                            @Html.DisplayNameFor(model => model.ActivityDateAndSchedule)
+                        </div>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.ActivityDateAndSchedule)
+                        </div>
+                    </div>
+
+                    <div class="display-item">
+                        <div class="display-label">
+                            @Html.DisplayNameFor(model => model.MeetingPoint)
+                        </div>
+                        <div class="display-field">
+                            @Html.Raw(Model.MeetingPoint)
+                        </div>
+                    </div>
+
+                    <div class="display-item">
+                        <div class="display-label">
+                            @Html.DisplayNameFor(model => model.MeetingTime)
+                        </div>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.MeetingTime)
+                        </div>
+                    </div>
+                }
+
+                <div class="display-item">
+                    <div class="display-label">
+                        @Html.DisplayNameFor(model => model.Provider)
+                    </div>
+                    <div class="display-field">
+                        @Html.DisplayFor(model => model.Provider)
+                    </div>
+                </div>
+
+                <div class="display-item provider-phone">
+                    <div class="display-label">
+                        @Html.DisplayNameFor(model => model.ProviderPhone)
+                    </div>
+                    <div class="display-field">
+                        @Html.DisplayFor(model => model.ProviderPhone)
+                    </div>
+                </div>
+
+                <div class="display-item">
+                    <div class="display-label">
+                        @Html.DisplayNameFor(model => model.PurchaseDate)
+                    </div>
+                    <div class="display-field">
+                        @Html.DisplayFor(model => model.PurchaseDate)
+                    </div>
+                </div>
+
+                <div class="display-item">
+                    <div class="display-label">
+                        @Html.DisplayNameFor(model => model.SalesAgent)
+                    </div>
+                    <div class="display-field">
+                        @Html.DisplayFor(model => model.SalesAgent)
+                    </div>
+                </div>
+
+                <div class="display-item">
+                    <div class="display-label">
+                        @Html.DisplayNameFor(model => model.PurchaseID)
+                    </div>
+                    <div class="display-field">
+                        @Html.DisplayFor(model => model.PurchaseID)-@Html.DisplayFor(model => model.ItemID)
+                    </div>
+                </div>
+
+                <div class="display-item phone-numbers">
+                    <div class="display-label">
+                        @Html.DisplayNameFor(model => model.PhoneNumbers)
+                    </div>
+                    <div class="display-field large-coupon">
+                        @Html.DisplayFor(model => model.PhoneNumbers)
+                    </div>
+                    <div class="display-field small-coupon">
+                        @Html.DisplayFor(model => model.PhoneNumbersShortCoupon)
+                    </div>
+                </div>
+
+                @if (Model.ExchangeRate > 1)
+                {
+                    <div class="display-item exchange-rate">
+                        <div class="display-label">
+                            @Html.DisplayNameFor(model => model.ExchangeRate)
+                        </div>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.ExchangeRate)
+                        </div>
+                    </div>
+                }
+
+                @if (Model.PrintedBy != "")
+                {
+                    <div class="display-item">
+                        <div class="display-label">
+                            @ePlatBack.Models.Resources.Models.Coupon.CouponStrings.PrintedBy
+                        </div>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.PrintedBy) @ePlatBack.Models.Resources.Models.Coupon.CouponStrings.PrintedOn @DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt")
+                        </div>
+                    </div>
+                }
+
+                @if (Model.Type == 3)
+                { //transportacion
+                    <div class="display-item">
+                        <div class="display-label">
+                            @Html.DisplayNameFor(model => model.TravelInfo)
+                        </div>
+                        <div class="display-field">
+                            @Html.Raw(Model.TravelInfo)
+                        </div>
+                    </div>
+                }
+                @if (Model.PrintCounter == 0)
+                {
+                    @*<div class="display-item print-counter">
+                            ORIGINAL
+                            <br /> @Model.PrintedBy == "" ? @DateTime.Now.ToString("yyy-MM-dd hh:mm:ss tt") : ""
+                        </div>*@
+                    <div class="display-item">
+                        <div class="display-label print-counter">
+                            ORIGINAL
+                        </div>
+                        <div class="display-field">
+                            @if (Model.PrintedBy == "")
+                            {
+                                @DateTime.Now.ToString("yyy-MM-dd hh:mm:ss tt")
+                            }
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    @*<div class="display-item print-counter">
+                            COPY
+                        </div>*@
+                    <div class="display-item">
+                        <div class="display-label print-counter">
+                            COPY
+                        </div>
+                        <div class="display-field">
+                            @if (Model.PrintedBy == "")
+                            {
+                                @DateTime.Now.ToString("yyy-MM-dd hh:mm:ss tt")
+                            }
+                        </div>
+                    </div>
+                }
+
+                @if (Model.PackageServices != null && Model.PackageServices.Count() == 0 && Model.CouponNotes != null && Model.CouponNotes != "")
+                {
+                    <div class="display-item" style="width:100%;">
+                        <div class="display-label">
+                            Important
+                        </div>
+                        <div class="display-field">
+                            @Html.Raw(Model.CouponNotes)
+                        </div>
+                    </div>
+                }
+                <div class="display-item small-coupon" style="width:100%;">
+                    <div class="display-label">
+                        @ePlatBack.Models.Resources.Models.Coupon.CouponStrings.Terms_and_Conditions
+                    </div>
+                    <div class="display-field">
+                        @if (Model.WebsiteUrl != null && Model.WebsiteUrl.IndexOf("mx.") >= 0)
+                        {
+                            @(Model.WebsiteUrl + "/terminos-y-condiciones")
+                        }
+                        else
+                        {
+                            @(Model.WebsiteUrl + "/terms-and-conditions")
+                        }
+                    </div>
+                </div>
+
+                <div class="display-item-full terms-area">
+                    <div class="footer-column-1">
+                        <img class="barcode" src="@Model.BarCode" />
+                        <div class="display-label">
+                            @ePlatBack.Models.Resources.Models.Coupon.CouponStrings.Privacy_Policy
+                        </div>
+                        <div class="display-field">
+                            @if (Model.WebsiteUrl != null && Model.WebsiteUrl.IndexOf("mx.") >= 0)
+                            {
+                                <b>@(Model.WebsiteUrl + "/politica-de-privacidad")</b>
+                            }
+                            else
+                            {
+                                <b>@(Model.WebsiteUrl + "/privacy-policy")</b>
+                            }
+                        </div>
+                    </div>
+                    <div class="footer-column-2">
+                        @Html.Raw(ePlatBack.Models.Resources.Models.Coupon.CouponStrings.Coupon_Note)
+                        @if (Model.TerminalID == "25")
+                        {
+                            <span class="modality">
+                                @Html.Raw(ePlatBack.Models.Resources.Models.Coupon.CouponStrings.Modality)
+                            </span>
+                        }
+                        @if (Model.TerminalID == "32" || Model.TerminalID == "36" || Model.TerminalID == "43")
+                        {
+                            <span>Nota: V&aacute;lido para cobro 30 d&iacute;as a partir de la la fecha de expedici&oacute;n.</span>
+                            <br />
+                        }
+                        else
+                        {
+                            <br />
+                        }
+                        <span style="font-size:1.2em; font-weight: bold;">
+                            @Html.Raw(Model.Operator)
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.RoundTrip == true)
+            {
+                <div style="page-break-after: always;"></div>
+                <div id="couponRoundTrip">
+
+                    <div class="display-item">
+                        <img src="@Model.Logo" class="large-coupon" />
+                        <h3 class="small-coupon">@Model.Website</h3>
+                        <span class="small-coupon">@Model.WebsiteUrl</span>
+                    </div>
+
+                    <div class="display-item">
+                        <div class="display-label">@Html.DisplayNameFor(model => model.CouponNumber)</div>
+                        <div class="display-field">@Html.DisplayFor(model => model.CouponNumber)</div>
+                    </div>
+
+                    <div class="display-item">
+                        <div class="display-label">
+                            @Html.DisplayNameFor(model => model.ConfirmationNumber)
+                        </div>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.ConfirmationNumber)
+                        </div>
+                    </div>
+
+                    <div class="display-item">
+                        <div class="display-label">@Html.DisplayNameFor(model => model.GuestName)</div>
+                        <div class="display-field">@Html.DisplayFor(model => model.ReservedFor)</div>
+                    </div>
+
+                    <div class="display-item authcode">
+                        <div class="display-label">@Html.DisplayNameFor(model => model.FirstAuthCode)</div>
+                        <div class="display-field">@Html.DisplayFor(model => model.FirstAuthCode)</div>
+                    </div>
+
+                    <div class="display-item valid-for">
+                        <div class="display-label">
+                            @Html.DisplayNameFor(model => model.Units)
+                        </div>
+                        <div class="display-field">
+                            @Html.Raw(Model.Units)
+                        </div>
+                    </div>
+
+                    <div class="display-item">
+                        <div class="display-label">
+                            @Html.DisplayNameFor(model => model.ActivityName)
+                        </div>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.ActivityName)
+                        </div>
+                    </div>
+
+                    <div class="display-item">
+                        <div class="display-label">
+                            @Html.DisplayNameFor(model => model.ActivityDateAndSchedule)
+                        </div>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.RoundDate)
+                        </div>
+                    </div>
+
+                    <div class="display-item">
+                        <div class="display-label">
+                            @Html.DisplayNameFor(model => model.MeetingPoint)
+                        </div>
+                        <div class="display-field">
+                            @Html.Raw(Model.RoundHotel)
+                        </div>
+                    </div>
+
+                    <div class="display-item">
+                        <div class="display-label">
+                            @Html.DisplayNameFor(model => model.MeetingTime)
+                        </div>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.RoundMeetingTime)
+                        </div>
+                    </div>
+
+                    <div class="display-item">
+                        <div class="display-label">
+                            @Html.DisplayNameFor(model => model.Provider)
+                        </div>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.Provider)
+                        </div>
+                    </div>
+
+                    <div class="display-item provider-phone">
+                        <div class="display-label">
+                            @Html.DisplayNameFor(model => model.ProviderPhone)
+                        </div>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.ProviderPhone)
+                        </div>
+                    </div>
+
+                    <div class="display-item">
+                        <div class="display-label">
+                            @Html.DisplayNameFor(model => model.PurchaseDate)
+                        </div>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.PurchaseDate)
+                        </div>
+                    </div>
+
+                    <div class="display-item">
+                        <div class="display-label">
+                            @Html.DisplayNameFor(model => model.SalesAgent)
+                        </div>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.SalesAgent)
+                        </div>
+                    </div>
+
+                    <div class="display-item">
+                        <div class="display-label">
+                            @Html.DisplayNameFor(model => model.PurchaseID)
+                        </div>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.PurchaseID)-@Html.DisplayFor(model => model.ItemID)
+                        </div>
+                    </div>
+
+                    <div class="display-item">
+                        <div class="display-label">
+                            @Html.DisplayNameFor(model => model.PhoneNumbers)
+                        </div>
+                        <div class="display-field large-coupon">
+                            @Html.DisplayFor(model => model.PhoneNumbers)
+                        </div>
+                        <div class="display-field small-coupon">
+                            (322) 297 4742
+                        </div>
+                    </div>
+
+                    @if (Model.Type == 3)
+                    { //transportacion
+                        <div class="display-item">
+                            <div class="display-label">
+                                @Html.DisplayNameFor(model => model.TravelInfo)
+                            </div>
+                            <div class="display-field">
+                                @Html.Raw(Model.RoundTravelInfo)
+                            </div>
+                        </div>
+                    }
+                    @if (Model.CouponNotes != null && Model.CouponNotes != "")
+                    {
+                        <div class="display-item" style="width:100%;">
+                            <div class="display-label">
+                                Important
+                            </div>
+                            <div class="display-field">
+                                @Html.Raw(Model.CouponNotes)
+                            </div>
+                        </div>
+                    }
+                    <div class="display-item-full terms-area">
+                        @Html.Raw(ePlatBack.Models.Resources.Models.Coupon.CouponStrings.Coupon_Note)
+                        <br />
+                        @Html.DisplayFor(model => model.Operator)
+                    </div>
+                </div>
+            }
+
+
+            <div id="policies" class="terms-area">
+                @if (Model.Recommendations != null && Model.Recommendations.Trim() != "")
+                {
+                    <div class="display-item large-coupon">
+                        <div class="display-label">
+                            @Html.DisplayNameFor(model => model.Recommendations)
+                        </div>
+                        <div class="display-field">
+                            @Html.Raw(Model.Recommendations)
+                        </div>
+                    </div>
+                }
+
+                <div class="display-item">
+                    <div class="display-field">
+                        @Html.Raw(Model.Disclaimer)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

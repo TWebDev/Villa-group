@@ -1,0 +1,60 @@
+﻿@model ePlatBack.Models.ViewModels.PreCheckInModel.SearchPreCheckInModel
+
+@using (Ajax.BeginForm("SearchPreCheckIn", "Reports", new AjaxOptions { OnSuccess = "REPORT.searchResultsTable(data); REPORT.addExtras()", UpdateTargetId = "divTblPreCheckInResults" }, new { id = "frmSearchPreCheckIn" }))
+{
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SearchPreCheckIn_I_ArrivalDate)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.SearchPreCheckIn_I_ArrivalDate, new { data_uses_date_picker = "true" })
+            @Html.TextBoxFor(model => model.SearchPreCheckIn_F_ArrivalDate, new { data_uses_date_picker = "true" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SearchPreCheckIn_Resort)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.SearchPreCheckIn_Resort, Model.SearchPreCheckIn_DrpResorts, new { multiple = "multiple", @class = "terminal-dependent-list", data_route = "/crm/Reports/GetDDLData", data_route_parameter = "placeID" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SearchPreCheckIn_LeadSource)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.SearchPreCheckIn_LeadSource, Model.SearchPreCheckIn_DrpLeadSources, new { multiple = "multiple", @class = "workgroup-dependent-list", data_route = "/crm/Reports/GetDDLData", data_route_parameter = "leadSourceID" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SearchPreCheckIn_User)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.SearchPreCheckIn_User, Model.SearchPreCheckIn_DrpUsers, new { multiple = "multiple" })
+        </div>
+    </div>
+    <div class="editor-alignment align-from-top">
+        <div class="editor-field">
+            <input type="submit" class="button" value="search" />
+        </div>
+    </div>
+    <div class="align-from-top" id="divTblPreCheckInResults">
+        <table id="tblSearchPreCheckInResults" class="table">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    @*<th>Email</th>
+                    <th>Phone</th>*@
+                    <th>Booking Status</th>
+                    <th>Lead Source</th>
+                    <th>Arrival Date</th>
+                    <th>Resort</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+}

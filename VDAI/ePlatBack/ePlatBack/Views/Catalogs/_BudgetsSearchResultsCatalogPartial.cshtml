@@ -1,0 +1,45 @@
+﻿@model ePlatBack.Models.ViewModels.BudgetsModel.SearchBudgetsModel
+
+<table id="tblSearchBudgetsResults" class="dataTable table search-results">
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th>Budget</th>
+            <th>Vigency</th>
+            <th>Is Extension</th>
+            <th>Promotion Team(s)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ListBudgets != null)
+        {
+            foreach (var i in Model.ListBudgets)
+            {
+                var id = "budget_" + i.BudgetInfo_BudgetID;
+                var vigency = i.BudgetInfo_FromDate + " / " + i.BudgetInfo_ToDate;
+                var budget = i.BudgetInfo_Budget + " " + i.BudgetInfo_CurrencyText;
+                <tr id="@id">
+                    <td>
+                        @Html.DisplayFor(model => i.BudgetInfo_LeadQualification)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => budget)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => vigency)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(model => i.BudgetInfo_BudgetExt)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.BudgetInfo_PromotionTeams)
+                        @if (!i.BudgetInfo_InUse)
+                        {
+                            <img src="/Content/themes/base/images/cross.png" class="right delete-item">
+                        }
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

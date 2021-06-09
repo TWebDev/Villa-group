@@ -1,0 +1,261 @@
+﻿@model ePlatBack.Models.ViewModels.ActivityReviewsViewModel
+
+@{
+    ViewBag.Culture = Model.Culture;
+    ViewBag.Title = Model.Seo_Title;
+    ViewBag.Keywords = Model.Seo_Keywords;
+    ViewBag.Description = Model.Seo_Description;
+    ViewBag.Index = Model.Seo_Index;
+    ViewBag.Follow = Model.Seo_Follow;
+    ViewBag.FriendlyUrl = Model.Seo_FriendlyUrl;
+    ViewBag.OppositeLanguageUrl = "/";
+    ViewBag.CanonicalDomain = Model.CanonicalDomain;
+
+    ViewBag.Header = Model.Template_Header;
+    ViewBag.Footer = Model.Template_Footer;
+    ViewBag.Logo = Model.Template_Logo;
+
+    ViewBag.Submenu1 = Model.Submenu1;
+    ViewBag.Submenu2 = Model.Submenu2;
+    ViewBag.Submenu3 = Model.Submenu3;
+}
+
+@section header{
+    @Html.Raw(Model.Scripts_Header)
+
+    <style type="text/css">
+        .rating-message {
+            vertical-align: top;
+            margin: 5px 15px;
+            display: inline-block;
+            font-weight: bold;
+        }
+
+        .review-description .interaction-message, .form .interaction-message {
+            padding: 10px;
+            background: #FFFDB0;
+            margin-top: 10px;
+            border: #ddd solid 1px;
+            display: none;
+        }
+
+        span.upload {
+            width: 157px;
+            height: 80px;
+            background-color: #fff;
+            overflow: hidden;
+            margin: 5px 0 15px;
+            border: #ddd solid 1px;
+            background-repeat: no-repeat;
+            background-size: cover;
+            -moz-transition: background-color linear 1s, color linear 1s;
+            -o-transition: background-color linear 1s, color linear 1s;
+            -webkit-transition: background-color linear 1s, color linear 1s;
+            transition: background-color linear 1s, color linear 1s;
+            display: block;
+        }
+
+            span.upload.selected {
+                background-color: #6B800E;
+                color: white;
+                display: block;
+            }
+
+        span.upload > .upload-close {
+            position: absolute;
+            background-color: #6B800E;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            text-align: center;
+            margin: -10px 0 0 146px;
+            border: white solid 1px;
+        }
+
+            span.upload > .upload-close:hover {
+                box-shadow: 0 0 5px #999;
+                cursor: pointer;
+            }
+
+        span.upload > .upload-status {
+            position: absolute;
+            display: block;
+            text-align: center;
+            width: inherit;
+            margin-top: 30px;
+        }
+
+        span.upload input {
+            display: block;
+            width: 157px !important;
+            height: 80px !important;
+            opacity: 0 !important;
+            overflow: hidden !important;
+            cursor: pointer;
+        }
+    </style>
+}
+
+@section afterBody{
+    @Html.Raw(Model.Scripts_AfterBody)
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=136482056379522";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+}
+
+@section scripts{
+    @Html.Raw(Model.Scripts_Footer)
+    <script src="~/Scripts/reviews.js"></script>
+}
+
+@section controls{}
+
+@section featured {}
+
+<div class="row container">
+    <div class="col s12">
+        <h3>@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Your_Reviews</h3>
+        @if (Model.ServicesReviews != null)
+        {
+            <p>@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Hi <strong>@Model.FirstName @Model.LastName</strong>, @ePlatFront.Resources.Views.Activities.ActivitiesStrings.Take_a_minute</p>
+            <ul class="collection">
+                @{ int i = 0; }
+                @foreach (var service in Model.ServicesReviews)
+                {
+                    <li class="review collection-item row yellow lighten-5" id="@service.PurchaseServiceID">
+                        <input type="hidden" class="hdnServiceID" value="@service.ServiceID" />
+                        <input type="hidden" class="hdnPicture" value="@service.Picture" />
+                        <span class="review-info col s12 m3">
+                            <img src="@("//eplatfront.villagroup.com" + @service.ServicePicture + "?w=600")" class="responsive-img" style="margin-top:10px;" />
+                            <h5>@service.Service</h5>
+                            @ePlatFront.Resources.Views.Activities.ActivitiesStrings.By @service.Provider
+                            <br />
+                            <span class="date">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Visited_on @service.ServiceDateTime.ToString("D")</span>
+                            <br />
+                            @if (service.Rating != null && service.Rating > 0)
+                            {
+                                <span class="rating-stars">
+                                    @for (int s = 1; s <= Math.Floor(Math.Abs(service.Rating)); s++)
+                                    {
+                                    <img src="~/Content/themes/mex/images/icon_star_full.png" />
+                                    }
+                                    @if (service.Rating % 1 != 0)
+                                    {
+                                    <img src="~/Content/themes/mex/images/icon_star_half.png" />
+                                    }
+                                    @for (int v = 1; v <= Math.Floor(Math.Abs(5 - service.Rating)); v++)
+                                    {
+                                    <img src="~/Content/themes/mex/images/icon_star_empty.png" />
+                                    }
+                                </span><br />
+                                <span class="average">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Average_Rating_from @service.NumberOfReviews @ePlatFront.Resources.Views.Activities.ActivitiesStrings.reviews.</span>
+                            }
+                            else
+                            {
+                                <span class="rating-stars">
+                                    <img src="/Content/themes/mex/images/stars_empty.png" />
+                                    <img src="/Content/themes/mex/images/stars_empty.png" />
+                                    <img src="/Content/themes/mex/images/stars_empty.png" />
+                                    <img src="/Content/themes/mex/images/stars_empty.png" />
+                                    <img src="/Content/themes/mex/images/stars_empty.png" />
+                                </span><br />
+                                <span class="average review-info-saved">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Be_the_first</span>
+                            }
+                        </span>
+                        <span class="review-description col s12 m9">
+                            <span class="row" style="margin-top:0;">
+                                <span class="editor-field input-field col s12" style="margin-top: 0;">
+                                    <label>
+                                        @ePlatFront.Resources.Views.Activities.ActivitiesStrings.Rate_your_experience
+                                    </label><br /><br />
+                                    <span class="rating">
+                                        <img class="answer-button" data-value="1" src="~/Content/themes/mex/images/icon_star_empty.png" />
+                                        <img class="answer-button" data-value="2" src="~/Content/themes/mex/images/icon_star_empty.png" />
+                                        <img class="answer-button" data-value="3" src="~/Content/themes/mex/images/icon_star_empty.png" />
+                                        <img class="answer-button" data-value="4" src="~/Content/themes/mex/images/icon_star_empty.png" />
+                                        <img class="answer-button" data-value="5" src="~/Content/themes/mex/images/icon_star_empty.png" />
+                                        <span class="rating-message"></span>
+                                        <input type="hidden" class="hdnRating" value="@service.Rating.ToString().Replace(".00", "")" />
+                                    </span>
+                                </span>
+                            </span>
+                            <span class="row">
+                                <span class="input-field col s12">
+                                    <textarea id="comments@(i)" class="txtReview materialize-textarea" style="width:625px">@service.Review</textarea>
+                                    <label for="comments@(i)">
+                                        @ePlatFront.Resources.Views.Activities.ActivitiesStrings.Comments
+                                    </label>
+                                </span>
+                            </span>
+                            <span class="row">
+                                <span class="input-field col s12" style="margin-top:0;">
+                                    <label class="upload-label" style="display:none;">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Share_a_Picture</label><br /><br />
+
+                                    <span class="upload" style="@(service.Picture != null && service.Picture != "" ? "background-image: url('" + @service.Picture + "')" : "display:none;")">
+                                        <span class="upload-close btnClose" style="display: none;">&times;</span>
+                                        @if (service.Picture == null || service.Picture == "")
+                                        {
+                                            <span class="upload-status">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Select_your_File</span>
+                                            <input type="file" class="fupPicture" name="upload" />
+                                        }
+                                    </span>
+                                </span>
+                            </span>
+                            <span class="row">
+                                <span class="input-field col s12">
+                                    <input type="button" class="btnSubmit btn waves-button-input light-green lighten-1" value="@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Submit" />
+                                    <span class="interaction-message"></span>
+                                </span>
+                            </span>
+                        </span>
+                    </li>
+                    i++;
+                }
+            </ul>
+            <div class="row form">
+                <div id="@Model.PurchaseID" class="col-left col s12 m8">
+                    <h4>@ePlatFront.Resources.Views.Activities.ActivitiesStrings.How_did_we_do</h4>
+                    <p>@ePlatFront.Resources.Views.Activities.ActivitiesStrings.We_are_always</p>
+
+                    <div class="row">
+                        <div class="input-field col s12" style="margin-top: 0;">
+                            <label>@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Booking_Experience</label>
+                            <br /><br />
+                            <div class="rating">
+                                <img class="answer-button" data-value="1" src="~/Content/themes/mex/images/icon_star_empty.png" />
+                                <img class="answer-button" data-value="2" src="~/Content/themes/mex/images/icon_star_empty.png" />
+                                <img class="answer-button" data-value="3" src="~/Content/themes/mex/images/icon_star_empty.png" />
+                                <img class="answer-button" data-value="4" src="~/Content/themes/mex/images/icon_star_empty.png" />
+                                <img class="answer-button" data-value="5" src="~/Content/themes/mex/images/icon_star_empty.png" />
+                                <span class="rating-message"></span>
+                                <input type="hidden" class="hdnRating" value="0" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea id="txtReview" class="txtReview materialize-textarea" style="width:100%; height:100px;"></textarea>
+                            <label for="txtReview">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Comments</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12 div-submit">
+                            <input type="button" class="btnSubmitBookingExperience btn waves-button-input light-green lighten-1" value="@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Submit" />
+                            <div class="interaction-message"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m4">
+                    <div class="fb-page" data-href="https://www.facebook.com/MyExperienceTours/" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/MyExperienceTours/"><a href="https://www.facebook.com/MyExperienceTours/">My Experience Tours &amp; Travel</a></blockquote></div></div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@*<div id="blocked" style="display:none;"></div>*@

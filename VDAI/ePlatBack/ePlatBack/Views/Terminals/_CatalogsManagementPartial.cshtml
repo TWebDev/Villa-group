@@ -1,0 +1,48 @@
+﻿@model ePlatBack.Models.ViewModels.CatalogInfoModel
+
+<fieldset id="fdsCatalogsManagement">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" alt="" class="fieldset-indicator fds-indicator-separator">
+        Catalogs
+    </legend>
+    <div style="display: none" class="align-from-top">
+        <div class="full-width">
+            <input type="button" id="btnNewCatalogsInfo" class="submit fieldset-expander right" value="New">
+        </div>
+        <div>
+            <input type="checkbox" class="chk-parent" />Select All </div>
+        <ul id="ulCatalogs" class="primary-selected-row-dependent">
+        </ul>
+        <div id="pSaveCatalogsPerTerminal" class="full-width view-restricted align-from-bottom" style="display: none">
+            <input type="button" class="submit right" id="btnSaveCatalogsPerTerminal" value="Save" title="Save checked catalogs to selected terminal"/>
+        </div>
+        <fieldset id="fdsCatalogsInfo" class="primary-selected-row-dependent">
+            <legend>
+                <img src="/Content/themes/base/images/eplat_show.jpg" alt="" class="fieldset-indicator fds-indicator-separator">
+                Catalog Info
+            </legend>
+            <div style="display: none" class="align-from-top">
+                @using (Ajax.BeginForm("SaveCatalog", "Terminals", new AjaxOptions { OnSuccess = "TERMINAL.saveCatalogSuccess(data)" }, new { id = "frmCatalog", onSubmit = "return UI.showValidationSummary(this.id);" }))
+                {
+                    <div id="frmCatalog_ErrorMessages" style="display: none">
+                        @Html.ValidationMessageFor(model => model.CatalogInfo_Catalog)
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.HiddenFor(model => model.CatalogInfo_TerminalID, new { @class = "primary-selected-row-dependent", data_keep_value="" })
+                            @Html.HiddenFor(model => model.CatalogInfo_CatalogID, new { @class = "secondary-selected-row-dependent" })
+                            @Html.LabelFor(model => model.CatalogInfo_Catalog)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.CatalogInfo_Catalog, new { data_format = "free-case" })
+                        </div>
+                    </div>
+                    <div class="partial-width align-from-bottom">
+                        <input type="submit" class="submit right" id="btnSaveCatalog" value="Save"/>
+                    </div>
+                }
+                @Html.Action("RenderCategories", "Terminals")
+            </div>
+        </fieldset>
+    </div>
+</fieldset>

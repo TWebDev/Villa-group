@@ -1,0 +1,54 @@
+﻿@model ePlatBack.Models.ViewModels.CloseOutModel.SearchCloseOutModel
+
+@using (Ajax.BeginForm("SearchCloseOut", "Reports", new AjaxOptions { OnBegin="UI.checkForPendingRequests(xhr)", UpdateTargetId = "divTblCloseOutResults", OnSuccess = "REPORT.addExtras();REPORT.CloseOut.closeOutLoaded()" }, new { id = "frmSearchCloseOut" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="non-printable search-params">
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SearchCloseOut_Date)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.SearchCloseOut_Date, new { data_uses_date_picker = "true", @class = "normal-width" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SearchCloseOut_TerminalID)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.SearchCloseOut_TerminalID, Model.SearchCloseOut_Terminals, new { @class = "terminal-dependent-list onchange", data_route = "/crm/Reports/GetDDLData", data_route_parameter = "selectedTerminals", data_onchange_route_parameter = "pointOfSale", data_dependent_list = "SearchCloseOut_PointOfSaleID" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SearchCloseOut_PointOfSaleID)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.SearchCloseOut_PointOfSaleID, Model.SearchCloseOut_PointsOfSale, new { @class = "onchange", data_route = "/crm/Reports/GetDDLData", data_onchange_route_parameter = "getSalesAgent", data_dependent_list = "SearchCloseOut_SalesAgentID" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SearchCloseOut_SalesAgentID)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.SearchCloseOut_SalesAgentID, Model.SearchCloseOut_SalesAgents)
+            </div>
+        </div>
+        <div class="editor-alignment align-from-top">
+            <div class="editor-field">
+                <input type="submit" class="button" value="get" />
+            </div>
+        </div>
+    </div>
+    <div id="divTblCloseOutResults" class="align-from-top">
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            REPORT.CloseOut.init();
+        });        
+    </script>
+}

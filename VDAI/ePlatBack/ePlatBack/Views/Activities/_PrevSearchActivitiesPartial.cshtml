@@ -1,0 +1,50 @@
+﻿@model ePlatBack.Models.ViewModels.PrevActivitySearchModel
+
+
+@using (Ajax.BeginForm("PrevSearchActivities", "Activities", new AjaxOptions { OnSuccess = "PREVACTIVITY.searchResultsTable(data)", OnComplete = "PREVACTIVITY.makeTableRowsSelectable()", UpdateTargetId = "divPrevTblExistingActivities" }, new { id = "frmPrevSearchActivities", onSubmit = "return UI.showValidationSummary(this.id);" }))
+{
+    <div id="frmPrevSearchActivities_ErrorMessages" style="display: none">
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.HiddenFor(model => model.PrevSearch_Terminals)
+            @Html.LabelFor(model => model.PrevActivitySearch_Activity)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.PrevActivitySearch_Activity)
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PrevActivitySearch_Category)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.PrevActivitySearch_Category, Model.PrevActivitySearch_DrpCategories)
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PrevActivitySearch_Provider)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.PrevActivitySearch_Provider, Model.PrevActivitySearch_DrpProviders)
+        </div>
+    </div>
+    <div class="editor-alignment align-from-top">
+        <div class="editor-field">
+            <input type="button" id="btnPrevSearchActivities" class="button" value="Search">
+        </div>
+    </div>
+    <div id="divPrevTblExistingActivities" class="align-from-top">
+        <table id="tblPrevSearchActivitiesResults" class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Activity</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+}

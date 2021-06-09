@@ -1,0 +1,38 @@
+﻿@model IEnumerable<ePlatBack.Models.ViewModels.ReviewItemViewModel>
+
+<div class="row">
+    <div class="col-sm-12">
+        <h2>What our customers say</h2>
+    </div>
+    <div class="col-sm-12">
+        <div class="review-row">
+            @foreach (var review in Model)
+            {
+                <div class="review alert alert-warning" itemprop="review" itemscope itemtype="http://schema.org/Review">
+                    <div itemprop="description">
+                        @Html.Raw(review.Review)
+                    </div>
+                    @for (var r = 0; r < @review.Rating; r++)
+                    {
+                        <img src="/content/themes/base/images/star2.jpg" />
+                    }
+                    <div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating" style="display:none;">
+                        <meta itemprop="worstRating" content="1">
+                        <span itemprop="ratingValue">@review.Rating</span> /
+                        <span itemprop="bestRating">5</span>stars
+                    </div>
+
+                    <span class="author">
+                        <span itemprop="author">@review.Author</span>, @review.From
+                        @if (review.Date != "")
+                        {
+                            <br />
+                            <span>Written on @review.Date</span>
+                        }
+                        <input type="hidden" value="@review.Resort" />
+                    </span>
+                </div>
+            }
+        </div>
+    </div>
+</div>

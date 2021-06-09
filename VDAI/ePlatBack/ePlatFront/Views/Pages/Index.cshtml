@@ -1,0 +1,57 @@
+﻿@model ePlatBack.Models.ViewModels.PageViewModel
+
+@{
+    ViewBag.Culture = Model.Culture;
+    ViewBag.Title = Model.Seo_Title;
+    ViewBag.Keywords = Model.Seo_Keywords;
+    ViewBag.Description = Model.Seo_Description;
+    ViewBag.Index = Model.Seo_Index;
+    ViewBag.Follow = Model.Seo_Follow;
+
+    ViewBag.OppositeLanguageUrl = Model.Seo_OppositeLanguageUrl;
+    ViewBag.CanonicalDomain = Model.CanonicalDomain;
+
+    ViewBag.Header = Model.Template_Header;
+    ViewBag.Footer = Model.Template_Footer;
+    ViewBag.Logo = Model.Template_Logo;
+
+    ViewBag.Submenu1 = Model.Submenu1;
+    ViewBag.Submenu2 = Model.Submenu2;
+    ViewBag.Submenu3 = Model.Submenu3;
+}
+
+@section header{
+    @Html.Raw(Model.Scripts_Header)
+
+    @if (Model.CanonicalDomain != null && (Model.CanonicalDomain.IndexOf("myvallartaexperience.com") > -1
+            || Model.CanonicalDomain.IndexOf("mycaboexperience.com") > -1
+            || Model.CanonicalDomain.IndexOf("mycancunexperience.com") > -1))
+    {
+<script> gtag('config', 'AW-1028948544/SowjCK_9tl8QwITS6gM', { 'phone_conversion_number': '@Model.Template_Phone_Desktop.Replace(" ","-")' }); </script>
+    }
+}
+
+@section afterBody{
+    @Html.Raw(Model.Scripts_AfterBody)
+}
+
+@section scripts{
+    @Html.Raw(Model.Scripts_Footer)
+}
+
+@section controls{
+    @if (@Model.Template_Controls.Count(x => x == "QuoteRequest") > 0)
+    {
+        <div id="quoteRequest" style="display:none;">@Html.Partial("_QuoteRequestPartial", Model.QuoteRequestControl)</div>
+    }
+    @if (@Model.Template_Controls.Count(x => x == "Categories") > 0)
+    {
+        <div id="categories" style="display:none;"></div>
+    }
+}
+
+@section featured {
+    @Html.Raw(Model.Content_Header)
+}
+
+@Html.Raw(Model.Content)

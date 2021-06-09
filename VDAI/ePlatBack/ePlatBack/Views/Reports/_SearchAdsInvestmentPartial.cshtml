@@ -1,0 +1,34 @@
+﻿@model ePlatBack.Models.ViewModels.GoogleAdsViewModel.Reports.SearchAdsInvestment
+
+@using (Ajax.BeginForm("SearchGoogleAdsInvesments", "Reports", new AjaxOptions { UpdateTargetId = "divTblInvesmentResults", OnSuccess = "REPORT.addExtras();" }, new { id = "frmSearchGoogleAdsInvesments" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="non-printable search-params">
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_I_FromDate)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Search_I_FromDate, new { data_uses_date_picker = "true" })
+                @Html.TextBoxFor(model => model.Search_F_ToDate, new { data_uses_date_picker = "true" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_Accounts)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Search_Accounts, Model.GoogleAdsAccounts, new { multiple = "multiple", @class = "terminal-dependent-list", data_route = "/crm/Reports/GetDDLData", data_route_parameter = "adsAccounts" })
+            </div>
+        </div>
+        <div class="editor-alignment align-from-top">
+            <div class="editor-field">
+                <input type="submit" class="button" value="get" />
+            </div>
+        </div>
+    </div>
+    <div id="divTblInvesmentResults" class="align-from-top">
+    </div>
+}

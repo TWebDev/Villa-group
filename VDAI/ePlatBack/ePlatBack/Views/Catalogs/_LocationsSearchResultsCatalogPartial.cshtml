@@ -1,0 +1,36 @@
+﻿@model ePlatBack.Models.ViewModels.LocationsModel.SearchLocationsModel
+
+<table id="tblSearchLocationsResults" class="table search-results">
+    <thead>
+        <tr>
+            <th>Location</th>
+            <th>Location Code</th>
+            <th>Destination</th>
+            <th>Terminal</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ListLocations != null)
+        {
+            foreach (var i in Model.ListLocations)
+            {
+                var id = "location_" + i.LocationInfo_LocationID;
+                <tr id="@id">
+                    <td>
+                        @Html.DisplayFor(model => i.LocationInfo_Location)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.LocationInfo_LocationCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.LocationInfo_DestinationText)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.LocationInfo_TerminalText)
+                        <img src="~/Content/themes/base/images/cross.png" class="right delete-item" />
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

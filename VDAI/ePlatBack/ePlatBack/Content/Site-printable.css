@@ -1,0 +1,245 @@
+﻿
+@page {
+    size: auto;
+    margin-top: 5px;
+}
+
+.non-printable {
+    display: none !important;
+}
+
+.printable:not(.non-printable) {
+    display: inline-block !important;
+}
+
+.printable > p {
+    line-height: 0.3em;
+}
+
+.printable .non-printable {
+    display: none !important;
+}
+
+.align-right {
+    text-align: right;
+}
+
+body {
+    font-size: .6em;
+}
+
+h1 {
+    font-size: 1.7em;
+    margin: 0;
+    margin-bottom: 5px;
+    padding: 0;
+}
+
+h2 {
+    margin: 0;
+    margin-bottom: 5px;
+    padding: 0;
+}
+
+.table {
+    width: 100%;
+}
+
+    .table td, .table th {
+        padding: 0 2px;
+    }
+
+a {
+    color: rgb(105, 105, 105) !important;
+    text-decoration: none !important;
+}
+
+.container {
+    border-radius: 7px;
+    /*border: 1px solid black;*/
+    font-size: 1.7em;
+    /*padding-left: 1em;*/
+    padding: 10px;
+    color: black !important;
+    margin-top: 70px;
+    margin-right: 40px;
+}
+
+.print-label {
+    width: 150px;
+    margin-right: 5px 10px;
+}
+
+.block {
+    display: block !important;
+}
+
+.right {
+    float: right !important;
+}
+
+.title {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.8em;
+    text-align: center;
+    margin: 15px 0px;
+}
+
+    .title > span {
+        max-width: 50%;
+    }
+
+/*Reports styling*/
+.money {
+    display: block;
+    min-width: 35px;
+    text-align: right;
+}
+
+.money-currency {
+    display: block;
+    min-width: 60px;
+    text-align: right;
+}
+
+/*Begin Ticket styling*/
+/*.ticket-generals {
+    width: 70mm;
+    font-family: Arial;
+    line-height: 1.0em;
+    font-size: 15px;
+    color: black;
+    min-height: 700px;
+}
+
+.ticket-details {
+    list-style-type: square;
+    padding-left: 0;
+    list-style-position: inside;
+}
+
+.ticket-section {
+    border-bottom: double;
+    text-align: center;
+}
+
+.ticket-left-align {
+    text-align: left;
+}
+
+.ticket-greetings {
+    text-align: center;
+}
+
+.full-width {
+    width: 100%;
+}
+
+#t_signature {
+    width: 100%;
+    border-top: solid 1px;
+    text-align: center;
+}*/
+/*End Ticket styling*/
+
+.printable-chargeback {
+    width: 100%;
+    overflow: visible;
+    padding-left:30px;
+    /*padding-top: 30px;*/
+}
+
+
+
+    .printable-chargeback table {
+        width: 700px !important;
+        /*height: 510px !important;*/
+        height: 430px !important;
+        border-collapse: collapse;
+    }
+
+    .printable-chargeback th {
+        border: 1px solid black;
+        /*font-size: x-large;*/
+        font-size: 18pt;
+        font-weight: bold;
+        color: black;
+        text-align: left;
+        height: 20px;
+        background-color: #ccc;
+    }
+
+    .printable-chargeback td, .printable-chargeback tfoot td {
+        border: 1px solid black;
+        color: black;
+        font-size: 12px;
+        /*height:auto;*/
+    }
+#divEgressTicket p{
+    display:block !important;
+}
+
+.signature-line {
+    margin-top: 40px;
+    padding-top: 5px;
+    text-align: center;
+    border-top: 1px solid;
+}
+
+.chargeback-folio {
+    color: red;
+    padding-right: 3px;
+}
+
+.align-center {
+    text-align: center !important;
+}
+
+.exchange-rate-used {
+    width: 50px;
+}
+
+.purchase-date {
+    width: 100px;
+}
+
+.negative-amount {
+    color: red !important;
+}
+
+.signature {
+    height: 40px; /*!important;*/
+}
+
+.field-name td {
+    height: 18px; /*!important;*/
+}
+
+.table-body {
+    height: auto;
+}
+
+/*Correcciones para imprimir Audit Coupons*/
+#main {
+    margin: 0 !important;
+    width: 100%;
+    padding: 20px 0 !important;
+}
+
+    #main .table.small-text {
+        width: 70%;
+        font-size: .7em;
+    }
+
+        #main .table.small-text .money-currency {
+            min-width: 45px !important;
+        }
+
+        #main .table.small-text .money-amount {
+            min-width: 40px !important;
+        }
+
+.edit-cost {
+    display: none;
+}

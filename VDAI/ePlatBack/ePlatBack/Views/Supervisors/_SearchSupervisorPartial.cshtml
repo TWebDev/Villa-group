@@ -1,0 +1,53 @@
+﻿@model ePlatBack.Models.ViewModels.UserSupervisorSearchModel
+
+
+@*@Html.Action("SearchSupervisors", "Supervisors", new { catalogName = Model.catalogName })*@
+@using (Ajax.BeginForm("Search", "Supervisors", new AjaxOptions { OnSuccess = "UR.searchResultsTable(data)", OnComplete = "UR.makeTableRowsSelectable()", UpdateTargetId = "divTblExistingUsers" }, new { id = "frmUsersSearch" }))
+{
+    <div class="editor-alignment">
+        <p class="editor-label">
+            @Html.LabelFor(model => model.Search_Roles)
+        </p>
+        <p class="editor-field">
+            @Html.DropDownListFor(model => model.Search_Roles, Model.RolesList)
+        </p>
+    </div>
+
+    <div class="editor-alignment">
+        <p class="editor-label">
+            @Html.LabelFor(model => model.Search_Workgroup)
+        </p>
+        <p class="editor-field">
+            @Html.DropDownListFor(model => model.Search_Workgroup, Model.Search_DrpSelectedWorkGroups)
+        </p>
+    </div>
+    <div class="editor-alignment">
+        <p class="editor-label">
+            @Html.LabelFor(model => model.Search_Terminal)
+        </p>
+        <p class="editor-field">
+            @Html.DropDownListFor(model => model.Search_Terminal, Model.Search_DrpSelectedTerminals)
+        </p>
+    </div>
+    <div class="full-width editor-alignment align-from-top">
+        <div class="editor-field">
+            <input type="submit" id="btnSearchUsers" class="button marg-left avoid-trigger-on-load right" value="Search" />
+        </div>
+    </div>
+
+    <div id="divTblExistingUsers" class="align-from-top">
+        <table id="tblSearchUsersResults" class="table">
+            <thead>
+                <tr>
+                    <th>User Name</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Job Position</th>
+                    <th>Email</th>
+
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+}

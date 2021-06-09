@@ -1,0 +1,52 @@
+﻿@model ePlatBack.Models.ViewModels.PreArrivalImportHistory.Search
+
+@using(Ajax.BeginForm("SearchPreArrivalImportHistory", "Reports", new AjaxOptions { OnBegin = "REPORT.clearTable('tblPreArrivalImportHistory')", UpdateTargetId = "divImportHistory" }, new { id = "frmSearchPreArrivalImportHistory", onSubmit = "return UI.showValidationSummary(this.id);" }))
+{
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Search_I_ArrivalDate)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Search_I_ArrivalDate, new { data_uses_date_picker = "true" })
+            @Html.TextBoxFor(model => model.Search_F_ArrivalDate, new { data_uses_date_picker = "true" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Search_I_InputDate)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Search_I_InputDate, new { data_uses_date_picker = "true" })
+            @Html.TextBoxFor(model => model.Search_F_InputDate, new { data_uses_date_picker = "true" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Search_Resorts)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Search_Resorts, Model.Resorts, new { multiple = "multiple" })
+        </div>
+    </div>
+    <div class="editor-alignment align-from-top">
+        <div class="editor-field">
+            <input type="reset" class="button" value="reset" />
+            <input type="submit" class="button right" value="search" />
+        </div>
+    </div>
+    <div class="align-from-top" id="divImportHistory">
+        <table id="tblPreArrivalImportHistory" class="dataTable">
+            <thead>
+                <tr>
+                    <th>Hotel Confirmation Number</th>
+                    <th>Certificate Number</th>
+                    <th>Arrival Date</th>
+                    <th>Team Assigned</th>
+                    <th>Input By User</th>
+                    <th>Assigned To User</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+}

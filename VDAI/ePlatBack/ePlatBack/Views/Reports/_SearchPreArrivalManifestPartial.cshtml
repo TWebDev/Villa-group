@@ -1,0 +1,90 @@
+﻿@model ePlatBack.Models.ViewModels.SearchPreArrivalWeeklyReportModel
+
+@using (Ajax.BeginForm("SearchPreArrivalManifest", "Reports", new AjaxOptions { OnBegin= "REPORT.clearTable('tblManifestResults')", UpdateTargetId= "divTblManifestResults", OnComplete = "UI.applyFormat('currency')"}, new { id = "frmSearchPreArrivalManifest", onSubmit = "return UI.showValidationSummary(this.id);" }))
+{
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Search_I_ArrivalDate)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Search_I_ArrivalDate, new { data_uses_date_picker = "true" })
+            @Html.TextBoxFor(model => model.Search_F_ArrivalDate, new { data_uses_date_picker = "true" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Search_I_RealTourDate)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Search_I_RealTourDate, new { data_uses_date_picker = "true"})
+            @Html.TextBoxFor(model => model.Search_F_RealTourDate, new { data_uses_date_picker = "true" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Search_Resorts)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Search_Resorts, Model.Search_DrpResorts, new { multiple = "multiple" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Search_LeadSources)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Search_LeadSources, Model.Search_DrpLeadSources, new { multiple = "multiple" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Search_Version)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Search_Version, Model.Search_DrpVersions)
+        </div>
+    </div>
+    <div class="editor-alignment align-from-top">
+        <div class="editor-field">
+            <input type="reset" class="button" value="clear" />
+            <input type="submit" class="button align-from-left" value="search" />
+        </div>
+    </div>
+    <div id="divTblManifestResults" class="align-from-top">
+        <table id="tblManifestResults" class="table full-width no-plugin">
+            <thead>
+                <tr>
+                    <th colspan="12" align="center">Arrivals:</th>
+                    <th>Hooked:</th>
+                    <th>Qualified:</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Resort</th>
+                    <th>Agency Name</th>
+                    <th>Confirmation Number</th>
+                    <th>Arrival Date</th>
+                    <th>Source</th>
+                    <th>Service Type</th>
+                    <th>Service Details</th>
+                    <th>Total Sold</th>
+                    <th>Flight Information</th>
+                    <th>Assigned To User</th>
+                    <th>Booked</th>
+                    <th>Tour Status</th>
+                    <th>Real Tour Date</th>
+                    <th>Volume Sold</th>
+                    <th>Concierge</th>
+                    <th>Concierge Comments</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+    </div>
+}

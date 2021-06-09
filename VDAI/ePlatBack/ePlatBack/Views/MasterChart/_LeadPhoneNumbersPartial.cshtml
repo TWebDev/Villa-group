@@ -1,0 +1,64 @@
+﻿@model ePlatBack.Models.ViewModels.LeadModels.PhoneNumbers
+        @using (
+    Ajax.BeginForm( "Phone", 
+                    "MasterChart", 
+                    new AjaxOptions {
+                        OnSuccess = "", 
+                                        UpdateTargetId = "" 
+                                    },
+                    new { id = "frmLeadPhones" }
+                    )
+        )
+{
+    @Html.ValidationSummary(true)
+    
+        <fieldset id="fdsLeadSearch">
+        <legend>
+               <img class="fieldset-indicator" src="/Content/themes/base/images/eplat_hide.jpg"/>
+            Lead Phone Numbers
+        </legend>
+        <div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Phones_LeadID)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Phones_LeadID)
+                @Html.ValidationMessageFor(model => model.Phones_LeadID)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Phone_PhoneID)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Phone_PhoneID)
+                @Html.ValidationMessageFor(model => model.Phone_PhoneID)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.PhoneNumber)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.PhoneNumber)
+                @Html.ValidationMessageFor(model => model.PhoneNumber)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.PhoneTypeID)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.PhoneTypeID)
+                @Html.ValidationMessageFor(model => model.PhoneTypeID)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.extensionNumber)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.extensionNumber)
+                @Html.ValidationMessageFor(model => model.extensionNumber)
+            </div>
+    </div>  
+        </fieldset>
+    }    
+

@@ -1,0 +1,369 @@
+﻿@model ePlatBack.Models.ViewModels.ArrivalsViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Head {
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/jquery-ui-timepicker-addon.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/jquery.dataTables.js" type="text/javascript"></script>
+    <script src="~/Scripts/ColReorder.js" type="text/javascript"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+}
+@section Scripts{
+    <script src="~/Scripts/jquery-ui-timepicker-addon.js" type="text/javascript"></script>
+    <script src="/Scripts/crm/hostess/hostess.js"></script>
+}
+<div class="row">
+    <div class="col-sm-12">
+        <h1>Concierge</h1><br />
+    </div>
+
+    <div id="hostessTabs">
+        <ul>
+            @if (Model.Privileges.FirstOrDefault(m => m.Component == "Operation") == null || Model.Privileges.FirstOrDefault(m => m.Component == "Operation").View)
+            {
+                <li><a href="#tabOperation">Operation</a></li>
+            }
+            @if (Model.Privileges.FirstOrDefault(m => m.Component == "Forecast") == null || Model.Privileges.FirstOrDefault(m => m.Component == "Forecast").View)
+            {
+                <li><a href="#tabForecast">Forecast</a></li>
+            }
+            @if (Model.Privileges.FirstOrDefault(m => m.Component == "Agents Penetration") == null || Model.Privileges.FirstOrDefault(m => m.Component == "Agents Penetration").View)
+            {
+                <li><a href="#tabPenetration">Agents Penetration</a></li>
+            }
+            @if (Model.Privileges.FirstOrDefault(m => m.Component == "Global Penetration") == null || Model.Privileges.FirstOrDefault(m => m.Component == "Global Penetration").View)
+            {
+                <li><a href="#tabGlobalPenetration">Global Penetration</a></li>
+            }
+        </ul>
+        @if (Model.Privileges.FirstOrDefault(m => m.Component == "Operation") == null || Model.Privileges.FirstOrDefault(m => m.Component == "Operation").View)
+        {
+            <div id="tabOperation">
+                <div class="col-sm-12 text-center search-params">
+                    <i class="material-icons search-date" title="Search by Date">date_range</i>&nbsp;&nbsp;&nbsp;<i class="material-icons search-name" title="Search by Name">search</i>&nbsp;&nbsp;&nbsp;<i class="material-icons search-name" id="btnCleanDuplicates" title="Clean Duplicates">call_merge</i>
+                    <div id="searchByDate" class="search-panel">
+                        <h3 style="display:inline-block;">Arrivals for <input type="text" id="txtArrivalsDate" style="width: 100px; margin-top: -5px; vertical-align: middle; background-color: white; font-size: 1.1em;" /></h3><input type="button" id="btnGetArrivals" value="UPDATE" class="submit" />
+                    </div>
+                    <div id="searchByName" class="search-panel" style="display:none;">
+                        <h3 style="display:inline-block;">Search by Name <input type="text" id="txtGuestName" style="width: 200px; margin-top: -5px; vertical-align: middle; background-color: white; font-size: 1.1em;" /></h3><input type="button" id="btnGetArrivalsByName" value="SEARCH" class="submit" />
+                    </div>
+                </div>
+
+                @if (Model.Privileges.FirstOrDefault(m => m.Component == "Dashboard") == null || Model.Privileges.FirstOrDefault(m => m.Component == "Dashboard").View)
+                {
+                    <div class="col-sm-12" id="arrivalsDashboard">
+                        <div class="table-div">
+                            <div class="table-row" id="divSummary">
+
+                            </div>
+                            <div style="display:none;" id="divSummaryTemplate">
+                                <div class="table-cell summary-template">
+                                    <h3 class="title" style="margin-bottom:0;"></h3>
+                                    <div class="table-div">
+                                        <div class="table-row">
+                                            <div class="table-cell text-center">
+                                                <div class="dashboard-total active">00</div>
+                                                <span class="summary-note">Active</span>
+                                            </div>
+                                            <div class="table-cell text-center" style="min-width:60px;">
+                                                <div class="dashboard-total in">00</div>
+                                                <span class="summary-note">Checked In</span>
+                                            </div>
+                                            <div class="table-cell text-center" style="min-width:60px;">
+                                                <div class="dashboard-total out">00</div>
+                                                <span class="summary-note out-label">Checked Out</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="content-item">
+                                        <div class="pie-chart" style="width: 250px; height: 250px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+                <div class="col-sm-12">
+                    <div id="divTabs">
+                        <ul>
+                            @if (Model.Privileges.FirstOrDefault(m => m.Component == "Arrivals") == null || Model.Privileges.FirstOrDefault(m => m.Component == "Arrivals").View)
+                            {
+                                <li><a href="#arrivals">Arrivals</a></li>
+                            }
+                            @if (Model.Privileges.FirstOrDefault(m => m.Component == "Binnacle") == null || Model.Privileges.FirstOrDefault(m => m.Component == "Binnacle").View)
+                            {
+                                <li><a href="#binnacle">Binnacle</a></li>
+                            }
+                            @if (Model.Privileges.FirstOrDefault(m => m.Component == "Manifest") == null || Model.Privileges.FirstOrDefault(m => m.Component == "Manifest").View)
+                            {
+                                <li><a href="#manifest">Manifest</a></li>
+                            }
+                            @if (Model.Privileges.FirstOrDefault(m => m.Component == "Prearrivals") == null || Model.Privileges.FirstOrDefault(m => m.Component == "Prearrivals").View)
+                            {
+                                <li><a href="#prearrivals">Prearrivals</a></li>
+                            }
+                            @if (Model.Privileges.FirstOrDefault(m => m.Component == "Powerline") == null || Model.Privileges.FirstOrDefault(m => m.Component == "Powerline").View)
+                            {
+                                <li><a href="#powerline">Powerline</a></li>
+                            }
+                        </ul>
+                        @if (Model.Privileges.FirstOrDefault(m => m.Component == "Arrivals") == null || Model.Privileges.FirstOrDefault(m => m.Component == "Arrivals").View)
+                        {
+                            <div id="arrivals">
+                                @Html.Partial("_SearchInArrivalsPartial", Model.SearchArrivals)
+                                <table id="tblArrivals" class="table" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Program</th>
+                                            <th>RS</th>
+                                            <th>Nts</th>
+                                            <th>Guest Name</th>
+                                            <th>Room #</th>
+                                            <th>Cty</th>
+                                            <th>Agency Code</th>
+                                            <th>Mkt Code</th>
+                                            <th>Conf</th>
+                                            <th>CRS</th>
+                                            <th>Prom</th>
+                                            <th>Booking Status</th>
+                                            <th>Q</th>
+                                            <th>PreCheckIn</th>
+                                            <th>Survey</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Program</th>
+                                            <th>RS</th>
+                                            <th>Nts</th>
+                                            <th>Guest Name</th>
+                                            <th>Room #</th>
+                                            <th>Cty</th>
+                                            <th>Agency Code</th>
+                                            <th>Mkt Code</th>
+                                            <th>Conf</th>
+                                            <th>CRS</th>
+                                            <th>Prom</th>
+                                            <th>Booking Status</th>
+                                            <th>Q</th>
+                                            <th>PreCheckIn</th>
+                                            <th>Survey</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <div style="clear: both;"></div>
+                            </div>
+                        }
+                        @if (Model.Privileges.FirstOrDefault(m => m.Component == "Binnacle") == null || Model.Privileges.FirstOrDefault(m => m.Component == "Binnacle").View)
+                        {
+                            <div id="binnacle">
+                                @Html.Partial("_SearchInBinnaclePartial", Model.SearchBinnacle)
+                                <table id="tblBinnacle" class="table" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Program</th>
+                                            <th>Tour Date</th>
+                                            <th>Room #</th>
+                                            <th>Guest Name</th>
+                                            <th>PAX</th>
+                                            <th>Country</th>
+                                            <th>Q/NQ</th>
+                                            <th>Prom</th>
+                                            <th>Sale</th>
+                                            <th>Volume</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Program</th>
+                                            <th>Tour Date</th>
+                                            <th>Room #</th>
+                                            <th>Guest Name</th>
+                                            <th>PAX</th>
+                                            <th>Country</th>
+                                            <th>Q/NQ</th>
+                                            <th>Prom</th>
+                                            <th>Sale</th>
+                                            <th>Volume</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <div style="clear: both;"></div>
+                            </div>
+                        }
+                        @if (Model.Privileges.FirstOrDefault(m => m.Component == "Manifest") == null || Model.Privileges.FirstOrDefault(m => m.Component == "Manifest").View)
+                        {
+                            <div id="manifest">
+                                <table id="tblManifestExportable" class="exportable" style="display: none;">
+                                    <thead>
+                                        <tr>
+                                            <th>Presentation Date</th>
+                                            <th>Party</th>
+                                            <th>Program</th>
+                                            <th>Prom</th>
+                                            <th>Last Name</th>
+                                            <th>First Name</th>
+                                            <th>Room Number</th>
+                                            <th>Deposit</th>
+                                            <th>Qualification</th>
+                                            <th>Nationality</th>
+                                            <th>Pax</th>
+                                            <th>Invitation</th>
+                                            <th>VIP Card</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                                <table id="tblManifest" class="table" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Presentation Date</th>
+                                            <th>Party</th>
+                                            <th>Program</th>
+                                            <th>Prom</th>
+                                            <th>Last Name</th>
+                                            <th>First Name</th>
+                                            <th>Room Number</th>
+                                            <th>Deposit</th>
+                                            <th>Qualification</th>
+                                            <th>Nationality</th>
+                                            <th>Pax</th>
+                                            <th>Invitation</th>
+                                            <th>VIP Card</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Presentation Date</th>
+                                            <th>Party</th>
+                                            <th>Program</th>
+                                            <th>Prom</th>
+                                            <th>Last Name</th>
+                                            <th>First Name</th>
+                                            <th>Room Number</th>
+                                            <th>Deposit</th>
+                                            <th>Qualification</th>
+                                            <th>Nationality</th>
+                                            <th>Pax</th>
+                                            <th>Invitation</th>
+                                            <th>VIP Card</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <div style="clear: both;"></div>
+                            </div>
+                        }
+                        @if (Model.Privileges.FirstOrDefault(m => m.Component == "Prearrivals") == null || Model.Privileges.FirstOrDefault(m => m.Component == "Prearrivals").View)
+                        {
+                            <div id="prearrivals">
+                                <div class="search-filters-over-datatable">
+                                    <div class="editor-alignment" style="min-width: 130px;">
+                                        <div class="editor-label">
+                                            <label>Booking Status</label>
+                                        </div>
+                                        <div class="editor-field">
+                                            <select style="width: 130px;" id="SearchInPrearrivals_BookingStatusID"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <table id="tblPrearrivals" class="table" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>CRS</th>
+                                            <th>Guest</th>
+                                            <th>Club</th>
+                                            <th>Account</th>
+                                            <th>Contract</th>
+                                            <th>CoOwner</th>
+                                            <th>Total Paid</th>
+                                            <th>Booking Status</th>
+                                            <th>Q</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>CRS</th>
+                                            <th>Guest</th>
+                                            <th>Club</th>
+                                            <th>Account</th>
+                                            <th>Contract</th>
+                                            <th>CoOwner</th>
+                                            <th>Total Paid</th>
+                                            <th>Booking Status</th>
+                                            <th>Q</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <div style="clear: both;"></div>
+                            </div>
+                        }
+                        @if (Model.Privileges.FirstOrDefault(m => m.Component == "Powerline") == null || Model.Privileges.FirstOrDefault(m => m.Component == "Powerline").View)
+                        {
+                            <div id="powerline">
+                                <h2>Penetration Rate by Team</h2>
+                                <div id="divPenetrationRate"></div>
+                                <h2>Power Line</h2>
+                                <table id="tblPowerLine" class="table non-stripable non-editable text-center" style="width:100%;">
+                                    <thead>
+                                        <tr>
+                                            <th>Team</th>
+                                            <th>Promotor</th>
+                                            <th>Qualification</th>
+                                            <th colspan="6">Guest</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Team</th>
+                                            <th>Promotor</th>
+                                            <th>Qualification</th>
+                                            <th colspan="6">Guest</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+                    @Html.Partial("_ArrivalInfoPartial", Model.ArrivalForm)
+                </div>
+            </div>
+        }
+        @if (Model.Privileges.FirstOrDefault(m => m.Component == "Forecast") == null || Model.Privileges.FirstOrDefault(m => m.Component == "Forecast").View)
+        {
+            <div id="tabForecast" aria-labelledby="ui-id-5" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="false">
+                @Html.Partial("_SearchArrivalsForecastPartial", Model.SearchForecast)
+            </div>
+        }
+        @if (Model.Privileges.FirstOrDefault(m => m.Component == "Agents Penetration") == null || Model.Privileges.FirstOrDefault(m => m.Component == "Agents Penetration").View)
+        {
+            <div id="tabPenetration" aria-labelledby="ui-id-7" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="false">
+                @Html.Partial("_SearchPenetrationReportPartial", Model.SearchPenetration)
+            </div>
+        }
+        @if (Model.Privileges.FirstOrDefault(m => m.Component == "Global Penetration") == null || Model.Privileges.FirstOrDefault(m => m.Component == "Global Penetration").View)
+        {
+            <div id="tabGlobalPenetration" aria-labelledby="ui-id-8" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="false">
+                @Html.Partial("_SearchGlobalPenetrationReportPartial", Model.SearchGlobalPenetration)
+            </div>
+        }
+    </div>
+</div>

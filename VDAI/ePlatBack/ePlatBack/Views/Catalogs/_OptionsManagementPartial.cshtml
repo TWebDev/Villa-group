@@ -1,0 +1,70 @@
+﻿@model ePlatBack.Models.ViewModels.OptionsModel.OptionsInfomodel
+
+<fieldset id="fdsOptionsInfo" class="primary-selected-row-dependent">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        Option Info
+    </legend>
+    <div class="align-from-top" style="display:none">
+        @using (Ajax.BeginForm("SaveOption", "Catalogs", new AjaxOptions { OnSuccess = "CATALOG.saveOptionSuccess(data)" }, new { id = "frmOptionInfo", onSubmit = "return UI.showValidationSummary(this.id);" }))
+        {
+            <div id="frmOptionsInfo_ErrorMessages" style="display:none">
+                @Html.ValidationMessageFor(model => model.OptionsInfo_OptionName)
+                @Html.ValidationMessageFor(model => model.OptionsInfo_OptionType)
+                @Html.ValidationMessageFor(model => model.OptionsInfo_Place)
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.OptionsInfo_OptionType)
+                    @Html.HiddenFor(model => model.OptionsInfo_OptionID)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.OptionsInfo_OptionType, Model.OptionsInfo_DrpOptionTypes)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.OptionsInfo_OptionName)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.OptionsInfo_OptionName)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.OptionsInfo_Place)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.OptionsInfo_Place, Model.OptionsInfo_DrpPlaces, new { multiple = "multiple" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.OptionsInfo_GoldCardPrice)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.OptionsInfo_GoldCardPrice)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.OptionsInfo_ResortCredit)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.OptionsInfo_ResortCredit)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.OptionsInfo_OptionDescription)
+                </div>
+                <div class="editor-field">
+                    @Html.TextAreaFor(model => model.OptionsInfo_OptionDescription)
+                </div>
+            </div>
+            <div class="editor-alignment full-width">
+                <input type="submit" id="btnSaveOption" class="submit right" value="save" />
+            </div>
+        }
+    </div>
+</fieldset>

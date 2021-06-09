@@ -1,0 +1,336 @@
+﻿@model ePlatBack.Models.ViewModels.PackageDetailViewModel
+
+@{
+    long terminalID = ePlatBack.Models.Utils.GeneralFunctions.GetTerminalID();
+    ViewBag.Culture = Model.Culture;
+    ViewBag.Title = Model.Seo_Title;
+    ViewBag.Keywords = Model.Seo_Keywords;
+    ViewBag.Description = Model.Seo_Description;
+    ViewBag.Index = Model.Seo_Index;
+    ViewBag.Follow = Model.Seo_Follow;
+
+    ViewBag.Header = Model.Template_Header;
+    ViewBag.Footer = ePlatFront.Resources.Views.Shared.SharedStrings.To_See_Terms + " <a href=\"#terms\" class=\"fancybox\">" + ePlatFront.Resources.Views.Shared.SharedStrings.Click_Here + "</a><div id=\"terms\" style=\"display:none;\"><h2>" + ePlatFront.Resources.Views.Shared.SharedStrings.Terms_and_Conditions + "</h2><br />" + Model.Terms + "</div>" + Model.Template_Footer;
+    ViewBag.Logo = Model.Template_Logo;
+}
+
+
+@section header{
+    @Html.Raw(Model.Scripts_Header)
+}
+
+@section afterBody{
+    @Html.Raw(Model.Scripts_AfterBody)
+}
+
+@section scripts{
+    @Html.Raw(Model.Scripts_Footer)
+    @Scripts.Render("~/Content/plugins/lwtcountdown/jquery.lwtCountdown-1.0.js")
+    @Scripts.Render("~/bundles/dvh/slider")
+    @Scripts.Render("~/bundles/dvh/detail")
+    <script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=false"></script>
+    @Scripts.Render("~/Content/plugins/gmap/gmap.js")
+    <script type="text/javascript">
+        $(function(){
+            //$('#countdown_dashboard').countDown({
+            //    targetDate: {
+            //        'day': @Model.ExpirationDate.Day,
+            //        'month': @Model.ExpirationDate.Month,
+            //        'year': @Model.ExpirationDate.Year,
+            //        'hour': @Model.ExpirationDate.Hour,
+            //        'min': @Model.ExpirationDate.Minute,
+            //        'sec': @Model.ExpirationDate.Second
+            //        },
+            //    omitWeeks: true
+            //});
+            Gmap.init('mapContainer');
+            Gmap.moveMarker(@Model.Resort_Location_Lat, @Model.Resort_Location_Lng, '@Model.Resort');
+
+            if (window.location.href.indexOf('/packages/loreto/all-inclusive') >= 0) {
+                $('.call-us').css('padding', '0').css('margin-bottom','30px').html('<img src="/content/themes/dvh/images/loreto-award.jpg" width="240" />').slideDown('fast');
+            } else{
+                $('.call-us').slideDown('fast');
+            }            
+        });
+    </script>
+}
+
+@section controls{
+    <div id="quoteRequest" style="display:none;">@Html.Partial("_QuoteRequestPartial", Model.QuoteRequestControl)</div>
+}
+
+@section featured {
+    <div id="slidesGallery" class="slide-container">
+        @if (Model.Pictures != null)
+        {
+            <div id="sliderPicturesContainer">
+            @{
+                int j = 0;
+                foreach (var item in Model.Pictures)
+                {
+                <img src="@item.Picture_Url" alt="@item.Picture_Alt" class="slide-picture" style="@(j==0 ? "display:inline-block;" : "display:none;")" />
+                    j++;
+                }
+            }
+            </div>
+            <div class="slider-pager">
+                <div id="pagerRow" class="slider-pager-row">
+                @{
+                    int i = 0;
+                    
+                foreach (var item in Model.Pictures)
+                {
+                    <div class="slide-button @(i==0 ? "slide-button-selected" : "")"  onclick="Slider.play(@i)" style="background-image:url(@item.Picture_Url?height=40)"></div>
+                    i++;
+                }
+                }
+                </div>
+            </div>
+            <div class="slider-info @Model.Destination.ToLower().Replace(" ","-") package-summary">
+                <h2 class="package">@Html.DisplayFor(model => model.Package)</h2>
+                <span class="destination">
+                    @Html.DisplayFor(model => model.Destination), @Html.DisplayFor(model => model.Country)
+                </span>
+                <span class="rating">
+                    @for(var r=0;r<Model.Rating;r++){
+                        <img src="/content/themes/base/images/star1.png" />
+                    }
+                </span>
+                <span class="stay">
+                    @Html.DisplayFor(model => model.Stay)
+                </span>
+                <span class="guests">
+                    @Html.DisplayFor(model => model.Guests)
+                </span>
+                <span class="plan">
+                    @Html.DisplayFor(model => model.PlanType)
+                </span>
+                <span class="resort">
+                    @Html.DisplayFor(model => model.Resort)
+                </span>
+                <span class="resort-label">
+                    @Html.DisplayFor(model => model.Resort_Label)
+                </span>
+                <span class="price">
+                $@Html.DisplayFor(model => model.PackagePrice)
+                </span>
+                <span class="price-savings">
+                    @ePlatFront.Resources.Views.Packages.PackagesStrings.RETAIL_PRICE<br />
+                    <span class="retail">
+                        $@Html.DisplayFor(model => model.RetailPrice)
+                    </span><br />
+                    @ePlatFront.Resources.Views.Packages.PackagesStrings.SAVE <span class="save">@(100-(Model.PackagePrice * 100 / Model.RetailPrice))</span>%
+                </span>
+                <span class="note">@ePlatFront.Resources.Views.Packages.PackagesStrings.Package_Price_Terms</span>
+            </div>
+        }
+    </div>
+    
+}
+@Html.HiddenFor(model => model.PackageID)
+@*@Html.DisplayFor(model => model.VideoUrl)*@
+<div class="left-column">
+    <ul id="submenu">
+        @if (Model.Resort_Description != null)
+        {
+            <li><a href="javascript:UI.showContentLayer(0)" class="selected">@ePlatFront.Resources.Views.Packages.PackagesStrings.Offer</a></li>
+            <li><a href="javascript:UI.showContentLayer(1)">@ePlatFront.Resources.Views.Packages.PackagesStrings.The_Resort</a></li>
+            <li><a href="javascript:UI.showContentLayer(2)">@ePlatFront.Resources.Views.Packages.PackagesStrings.Your_Room</a></li>
+            <li><a href="javascript:UI.showContentLayer(3)">@ePlatFront.Resources.Views.Packages.PackagesStrings.Amenities</a></li>
+            <li><a href="javascript:UI.showContentLayer(4)">@ePlatFront.Resources.Views.Packages.PackagesStrings.FAQ</a></li>
+            <li><a href="javascript:UI.showContentLayer(5)">@ePlatFront.Resources.Views.Packages.PackagesStrings.Map</a></li>
+            <li><a href="javascript:UI.showContentLayer(6)">@ePlatFront.Resources.Views.Packages.PackagesStrings.Reviews</a></li>
+        }
+    </ul>
+    <div class="content-area" itemscope itemtype="http://schema.org/Product">
+        <div class="content-row">
+            <div class="content-cell">
+                <div class="content-left-main">
+                    <h1 itemprop="name">@Html.DisplayFor(model => model.Package)</h1>
+                    <span class="resort">@Html.DisplayFor(model => model.Resort)</span>
+                    @for(var r=0;r<Model.Rating;r++){
+                            <img src="/content/themes/base/images/star2.jpg" />
+                    }
+                    @Html.DisplayFor(model => model.Destination)
+                    <div itemprop="aggregateRating" style="display:none" itemscope itemtype="http://schema.org/AggregateRating"> Rated <span itemprop="ratingValue">@Html.Raw(Model.Rating)</span>/5 based on <span itemprop="reviewCount">@Html.Raw(Model.Reviews.Count())</span> customer reviews</div>
+                </div>
+                <div class="content-right-secondary" itemprop="description">
+                    @Html.DisplayFor(model=>model.Nights) @ePlatFront.Resources.Views.Packages.PackagesStrings.nights<br />
+                    @Html.DisplayFor(model=>model.Guests)<br />
+                    @ePlatFront.Resources.Views.Packages.PackagesStrings.for_only <h4>$@Html.DisplayFor(model=>model.PackagePrice)</h4>
+                </div>
+                <div class="content-left-secondary">
+                    @if(@Model.Pictures != null && @Model.Pictures.Count() > 0){
+                        <img itemprop="image" src="@Model.Pictures.First().Picture_Url?width=240" width="240" height="110" alt="@Html.DisplayFor(model => model.Package)" />
+                    }
+	
+                    <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                        <meta itemprop="priceCurrency" content="USD" />
+                        <span class="price" itemprop="price">
+                            $@Html.DisplayFor(model => model.PackagePrice)
+                        </span>
+                    </div>
+                    <span class="price-savings">
+                        <span class="retail">
+                            @ePlatFront.Resources.Views.Packages.PackagesStrings.RETAIL_PRICE $@Html.DisplayFor(model => model.RetailPrice)
+                        </span><br />
+                        @ePlatFront.Resources.Views.Packages.PackagesStrings.SAVE <span class="save">@(Model.PackagePrice != null ? (100-(Model.PackagePrice * 100 / Model.RetailPrice)).ToString() : "")</span>%
+                    </span>
+                    @if (@Model.PlanType == "All Inclusive" && Model.Resort_Description != null)
+                    {
+                    <a class="interlinks fancybox" href="#infoAllInclusive">@ePlatFront.Resources.Views.Packages.PackagesStrings.All_Inclusive_Meaning</a>
+                    }
+                    @if (Model.Resort_Description != null)
+                    {
+                        <a class="interlinks" href="javascript:UI.showContentLayer(1)">@ePlatFront.Resources.Views.Packages.PackagesStrings.About_the_Resort</a>
+                        <a class="interlinks" href="javascript:UI.showContentLayer(4)">@ePlatFront.Resources.Views.Packages.PackagesStrings.Any_doubt</a>
+                    }                    
+                    <div style="display:none;" id="infoAllInclusive">
+                        <h2>@ePlatFront.Resources.Views.Packages.PackagesStrings.All_Inclusive_Meaning</h2><br />
+                        @Html.Raw(Model.Resort_AllInclusive)</div>
+                    <img class="best-price" src="/Content/themes/dvh/images/best-price.jpg" alt="" />
+                </div><div class="content-right-main">
+                    @Html.Raw(Model.Description)
+
+                    <span class="book-now">@ePlatFront.Resources.Views.Packages.PackagesStrings.Book_Now!</span>
+                    <span>@ePlatFront.Resources.Views.Packages.PackagesStrings.Call_Our_Toll_Free_Number</span><br />
+                    <span class="phone-number phone-desktop">@Model.Template_Phone_Desktop</span>
+                    <span class="phone-number phone-mobile">@Model.Template_Phone_Mobile</span>
+                </div>
+                @Html.Raw(Model.Options)
+                @if(Model.Reviews.Count() > 0){
+                    <div class="review">
+                        @Html.Raw(Model.Reviews.First().Review)
+                        <span class="author">
+                        @Model.Reviews.First().Author, @Model.Reviews.First().From
+                        </span>
+                    </div>
+                    if(Model.Reviews.Count() > 1){
+                    <a href="Javascript: UI.showContentLayer(6)">+ Read More Reviews</a>
+                    }                        
+                }
+                
+            </div><div class="content-cell">
+                <h2 style="display:none;">@Html.DisplayFor(model => model.Resort)</h2>
+                      <h3 style="display:none;">@Html.DisplayFor(model => model.Resort_Label)</h3>
+                <br />
+                <div class="content-left-secondary">
+                    @foreach (var item in Model.Resort_Pictures)
+                    {
+                         <img src="@item.Picture_Url?width=240" alt="@item.Picture_Description" /><br /><br />
+                    }
+                </div><div class="content-right-main">
+                    @Html.Raw(Model.Resort_Description)
+                </div>
+            </div><div class="content-cell">
+                @foreach (var room in Model.Rooms)
+                {
+                    <h2>@room.Room - $@room.Price</h2><br />
+                    <div class="content-left-secondary">
+                        <img src="@room.PictureUrl?width=240" alt="" />                   
+                    </div><div class="content-right-main">
+                        @Html.Raw(room.Description)
+                    </div>
+                }
+            </div><div class="content-cell">
+                <h2>@ePlatFront.Resources.Views.Packages.PackagesStrings.Amenities</h2>
+                @Html.Raw(Model.Resort_Amenities)
+            </div><div class="content-cell">
+                <h2>@ePlatFront.Resources.Views.Packages.PackagesStrings.FAQ</h2><br />
+                @Html.Raw(Model.Resort_FAQ)
+            </div><div class="content-cell">
+                <h2>@ePlatFront.Resources.Views.Packages.PackagesStrings.Map</h2><br />
+                <div id="mapContainer"></div>
+            </div><div class="content-cell">
+                <h2>@ePlatFront.Resources.Views.Packages.PackagesStrings.Reviews</h2><br />
+                @foreach (var review in Model.Reviews)
+                {
+                    <div class="review" itemprop="review" itemscope itemtype="http://schema.org/Review">
+                        <span itemprop="description">
+                        @Html.Raw(review.Review)
+                        </span>
+                        <div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+                            <meta itemprop="worstRating" content = "1">
+                            <span itemprop="ratingValue">5</span>/
+                            <span itemprop="bestRating">5</span>stars
+                        </div>
+                        <span class="author">
+                        <span itemprop="author">@review.Author</span>, @review.From
+                        </span>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<div class="right-column">
+    <div class="timer">
+        This is a Limited Time Offer
+        <div id="timer">
+            <div id="countdown_dashboard">
+                <div class="dash days_dash">
+                    <div class="digit">
+                        <div class="top" style="display: none;">0</div>
+                        <div class="bottom" style="display: block;">0</div>
+                    </div>
+                    <div class="digit">
+                        <div class="top" style="display: none;">0</div>
+                        <div class="bottom" style="display: block;">0</div>
+                    </div>
+                    <span class="dash_title">D</span>
+                </div>
+
+                <div class="dash hours_dash">
+                    <div class="digit">
+                        <div class="top" style="display: none;">0</div>
+                        <div class="bottom" style="display: block;">0</div>
+                    </div>
+                    <div class="digit">
+                        <div class="top" style="display: none;">0</div>
+                        <div class="bottom" style="display: block;">0</div>
+                    </div>
+                    <span class="dash_title">H</span>
+                </div>
+
+                <div class="dash minutes_dash">
+                    <div class="digit">
+                        <div class="top" style="display: none;">0</div>
+                        <div class="bottom" style="display: block;">0</div>
+                    </div>
+                    <div class="digit">
+                        <div class="top" style="display: none;">0</div>
+                        <div class="bottom" style="display: block;">0</div>
+                    </div>
+                    <span class="dash_title">M</span>
+                </div>
+
+                <div class="dash seconds_dash">
+                    <div class="digit">
+                        <div class="top" style="display: none;">0</div>
+                        <div class="bottom" style="display: block;">0</div>
+                    </div>
+                    <div class="digit">
+                        <div class="top" style="display: none;">0</div>
+                        <div class="bottom" style="display: block;">0</div>
+                    </div>
+                    <span class="dash_title">S</span>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    @*<img class="video-testimonial" style="width: 240px; height: 205px; margin-bottom:5px;" src="~/content/themes/dvh/images/memorial-day-special.jpg" />*@
+    <div class="call-us" style="display:none;">
+        <span class="action">@ePlatFront.Resources.Views.Packages.PackagesStrings.Call_Now!</span><br />
+        <strong>@ePlatFront.Resources.Views.Packages.PackagesStrings.Book_Today</strong><br />
+        @ePlatFront.Resources.Views.Packages.PackagesStrings.Decide_travel_dates_later
+        <span class="phone-number phone-desktop">@Model.Template_Phone_Desktop</span>
+        <span class="phone-number phone-mobile">@Model.Template_Phone_Mobile</span>
+    </div>
+    <div class="right-panel">
+            <img src="/images/ab-seal-horizontal-large.jpg?w=200" alt="Better Business Bureau" style="border:none;" />
+    </div>
+    @Html.Partial("_FreeVacationPartial", Model.FreeVacationControl)
+    
+</div>

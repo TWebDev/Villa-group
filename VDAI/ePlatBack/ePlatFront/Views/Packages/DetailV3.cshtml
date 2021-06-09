@@ -1,0 +1,367 @@
+﻿@model ePlatBack.Models.ViewModels.PackageDetailViewModel
+
+@{
+    long terminalID = ePlatBack.Models.Utils.GeneralFunctions.GetTerminalID();
+    ViewBag.Culture = Model.Culture;
+    ViewBag.Title = Model.Seo_Title;
+    ViewBag.Keywords = Model.Seo_Keywords;
+    ViewBag.Description = Model.Seo_Description;
+    ViewBag.Index = Model.Seo_Index;
+    ViewBag.Follow = Model.Seo_Follow;
+
+    ViewBag.Header = Model.Template_Header;
+    //ViewBag.Footer = ePlatFront.Resources.Views.Shared.SharedStrings.To_See_Terms + " <a data-toggle=\"modal\" data-target=\"#terms\" title=\"Terms and Conditions\">" + ePlatFront.Resources.Views.Shared.SharedStrings.Click_Here + "</a><div id=\"terms\" class=\"modal fade in\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"termsLabel\"><div class=\"modal-dialog\" role=\"document\"><div class=\"modal-content\"><div class=\"modal-header\"><button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" id=\"btnCloseTerms\"><span aria-hidden=\"true\">×</span></button><h2 id=\"termsLabel\" class=\"modal-title\">" + ePlatFront.Resources.Views.Shared.SharedStrings.Terms_and_Conditions + "</h2></div><div class=\"modal-body\">" + Model.Terms + "</div></div></div></div>" + Model.Template_Footer;
+    ViewBag.Logo = Model.Template_Logo;
+}
+
+@section header{
+    @Html.Raw(Model.Scripts_Header)
+}
+
+@section afterBody{
+    @Html.Raw(Model.Scripts_AfterBody)
+}
+
+@section scripts{
+    @Html.Raw(Model.Scripts_Footer)
+    @Scripts.Render("~/Content/plugins/lwtcountdown/jquery.lwtCountdown-1.0.js")
+    @Scripts.Render("~/Content/plugins/gmap/gmap.js")
+    <script type="text/javascript">
+        function initMap() {
+            Gmap.init('mapContainer');
+            Gmap.moveMarker(@Model.Resort_Location_Lat, @Model.Resort_Location_Lng, '@Model.Resort');
+        }
+
+        $(function () {
+            $('.timer').slideDown();
+            $('#countdown_dashboard').countDown({
+                targetDate: {
+                    'day': @Model.ExpirationDate.Day,
+                    'month': @Model.ExpirationDate.Month,
+                    'year': @Model.ExpirationDate.Year,
+                    'hour': @Model.ExpirationDate.Hour,
+                    'min': @Model.ExpirationDate.Minute,
+                    'sec': @Model.ExpirationDate.Second
+                    },
+                omitWeeks: true
+            });
+
+            $("body, .gallery-box").vegas({
+                slides: [
+                    @if (Model.Pictures != null)
+                    {
+                        int j = 0;
+                        foreach (var item in Model.Pictures)
+                        {
+                            if (j > 0) {
+                                @:,
+                            }
+                                @: { src: "https://www.todaygetaway.com@(item.Picture_Url)", animation: "random", transition: "swirlRight2" }
+
+                            j++;
+                        }
+                    }
+                ]
+            });
+
+            function getRandomInt(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+
+            //personas viendo el paquete
+            setTimeout(function(){
+                var visitors = getRandomInt(15,30);
+                $('.notification').animate({ bottom: '15px' }, 300, function(){
+                    $('.notification-message').text(visitors + ' users are watching this package right now.').delay(1500).queue(function(){
+                        $('.notification-message').text((parseInt(visitors) + getRandomInt(1, 4)) + ' users are watching this package right now.').dequeue();
+                    }).delay(1500).queue(function(){
+                        $('.notification').animate({ bottom: '-85px' }, 300, function() {
+                            $('.notification-message').text('').dequeue();
+                        })
+                    });;
+                });
+            }, 3000);
+
+            //personas que compraron el paquete en los últimos 7 días
+            function lsTest(){
+                var test = 'test';
+                try {
+                    localStorage.setItem(test, test);
+                    localStorage.removeItem(test);
+                    return true;
+                } catch(e) {
+                    return false;
+                }
+            }
+
+            function getTodayStr() {
+                var today = new Date();
+                var dd = today.getDate();
+                var mm = today.getMonth()+1; //January is 0!
+
+                var yyyy = today.getFullYear();
+                if(dd<10){
+                    dd='0'+dd
+                }
+                if(mm<10){
+                    mm='0'+mm
+                }
+                return yyyy + '-' + mm + '-' + dd;
+            }
+
+            setTimeout(function(){
+                var purchases = 0;
+                if(lsTest() === true){
+                    // available
+                    if (localStorage.LastPurchases != undefined){
+                        //ya existe
+                        var purchasesObj = eval('('+ localStorage.LastPurchases + ')');
+                        if (purchasesObj.length > 0) {
+                            $.each(purchasesObj, function(i,item){
+                                if (item.Location == window.location.pathname){
+                                    if(item.Date == getTodayStr()){
+                                        purchases = item.Purchases;
+                                    } else {
+                                        purchases = getRandomInt(40,60);
+                                        item.Purchases = purchases;
+                                        item.Date = getTodayStr();
+                                    }
+                                }
+                            });
+                            if(purchases == 0){
+                                //agregar al objeto y guardar
+                                purchases = getRandomInt(40,60);
+                                var newPurchase = {
+                                    Location: window.location.pathname,
+                                    Purchases: purchases,
+                                    Date: getTodayStr()
+                                }
+                                purchasesObj.push(newPurchase);
+                            }
+                        }
+                    } else {
+                        //crear el registro del objeto
+                        purchases = getRandomInt(40,60);
+                        var purchasesObj = [];
+                        var newPurchase = {
+                            Location: window.location.pathname,
+                            Purchases: purchases,
+                            Date: getTodayStr()
+                        }
+                        purchasesObj.push(newPurchase);
+                    }
+
+                    localStorage.LastPurchases = $.toJSON(purchasesObj);
+
+                    $('.notification').animate({ bottom: '15px' }, 300, function(){
+                        $('.notification-message').text('This package was purchased ' + purchases + ' times the last 7 days.').delay(3000).queue(function(){
+                            $('.notification').animate({ bottom: '-85px' }, 300, function() {
+                                $('.notification-message').text('').dequeue();
+                            })
+                        });
+                    });
+                }
+            }, 10000);
+        });
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCoQg-B0znVufo3cCJf9c3Qd7MY05RSVo&callback=initMap">
+    </script>
+}
+
+@section controls{
+    <div id="quoteRequest" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="quoteRequestLabel">@Html.Partial("_QuoteRequestPartialV2", Model.QuoteRequestControl)</div>
+    <div id="freeVacation" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="freeVacationLabel">@Html.Partial("_FreeVacationPartialV2", Model.FreeVacationControl)</div>
+    <div id="redeemMyPackage" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="redeemMyPackageLabel">@Html.Partial("_RedeemMyPackage", Model.RedeemMyPackageControl)</div>
+}
+
+<section class="header-call-to-action">
+    <div class="container">
+        <h2 class="wow fadeInUp">@Html.DisplayFor(model => model.Destination), @Html.DisplayFor(model => model.Country)</h2>
+        <span class="price wow fadeInDown">
+            $@Html.DisplayFor(model => model.PackagePrice)
+        </span>
+    </div>
+</section>
+<section id="package" class="white-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1 itemprop="name" class="wow fadeInUp">@Html.DisplayFor(model => model.Package)</h1>
+                <div class="row">
+                    <div class="col-sm-6 col-md-3 col-lg-3">
+                        <div class="big-header-right wow bounceInLeft">
+                            <h3>
+                                @Html.DisplayFor(model => model.Nights) @ePlatFront.Resources.Views.Packages.PackagesStrings.nights<br />
+                                @Html.DisplayFor(model => model.Guests)<br />
+                                @Html.DisplayFor(model => model.PlanType)
+                                <br />                                @ePlatFront.Resources.Views.Packages.PackagesStrings.for_only <span class="price">$@Html.DisplayFor(model => model.PackagePrice)</span>
+                            </h3>
+                            <span class="retail">
+                                @ePlatFront.Resources.Views.Packages.PackagesStrings.RETAIL_PRICE <span class="price">$@Html.DisplayFor(model => model.RetailPrice)</span>
+                            </span><br />
+                            <h4 class="price-savings">
+                                @ePlatFront.Resources.Views.Packages.PackagesStrings.SAVE <span class="save">@(100 - (Model.PackagePrice * 100 / Model.RetailPrice))</span>%
+                            </h4>
+                            <span class="note hidden-sm">@ePlatFront.Resources.Views.Packages.PackagesStrings.Package_Price_Terms</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-6">
+                        <div class="package-rating wow fadeInUp">
+                            <strong>Package Rating</strong><br />
+                            @for (var r = 0; r < Model.Rating; r++)
+                            {
+                                <img src="/content/themes/base/images/star2.jpg" />
+                            }
+                            <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"> Rated <span itemprop="ratingValue">@Html.Raw(Model.Rating)</span>/5 based on <span itemprop="reviewCount">@Html.Raw(Model.Reviews.Count())</span> customer reviews</div>
+                        </div>
+                        <div class="wow fadeInUp">
+                            @Html.Raw(Model.Description)
+                        </div>
+                    </div>
+                    <div class="hidden-xs hidden-sm col-md-3 col-lg-3">
+                        <div class="call-us wow bounceInRight">
+                            <span class="action">@ePlatFront.Resources.Views.Packages.PackagesStrings.Call_Now!</span><br />
+                            <strong>@ePlatFront.Resources.Views.Packages.PackagesStrings.Book_Today</strong><br />
+                            <span>
+                                Decide dates later.<br />
+                                Our toll free number is
+                            </span><br />
+                            <span class="phone-number phone-desktop hidden-xs hidden-sm">@Model.Template_Phone_Desktop</span>
+                            <span class="phone-number phone-mobile hidden-md hidden-lg">@Model.Template_Phone_Mobile</span>
+                        </div>
+
+                        <div class="right-panel wow bounceInRight">
+                            <a href="http://www.bbb.org/mexico/business-reviews/hotels-reservations/vg-vacation-services-in-puerto-vallarta-ja-332" target="_blank">
+                                <img src="/images/ab-seal-horizontal-large.jpg?w=200" alt="Better Business Bureau" style="width:200px;" class="img-responsive">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="gallery" class="black-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="wow fadeInUp">Package Gallery</h2>
+                <div class="gallery-box wow fadeInUp">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="resort" class="white-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="wow fadeInUp">The Resort</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 wow fadeInLeft">
+                @Html.Raw(Model.Resort_Description)
+            </div>
+            <div class="col-sm-6">
+                <div class="row">
+                    @foreach (var item in Model.Resort_Pictures)
+                    {
+                        <div class="col-sm-6 wow fadeInRight">
+                            <img src="@item.Picture_Url?width=480" alt="@item.Picture_Description" class="img-responsive img-thumbnail" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="room" class="black-box">
+    <div class="container">
+        @foreach (var room in Model.Rooms)
+        {
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2 class="wow fadeInUp">@room.Room - $@room.Price</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 wow fadeInLeft">
+                    @Html.Raw(room.Description)
+                </div>
+                <div class="col-sm-6">
+                    <img src="@room.PictureUrl" class="img-responsive img-thumbnail wow fadeInRight" alt="" />
+                </div>
+            </div>
+        }
+    </div>
+</section>
+<section id="amenities" class="white-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 wow fadeInUp">
+                <h2>@ePlatFront.Resources.Views.Packages.PackagesStrings.Amenities</h2>
+                @Html.Raw(Model.Resort_Amenities)
+            </div>
+        </div>
+    </div>
+</section>
+<section id="map" class="black-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="wow fadeInUp">@ePlatFront.Resources.Views.Packages.PackagesStrings.Map</h2><br />
+                <div id="mapContainer" class="fadeInUp"></div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="faq" class="white-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 wow fadeInUp">
+                <h2>@ePlatFront.Resources.Views.Packages.PackagesStrings.FAQ</h2><br />
+                @Html.Raw(Model.Resort_FAQ)
+            </div>
+        </div>
+    </div>
+</section>
+<section id="reviews" class="black-box-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="wow fadeInUp">@ePlatFront.Resources.Views.Packages.PackagesStrings.Reviews</h2>
+                <div class="row">
+                    @foreach (var review in Model.Reviews)
+                    {
+                        <div class="col-lg-4 col-md-4 col-sm-6">
+                            <div class="review alert alert-warning wow fadeInUp" itemprop="review" itemscope itemtype="http://schema.org/Review">
+                                <div itemprop="description">
+                                    @Html.Raw(review.Review)
+                                </div>
+                                @for (var r = 0; r < Model.Rating; r++)
+                                {
+                                    <img src="/content/themes/base/images/star2.jpg" />
+                                }
+                                <div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating" class="hidden-xs hidden-sm hidden-md hidden-lg">
+                                    <meta itemprop="worstRating" content="1">
+                                    <span itemprop="ratingValue">5</span> /
+                                    <span itemprop="bestRating">5</span>stars
+                                </div>
+                                <div class="author">
+                                    <span itemprop="author">@review.Author</span>, @review.From
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>|
+            </div>
+        </div>
+    </div>
+</section>
+<div class="notification">
+    @*<button type="button" class="close">&times;</button>*@
+    <span class="notification-message"></span>
+</div>

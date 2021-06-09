@@ -1,0 +1,28 @@
+﻿@model ePlatBack.Models.ViewModels.ZonesModel.SearchZonesModel
+
+<table id="tblSearchZonesResults" class="table search-results">
+            <thead>
+                <tr>
+                    <th>Zone</th>
+                    <th>Destination</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.ListZones != null)
+                {
+                    foreach (var i in Model.ListZones)
+                    {
+                        var id = "zone_" + i.ZoneInfo_ZoneID;
+                        <tr id="@id">
+                            <td>
+                                @Html.DisplayFor(model => i.ZoneInfo_Zone)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.ZoneInfo_DestinationName)
+                                <img src="/Content/themes/base/images/cross.png" class="right delete-item" />
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>

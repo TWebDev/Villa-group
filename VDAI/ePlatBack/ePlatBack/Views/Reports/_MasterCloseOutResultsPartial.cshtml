@@ -1,0 +1,271 @@
+﻿@model  ePlatBack.Models.ViewModels.MasterCloseOutModel.MasterCloseOutResults
+
+<span style="float:right;">
+    <h5 id="spnErrors" class="mb-error" style="display:inline-block; margin-right:10px; margin-top: 0;"></h5>
+    <input id="btnProcessCoupons" type="button" class="submit" value="Start Processing Pending Coupons" />
+</span>
+<h2 style="display:inline;">Close Outs</h2>
+
+<div class="table-div">
+    <div class="table-row">
+        <div class="table-cell">
+            <span class="summary-labels">Cached</span>
+            <span class="summary-fields cached-label">@Model.Cached</span>
+        </div>
+        <div class="table-cell">
+            <span class="summary-labels">Not Cached</span>
+            <span class="summary-fields not-cached-label">@Model.NotCached</span>
+        </div>
+        <div class="table-cell">
+            <span class="summary-labels">Out of Date</span>
+            <span class="summary-fields out-of-date-label">@Model.OutOfDate</span>
+        </div>
+        <div class="table-cell">
+            <span class="summary-labels">Total Coupons</span>
+            <span class="summary-fields">@Model.TotalCoupons</span>
+        </div>
+        <div class="table-cell">
+            <span class="summary-labels">Status</span>
+            <span class="summary-fields"><span id="spnProgress"></span></span>
+        </div>
+    </div>
+</div>
+
+<table class="table exportable non-editable non-stripable" style="width: 100%">
+    @foreach (var cdate in Model.CloseOutsByDate)
+    {
+        <!--Date x - Pos 1 - Co 1 - Coupons 1 -->
+        <tr>
+            <td class="date" rowspan="@cdate.NumberOfCoupons">
+                <h2>@cdate.Date.ToString("yyyy-MM-dd")</h2>
+            </td>
+            @if (cdate.PointsOfSale.Count() > 0)
+            {
+                <td class="pos" rowspan="@cdate.PointsOfSale.FirstOrDefault().NumberOfCoupons">
+                    <h3>
+                        @cdate.PointsOfSale.FirstOrDefault().PointOfSale
+                    </h3>
+                    <span class="block small-text">@cdate.Date.ToString("yyyy-MM-dd")</span>
+                </td>
+
+                if (cdate.PointsOfSale.FirstOrDefault().CloseOuts.Count() > 0)
+                {
+                    <td class="close-out" rowspan="@cdate.PointsOfSale.FirstOrDefault().CloseOuts.FirstOrDefault().NumberOfCoupons">
+                        Close Out Date: @cdate.Date.ToString("MMMM dd")<br />
+                        Agent: @cdate.PointsOfSale.FirstOrDefault().CloseOuts.FirstOrDefault().Agent
+                        <span class="small-text block">Saved on  @cdate.PointsOfSale.FirstOrDefault().CloseOuts.FirstOrDefault().SavedOn</span>
+                    </td>
+
+                    if (@cdate.PointsOfSale.FirstOrDefault().CloseOuts.FirstOrDefault().Coupons.Count() > 0)
+                    {
+                        <td class="coupon @(cdate.PointsOfSale.FirstOrDefault().CloseOuts.FirstOrDefault().Coupons.FirstOrDefault().Closed ? "cached" : "pending")" data-id="@cdate.PointsOfSale.FirstOrDefault().CloseOuts.FirstOrDefault().Coupons.FirstOrDefault().Purchase_ServiceID">
+                            <a target="_blank" href="/crm/masterchart#purchaseid=@cdate.PointsOfSale.FirstOrDefault().CloseOuts.FirstOrDefault().Coupons.FirstOrDefault().PurchaseID">
+                                @cdate.PointsOfSale.FirstOrDefault().CloseOuts.FirstOrDefault().Coupons.FirstOrDefault().Folio - @cdate.PointsOfSale.FirstOrDefault().CloseOuts.FirstOrDefault().Coupons.FirstOrDefault().Item
+                            </a>
+                            <span class="small-text block">@cdate.PointsOfSale.FirstOrDefault().CloseOuts.FirstOrDefault().Coupons.FirstOrDefault().Customer : @Html.Raw(cdate.PointsOfSale.FirstOrDefault().CloseOuts.FirstOrDefault().Coupons.FirstOrDefault().Status) : @(cdate.PointsOfSale.FirstOrDefault().CloseOuts.FirstOrDefault().Coupons.FirstOrDefault().CachedOn != null ? "Cached on " + cdate.PointsOfSale.FirstOrDefault().CloseOuts.FirstOrDefault().Coupons.FirstOrDefault().CachedOn.Value.ToString("yyyy-MM-dd hh:mm:ss tt") + " : " : "") @cdate.PointsOfSale.FirstOrDefault().CloseOuts.FirstOrDefault().Coupons.FirstOrDefault().StatusMessage</span>
+                        </td>
+                    }
+                    else
+                    {
+                        <td></td>
+                    }
+                }
+                else
+                {
+                    <td></td>
+                    <td></td>
+                }
+            }
+            else
+            {
+                <td></td>
+                <td></td>
+                <td></td>
+            }
+        </tr>
+
+        <!--Date x - Pos 1 - Co 1 - Coupons n -->
+        if (@cdate.PointsOfSale.FirstOrDefault().CloseOuts.FirstOrDefault() != null)
+        {
+            foreach (var coupon in @cdate.PointsOfSale.FirstOrDefault().CloseOuts.FirstOrDefault().Coupons.Skip(1))
+            {
+                <tr>
+                    <td class="coupon @(coupon.Closed ? "cached" : "pending")" data-id="@coupon.Purchase_ServiceID">
+                        <a target="_blank" href="/crm/masterchart#purchaseid=@coupon.PurchaseID">
+                            @coupon.Folio - @coupon.Item
+                        </a>
+                        <span class="small-text block">@coupon.Customer : @Html.Raw(coupon.Status) : @(coupon.CachedOn != null ? "Cached on " + coupon.CachedOn.Value.ToString("yyyy-MM-dd hh:mm:ss tt") + " : " : "") @coupon.StatusMessage</span>
+                    </td>
+                </tr>
+            }
+
+        <!--Date x - Pos 1 - Co n -->
+            foreach (var closeout in @cdate.PointsOfSale.FirstOrDefault().CloseOuts.Skip(1))
+            {
+            <!--Date x - Pos 1 - Co x - Coupons 1 -->
+                <tr>
+                    <td class="close-out" rowspan="@closeout.NumberOfCoupons">
+                        Close Out Date: @cdate.Date.ToString("MMMM dd")<br />
+                        Agent: @closeout.Agent
+                        <span class="small-text block">Saved on @closeout.SavedOn</span>
+                    </td>
+
+                    @if (@closeout.Coupons.Count() > 0)
+                    {
+                        <td class="coupon @(closeout.Coupons.FirstOrDefault().Closed ? "cached" : "pending")" data-id="@closeout.Coupons.FirstOrDefault().Purchase_ServiceID">
+                            <a target="_blank" href="/crm/masterchart#purchaseid=@closeout.Coupons.FirstOrDefault().PurchaseID">
+                                @closeout.Coupons.FirstOrDefault().Folio - @closeout.Coupons.FirstOrDefault().Item
+                            </a>
+                            <span class="small-text block">@closeout.Coupons.FirstOrDefault().Customer : @Html.Raw(closeout.Coupons.FirstOrDefault().Status) : @(closeout.Coupons.FirstOrDefault().CachedOn != null ? "Cached on " + closeout.Coupons.FirstOrDefault().CachedOn.Value.ToString("yyyy-MM-dd hh:mm:ss tt") + " : " : "") @closeout.Coupons.FirstOrDefault().StatusMessage</span>
+                        </td>
+                    }
+                    else
+                    {
+                        <td></td>
+                    }
+                </tr>
+            <!--Date x - Pos 1 - Co x - Coupons n -->
+                foreach (var coupon in closeout.Coupons.Skip(1))
+                {
+                    <tr>
+                        <td class="coupon @(coupon.Closed ? "cached" : "pending")" data-id="@coupon.Purchase_ServiceID">
+                            <a target="_blank" href="/crm/masterchart#purchaseid=@coupon.PurchaseID">
+                                @coupon.Folio - @coupon.Item
+                            </a>
+                            <span class="small-text block">@coupon.Customer : @Html.Raw(coupon.Status) : @(coupon.CachedOn != null ? "Cached on " + coupon.CachedOn.Value.ToString("yyyy-MM-dd hh:mm:ss tt") + " : " : "") @coupon.StatusMessage</span>
+                        </td>
+                    </tr>
+                }
+            }
+        }
+
+
+        <!--Date x - Pos n-->
+        foreach (var pos in cdate.PointsOfSale.Skip(1))
+        {
+            <!--Date x - Pos x - Co 1 - Coupon 1-->
+            <tr>
+                <td class="pos" rowspan="@pos.NumberOfCoupons">
+                    <h3>
+                        @pos.PointOfSale
+                    </h3>
+                    <span class="block small-text">@cdate.Date.ToString("yyyy-MM-dd")</span>
+                </td>
+
+                @if (pos.CloseOuts.Count() > 0)
+                {
+                    <td class="close-out" rowspan="@pos.CloseOuts.FirstOrDefault().NumberOfCoupons">
+                        Close Out Date: @cdate.Date.ToString("MMMM dd")<br />
+                        Agent: @pos.CloseOuts.FirstOrDefault().Agent
+                        <span class="small-text block">Saved on @pos.CloseOuts.FirstOrDefault().SavedOn</span>
+                    </td>
+
+                    if (@pos.CloseOuts.FirstOrDefault().Coupons.Count() > 0)
+                    {
+                        <td class="coupon @(pos.CloseOuts.FirstOrDefault().Coupons.FirstOrDefault().Closed ? "cached" : "pending")" data-id="@pos.CloseOuts.FirstOrDefault().Coupons.FirstOrDefault().Purchase_ServiceID">
+                            <a target="_blank" href="/crm/masterchart#purchaseid=@pos.CloseOuts.FirstOrDefault().Coupons.FirstOrDefault().PurchaseID">
+                                @pos.CloseOuts.FirstOrDefault().Coupons.FirstOrDefault().Folio - @pos.CloseOuts.FirstOrDefault().Coupons.FirstOrDefault().Item
+                            </a>
+                            <span class="small-text block">@pos.CloseOuts.FirstOrDefault().Coupons.FirstOrDefault().Customer : @Html.Raw(pos.CloseOuts.FirstOrDefault().Coupons.FirstOrDefault().Status) : @(pos.CloseOuts.FirstOrDefault().Coupons.FirstOrDefault().CachedOn != null ? "Cached on " + pos.CloseOuts.FirstOrDefault().Coupons.FirstOrDefault().CachedOn.Value.ToString("yyyy-MM-dd hh:mm:ss tt") + " : " : "") @pos.CloseOuts.FirstOrDefault().Coupons.FirstOrDefault().StatusMessage</span>
+                        </td>
+                    }
+                    else
+                    {
+                        <td></td>
+                    }
+                }
+                else
+                {
+                    <td></td>
+                    <td></td>
+                }
+            </tr>
+            <!--Date x - Pos x - Co 1 - Coupon n-->
+            if (pos.CloseOuts.FirstOrDefault() != null)
+            {
+                foreach (var coupon in @pos.CloseOuts.FirstOrDefault().Coupons.Skip(1))
+                {
+                    <tr>
+                        <td class="coupon @(coupon.Closed ? "cached" : "pending")" data-id="@coupon.Purchase_ServiceID">
+                            <a target="_blank" href="/crm/masterchart#purchaseid=@coupon.PurchaseID">
+                                @coupon.Folio - @coupon.Item
+                            </a>
+                            <span class="small-text block">@coupon.Customer : @Html.Raw(coupon.Status) : @(coupon.CachedOn != null ? "Cached on " + coupon.CachedOn.Value.ToString("yyyy-MM-dd hh:mm:ss tt") + " : " : "") @coupon.StatusMessage</span>
+                        </td>
+                    </tr>
+                }
+
+            <!--Date x - Pos x - Co n-->
+                foreach (var closeout in pos.CloseOuts.Skip(1))
+                {
+                <!--Date x - Pos x - Co x - Coupons 1 -->
+                    <tr>
+                        <td class="close-out" rowspan="@closeout.NumberOfCoupons">
+                            Close Out Date: @cdate.Date.ToString("MMMM dd")<br />
+                            Agent: @closeout.Agent
+                            <span class="small-text block">Saved on @closeout.SavedOn</span>
+                        </td>
+
+                        @if (@closeout.Coupons.Count() > 0)
+                        {
+                            <td class="coupon @(closeout.Coupons.FirstOrDefault().Closed ? "cached" : "pending")" data-id="@closeout.Coupons.FirstOrDefault().Purchase_ServiceID">
+                                <a target="_blank" href="/crm/masterchart#purchaseid=@closeout.Coupons.FirstOrDefault().PurchaseID">
+                                    @closeout.Coupons.FirstOrDefault().Folio - @closeout.Coupons.FirstOrDefault().Item
+                                </a>
+                                <span class="small-text block">@closeout.Coupons.FirstOrDefault().Customer : @Html.Raw(closeout.Coupons.FirstOrDefault().Status) : @(closeout.Coupons.FirstOrDefault().CachedOn != null ? "Cached on " + closeout.Coupons.FirstOrDefault().CachedOn.Value.ToString("yyyy-MM-dd hh:mm:ss tt") + " : " : "") @closeout.Coupons.FirstOrDefault().StatusMessage</span>
+                            </td>
+                        }
+                        else
+                        {
+                            <td></td>
+                        }
+                    </tr>
+
+                <!--Date x - Pos x - Co x - Coupons n -->
+                    foreach (var coupon in closeout.Coupons.Skip(1))
+                    {
+                        <tr>
+                            <td class="coupon @(coupon.Closed ? "cached" : "pending")" data-id="@coupon.Purchase_ServiceID">
+                                <a target="_blank" href="/crm/masterchart#purchaseid=@coupon.PurchaseID">
+                                    @coupon.Folio - @coupon.Item
+                                </a>
+                                <span class="small-text block">@coupon.Customer : @Html.Raw(coupon.Status) : @(coupon.CachedOn != null ? "Cached on " + coupon.CachedOn.Value.ToString("yyyy-MM-dd hh:mm:ss tt") + " : " : "") @coupon.StatusMessage</span>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+
+        }
+    }
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

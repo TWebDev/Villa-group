@@ -1,0 +1,66 @@
+﻿@model ePlatBack.Models.ViewModels.TimeShareViewModel
+<table id="tblEgressesSearchResults" class="table dataTable">
+    <thead>
+        <tr>
+            <th>Date Saved</th>
+            <th>OPC</th>
+            <th>Company</th>
+            <th>Customer</th>
+            <th>Amount</th>
+            <th>Agent</th>
+            <th>Invitation</th>
+            <th>Gifting > Concept</th>
+            <th>Point Of Sale</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.AccountancyModel_SearchResults != null)
+        {
+            foreach (var i in Model.AccountancyModel_SearchResults)
+            {
+                var id = "egress_" + i.OutcomeInfo_EgressID;
+                var amount = i.OutcomeInfo_Amount + " " + i.OutcomeInfo_Currency;
+                <tr id="@id">
+                    <td>
+                        @Html.DisplayFor(model => i.OutcomeInfo_DateSaved)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.OutcomeInfo_OpcText)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.OutcomeInfo_ChargedToCompanyText)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.OutcomeInfo_Customer)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => amount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.OutcomeInfo_Agent)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.OutcomeInfo_Invitation)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.OutcomeInfo_EgressTypeConcept)
+                    </td>
+                    <td>
+                        <span class="block">
+                            @Html.DisplayFor(model => i.OutcomeInfo_PointOfSaleText)
+                        </span>
+                    </td>
+                    <td>
+                        <span class="block right">
+                            @if (i.OutcomeInfo_Terminal == 26 || i.OutcomeInfo_Terminal == 61)
+                            {
+                                <input type="button" class="button print-egress-ticket" value="print" />
+                            }
+                        </span>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

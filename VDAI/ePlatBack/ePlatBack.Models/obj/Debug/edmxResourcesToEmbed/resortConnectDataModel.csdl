@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="resortConnectModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+  <EntityType Name="Contact">
+    <Key>
+      <PropertyRef Name="ContactId" />
+    </Key>
+    <Property Name="ContactId" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="BirthDate" Type="DateTime" Precision="0" />
+    <Property Name="PrimaryFlag" Type="Boolean" Nullable="false" />
+    <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="MemberNote">
+    <Key>
+      <PropertyRef Name="MemberNoteId" />
+    </Key>
+    <Property Name="MemberNoteId" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+    <Property Name="ReservationId" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+    <Property Name="ContactId" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+    <Property Name="CommentType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NoteDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Reservation" Relationship="Self.FK_MemberNote_Reservation" FromRole="MemberNote" ToRole="Reservation" />
+  </EntityType>
+  <EntityType Name="Reservation">
+    <Key>
+      <PropertyRef Name="ReservationId" />
+    </Key>
+    <Property Name="ReservationId" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+    <Property Name="ResortNumber" Type="Int32" Nullable="false" />
+    <Property Name="ConfirmationNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CheckInDate" Type="DateTime" Precision="0" />
+    <Property Name="CheckOutDate" Type="DateTime" Precision="0" />
+    <Property Name="ReservationStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ReservationType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UnitTypeId" Type="Int32" />
+    <Property Name="UnitTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UnitTypeDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="UnitId" Type="Int32" />
+    <Property Name="UnitDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="UnitRef" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="ClubType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ContractNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ContractResortNumber" Type="Decimal" Precision="9" Scale="0" />
+    <Property Name="PrimaryContactId" Type="Decimal" Precision="9" Scale="0" />
+    <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="MemberNote" Relationship="Self.FK_MemberNote_Reservation" FromRole="Reservation" ToRole="MemberNote" />
+    <NavigationProperty Name="Reservation_Contact" Relationship="Self.FK_Reservation_Contact__Reservation" FromRole="Reservation" ToRole="Reservation_Contact" />
+    <NavigationProperty Name="ReservationOption" Relationship="Self.FK_ReservationOption_Reservation" FromRole="Reservation" ToRole="ReservationOption" />
+    <Property Name="ClubTypeId" Type="Int32" />
+    <Property Name="TourBookingStatus" Type="Decimal" Precision="9" Scale="0" />
+    <Property Name="TourBookingStatusDesc" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Reservation_Contact">
+    <Key>
+      <PropertyRef Name="Reservation_ContactId" />
+    </Key>
+    <Property Name="Reservation_ContactId" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+    <Property Name="ReservationId" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+    <Property Name="ContactId" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+    <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Reservation" Relationship="Self.FK_Reservation_Contact__Reservation" FromRole="Reservation_Contact" ToRole="Reservation" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="EmailAddress" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ReservationOption">
+    <Key>
+      <PropertyRef Name="ReservationOptionId" />
+    </Key>
+    <Property Name="ReservationOptionId" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+    <Property Name="ReservationId" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+    <Property Name="ProductName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="AppointmentDate" Type="DateTime" Precision="7" />
+    <Property Name="CarrierName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="FlightNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="BaseCurrencyAmount" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Reservation" Relationship="Self.FK_ReservationOption_Reservation" FromRole="ReservationOption" ToRole="Reservation" />
+  </EntityType>
+  <Association Name="FK_MemberNote_Reservation">
+    <End Role="Reservation" Type="Self.Reservation" Multiplicity="1" />
+    <End Role="MemberNote" Type="Self.MemberNote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reservation">
+        <PropertyRef Name="ReservationId" />
+      </Principal>
+      <Dependent Role="MemberNote">
+        <PropertyRef Name="ReservationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reservation_Contact__Reservation">
+    <End Role="Reservation" Type="Self.Reservation" Multiplicity="1" />
+    <End Role="Reservation_Contact" Type="Self.Reservation_Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reservation">
+        <PropertyRef Name="ReservationId" />
+      </Principal>
+      <Dependent Role="Reservation_Contact">
+        <PropertyRef Name="ReservationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReservationOption_Reservation">
+    <End Role="Reservation" Type="Self.Reservation" Multiplicity="1" />
+    <End Role="ReservationOption" Type="Self.ReservationOption" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reservation">
+        <PropertyRef Name="ReservationId" />
+      </Principal>
+      <Dependent Role="ReservationOption">
+        <PropertyRef Name="ReservationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="resortConnectEntities" annotation:LazyLoadingEnabled="true" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+    <EntitySet Name="Contact" EntityType="Self.Contact" />
+    <EntitySet Name="MemberNote" EntityType="Self.MemberNote" />
+    <EntitySet Name="Reservation" EntityType="Self.Reservation" />
+    <EntitySet Name="Reservation_Contact" EntityType="Self.Reservation_Contact" />
+    <EntitySet Name="ReservationOption" EntityType="Self.ReservationOption" />
+    <AssociationSet Name="FK_MemberNote_Reservation" Association="Self.FK_MemberNote_Reservation">
+      <End Role="Reservation" EntitySet="Reservation" />
+      <End Role="MemberNote" EntitySet="MemberNote" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reservation_Contact__Reservation" Association="Self.FK_Reservation_Contact__Reservation">
+      <End Role="Reservation" EntitySet="Reservation" />
+      <End Role="Reservation_Contact" EntitySet="Reservation_Contact" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReservationOption_Reservation" Association="Self.FK_ReservationOption_Reservation">
+      <End Role="Reservation" EntitySet="Reservation" />
+      <End Role="ReservationOption" EntitySet="ReservationOption" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

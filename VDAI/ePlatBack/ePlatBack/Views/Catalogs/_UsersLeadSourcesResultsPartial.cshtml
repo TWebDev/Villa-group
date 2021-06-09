@@ -1,0 +1,55 @@
+﻿@model ePlatBack.Models.ViewModels.UsersLeadSources.SearchUserLeadSources
+
+<table id="tblUserLeadSourcesResults" class="dataTable table">
+    <thead>
+        <tr>
+            <th>
+                Agent
+            </th>
+            <th>
+                Resort
+            </th>
+            <th>
+                Lead Source
+            </th>
+            <th>From Date</th>
+            <th>
+                Vigency
+            </th>
+            <th>
+                Saved/Modified By
+            </th>
+        </tr>
+    </thead>
+    <tbody class="secondary-selected-row-dependent">
+        @if (Model.ListResults != null)
+        {
+            foreach (var i in Model.ListResults)
+            {
+                var vigency = (i.ToDate != "" ? i.ToDate : "Permanent");
+                var savedBy = i.SavedByUser ?? "";
+                var expired = i.ToDate != "" ? DateTime.Parse(i.ToDate) >= DateTime.Today ? "" : "expired" : "";
+                <tr id="@i.User_LeadSourceID" class="@expired">
+                    <td>
+                        @Html.DisplayFor(model => i.User)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.Resort)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.LeadSource)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.FromDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => vigency)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => savedBy)
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

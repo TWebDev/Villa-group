@@ -1,0 +1,1625 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{603BB516-199A-4139-999C-C2850E9FF9C3}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ePlatBack</RootNamespace>
+    <AssemblyName>ePlatBack</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <UseGlobalApplicationHostFile />
+    <TargetFrameworkProfile />
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=4.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ClosedXML, Version=0.93.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ClosedXML.0.93.1\lib\net40\ClosedXML.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.7.2\lib\net40\DocumentFormat.OpenXml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Dynamic">
+      <HintPath>..\packages\DynamicQuery.1.0\lib\35\Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelNumberFormat, Version=1.0.3.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelNumberFormat.1.0.3\lib\net20\ExcelNumberFormat.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FastMember.Signed, Version=1.3.0.0, Culture=neutral, PublicKeyToken=9e8f22703bef9a29, processorArchitecture=MSIL">
+      <HintPath>..\packages\FastMember.Signed.1.3.0\lib\net45\FastMember.Signed.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Google.Ads.Common, Version=9.5.1.0, Culture=neutral, PublicKeyToken=52807268f2b614dc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Ads.Common.9.5.1\lib\net452\Google.Ads.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.AdWords, Version=24.4.0.0, Culture=neutral, PublicKeyToken=52807268f2b614dc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.AdWords.24.4.0\lib\net452\Google.AdWords.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis, Version=1.38.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.1.38.0\lib\net45\Google.Apis.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth, Version=1.38.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Auth.1.38.0\lib\net45\Google.Apis.Auth.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth.PlatformServices, Version=1.38.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Auth.1.38.0\lib\net45\Google.Apis.Auth.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Core, Version=1.38.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Core.1.38.0\lib\net45\Google.Apis.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.PlatformServices, Version=1.38.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.1.38.0\lib\net45\Google.Apis.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="ImageResizer, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImageResizer.4.2.5\lib\net45\ImageResizer.dll</HintPath>
+    </Reference>
+    <Reference Include="mexHash, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ePlatBack.Models\bin\Release\mexHash.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Scaffolding.12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=x86" />
+    <Reference Include="Microsoft.AspNet.SignalR.Client">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Client.2.2.0\lib\net45\Microsoft.AspNet.SignalR.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Owin.1.2.2\lib\net45\Microsoft.AspNet.SignalR.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.0\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.Configuration, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.1.1.2\lib\netstandard1.1\Microsoft.Extensions.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.1.1.2\lib\netstandard1.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.1.1.1\lib\netstandard1.0\Microsoft.Extensions.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebHelpers.3.2.7\lib\net45\Microsoft.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebPages.OAuth, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.OAuth.2.0.30506.0\lib\net40\Microsoft.Web.WebPages.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="NCalc">
+      <HintPath>..\ePlatBack.Models\bin\NCalc.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\packages\ServiceStack.Text.3.9.35\lib\net35\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.3.0\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="DotNetOpenAuth.AspNet, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.0.3.12153\lib\net40-full\DotNetOpenAuth.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OpenId.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.1.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.Data, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.3.2.7\lib\net45\WebMatrix.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.3.2.7\lib\net45\WebMatrix.WebData.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\AuthConfig.cs" />
+    <Compile Include="App_Start\BundleConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CMS\ActivitiesController.cs" />
+    <Compile Include="Controllers\CMS\PagesController.cs" />
+    <Compile Include="Controllers\CMS\PicturesController.cs" />
+    <Compile Include="Controllers\CMS\PlacesController.cs" />
+    <Compile Include="Controllers\CMS\PackagesController.cs" />
+    <Compile Include="Controllers\CMS\PricesEditorController.cs" />
+    <Compile Include="Controllers\CMS\SeoItemsController.cs" />
+    <Compile Include="Controllers\Content\managementController.cs" />
+    <Compile Include="Controllers\CRM\CallsLogController.cs" />
+    <Compile Include="Controllers\CRM\FollowUpController.cs" />
+    <Compile Include="Controllers\CRM\GuestExperienceController.cs" />
+    <Compile Include="Controllers\CRM\HostessController.cs" />
+    <Compile Include="Controllers\CRM\HubController.cs" />
+    <Compile Include="Controllers\CRM\InteractionsController.cs" />
+    <Compile Include="Controllers\CRM\Invitations2Controller.cs" />
+    <Compile Include="Controllers\CRM\InvitationsController.cs" />
+    <Compile Include="Controllers\CRM\MasterChartController.cs" />
+    <Compile Include="Controllers\CRM\NotificationsController.cs" />
+    <Compile Include="Controllers\CRM\PreArrivalController.cs" />
+    <Compile Include="Controllers\CRM\ReportsController.cs" />
+    <Compile Include="Controllers\CRM\SPIController.cs" />
+    <Compile Include="Controllers\CRM\TestController.cs" />
+    <Compile Include="Controllers\CRM\TimeShareController.cs" />
+    <Compile Include="Controllers\CRM\TrialsController.cs" />
+    <Compile Include="Controllers\CRM\WorkflowsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\CMS\PricesController.cs" />
+    <Compile Include="Controllers\membership\activateMembershipController.cs" />
+    <Compile Include="Controllers\membership\cardsManagementController.cs" />
+    <Compile Include="Controllers\membership\previewController.cs" />
+    <Compile Include="Controllers\PublicController.cs" />
+    <Compile Include="Controllers\Settings\AccessProfiles.cs" />
+    <Compile Include="Controllers\Settings\AccountingAccountsController.cs" />
+    <Compile Include="Controllers\Settings\AdminController.cs" />
+    <Compile Include="Controllers\Settings\CatalogsController.cs" />
+    <Compile Include="Controllers\Settings\EmailsController.cs" />
+    <Compile Include="Controllers\Settings\MailSenderController.cs" />
+    <Compile Include="Controllers\Settings\PointsOfSaleController.cs" />
+    <Compile Include="Controllers\Settings\ProvidersController.cs" />
+    <Compile Include="Controllers\Settings\StructureController.cs" />
+    <Compile Include="Controllers\Settings\SupervisorsController.cs" />
+    <Compile Include="Controllers\Settings\SurveysController.cs" />
+    <Compile Include="Controllers\Settings\TaskSchedulerController.cs" />
+    <Compile Include="Controllers\Settings\UsersController.cs" />
+    <Compile Include="Controllers\Settings\TerminalsController.cs" />
+    <Compile Include="ePlatHub.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\mexHash.dll" />
+    <Content Include="bin\NCalc.dll" />
+    <Content Include="Content\32px.png" />
+    <Content Include="Content\ckeditor-custom.css" />
+    <Content Include="Content\dataTables.tableTools.min.css" />
+    <Content Include="Content\fineuploader.css" />
+    <Content Include="Content\fonts\bmrea\bmrea.css" />
+    <Content Include="Content\fonts\bmrea\bmrea___-webfont.svg" />
+    <Content Include="Content\fonts\epson\epson.css" />
+    <Content Include="Content\images\animated-overlay.gif" />
+    <Content Include="Content\images\back_disabled.png" />
+    <Content Include="Content\images\back_enabled.png" />
+    <Content Include="Content\images\back_enabled_hover.png" />
+    <Content Include="Content\images\favicon.ico" />
+    <Content Include="Content\images\forward_disabled.png" />
+    <Content Include="Content\images\forward_enabled.png" />
+    <Content Include="Content\images\forward_enabled_hover.png" />
+    <Content Include="Content\images\sort_asc.png" />
+    <Content Include="Content\images\sort_asc_disabled.png" />
+    <Content Include="Content\images\sort_both.png" />
+    <Content Include="Content\images\sort_desc.png" />
+    <Content Include="Content\images\sort_desc_disabled.png" />
+    <Content Include="Content\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Content\jquery-ui-1.10.3.custom.css" />
+    <Content Include="Content\jquery-ui-1.8.14.custom.css" />
+    <Content Include="Content\jquery-ui-timepicker-addon.css" />
+    <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\jquery.dataTables.css" />
+    <Content Include="Content\jquery.nestable.css" />
+    <Content Include="Content\jquery.mjs.nestedSortable.css" />
+    <Content Include="Content\jquery.ui.timepicker.css" />
+    <Content Include="Content\multi-nav.css" />
+    <Content Include="Content\plugins\bootstrap-multiselect\css\bootstrap-multiselect.css" />
+    <Content Include="Content\plugins\bootstrap-multiselect\js\bootstrap-multiselect.js" />
+    <Content Include="Content\plugins\bootstrap-vue\bootstrap-vue.css" />
+    <Content Include="Content\plugins\bootstrap-vue\bootstrap-vue.js" />
+    <Content Include="Content\plugins\bootstrap-vue\polyfill.min.js" />
+    <Content Include="Content\plugins\fancybox\blank.gif" />
+    <Content Include="Content\plugins\fancybox\fancybox_loading%402x.gif" />
+    <Content Include="Content\plugins\fancybox\fancybox_loading.gif" />
+    <Content Include="Content\plugins\fancybox\fancybox_overlay.png" />
+    <Content Include="Content\plugins\fancybox\fancybox_sprite%402x.png" />
+    <Content Include="Content\plugins\fancybox\fancybox_sprite.png" />
+    <Content Include="Content\plugins\fancybox\helpers\fancybox_buttons.png" />
+    <Content Include="Content\plugins\fancybox\helpers\jquery.fancybox-buttons.css" />
+    <Content Include="Content\plugins\fancybox\helpers\jquery.fancybox-buttons.js" />
+    <Content Include="Content\plugins\fancybox\helpers\jquery.fancybox-media.js" />
+    <Content Include="Content\plugins\fancybox\helpers\jquery.fancybox-thumbs.css" />
+    <Content Include="Content\plugins\fancybox\helpers\jquery.fancybox-thumbs.js" />
+    <Content Include="Content\plugins\fancybox\jquery.fancybox.css" />
+    <Content Include="Content\plugins\fancybox\jquery.fancybox.js" />
+    <Content Include="Content\plugins\fancybox\jquery.fancybox.pack.js" />
+    <Content Include="Content\plugins\fine-uploader5.16.2\continue.gif" />
+    <Content Include="Content\plugins\fine-uploader5.16.2\dnd.js" />
+    <Content Include="Content\plugins\fine-uploader5.16.2\dnd.min.js" />
+    <Content Include="Content\plugins\fine-uploader5.16.2\edit.gif" />
+    <Content Include="Content\plugins\fine-uploader5.16.2\fine-uploader-gallery.css" />
+    <Content Include="Content\plugins\fine-uploader5.16.2\fine-uploader-gallery.min.css" />
+    <Content Include="Content\plugins\fine-uploader5.16.2\fine-uploader-new.css" />
+    <Content Include="Content\plugins\fine-uploader5.16.2\fine-uploader-new.min.css" />
+    <Content Include="Content\plugins\fine-uploader5.16.2\fine-uploader.core.js" />
+    <Content Include="Content\plugins\fine-uploader5.16.2\fine-uploader.core.min.js" />
+    <Content Include="Content\plugins\fine-uploader5.16.2\fine-uploader.css" />
+    <Content Include="Content\plugins\fine-uploader5.16.2\fine-uploader.js" />
+    <Content Include="Content\plugins\fine-uploader5.16.2\fine-uploader.min.css" />
+    <Content Include="Content\plugins\fine-uploader5.16.2\fine-uploader.min.js" />
+    <Content Include="Content\plugins\fine-uploader5.16.2\jquery.fine-uploader.js" />
+    <Content Include="Content\plugins\fine-uploader5.16.2\jquery.fine-uploader.min.js" />
+    <Content Include="Content\plugins\fine-uploader5.16.2\loading.gif" />
+    <Content Include="Content\plugins\fine-uploader5.16.2\pause.gif" />
+    <Content Include="Content\plugins\fine-uploader5.16.2\placeholders\not_available-generic.png" />
+    <Content Include="Content\plugins\fine-uploader5.16.2\placeholders\waiting-generic.png" />
+    <Content Include="Content\plugins\fine-uploader5.16.2\processing.gif" />
+    <Content Include="Content\plugins\fine-uploader5.16.2\retry.gif" />
+    <Content Include="Content\plugins\fine-uploader5.16.2\templates\default.html" />
+    <Content Include="Content\plugins\fine-uploader5.16.2\templates\gallery.html" />
+    <Content Include="Content\plugins\fine-uploader5.16.2\templates\simple-thumbnails.html" />
+    <Content Include="Content\plugins\fine-uploader5.16.2\trash.gif" />
+    <Content Include="Content\plugins\jhtree\jQuery.jHTree.js" />
+    <Content Include="Content\plugins\jqueryajax\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Content\plugins\jqueryajax\jquery.validate.min.js" />
+    <Content Include="Content\plugins\jqueryajax\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Content\plugins\moment\moment.min.js" />
+    <Content Include="Content\plugins\tempus-dominus\tempusdominus-bootstrap-4.min.css" />
+    <Content Include="Content\plugins\tempus-dominus\tempusdominus-bootstrap-4.min.js" />
+    <Content Include="Content\Site-printable.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="Content\themes\base\classic\d.gif" />
+    <Content Include="Content\themes\base\classic\d.png" />
+    <Content Include="Content\themes\base\classic\dot_for_ie.gif" />
+    <Content Include="Content\themes\base\classic\style.css" />
+    <Content Include="Content\themes\base\classic\throbber.gif" />
+    <Content Include="Content\themes\base\images\bg.jpg" />
+    <Content Include="Content\themes\base\images\bg2.jpg" />
+    <Content Include="Content\themes\base\images\bg3.jpg" />
+    <Content Include="Content\themes\base\images\confirm.png" />
+    <Content Include="Content\themes\base\images\cross.png" />
+    <Content Include="Content\themes\base\images\e.jpg" />
+    <Content Include="Content\themes\base\images\edit.png" />
+    <Content Include="Content\themes\base\images\eplat_gotop.jpg" />
+    <Content Include="Content\themes\base\images\eplat_hide.jpg" />
+    <Content Include="Content\themes\base\images\eplat_next.jpg" />
+    <Content Include="Content\themes\base\images\eplat_prev.jpg" />
+    <Content Include="Content\themes\base\images\eplat_show.jpg" />
+    <Content Include="Content\themes\base\images\favicon.ico" />
+    <Content Include="Content\themes\base\images\loading.gif" />
+    <Content Include="Content\themes\base\images\revert-icon.png" />
+    <Content Include="Content\themes\base\images\tracker.png" />
+    <Content Include="Content\themes\base\images\trash.png" />
+    <Content Include="Content\themes\base\images\triangle.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery.multiselect.css" />
+    <Content Include="Content\themes\base\jquery.multiselect.filter.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\jquery.jstree.css" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\themes\eplat2\ckeditordocument.css" />
+    <Content Include="Content\themes\eplat2\images\emoticons\emo-angry-inactive.png" />
+    <Content Include="Content\themes\eplat2\images\emoticons\emo-angry.png" />
+    <Content Include="Content\themes\eplat2\images\emoticons\emo-good-mood-inactive.png" />
+    <Content Include="Content\themes\eplat2\images\emoticons\emo-good-mood.png" />
+    <Content Include="Content\themes\eplat2\images\emoticons\emo-happy-inactive.png" />
+    <Content Include="Content\themes\eplat2\images\emoticons\emo-happy.png" />
+    <Content Include="Content\themes\eplat2\images\emoticons\emo-mistrustful-inactive.png" />
+    <Content Include="Content\themes\eplat2\images\emoticons\emo-mistrustful.png" />
+    <Content Include="Content\themes\eplat2\images\emoticons\emo-neutral-inactive.png" />
+    <Content Include="Content\themes\eplat2\images\emoticons\emo-neutral.png" />
+    <Content Include="Content\themes\eplat2\layout2-printable.css" />
+    <Content Include="Content\themes\eplat2\layout2-screen.css" />
+    <Content Include="Content\themes\eplat2\layout2.css" />
+    <Content Include="Content\themes\eplat\images\animated-overlay.gif" />
+    <Content Include="Content\themes\eplat\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\eplat\images\ui-bg_flat_100_3cb1ef_40x100.png" />
+    <Content Include="Content\themes\eplat\images\ui-bg_flat_100_fcfdfd_40x100.png" />
+    <Content Include="Content\themes\eplat\images\ui-bg_flat_55_3cb1ef_40x100.png" />
+    <Content Include="Content\themes\eplat\images\ui-bg_flat_55_4297d7_40x100.png" />
+    <Content Include="Content\themes\eplat\images\ui-bg_flat_75_94d6f9_40x100.png" />
+    <Content Include="Content\themes\eplat\images\ui-bg_flat_85_E1F7FF_40x100.png" />
+    <Content Include="Content\themes\eplat\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Content\themes\eplat\images\ui-icons_217bc0_256x240.png" />
+    <Content Include="Content\themes\eplat\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\eplat\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\themes\eplat\images\ui-icons_469bdd_256x240.png" />
+    <Content Include="Content\themes\eplat\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\eplat\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\themes\eplat\jquery-ui-1.10.3.custom.css" />
+    <Content Include="Content\themes\eplat\jquery-ui-1.10.3.custom.min.css" />
+    <Content Include="Content\themes\eplat\jquery.multiselect.css" />
+    <Content Include="Content\themes\eplat\jquery.multiselect.filter.css" />
+    <Content Include="Content\themes\eplat\ticket\purchase-ticket-mca.css" />
+    <Content Include="Content\themes\eplat\ticket\purchase-ticket-vea.css" />
+    <Content Include="Content\themes\eplat\ticket\purchase-ticket.css" />
+    <Content Include="Dynamic Expressions.html" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\images\Sorting icons.psd" />
+    <Content Include="Images\btn_email.png" />
+    <Content Include="Images\btn_go_back.png" />
+    <Content Include="Images\btn_next.png" />
+    <Content Include="Images\btn_prev.png" />
+    <Content Include="Images\edit-icon.png" />
+    <Content Include="Images\loading.gif" />
+    <Content Include="Images\msn\angel_smile.gif" />
+    <Content Include="Images\msn\angry_smile.gif" />
+    <Content Include="Images\msn\broken_heart.gif" />
+    <Content Include="Images\msn\cake.gif" />
+    <Content Include="Images\msn\confused_smile.gif" />
+    <Content Include="Images\msn\cry_smile.gif" />
+    <Content Include="Images\msn\devil_smile.gif" />
+    <Content Include="Images\msn\embaressed_smile.gif" />
+    <Content Include="Images\msn\envelope.gif" />
+    <Content Include="Images\msn\heart.gif" />
+    <Content Include="Images\msn\kiss.gif" />
+    <Content Include="Images\msn\lightbulb.gif" />
+    <Content Include="Images\msn\omg_smile.gif" />
+    <Content Include="Images\msn\regular_smile.gif" />
+    <Content Include="Images\msn\sad_smile.gif" />
+    <Content Include="Images\msn\shades_smile.gif" />
+    <Content Include="Images\msn\teeth_smile.gif" />
+    <Content Include="Images\msn\thumbs_down.gif" />
+    <Content Include="Images\msn\thumbs_up.gif" />
+    <Content Include="Images\msn\tounge_smile.gif" />
+    <Content Include="Images\msn\whatchutalkingabout_smile.gif" />
+    <Content Include="Images\msn\wink_smile.gif" />
+    <Content Include="Scripts\account\logon.js" />
+    <Content Include="Scripts\ckeditor\adapter-jquery.js" />
+    <Content Include="Scripts\ckeditor\CHANGES.md" />
+    <Content Include="Scripts\ckeditor\LICENSE.md" />
+    <Content Include="Scripts\ckeditor\README.md" />
+    <Content Include="Scripts\ckeditor\samples\assets\posteddata.php" />
+    <Content Include="Scripts\ckeditor\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.fla" />
+    <Content Include="Scripts\ckeditor\samples\sample_posteddata.php" />
+    <Content Include="Scripts\ckeditor\skins\kama\dialog.css" />
+    <Content Include="Scripts\ckeditor\skins\kama\dialog_ie.css" />
+    <Content Include="Scripts\ckeditor\skins\kama\dialog_ie7.css" />
+    <Content Include="Scripts\ckeditor\skins\kama\dialog_ie8.css" />
+    <Content Include="Scripts\ckeditor\skins\kama\dialog_iequirks.css" />
+    <Content Include="Scripts\ckeditor\skins\kama\dialog_opera.css" />
+    <Content Include="Scripts\ckeditor\skins\kama\editor.css" />
+    <Content Include="Scripts\ckeditor\skins\kama\editor_ie.css" />
+    <Content Include="Scripts\ckeditor\skins\kama\editor_ie7.css" />
+    <Content Include="Scripts\ckeditor\skins\kama\editor_ie8.css" />
+    <Content Include="Scripts\ckeditor\skins\kama\editor_iequirks.css" />
+    <Content Include="Scripts\ckeditor\skins\kama\icons.png" />
+    <Content Include="Scripts\ckeditor\skins\kama\images\dialog_sides.gif" />
+    <Content Include="Scripts\ckeditor\skins\kama\images\dialog_sides.png" />
+    <Content Include="Scripts\ckeditor\skins\kama\images\dialog_sides_rtl.png" />
+    <Content Include="Scripts\ckeditor\skins\kama\images\mini.gif" />
+    <Content Include="Scripts\ckeditor\skins\kama\images\sprites.png" />
+    <Content Include="Scripts\ckeditor\skins\kama\images\sprites_ie6.png" />
+    <Content Include="Scripts\ckeditor\skins\kama\images\toolbar_start.gif" />
+    <Content Include="Scripts\ckeditor\skins\kama\skin.js" />
+    <Content Include="Scripts\ckeditor\skins\moono\readme.md" />
+    <Content Include="Scripts\ckeditor\skins\kama\readme.md" />
+    <Content Include="Content\fonts\bmrea\bmrea___-webfont.eot" />
+    <Content Include="Content\fonts\bmrea\bmrea___-webfont.ttf" />
+    <Content Include="Content\fonts\bmrea\bmrea___-webfont.woff" />
+    <Content Include="Content\fonts\bmrea\bmrea___-webfont.woff2" />
+    <Content Include="Content\fonts\epson\epson.ttf" />
+    <Content Include="Content\fonts\epson\epson1.ttf" />
+    <Content Include="Scripts\crm\prearrival\group-leads.js" />
+    <Content Include="Scripts\signatureMembership.js" />
+    <Content Include="ViewModels\Components\Activate Membership\app.js" />
+    <Content Include="ViewModels\Components\ArtGalleries\app.js" />
+    <Content Include="ViewModels\Components\Articles\app.js" />
+    <Content Include="ViewModels\Components\Cards Management\app.js" />
+    <Content Include="ViewModels\Components\Dashboard\app.js" />
+    <Content Include="ViewModels\Components\Events\app.js" />
+    <Content Include="ViewModels\Components\filters.js" />
+    <Content Include="ViewModels\Components\Hotels\app.js" />
+    <Content Include="ViewModels\Components\Invitations Deposits\app.js" />
+    <Content Include="ViewModels\Components\Layout\app.js" />
+    <Content Include="ViewModels\Components\Layout\StateManagement.js" />
+    <Content Include="ViewModels\Components\Preview\app.js" />
+    <Content Include="ViewModels\Components\Preview\test.js" />
+    <Content Include="ViewModels\Components\Providers\app.js" />
+    <Content Include="ViewModels\Components\Reports\app.js" />
+    <Content Include="ViewModels\Components\Reports\CardsPolls\app.js" />
+    <Content Include="ViewModels\Components\Reports\Payment\app.js" />
+    <Content Include="ViewModels\Components\Reports\Polls Statistics\app.js" />
+    <Content Include="ViewModels\Components\Restaurants\app.js" />
+    <Content Include="ViewModels\Components\Reviews\app.js" />
+    <Content Include="ViewModels\Components\Spas\app.js" />
+    <Content Include="ViewModels\Components\Surveys\app.js" />
+    <Content Include="ViewModels\Components\utils.js" />
+    <Content Include="ViewModels\Components\Workflows\app.js" />
+    <Content Include="ViewModels\eplat.local.crm.prearrival.import.js" />
+    <Content Include="ViewModels\eplat.local.crm.reports.invitationsDeposits.js" />
+    <Content Include="ViewModels\eplat.local.pages.container.js" />
+    <Content Include="ViewModels\eplat.local.public.userrequests.js" />
+    <Content Include="webpack.config.js" />
+    <Content Include="package.json" />
+    <Content Include="Content\plugins\fine-uploader5.16.2\dnd.js.map" />
+    <Content Include="Content\plugins\fine-uploader5.16.2\dnd.min.js.map" />
+    <Content Include="Content\plugins\fine-uploader5.16.2\fine-uploader-gallery.min.css.map" />
+    <Content Include="Content\plugins\fine-uploader5.16.2\fine-uploader-new.min.css.map" />
+    <Content Include="Content\plugins\fine-uploader5.16.2\fine-uploader.core.js.map" />
+    <Content Include="Content\plugins\fine-uploader5.16.2\fine-uploader.core.min.js.map" />
+    <Content Include="Content\plugins\fine-uploader5.16.2\fine-uploader.js.map" />
+    <Content Include="Content\plugins\fine-uploader5.16.2\fine-uploader.min.css.map" />
+    <Content Include="Content\plugins\fine-uploader5.16.2\fine-uploader.min.js.map" />
+    <Content Include="Content\plugins\fine-uploader5.16.2\jquery.fine-uploader.js.map" />
+    <Content Include="Content\plugins\fine-uploader5.16.2\jquery.fine-uploader.min.js.map" />
+    <Content Include="Content\plugins\fine-uploader5.16.2\LICENSE" />
+    <Content Include=".babelrc" />
+    <Content Include="package-lock.json" />
+    <Content Include="node_modules.zip" />
+    <None Include="Properties\PublishProfiles\eplat.villagroup.com.pubxml" />
+    <None Include="Scripts\jquery-1.7.1.intellisense.js" />
+    <Content Include="Scripts\ckeditor\build-config.js" />
+    <Content Include="Scripts\ckeditor\ckeditor.js" />
+    <Content Include="Scripts\ckeditor\config.js" />
+    <Content Include="Scripts\ckeditor\contents.css" />
+    <Content Include="Scripts\ckeditor\lang\af.js" />
+    <Content Include="Scripts\ckeditor\lang\ar.js" />
+    <Content Include="Scripts\ckeditor\lang\bg.js" />
+    <Content Include="Scripts\ckeditor\lang\bn.js" />
+    <Content Include="Scripts\ckeditor\lang\bs.js" />
+    <Content Include="Scripts\ckeditor\lang\ca.js" />
+    <Content Include="Scripts\ckeditor\lang\cs.js" />
+    <Content Include="Scripts\ckeditor\lang\cy.js" />
+    <Content Include="Scripts\ckeditor\lang\da.js" />
+    <Content Include="Scripts\ckeditor\lang\de.js" />
+    <Content Include="Scripts\ckeditor\lang\el.js" />
+    <Content Include="Scripts\ckeditor\lang\en-au.js" />
+    <Content Include="Scripts\ckeditor\lang\en-ca.js" />
+    <Content Include="Scripts\ckeditor\lang\en-gb.js" />
+    <Content Include="Scripts\ckeditor\lang\en.js" />
+    <Content Include="Scripts\ckeditor\lang\eo.js" />
+    <Content Include="Scripts\ckeditor\lang\es.js" />
+    <Content Include="Scripts\ckeditor\lang\et.js" />
+    <Content Include="Scripts\ckeditor\lang\eu.js" />
+    <Content Include="Scripts\ckeditor\lang\fa.js" />
+    <Content Include="Scripts\ckeditor\lang\fi.js" />
+    <Content Include="Scripts\ckeditor\lang\fo.js" />
+    <Content Include="Scripts\ckeditor\lang\fr-ca.js" />
+    <Content Include="Scripts\ckeditor\lang\fr.js" />
+    <Content Include="Scripts\ckeditor\lang\gl.js" />
+    <Content Include="Scripts\ckeditor\lang\gu.js" />
+    <Content Include="Scripts\ckeditor\lang\he.js" />
+    <Content Include="Scripts\ckeditor\lang\hi.js" />
+    <Content Include="Scripts\ckeditor\lang\hr.js" />
+    <Content Include="Scripts\ckeditor\lang\hu.js" />
+    <Content Include="Scripts\ckeditor\lang\is.js" />
+    <Content Include="Scripts\ckeditor\lang\it.js" />
+    <Content Include="Scripts\ckeditor\lang\ja.js" />
+    <Content Include="Scripts\ckeditor\lang\ka.js" />
+    <Content Include="Scripts\ckeditor\lang\km.js" />
+    <Content Include="Scripts\ckeditor\lang\ko.js" />
+    <Content Include="Scripts\ckeditor\lang\ku.js" />
+    <Content Include="Scripts\ckeditor\lang\lt.js" />
+    <Content Include="Scripts\ckeditor\lang\lv.js" />
+    <Content Include="Scripts\ckeditor\lang\mk.js" />
+    <Content Include="Scripts\ckeditor\lang\mn.js" />
+    <Content Include="Scripts\ckeditor\lang\ms.js" />
+    <Content Include="Scripts\ckeditor\lang\nb.js" />
+    <Content Include="Scripts\ckeditor\lang\nl.js" />
+    <Content Include="Scripts\ckeditor\lang\no.js" />
+    <Content Include="Scripts\ckeditor\lang\pl.js" />
+    <Content Include="Scripts\ckeditor\lang\pt-br.js" />
+    <Content Include="Scripts\ckeditor\lang\pt.js" />
+    <Content Include="Scripts\ckeditor\lang\ro.js" />
+    <Content Include="Scripts\ckeditor\lang\ru.js" />
+    <Content Include="Scripts\ckeditor\lang\sk.js" />
+    <Content Include="Scripts\ckeditor\lang\sl.js" />
+    <Content Include="Scripts\ckeditor\lang\sr-latn.js" />
+    <Content Include="Scripts\ckeditor\lang\sr.js" />
+    <Content Include="Scripts\ckeditor\lang\sv.js" />
+    <Content Include="Scripts\ckeditor\lang\th.js" />
+    <Content Include="Scripts\ckeditor\lang\tr.js" />
+    <Content Include="Scripts\ckeditor\lang\ug.js" />
+    <Content Include="Scripts\ckeditor\lang\uk.js" />
+    <Content Include="Scripts\ckeditor\lang\vi.js" />
+    <Content Include="Scripts\ckeditor\lang\zh-cn.js" />
+    <Content Include="Scripts\ckeditor\lang\zh.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\a11yhelp.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\ar.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\bg.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\ca.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\cs.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\cy.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\da.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\de.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\el.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\en.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\eo.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\et.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\fa.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\fi.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\fr.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\gu.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\he.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\hi.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\hr.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\hu.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\it.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\ku.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\lt.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\lv.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\mk.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\mn.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\nb.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\nl.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\no.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\pl.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\pt-br.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\pt.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\ro.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\ru.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\sk.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\sl.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\tr.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\ug.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\uk.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\vi.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\zh-cn.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\_translationstatus.txt" />
+    <Content Include="Scripts\ckeditor\plugins\about\dialogs\about.js" />
+    <Content Include="Scripts\ckeditor\plugins\about\dialogs\logo_ckeditor.png" />
+    <Content Include="Scripts\ckeditor\plugins\clipboard\dialogs\paste.js" />
+    <Content Include="Scripts\ckeditor\plugins\dialog\dialogDefinition.js" />
+    <Content Include="Scripts\ckeditor\plugins\fakeobjects\images\spacer.gif" />
+    <Content Include="Scripts\ckeditor\plugins\icons.png" />
+    <Content Include="Scripts\ckeditor\plugins\image\dialogs\image.js" />
+    <Content Include="Scripts\ckeditor\plugins\image\images\noimage.png" />
+    <Content Include="Scripts\ckeditor\plugins\link\dialogs\anchor.js" />
+    <Content Include="Scripts\ckeditor\plugins\link\dialogs\link.js" />
+    <Content Include="Scripts\ckeditor\plugins\link\images\anchor.png" />
+    <Content Include="Scripts\ckeditor\plugins\magicline\images\icon.png" />
+    <Content Include="Scripts\ckeditor\plugins\pastefromword\filter\default.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\lang\ca.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\lang\cs.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\lang\cy.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\lang\de.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\lang\el.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\lang\en.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\lang\eo.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\lang\et.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\lang\fa.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\lang\fi.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\lang\fr.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\lang\he.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\lang\hr.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\lang\it.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\lang\ku.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\lang\lv.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\lang\nb.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\lang\nl.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\lang\no.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\lang\pt-br.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\lang\sk.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\lang\tr.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\lang\ug.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\lang\zh-cn.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\lang\_translationstatus.txt" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\specialchar.js" />
+    <Content Include="Scripts\ckeditor\plugins\tabletools\dialogs\tableCell.js" />
+    <Content Include="Scripts\ckeditor\plugins\table\dialogs\table.js" />
+    <Content Include="Scripts\ckeditor\samples\ajax.html" />
+    <Content Include="Scripts\ckeditor\samples\api.html" />
+    <Content Include="Scripts\ckeditor\samples\appendto.html" />
+    <Content Include="Scripts\ckeditor\samples\assets\inlineall\logo.png" />
+    <Content Include="Scripts\ckeditor\samples\assets\outputxhtml\outputxhtml.css" />
+    <Content Include="Scripts\ckeditor\samples\assets\sample.css" />
+    <Content Include="Scripts\ckeditor\samples\assets\sample.jpg" />
+    <Content Include="Scripts\ckeditor\samples\assets\uilanguages\languages.js" />
+    <Content Include="Scripts\ckeditor\samples\divreplace.html" />
+    <Content Include="Scripts\ckeditor\samples\index.html" />
+    <Content Include="Scripts\ckeditor\samples\inlineall.html" />
+    <Content Include="Scripts\ckeditor\samples\inlinebycode.html" />
+    <Content Include="Scripts\ckeditor\samples\plugins\dialog\assets\my_dialog.js" />
+    <Content Include="Scripts\ckeditor\samples\plugins\dialog\dialog.html" />
+    <Content Include="Scripts\ckeditor\samples\plugins\enterkey\enterkey.html" />
+    <Content Include="Scripts\ckeditor\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.swf" />
+    <Content Include="Scripts\ckeditor\samples\plugins\htmlwriter\assets\outputforflash\swfobject.js" />
+    <Content Include="Scripts\ckeditor\samples\plugins\htmlwriter\outputforflash.html" />
+    <Content Include="Scripts\ckeditor\samples\plugins\htmlwriter\outputhtml.html" />
+    <Content Include="Scripts\ckeditor\samples\plugins\magicline\magicline.html" />
+    <Content Include="Scripts\ckeditor\samples\plugins\toolbar\toolbar.html" />
+    <Content Include="Scripts\ckeditor\samples\plugins\wysiwygarea\fullpage.html" />
+    <Content Include="Scripts\ckeditor\samples\readonly.html" />
+    <Content Include="Scripts\ckeditor\samples\replacebyclass.html" />
+    <Content Include="Scripts\ckeditor\samples\replacebycode.html" />
+    <Content Include="Scripts\ckeditor\samples\sample.css" />
+    <Content Include="Scripts\ckeditor\samples\sample.js" />
+    <Content Include="Scripts\ckeditor\samples\tabindex.html" />
+    <Content Include="Scripts\ckeditor\samples\uicolor.html" />
+    <Content Include="Scripts\ckeditor\samples\uilanguages.html" />
+    <Content Include="Scripts\ckeditor\samples\xhtmlstyle.html" />
+    <Content Include="Scripts\ckeditor\skins\moono\dialog.css" />
+    <Content Include="Scripts\ckeditor\skins\moono\dialog_ie.css" />
+    <Content Include="Scripts\ckeditor\skins\moono\dialog_ie7.css" />
+    <Content Include="Scripts\ckeditor\skins\moono\dialog_ie8.css" />
+    <Content Include="Scripts\ckeditor\skins\moono\dialog_opera.css" />
+    <Content Include="Scripts\ckeditor\skins\moono\editor.css" />
+    <Content Include="Scripts\ckeditor\skins\moono\editor_gecko.css" />
+    <Content Include="Scripts\ckeditor\skins\moono\editor_ie.css" />
+    <Content Include="Scripts\ckeditor\skins\moono\editor_ie7.css" />
+    <Content Include="Scripts\ckeditor\skins\moono\editor_ie8.css" />
+    <Content Include="Scripts\ckeditor\skins\moono\icons.png" />
+    <Content Include="Scripts\ckeditor\skins\moono\images\arrow.png" />
+    <Content Include="Scripts\ckeditor\skins\moono\images\close.png" />
+    <Content Include="Scripts\ckeditor\skins\moono\images\mini.png" />
+    <Content Include="Scripts\ckeditor\styles.js" />
+    <Content Include="Scripts\cms\activities\activities.js" />
+    <Content Include="Scripts\cms\activities\pricesEditor.js" />
+    <Content Include="Scripts\cms\packages\packages.js" />
+    <Content Include="Scripts\cms\pages\jquery-images-loaded.js" />
+    <Content Include="Scripts\cms\pages\pages.js" />
+    <Content Include="Scripts\cms\pictures.js" />
+    <Content Include="Scripts\cms\places\places.js" />
+    <Content Include="Scripts\cms\prices.js" />
+    <Content Include="Scripts\cms\seoItems.js" />
+    <Content Include="Scripts\cms\wizard.js" />
+    <Content Include="Scripts\ColReorder.js" />
+    <Content Include="Scripts\Common.js" />
+    <Content Include="Scripts\crm\agencyManifest.js" />
+    <Content Include="Scripts\crm\hostess\hostess.js" />
+    <Content Include="Scripts\crm\interactions.js" />
+    <Content Include="Scripts\crm\masterchart\fastsale.js" />
+    <Content Include="Scripts\crm\masterchart\leads.js" />
+    <Content Include="Scripts\crm\masterchart\referrals.js" />
+    <Content Include="Scripts\crm\notifications\notifications.js" />
+    <Content Include="Scripts\crm\prearrival\prearrival.js" />
+    <Content Include="Scripts\crm\reports\reports.js" />
+    <Content Include="Scripts\crm\timeshare\timeshare.js" />
+    <Content Include="Scripts\dataTables.tableTools.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.14.custom.min.js" />
+    <Content Include="Scripts\jquery.blockUI.js" />
+    <Content Include="Scripts\jquery.hoverIntent.minified.js" />
+    <Content Include="Scripts\jquery.mjs.nestedSortable.js" />
+    <Content Include="Scripts\jquery.multiselect.filter.js" />
+    <Content Include="Scripts\jquery.multiselect.filter.min.js" />
+    <Content Include="Scripts\jquery.multiselect.js" />
+    <Content Include="Scripts\jquery.multiselect.min.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.0.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.0.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jstree.js" />
+    <Content Include="Scripts\jstree.min.js" />
+    <Content Include="Scripts\layout\eplathub.js" />
+    <Content Include="Scripts\layout\jquery-multi-nav.js" />
+    <Content Include="Scripts\jquery-ui-1.10.2.js" />
+    <Content Include="Scripts\jquery-ui-sliderAccess.js" />
+    <Content Include="Scripts\jquery-ui-timepicker-addon.js" />
+    <Content Include="Scripts\jquery.fineuploader-3.0.js" />
+    <Content Include="Scripts\jquery.fineuploader-3.0.min.js" />
+    <Content Include="Scripts\jquery.jstree.js" />
+    <Content Include="Scripts\jquery.numeric.js" />
+    <Content Include="Scripts\jquery.ui.core.min.js" />
+    <Content Include="Scripts\jquery.ui.position.min.js" />
+    <Content Include="Scripts\jquery.ui.tabs.min.js" />
+    <Content Include="Scripts\jquery.ui.timepicker.js" />
+    <Content Include="Scripts\jquery.ui.widget.min.js" />
+    <Content Include="Scripts\eplatback-utils.js" />
+    <Content Include="Scripts\dashboard\dashboard.js" />
+    <Content Include="Scripts\jquery-1.7.1.js" />
+    <Content Include="Scripts\jquery-1.7.1.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.blockUI-2.5.js" />
+    <Content Include="Scripts\jquery.dataTables.js" />
+    <Content Include="Scripts\jquery.dataTables.min.js" />
+    <Content Include="Scripts\jquery.easing.1.3.js" />
+    <Content Include="Scripts\jquery.json-2.3.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jstreegrid.js" />
+    <Content Include="Scripts\knockout-2.1.0.debug.js" />
+    <Content Include="Scripts\knockout-2.1.0.js" />
+    <Content Include="Scripts\layout\tickets.js" />
+    <Content Include="Scripts\layout\ui.js" />
+    <Content Include="Scripts\layout\wikifields.js" />
+    <Content Include="Scripts\layout\xhr-targets.js" />
+    <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Scripts\Settings.js" />
+    <Content Include="Scripts\settings\catalogs\catalogs.js" />
+    <Content Include="Scripts\settings\emails\emails.js" />
+    <Content Include="Scripts\settings\jquery.tinysort.js" />
+    <Content Include="Scripts\settings\profiles.js" />
+    <Content Include="Scripts\settings\surveys\surveys.js" />
+    <Content Include="Scripts\settings\TaskScheduler.js" />
+    <Content Include="Scripts\settings\terminals.js" />
+    <Content Include="Scripts\settings\users\users.js" />
+    <Content Include="Scripts\signature.js" />
+    <Content Include="Scripts\Utils.js" />
+    <Content Include="Scripts\vgsign.js" />
+    <Content Include="ViewModels\eplat.global.components.interactions.js" />
+    <Content Include="ViewModels\eplat.global.directives.js" />
+    <Content Include="ViewModels\eplat.global.filters.js" />
+    <Content Include="ViewModels\eplat.global.store.js" />
+    <Content Include="ViewModels\eplat.global.utils.js" />
+    <Content Include="ViewModels\eplat.local.crm.followup.js" />
+    <Content Include="ViewModels\eplat.local.crm.guestexperience.js" />
+    <Content Include="ViewModels\eplat.local.crm.invitations.js" />
+    <Content Include="ViewModels\eplat.local.crm.notifications.js" />
+    <Content Include="ViewModels\eplat.local.crm.reports.invitationsBalance.js" />
+    <Content Include="ViewModels\eplat.local.crm.trials.js" />
+    <Content Include="ViewModels\eplat.local.crm.workflows.js" />
+    <Content Include="ViewModels\eplat.local.public.activeusers.js" />
+    <Content Include="ViewModels\eplat.local.public.paymentconfirmation.js" />
+    <Content Include="ViewModels\eplat.local.public.preview.js" />
+    <Content Include="ViewModels\eplat.local.public.userrequest.js" />
+    <Content Include="ViewModels\eplat.local.public.userrequestfu.js" />
+    <Content Include="ViewModels\eplat.local.settings.catalogs.banks.js" />
+    <Content Include="ViewModels\eplat.local.settings.catalogs.hotelpickups.js" />
+    <Content Include="ViewModels\eplat.local.settings.users.usersCharts.js" />
+    <Content Include="Views\Reports\_SearchExchangeToursPartial.cshtml" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Images\accent.png" />
+    <Content Include="Images\bullet.png" />
+    <Content Include="Images\heroAccent.png" />
+    <Content Include="Images\orderedList0.png" />
+    <Content Include="Images\orderedList1.png" />
+    <Content Include="Images\orderedList2.png" />
+    <Content Include="Images\orderedList3.png" />
+    <Content Include="Images\orderedList4.png" />
+    <Content Include="Images\orderedList5.png" />
+    <Content Include="Images\orderedList6.png" />
+    <Content Include="Images\orderedList7.png" />
+    <Content Include="Images\orderedList8.png" />
+    <Content Include="Images\orderedList9.png" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />
+    <Content Include="Views\Account\LogOn.cshtml" />
+    <Content Include="Views\Shared\_LogOnPartial.cshtml" />
+    <Content Include="Views\Terminals\_SearchTerminalsResults.cshtml" />
+    <Content Include="Views\UserRegistration\UserRegistration.cshtml" />
+    <Content Include="Views\UserRegistration\_SearchResults.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Users\_SearchUsersPartial.cshtml" />
+    <Content Include="Views\Users\_SearchUsersResults.cshtml" />
+    <Content Include="Views\Places\_SearchPlacesResultsPartial.cshtml" />
+    <Content Include="Views\Places\Index.cshtml" />
+    <Content Include="Views\Packages\Index.cshtml" />
+    <Content Include="Views\Packages\_SearchPackagesResults.cshtml" />
+    <Content Include="Views\Users\_UserProfilePartial.cshtml" />
+    <Content Include="Views\Packages\_PackagesManagementPartial.cshtml" />
+    <Content Include="Views\Packages\_SearchPackagesPartial.cshtml" />
+    <Content Include="Views\Packages\_PackageDescriptionsPartial.cshtml" />
+    <Content Include="Views\Packages\_PackageSettingsPartial.cshtml" />
+    <Content Include="Views\Prices\_PricesManagementPartial.cshtml" />
+    <Content Include="Views\Prices\_PriceClasificationsManagementPartial.cshtml" />
+    <Content Include="Views\Prices\_CurrenciesManagementPartial.cshtml" />
+    <Content Include="Views\MasterChart\Index.cshtml" />
+    <Content Include="Views\MasterChart\_LeadSearchPartial.cshtml" />
+    <Content Include="Views\MasterChart\_LeadSearchResultPartial.cshtml" />
+    <Content Include="Views\MasterChart\_ImportPartial.cshtml" />
+    <Content Include="Views\Places\_SearchPlacesPartial.cshtml" />
+    <Content Include="Views\Places\_PlacesManagementPartial.cshtml" />
+    <Content Include="Views\Places\_PlaceDescriptionsPartial.cshtml" />
+    <Content Include="Views\Places\_SearchTransportationZonesPartial.cshtml" />
+    <Content Include="Views\Places\_TransportationZonesManagementPartial.cshtml" />
+    <Content Include="Views\Places\_SearchPlaceClasificationsPartial.cshtml" />
+    <Content Include="Views\Places\_PlaceClasificationsManagementPartial.cshtml" />
+    <Content Include="Views\Places\_SearchDestinationsPartial.cshtml" />
+    <Content Include="Views\Places\_DestinationsManagementPartial.cshtml" />
+    <Content Include="Views\Places\_SearchPlaceTypesPartial.cshtml" />
+    <Content Include="Views\Places\_PlaceTypesManagementPartial.cshtml" />
+    <Content Include="Views\Places\_SearchZonesPartial.cshtml" />
+    <Content Include="Views\Places\_ZonesManagementPartial.cshtml" />
+    <Content Include="Views\Prices\_SearchPriceClasificationsPartial.cshtml" />
+    <Content Include="Views\Prices\_SearchCurrenciesPartial.cshtml" />
+    <Content Include="Views\Prices\_SearchPricesPartial.cshtml" />
+    <Content Include="Views\Terminals\_SearchTerminalsPartial.cshtml" />
+    <Content Include="Views\Terminals\_TerminalsManagementPartial.cshtml" />
+    <Content Include="Views\Terminals\_CatalogsManagementPartial.cshtml" />
+    <Content Include="Views\Terminals\_CategoriesManagementPartial.cshtml" />
+    <Content Include="Views\Terminals\_CategoryDescriptionsPartial.cshtml" />
+    <Content Include="Views\Terminals\_DomainsManagementPartial.cshtml" />
+    <Content Include="Views\Terminals\Index.cshtml" />
+    <Content Include="Views\Terminals\_CatalogsManagement.cshtml" />
+    <Content Include="Views\Pictures\_PicturesManagementPartial.cshtml" />
+    <Content Include="Views\Pictures\_PictureDescriptionsPartial.cshtml" />
+    <Content Include="Views\Admin\_SearchWorkGroupsPartial.cshtml" />
+    <Content Include="Views\Admin\_RolesManagementPartial.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\_SearchRolesPartial.cshtml" />
+    <Content Include="Views\Admin\_WorkGroupsManagementPartial.cshtml" />
+    <Content Include="Views\Admin\_BookingStatusManagementPartial.cshtml" />
+    <Content Include="Views\Admin\_LeadTypesManagementPartial.cshtml" />
+    <Content Include="Views\Admin\_LeadSourcesManagementPartial.cshtml" />
+    <Content Include="Views\Admin\_QualificationRequirementsManagementPartial.cshtml" />
+    <Content Include="Views\Admin\_ResortFeeTypesManagementPartial.cshtml" />
+    <Content Include="Views\Admin\_ReservationStatusManagementPartial.cshtml" />
+    <Content Include="Views\Admin\_VerificationAgreementsManagementPartial.cshtml" />
+    <Content Include="Views\SeoItems\_SeoItemsManagementPartial.cshtml" />
+    <Content Include="Views\SeoItems\_SearchSeoItemsPartial.cshtml" />
+    <Content Include="Views\Places\_PlacesPlanTypesPartial.cshtml" />
+    <Content Include="Views\Places\_RoomTypesPartial.cshtml" />
+    <Content Include="Views\Places\_RoomTypeDescriptionsPartial.cshtml" />
+    <Content Include="Views\Pages\Index.cshtml" />
+    <Content Include="Views\Pages\_PagesManagementPartial.cshtml" />
+    <Content Include="Views\Pages\_PageDescriptionsPartial.cshtml" />
+    <Content Include="Views\Pages\_SearchPagesPartial.cshtml" />
+    <Content Include="Views\MasterChart\_LeadPhoneNumbersPartial.cshtml" />
+    <Content Include="Views\MasterChart\_LeadGeneralInformationPartial.cshtml" />
+    <Content Include="Views\MasterChart\_LeadMassUpdatePartial.cshtml" />
+    <Content Include="Views\MasterChart\_HotelReservationsPartial.cshtml" />
+    <Content Include="Views\Activities\Index.cshtml" />
+    <Content Include="Views\Activities\_SearchActivitiesPartial.cshtml" />
+    <Content Include="Views\Activities\_SearchActivitiesResults.cshtml" />
+    <Content Include="Views\Activities\_ActivitiesManagementPartial.cshtml" />
+    <Content Include="Views\Activities\_ActivityDescriptionsPartial.cshtml" />
+    <Content Include="Views\Activities\_CategoriesPerActivityPartial.cshtml" />
+    <Content Include="Views\Activities\_SchedulesPerActivityPartial.cshtml" />
+    <Content Include="Views\Activities\_MeetingPointsPerActivityPartial.cshtml" />
+    <Content Include="Views\Activities\_ActivitiesImportationPartial.cshtml" />
+    <Content Include="Views\Activities\_PrevSearchActivitiesResults.cshtml" />
+    <Content Include="Views\Activities\_PrevSearchActivitiesPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchIndicatorsPartial.cshtml" />
+    <Content Include="Views\Reports\Index.cshtml" />
+    <Content Include="Views\Reports\_IndicatorsReportResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchDynamicPartial.cshtml" />
+    <Content Include="Views\Reports\_ExchangeToursReportResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchPreBookedArrivalsPartial.cshtml" />
+    <Content Include="Views\Reports\_PreBookedArrivalsReportResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchPreBookedContactedLeadsPartial.cshtml" />
+    <Content Include="Views\Reports\_PreBookedContactedLeadsReportResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchOptionsSoldPartial.cshtml" />
+    <Content Include="Views\Reports\_OptionsSoldReportResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchConfirmedLeadsPartial.cshtml" />
+    <Content Include="Views\Reports\_ConfirmedLeadsReportResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_DynamicReportResultsPartial.cshtml" />
+    <Content Include="Views\MasterChart\AddReferral.cshtml" />
+    <Content Include="Views\Reports\_aSearchDynamicPartial.cshtml" />
+    <Content Include="Views\Reports\_NewReferralsReportResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchNewReferralsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchWeeklyPartial.cshtml" />
+    <Content Include="Views\Reports\_WeeklyReportResultsPartial.cshtml" />
+    <Content Include="Views\Activities\_ActivityProvidersPartial.cshtml" />
+    <Content Include="Views\Terminals\_DestinationsPerTerminalManagementPartial.cshtml" />
+    <Content Include="Views\Admin\_ProfileManagementPartial.cshtml" />
+    <Content Include="Views\Pages\_ContentBlocksPartial.cshtml" />
+    <Content Include="Views\Pages\_BlockItemPartial.cshtml" />
+    <Content Include="Views\Terminals\_BannersGroupsManagementPartial.cshtml" />
+    <Content Include="Views\Terminals\_BannersManagementPartial.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Catalogs\Index.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Catalogs\_CommissionsManagementCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_CommissionsSearchCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_CommissionsSearchResultsCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_CompaniesManagementCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_CompaniesSearchCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_CompaniesSearchResultsCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_CouponFoliosManagementCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_CouponFoliosSearchCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_CouponFoliosSearchResultsCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_DestinationsDescriptionsCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_DestinationsManagementCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_DestinationsSearchCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_DestinationsSearchResultsCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_ExchangeRatesManagementCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_ExchangeRatesSearchCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_ExchangeRatesSearchResultsCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_OPCSManagementCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_OPCSSearchCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_OPCSSearchResultsCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_PlaceClasificationsManagementCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_PlaceClasificationsSearchCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_PlaceClasificationsSearchResultsCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_PlaceTypesManagementCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_PlaceTypesSearchCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_PlaceTypesSearchResultsCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_PromotionTeamsManagementCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_PromotionTeamsSearchCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_PromotionTeamsSearchResultsCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_TransportationZonesManagementCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_TransportationZonesSearchCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_TransportationZonesSearchResultsCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_ZonesManagementCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_ZonesSearchCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_ZonesSearchResultsCatalogPartial.cshtml" />
+    <Content Include="Views\Pages\_BlockItemDescriptionPartial.cshtml" />
+    <Content Include="Views\Activities\_PointsOfSalePartial.cshtml" />
+    <Content Include="Views\Activities\_PointsOfSaleResultsPartial.cshtml" />
+    <Content Include="Views\Pages\Browse.cshtml" />
+    <Content Include="Views\MasterChart\_PurchasesPartial.cshtml" />
+    <Content Include="Views\MasterChart\_PurchasesServicesPartial.cshtml" />
+    <Content Include="Views\MasterChart\_PurchasesSearchResultsPartial.cshtml" />
+    <Content Include="Views\Activities\_AccountingAccountsPerActivityPartial.cshtml" />
+    <Content Include="Views\MasterChart\_PurchasesServicesResultsPartial.cshtml" />
+    <Content Include="Views\MasterChart\_PurchasesPaymentsPartial.cshtml" />
+    <Content Include="Views\MasterChart\_PurchasesPaymentsResultsPartial.cshtml" />
+    <Content Include="Views\MasterChart\_BillingInformationPartial.cshtml" />
+    <Content Include="Views\MasterChart\_ReservationChargesPartial.cshtml" />
+    <Content Include="Views\MasterChart\_TimeSharePresentationPartial.cshtml" />
+    <Content Include="Views\Reports\_ActivityPricesResultsPartial.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Reports\_SearchCloseOutPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchPricesPartial.cshtml" />
+    <Content Include="Views\Reports\_CloseOutResultsPartial.cshtml" />
+    <Content Include="Views\TimeShare\_AccountancyManagementPartial.cshtml" />
+    <Content Include="Views\TimeShare\_EgressesSearchPartial.cshtml" />
+    <Content Include="Views\TimeShare\_EgressesInfoPartial.cshtml" />
+    <Content Include="Views\TimeShare\_EgressesSearchResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_CloseOutsHistoryResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchCloseOutsHistoryPartial.cshtml" />
+    <Content Include="Views\Activities\_SearchPriceTypesRulesPartial.cshtml" />
+    <Content Include="Views\Activities\_PriceTypeRulesResultsPartial.cshtml" />
+    <Content Include="Views\TimeShare\_IncomesSearchPartial.cshtml" />
+    <Content Include="Views\TimeShare\_IncomesInfoPartial.cshtml" />
+    <Content Include="Views\TimeShare\_IncomesSearchResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_CouponResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchCouponsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchReservationsMadePartial.cshtml" />
+    <Content Include="Views\Reports\_ReservationsMadeResultsPartial.cshtml" />
+    <Content Include="Views\Catalogs\_OPCSTeamInfoPartial.cshtml" />
+    <Content Include="Views\Reports\_ChargeBacksResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_CommissionsResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_CouponSalesResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_InvoiceResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_PolicyResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchChargeBacksPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchCommissionsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchInvoicePartial.cshtml" />
+    <Content Include="Views\Reports\_SearchPolicyPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchPricesCustomPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchProductionPartial.cshtml" />
+    <Content Include="Views\TimeShare\Index.cshtml" />
+    <Content Include="Views\Catalogs\_LocationsManagementCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_LocationsSearchCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_LocationsSearchResultsCatalogPartial.cshtml" />
+    <Content Include="Views\Reports\_CashStatementResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_CategoriesResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_PricesCustomResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_PricesReportLayoutPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchProductionCategoriesPartial.cshtml" />
+    <Content Include="Views\AccountingAccounts\_AccountingAccountsManagementCatalogPartial.cshtml" />
+    <Content Include="Views\PointsOfSale\_PointsOfSaleManagementCatalogPartial.cshtml" />
+    <Content Include="Views\PointsOfSale\_PointsOfSaleSearchCatalogPartial.cshtml" />
+    <Content Include="Views\PointsOfSale\_PointsOfSaleSearchResultsCatalogPartial.cshtml" />
+    <Content Include="Views\AccountingAccounts\_AccountingAccountsSearchCatalogPartial.cshtml" />
+    <Content Include="Views\AccountingAccounts\_AccountingAccountsSearchResultsCatalogPartial.cshtml" />
+    <Content Include="Views\Providers\_ProvidersManagementCatalogPartial.cshtml" />
+    <Content Include="Views\Providers\_ProvidersSearchCatalogPartial.cshtml" />
+    <Content Include="Views\Providers\_ProvidersSearchResultsCatalogPartial.cshtml" />
+    <Content Include="Views\MasterChart\_FastSalePartial.cshtml" />
+    <Content Include="Views\Home\_WikiFieldPartial.cshtml" />
+    <Content Include="Views\Reports\_CouponsHistoryResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_ProvidersResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchCashStatementPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchCouponSalesPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchCouponsHistoryPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchProductionProvidersPartial.cshtml" />
+    <Content Include="Views\Home\_PendingCloseOutsPartial.cshtml" />
+    <Content Include="Views\Home\_SearchTicketPartial.cshtml" />
+    <Content Include="Views\Home\_TicketInfoPartial.cshtml" />
+    <Content Include="Views\Home\_TicketsPartial.cshtml" />
+    <Content Include="Views\Reports\_AuditCouponsResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_AuditInvoiceInfoPartial.cshtml" />
+    <Content Include="Views\Reports\_LegacyUserPermissionsResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchAuditCouponsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchLegacyUserPermissionsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchUserPermissionsPartial.cshtml" />
+    <Content Include="Views\Reports\_UserPermissionsResultsPartial.cshtml" />
+    <Content Include="Views\Catalogs\_PromosSearchCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_PromosManagementCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_PromosSearchResultsCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_BudgetsSearchCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_BudgetsManagementCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_BudgetsSearchResultsCatalogPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchPipelinePartial.cshtml" />
+    <Content Include="Views\Reports\_PipelineReportResultsPartial.cshtml" />
+    <Content Include="Views\Prices\_PricesManagementWizardPartial.cshtml" />
+    <Content Include="Views\Reports\_RoomUpgradesReportResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchRoomUpgradesPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchConciergesPartial.cshtml" />
+    <Content Include="Views\Reports\_ConciergesReportResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchPreCheckInPartial.cshtml" />
+    <Content Include="Views\Reports\_PreCheckInReportResultsPartial.cshtml" />
+    <Content Include="Views\Surveys\Index.cshtml" />
+    <Content Include="Views\Surveys\_FormFieldPartial.cshtml" />
+    <Content Include="Views\Surveys\_InfoFieldPartial.cshtml" />
+    <Content Include="Views\Surveys\_SearchSurveyPartial.cshtml" />
+    <Content Include="Views\Surveys\_SearchSurveyResultsPartial.cshtml" />
+    <Content Include="Views\Surveys\_SurveyInfoPartial.cshtml" />
+    <Content Include="Views\MasterChart\_SearchCouponsResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_AuditDetailResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_BillingResultsPartial.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Reports\_NewReferralLeadsReportResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_PaymentsAssignationResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_QuoteRequestsResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchBillingPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchPaymentsAssignationPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchQuoteRequestsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchSweepstakesPartial.cshtml" />
+    <Content Include="Views\Reports\_SweepstakesResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_CouponCostPartial.cshtml" />
+    <Content Include="Views\Reports\_IOBalanceResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchIOBalancePartial.cshtml" />
+    <Content Include="Views\Reports\_SearchArrivalsPartial.cshtml" />
+    <Content Include="Views\Reports\_ArrivalsReportResultsPartial.cshtml" />
+    <Content Include="Views\Activities\_PriceTypeRuleClosingPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchDuplicateLeadsPartial.cshtml" />
+    <Content Include="Views\Reports\_DuplicateLeadsResultsPartial.cshtml" />
+    <Content Include="Views\Shared\_LeadMassUpdatePartial.cshtml" />
+    <Content Include="Views\Reports\_SearchMasterCloseOutPartial.cshtml" />
+    <Content Include="Views\MasterChart\_PurchaseTicketPartial.cshtml" />
+    <Content Include="Views\MasterChart\_PurchaseTicketsResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_BudgetsResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_MasterCloseOutResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchBudgetsPartial.cshtml" />
+    <Content Include="Views\Activities\_AccountingAccountsPerActivityResultsPartial.cshtml" />
+    <Content Include="Views\Activities\_MeetingPointsPerServicePartial.cshtml" />
+    <Content Include="Views\Hostess\Index.cshtml" />
+    <Content Include="Views\Hostess\_ArrivalInfoPartial.cshtml" />
+    <Content Include="Views\Catalogs\_SalesRoomPartiesSearchPartial.cshtml" />
+    <Content Include="Views\Catalogs\_SalesRoomsPartiesManagementPartial.cshtml" />
+    <Content Include="Views\Catalogs\_SalesRoomsPartiesResult.cshtml" />
+    <Content Include="Views\Emails\Index.cshtml" />
+    <Content Include="Views\Emails\_EmailsManagementPartial.cshtml" />
+    <Content Include="Views\Emails\_SearchEmailsResults.cshtml" />
+    <Content Include="Views\Emails\_SearchEmailsPartial.cshtml" />
+    <Content Include="Views\Emails\_SearchEmailNotificationsPartial.cshtml" />
+    <Content Include="Views\Emails\_SearchEmailNotificationsResults.cshtml" />
+    <Content Include="Views\Emails\_EmailNotificationsManagementPartial.cshtml" />
+    <Content Include="Views\Activities\_SearchStockTransactionsPartial.cshtml" />
+    <Content Include="Views\Activities\_StockTransactionsResultsPartial.cshtml" />
+    <Content Include="Views\Catalogs\_AccountingAccountsManagementCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_AccountingAccountsSearchCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_AccountingAccountsSearchResultsCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_PointsOfSaleManagementCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_PointsOfSaleSearchCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_PointsOfSaleSearchResultsCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_ProvidersManagementCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_ProvidersSearchCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_ProvidersSearchResultsCatalogPartial.cshtml" />
+    <Content Include="Views\Reports\_DiamanteReportResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchDiamantePartial.cshtml" />
+    <Content Include="Views\Reports\_SearchAccoutingAccountsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchAcountingAccountsResultPartial.cshtml" />
+    <Content Include="Views\Hostess\_ResultsArrivalsForecastPartial.cshtml" />
+    <Content Include="Views\Hostess\_ResultsPenetrationPartial.cshtml" />
+    <Content Include="Views\Hostess\_SearchArrivalsForecastPartial.cshtml" />
+    <Content Include="Views\Hostess\_SearchInArrivalsPartial.cshtml" />
+    <Content Include="Views\Hostess\_SearchInBinnaclePartial.cshtml" />
+    <Content Include="Views\Hostess\_SearchPenetrationReportPartial.cshtml" />
+    <Content Include="Views\Activities\_PricesEditorPartial.cshtml" />
+    <Content Include="Views\Catalogs\_OptionsSearchCatalogPartial.cshtml" />
+    <Content Include="Views\Catalogs\_OptionsManagementPartial.cshtml" />
+    <Content Include="Views\Catalogs\_OptionsSearchResultsCatalogPartial.cshtml" />
+    <Content Include="Views\Hostess\_ResultsGlobalPenetrationPartial.cshtml" />
+    <Content Include="Views\Hostess\_SearchGlobalPenetrationReportPartial.cshtml" />
+    <Content Include="Views\Reports\_ExternalSalesResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_PrearrivalsFeedbackResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchExternalSalesPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchFeedbackPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchNewReferralLeadsPartial.cshtml" />
+    <Content Include="Views\Emails\_FieldGroupsManagementPartial.cshtml" />
+    <Content Include="Views\Emails\_SearchFieldGroupsPartial.cshtml" />
+    <Content Include="Views\Emails\_SearchFieldGroupsResultsPartial.cshtml" />
+    <Content Include="Views\Emails\_GetFieldsResultsPartial.cshtml" />
+    <Content Include="Views\Emails\_FieldsManagementPartial.cshtml" />
+    <Content Include="Views\Notifications\_FieldValuesManagementPartial.cshtml" />
+    <Content Include="Views\Home\_DailyCommissionsPartial.cshtml" />
+    <Content Include="Views\Home\_DailyVolumePartial.cshtml" />
+    <Content Include="Views\Home\_HostessStatusPartial.cshtml" />
+    <Content Include="Views\Notifications\Index.cshtml" />
+    <Content Include="Views\Notifications\_NotificationsSearchPartial.cshtml" />
+    <Content Include="Views\Notifications\_NotificationsSearchResultsPartial.cshtml" />
+    <Content Include="Views\Notifications\_NotificationHistoryResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchNotificationsResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchNotificationsPartial.cshtml" />
+    <Content Include="Views\Reports\_CallsByLocationResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchCallsByLocationPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchUserLogsActivity.cshtml" />
+    <Content Include="Views\Reports\_UserLogsActivityResultPartial.cshtml" />
+    <Content Include="Views\Notifications\Preview.cshtml" />
+    <Content Include="Views\PreArrival\_PreArrivalManagementPartial.cshtml" />
+    <Content Include="Views\PreArrival\Index.cshtml" />
+    <Content Include="Views\PreArrival\_SearchPreArrivalPartial.cshtml" />
+    <Content Include="Views\PreArrival\_PreArrivalInteractionsPartial.cshtml" />
+    <Content Include="Views\PreArrival\_PreArrivalSearchResultsPartial.cshtml" />
+    <Content Include="Views\TaskScheduler\Index.cshtml" />
+    <Content Include="Views\TaskScheduler\SearchTaskScheduler.cshtml" />
+    <Content Include="Views\TaskScheduler\TaskSchedulerManagementPartial.cshtml" />
+    <Content Include="Views\TaskScheduler\TaskSchedulerPartialResult.cshtml" />
+    <Content Include="Views\PreArrival\_PreArrivalReservationsPartial.cshtml" />
+    <Content Include="Views\Hostess\_TimeshareTourInfoPartial.cshtml" />
+    <Content Include="Views\PreArrival\_PreArrivalPaymentsPartial.cshtml" />
+    <Content Include="Views\PreArrival\_PreArrivalBillingsPartial.cshtml" />
+    <Content Include="Views\PreArrival\_PreArrivalPresentationPartial.cshtml" />
+    <Content Include="Views\PreArrival\_PreArrivalFlightsPartial.cshtml" />
+    <Content Include="Views\PreArrival\_PreArrivalOptionsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchIncorrectPreBookedToursPartial.cshtml" />
+    <Content Include="Views\Reports\_IncorrectPreBookedToursResultsPartial.cshtml" />
+    <Content Include="Views\Shared\_AgencyManifestPartial.cshtml" />
+    <Content Include="Views\Notifications\_ManifestPartial1.cshtml" />
+    <Content Include="Views\Catalogs\_BankInfoPartial.cshtml" />
+    <Content Include="Views\Catalogs\_BankSearchPartial.cshtml" />
+    <Content Include="Views\Shared\_Layout2.cshtml" />
+    <Content Include="Views\Catalogs\Index2.cshtml" />
+    <Content Include="Views\Notifications\Index2.cshtml" />
+    <Content Include="Views\Notifications\_ManifestPartial.cshtml" />
+    <Content Include="Views\Reports\_salesByTeamResultPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchSalesByTeam.cshtml" />
+    <Content Include="Views\Catalogs\_HotelPickUpsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchPreArrivalWeeklyBudgetPartial.cshtml" />
+    <Content Include="Views\Catalogs\_MarketCodesSearchPartial.cshtml" />
+    <Content Include="Views\Catalogs\_MarketCodesSearchResultsPartial.cshtml" />
+    <Content Include="Views\Catalogs\_MarketCodesManagementPartial.cshtml" />
+    <Content Include="Views\Reports\_PreArrivalManifestReportResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_PreArrivalWeeklyBudgetReportResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchPreArrivalManifestPartial.cshtml" />
+    <Content Include="Views\Trials\Index.cshtml" />
+    <Content Include="Views\Trials\_TrialInfoPartial.cshtml" />
+    <Content Include="Views\Trials\_TrialSearchPartial.cshtml" />
+    <Content Include="Views\Shared\_LeadMassiveUpdatePartial.cshtml" />
+    <Content Include="Views\Reports\_SearchPreArrivalReportingPartial.cshtml" />
+    <Content Include="Views\Reports\_PreArrivalReportingReportResultsPartial.cshtml" />
+    <Content Include="Views\Public\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutPublic.cshtml" />
+    <Content Include="Views\Public\__PaymentConfirmation.cshtml" />
+    <Content Include="Views\Shared\_PreviewEmail.cshtml" />
+    <Content Include="Views\Users\ActiveUsers.cshtml" />
+    <Content Include="Views\Invitations2\Index.cshtml" />
+    <Content Include="Views\Invitations2\_InvitationInfoPartialSPI.cshtml" />
+    <Content Include="Views\Invitations2\_InvitationResultPartial.cshtml" />
+    <Content Include="Views\Invitations2\_InvitationSearchPartialSPI.cshtml" />
+    <Content Include="Views\Shared\_Layout2Anonymous.cshtml" />
+    <Content Include="Views\Home\_PendingCachePartial.cshtml" />
+    <Content Include="Views\Invitations2\_InvitationEmailPreviewResul.cshtml" />
+    <Content Include="Views\Users\UserRequests.cshtml" />
+    <Content Include="Views\Users\UserRequestFollowUp.cshtml" />
+    <Content Include="Views\Users\UserRequest.cshtml" />
+    <Content Include="Views\GuestExperience\Index.cshtml" />
+    <Content Include="Views\GuestExperience\_SearchFiltersPartial.cshtml" />
+    <Content Include="Views\Reports\_PreArrivalSalesByAgentReportResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchPreArrivalSalesByAgentPartial.cshtml" />
+    <Content Include="Views\Reports\Index2.cshtml" />
+    <Content Include="Views\Reports\_InvitationsBalanceResult.cshtml" />
+    <Content Include="Views\Reports\_SearchInvitationBalance.cshtml" />
+    <Content Include="Views\Reports\_SearchAgentsPerformancePartial.cshtml" />
+    <Content Include="Views\Reports\_AgentsPerformanceResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_IndicatorsPerResortReportResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchIndicatorsPerResortPartial.cshtml" />
+    <Content Include="Views\FollowUp\Index.cshtml" />
+    <Content Include="Views\FollowUp\_CustomerInfoPartial.cshtml" />
+    <Content Include="Views\FollowUp\_SearchFiltersPartial.cshtml" />
+    <Content Include="Views\Reports\_GoogleAdsInvestmentsResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchAdsInvestmentPartial.cshtml" />
+    <Content Include="Views\Users\_UsersOrganizationCharts.cshtml" />
+    <Content Include="Views\Users\_UsersSubordinatesResult.cshtml" />
+    <Content Include="Views\Emails\_EmailWorkflowPartial.cshtml" />
+    <Content Include="Views\Workflows\Index.cshtml" />
+    <Content Include="Views\cardsManagement\activateMembership.cshtml" />
+    <Content Include="Views\cardsManagement\Index.cshtml" />
+    <Content Include="Views\cardsManagement\Preview.cshtml" />
+    <Content Include="Views\Senses\ContentManagement\Hotels.cshtml" />
+    <Content Include="ViewModels\Components\Workflows\newStep.vue" />
+    <Content Include="Views\Workflows\Index - Copy.cshtml" />
+    <Content Include="ViewModels\Components\Workflows\workflowsManagement.vue" />
+    <Content Include="ViewModels\Components\Workflows\searchWorkflows.vue" />
+    <Content Include="Views\Senses\ContentManagement\ArtGalleries.cshtml" />
+    <Content Include="Views\Senses\ContentManagement\Articles.cshtml" />
+    <Content Include="Views\Senses\ContentManagement\Events.cshtml" />
+    <Content Include="Views\Senses\ContentManagement\Restaurants.cshtml" />
+    <Content Include="Views\Senses\ContentManagement\Reviews.cshtml" />
+    <Content Include="Views\Senses\ContentManagement\Spas.cshtml" />
+    <Content Include="ViewModels\Components\Activate Membership\activateMembership.vue" />
+    <Content Include="ViewModels\Components\Activate Membership\addedMemberships.vue" />
+    <Content Include="ViewModels\Components\ArtGalleries\addartgallery.vue" />
+    <Content Include="ViewModels\Components\ArtGalleries\artgalleries.vue" />
+    <Content Include="ViewModels\Components\ArtGalleries\artgallerydetails.vue" />
+    <Content Include="ViewModels\Components\ArtGalleries\GoogleMap.vue" />
+    <Content Include="ViewModels\Components\Articles\addarticle.vue" />
+    <Content Include="ViewModels\Components\Articles\articledetails.vue" />
+    <Content Include="ViewModels\Components\Articles\articles.vue" />
+    <Content Include="ViewModels\Components\Cards Management\cardsDetails.vue" />
+    <Content Include="ViewModels\Components\Cards Management\cardsManagement.vue" />
+    <Content Include="ViewModels\Components\Cards Management\newcard.vue" />
+    <Content Include="ViewModels\Components\Cards Management\searchCards.vue" />
+    <Content Include="ViewModels\Components\Events\addevent.vue" />
+    <Content Include="ViewModels\Components\Events\eventdetails.vue" />
+    <Content Include="ViewModels\Components\Events\events.vue" />
+    <Content Include="ViewModels\Components\Hotels\addhotel.vue" />
+    <Content Include="ViewModels\Components\Hotels\addroom.vue" />
+    <Content Include="ViewModels\Components\Hotels\GoogleMap.vue" />
+    <Content Include="ViewModels\Components\Hotels\hoteldetails.vue" />
+    <Content Include="ViewModels\Components\Hotels\hotels.vue" />
+    <Content Include="ViewModels\Components\Hotels\image.vue" />
+    <Content Include="ViewModels\Components\Layout\help.vue" />
+    <Content Include="ViewModels\Components\Layout\index.vue" />
+    <Content Include="ViewModels\Components\Layout\notifications.vue" />
+    <Content Include="ViewModels\Components\Layout\session.vue" />
+    <Content Include="ViewModels\Components\Layout\settings.vue" />
+    <Content Include="ViewModels\Components\Layout\tasks.vue" />
+    <Content Include="ViewModels\Components\Preview\addpreview.vue" />
+    <Content Include="ViewModels\Components\Preview\preview.vue" />
+    <Content Include="ViewModels\Components\Restaurants\addrestaurant.vue" />
+    <Content Include="ViewModels\Components\Restaurants\GoogleMap.vue" />
+    <Content Include="ViewModels\Components\Restaurants\restaurants.vue" />
+    <Content Include="ViewModels\Components\Restaurants\restaurantsdetails.vue" />
+    <Content Include="ViewModels\Components\Reviews\reviews.vue" />
+    <Content Include="ViewModels\Components\Spas\addspa.vue" />
+    <Content Include="ViewModels\Components\Spas\GoogleMap.vue" />
+    <Content Include="ViewModels\Components\Spas\spadetails.vue" />
+    <Content Include="ViewModels\Components\Spas\spas.vue" />
+    <Content Include="Views\PreArrival\_HistoryPartial.cshtml" />
+    <Content Include="Views\Shared\_Layout3.cshtml" />
+    <Content Include="Views\Reports\_FrequentGuestsResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchExchangeTourResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchPreArrivalWeeklyCommissionsPartial.cshtml" />
+    <Content Include="Views\Reports\_PreArrivalWeeklyCommissionsResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_PreArrivalOptionsPercentagePartial.cshtml" />
+    <Content Include="Views\Reports\_PreArrivalOptionsPercentageResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchPreArrivalCommissionsReportPartial.cshtml" />
+    <Content Include="Views\Reports\_PreArrivalCommissionsReportResultsPartial.cshtml" />
+    <Content Include="ViewModels\Components\Reports\Payment\payment.vue" />
+    <Content Include="ViewModels\Components\Reports\reports.vue" />
+    <Content Include="ViewModels\Components\Surveys\addsurvey.vue" />
+    <Content Include="ViewModels\Components\Surveys\addsurveys.vue" />
+    <Content Include="ViewModels\Components\Surveys\surveys.vue" />
+    <Content Include="ViewModels\Components\Surveys\types\comments.vue" />
+    <Content Include="ViewModels\Components\Surveys\types\optionsQuestion.vue" />
+    <Content Include="ViewModels\Components\Surveys\types\ratingQuestion.vue" />
+    <Content Include="ViewModels\Components\Surveys\types\textField.vue" />
+    <Content Include="ViewModels\Components\Surveys\types\yesOrNot.vue" />
+    <Content Include="Views\Invitations\Index.cshtml" />
+    <Content Include="Views\Invitations\_InvitationInfoPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchPreArrivalInvoicesPartial.cshtml" />
+    <Content Include="Views\Reports\_PreArrivalInvoicesResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchPreArrivalSalesByResortOptionTypePartial.cshtml" />
+    <Content Include="Views\Reports\_PreArrivalSalesByResortOptionTypeResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchRentersPartial.cshtml" />
+    <Content Include="Views\Invitations2\WarningSPIUser.cshtml" />
+    <Content Include="Views\PreArrival\FrontOfficeImport.cshtml" />
+    <Content Include="Views\Reports\_SearchPreArrivalTransportationPartial.cshtml" />
+    <Content Include="Views\Reports\_PreArrivalTransportationResults.cshtml" />
+    <Content Include="Views\Reports\_InvitationsDepositsPartial.cshtml" />
+    <Content Include="Views\Public\PaymentConfirmation.cshtml" />
+    <Content Include="Views\Shared\PreviewEmail.cshtml" />
+    <Content Include="Views\Catalogs\_UsersLeadSourcesSearchPartial.cshtml" />
+    <Content Include="Views\Catalogs\_UsersLeadSourcesManagementPartial.cshtml" />
+    <Content Include="Views\Catalogs\_UsersLeadSourcesResultsPartial.cshtml" />
+    <Content Include="ViewModels\Components\Providers\addprovider.vue" />
+    <Content Include="ViewModels\Components\Providers\GoogleMap.vue" />
+    <Content Include="ViewModels\Components\Providers\providers.vue" />
+    <Content Include="ViewModels\Components\Providers\providertemplate.vue" />
+    <Content Include="ViewModels\Components\Layout\chat.vue" />
+    <Content Include="ViewModels\Components\Layout\email.vue" />
+    <Content Include="ViewModels\Components\Layout\log.vue" />
+    <Content Include="ViewModels\Components\Layout\reminders.vue" />
+    <Content Include="ViewModels\Components\Layout\sms.vue" />
+    <Content Include="ViewModels\Components\Layout\terminals.vue" />
+    <Content Include="ViewModels\Components\Invitations Deposits\deposits.vue" />
+    <Content Include="ViewModels\Components\Invitations Deposits\searchInvitations.vue" />
+    <Content Include="ViewModels\Components\Dashboard\dashboard.vue" />
+    <Content Include="ViewModels\Components\Reports\CardsPolls\cardspolls.vue" />
+    <Content Include="ViewModels\Components\Reports\Polls Statistics\statistics.vue" />
+    <Content Include="ViewModels\Components\Surveys\surveysmanagement.vue" />
+    <Content Include="Views\Hub\Index.cshtml" />
+    <Content Include="Views\Hub\_GuestClarabridgePartial.cshtml" />
+    <Content Include="Views\Hub\_GuestClaraBridgeResultsPartial.cshtml" />
+    <Content Include="Views\Hub\_GuestHistoryReservationsResultsPartial.cshtml" />
+    <Content Include="Views\Hub\_GuestMemberInfoPartial.cshtml" />
+    <Content Include="Views\Hub\_GuestPreferencesPartial.cshtml" />
+    <Content Include="Views\Hub\_GuestProfilePartial.cshtml" />
+    <Content Include="Views\Hub\_GuestProfileReservationPartial.cshtml" />
+    <Content Include="Views\Hub\_GuestProfileResultsPartial.cshtml" />
+    <Content Include="Views\Hub\_GuestTasksPartial.cshtml" />
+    <Content Include="Views\Hub\_GuestTasksResultsPartial.cshtml" />
+    <Content Include="Views\Hub\_PreferenceRegistrationPartial.cshtml" />
+    <Content Include="Views\Hub\_SearchGuestsPartial.cshtml" />
+    <Content Include="Views\Hub\_SearchGuestsResultsPartial.cshtml" />
+    <Content Include="Views\Hub\_UploadHotelExpertPartial.cshtml" />
+    <Content Include="Views\Supervisors\Index.cshtml" />
+    <Content Include="Views\Supervisors\_SearchSupervisorPartial.cshtml" />
+    <Content Include="Views\Supervisors\_SearchSupervisorResults.cshtml" />
+    <Content Include="Views\Supervisors\_SupervisorProfilePartial.cshtml" />
+    <Content Include="Views\Reports\_SearchPreArrivalImportHistoryPartial.cshtml" />
+    <Content Include="Views\Reports\_PreArrivalImportHistoryResultsPartial.cshtml" />
+    <Content Include="Views\Reports\_SearchPreArrivalWeeklyReport.cshtml" />
+    <Content Include="Views\Reports\_PreArrivalWeeklyReportResults.cshtml" />
+    <Content Include="Views\PreArrival\OptionsReassignment.cshtml" />
+    <Content Include="ViewModels\eplat.local.crm.prearrival.reassignation.js" />
+    <Content Include="Views\PreArrival\GroupLeads.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Content\files\data\" />
+    <Folder Include="Content\files\errors\" />
+    <Folder Include="Content\files\workflows\" />
+    <Folder Include="Views\MailSender\" />
+    <Folder Include="Views\Test\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ePlatBack.Models\ePlatBack.Models.csproj">
+      <Project>{a7c86e4d-498d-4322-9521-7a34965b8239}</Project>
+      <Name>ePlatBack.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>42366</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:45001/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:45001/</IISAppRootUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

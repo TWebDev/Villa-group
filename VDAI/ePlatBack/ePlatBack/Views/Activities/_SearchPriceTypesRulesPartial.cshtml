@@ -1,0 +1,163 @@
+﻿@model ePlatBack.Models.ViewModels.PriceTypeRulesInfoModel
+@{
+    var Privileges = ViewData["Privileges"] as List<ePlatBack.Models.ViewModels.SysComponentsPrivilegesModel>;
+}
+@if (Privileges.FirstOrDefault(m => m.Component == "fdsPriceTypesRules") == null || Privileges.FirstOrDefault(m => m.Component == "fdsPriceTypesRules").View)
+{
+    <fieldset id="fdsPriceTypesRules" data-close-siblings="true" class="view-restricted primary-selected-row-dependent" style="display:none">
+        <legend>
+            <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+            Prices Rules
+        </legend>
+        <div style="display:none">
+            <div class="full-width align-from-bottom">
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.SearchRules_Date)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.SearchRules_Date, new { placeholder = "empty = active rules" })
+                    </div>
+                </div>
+                <input type="button" id="btnNewPriceTypeRuleInfo" class="submit fieldset-expander right marg-left" value="new" />
+                <input type="button" id="btnSearchRules" class="button right" value="search" />
+            </div>
+            <div id="divPriceTypesRules"></div>
+            @if (Privileges.FirstOrDefault(m => m.Component == "fdsPriceTypeRuleInfo") == null || Privileges.FirstOrDefault(m => m.Component == "fdsPriceTypeRuleInfo").View)
+            {
+                <fieldset id="fdsPriceTypeRuleInfo" data-close-siblings="true">
+                    <legend>
+                        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+                        Price Type Rule Info
+                    </legend>
+                    <div style="display: none">
+                        @if (Privileges.FirstOrDefault(m => m.Component == "frmPriceTypeRuleInfo") == null || Privileges.FirstOrDefault(m => m.Component == "frmPriceTypeRuleInfo").View)
+                        {
+                            using (Ajax.BeginForm("SavePriceTypeRule", "Activities", new AjaxOptions { OnSuccess = "ACTIVITY.savePriceTypeRuleSuccess(data)" }, new { id = "frmPriceTypeRuleInfo", onSubmit = "return UI.showValidationSummary(this.id);" }))
+                            {
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PriceTypeRulesInfo_Terminal)
+                                        @Html.HiddenFor(model => model.PriceTypeRulesInfo_PriceTypeRuleID, new { @class = "secondary-selected-row-dependent" })
+                                        @Html.HiddenFor(model => model.PriceTypeRulesInfo_PriceTypeRules, new { @class = "secondary-selected-row-dependent" })
+                                        @Html.HiddenFor(model => model.PriceTypeRulesInfo_SelectedService, new { @class = "primary-selected-row-dependent", data_keep_value = "" })
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.PriceTypeRulesInfo_Terminal, Model.PriceTypeRulesInfo_DrpTerminals, new { data_keep_value = "" })
+                                    </div>
+                                </div>
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PriceTypeRulesInfo_Provider)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.PriceTypeRulesInfo_Provider, Model.PriceTypeRulesInfo_DrpProviders)
+                                    </div>
+                                </div>
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PriceTypeRulesInfo_Service)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.PriceTypeRulesInfo_Service, Model.PriceTypeRulesInfo_DrpServices, new { multiple = "multiple" })
+                                    </div>
+                                </div>
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PriceTypeRulesInfo_GenericUnit)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.PriceTypeRulesInfo_GenericUnit, Model.PriceTypeRulesInfo_DrpGenericUnits)
+                                    </div>
+                                </div>
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PriceTypeRulesInfo_PriceType)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.PriceTypeRulesInfo_PriceType, Model.PriceTypeRulesInfo_DrpPriceTypes, new { @class = "visibility-controlled" })
+                                    </div>
+                                </div>
+                                <div id="divPriceTypeDependant" class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PriceTypeRulesInfo_FromDate)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.PriceTypeRulesInfo_FromDate, new { data_uses_date_picker = "true", data_start_date_picker = "null", placeholder = "empty = starting now" })
+                                    </div>
+                                </div>
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.PriceTypeRulesInfo_Base)
+                                    </div>
+                                    <div class="editor-field">
+                                        <label>Yes</label>
+                                        @Html.RadioButtonFor(model => model.PriceTypeRulesInfo_Base, true, new { data_keep_value = "" })
+                                        <label>No</label>
+                                        @Html.RadioButtonFor(model => model.PriceTypeRulesInfo_Base, false, new { data_keep_value = "" })
+                                    </div>
+                                </div>
+                                <div id="divBaseDependant" class="editor-alignment" style="display: none">
+                                    <div class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.PriceTypeRulesInfo_UsesFormula)
+                                        </div>
+                                        <div class="editor-field">
+                                            <label>Yes</label>
+                                            @Html.RadioButtonFor(model => model.PriceTypeRulesInfo_UsesFormula, true, new { data_keep_value = "" })
+                                            <label>No</label>
+                                            @Html.RadioButtonFor(model => model.PriceTypeRulesInfo_UsesFormula, false, new { data_keep_value = "" })
+                                        </div>
+                                    </div>
+                                    <div class="editor-alignment" id="divFormula" style="display:none">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.PriceTypeRulesInfo_Formula)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.TextBoxFor(model => model.PriceTypeRulesInfo_Formula, new { placeholder = "=P9 + 20%" })
+                                        </div>
+                                    </div>
+                                    <div id="divNoFormula" class="editor-alignment">
+                                        <div class="editor-alignment">
+                                            <div class="editor-label">
+                                                @Html.LabelFor(model => model.PriceTypeRulesInfo_Percentage)
+                                            </div>
+                                            <div class="editor-field">
+                                                @Html.TextBoxFor(model => model.PriceTypeRulesInfo_Percentage)
+                                            </div>
+                                        </div>
+                                        <div class="editor-alignment">
+                                            <div class="editor-label">
+                                                @Html.LabelFor(model => model.PriceTypeRulesInfo_MoreOrLess)
+                                            </div>
+                                            <div class="editor-field">
+                                                <label>More</label>
+                                                @Html.RadioButtonFor(model => model.PriceTypeRulesInfo_MoreOrLess, true, new { data_keep_value = "" })
+                                                <label>Less</label>
+                                                @Html.RadioButtonFor(model => model.PriceTypeRulesInfo_MoreOrLess, false, new { data_keep_value = "" })
+                                            </div>
+                                        </div>
+                                        <div class="editor-alignment">
+                                            <div class="editor-label">
+                                                @Html.LabelFor(model => model.PriceTypeRulesInfo_ThanPriceType)
+                                            </div>
+                                            <div class="editor-field">
+                                                @Html.DropDownListFor(model => model.PriceTypeRulesInfo_ThanPriceType, Model.PriceTypeRulesInfo_DrpPriceTypes, new { @class = "visibility-controlled" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                if (Privileges.FirstOrDefault(m => m.Component == "btnSavePriceTypeRule") == null || Privileges.FirstOrDefault(m => m.Component == "btnSavePriceTypeRule").View)
+                                {
+                                    <div class="editor-alignment full-width">
+                                        <input type="submit" id="btnSavePriceTypeRule" class="submit right" value="save" />
+                                    </div>
+                                }
+                            }
+                        }
+                    </div>
+                </fieldset>
+            }
+        </div>
+    </fieldset>
+}

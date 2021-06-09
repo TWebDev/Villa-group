@@ -1,0 +1,71 @@
+﻿@model ePlatBack.Models.ViewModels.DuplicateLeadsReport
+
+
+<table id="tblDuplicateLeadsResults" class="table no-plugin full-width">
+    <thead>
+        <tr>
+            <th><label id="">Select All</label><br />
+            <input type="checkbox" id="chkSelectAllDups"/>
+            </th>
+            <th>Name</th>
+            <th>Booking Status</th>
+            <th>Lead Status</th>
+            <th>Lead Source</th>
+            <th>Arrival Date</th>
+            <th>Assigned To User</th>
+            <th>Resort</th>
+            <th>Confirmation Number</th>
+            <th>Phone Number</th>
+            <th>Email</th>
+            <th>Member Account</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(Model.ListDuplicateLeadsReportModel != null)
+        {
+            foreach(var i in Model.ListDuplicateLeadsReportModel.Distinct())
+            {
+                var leadID = i.DuplicateLeadsReport_Lead;
+                var date = i.DuplicateLeadsReport_ArrivalDate.ToString("yyyy-MM-dd");
+                <tr id="@leadID">
+                    <td>
+                        <input type="checkbox" class="chk-son" id="@leadID" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.DuplicateLeadsReport_Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.DuplicateLeadsReport_BookingStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.DuplicateLeadsReport_LeadStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.DuplicateLeadsReport_LeadSource)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.DuplicateLeadsReport_AssignedToUser)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.DuplicateLeadsReport_Resort)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.DuplicateLeadsReport_ConfirmationNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.DuplicateLeadsReport_PhoneNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.DuplicateLeadsReport_Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.DuplicateLeadsReport_MemberAccount)
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

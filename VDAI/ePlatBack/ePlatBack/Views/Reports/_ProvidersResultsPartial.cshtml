@@ -1,0 +1,137 @@
+﻿@model ePlatBack.Models.ViewModels.ProvidersProductionModel
+
+<div class="table-div">
+    <div class="table-row">
+        <div class="table-cell">
+            Dates<br />
+            @Model.Dates
+        </div>
+        <div class="table-cell">
+            Points of Sale<br />
+            @Html.Raw(Model.PointOfSale)
+        </div>
+        @if (Model.SelectedProviders != null)
+        {
+            <div class="table-cell">
+                Providers<br />
+                @Html.Raw(Model.SelectedProviders)
+            </div>
+        }
+    </div>
+</div>
+
+<h3>Sales per Providers</h3>
+@if (Model.ActivitiesIncomes != null && Model.ActivitiesIncomes.Count() > 0)
+{
+    
+    <table class="table no-plugin exportable non-editable" style="width: 100%">
+        <thead>
+            <tr>
+                <th>Provider</th>
+                @foreach (var type in Model.PriceTypes.OrderBy(x => x.Order))
+                {
+                    <th colspan="4">
+                        @type.Type
+                    </th>
+                }
+                <th colspan="@(Model.TotalsByProvider.First().ProviderTotal.Count() * 2)">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var provider in Model.TotalsByProvider)
+            {
+                <tr>
+                    <td>@provider.Provider</td>
+                    @foreach (var s in provider.SalesPerPrice)
+                    {
+                        foreach (var t in s.Sales)
+                        {
+                            <td class="text-right">
+                                <span data-format="currency">@t.Amount</span>
+                            </td>
+                            <td>
+                                @t.Currency
+                            </td>
+                        }
+                    }
+                    @foreach (var st in provider.ProviderTotal)
+                    {
+                        <td>
+                            <span data-format="currency">@st.Amount</span>
+                        </td>
+                        <td>
+                            @st.Currency
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                @foreach (var type in Model.PriceTypes.OrderBy(x => x.Order))
+                {
+                    <td colspan="4"></td>
+                }
+                <td>Total</td>
+                @foreach (var t in Model.Totals)
+                {
+                    <td>
+                        <span data-format="currency">@t.Amount</span>
+                    </td>
+                    <td>
+                        @t.Currency
+                    </td>
+                }
+            </tr>
+        </tfoot>
+    </table>
+    <h3>Sales per Activity</h3>
+    <table class="table no-plugin exportable non-editable" style="width: 100%">
+        <thead>
+            <tr>
+                <th>Provider</th>
+                <th>Service</th>
+                <th>Number of Coupons</th>
+                @foreach (var type in Model.PriceTypes.OrderBy(x => x.Order))
+                {
+                    <th colspan="4">
+                        @type.Type
+                    </th>
+                }
+                <th colspan="@(Model.TotalsByProvider.First().ProviderTotal.Count() * 2)">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @*.Where(x => x.ServiceTotal.First().Amount > 0 || x.ServiceTotal.Last().Amount > 0)*@
+            @foreach (var activity in Model.ActivitiesIncomes)
+            {
+                <tr>
+                    <td>@activity.Provider</td>
+                    <td>@activity.Service</td>
+                    <td>@activity.NumberOfCoupons</td>
+                    @foreach (var s in activity.SalesPerPrice)
+                    {
+                        foreach (var t in s.Sales)
+                        {
+                            <td class="text-right">
+                                <span data-format="currency">@t.Amount</span>
+                            </td>
+                            <td>@t.Currency</td>
+                        }
+                    }
+                    @foreach (var st in activity.ServiceTotal)
+                    {
+                        <td>
+                            <span data-format="currency">@st.Amount</span>
+                        </td>
+                        <td>@st.Currency</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h4>There are not sales for these providers on this range of dates.</h4>
+}

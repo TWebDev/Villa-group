@@ -1,0 +1,66 @@
+﻿@model ePlatBack.Models.ViewModels.AuditCouponsModel.SearchInvoice
+
+@using (Ajax.BeginForm("SearchAuditInvoices", "Reports", new AjaxOptions { UpdateTargetId = "divAuditInvoicesResults", OnSuccess = "REPORT.Audit.invoiceResults();" }, new { id = "frmSearchAuditInvoices" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="non-printable search-params">
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SearchInvoice_Folio)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.SearchInvoice_Folio)
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SearchInvoice_TerminalID)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.SearchInvoice_TerminalID, Model.SearchInvoice_Terminals, new { @class = "terminal-dependent-list onchange", data_route = "/crm/Reports/GetDDLData", data_route_parameter = "selectedTerminals", data_onchange_route_parameter = "provider,AAprovider", data_dependent_list = "SearchInvoice_ProviderID,ProviderID" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SearchInvoice_ProviderID)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.SearchInvoice_ProviderID, Model.SearchInvoice_Providers)
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SearchInvoice_InvoiceDate)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.SearchInvoice_InvoiceDate, new { data_uses_date_picker = "true", @class = "normal-width" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SearchInvoice_Invoice)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.SearchInvoice_Invoice)
+            </div>
+        </div>
+
+        <div class="editor-alignment align-from-top">
+            <div class="editor-field">
+                <input type="submit" class="button" value="get" />
+            </div>
+        </div>
+
+    </div>
+    <span class="non-printable" style="position: absolute; right: 60px; margin-top: 10px;">
+        <input type="button" id="btnClearCoupons" value="NEW INVOICE" class="submit button" />
+    </span>
+    <div id="divAuditInvoicesResults" class="align-from-top">
+    </div>
+}
+
+<div id="divInvoiceInfo">
+    @Html.Partial("_AuditInvoiceInfoPartial", Model.InvoiceInfo)
+</div>

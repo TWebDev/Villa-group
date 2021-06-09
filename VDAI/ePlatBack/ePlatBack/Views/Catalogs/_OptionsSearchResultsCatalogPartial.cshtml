@@ -1,0 +1,44 @@
+﻿@model ePlatBack.Models.ViewModels.OptionsModel.OptionsSearchModel
+
+<table id="tblOptionsResults" class="dataTable table search-results exportable">
+    <thead>
+        <tr>
+            <th>Option Name</th>
+            <th>Option Type</th>
+            <th>Place</th>
+            <th>Gold Card Price</th>
+            <th>Resort Credit</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ListOptions != null)
+        {
+            foreach (var i in Model.ListOptions)
+            {
+                var id = "option_"+i.OptionsInfo_OptionID;
+                var active = i.OptionsInfo_Active ? "" : "expired";
+                <tr id="@id" class="@active">
+                    <td>
+                        @Html.DisplayFor(model => i.OptionsInfo_OptionName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.OptionsInfo_OptionTypeText)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.OptionsInfo_PlaceText)
+                    </td>
+                    <td class="format-currency">
+                        @Html.DisplayFor(model => i.OptionsInfo_GoldCardPrice)
+                    </td>
+                    <td class="format-currency">
+                        @Html.DisplayFor(model => i.OptionsInfo_ResortCredit)
+                    </td>
+                    <td>
+                        <img src="/content/themes/base/images/trash.png" class="right delete-item" />
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

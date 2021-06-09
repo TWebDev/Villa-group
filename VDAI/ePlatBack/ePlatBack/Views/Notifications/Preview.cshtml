@@ -1,0 +1,25 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body style="background-color:darkgrey;">
+    @*<div style="width:800px;margin:0 auto;padding:50px;background-color:white;">*@
+    <div style="width:860px;margin:0 auto;background-color:white;">
+        @if (ViewBag.Content != "")
+        {
+            @Html.Raw(ViewBag.Content)
+        }
+        else
+        {
+            @Html.Raw("<span>No Confirmation letter has been sent</span>")
+        }
+    </div>
+</body>
+</html>

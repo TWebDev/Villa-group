@@ -1,0 +1,70 @@
+﻿@model ePlatBack.Models.ViewModels.IncorrectlyPreBookedToursModel
+
+<table id="tblIncorrectPreBookedTours" class="table full-width non-editable">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Lead Source</th>
+            <th>Lead Status</th>
+            <th>Booking Status</th>
+            <th>Resort</th>
+            <th>Arrival Date</th>
+            <th>Presentation Date</th>
+            @*<th>Club Type</th>*@
+            <th>Account Number</th>
+            @*<th>Contract Number</th>
+            <th>Co Owner</th>*@
+            <th>Assigned To User</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ListPreBookedTours != null)
+        {
+            foreach (var i in Model.ListPreBookedTours)
+            {
+                var _id = i.LeadID;
+                <tr id="@_id">
+                    <td>
+                        @Html.DisplayFor(model => i.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.LeadSource)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.LeadStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.BookingStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.Resort)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.ArrivalDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.PresentationDate)
+                    </td>
+                    @*<td>
+                        @Html.DisplayFor(model => i.ClubType)
+                    </td>*@
+                    <td>
+                        @Html.DisplayFor(model => i.AccountNumber)
+                    </td>
+                    @*<td>
+                        @Html.DisplayFor(model => i.ContractNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.CoOwner)
+                    </td>*@
+                    <td>
+                        @Html.DisplayFor(model => i.AssignedToUser)
+                    </td>
+                    @*<td>
+                        @Html.Raw(i.FlightInfo)
+                    </td>*@
+                </tr>
+            }
+        }
+    </tbody>
+</table>  

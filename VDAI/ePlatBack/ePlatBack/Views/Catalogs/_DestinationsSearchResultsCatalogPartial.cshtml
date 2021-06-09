@@ -1,0 +1,32 @@
+﻿@model ePlatBack.Models.ViewModels.DestinationsModel.SearchDestinationsModel
+
+<table id="tblSearchDestinationsResults" class="table search-results">
+            <thead>
+                <tr>
+                    <th>Destination</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.ListDestinations != null)
+                {
+                    foreach (var i in Model.ListDestinations)
+                    {
+                        var id = "destination_" + i.DestinationInfo_DestinationID;
+                        <tr id="@id">
+                            <td>
+                                @Html.DisplayFor(model => i.DestinationInfo_DestinationName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.DestinationInfo_Latitude)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.DestinationInfo_Longitude)
+                                <img src="/Content/themes/base/images/cross.png" class="right delete-item" />
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>

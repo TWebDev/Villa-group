@@ -1,0 +1,30 @@
+﻿@model ePlatBack.Models.ViewModels.PreBookedContactedLeadsModel
+
+<table id="tblPreBookedContactedLeadsReport" class="table">
+            <thead>
+                <tr>
+                    <th>Resort</th>
+                    <th>Pre-Booked</th>
+                    <th>Contacted</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.ListPreBookedContactedLeadsReport != null)
+                {
+                    foreach (var i in Model.ListPreBookedContactedLeadsReport)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(model => i.PreBookedContactedLeadsReport_Resort)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.PreBookedContactedLeadsReport_PreBookedLeads)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.PreBookedContactedLeadsReport_ContactedLeads)
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>

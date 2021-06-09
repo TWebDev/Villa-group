@@ -1,0 +1,44 @@
+﻿@model ePlatBack.Models.ViewModels.ActivityViewModel
+
+@{
+    ViewBag.Title = "ePlat > CMS > Activities";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+    ViewData["Privileges"] = Model.Privileges;
+}
+
+@section Head
+{
+    <link href="/Content/fineuploader.css" rel="stylesheet" type="text/css" />
+    @*<link href="/Content/style.css" rel="stylesheet" type="text/css" />*@
+}
+
+@section Scripts
+{
+    @*<script src="/Scripts/Utils.js" type="text/javascript"></script>*@
+    <script src="/Scripts/jquery.dataTables.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.fineuploader-3.0.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.fineuploader-3.0.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.jstree.js" type="text/javascript"></script>
+    <script src="~/Scripts/cms/activities/activities.js?v=201505261223" type="text/javascript"></script>
+    <script src="~/Scripts/cms/prices.js" type="text/javascript"></script>
+    <script src="~/Scripts/cms/activities/pricesEditor.js" type="text/javascript"></script>
+    <script src="~/Scripts/cms/seoItems.js" type="text/javascript"></script>
+    <script src="~/Scripts/cms/pictures.js" type="text/javascript"></script>
+    <script src="/Scripts/settings/catalogs/catalogs.js" type="text/javascript"></script>
+    @*<script src="~/Scripts/cms/wizard.js" type="text/javascript"></script>*@
+}
+
+<h1>Activities Management</h1>
+<div class="align-from-top">
+    <fieldset id="fdsActivitiesManagement">
+        <legend>
+            <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+            Activities Management
+        </legend>
+        <div style="display:none" class="align-from-top">
+            @Html.Partial("_SearchActivitiesPartial", Model.ActivitiesSearchModel)
+            @Html.Action("RenderActivities", "Activities")
+        </div>
+    </fieldset>
+</div>

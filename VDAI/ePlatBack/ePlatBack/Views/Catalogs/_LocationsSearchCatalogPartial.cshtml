@@ -1,0 +1,42 @@
+﻿@model ePlatBack.Models.ViewModels.LocationsModel.SearchLocationsModel
+<fieldset id="fdsLocationsManagement">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        Locations Management
+    </legend>
+    <div class="align-from-top">
+        <p class="full-width">
+            <input type="button" id="btnNewLocationInfo" class="submit fieldset-expander right" value="new" />
+        </p>
+        @using (Ajax.BeginForm("SearchLocations", "Catalogs", new AjaxOptions { OnSuccess = "CATALOG.locationsResultsTable(data)", OnComplete = "CATALOG.makeLocationsSelectable()", UpdateTargetId = "divTblExistingLocations" }, new { id = "frmLocationsSearch" }))
+        {
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SearchLocation_Location)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.SearchLocation_Location)
+                </div>
+            </div>
+            <div class="editor-alignment align-from-top">
+                <div class="editor-field">
+                    <input type="submit" id="btnSearchLocationsResults" class="button search" value="search" />
+                </div>
+            </div>
+            <div id="divTblExistingLocations" class="align-from-top">
+                <table id="tableSearchLocationsResults" class="dataTable table search-results">
+                    <thead>
+                        <tr>
+                            <th>Location</th>
+                            <th>Location Code</th>
+                            <th>Destination</th>
+                            <th>Terminal</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        }
+        @Html.Action("RenderLocationsManagement", "Catalogs")
+    </div>
+</fieldset>

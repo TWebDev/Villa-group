@@ -1,0 +1,53 @@
+﻿@model ePlatBack.Models.ViewModels.SPIViewModel.AgencyManifest
+
+
+<script type="text/javascript">
+    function loadScript() {
+        var script = document.createElement('script');
+        script.src = '/Scripts/crm/agencyManifest.js?ts='+ new Date().getDate().toString();
+        document.head.appendChild(script);
+    }
+    loadScript();
+</script>
+
+
+
+<span class="manifest-related" style="position:relative;bottom:-30px;display:none;">Manifest from: <span id="manifestRequestDate"></span></span>
+<div class="" style="text-align:right;margin-bottom:10px;">
+    <span class="manifest-related" style="display:none">
+        <span style="font-size:1em;">
+            last update: <span id="displayLastUpdate" class="display-last-update"></span>
+            @Html.TextBoxFor(model => model.ManifestSearch_Date, new { data_keep_value = "" })
+            <button id="btnGetManifest" class="button btn-get-manifest" style="vertical-align:bottom;width:48px;height:31px;padding:0 9px 0 0;">
+                <i class="material-icons sm" title="refresh manifest results" style="margin-top:5px;">refresh</i>
+            </button>
+        </span>
+    </span>
+    <span>
+        <input type="button" id="btnShowManifest" class="button btn-show-manifest" style="margin-top:5px;" value="show manifest" />
+        <input type="button" id="btnHideManifest" class="button btn-show-manifest" style="margin-top:5px;display:none;" value="hide manifest" />
+    </span>
+</div>
+@*<span class="manifest-related" style="position:relative;bottom:-30px;">Manifest from: <span id="manifestRequestDate"></span></span>*@
+<div id="divManifestContainer" class="manifest-related" style="display:none;margin-bottom:40px;">
+    <table id="tblManifest" class="table dataTable">
+        <thead>
+            <tr>
+                <th>CustomerID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Nationality</th>
+                <th>Program</th>
+                <th>Subdivision</th>
+                <th>Source</th>
+                <th>OPCID</th>
+                <th>OPC</th>
+                <th>FrontOfficeGuestID</th>
+                <th>FrontOfficeResortID</th>
+                <th>TourID</th>
+                <th>TourDate</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>

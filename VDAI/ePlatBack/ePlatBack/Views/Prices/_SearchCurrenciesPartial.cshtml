@@ -1,0 +1,30 @@
+﻿@model ePlatBack.Models.ViewModels.CurrenciesSearchModel
+
+<div class="full-width">
+    <input type="button" id="btnNewCurrencyInfo" class="submit fieldset-expander right" value="New">
+</div>
+@using (Ajax.BeginForm("SearchCurrencies", "Prices", new AjaxOptions { OnSuccess = "PRICE.searchCurrenciesResultsSuccess(data)" }, new { }))
+{
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Search_Currencies)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Search_Currencies)
+        </div>
+    </div>
+    <div class="editor-alignment align-from-top">
+        <input type="submit" id="btnSearchCurrencies" class="button" value="Search" />
+    </div>
+    <div id="divSearchCurrenciesResults">
+        <table id="tblSearchCurrenciesResults" class="table">
+            <thead>
+                <tr>
+                    <th colspan="2">Currency</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+}

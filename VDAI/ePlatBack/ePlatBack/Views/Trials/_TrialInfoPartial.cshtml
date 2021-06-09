@@ -1,0 +1,144 @@
+﻿@model ePlatBack.Models.ViewModels.TrialsViewModel.Trial
+@{
+    var Privileges = ViewData["Privileges"] as List<ePlatBack.Models.ViewModels.SysComponentsPrivilegesModel>;
+}
+<div id="divTrialInfo" class="card mt-3 mb-3" v-bind:class="{ 'd-none' : !showTrialInfo }">
+    <div class="card-body">
+        <span class="h3 font-weight-light d-block border-bottom mb-3 pb-3">{{ Trial.LastName }}</span>
+        <div class="row">
+            <div class="col">
+                <h5 class="card-title">Trial Info</h5>
+                <form id="frmTrialInfo" v-on:submit.prevent="saveTrial()">
+                    <div class="form-row d-none" id="frmTrialInfo_ErrorMessages">
+
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6 col-lg-4">
+                            @Html.HiddenFor(model => model.TrialID)
+                            @Html.LabelFor(model => model.ContractNumber)
+                            @Html.TextBoxFor(model => model.ContractNumber, new { @class = "form-control", @readonly = "readonly", v_model = "Trial.ContractNumber" })
+                        </div>
+                        <div class="form-group col-md-6 col-lg-4">
+                            @Html.LabelFor(model => model.Reference)
+                            @Html.TextBoxFor(model => model.Reference, new { @class = "form-control", @readonly = "readonly", v_model = "Trial.Reference" })
+                        </div>
+                        <div class="form-group col-md-6 col-lg-4">
+                            @Html.LabelFor(model => model.LastName)
+                            @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", @readonly = "readonly", v_model = "Trial.LastName" })
+                        </div>
+                        <div class="form-group col-md-6 col-lg-4">
+                            @Html.LabelFor(model => model.SalesType)
+                            @Html.TextBoxFor(model => model.SalesType, new { @class = "form-control", @readonly = "readonly", v_model = "Trial.SalesType" })
+                        </div>
+                        <div class="form-group col-md-6 col-lg-4">
+                            @Html.LabelFor(model => model.ContractStatus)
+                            @Html.TextBoxFor(model => model.ContractStatus, new { @class = "form-control", @readonly = "readonly", v_model = "Trial.ContractStatus" })
+                        </div>
+                        <div class="form-group col-md-6 col-lg-4">
+                            @Html.LabelFor(model => model.SourceOfSale)
+                            @Html.TextBoxFor(model => model.SourceOfSale, new { @class = "form-control", @readonly = "readonly", v_model = "Trial.SourceOfSale" })
+                        </div>
+                        <div class="form-group col-md-6 col-lg-4">
+                            @Html.LabelFor(model => model.DateInput)
+                            @Html.TextBoxFor(model => model.DateInput, new { @class = "form-control", @readonly = "readonly", v_model = "DateInputYYYYMMDD" })
+                        </div>
+                        <div class="form-group col-md-6 col-lg-4">
+                            @Html.LabelFor(model => model.DateSale)
+                            @Html.TextBoxFor(model => model.DateSale, new { @class = "form-control", @readonly = "readonly", v_model = "DateSaleYYYYMMDD" })
+                        </div>
+                        <div class="form-group col-md-6 col-lg-4">
+                            @Html.LabelFor(model => model.DateExpiration)
+                            @Html.TextBoxFor(model => model.DateExpiration, new { @class = "form-control", @readonly = "readonly", v_model = "DateExpirationYYYYMMDD" })
+                        </div>
+                        <div class="form-group col-md-6 col-lg-4">
+                            @Html.LabelFor(model => model.Volume)
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">$</span>
+                                </div>
+                                @Html.TextBoxFor(model => model.Volume, new { @class = "form-control", @readonly = "readonly", v_model = "Volume" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 col-lg-4">
+                            @Html.LabelFor(model => model.AssignedToUserID)
+                            @if (Privileges.FirstOrDefault(m => m.Component == "AssignedToUserID") != null && Privileges.FirstOrDefault(m => m.Component == "AssignedToUserID").Edit)
+                            {
+                                <!-- Editable -->
+                                @Html.DropDownListFor(model => model.AssignedToUserID, Model.AgentsList, new { @class = "form-control", v_model = "Trial.AssignedToUserID" })
+                            }
+                            else if (Privileges.FirstOrDefault(m => m.Component == "AssignedToUserID") == null || Privileges.FirstOrDefault(m => m.Component == "AssignedToUserID").View)
+                            {
+                                <!-- No Editable -->
+                                @Html.TextBoxFor(model => model.AssignedTo, new { @class = "form-control", @readonly = "readonly", v_model = "Trial.AssignedTo" })
+                            }
+                        </div>
+                        <div class="form-group col-md-6 col-lg-4">
+                            @Html.LabelFor(model => model.BookingStatusID)
+                            @Html.DropDownListFor(model => model.BookingStatusID, Model.BookingStatusList, new { @class = "form-control", v_model = "Trial.BookingStatusID" })
+                        </div>
+                        @if (Privileges.FirstOrDefault(m => m.Component == "Phone1") != null && Privileges.FirstOrDefault(m => m.Component == "Phone1").View)
+                        {
+                            <div class="form-group col-md-6 col-lg-4">
+                                @Html.LabelFor(model => model.Phone1)
+                                <div class="input-group">
+                                    @Html.TextBoxFor(model => model.Phone1, new { @class = "form-control", v_model = "Phone1", maxlength = "12" })
+                                    <div class="input-group-append" v-if="Trial.Phone1 != null && Trial.Phone1 != ''">
+                                        <button class="btn btn-outline-secondary" type="button" v-on:click="showContactInfo(Trial.Phone1, 'Main Phone')"><i class="material-icons">remove_red_eye</i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        @if (Privileges.FirstOrDefault(m => m.Component == "Phone2") != null && Privileges.FirstOrDefault(m => m.Component == "Phone2").View)
+                        {
+                            <div class="form-group col-md-6 col-lg-4">
+                                @Html.LabelFor(model => model.Phone2)
+                                <div class="input-group">
+                                    <div class="input-group">
+                                        @Html.TextBoxFor(model => model.Phone2, new { @class = "form-control", v_model = "Phone2", maxlength = "12" })
+                                        <div class="input-group-append" v-if="Trial.Phone2 != null && Trial.Phone2 != ''">
+                                            <button class="btn btn-outline-secondary" type="button" v-on:click="showContactInfo(Trial.Phone2, 'Alternate Phone')"><i class="material-icons">remove_red_eye</i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        @if (Privileges.FirstOrDefault(m => m.Component == "Email1") != null && Privileges.FirstOrDefault(m => m.Component == "Email1").View)
+                        {
+                            <div class="form-group col-md-6 col-lg-4">
+                                @Html.LabelFor(model => model.Email1)
+                                <div class="input-group">
+                                    @Html.TextBoxFor(model => model.Email1, new { @class = "form-control", v_model = "Email1" })
+                                    <div class="input-group-append" v-if="Trial.Email1 != null && Trial.Email1 != ''">
+                                        <button class="btn btn-outline-secondary" type="button" v-on:click="showContactInfo(Trial.Email1, 'Main Email')"><i class="material-icons">remove_red_eye</i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        @if (Privileges.FirstOrDefault(m => m.Component == "Email2") != null && Privileges.FirstOrDefault(m => m.Component == "Email2").View)
+                            {
+                        <div class="form-group col-md-6 col-lg-4">
+                            @Html.LabelFor(model => model.Email2)
+                            <div class="input-group">
+                                @Html.TextBoxFor(model => model.Email2, new { @class = "form-control", v_model = "Email2" })
+                                <div class="input-group-append" v-if="Trial.Email2 != null && Trial.Email2 != ''">
+                                    <button class="btn btn-outline-secondary" type="button" v-on:click="showContactInfo(Trial.Email2, 'Secondary Email')"><i class="material-icons">remove_red_eye</i></button>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                    <div class="form-row">
+                        <div class="text-right col">
+                            <input id="btnSaveTrialInfo" type="submit" class="btn btn-primary" value="Save" />
+                            <input type="button" class="btn" value="Cancel" v-on:click="hideTrialInfo()" />                            
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col">
+                <interactions v-bind:trialid="Trial.TrialID" v-bind:booking-status-list="BookingStatusList" v-bind:agents-list="AgentsList" v-bind:role="Shared.Session.Role" v-on:bschanged="updateBookingStatus"></interactions>
+            </div>
+        </div>
+    </div>
+</div>

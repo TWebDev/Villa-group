@@ -1,0 +1,41 @@
+﻿@model ePlatBack.Models.ViewModels.PlaceTypesModel.PlaceTypesInfoModel
+
+<fieldset id="fdsPlaceTypesInfo" class="primary-selected-row-dependent">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" alt="" class="fieldset-indicator fds-indicator-separator">
+        Place Type Info
+    </legend>
+
+    <div style="display: none" class="align-from-top">
+        @using (Ajax.BeginForm("SavePlaceType", "Catalogs", new AjaxOptions { OnSuccess = "CATALOG.savePlaceTypeSuccess(data)" }, new { id = "frmPlaceTypeInfo", onSubmit = "return UI.showValidationSummary(this.id);" }))
+        {
+            <div id="frmPlaceTypeInfo_ErrorMessages" style="display: none">
+                @Html.ValidationMessageFor(model => model.PlaceTypeInfo_PlaceType)                
+                @Html.ValidationMessageFor(model => model.PlaceTypeInfo_IsActive)
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PlaceTypeInfo_PlaceType)
+                    @Html.HiddenFor(model => model.PlaceTypeInfo_PlaceTypeID, new { @class = "secondary-selected-row-dependent" })
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.PlaceTypeInfo_PlaceType)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PlaceTypeInfo_IsActive)
+                </div>
+                <div class="editor-field">
+                    <label for="PlaceTypeInfo_IsActiveTrue">Yes</label>
+                    @Html.RadioButtonFor(model => model.PlaceTypeInfo_IsActive, true, new { data_keep_value = "" })
+                    <label for="PlaceTypeInfo_IsActiveFalse">No</label>
+                    @Html.RadioButtonFor(model => model.PlaceTypeInfo_IsActive, false, new { data_keep_value = "" })
+                </div>
+            </div>
+            <div class="editor-alignment full-width">
+                <input type="submit" class="submit right" value="Save" id="btnSavePlaceType"/>
+            </div>
+        }
+    </div>
+</fieldset>

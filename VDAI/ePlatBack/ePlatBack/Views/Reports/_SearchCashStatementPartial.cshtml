@@ -1,0 +1,43 @@
+﻿@model ePlatBack.Models.ViewModels.CashStatementModel.SearchStatement
+
+@using (Ajax.BeginForm("SearchCashStatement", "Reports", new AjaxOptions { UpdateTargetId = "divCashStatementResults", OnSuccess = "REPORT.addExtras();" }, new { id = "frmSearchCashStatement" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="non-printable search-params">
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_Month)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Search_Month, Model.Search_Months)
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_TerminalID)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Search_TerminalID, Model.Search_Terminals, new { @class = "terminal-dependent-list onchange", data_route = "/crm/Reports/GetDDLData", data_route_parameter = "selectedTerminals", data_onchange_route_parameter = "fundsByTerminal", data_dependent_list = "Search_FundID" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Search_FundID)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.Search_FundID, Model.Search_Funds)
+                </div>
+            </div>
+        </div>
+        <div class="editor-alignment align-from-top">
+            <div class="editor-field">
+                <input type="submit" class="button" value="get" />
+            </div>
+        </div>
+    </div>
+    <div id="divCashStatementResults" class="align-from-top">
+    </div>
+}

@@ -1,0 +1,32 @@
+﻿@model ePlatBack.Models.ViewModels.ActivityViewModel
+
+<table id="tblSearchPointsOfSaleResults" class="table search-results">
+    <thead>
+        <tr>
+            <th>Point Of Sale</th>
+            <th>Short Name</th>
+            <th>Place</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.PointsOfSaleResults != null)
+        {
+            foreach (var i in Model.PointsOfSaleResults)
+            {
+                var id = "pointOfSale_" + i.PointsOfSaleInfo_PointOfSaleID;
+                <tr id="@id">
+                    <td>
+                        @Html.DisplayFor(model => i.PointsOfSaleInfo_PointOfSale)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.PointsOfSaleInfo_ShortName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.PointsOfSaleInfo_PlaceText)
+                        <img src="/Content/themes/base/images/cross.png" class="right delete-item" />
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

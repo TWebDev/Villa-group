@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="@ViewBag.Culture">@*manifest="/Content/themes/dmv/cache.manifest">*@
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title</title>
+        <link href="~/content/themes/dvh/images/dvh.png" rel="shortcut icon" type="image/x-icon" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="keywords" content="@ViewBag.Keywords">
+        <meta name="description" content="@ViewBag.Description">
+        <meta name="robots" content="@ViewBag.Index, @ViewBag.Follow">
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        @Styles.Render("//fonts.googleapis.com/css?family=Open+Sans:400,700,200")
+        <link href="~/Content/themes/dmv/css/main.css" rel="stylesheet" />
+        @RenderSection("header", required: false)
+    </head>
+    <body>
+        @RenderSection("afterBody", required: false)
+        @*<div id="background"></div>*@
+        <div id="body">
+            <a id="player" href="#Player"></a>
+            @RenderSection("featured", required: false)
+            <div id="background-bar"></div>
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+            @RenderSection("controls", required: false)
+        </div>
+        <footer>
+        </footer>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryui")
+        @Scripts.Render("~/bundles/jqueryval")
+        <script src="~/Content/plugins/vegas/jquery.vegas.min.js"></script>
+        <link href="~/Content/plugins/vegas/jquery.vegas.min.css" rel="stylesheet" />
+        <script src="~/Content/themes/dmv/js/ui.js"></script>
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

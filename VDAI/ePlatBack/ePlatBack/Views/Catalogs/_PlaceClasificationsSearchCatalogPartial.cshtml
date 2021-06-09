@@ -1,0 +1,42 @@
+﻿@model ePlatBack.Models.ViewModels.PlaceClasificationsModel.SearchPlaceClasificationsModel
+
+<fieldset id="fdsPlacesClasificationManagement">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        Places Clasification Management
+    </legend>
+    <div class="align-from-top">
+        <div class="full-width">
+            <input type="button" id="btnNewPlaceClasificationsInfo" class="submit fieldset-expander right" value="New">
+        </div>
+        @using (Ajax.BeginForm("SearchPlaceClasifications", "Catalogs", new AjaxOptions { OnSuccess = "CATALOG.placeClasificationsResultsTable(data)", OnComplete = "CATALOG.makePlaceClasificationsSelectable()", UpdateTargetId = "divTblExistingPlaceClasifications" }, new { id = "frmPlaceClasificationsSearch" }))
+        {
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Search_PlaceClasifications)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Search_PlaceClasifications)
+                </div>
+            </div>
+            <div class="editor-alignment align-from-top">
+                <div class="editor-field">
+                    <input type="submit" id="btnSearchPlaceClasifications" class="button search" value="Search" />
+                </div>
+            </div>
+            <div id="divTblExistingPlaceClasifications" class="align-from-top">
+                <table id="tblSearchPlaceClasificationsResults" class="dataTable table search-results">
+                    <thead>
+                        <tr>
+                            <th>Place Clasification</th>
+                            <th>Place Type</th>
+                            <th>Hosting</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        }
+        @Html.Action("RenderPlaceClasificationsManagement", "Catalogs")
+    </div>
+</fieldset>

@@ -1,0 +1,42 @@
+﻿@model ePlatBack.Models.ViewModels.InvoiceModel.SearchInvoice
+
+@using (Ajax.BeginForm("SearchInvoice", "Reports", new AjaxOptions { UpdateTargetId = "divInvoiceResults", OnSuccess = "REPORT.addExtras();" }, new { id = "frmSearchInvoice" }))
+{
+    
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="non-printable search-params">
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_Date)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Search_Date, new { data_uses_date_picker = "true", @class = "normal-width" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_TerminalID)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Search_TerminalID, Model.Search_Terminals, new { @class = "terminal-dependent-list onchange", data_route = "/crm/Reports/GetDDLData", data_route_parameter = "selectedTerminals", data_onchange_route_parameter = "marketingCompany", data_dependent_list = "Search_CompanyID" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_CompanyID)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Search_CompanyID, Model.Search_Companies)
+            </div>
+        </div>
+        <div class="editor-alignment align-from-top">
+            <div class="editor-field">
+                <input type="submit" class="button" value="get" />
+            </div>
+        </div>
+    </div>
+    <div id="divInvoiceResults" class="align-from-top">
+    </div>
+}

@@ -1,0 +1,154 @@
+﻿@model ePlatBack.Models.ViewModels.InvoiceModel
+
+<div class="table-div">
+    <div class="table-row">
+        <div class="table-cell">
+            @Html.DisplayNameFor(model => model.Date)<br />
+            @Html.DisplayFor(model => model.Date)
+        </div>
+        <div class="table-cell">
+            @Html.DisplayNameFor(model => model.LegalEntity)<br />
+            @Html.DisplayFor(model => model.LegalEntity)
+        </div>
+        <div class="table-cell">
+            @Html.DisplayNameFor(model => model.RFC)<br />
+            @Html.DisplayFor(model => model.RFC)
+        </div>
+        <div class="table-cell">
+            @Html.DisplayNameFor(model => model.Address)<br />
+            @Html.DisplayFor(model => model.Address)
+        </div>
+        <div class="table-cell">
+            @Html.DisplayNameFor(model => model.CP)<br />
+            @Html.DisplayFor(model => model.CP)
+        </div>
+        <div class="table-cell">
+            <strong>*Amounts in MXN.</strong>
+         </div>
+    </div>
+</div>
+
+<table class="table no-plugin" style="width: 100%;">
+    <thead>
+        <tr>
+            <th style="width: 50px;">Quantity</th>
+            <th colspan="2">Concept</th>
+            <th style="width: 100px;">Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td class="text-center">@item.NumberOfPurchases</td>
+                <td class="show-detail" colspan="2">
+                    <span class="block">Venta @item.PurchaseDateID</span>
+                    <div class="cell-detail detail-inline" style="display: none;">
+                        <h4>Coupons</h4>
+                        <table style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th>Folio</th>
+                                    <th>Activity</th>
+                                    <th>Confirmed on</th>
+                                    <th>PoS</th>
+                                    <th>Sales Agent</th>
+                                    <th>Status</th>
+                                    <th>Total</th>
+                                    <th>Total Before IVA</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var c in item.Coupons)
+                                {
+                                    <tr>
+                                        <td>@c.Folio</td>
+                                        <td>@c.Service</td>
+                                        <td>@c.ConfirmationDate</td>
+                                        <td>@c.PointOfSale</td>
+                                        <td>@c.SalesAgent</td>
+                                        <td>@c.Status</td>
+                                        <td>
+                                            <span data-format="currency">@c.Total.Amount @c.Total.Currency</span>
+                                        </td>
+                                        <td>
+                                            <span data-format="currency">@c.TotalNoIVA.Amount @c.TotalNoIVA.Currency</span>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <h4>Payments or Refunds</h4>
+                        <table style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th>Charged to</th>
+                                    <th>Payment Type</th>
+                                    <th>Exchange Rate</th>
+                                    <th>Amount</th>
+                                    <th>Related Service(s)</th>
+                                    <th>Transaction</th>
+                                    <th>Date Saved</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var p in item.Payments)
+                                {
+                                    <tr>
+                                        <td>
+                                            <span class="block">@p.PurchasePayment_Company</span>
+                                            @if (p.PurchasePayment_OPC != null)
+                                            {
+                                                <span class="block">p.PurchasePayment_OPC</span>
+                                            }
+                                        </td>
+
+                                        <td>@p.PurchasePayment_PaymentType</td>
+                                        <td>@p.PurchasePayment_ExchangeRate</td>
+                                        <td>
+                                            <span data-format="currency">@p.PurchasePayment_Amount @p.PurchasePayment_Currency</span>
+                                        </td>
+                                        <td>@p.PurchasePayment_CouponsServices</td>
+                                        <td>@p.PurchasePayment_AuthCode</td>
+                                        <td>@p.PurchasePaymentInfo_DateSaved</td>
+                                        <td>@p.PurchasePayment_ErrorCode</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <br />
+                        <a href="/crm/masterchart#purchaseid=@item.PurchaseID" target="_blank">Open in Master Chart</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <span data-format="currency">@item.TotalNoIVA</span>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td rowspan="3"></td>
+            <td rowspan="3" style="border-right: #ddd solid 1px;">
+                @Model.TotalInText M.N.
+            </td>
+            <td class="text-right">Subtotal</td>
+            <td class="text-right">
+                <span data-format="currency">@Model.Subtotal</span>
+</td>
+        </tr>
+        <tr>
+            <td class="text-right">IVA</td>
+            <td class="text-right">
+                <span data-format="currency">@Model.IVA</span>
+</td>
+        </tr>
+        <tr>
+            <td class="text-right">Total</td>
+            <td class="text-right">
+                <span data-format="currency">@Model.Total</span>
+</td>
+        </tr>
+    </tfoot>
+</table>

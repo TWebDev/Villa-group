@@ -1,0 +1,55 @@
+﻿@model ePlatBack.Models.ViewModels.EmailsViewModel
+
+<table id="tblSearchFieldsResults" class="table dataTable">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Field</th>
+            <th>Parent Field</th>
+            <th>Field Type</th>
+            <th>SubType</th>
+            <th>Description</th>
+            <th>Options</th>
+            <th>Order</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody class="primary-selected-row-dependent">
+        @if (Model.SearchFieldsResults != null)
+        {
+            foreach (var i in Model.SearchFieldsResults)
+            {
+                var id = i.FieldsInfo_FieldID;
+                <tr id="@id">
+                    <td>
+                        @Html.DisplayFor(model => i.FieldsInfo_FieldID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.FieldsInfo_Field)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.FieldsInfo_ParentFieldText)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.FieldsInfo_FieldTypeText)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.FieldsInfo_FieldSubTypeText)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.FieldsInfo_Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.FieldsInfo_Options)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.FieldsInfo_Order)
+                    </td>
+                    <td>
+                        <img src="/content/themes/base/images/trash.png" class="delete-item" />
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

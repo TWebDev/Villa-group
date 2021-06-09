@@ -1,0 +1,48 @@
+﻿@model IEnumerable<ePlatBack.Models.ViewModels.PackageItemViewModel>
+
+<div id="divBestDealsCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        @for(var itm = 0; itm < Model.Count(); itm++)
+        {
+            <li data-target="#divBestDealsCarousel" data-slide-to="@itm" @(itm ==  0 ? "class=\"active\"" : "")></li>
+            }
+        </ol>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            @{
+            int carouselIndex = 0;
+            }
+            @foreach (var item in Model)
+        {
+                <div class="item @(carouselIndex == 0 ? "active" : "")">
+                    <img src="/content/themes/base/images/@item.Destination.ToLower().Replace(" ","-")/destination/hd/@item.Destination.ToLower().Replace(" ","-")-01.jpg" alt="@item.Package">
+                    <div class="carousel-caption hidden-xs hidden-sm">
+                        <div class="carousel-box">
+                            <a href="@item.Url" title="@item.Package">
+                                Stay @Html.DisplayFor(modelItem => item.Stay) in
+                                <h2>@Html.DisplayFor(modelItem => item.Destination)</h2>
+                                for only
+                                <span class="price">
+                                    $@Html.DisplayFor(modelItem => item.Price)
+                                </span>
+                                @ePlatFront.Resources.Views.Shared.SharedStrings._for @Html.DisplayFor(modelItem => item.Guests)
+                                <div class="caption-button">MORE DETAILS</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            carouselIndex++;
+        }
+        </div>
+        <!-- Controls -->
+        <a class="left carousel-control" href="#divBestDealsCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#divBestDealsCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+

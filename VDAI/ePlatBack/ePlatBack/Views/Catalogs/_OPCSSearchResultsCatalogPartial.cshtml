@@ -1,0 +1,68 @@
+﻿@model ePlatBack.Models.ViewModels.OPCSModel.SearchOPCSModel
+
+<table id="tblOPCSResults" class="dataTable table search-results">
+            <thead>
+                <tr>
+                    <th>Employee ID</th>
+                    <th>Team</th>
+                    <th>Credential Number</th>
+                    <th>Full Name</th>
+                    <th>Job Position</th>
+                    <th>Phone</th>
+                    <th>Paying Company</th>
+                    <th>Marketing Company</th>
+                    <th>Legacy Key</th>
+                    <th>Avance ID</th>
+                    <th>Hired Date</th>
+                    <th>Is Active</th>
+                </tr>
+            </thead>
+    <tbody>
+        @if (Model.ListOPCS != null)
+        {
+            foreach (var i in Model.ListOPCS)
+            {
+                var id = "opc_" + i.OPCSInfo_OpcID;
+                <tr id="@id">
+                    <td>@i.OPCSInfo_OpcID</td>
+                    <td>
+                        @Html.DisplayFor(model => i.OPCSInfo_PromotionTeamText)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.OPCSInfo_Credential)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.OPCSInfo_Opc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.OPCSInfo_JobPositionText)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.OPCSInfo_Phone1) / @Html.DisplayFor(model => i.OPCSInfo_Phone2)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.OPCSInfo_PayingCompanyText)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.OPCSInfo_CompanyText)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.OPCSInfo_LegacyKey)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.OPCSInfo_AvanceID)
+                    </td>
+                    <td>
+                        @if (i.OPCSInfo_EnlistDate != null)
+                        {
+                            <span>@i.OPCSInfo_EnlistDate.Value.ToString("yyyy-MM-dd")</span>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.OPCSInfo_Active)
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+        </table>

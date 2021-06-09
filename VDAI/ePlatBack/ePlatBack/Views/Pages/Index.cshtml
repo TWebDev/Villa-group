@@ -1,0 +1,44 @@
+﻿@model ePlatBack.Models.ViewModels.PageInfoViewModel
+
+@{
+    ViewBag.Title = "ePlat > CMS > Pages";
+    Html.EnableClientValidation(true);
+}
+
+@section Head
+{
+    <link href="~/Content/jstree.css" rel="stylesheet" type="text/css" />
+}
+
+@section Scripts{
+    <script src="~/Scripts/jquery.dataTables.js" type="text/javascript"></script>
+    <script src="~/Scripts/cms/pages/pages.js" type="text/javascript"></script>
+    <script src="~/Scripts/cms/pages/jquery-images-loaded.js" type="text/javascript"></script>
+    <script src="~/Scripts/cms/seoItems.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.jstree.js" type="text/javascript"></script>
+    <script src="~/Scripts/jstreegrid.js" type="text/javascript"></script>
+    <script src="~/Scripts/ckeditor/ckeditor.js" type="text/javascript"></script>
+    <script src="~/Scripts/ckeditor/adapter-jquery.js" type="text/javascript"></script>
+}
+
+<h1>Pages Management</h1>
+<div class="align-from-top">
+    <fieldset id="fdsPagesManagement">
+    	<legend><img src="/Content/themes/base/images/eplat_show.jpg" alt="" class="fieldset-indicator fds-indicator-separator">
+            Pages Management
+    	</legend>
+        <div class="align-from-top" style="display:none">
+            @Html.Partial("_SearchPagesPartial", Model.PageSearchModel)
+            @Html.Action("RenderPages", "Pages")
+        </div>
+    </fieldset>
+    <fieldset id="fdsBlocksManagement">
+        <legend>
+            <img src="/Content/themes/base/images/eplat_show.jpg" alt="" class="fieldset-indicator fds-indicator-separator">
+            Blocks Management
+        </legend>
+        <div class="align-from-top" style="display:none;">
+            @Html.Action("ContentBlocks", "Pages")
+        </div>
+    </fieldset>
+</div>

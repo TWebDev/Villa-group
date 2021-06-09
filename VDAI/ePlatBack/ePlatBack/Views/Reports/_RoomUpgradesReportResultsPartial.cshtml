@@ -1,0 +1,50 @@
+﻿@model ePlatBack.Models.ViewModels.RoomUpgradesModel
+
+<table id="tblSearchRoomUpgradesResults" class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Resort</th>
+            <th>Arrival Date</th>
+            <th>Assigned To User</th>
+            <th>Booking Status</th>
+            <th>Real Tour Date</th>
+            <th>Final Tour Status</th>
+            <th>Sales Volume</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ListRoomUpgradesReportModel != null)
+        {
+            foreach (var i in Model.ListRoomUpgradesReportModel)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => i.RoomUpgradeReport_Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.RoomUpgradeReport_Resort)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.RoomUpgradeReport_ArrivalDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.RoomUpgradeReport_AssignedToUser)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.RoomUpgradeReport_BookingStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.RoomUpgradeReport_RealTourDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.RoomUpgradeReport_FinalTourStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.RoomUpgradeReport_SalesVolume)
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

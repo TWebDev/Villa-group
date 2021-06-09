@@ -1,0 +1,88 @@
+﻿@model ePlatBack.Models.ViewModels.FrequentGuestsViewModel.FrequentGuestsResult
+
+<div class="table-div">
+    <div class="table-row">
+        <div class="table-cell">
+            Resort<br />
+            @Html.DisplayFor(model => model.Resort)
+        </div>
+        <div class="table-cell">
+            From<br />
+            @Html.DisplayFor(model => model.FromDate)
+        </div>
+        <div class="table-cell">
+            To<br />
+            @Html.DisplayFor(model => model.ToDate)
+        </div>
+    </div>
+</div>
+
+<h3>Frequent Guests from </h3>
+
+@if (Model.Guests.Count() > 0)
+{
+    <table class="table exportable non-editable" style="width: 100%; font-size: .9em;">
+        <thead>
+            <tr>
+            <th>Guest</th>
+            <th>Stays</th>
+            <th>Resort</th>
+            <th>Agency</th>
+            <th>Confirmation</th>
+            <th>Arrival</th>
+            <th>Nights</th>
+            <th>Room Type</th>
+            <th>Spa</th>
+            <th>PoS</th>
+            <th>Stay</th>
+            <th>Others</th>
+            <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var guest in Model.Guests)
+            {
+                <tr>
+                    <td rowspan="@guest.Stays">@guest.FirstName @guest.LastName - @guest.FrontOfficeGuestID</td>
+                    <td rowspan="@guest.Stays">@guest.Stays</td>
+                    <td>@guest.Reservations.First().Resort</td>
+                    <td>@guest.Reservations.First().Agency</td>
+                    <td>@guest.Reservations.First().Confirmation</td>
+                    <td><strong>@guest.Reservations.First().Arrival</strong></td>
+                    <td>@guest.Reservations.First().Nights</td>
+                    <td>@guest.Reservations.First().RoomType</td>
+                    <td>$@guest.Reservations.First().Spa @guest.Reservations.First().Currency</td>
+                    <td>$@guest.Reservations.First().PoS @guest.Reservations.First().Currency</td>
+                    <td>$@guest.Reservations.First().Stay @guest.Reservations.First().Currency</td>
+                    <td>$@guest.Reservations.First().Others @guest.Reservations.First().Currency</td>
+                    <td>$@guest.Reservations.First().Total @guest.Reservations.First().Currency</td>
+                </tr>
+                int index = 0;
+                foreach (var res in guest.Reservations)
+                {
+                    if (index > 0)
+                    {
+                    <tr>
+                        <td>@res.Resort</td>
+                        <td>@res.Agency</td>
+                        <td>@res.Confirmation</td>
+                        <td>@res.Arrival</td>
+                        <td>@res.Nights</td>
+                        <td>@res.RoomType</td>
+                        <td>$@res.Spa @res.Currency</td>
+                        <td>$@res.PoS @res.Currency</td>
+                        <td>$@res.Stay @res.Currency</td>
+                        <td>$@res.Others @res.Currency</td>
+                        <td>$@res.Total @res.Currency</td>
+                    </tr>
+                    }
+                    index++;
+                }
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <span>No Results</span>
+}

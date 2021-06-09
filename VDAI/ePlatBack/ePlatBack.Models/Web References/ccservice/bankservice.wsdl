@@ -1,0 +1,810 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="https://resortcom.com/ccservice" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="https://resortcom.com/ccservice" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="https://resortcom.com/ccservice">
+      <s:element name="AuthorReversal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AutRev" type="tns:AuthorizeRev" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AuthorizeRev">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Primary_Bank" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Auth_Number" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Transaction_Amount" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AuthorReversalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AuthorReversalResult" type="tns:CardAuthorizationPubResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CardAuthorizationPubResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Error_Code" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Auth_Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Authorization_Date" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Authorization_Amount" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AuthHeader" type="tns:AuthHeader" />
+      <s:complexType name="AuthHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="CardAuthorReqExt">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CardAutReq" type="tns:CardAuthorizReq" />
+            <s:element minOccurs="1" maxOccurs="1" name="ExtendInfo" type="tns:ExtendedInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CardAuthorizReq">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Primary_Bank" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="User_Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Merchant_Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Card_Number" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Expiration_Date" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Transaction_Amount" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Authorization_Reference" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Resort" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Account" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Version" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Card_Holder_Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Card_Holder_Address" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Card_Holder_Zip" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Conf_Num" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Invoice" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address_Match" />
+          <s:element minOccurs="0" maxOccurs="1" name="Zip_Match" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ExtendedInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="OwnerID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProjectNbr" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PartnerNbr" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LenderType" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Receipt" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Reference" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Reference2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IP" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CardAuthorReqExtResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CardAuthorReqExtResult" type="tns:CardAuthorizationPubResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CardAuthorReq">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CardAutReq" type="tns:CardAuthorizReq" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CardAuthorReqResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CardAuthorReqResult" type="tns:CardAuthorizationPubResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PmtCardAuth">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CardAutPmt" type="tns:CardAuthorizPmt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CardAuthorizPmt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Card_Number" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Expiration_Date" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Transaction_Amount" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Authorization_Reference" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Resort" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Account" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Card_Holder_Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Card_Holder_Address" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Card_Holder_Zip" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Payment_type" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Invoice" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address_Match" />
+          <s:element minOccurs="0" maxOccurs="1" name="Zip_Match" />
+          <s:element minOccurs="0" maxOccurs="1" name="errMsg" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="PmtCardAuthResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PmtCardAuthResult" type="tns:CardAuthorizationPubResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CV2PmtCardAuth">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CardAutPmt" type="tns:CV2CardAuthorizPmt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CV2CardAuthorizPmt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Card_Number" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Expiration_Date" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Transaction_Amount" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Authorization_Reference" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Resort" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Account" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Card_Holder_Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Card_Holder_Address" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Card_Holder_Zip" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Payment_type" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Invoice" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address_Match" />
+          <s:element minOccurs="0" maxOccurs="1" name="Zip_Match" />
+          <s:element minOccurs="0" maxOccurs="1" name="errMsg" />
+          <s:element minOccurs="1" maxOccurs="1" name="Card_Type" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Card_CV2_Code" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Card_CV2_Value" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Card_Class_Code" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Fraud_Code" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Months_Deferred" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Number_Payments" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Plan_Type" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CV2PmtCardAuthResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CV2PmtCardAuthResult" type="tns:CardAuthorizationPubResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResortCheckOutReq">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RstChkOutReq" type="tns:ResortCheckOut" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResortCheckOut">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="User_Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Check_In_Auth_Number" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Card_Number" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Expiration_Date" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Transaction_Amount" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Zip" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="New_Invoice_Out" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ResortCheckOutReqResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ResortCheckOutReqResult" type="tns:CardAuthorizationPubResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResortCheckInReq">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RstChkInReq" type="tns:ResortCheckIn" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResortCheckIn">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="User_Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Card_Number" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Expiration_Date" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Transaction_Amount" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Zip" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Invoice" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ResortCheckInReqResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ResortCheckInReqResult" type="tns:CardAuthorizationPubResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthorizeCC">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AuthDataPub" type="tns:CardAuthorizationPub" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CardAuthorizationPub">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Card_Number" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Expiration_Date" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Transaction_Amount" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Card_Holder" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Card_Holder_Address" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Card_Holder_Zip" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Reference_Code" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AuthorizeCCResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AuthorizeCCResult" type="tns:CardAuthorizationPubResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthorizeCRMCC">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AuthCRM" type="tns:CardAuthorizationCRM" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CardAuthorizationCRM">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Card_Holder" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Card_Holder_Address" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Card_Holder_Zip" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Card_Number" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Card_Type" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Expiration_Date" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Transaction_Amount" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Authorization_Reference" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Card_CV2_Code" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Card_CV2_Value" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Card_Class_Code" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Fraud_Code" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Months_Deferred" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Number_Payments" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Plan_Type" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Merchant_Id" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CRMAcctInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Bank_Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Currency_Type" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Auth_Status" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Invoice_Num" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Merchant_Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Member_Account_Num" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Card_Holder_Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address_Verified" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Zip_Verified" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="User_Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Auth_Date" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Auth_Amount" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AuthorizeCRMCCResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AuthorizeCRMCCResult" type="tns:CardAuthorizationPubResponse" />
+            <s:element minOccurs="1" maxOccurs="1" name="CRMInfo" type="tns:CRMAcctInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreditCardProcessAuthorReq">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strCCAuthXML" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreditCardProcessAuthorReqResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreditCardProcessAuthorReqResult" type="tns:CardAuthorizationPubResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreditCardProcessAuthorReversal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strCCRevXML" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreditCardProcessAuthorReversalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreditCardProcessAuthorReversalResult" type="tns:CardAuthorizationPubResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateCardAuthStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="p_nCardAuthNum" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="p_nAuthStatus" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateCardAuthStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateCardAuthStatusResult" type="tns:CardAuthorizationPubResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMerchantById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="p_nMerchantId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMerchantByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetMerchantByIdResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="xmlResponse" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AuthorReversalSoapIn">
+    <wsdl:part name="parameters" element="tns:AuthorReversal" />
+  </wsdl:message>
+  <wsdl:message name="AuthorReversalSoapOut">
+    <wsdl:part name="parameters" element="tns:AuthorReversalResponse" />
+  </wsdl:message>
+  <wsdl:message name="AuthorReversalAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="CardAuthorReqExtSoapIn">
+    <wsdl:part name="parameters" element="tns:CardAuthorReqExt" />
+  </wsdl:message>
+  <wsdl:message name="CardAuthorReqExtSoapOut">
+    <wsdl:part name="parameters" element="tns:CardAuthorReqExtResponse" />
+  </wsdl:message>
+  <wsdl:message name="CardAuthorReqExtAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="CardAuthorReqSoapIn">
+    <wsdl:part name="parameters" element="tns:CardAuthorReq" />
+  </wsdl:message>
+  <wsdl:message name="CardAuthorReqSoapOut">
+    <wsdl:part name="parameters" element="tns:CardAuthorReqResponse" />
+  </wsdl:message>
+  <wsdl:message name="CardAuthorReqAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="PmtCardAuthSoapIn">
+    <wsdl:part name="parameters" element="tns:PmtCardAuth" />
+  </wsdl:message>
+  <wsdl:message name="PmtCardAuthSoapOut">
+    <wsdl:part name="parameters" element="tns:PmtCardAuthResponse" />
+  </wsdl:message>
+  <wsdl:message name="PmtCardAuthAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="CV2PmtCardAuthSoapIn">
+    <wsdl:part name="parameters" element="tns:CV2PmtCardAuth" />
+  </wsdl:message>
+  <wsdl:message name="CV2PmtCardAuthSoapOut">
+    <wsdl:part name="parameters" element="tns:CV2PmtCardAuthResponse" />
+  </wsdl:message>
+  <wsdl:message name="CV2PmtCardAuthAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="ResortCheckOutReqSoapIn">
+    <wsdl:part name="parameters" element="tns:ResortCheckOutReq" />
+  </wsdl:message>
+  <wsdl:message name="ResortCheckOutReqSoapOut">
+    <wsdl:part name="parameters" element="tns:ResortCheckOutReqResponse" />
+  </wsdl:message>
+  <wsdl:message name="ResortCheckOutReqAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="ResortCheckInReqSoapIn">
+    <wsdl:part name="parameters" element="tns:ResortCheckInReq" />
+  </wsdl:message>
+  <wsdl:message name="ResortCheckInReqSoapOut">
+    <wsdl:part name="parameters" element="tns:ResortCheckInReqResponse" />
+  </wsdl:message>
+  <wsdl:message name="ResortCheckInReqAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="AuthorizeCCSoapIn">
+    <wsdl:part name="parameters" element="tns:AuthorizeCC" />
+  </wsdl:message>
+  <wsdl:message name="AuthorizeCCSoapOut">
+    <wsdl:part name="parameters" element="tns:AuthorizeCCResponse" />
+  </wsdl:message>
+  <wsdl:message name="AuthorizeCCAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="AuthorizeCRMCCSoapIn">
+    <wsdl:part name="parameters" element="tns:AuthorizeCRMCC" />
+  </wsdl:message>
+  <wsdl:message name="AuthorizeCRMCCSoapOut">
+    <wsdl:part name="parameters" element="tns:AuthorizeCRMCCResponse" />
+  </wsdl:message>
+  <wsdl:message name="AuthorizeCRMCCAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="CreditCardProcessAuthorReqSoapIn">
+    <wsdl:part name="parameters" element="tns:CreditCardProcessAuthorReq" />
+  </wsdl:message>
+  <wsdl:message name="CreditCardProcessAuthorReqSoapOut">
+    <wsdl:part name="parameters" element="tns:CreditCardProcessAuthorReqResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreditCardProcessAuthorReqAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="CreditCardProcessAuthorReversalSoapIn">
+    <wsdl:part name="parameters" element="tns:CreditCardProcessAuthorReversal" />
+  </wsdl:message>
+  <wsdl:message name="CreditCardProcessAuthorReversalSoapOut">
+    <wsdl:part name="parameters" element="tns:CreditCardProcessAuthorReversalResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreditCardProcessAuthorReversalAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCardAuthStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateCardAuthStatus" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCardAuthStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateCardAuthStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCardAuthStatusAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetMerchantByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMerchantById" />
+  </wsdl:message>
+  <wsdl:message name="GetMerchantByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMerchantByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMerchantByIdAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:portType name="BankServiceSoap">
+    <wsdl:operation name="AuthorReversal">
+      <wsdl:input message="tns:AuthorReversalSoapIn" />
+      <wsdl:output message="tns:AuthorReversalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CardAuthorReqExt">
+      <wsdl:input message="tns:CardAuthorReqExtSoapIn" />
+      <wsdl:output message="tns:CardAuthorReqExtSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CardAuthorReq">
+      <wsdl:input message="tns:CardAuthorReqSoapIn" />
+      <wsdl:output message="tns:CardAuthorReqSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PmtCardAuth">
+      <wsdl:input message="tns:PmtCardAuthSoapIn" />
+      <wsdl:output message="tns:PmtCardAuthSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CV2PmtCardAuth">
+      <wsdl:input message="tns:CV2PmtCardAuthSoapIn" />
+      <wsdl:output message="tns:CV2PmtCardAuthSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResortCheckOutReq">
+      <wsdl:input message="tns:ResortCheckOutReqSoapIn" />
+      <wsdl:output message="tns:ResortCheckOutReqSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResortCheckInReq">
+      <wsdl:input message="tns:ResortCheckInReqSoapIn" />
+      <wsdl:output message="tns:ResortCheckInReqSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthorizeCC">
+      <wsdl:input message="tns:AuthorizeCCSoapIn" />
+      <wsdl:output message="tns:AuthorizeCCSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthorizeCRMCC">
+      <wsdl:input message="tns:AuthorizeCRMCCSoapIn" />
+      <wsdl:output message="tns:AuthorizeCRMCCSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreditCardProcessAuthorReq">
+      <wsdl:input message="tns:CreditCardProcessAuthorReqSoapIn" />
+      <wsdl:output message="tns:CreditCardProcessAuthorReqSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreditCardProcessAuthorReversal">
+      <wsdl:input message="tns:CreditCardProcessAuthorReversalSoapIn" />
+      <wsdl:output message="tns:CreditCardProcessAuthorReversalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCardAuthStatus">
+      <wsdl:input message="tns:UpdateCardAuthStatusSoapIn" />
+      <wsdl:output message="tns:UpdateCardAuthStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMerchantById">
+      <wsdl:input message="tns:GetMerchantByIdSoapIn" />
+      <wsdl:output message="tns:GetMerchantByIdSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BankServiceSoap" type="tns:BankServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AuthorReversal">
+      <soap:operation soapAction="https://resortcom.com/ccservice/AuthorReversal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:AuthorReversalAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CardAuthorReqExt">
+      <soap:operation soapAction="https://resortcom.com/ccservice/CardAuthorReqExt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CardAuthorReqExtAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CardAuthorReq">
+      <soap:operation soapAction="https://resortcom.com/ccservice/CardAuthorReq" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CardAuthorReqAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PmtCardAuth">
+      <soap:operation soapAction="https://resortcom.com/ccservice/PmtCardAuth" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:PmtCardAuthAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CV2PmtCardAuth">
+      <soap:operation soapAction="https://resortcom.com/ccservice/CV2PmtCardAuth" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CV2PmtCardAuthAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResortCheckOutReq">
+      <soap:operation soapAction="https://resortcom.com/ccservice/ResortCheckOutReq" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:ResortCheckOutReqAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResortCheckInReq">
+      <soap:operation soapAction="https://resortcom.com/ccservice/ResortCheckInReq" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:ResortCheckInReqAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthorizeCC">
+      <soap:operation soapAction="https://resortcom.com/ccservice/AuthorizeCC" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:AuthorizeCCAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthorizeCRMCC">
+      <soap:operation soapAction="https://resortcom.com/ccservice/AuthorizeCRMCC" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:AuthorizeCRMCCAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreditCardProcessAuthorReq">
+      <soap:operation soapAction="https://resortcom.com/ccservice/CreditCardProcessAuthorReq" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreditCardProcessAuthorReqAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreditCardProcessAuthorReversal">
+      <soap:operation soapAction="https://resortcom.com/ccservice/CreditCardProcessAuthorReversal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreditCardProcessAuthorReversalAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCardAuthStatus">
+      <soap:operation soapAction="https://resortcom.com/ccservice/UpdateCardAuthStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:UpdateCardAuthStatusAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMerchantById">
+      <soap:operation soapAction="https://resortcom.com/ccservice/GetMerchantById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetMerchantByIdAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BankServiceSoap12" type="tns:BankServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AuthorReversal">
+      <soap12:operation soapAction="https://resortcom.com/ccservice/AuthorReversal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:AuthorReversalAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CardAuthorReqExt">
+      <soap12:operation soapAction="https://resortcom.com/ccservice/CardAuthorReqExt" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CardAuthorReqExtAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CardAuthorReq">
+      <soap12:operation soapAction="https://resortcom.com/ccservice/CardAuthorReq" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CardAuthorReqAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PmtCardAuth">
+      <soap12:operation soapAction="https://resortcom.com/ccservice/PmtCardAuth" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:PmtCardAuthAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CV2PmtCardAuth">
+      <soap12:operation soapAction="https://resortcom.com/ccservice/CV2PmtCardAuth" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CV2PmtCardAuthAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResortCheckOutReq">
+      <soap12:operation soapAction="https://resortcom.com/ccservice/ResortCheckOutReq" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ResortCheckOutReqAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResortCheckInReq">
+      <soap12:operation soapAction="https://resortcom.com/ccservice/ResortCheckInReq" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ResortCheckInReqAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthorizeCC">
+      <soap12:operation soapAction="https://resortcom.com/ccservice/AuthorizeCC" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:AuthorizeCCAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthorizeCRMCC">
+      <soap12:operation soapAction="https://resortcom.com/ccservice/AuthorizeCRMCC" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:AuthorizeCRMCCAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreditCardProcessAuthorReq">
+      <soap12:operation soapAction="https://resortcom.com/ccservice/CreditCardProcessAuthorReq" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreditCardProcessAuthorReqAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreditCardProcessAuthorReversal">
+      <soap12:operation soapAction="https://resortcom.com/ccservice/CreditCardProcessAuthorReversal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreditCardProcessAuthorReversalAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCardAuthStatus">
+      <soap12:operation soapAction="https://resortcom.com/ccservice/UpdateCardAuthStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:UpdateCardAuthStatusAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMerchantById">
+      <soap12:operation soapAction="https://resortcom.com/ccservice/GetMerchantById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetMerchantByIdAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BankService">
+    <wsdl:port name="BankServiceSoap" binding="tns:BankServiceSoap">
+      <soap:address location="https://www.resortcom.com/ccservice/bankservice.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BankServiceSoap12" binding="tns:BankServiceSoap12">
+      <soap12:address location="https://www.resortcom.com/ccservice/bankservice.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

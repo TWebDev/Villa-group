@@ -1,0 +1,61 @@
+﻿@model ePlatBack.Models.ViewModels.DestinationsModel.DestinationsInfoModel
+
+
+
+@if (Model.Privileges.FirstOrDefault(m => m.Component == "fdsDestinationsInfo" && m.View == true) != null)
+{
+    <fieldset id="fdsDestinationsInfo" class="primary-selected-row-dependent">
+        <legend>
+            <img src="/Content/themes/base/images/eplat_show.jpg" alt="" class="fieldset-indicator fds-indicator-separator">
+            Destination Info
+        </legend>
+
+        <div style="display: none" class="align-from-top">
+            @using (Ajax.BeginForm("SaveDestination", "Catalogs", new AjaxOptions { OnSuccess = "CATALOG.saveDestinationSuccess(data)" }, new { id = "frmDestinationInfo", onSubmit = "return UI.showValidationSummary(this.id);" }))
+            {
+                <div id="frmZoneInfo_ErrorMessages" style="display: none">
+                    @Html.ValidationMessageFor(model => model.DestinationInfo_Destination)
+                    @Html.ValidationMessageFor(model => model.DestinationInfo_Latitude)
+                    @Html.ValidationMessageFor(model => model.DestinationInfo_Longitude)
+                </div>
+                <div id="gMap">
+                    Loading Map....
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.DestinationInfo_Destination)
+                        @Html.HiddenFor(model => model.DestinationInfo_DestinationID, new { @class = "primary-selected-row-dependent" })
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.DestinationInfo_Destination)
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.DestinationInfo_Latitude)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.DestinationInfo_Latitude)
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.DestinationInfo_Longitude)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.DestinationInfo_Longitude)
+                    </div>
+                </div>
+                <div class="editor-alignment full-width">
+                    @if (Model.Privileges.FirstOrDefault(m => m.Component == "btnSaveDestination" && m.View == true) != null)
+                    {
+                        <input type="submit" class="submit right" value="Save" id="btnSaveDestination" />
+                    }
+                </div>
+            }
+            @Html.Action("RenderDestinationsDescriptionCatalogPartial", "Catalogs")
+           @* @Html.Partial("_DestinationsDescriptionsCatalogPartial", Model.DestinationDescriptionsModel)*@
+            @Html.Action("RenderSeoItemsInDestinations", "SeoItems")
+        </div>
+    </fieldset>
+}

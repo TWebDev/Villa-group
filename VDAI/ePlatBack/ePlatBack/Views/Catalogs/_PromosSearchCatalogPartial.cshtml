@@ -1,0 +1,69 @@
+﻿@model ePlatBack.Models.ViewModels.PromosModel.PromoSearchModel
+
+<div class="full-width">
+    <input type="button" id="btnNewPromosInfo" class="submit fieldset-expander right" value="new" />
+</div>
+@using (Ajax.BeginForm("SearchPromos", "Catalogs", new AjaxOptions { OnSuccess = "CATALOG.promosResultsTable(data)", OnComplete = "CATALOG.makePromosSelectable()", UpdateTargetId = "divTblExistingPromos" }, new { id = "frmPromosSearch" }))
+{
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PromoSearch_PromoTypes)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.PromoSearch_PromoTypes, Model.PromoSearch_DrpPromoTypes, new { multiple = "multiple" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PromoSearch_Promo)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.PromoSearch_Promo)
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PromoSearch_FromDateBW)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.PromoSearch_FromDateBW)
+            @Html.TextBoxFor(model => model.PromoSearch_ToDateBW)
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PromoSearch_FromDateTW)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.PromoSearch_FromDateTW)
+            @Html.TextBoxFor(model => model.PromoSearch_ToDateTW)
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PromoSearch_PromoCode)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.PromoSearch_PromoCode)
+        </div>
+    </div>
+    <div class="editor-alignment align-from-top">
+        <div class="editor-field">
+            <input type="submit" id="btnSearchPromos" class="button search" value="search" />
+        </div>
+    </div>
+    <div id="divTblExistingPromos" class="align-from-top">
+        <table id="tblSearchPromosResults" class="dataTable table search-results">
+            <thead>
+                <tr>
+                    <th>Promo Code</th>
+                    <th>Promo</th>
+                    <th>BW Dates</th>
+                    <th>TW Dates</th>
+                    <th>Publish</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+}

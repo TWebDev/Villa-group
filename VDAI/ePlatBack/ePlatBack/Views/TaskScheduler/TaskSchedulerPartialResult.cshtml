@@ -1,0 +1,55 @@
+﻿@model ePlatBack.Models.ViewModels.TaskSchedulerViewModel.TasksResults
+
+<table id="tblTaskScheduler" class="dataTable table search-results">
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th>Url</th>
+            <th>Recurr</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Permanent</th>
+            <th>Active</th>
+            <th>Save by User</th>
+            <th>Date Saved</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.TaskSummary)
+        {
+            var id = item.GetTaskSchedulerID;
+            <tr id="@id">
+                <td>
+                    @Html.DisplayFor(model => item.GetDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.GetUrl)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.GetRecur)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.GetFromDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.GetToDate)
+                </td>
+               
+                <td>
+                    @Html.DisplayFor(model => item.GetPermanent)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.GetActive)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.GetSaveByUser)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.GetDateSaved)
+                    <img src="~/Content/themes/base/images/trash.png" class="right delete-icon" />
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

@@ -1,0 +1,715 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="437f0328e2d6498f8826db441d6ee33a" Name="Diagram1" ZoomLevel="100">
+        <EntityTypeShape EntityType="ecommerceModel.tbaAcomodosReporte" Width="1.5" PointX="13.5" PointY="304.75" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaActividadesUsuario" Width="1.5" PointX="7.5" PointY="346.625" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaAgendasUsuarios" Width="1.5" PointX="5.25" PointY="336.625" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaAllotmentSalas" Width="1.5" PointX="7.75" PointY="4.75" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaAmenidades" Width="1.5" PointX="3" PointY="228.75" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaAmenidadesCultura" Width="1.5" PointX="5.25" PointY="233" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaAmenidadesRelaciones" Width="1.5" PointX="17.25" PointY="229.25" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaAsignacionesUsuariosProspectos" Width="1.5" PointX="14.25" PointY="226.625" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaBloques" Width="1.5" PointX="5.25" PointY="310.5" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaBloquesConfig" Width="1.5" PointX="10.5" PointY="267.125" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaBloquesCultura" Width="1.5" PointX="10.5" PointY="263.25" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaBookingStatus" Width="1.5" PointX="9" PointY="231.75" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaBookingStatusTerminales" Width="1.5" PointX="11.25" PointY="224.875" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaBroker_History" Width="1.5" PointX="25.25" PointY="311.375" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaBrokerContactInformation" Width="1.5" PointX="24.25" PointY="316" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaBrokerContracts_History" Width="1.5" PointX="27.5" PointY="307.75" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaBrokerDestinationSettings" Width="1.5" PointX="26.5" PointY="247.625" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaBrokerDestinationSettings_History" Width="1.5" PointX="34.75" PointY="264.5" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaBrokerJobPositions" Width="1.5" PointX="22" PointY="341.625" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaBrokerPricesAndFeesTypes" Width="1.5" PointX="24.25" PointY="248.375" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaBrokers" Width="1.5" PointX="18" PointY="320.5" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaBrokerWash" Width="1.5" PointX="29.5" PointY="247.5" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaBrokerWash_History" Width="1.5" PointX="32.75" PointY="248.25" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaCalClasificacionLugar" Width="1.5" PointX="24.75" PointY="319.625" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaCalGeneros" Width="1.5" PointX="24.75" PointY="329.375" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaCalificaciones" Width="1.5" PointX="22.5" PointY="327.625" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaCalRangosEdad" Width="1.5" PointX="24.75" PointY="333.125" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaCalResortsMiembro" Width="1.5" PointX="29.75" PointY="268.75" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaCalStatusLaboral" Width="1.5" PointX="24.75" PointY="325.75" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaCampos" Width="1.5" PointX="6" PointY="204.875" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaCamposGrupos" Width="1.5" PointX="3.75" PointY="205" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaCamposTablas" Width="1.5" PointX="5.75" PointY="1.25" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaCargos" Width="1.5" PointX="21" PointY="242.75" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaCartConfig" Width="1.5" PointX="7.5" PointY="278.75" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaCarts" Width="1.5" PointX="16.5" PointY="270.75" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaCartsEstatus" Width="1.5" PointX="14.25" PointY="277.125" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaCatalogos" Width="1.5" PointX="8.25" PointY="218.125" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaCatalogosCultura" Width="1.5" PointX="19.5" PointY="222.5" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaCatalogosProductos" Width="1.5" PointX="19.5" PointY="215.875" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaCatalogosSecciones" Width="1.5" PointX="15.75" PointY="245.375" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaCatalogosServicios" Width="1.5" PointX="19.5" PointY="218.875" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaCategorias" Width="1.5" PointX="12.75" PointY="247.375" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaCategoriasCultura" Width="1.5" PointX="15" PointY="300.125" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaClasificacionesLugar" Width="1.5" PointX="5.25" PointY="307.375" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaClientes" Width="1.5" PointX="11.25" PointY="209" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaCombinacionesOcupacion" Width="1.5" PointX="15" PointY="323.25" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaComentariosReservaciones" Width="1.5" PointX="27.75" PointY="292.375" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaComments" Width="1.5" PointX="18.5" PointY="255.25" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaComportamientos" Width="1.5" PointX="18.75" PointY="288.875" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaCompras" Width="1.5" PointX="18.75" PointY="272.375" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaComprasEstatus" Width="1.5" PointX="16.5" PointY="252.125" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaContactos" Width="1.5" PointX="5.25" PointY="299.25" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaContenidosEstaticos" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaConversaciones" Width="1.5" PointX="7.5" PointY="286.875" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaDatosCompra" Width="1.5" PointX="37.5" PointY="259.375" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaDatosProspectos" Width="1.5" PointX="32.25" PointY="260.25" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaDefaultFlashHeaders" Width="1.5" PointX="7.5" PointY="269.625" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaDescripcionCargos" Width="1.5" PointX="30" PointY="302.125" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaDestinos" Width="1.5" PointX="1.5" PointY="195.125" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaDestinosUsuarios" Width="1.5" PointX="15.5" PointY="248.875" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaDetalleElementoCart" Width="1.5" PointX="27" PointY="277.125" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaDetallesPagosReservacion" Width="1.5" PointX="32.25" PointY="287.25" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaDirectorio" Width="1.5" PointX="12" PointY="201.375" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaDisponibilidad" Width="1.5" PointX="21.25" PointY="302" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaDisponibilidadHabitaciones" Width="1.5" PointX="21" PointY="258.25" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaDisponibilidadHorarioSalas" Width="1.5" PointX="6" PointY="209.5" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaDisponibilidadSemanal" Width="1.5" PointX="21.25" PointY="289.5" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaDocumentosViajero" Width="1.5" PointX="2.75" PointY="6.125" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaDocumentosViajeroCultura" Width="1.5" PointX="5" PointY="5.875" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaDominiosTerminales" Width="1.5" PointX="17.25" PointY="223.5" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaEBB" Width="1.5" PointX="5.25" PointY="222.625" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaEBBPrecios" Width="1.5" PointX="23.25" PointY="254.375" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaEBBRelaciones" Width="1.5" PointX="15.5" PointY="261.125" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaEdadesPersonas" Width="1.5" PointX="9.75" PointY="372.625" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaElementosCart" Width="1.5" PointX="24.75" PointY="258.25" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaElementosCartEstatus" Width="1.5" PointX="22.5" PointY="239.875" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaElementosSuscripcion" Width="1.5" PointX="24.75" PointY="293.25" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaEmails" Width="1.5" PointX="12" PointY="197.625" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaEmailTemplates" Width="1.5" PointX="9.75" PointY="198" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaEnvioEmails" Width="1.5" PointX="14.25" PointY="214.5" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaEnviosEventos" Width="1.5" PointX="5.25" PointY="218.5" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaEplatModulos" Width="1.5" PointX="0.75" PointY="2.25" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaEplatRolesPermisos" Width="1.5" PointX="11.25" PointY="151.25" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaErrores" Width="1.5" PointX="8.25" PointY="206" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaEsquemasCalificacion" Width="1.5" PointX="15" PointY="202.5" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaEsquemasDestinos" Width="1.5" PointX="8.25" PointY="214.625" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaEsquemasHoteles" Width="1.5" PointX="17.25" PointY="209.625" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaEstaciones" Width="1.5" PointX="30" PointY="259.5" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaEstacionesCultura" Width="1.5" PointX="32.25" PointY="269.5" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaEstatusFront" Width="1.5" PointX="27.75" PointY="287.625" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaEstatusReservaciones" Width="1.5" PointX="27.75" PointY="290" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaEstructurasPagina" Width="1.5" PointX="5.25" PointY="333.5" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaEventosLog" Width="1.5" PointX="17.25" PointY="213.625" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaEventosSistema" Width="1.5" PointX="6" PointY="197" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaFirmas" Width="1.5" PointX="32.25" PointY="254.875" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaGaleria" Width="1.5" PointX="16.75" PointY="304.875" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaGaleriaCultura" Width="1.5" PointX="19" PointY="304.875" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaGaleriaServicios" Width="1.5" PointX="19.5" PointY="267.875" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaGastosMarketing" Width="1.5" PointX="22.5" PointY="338.125" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaGeneros" Width="1.5" PointX="22.5" PointY="325" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaGenerosCultura" Width="1.5" PointX="24.75" PointY="340" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaGrabacionesLlamadas" Width="1.5" PointX="34.5" PointY="288.75" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaHeaderDetalles" Width="1.5" PointX="7.5" PointY="326.375" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaHeadersDinamicos" Width="1.5" PointX="5.25" PointY="327" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaHistorialContratos" Width="1.5" PointX="15.75" PointY="266.375" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaHorariosSalas" Width="1.5" PointX="3.75" PointY="207.75" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaImpuestos" Width="1.5" PointX="12.75" PointY="261" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaInformacionReferidos" Width="1.5" PointX="24.75" PointY="270.75" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaLeadTypes" Width="1.5" PointX="20.25" PointY="239.75" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaLeadTypesTerminales" Width="1.5" PointX="14.25" PointY="229.875" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaLenguajes" Width="1.5" PointX="12" PointY="236.625" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaLenguajesCultura" Width="1.5" PointX="14.25" PointY="252.875" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaLenguajesTerminales" Width="1.5" PointX="14.25" PointY="218.875" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaLiveHelp" Width="1.5" PointX="5.25" PointY="352.625" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaLiveHelpTerminal" Width="1.5" PointX="5.25" PointY="344.25" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaLlamadas" Width="1.5" PointX="32.25" PointY="279.125" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaLogEmails" Width="1.5" PointX="14.25" PointY="194.875" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaLogs" Width="1.5" PointX="8" PointY="1" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaLugares" Width="1.5" PointX="7.5" PointY="307.75" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaLugaresCultura" Width="1.5" PointX="9.75" PointY="389.625" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaLugaresTerminales" Width="1.5" PointX="9.75" PointY="259.875" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaMarketingSources" Width="1.5" PointX="20.25" PointY="319.5" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaMarketingSourcesTerminales" Width="1.5" PointX="8.25" PointY="228.875" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaMensajesConversaciones" Width="1.5" PointX="9.75" PointY="288" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaNochesGratis" Width="1.5" PointX="21" PointY="252.875" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaNochesMinimas" Width="1.5" PointX="12.75" PointY="256.25" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaNotas" Width="1.5" PointX="19" PointY="293" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaNotasServicios" Width="1.5" PointX="21.25" PointY="283.125" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaNotificaciones" Width="1.5" PointX="35.25" PointY="254.625" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaNotificacionesPreferencias" Width="1.5" PointX="14.25" PointY="206.625" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaOcupaciones" Width="1.5" PointX="22.5" PointY="309.125" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaOcupacionesCultura" Width="1.5" PointX="24.75" PointY="290.125" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaOfertasTimeShare" Width="1.5" PointX="5.25" PointY="330.25" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaPaginas" Width="1.5" PointX="8.25" PointY="222.375" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaPaginasCultura" Width="1.5" PointX="13.5" PointY="286.875" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaPaises" Width="1.5" PointX="9" PointY="202.625" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaPaquetesDetalle" Width="1.5" PointX="30" PointY="243.875" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaPaquetesOfertas" Width="1.5" PointX="27.75" PointY="251.75" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaPaquetesPrecio" Width="1.5" PointX="30" PointY="251.875" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaPerfilesProspectos" Width="1.5" PointX="24.75" PointY="297.125" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaPerfilesPublicos" Width="1.5" PointX="19.5" PointY="209.375" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaPrecios" Width="1.5" PointX="16" PointY="287.125" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaPreciosRelacionados" Width="1.5" PointX="27.25" PointY="265.875" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaPreferenciasProspectos" Width="1.5" PointX="27" PointY="302.375" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaProductos" Width="1.5" PointX="11.25" PointY="216.125" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaProductosAmenidades" Width="1.5" PointX="13.5" PointY="232.75" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaProductosCategoria" Width="1.5" PointX="15" PointY="236.875" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaProductosCultura" Width="1.5" PointX="15.5" PointY="282.125" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaProgramasProspectacion" Width="1.5" PointX="0.75" PointY="212.75" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaProgramasSalas" Width="1.5" PointX="6" PointY="212.875" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaPromociones" Width="1.5" PointX="14.25" PointY="222.125" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaPromocionesCultura" Width="1.5" PointX="16.5" PointY="233.625" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaPromocionesServicios" Width="1.5" PointX="18.5" PointY="263.125" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaProspectos" Width="1.5" PointX="22.5" PointY="263.375" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaProveedores" Width="1.5" PointX="16.75" PointY="308" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaProveedoresPago" Width="1.5" PointX="15" PointY="240" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaPuntosHorarios" Width="1.5" PointX="9.75" PointY="310.625" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaQualificationStatus" Width="1.5" PointX="20.25" PointY="236.5" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaRangosEdad" Width="1.5" PointX="22.5" PointY="334.625" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaRangosIngreso" Width="1.5" PointX="20.25" PointY="329.75" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaRangosIngresoCultura" Width="1.5" PointX="22.5" PointY="344.75" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaRedesIntercambio" Width="1.5" PointX="22.5" PointY="322.375" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaRedesIntercambioCultura" Width="1.5" PointX="24.75" PointY="336.375" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaReferidos" Width="1.5" PointX="27" PointY="259.375" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaRegistrosPresentacion" Width="1.5" PointX="13.5" PointY="265.75" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaRepresentantes" Width="1.5" PointX="11.25" PointY="252.75" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaReservaciones" Width="1.5" PointX="30" PointY="280.625" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaResorts" Width="1.5" PointX="1.5" PointY="201.625" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaSalas" Width="1.5" PointX="1.5" PointY="207.5" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaSalesQualificationStatuses" Width="1.5" PointX="27.75" PointY="285.25" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaSecciones" Width="1.5" PointX="10.5" PointY="281.625" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaSeccionesCultura" Width="1.5" PointX="12.75" PointY="283" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaSeo" Width="1.5" PointX="5.25" PointY="347" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaServicios" Width="1.5" PointX="19" PointY="278.25" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaServiciosCategoria" Width="1.5" PointX="29.25" PointY="262.75" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaServiciosExcepciones" Width="1.5" PointX="21.25" PointY="249.25" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaServiciosRelacionados" Width="1.5" PointX="21.25" PointY="299.25" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaStatusLaboral" Width="1.5" PointX="22.5" PointY="319.625" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaStatusLaboralCultura" Width="1.5" PointX="24.75" PointY="322.625" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaStatusMarital" Width="1.5" PointX="17.25" PointY="205.75" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaStatusMaritalCultura" Width="1.5" PointX="19.5" PointY="205.875" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaStatusTicket" Width="1.5" PointX="15" PointY="200" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaSupervisorAgentes" Width="1.5" PointX="13.5" PointY="295.625" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaSuscripcionCultura" Width="1.5" PointX="27" PointY="297.125" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaSuscripciones" Width="1.5" PointX="30" PointY="304.75" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaTarjetasDeCredito" Width="1.5" PointX="35.25" PointY="261.375" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaTeamSources" Width="1.5" PointX="27.75" PointY="294.625" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaTerminales" Width="1.5" PointX="3" PointY="212.375" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaTerminalesDestinos" Width="1.5" PointX="7.5" PointY="262.25" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaTerminalesUsuarios" Width="1.5" PointX="5.25" PointY="229.875" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaTests" Width="1.5" PointX="5.25" PointY="341.5" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaTickets" Width="1.5" PointX="17.25" PointY="217.75" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaTiposCargos" Width="1.5" PointX="30" PointY="277.875" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaTiposdeCambio" Width="1.5" PointX="4.75" PointY="8.75" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaTiposdeDocumento" Width="1.5" PointX="30" PointY="255.875" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaTiposdeHabitacion" Width="1.5" PointX="12.75" PointY="309.5" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaTiposdeHabitacionCultura" Width="1.5" PointX="15" PointY="326" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaTiposdeLugar" Width="1.5" PointX="3" PointY="307.5" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaTiposdeMoneda" Width="1.5" PointX="22" PointY="294.875" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaTiposdeNotificacion" Width="1.5" PointX="12" PointY="205.875" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaTiposdePagina" Width="1.5" PointX="6" PointY="215.75" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaTiposdePlan" Width="1.5" PointX="20.25" PointY="231.75" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaTiposdePlanCultura" Width="1.5" PointX="22.5" PointY="232.25" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaTiposdePlanLugares" Width="1.5" PointX="15.75" PointY="257.625" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaTiposdeRepresentante" Width="1.5" PointX="9" PointY="253.125" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaTiposdeSeccion" Width="1.5" PointX="8.25" PointY="275.25" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaTiposGrabacionesLlamadas" Width="1.5" PointX="32.25" PointY="295.25" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaTiposPrecio" Width="1.5" PointX="22" PointY="286.75" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaTopServicios" Width="1.5" PointX="24.25" PointY="251" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaTours" Width="1.5" PointX="21.25" PointY="311.875" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaTrasportadoras" Width="1.5" PointX="30" PointY="266.375" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaUsuariosPermisos" Width="1.5" PointX="3" PointY="2.5" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaUsuariosTemporales" Width="1.5" PointX="5.25" PointY="288.25" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaUsuariosTiposNotification" Width="1.5" PointX="11.25" PointY="227.625" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaValoresCampos" Width="1.5" PointX="8.25" PointY="210.5" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaVideos" Width="1.5" PointX="25" PointY="267.75" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaVideosServicios" Width="1.5" PointX="27.25" PointY="271.125" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaVisitas" Width="1.5" PointX="6.75" PointY="8.75" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaWikiCampos" Width="1.5" PointX="14.25" PointY="210.125" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaZonas" Width="1.5" PointX="16.75" PointY="311.25" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaZonasTransporte" Width="1.5" PointX="22" PointY="305.5" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaZonasTransportePrecios" Width="1.5" PointX="24.25" PointY="283.25" />
+        <EntityTypeShape EntityType="ecommerceModel.vwTblProspectosRescom" Width="1.5" PointX="0.75" PointY="14.75" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaActividadesUsuario_tbaAgendasUsuarios" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaAgendasUsuarios_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCarts_tbaAgendasUsuarios1" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaAmenidadesCultura_tbaAmenidades" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaAmenidadesRelaciones_tbaAmenidades" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaEBB_tbaAmenidades" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaAmenidadesRelaciones_tbaDestinos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaAmenidadesRelaciones_tbaLugares" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaAmenidadesRelaciones_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaAmenidadesRelaciones_tbaTiposdeHabitacion" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaAsignacionesUsuariosProspectos_tbaProspectos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaAsignacionesUsuariosProspectos_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaBloquesConfig_tbaBloques" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCartConfig_tbaBloques" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCartConfig_tbaBloques1" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCartConfig_tbaBloques2" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCartConfig_tbaBloques3" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCartConfig_tbaBloques4" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCartConfig_tbaBloques5" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaEtiquetasTexto_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaEtiquetasTextoCultura_tbaEtiquetasTexto" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaLugares_tbaBloques" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaTerminalesDestinos_tbaBloques" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaBloquesConfig_tbaPaginas" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaEtiquetasTextoCultura_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaBookingStatusTerminales_tbaBookingStatus" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaLlamadas_tbaBookingStatus" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaProspectos_tbaBookingStatus" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaBookingStatusTerminales_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaBroker_History_tbaBrokers" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaBrokerContactInformation_tbaBrokerJobPosition" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaBrokerContactInformation_tbaBrokers" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaBrokerContracts_History_tbaMarketingSources" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaBrokerDestinationSettings_History_tbaBrokerDestinationSettings" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaBrokerDestinationSettings_tbaBrokerDestinationSettings" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaBrokerDestinationSettings_tbaDestinos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaBrokerDestinationSettings_tbaMarketingSources" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaBrokerDestinationSettings_History_tbaBrokerPricesAndFeesTypes" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaBrokerDestinationSettings_History_tbaDestinos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaBrokerDestinationSettings_History_tbaMarketingSources" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaMarketingSources_tbaBrokers" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaBrokerWash_History_tbaBrokerWash" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaBrokerWash_tbaDestinos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaBrokerWash_tbaMarketingSources" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaBrokerWash_tbaTiposdePlan" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaBrokerWash_History_tbaDestinos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaBrokerWash_History_tbaTiposdePlan" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCalClasificacionLugar_tbaCalificaciones" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCalClasificacionLugar_tbaClasificacionesLugar" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCalGeneros_tbaCalificaciones" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCalGeneros_tbaGeneros" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCalificaciones_tbaEsquemasCalificacion" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCalificaciones_tbaLenguajes" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCalificaciones_tbaPaises" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCalificaciones_tbaRangosIngresos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCalificaciones_tbaStatusMarital" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCalRangosEdad_tbaCalificaciones" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCalResortsMiembro_tbaCalificaciones" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCalStatusLaboral_tbaCalificaciones" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPerfilesProspectos_tbaCalificaciones" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCalRangosEdad_tbaRangosEdad" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCalResortsMiembro_tbaResorts" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCalStatusLaboral_tbaStatusLaboral" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCampos_tbaCamposGrupos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaValoresCampos_tbaCampos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaLogs_tbaCamposTablas" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCargos_tbaCompras" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCargos_tbaDatosCompra" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCargos_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCompras_tbaCargos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaRegistrosPresentacion_tbaCargos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCartConfig_tbaProveedoresPago" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCartConfig_tbaSeo" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCartConfig_tbaSeo1" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCartConfig_tbaSeo2" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCartConfig_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCarts_tbaCartsEstatus" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCarts_tbaClientes" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCarts_tbaLugares" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCarts_tbaPromociones" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCarts_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCompras_tbaCarts" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaElementosCart_tbaCarts" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCatalogos_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCatalogosCultura_tbaCatalogos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCatalogosProductos_tbaCatalogosProductos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCatalogosSecciones_tbaCatalogos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCatalogosServicios_tbaCatalogos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCategorias_tbaCatalogos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaElementosCart_tbaCatalogos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCatalogosProductos_tbaProductos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCatalogosSecciones_tbaSecciones" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCatalogosSecciones_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCatalogosServicios_tbaServicios" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCategorias_tbaCategorias1" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCategorias_tbaSecciones" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCategorias_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCategoriasCultura_tbaCategorias" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaProductosCategoria_tbaCategorias" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaServicios_tbaCategorias" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaServiciosCategoria_tbaCategorias" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCategoriasCultura_tbaSeo" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaClasificacionesLugar_tbaTiposdeLugar" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaLugares_tbaClasificacionesLugar" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaClientes_tbaPaises" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaClientes_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaClientesDatosCompra_tbaClientes" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaComments_tbaClientes" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaDatosProspectos_tbaClientes" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPerfilesPublicos_tbaClientes" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaRegistrosPresentacion_tbaClientes1" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCombinacionesOcupacion_tbaTiposdeHabitacion" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaReservaciones_tbaComentariosReservaciones" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaComments_tbaLugares" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaComments_tbaPaises" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaComments_tbaProductos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaComments_tbaServicios" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaComments_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaComportamientos_tbaComportamientos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCompras_tbaComprasEstatus" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCompras_tbaDatosCompra" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCompras_tbaTiposdeMoneda" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaContactos_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaConversaciones_tbaLiveHelp" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaConversaciones_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaConversaciones_tbaUsuariosTemporales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaMensajesConversaciones_tbaConversaciones" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaClientesDatosCompra_tbaPaises" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaClientesDatosCompra_tbaPerfilesProspectos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaClientesDatosCompra_tbaTarjetasDeCredito" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaDatosCompra_tbaDetallesPagosReservacion" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaDatosProspectos_tbaDatosProspectos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaDatosProspectos_tbaDestinos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaDatosProspectos_tbaEstaciones" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaDatosProspectos_tbaPaquetesPrecio" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaDatosProspectos_tbaPerfilesProspectos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaDatosProspectos_tbaReservaciones" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaDatosProspectos_tbaTrasportadoras" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaDefaultFlashHeaders_tbaHeadersDinamicos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaDefaultFlashHeaders_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaDetallesPagosReservacion_tbaDescripcionCargos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaDestinosUsuarios_tbaDestinos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaEsquemasDestinos_tbaDestinos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaLugares_tbaDestinos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaProspectos_tbaDestinos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaRegistrosPresentacion_tbaDestinos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaReservaciones_tbaDestinos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaResorts_tbaDestinos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaTerminalesDestino_tbaDestinos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaZonas_tbaDestinos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaZonasTransporte_tbaDestinos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaDetalleElementoCart_tbaElementosCart" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaDetalleElementoCart_tbaPrecios" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaDetalleElementoCart_tbaPrecios1" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaDetallesPagosReservacion_tbaDetallesPagosReservacion" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaDetallesPagosReservacion_tbaReservaciones" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaDetallesPagosReservacion_tbaTiposCargos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaElementosSuscripcion_tbaDirectorio" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaEnvioEmails_tbaDirectorio" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaDisponibilidad_tbaServicios" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaDisponibilidadHabitaciones_tbaDisponibilidadHabitaciones" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaDisponibilidadHabitaciones_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaDisponibilidadHorarioSalas_tbaHorariosSalas" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaDisponibilidadHorarioSalas_tbaProgramasProspectacion" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaDisponibilidadSemanal_tbaServicios" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaElementosCart_tbaDisponibilidadSemanal" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPuntosHorarios_tbaDisponibilidadSemanal" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaDocumentosViajeroCultura_tbaDocumentosViajero" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaDominiosTerminales_tbaProveedoresPago" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaDominiosTerminales_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaEBB_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaEBBPrecios_tbaEBB" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaEBBRelaciones_tbaEBB" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaElementosCart_tbaEBB" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaEBBPrecios_tbaPrecios" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaEBBPrecios_tbaPrecios1" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaEBBRelaciones_tbaLugares" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaEBBRelaciones_tbaProductos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaEBBRelaciones_tbaServicios" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaEBBRelaciones_tbaTiposdeHabitacion" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaEdadesPersonas_tbaLugares" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPrecios_tbaEdadesPersonas" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaElementosCart_tbaElementosCartEstatus" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaElementosCart_tbaLugares" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaElementosCart_tbaProductos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaElementosCart_tbaPuntosHorarios" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaElementosCart_tbaServicios" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaElementosCart_tbaZonasTransporte" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaReservaciones_tbaElementosCart1" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPreferenciasProspectos_tbaElementosSuscripcion" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaSuscripcionCultura_tbaElementosSuscripcion" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaSuscripciones_tbaElementosSuscripcion" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaEmails_tbaEmailTemplates" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaEnvioEmails_tbaEmails" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaEnviosEventos_tbaEmails" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaLogEmails_tbaEmails" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaEnvioEmails_tbaEnvioEmails" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaEnvioEmails_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaEnviosEventos_tbaEventosSistema" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaEnviosEventos_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaEplatModulos_tbaEplatModulos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaEplatRolesPermisos_tbaEplatModulos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaUsuariosPermisos_tbaEplatModulos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaErrores_tbaEventosSistema" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaErrores_tbaPaginasCultura" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaErrores_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaEsquemasDestinos_tbaEsquemasCalificacion" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaEsquemasHoteles_tbaEsquemasCalificacion" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPerfilesProspectos_tbaEsquemasCalificacion" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaEsquemasDestinos_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaEsquemasHoteles_tbaResorts" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaEsquemasHoteles_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaEstacionesCultura_tbaEstaciones" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaReservaciones_tbaEstatusFront" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaReservaciones_tbaEstatusReservaciones" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaEstructurasPagina_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPaginasCultura_tbaEstructurasPagina" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaEventosLog_tbaEventosSistema" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaEventosLog_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaFirmas_tbaReservaciones" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaFirmas_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaFirmas_tbaTiposdeDocumento" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaGaleriaCultura_tbaGaleria" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaGaleriaServicios_tbaGaleria" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaServicios_tbaGaleria" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaGaleriaServicios_tbaLugares" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaGaleriaServicios_tbaProductos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaGaleriaServicios_tbaServicios" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaGaleriaServicios_tbaTiposdeHabitacion" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaGastosMarketing_tbaMarketingSources" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaGenerosCultura_tbaGeneros" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPerfilesProspectos_tbaGeneros" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaGrabacionesLlamadas_tbaLlamadas" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaGrabacionesLlamadas_tbaReservaciones" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaGrabacionesLlamadas_tbaTiposGrabacionesLlamadas" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaHeaderDetalles_tbaHeadersDinamicos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaHeadersDinamicos_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPaginasCultura_tbaHeadersDinamicos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaHistorialContratos_tbaRegistrosPresentacion" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaHorariosSalas_tbaSalas" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaRegistrosPresentacion_tbaHorariosSalas" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaImpuestos_tbaLugares" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaImpuestos_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaInformacionReferidos_tbaProspectos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaLeadTypesTerminales_tbaLeadTypes" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaProspectos_tbaLeadTypes" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaLeadTypesTerminales_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaLenguajesCultura_tbaLenguajes" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaLenguajesTerminales_tbaLenguajes" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPerfilesProspectos_tbaLenguajes" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaLenguajesTerminales_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaLiveHelp_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaLiveHelpTerminal_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaLlamadas_tbaProspectos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaLlamadas_tbaReservaciones" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaLugares_tbaTiposdeLugar" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaLugares_tbaZonas" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaLugares_tbaZonasTransporte" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaLugaresCultura_tbaLugares" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaLugaresTerminales_tbaLugares" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaNochesMinimas_tbaLugares" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPerfilesProspectos_tbaLugares" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPromocionesServicios_tbaLugares" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaProspectos_tbaLugares" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPuntosHorarios_tbaLugares" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaReservaciones_tbaLugares" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaTiposdeHabitacion_tbaLugares" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaTiposdePlanLugares_tbaLugares" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaVideosServicios_tbaLugares" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaLugaresTerminales_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaMarketingSourcesTerminales_tbaMarketingSources" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaProspectos_tbaMarketingSources" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaMarketingSourcesTerminales_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaNochesGratis_tbaProductos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaNochesGratis_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaNochesGratis_tbaTiposdeHabitacion" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaNochesMinimas_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaNochesMinimas_tbaTiposdePlan" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaNotasServicios_tbaNotas" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaNotasServicios_tbaServicios" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaNotificaciones_tbaReservaciones" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaNotificaciones_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaNotificaciones_tbaTiposdeNotificacion" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaNotificacionesPreferencias_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaNotificacionesPreferencias_tbaTiposdeNotificacion" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaOcupacionesCultura_tbaOcupaciones" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPerfilesProspectos_tbaOcupaciones" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPerfilesProspectos_tbaOcupaciones1" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaOfertasTimeShare_tbaOfertasTimeShare" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaOfertasTimeShare_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaProspectos_tbaOfertasTimeShare" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaRegistrosPresentacion_tbaOfertasTimeShare" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPaginas_tbaPaginas" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPaginas_tbaSecciones" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPaginas_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPaginas_tbaTiposdePagina" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPaginasCultura_tbaPaginas" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPaginasCultura_tbaSeo" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPerfilesProspectos_tbaPaises" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaProspectos_tbaPaises" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPaquetesDetalle_tbaPaquetesOfertas" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPaquetesPrecio_tbaPaquetesOfertas" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaRegistrosPresentacion_tbaPaquetesOfertas" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPerfilesProspectos_tbaProspectos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPerfilesProspectos_tbaRangosEdad" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPerfilesProspectos_tbaRangosIngreso" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPerfilesProspectos_tbaRedesIntercambio" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPerfilesProspectos_tbaResorts" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPerfilesProspectos_tbaStatusLaboral" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPerfilesProspectos_tbaStatusMarital" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPerfilesProspectos_tbaTests" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPreferenciasProspectos_tbaPerfilesProspectos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaReferidos_tbaPerfilesProspectos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaRegistrosPresentacion_tbaPerfilesProspectos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaReservaciones_tbaPerfilesProspectos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPerfilesPublicos_tbaStatusMarital" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPrecios_tbaProductos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPrecios_tbaServicios" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPrecios_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPrecios_tbaTiposdeHabitacion" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPrecios_tbaTiposdeMoneda" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPrecios_tbaTiposdePlan" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPrecios_tbaTiposPrecio" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPrecios_tbaZonasTransporte" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPrecios_tbaZonasTransporte1" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPreciosRelacionados_tbaPrecios" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPreciosRelacionados_tbaPrecios1" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPreciosRelacionados_tbaPrecios2" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaReservaciones_tbaPrecios" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPreciosRelacionados_tbaProductos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPreciosRelacionados_tbaServicios" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPreciosRelacionados_tbaTiposdeHabitacion" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaProductos_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaProductosAmenidades_tbaProductos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaProductosAmenidades_tbaProductos1" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaProductosCategoria_tbaProductos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaProductosCultura_tbaProductos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPromocionesServicios_tbaProductos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaProspectos_tbaProductos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaVideosServicios_tbaProductos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaProductosCultura_tbaSeo" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaProgramasSalas_tbaProgramasProspectacion" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaRegistrosPresentacion_tbaProgramasProspectacion" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaTerminales_tbaProgramasProspectacion" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaProgramasSalas_tbaSalas" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPromociones_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPromociones_tbaTiposdeMoneda" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPromocionesCultura_tbaPromociones" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPromocionesServicios_tbaPromociones" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPromocionesServicios_tbaServicios" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPromocionesServicios_tbaTiposdeHabitacion" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaProspectos_tbaProspectos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaProspectos_tbaProspectos1" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaProspectos_tbaProspectos2" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaProspectos_tbaQualificationStatus" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaProspectos_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaProspectos_tbaTiposdeHabitacion" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaProspectos_tbaTiposdePlan" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaProspectos_tbaTiposPrecio" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaReservaciones_tbaProspectos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaServicios_tbaProveedores" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPuntosHorarios_tbaServicios" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaRangosIngresoCultura_tbaRangosIngresos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaRedesIntercambioCultura_tbaRedesIntercambio" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaReferidos_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaRegistrosPresentacion_tbaRepresentantes" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaRegistrosPresentacion_tbaReservaciones" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaRegistrosPresentacion_tbaSalas" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaRegistrosPresentacion_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaRepresentantes_tbaSalas" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaRepresentantes_tbaTiposdeRepresentante" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaReservaciones_tbaSalesQualificationStatuses" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaReservaciones_tbaTeamSources" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaReservaciones_tbaTiposdeHabitacion" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaReservaciones_tbaTiposdeHabitacion1" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaReservaciones_tbaTiposdePlan" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaSalas_tbaResorts" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaSecciones_tbaSeo" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaSecciones_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaSecciones_tbaTiposdeSeccion" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaSeccionesCultura_tbaSecciones" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaServicios_tbaSecciones" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaTopServicios_tbaSecciones" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaSeo_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaServicios_tbaSeo" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaTours_tbaSeo" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaServicios_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaServicios_tbaZonas" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaServiciosCategoria_tbaServicios" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaServiciosExcepciones_tbaServicios" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaServiciosRelacionados_tbaServicios" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaServiciosRelacionados_tbaServicios1" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaTopServicios_tbaServicios" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaTours_tbaServicios" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaVideosServicios_tbaServicios" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaZonasTransporteCosto_tbaServicios" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaServiciosExcepciones_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaStatusLaboralCultura_tbaStatusLaboral" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaStatusMaritalCultura_tbaStatusMarital" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaTickets_tbaStatusTicket" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaTerminalesDestino_tbaTerminalesDestino" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaTerminalesUsuarios_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaTests_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaTickets_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaTiposdePlanLugares_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaTopServicios_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaUsuariosTiposNotification_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaValoresCampos_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaWikiCampos_tbaTerminales" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaTiposdeHabitacionCultura_tbaTiposdeHabitacion" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaVideosServicios_tbaTiposdeHabitacion" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaZonasTransporteCosto_tbaTiposdeMoneda" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaUsuariosTiposNotification_tbaTiposNotificaciones" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaTipodePlanCultura_tbaTiposdePlan" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaTiposdePlanLugares_tbaTiposdePlan" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaZonasTransportePrecios_tbaTiposPrecio" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaVideosServicios_tbaVideos" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaZonasTransporteCosto_tbaZonasTransporte" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaZonasTransporteCosto_tbaZonasTransporte1" />
+        <EntityTypeShape EntityType="ecommerceModel.aspnet_Users" Width="1.5" PointX="3" PointY="261" />
+        <AssociationConnector Association="ecommerceModel.FK_aspnet_Users_aspnet_Users" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaAcomodosReporte_aspnet_Users" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaAsignacionesUsuariosProspectos_aspnet_Users" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaBroker_History_aspnet_Users" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaBrokerContracts_History_aspnet_Users" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaBrokerDestinationSettings_aspnet_Users1" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaBrokerDestinationSettings_History_aspnet_Users" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaBrokerWash_aspnet_Users" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaBrokerWash_History_aspnet_Users" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCalificaciones_aspnet_Users" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCalificaciones_aspnet_Users1" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCatalogos_aspnet_Users" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaCatalogosCultura_aspnet_Users" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaClientes_aspnet_Users" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaComments_aspnet_Users" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaComportamientos_aspnet_Users" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaConversaciones_aspnet_Users" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaDatosProspectos_aspnet_Users" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaDestinosUsuarios_aspnet_Users" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaDetallesPagosReservacion_aspnet_Membership" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaDetallesPagosReservacion_aspnet_Users" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaDetallesPagosReservacion_aspnet_Users1" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaDirectorio_aspnet_Users" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaEsquemasCalificacion_aspnet_Users" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaHeaderDetalles_aspnet_Users" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaHeaderDetalles_aspnet_Users1" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaLlamadas_aspnet_Users" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaNotificaciones_aspnet_Users" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaNotificaciones_aspnet_Users1" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaNotificacionesPreferencias_aspnet_Users" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPaginas_aspnet_Users2" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPaginasCultura_aspnet_Users" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaPaginasCultura_aspnet_Users1" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaProductos_aspnet_Users" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaProductosCultura_aspnet_Users" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaProspectos_aspnet_Users" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaProspectos_aspnet_Users1" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaProspectos_aspnet_Users2" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaReservaciones_aspnet_Users" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaReservaciones_aspnet_Users1" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaReservaciones_aspnet_Users2" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaReservaciones_aspnet_Users3" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaReservaciones_tbaReservaciones" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaSupervisorAgentes_aspnet_Users" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaSupervisorAgentes_aspnet_Users1" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaSuscripciones_aspnet_Users" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaTerminalesUsuarios_aspnet_Users" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaTickets_aspnet_Users" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaTickets_aspnet_Users1" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaTickets_aspnet_Users2" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaTiposdeHabitacion_aspnet_Users" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaTours_aspnet_Users" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaTours_aspnet_Users1" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaUsuariosTiposNotification_aspnet_Users" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaWikiCampos_aspnet_Users" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaWikiCampos_aspnet_Users1" />
+        <EntityTypeShape EntityType="ecommerceModel.aspnet_Membership" Width="1.5" PointX="5.25" PointY="265.125" />
+        <AssociationConnector Association="ecommerceModel.FK__aspnet_Me__UserI__36B12243" />
+        <EntityTypeShape EntityType="ecommerceModel.aspnet_Roles" Width="1.5" PointX="9" PointY="151.25" />
+        <AssociationConnector Association="ecommerceModel.FK_tbaEplatRolesPermisos_aspnet_Roles" />
+        <EntityTypeShape EntityType="ecommerceModel.tbaEnviosAutomaticos" Width="1.5" PointX="9.375" PointY="8.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

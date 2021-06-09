@@ -1,0 +1,56 @@
+﻿@model ePlatBack.Models.ViewModels.LeadSourceInfoModel
+
+<div class="full-width align-from-bottom">
+    <input type="button" id="btnNewLeadSource" class="submit right fieldset-expander" value="new" />
+</div>
+<div id="divLeadSources">
+</div>
+<div class="full-width align-from-bottom">
+    <input type="button" id="btnSaveLeadSourcesPerWorkGroup" value="save" class="submit right" />
+</div>
+<fieldset id="fdsLeadSourcesInfo">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        Lead Source Info
+    </legend>
+    <div class="align-from-top" style="display:none">
+        @using (Ajax.BeginForm("SaveLeadSource", "Admin", new AjaxOptions { OnSuccess = "PROFILE.saveLeadSourceSuccess(data)" }, new { id = "frmLeadSource", onSubmit = "return UI.showValidationSummary(this.id);" }))
+        {
+            <div id="frmLeadSource_ErrorMessages">
+                @Html.ValidationMessageFor(m => m.LeadSourceInfo_LeadSource)
+                @Html.ValidationMessageFor(m => m.LeadSourceInfo_LeadSourceInitials)
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(m => m.LeadSourceInfo_LeadSource)
+                    @Html.HiddenFor(m => m.LeadSourceInfo_LeadSourceID)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(m => m.LeadSourceInfo_LeadSource)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(m => m.LeadSourceInfo_LeadSourceInitials)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(m => m.LeadSourceInfo_LeadSourceInitials)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(m => m.LeadSourceInfo_IsActive)
+                </div>
+                <div class="editor-field">
+                    <label>Yes</label>
+                    @Html.RadioButtonFor(m => m.LeadSourceInfo_IsActive, true, new { data_keep_value = "" })
+                    <label>No</label>
+                    @Html.RadioButtonFor(m => m.LeadSourceInfo_IsActive, false, new { data_keep_value = "" })
+                </div>
+            </div>
+            <div class="full-width">
+                <input type="submit" class="submit right" value="save" id="btnSaveLeadSource" />
+            </div>
+        }
+    </div>
+</fieldset>

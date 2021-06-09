@@ -1,0 +1,51 @@
+﻿@model ePlatBack.Models.ViewModels.ProductionModel.SearchProduction
+
+@using (Ajax.BeginForm("SearchCategoriesProduction", "Reports", new AjaxOptions { UpdateTargetId = "divCategoriesResults", OnSuccess = "REPORT.addExtras();" }, new { id = "frmSearchCategoriesReport" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="non-printable search-params">
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_I_FromDate)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Search_I_FromDate, new { data_uses_date_picker = "true" })
+                @Html.TextBoxFor(model => model.Search_F_ToDate, new { data_uses_date_picker = "true" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_TerminalID)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Search_TerminalID, Model.Search_Terminals, new { @class = "terminal-dependent-list onchange", data_route = "/crm/Reports/GetDDLData", data_route_parameter = "selectedTerminals", data_onchange_route_parameter = "pointOfSale,categories", data_dependent_list = "Search_PointOfSaleID,Search_CategoryID" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_PointOfSaleID)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Search_PointOfSaleID, Model.Search_PointsOfSale, new { multiple = "multiple" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_CategoryID)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Search_CategoryID, Model.Search_Categories, new { multiple = "multiple" })
+            </div>
+        </div>
+        <div class="editor-alignment align-from-top">
+            <div class="editor-field">
+                <input type="submit" class="button" value="get" />
+            </div>
+        </div>
+    </div>
+
+    <div id="divCategoriesResults" class="align-from-top">
+    </div>
+}

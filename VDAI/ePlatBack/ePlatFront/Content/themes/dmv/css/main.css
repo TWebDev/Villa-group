@@ -1,0 +1,296 @@
+﻿body {
+    margin: 0px;
+    padding: 0px;
+    color: white;
+    font-family: 'Open Sans';
+}
+
+#background {
+    position: fixed;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    background-image: url(/content/themes/dmv/images/bg_pv01.jpg);
+    background-position: center;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    -moz-transition: background-image 1s ease-in-out;
+    -o-transition: background-image 1s ease-in-out;
+    -webkit-transition: background-image 1s ease-in-out;
+    transition: background-image 1s ease-in-out;
+}
+
+#background-bar {
+    position: fixed;
+    z-index: 3;
+    padding-right: 30px;
+    padding-left: 30px;
+    width: 255px;
+    height: 100%;
+    background-color: rgba(0,0,0,.8);
+}
+
+#body {
+    position: relative;
+    z-index: 2;
+    margin: 0 auto;
+    max-width: 980px;
+    font-size: 14px;
+}
+
+#divLeftBar {
+    position: relative;
+    z-index: 4;
+    padding-right: 30px;
+    padding-left: 30px;
+    width: 255px;
+}
+
+#divContent {
+    position: fixed;
+    bottom: 0;
+    overflow: hidden;
+    margin-left: 315px;
+    width: 660px;
+    width: 660px;
+    height: 210px;
+    background-color: rgba(42,42,42,.8);
+}
+
+#includes {
+    display: inline-block;
+    padding: 5px 20px;
+    width: 460px;
+}
+
+#rooms {
+    position: absolute;
+    display: inline-block;
+    margin-left: auto;
+    width: 160px;
+    height: 210px;
+    background-color: black;
+    background-image: url(/Content/themes/dmv/images/room_pv.jpg);
+    background-position: center;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    vertical-align: top;
+    -moz-transition: background-image 0.5s ease-in-out;
+    -o-transition: background-image 0.5s ease-in-out;
+    -webkit-transition: background-image 0.5s ease-in-out;
+    transition: background-image 0.5s ease-in-out;
+}
+
+#enlargeRoomPicture {
+    position: absolute;
+    margin-top: 90px;
+    margin-left: 590px;
+    z-index: 5;
+}
+
+#contractRoomPicture {
+    position: absolute;
+    margin-top: 90px;
+    margin-left: 590px;
+    z-index: 5;
+}
+
+#closeOfferDescription {
+    position: relative;
+    z-index: 5;
+    display: inline-block;
+    float: right;
+    margin-top: 135px;
+}
+
+#openOfferDescription {
+    position: fixed;
+    bottom: 13px;
+    margin-left: 315px;
+}
+
+#player {
+    position: relative;
+    z-index: 4;
+    float: right;
+    width: 36px;
+    height: 36px;
+    border: rgba(255,255,255,.3) solid 1px;
+    background-image: url(/content/themes/dmv/images/pause.png);
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
+    margin-top: 10px;
+}
+
+#offerInfo{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#divRegistered{
+    /*position: absolute;
+    z-index: 3;
+    background-color: rgba(0,0,0,.95);
+    width: 315px;
+    height: 173px;
+    margin-left: -30px;
+    text-align: center;
+    padding-top: 130px;
+    font-size: 1.5em;
+    margin-top: -11px;*/
+    width: 255px;
+    height: 250px;
+    text-align: center;
+    padding-top: 130px;
+    font-size: 1.5em;
+}
+
+#divForm {
+    width: 255px;
+    height: 375px;
+}
+
+.board{
+    position: fixed;
+    margin-left: 315px;
+    bottom: 210px;
+    background-color: rgba(255,255,255,.8);
+    color: #252525;
+    padding: 30px;
+    width: 600px;
+    height: 380px;
+    display: none;
+}
+
+.board-content{
+    height: 330px;
+    overflow: auto;
+    padding-right: 20px;
+}
+
+.close{
+    width: 36px;
+    height: 36px;
+    display: block;
+    float: right;
+    border: rgba(42,42,42,.4) solid 1px;
+    color: rgb(100,100,100);
+    font-size: 1.5em;
+    text-align: center;
+    line-height: 32px;
+    cursor: pointer;
+}
+
+.yellow {
+    color: #ffe71f;
+    font-weight: bold;
+}
+
+.editor-label {
+    display: inline-block;
+    margin-right: 3px;
+    width: 92px;
+    text-align: right;
+}
+
+.editor-field {
+    display: inline-block;
+}
+
+.align-right {
+    text-align: right;
+}
+
+#destinations{
+    width: 260px;
+}
+
+.destination {
+    display: inline-block;
+    margin: 0 4px;
+    padding-top: 9px;
+    border-top: transparent solid 4px;
+    font-size: 1.1em;
+}
+
+.selected {
+    border-top: #f900f0 solid 4px;
+}
+
+.field-validation-error{
+    display: block;
+    color: red;
+    margin: 5px 0;
+}
+
+.input-validation-error{
+    background-color:rgb(255, 161, 161);
+}
+
+img {
+    border: none;
+}
+
+p {
+    font-size: .9em;
+    line-height: 23px;
+}
+
+h1 {
+    padding: 0px;
+    color: #ffe71f;
+    font-weight: 200;
+    font-size: 2em;
+}
+
+h2 {
+    font-weight: normal;
+    font-size: 1.3em;
+}
+
+ul {
+    padding-left: 18px;
+}
+
+input[type=text] {
+    margin-bottom: 5px;
+    padding: 5px;
+    width: 145px;
+    height: 26px;
+    border: none;
+    font-size: 1.1em;
+    font-family: 'Open Sans';
+}
+
+select{
+    margin-bottom: 5px;
+    width: 155px;
+    height: 36px;
+    border: none;
+    font-size: 1.1em;
+    font-family: 'Open Sans';
+}
+
+input[type=submit] {
+    display: inline-block;
+    margin-left: auto;
+    padding: .5em 1em;
+    width: 156px;
+    border: none;
+    background-color: #ffe71f;
+    color: black;
+    font-weight: bold;
+    font-size: 1.2em;
+    font-family: 'Open Sans';
+    cursor: pointer;
+}
+
+a {
+    color: #525252;
+    text-decoration: none;
+}

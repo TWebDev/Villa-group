@@ -1,0 +1,25 @@
+﻿@model ePlatBack.Models.ViewModels.SurveyViewModel.SearchSurveyModel
+
+@using (Ajax.BeginForm("SearchSurvey", "Surveys", new AjaxOptions { OnSuccess = "Survey.searchResults()", UpdateTargetId = "divSearchSurveyResults" }, new { id = "frmSearchSurvey" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="non-printable search-params">
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_Name)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Search_Name)
+            </div>
+        </div>
+
+        <div class="editor-alignment align-from-top">
+            <div class="editor-field">
+                <input type="submit" class="button" id="btnSearchSurvey" value="SEARCH">
+            </div>
+        </div>
+    </div>
+    <div id="divSearchSurveyResults"></div>
+}

@@ -1,0 +1,71 @@
+﻿@model ePlatBack.Models.ViewModels.CommissionsModel.SearchCommissionsModel
+
+<fieldset id="fdsCommissionsManagement">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        Commissions Management
+    </legend>
+    <div class="align-from-top">
+        <div class="full-width">
+            <input type="button" id="btnNewCommissionsInfo" class="submit fieldset-expander right" value="new" />
+        </div>
+        @using (Ajax.BeginForm("SearchCommissions", "Catalogs", new AjaxOptions { OnSuccess = "CATALOG.commissionsResultsTable(data)", OnComplete = "CATALOG.makeCommissionsSelectable()", UpdateTargetId = "divTblExistingCommissions" }, new { id = "frmCommissionsSearch" }))
+        {
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CommissionsSearch_CommissionPercentage)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.CommissionsSearch_CommissionPercentage)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CommissionsSearch_PriceTypes)
+                </div>
+                <div class="editor-field">
+                    @Html.ListBoxFor(model => model.CommissionsSearch_PriceTypes, Model.CommissionsSearch_DrpPriceTypes, new { style = "height:68px" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CommissionsSearch_JobPositions)
+                </div>
+                <div class="editor-field">
+                    @Html.ListBoxFor(model => model.CommissionsSearch_JobPositions, Model.CommissionsSearch_DrpJobPositions, new { style = "height:68px" })
+                </div>
+            </div>
+            <div class="editor-alignment align-from-top">
+                <div class="editor-field">
+                    <input type="submit" class="button search" value="search" />
+                </div>
+            </div>
+            <div id="divTblExistingCommissions" class="align-from-top">
+                <table id="tblSearchCommissionsResults" class="table dataTable search-results">
+                    <thead>
+                        <tr>
+                            <th>Terminal</th>
+                            <th>Job Position</th>
+                            <th>Type</th>
+                            <th>Point(s) Of Sale</th>
+                            <th>Commission %</th>
+                            <th>Price Type</th>
+                            <th>Is Override</th>
+                            <th>Min Volume</th>
+                            <th>Max Volume</th>
+                            <th>Min Profit</th>
+                            <th>Max Profit</th>
+                            <th>Vigency</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+
+
+        }
+        @Html.Action("RenderCommissionsManagement", "Catalogs")
+    </div>
+</fieldset>

@@ -1,0 +1,88 @@
+﻿@model ePlatBack.Models.ViewModels.SearchToReassignModel
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+
+}
+
+@section Scripts{
+    <script src="~/ViewModels/eplat.local.crm.prearrival.reassignation.js?ts=@DateTime.Now" type="text/javascript"></script>
+}
+
+<h3>Options Reassignment</h3>
+<section id="app" class="container-fluid" style="border-top:1px solid #dddddd;margin-top:20px;">
+    @Html.Hidden("hdnModel", serializer.Serialize(Model))
+    <h5>Reservation to Reassign: @Model.ReservationToReassign</h5>
+
+    @using (Ajax.BeginForm("ReservationsToReceive", "PreArrival", new AjaxOptions { OnBegin = "", OnSuccess = "REASSIGNMENT.searchResults(data)" }, new { id = "frmReservationReassignment" }))
+    {
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                @Html.HiddenFor(model => model.ReservationID)
+                @Html.HiddenFor(model => model.Search, new { @v_model = "Search" })
+                @Html.HiddenFor(model => model.Reservations, new { @v_model = "Reservations" })
+                @*@Html.HiddenFor(model => model.Reservations)*@
+                @Html.LabelFor(model => model.TerminalID)
+                @Html.DropDownListFor(model => model.TerminalID, Model.Terminals, new { @class = "form-control" })
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.PlaceID)
+                @Html.DropDownListFor(model => model.PlaceID, Model.Resorts, new { @class = "form-control" })
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.ArrivalDate)
+                @Html.TextBoxFor(model => model.ArrivalDate, new { @class = "form-control date-picker", data_toggle = "datetimepicker", data_target = "#ArrivalDate" })
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.CRS)
+                @Html.TextBoxFor(model => model.CRS, new { @class = "form-control" })
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.ConfirmationNumber)
+                @Html.TextBoxFor(model => model.ConfirmationNumber, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="text-right">
+                <button type="button" class="btn btn-primary" v-on:click="search()">Search</button>
+            </div>
+        </div>
+
+        <div class="table-responsive mt-2">
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th></th>
+                        <th>Name</th>
+                        <th>Arrival Date</th>
+                        <th>CRS</th>
+                        <th>Confirmation Number</th>
+                        <th>Options</th>
+                        <th>Flights</th>
+                        <th>Payments</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(row, key) in ReservationsToReceive" v-if="ReservationsToReceive.length > 0">
+                        <td></td>
+                        <td>{{row.FirstName +' ' +row.LastName}}</td>
+                        <td>{{formatDate(row.ArrivalDate)}}</td>
+                        <td>{{row.CRS}}</td>
+                        <td>{{row.ConfirmationNumber}}</td>
+                        <td><input type="checkbox" v-model="row.Options" /></td>
+                        <td><input type="checkbox" v-model="row.Flights" /></td>
+                        <td><input type="checkbox" v-model="row.Payments" /></td>
+                        <td v-bind:class="{ 'bg-warning':row.Status == null || row.Status==false, 'bg-success':row.Status }"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="form-group">
+            <div class="text-right">
+                <button type="button" class="btn btn-primary" v-on:click="save()">Assign</button>
+            </div>
+        </div>
+
+    }
+</section>

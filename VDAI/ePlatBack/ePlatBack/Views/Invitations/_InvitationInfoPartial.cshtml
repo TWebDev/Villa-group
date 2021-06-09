@@ -1,0 +1,209 @@
+﻿@model ePlatBack.Models.ViewModels.InvitationViewModel.InvitationInfoView
+
+<fieldset id="fdsInvitationInfo">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        Invitation Info
+    </legend>
+    <div style="display:none;">
+        @using (Ajax.BeginForm("SaveInvitationInfo", "Invitations", new AjaxOptions { OnSuccess = "Invitations.updated(data);" }, new { id = "frmInvitationInfo" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            @Html.HiddenFor(model => model.InvitationID)
+            <div class="search-params">
+                <h3>Invitation Information</h3>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PresentationDate)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.PresentationDate, new { data_keep_value = "" })
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Guest)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.Guest)
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.CountryID)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.CountryID, Model.Countries)
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.State)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.State, new { data_format = "free-case" })
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.DestinationID)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.DestinationID, Model.Destinations)
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PlaceID)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.ResortOther, new { style = "display:none;", @class = "other-field", placeholder = "Other" })
+                        @Html.DropDownListFor(model => model.PlaceID, Model.Resorts)
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Deposit)
+                    </div>
+                    <div class="editor-field">
+                        <div style="display:none; position:absolute;" id="divDepositOther">
+                            @Html.TextBoxFor(model => model.DepositOther, new { placeholder = "Other", style = "width:60px;" })
+                            @Html.DropDownListFor(model => model.DepositCurrencyID, Model.Currencies, new { style = "width:100px;" })
+                        </div>
+                        @Html.DropDownListFor(model => model.Deposit, Model.DepositOptions)
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PickUpTimeHour)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.PickUpTimeHour, Model.Hours, new { style = "width: 66px;" })
+                        @Html.DropDownListFor(model => model.PickUpTimeMinute, Model.Minutes, new { style = "width: 66px;" })
+                        @Html.DropDownListFor(model => model.PickUpTimeMeridian, Model.Meridians, new { style = "width: 60px;" })
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PresentationTimeHour)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.PresentationTimeHour, Model.Hours, new { style = "width: 66px;" })
+                        @Html.DropDownListFor(model => model.PresentationTimeMinute, Model.Minutes, new { style = "width: 66px;" })
+                        @Html.DropDownListFor(model => model.PresentationTimeMeridian, Model.Meridians, new { style = "width: 60px;" })
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.GuestPhone)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.GuestPhone, new { data_format = "phone" })
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.GuestEmail)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.GuestEmail, new { data_format = "free-case" })
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.InvitationNumber)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.InvitationNumber)
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.ProgramID)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.ProgramID, Model.Programs)
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Culture)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.Culture, Model.Cultures)
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Confirmed)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.Confirmed, Model.ConfirmationStatuses)
+                    </div>
+                </div>
+            </div>
+            <div class="search-params">
+                <div class="editor-alignment double-width">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PickUpNotes)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextAreaFor(model => model.PickUpNotes)
+                    </div>
+                </div>
+                <div class="editor-alignment double-width">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Gifts)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextAreaFor(model => model.Gifts)
+                    </div>
+                </div>
+            </div>
+            <div class="search-params">
+                <h3>OPC Information</h3>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.LocationID)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.LocationID, Model.Locations)
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PromotionTeamID)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.PromotionTeamID, Model.PromotionTeams)
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.OPCID)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.OPCOther, new { style = "display:none;", @class = "other-field", placeholder = "Other" })
+                        @Html.DropDownListFor(model => model.OPCID, Model.OPCs)
+                    </div>
+                </div>
+            </div>
+            <div class="search-params">
+                <h3>SPI Feedback</h3>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.SPICustomerID)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.SPICustomerID)
+                    </div>
+                </div>
+            </div>
+            <div class="full-width align-from-top">
+                <input type="button" value="CANCEL" class="button right" id="btnCloseInvitationInfo" />
+                <input type="submit" id="btnSaveInvitationInfo" class="submit right alert-dblclick" value="save" style="margin-right: 5px;" />
+            </div>
+        }
+    </div>
+</fieldset>

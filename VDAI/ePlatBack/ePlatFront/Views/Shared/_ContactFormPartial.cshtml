@@ -1,0 +1,89 @@
+﻿@model ePlatBack.Models.ViewModels.ContactFormViewModel
+
+@using (Ajax.BeginForm("ContactFormSave", new { Controller = "Controls" }, new AjaxOptions { OnBegin = "ControlsUI.blockForm('ContactForm','Saving Information...')", OnSuccess = "ControlsUI.showMessage(data,'ContactForm');", OnFailure = "ControlsUI.showMessage({ResponseType : -1, ResponseMessage : 'There was a problem trying to send your information. Try again.'},'ContactForm'); ControlsUI.unblockForm('ContactForm')" }, new { id = "frmContactForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div id="ContactForm" class="row">
+
+        <div class="input-field col l6 s12">
+            @Html.LabelFor(model => model.Contact_FirstName)
+            @Html.EditorFor(model => model.Contact_FirstName)
+        </div>
+
+        <div class="input-field col l6 s12">
+            @Html.LabelFor(model => model.Contact_LastName)
+            @Html.EditorFor(model => model.Contact_LastName)
+        </div>
+
+        <div class="input-field col l6 s12">
+            @Html.LabelFor(model => model.Contact_Email)
+            @Html.EditorFor(model => model.Contact_Email)
+        </div>
+
+        <div class="input-field col l6 s12">
+            @Html.LabelFor(model => model.Contact_ConfirmEmail)
+            @Html.EditorFor(model => model.Contact_ConfirmEmail)
+        </div>
+
+        <div class="input-field col l6 s12">
+            @Html.LabelFor(model => model.Contact_Phone)
+            @Html.EditorFor(model => model.Contact_Phone)
+        </div>
+
+        <div class="input-field col l6 s12">
+            @Html.LabelFor(model => model.Contact_TimeToReach)
+            @Html.EditorFor(model => model.Contact_TimeToReach)
+        </div>
+
+        <div class="input-field col l6 s12">
+            @Html.LabelFor(model => model.Contact_Comment)
+            @Html.TextAreaFor(model => model.Contact_Comment, new { @class = "materialize-textarea" })
+        </div>
+
+        <div class="input-field col l6 s12">
+            <div id="divQR_Recaptcha"></div>
+        </div>
+
+        <div class="input-field col s12">
+            <input type="submit" value="@ePlatFront.Resources.Views.Shared.SharedStrings.Submit" class="btn waves-effect waves-light btn-large amber black-text right" />
+            <div class="status-bar">
+                <div class="preloader-wrapper small interaction-loading">
+                    <div class="spinner-layer spinner-green-only">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div><div class="gap-patch">
+                            <div class="circle"></div>
+                        </div><div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="interaction-message"></div>
+            </div>
+        </div>
+        <div class="col s12 validation-errors">
+            @Html.ValidationSummary(true)
+            @Html.ValidationMessageFor(model => model.Contact_FirstName)
+            @Html.ValidationMessageFor(model => model.Contact_LastName)
+            @Html.ValidationMessageFor(model => model.Contact_Phone)
+            @Html.ValidationMessageFor(model => model.Contact_Email)
+            @Html.ValidationMessageFor(model => model.Contact_ConfirmEmail)
+            @Html.ValidationMessageFor(model => model.Contact_TimeToReach)
+            @Html.ValidationMessageFor(model => model.Contact_Comment)
+        </div>
+    </div>
+}
+
+<script>
+    var onloadQRReCaptchaCallback = function () {
+        var widgetQR;
+
+        widgetQR = grecaptcha.render('divQR_Recaptcha', {
+            'sitekey': '6LcrngoUAAAAAFytZpXRN3RyXeZwYgxV4i1XyYKQ'
+        });
+    }
+</script>
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadQRReCaptchaCallback&render=explicit"
+        async defer>
+</script>

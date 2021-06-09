@@ -1,0 +1,412 @@
+﻿@model ePlatBack.Models.ViewModels.CommissionsReportModel
+
+<div class="table-div">
+    <div class="table-row">
+        <div class="table-cell">
+            From<br />
+            @Model.FromDate
+        </div>
+        <div class="table-cell">
+            To<br />
+            @Model.ToDate
+        </div>
+        <div class="table-cell">
+            Point of Sale<br />
+            @Html.Raw(@Model.PointOfSale)
+        </div>
+        <div class="table-cell">
+            <strong>*Totals Before IVA</strong>
+        </div>
+    </div>
+</div>
+
+@if (Model.Workers.Count() > 0)
+{
+    foreach (var worker in Model.Workers)
+    {
+        <div style="border-bottom: solid 1px #ddd; padding-bottom: 10px;">
+            <h3>@worker.FirstName @worker.LastName</h3><br />
+            <span style="margin-top: -15px; display: block;">@worker.JobPosition Demonstrations Payroll Summary</span>
+            <table class="table no-plugin non-editable" style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th>Activity</th>
+                        @foreach (var type in Model.PriceTypes.OrderBy(x => x.Order))
+                        {
+                            var commissionDetail = worker.TotalsPerPrice.Where(x => x.PriceTypeID == type.PriceTypeID).FirstOrDefault();
+                            if (commissionDetail.SalesMXN.Amount != 0 || commissionDetail.CommissionMXN.Amount != 0)
+                            {
+                                <th colspan="@(commissionDetail.Sales.FirstOrDefault().Amount != 0 && commissionDetail.Sales.LastOrDefault().Amount != 0 ? 2 : 1)">
+                                    @type.Type
+                                </th>
+                            }
+                        }
+                        @if (worker.Total.Sales != null)
+                        {
+                            <th colspan="@(worker.Total.Sales.FirstOrDefault().Amount != 0 && worker.Total.Sales.LastOrDefault().Amount != 0 ? 2 : 1)">Total</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody style="display: none;">
+                    @foreach (var service in worker.ListServices.Where(x => x.CommissionsPerPrice.Count(c => c.Coupons.Count() > 0) != 0).OrderBy(x => x.Service))
+                    {
+                    <tr>
+                        <td rowspan="2">@service.Service</td>
+                        @foreach (var type in Model.PriceTypes.OrderBy(x => x.Order))
+                        {
+                            var commissionDetail = worker.TotalsPerPrice.Where(x => x.PriceTypeID == type.PriceTypeID).FirstOrDefault();
+                            if (commissionDetail.SalesMXN.Amount != 0 || commissionDetail.CommissionMXN.Amount != 0)
+                            {
+                                var detail = service.CommissionsPerPrice.Where(x => x.PriceTypeID == type.PriceTypeID).FirstOrDefault();
+                                if (detail != null)
+                                {
+                                    foreach (var s in detail.Sales)
+                                    {
+                                        if (@detail.Commissions.FirstOrDefault(x => x.Currency == s.Currency).Amount != 0)
+                                        {
+                                            <td class="text-right show-detail">
+                                                <span data-format="currency">@s.Amount @s.Currency</span>
+                                                @if (detail.Commissions.Count() > 0)
+                                                {
+                                                    <span class="block" data-format="currency">@detail.Commissions.FirstOrDefault(x => x.Currency == s.Currency).Amount @detail.Commissions.FirstOrDefault(x => x.Currency == s.Currency).Currency</span>
+                                                }
+                                                @if (detail.Coupons.Where(x => x.Total.Currency == @s.Currency).Count() > 0)
+                                                {
+                                                    <div class="cell-detail" style="display: none;">
+                                                        <table class="non-editable">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Folio</th>
+                                                                    <th>Confirmed on</th>
+                                                                    <th>Canceled on</th>
+                                                                    <th>PoS</th>
+                                                                    <th>Item</th>
+                                                                    <th>Customer</th>
+                                                                    <th>Sales Agent</th>
+                                                                    <th>Status</th>
+                                                                    <th>Total</th>
+                                                                    <th>Total b/ IVA</th>
+                                                                    <th>Total MXN b/ IVA</th>
+                                                                    <th>Deal Diff b/ IVA</th>
+                                                                    <th>Profit %</th>
+                                                                    <th>Demo</th>
+                                                                    <th>Demo Amount</th>
+                                                                    <th>ER</th>
+                                                                    <th>Demo MXN</th>
+                                                                    <th>Pending CB</th>
+                                                                    <th>Promo</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach (var c in detail.Coupons.Where(x => x.Total.Currency == @s.Currency))
+                                                                {
+                                                                    <tr>
+                                                                        <td><a href="/crm/masterchart#purchaseid=@c.PurchaseID" target="_blank">@c.Folio</a></td>
+                                                                        <td>@c.ConfirmationDate</td>
+                                                                        <td>@c.CancelationDate</td>
+                                                                        <td>@c.PointOfSale</td>
+                                                                        <td>@c.Service @Html.Raw(c.Units)</td>
+                                                                        <td>@c.Customer</td>
+                                                                        <td>@c.SalesAgent</td>
+                                                                        <td class="@(c.StatusID == 4 || c.StatusID == 5 ? "mb-warning" : "")">@Html.Raw(c.Status)</td>
+                                                                        <td data-format="currency">@c.Total.Amount @c.Total.Currency</td>
+                                                                        <td data-format="currency">@c.TotalNoIVA.Amount @c.TotalNoIVA.Currency</td>
+                                                                        <td data-format="currency">@c.SalesMXN.Amount MXN</td>
+                                                                        <td data-format="currency">@c.DealDiffNoIVA.Amount @c.DealDiffNoIVA.Currency</td>
+                                                                        <td>@c.UtilityPercentage%</td>
+                                                                        <td>
+                                                                            @if (c.Amount != null)
+                                                                            {
+                                                                                <span>@c.Amount @(c.CommissionCurrencyID == 1 ? "USD" : "MXN")</span>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <span>@c.Percentage%</span>
+                                                                            }
+                                                                        </td>
+                                                                        <td data-format="currency">@c.Commission.Amount @c.Commission.Currency</td>
+                                                                        <td data-exchangerateid="@c.ExchangeRateID" title="@c.ExchangeRateVigency">@c.ExchangeRate</td>
+                                                                        <td data-format="currency">@c.CommissionMXN.Amount @c.CommissionMXN.Currency</td>
+                                                                        <td>@c.PendingCharges</td>
+                                                                        <td>@c.Promo</td>
+                                                                    </tr>
+                                                                }
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                }
+                                            </td>
+                                        }
+                                    }
+                                    var priceTotal = detail.Sales.FirstOrDefault(x => x.Amount > 0);
+                                    if (priceTotal == null)
+                                    {
+                                        <td>
+                                            <span data-format="currency">0 USD</span>
+                                            <span class="block" data-format="currency">0 USD</span>
+                                        </td>
+                                    }
+                                }
+                            }
+                        }
+                        @if (service.Subtotal.Sales != null)
+                        {
+                            foreach (var s in service.Subtotal.Sales)
+                            {
+                                if (@service.Subtotal.Commissions.FirstOrDefault(x => x.Currency == s.Currency).Amount != 0)
+                                {
+                                    <td class="text-right">
+                                        <span class="block" data-format="currency">@s.Amount @s.Currency</span>
+                                        <span class="block" data-format="currency">@service.Subtotal.Commissions.FirstOrDefault(x => x.Currency == s.Currency).Amount @service.Subtotal.Commissions.FirstOrDefault(x => x.Currency == s.Currency).Currency</span>
+                                    </td>
+                                }
+                            }
+                            if (service.Subtotal.Sales.FirstOrDefault(x => x.Amount > 0) == null)
+                            {
+                                <td class="text-right">
+                                    <span class="block" data-format="currency">0 USD</span>
+                                    <span class="block" data-format="currency">0 USD</span>
+                                </td>
+                            }
+                        }
+                    </tr>
+                        <tr>
+                            @foreach (var type in Model.PriceTypes.OrderBy(x => x.Order))
+                            {
+                                var commissionDetail = worker.TotalsPerPrice.Where(x => x.PriceTypeID == type.PriceTypeID).FirstOrDefault();
+                                if (commissionDetail.SalesMXN.Amount != 0 || commissionDetail.CommissionMXN.Amount != 0)
+                                {
+                                    var detail = service.CommissionsPerPrice.Where(x => x.PriceTypeID == type.PriceTypeID).FirstOrDefault();
+                                    if (detail != null)
+                                    {
+                                        <td colspan="@(commissionDetail.Sales.FirstOrDefault().Amount != 0  && commissionDetail.Sales.LastOrDefault().Amount != 0 ? 2 : 1)">
+                                            <span class="block" data-format="currency">@detail.SalesMXN.Amount @detail.SalesMXN.Currency</span>
+                                            <span class="block" data-format="currency">@detail.CommissionMXN.Amount @detail.CommissionMXN.Currency</span>
+                                        </td>
+                                    }
+                                }
+                            }
+                            @if (service.Subtotal.Sales != null)
+                            {
+                                <td class="text-right" colspan="@(worker.Total.Sales.FirstOrDefault().Amount != 0 && worker.Total.Sales.LastOrDefault().Amount != 0 ? 2 : 1)">
+                                    <span class="block" data-format="currency">@service.Subtotal.SalesMXN.Amount @service.Subtotal.SalesMXN.Currency</span>
+                                    <span class="block" data-format="currency">@service.Subtotal.CommissionMXN.Amount @service.Subtotal.CommissionMXN.Currency</span>
+                                </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td class="text-center" rowspan="2">
+                            <a class="show-tbody non-printable" href="#show-detail">+ Show Details</a>
+                        </td>
+                        @foreach (var type in Model.PriceTypes.OrderBy(x => x.Order))
+                        {
+                            var commissionDetail = worker.TotalsPerPrice.Where(x => x.PriceTypeID == type.PriceTypeID).FirstOrDefault();
+                            if (commissionDetail.SalesMXN.Amount != 0 || commissionDetail.CommissionMXN.Amount != 0)
+                            {
+                                foreach (var s in commissionDetail.Sales)
+                                {
+                                    if (@commissionDetail.Commissions.FirstOrDefault(x => x.Currency == s.Currency).Amount != 0)
+                                    {
+                                        <td class="text-right show-detail">
+                                            <span class="block" data-format="currency">@s.Amount @s.Currency</span>
+                                            @if (commissionDetail.Commissions.Count() > 0)
+                                            {
+                                                <span class="block" data-format="currency">@commissionDetail.Commissions.FirstOrDefault(x => x.Currency == s.Currency).Amount @commissionDetail.Commissions.FirstOrDefault(x => x.Currency == s.Currency).Currency</span>
+                                            }
+                                            @if (commissionDetail.Coupons.Where(x => x.Total.Currency == @s.Currency).Count() > 0)
+                                            {
+                                                <div class="cell-detail" style="display: none;">
+                                                    <table>
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Folio</th>
+                                                                <th>Confirmed on</th>
+                                                                <th>Canceled on</th>
+                                                                <th>PoS</th>
+                                                                <th>Item</th>
+                                                                <th>Customer</th>
+                                                                <th>Sales Agent</th>
+                                                                <th>Status</th>
+                                                                <th>Total</th>
+                                                                <th>Total b/ IVA</th>
+                                                                <th>Total MXN b/ IVA</th>
+                                                                <th>Deal Diff b/ IVA</th>
+                                                                <th>Profit %</th>
+                                                                <th>Demo</th>
+                                                                <th>Demo Amount</th>
+                                                                <th>ER</th>
+                                                                <th>Demo MXN</th>
+                                                                <th>Pending CB</th>
+                                                                <th>Promo</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach (var c in commissionDetail.Coupons.Where(x => x.Total.Currency == @s.Currency))
+                                                            {
+                                                                <tr>
+                                                                    <td><a href="/crm/masterchart#purchaseid=@c.PurchaseID" target="_blank">@c.Folio</a></td>
+                                                                    <td>@c.ConfirmationDate</td>
+                                                                    <td>@c.CancelationDate</td>
+                                                                    <td>@c.PointOfSale</td>
+                                                                    <td>@c.Service @Html.Raw(c.Units)</td>
+                                                                    <td>@c.Customer</td>
+                                                                    <td>@c.SalesAgent</td>
+                                                                    <td class="@(c.StatusID == 4 || c.StatusID == 5 ? "mb-warning" : "")">@Html.Raw(c.Status)</td>
+                                                                    <td data-format="currency">@c.Total.Amount @c.Total.Currency</td>
+                                                                    <td data-format="currency">@c.TotalNoIVA.Amount @c.TotalNoIVA.Currency</td>
+                                                                    <td data-format="currency">@c.SalesMXN.Amount MXN</td>
+                                                                    <td data-format="currency">@c.DealDiffNoIVA.Amount @c.DealDiffNoIVA.Currency</td>
+                                                                    <td>@c.UtilityPercentage%</td>
+                                                                    <td>
+                                                                        @if (c.Amount != null)
+                                                                        {
+                                                                            <span>@c.Amount @(c.CommissionCurrencyID == 1 ? "USD" : "MXN")</span>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <span>@c.Percentage%</span>
+                                                                        }
+                                                                    </td>
+                                                                    <td data-format="currency">@c.Commission.Amount @c.Commission.Currency</td>
+                                                                    <td data-exchangerateid="@c.ExchangeRateID" title="@c.ExchangeRateVigency">@c.ExchangeRate</td>
+                                                                    <td data-format="currency">@c.CommissionMXN.Amount @c.CommissionMXN.Currency</td>
+                                                                    <td>@c.PendingCharges</td>
+                                                                    <td>@c.Promo</td>
+                                                                </tr>
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            }
+                                        </td>
+                                    }
+                                }
+
+                            }
+                        }
+                        @if (worker.Total.Sales != null)
+                        {
+                            foreach (var s in worker.Total.Sales)
+                            {
+                                if (@worker.Total.Commissions.FirstOrDefault(x => x.Currency == s.Currency).Amount != 0)
+                                {
+                                    <td class="text-right">
+                                        <strong>
+                                            <span class="block" data-format="currency">@s.Amount @s.Currency</span>
+                                            <span class="block" data-format="currency">@worker.Total.Commissions.FirstOrDefault(x => x.Currency == s.Currency).Amount @worker.Total.Commissions.FirstOrDefault(x => x.Currency == s.Currency).Currency</span>
+                                        </strong>
+                                    </td>
+                                }
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        @foreach (var type in Model.PriceTypes.OrderBy(x => x.Order))
+                        {
+                            var commissionDetail = worker.TotalsPerPrice.Where(x => x.PriceTypeID == type.PriceTypeID).FirstOrDefault();
+                            if (commissionDetail.SalesMXN.Amount != 0 || commissionDetail.CommissionMXN.Amount != 0)
+                            {
+                                <td colspan="@(commissionDetail.Sales.FirstOrDefault().Amount != 0 && commissionDetail.Sales.LastOrDefault().Amount != 0 ? 2 : 1)">
+                                    <span class="block" data-format="currency">@commissionDetail.SalesMXN.Amount @commissionDetail.SalesMXN.Currency</span>
+                                    <span class="block" data-format="currency">@commissionDetail.CommissionMXN.Amount @commissionDetail.CommissionMXN.Currency</span>
+                                </td>
+                            }
+                        }
+                        @if (worker.Total.Sales != null)
+                        {
+                            <td class="text-right" colspan="@(worker.Total.Sales.FirstOrDefault().Amount != 0 && worker.Total.Sales.LastOrDefault().Amount != 0 ? 2 : 1)">
+                                <strong>
+                                    <span class="block" data-format="currency">@worker.Total.SalesMXN.Amount @worker.Total.SalesMXN.Currency</span>
+                                    <span class="block" data-format="currency">@worker.Total.CommissionMXN.Amount @worker.Total.CommissionMXN.Currency</span>
+                                </strong>
+                            </td>
+                        }
+                    </tr>
+                </tfoot>
+            </table><br />
+            <span class="open-id" data-id="@worker.UserID-@worker.JobPositionID" style="cursor:pointer;">+ Demonstrations Payroll Details</span>
+            <table id="@worker.UserID-@worker.JobPositionID" class="table no-plugin non-editable exportable" style="width: 100%; font-size:.8em; display:none;">
+                <thead>
+                    <tr>
+                        <th>Folio</th>
+                        <th>Coupon Reference</th>
+                        <th>Confirmed on</th>
+                        <th>Canceled on</th>
+                        <th>PoS</th>
+                        <th>Item</th>
+                        <th>Customer</th>
+                        <th>Sales Agent</th>
+                        <th>Status</th>
+                        <th>Total</th>
+                        <th>Total b/ IVA</th>
+                        <th>Total MXN b/ IVA</th>
+                        <th>Deal Diff b/ IVA</th>
+                        <th>Profit %</th>
+                        <th>Demo</th>
+                        <th>Demo Amount</th>
+                        <th>ER</th>
+                        <th>Demo MXN</th>
+                        <th>Pending CB</th>
+                        <th>Promo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var type in Model.PriceTypes.OrderBy(x => x.Order))
+                    {
+                        foreach (var commissionDetail in worker.TotalsPerPrice.Where(x => x.PriceTypeID == type.PriceTypeID))
+                        {
+                            foreach (var c in commissionDetail.Coupons)
+                            {
+                                <tr>
+                                    <td><a href="/crm/masterchart#purchaseid=@c.PurchaseID" target="_blank">@c.Folio</a></td>
+                                    <td>@c.CouponReference</td>
+                                    <td>@c.ConfirmationDate</td>
+                                    <td>@c.CancelationDate</td>
+                                    <td>@c.PointOfSale</td>
+                                    <td>@c.Service @Html.Raw(c.Units)</td>
+                                    <td>@c.Customer</td>
+                                    <td>@c.SalesAgent</td>
+                                    <td class="@(c.StatusID == 4 || c.StatusID == 5 ? "mb-warning" : "")">@Html.Raw(c.Status)</td>
+                                    <td data-format="currency">@c.Total.Amount @c.Total.Currency</td>
+                                    <td data-format="currency">@c.TotalNoIVA.Amount @c.TotalNoIVA.Currency</td>
+                                    <td data-format="currency">@c.SalesMXN.Amount MXN</td>
+                                    <td data-format="currency">@c.DealDiffNoIVA.Amount @c.DealDiffNoIVA.Currency</td>
+                                    <td>@c.UtilityPercentage%</td>
+                                    <td>
+                                        @if (c.Amount != null)
+                                        {
+                                            <span>@c.Amount @(c.CommissionCurrencyID == 1 ? "USD" : "MXN")</span>
+                                        }
+                                        else
+                                        {
+                                            <span>@c.Percentage%</span>
+                                        }
+                                    </td>
+                                    <td data-format="currency">@c.Commission.Amount @c.Commission.Currency</td>
+                                    <td data-exchangerateid="@c.ExchangeRateID" title="@c.ExchangeRateVigency">@c.ExchangeRate</td>
+                                    <td data-format="currency">@c.CommissionMXN.Amount @c.CommissionMXN.Currency</td>
+                                    <td>@c.PendingCharges</td>
+                                    <td>@c.Promo</td>
+                                </tr>
+                            }
+                        }
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="17"></td>
+                        <td>
+                            <strong>
+                                <span class="block" data-format="currency">@worker.Total.CommissionMXN.Amount @worker.Total.CommissionMXN.Currency</span>
+                            </strong>
+                        </td>
+                        <td colspan="2"></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    }
+}

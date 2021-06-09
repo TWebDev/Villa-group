@@ -1,0 +1,124 @@
+﻿@model ePlatBack.Models.ViewModels.WikiFieldViewModel
+
+@if (Model.FieldName != null)
+{
+    <div class="wiki-header">
+        <h3>Help for @Model.FieldName</h3>
+        <input id="wiki-syscomponent" type="hidden" value="@Model.SysComponentID" />
+        <span class="right">
+            @foreach (var cul in Model.Cultures)
+            {
+                <span class="wiki-culture" data-for="@cul.CultureCode" onclick="WikiFields.setCulture('@cul.CultureCode')">@cul.CultureName</span>
+            }
+        </span>
+
+        <ul class="sub-menu-tabs es-MX" style="display:none;">
+            <li data-for="1" class="active">Glosario</li>
+            <li data-for="2">¿Cómo funciona?</li>
+        </ul>
+        <ul class="sub-menu-tabs en-US" style="display:none;">
+            <li data-for="1" class="active">Glosary</li>
+            <li data-for="2">How to</li>
+        </ul>
+    </div>
+
+    <div id="wiki-editor" style="display:none;">
+        <textarea class="wiki-content" id="wiki-content"></textarea>
+        <input id="wiki-save" type="button" value="Submit" class="submit" />
+        <input id="wiki-cancel" type="button" value="Cancel" class="button" />
+    </div>
+
+    if (Model.Wikis != null)
+    {
+        foreach (var wikis in Model.Wikis)
+        {
+            <div class="@wikis.Culture wiki-list" data-type="1" style="display:none;">
+                @if (wikis.Glosary.Count() > 0)
+                {
+                    foreach (var w in wikis.Glosary.OrderBy(x => x.DateTime))
+                    {
+                        <div class="wiki" style="display:none;" data-wiki="@(w.Own && wikis.Glosary.OrderBy(x => x.DateTime).Last().WikiFieldID == w.WikiFieldID ? w.WikiFieldID : 0)">
+                            <div class="wiki-content">
+                                @Html.Raw(w.Content)
+                            </div>
+                        </div>
+                    }
+                    <div class="wiki-timeline">
+                        <div class="wiki-timeline-row">
+                            @foreach (var w in wikis.Glosary.OrderBy(x => x.DateTime))
+                            {
+                                <div class="wiki-edition" data-index="@wikis.Glosary.IndexOf(w)">
+                                    <input type="hidden" class="wiki-edition-author-name" value="@w.User" />
+                                    <input type="hidden" class="wiki-edition-author-date" value="@w.DateTime.ToString("yyyy-MM-dd hh:mm:ss tt")" />
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="wiki-author">
+                        Edited by <span class="wiki-author-name">@wikis.Glosary.OrderBy(x => x.DateTime).Last().User</span> on <span class="wiki-author-date">@wikis.Glosary.OrderBy(x => x.DateTime).Last().DateTime</span>
+                    </div>
+                }
+                else
+                {
+                    <div class="wiki" data-wiki="0">
+                        <p>Click  here to start generating content.</p>
+                    </div>
+                }
+            </div>
+            <div class="@wikis.Culture wiki-list" data-type="2" style="display:none;">
+                @if (wikis.HowTo.Count() > 0)
+                {
+                    foreach (var w in wikis.HowTo.OrderBy(x => x.DateTime))
+                    {
+                        <div class="wiki" style="display:none;" data-wiki="@(w.Own && wikis.HowTo.OrderBy(x => x.DateTime).Last().WikiFieldID == w.WikiFieldID ? w.WikiFieldID : 0)">
+                            <div class="wiki-content">
+                                @Html.Raw(w.Content)
+                            </div>
+                        </div>
+                    }
+                    <div class="wiki-timeline">
+                        <div class="wiki-timeline-row">
+                            @foreach (var w in wikis.HowTo.OrderBy(x => x.DateTime))
+                            {
+                                <div class="wiki-edition" data-index="@wikis.HowTo.IndexOf(w)">
+                                    <input type="hidden" class="wiki-edition-author-name" value="@w.User" />
+                                    <input type="hidden" class="wiki-edition-author-date" value="@w.DateTime.ToString("yyyy-MM-dd hh:mm:ss tt")" />
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="wiki-author">
+                        Edited by <span class="wiki-author-name">@wikis.HowTo.OrderBy(x => x.DateTime).Last().User</span> on <span class="wiki-author-date">@wikis.HowTo.OrderBy(x => x.DateTime).Last().DateTime</span>
+                    </div>
+                }
+                else
+                {
+                    <div class="wiki" data-wiki="0">
+                        <p>Click  here to start generating content.</p>
+                    </div>
+                }
+            </div>
+        }
+    }
+    else
+    {
+        foreach (var cul in Model.Cultures)
+        {
+            <div class="@cul.CultureCode wiki-list" data-type="1" style="display:none;">
+                <div class="wiki" data-wiki="0">
+                    <p>Click  here to start generating content.</p>
+                </div>
+            </div>
+            <div class="@cul.CultureCode wiki-list" data-type="2" style="display:none;">
+                <div class="wiki" data-wiki="0">
+                    <p>Click  here to start generating content.</p>
+                </div>
+            </div>
+        }
+    }
+}
+else
+{
+    <h3>This element is not enabled to have a Help document yet</h3>
+    <p>Don't worry, soon it will be enabled, and we will let you know.</p>
+}

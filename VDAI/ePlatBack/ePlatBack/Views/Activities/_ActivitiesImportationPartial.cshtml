@@ -1,0 +1,46 @@
+﻿@model ePlatBack.Models.ViewModels.ActivityImportInfoModel
+
+<fieldset id="fdsImportActivityInfo" style="display: none">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        Import Info
+    </legend>
+    <div style="display: none">
+        @using (Ajax.BeginForm("ImportPrevActivitySettings", "Activities", new AjaxOptions { OnSuccess = "PREVACTIVITY.importActivitySettingsSuccess(data)" }, new { id = "frmImportActivity" }))
+        {
+            <div class="full-width">
+                <div class="full-width">
+                    <span>DESCRIPTIONS</span>
+                    @Html.HiddenFor(model => model.ActivityImportInfo_PrevActivityID, new { @class = "secondary-selected-row-dependent" })
+                    @Html.HiddenFor(model => model.ActivityImportInfo_Descriptions, new { @class = "secondary-selected-row-dependent" })
+                </div>
+                <div id="divImportDescriptions" class="full-width align-from-top">
+                    <ul id="ulImportDescriptions" class="secondary-selected-row-dependent half-width"></ul>
+                </div>
+            </div>
+            <div class="full-width">
+                <div class="full-width">
+                    <span>SCHEDULES</span>
+                    @Html.HiddenFor(model => model.ActivityImportInfo_Availability, new { @class = "secondary-selected-row-dependent" })
+                </div>
+                <div id="divImportSchedules" class="full-width align-from-top">
+                    <ul id="ulImportSchedules" class="secondary-selected-row-dependent half-width"></ul>
+                </div>
+            </div>
+            <div class="full-width">
+                <div class="full-width">
+                    <span>PRICES</span>
+                    @Html.HiddenFor(model => model.ActivityImportInfo_Prices, new { @class = "secondary-selected-row-dependent" })
+                </div>
+                <div id="divImportPrices" class="full-width align-from-top">
+                    <ul id="ulImportPrices" class="secondary-selected-row-dependent half-width"></ul>
+                </div>
+            </div>
+            <div class=" full-width align-from-top">
+                <div class="editor-field">
+                    <input type="button" id="btnPrevImportActivity" class="submit right" value="import">
+                </div>
+            </div>
+        }
+    </div>
+</fieldset>

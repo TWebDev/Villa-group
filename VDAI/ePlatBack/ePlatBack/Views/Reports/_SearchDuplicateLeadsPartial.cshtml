@@ -1,0 +1,62 @@
+﻿@model ePlatBack.Models.ViewModels.DuplicateLeadsReport.SearchDuplicateLeadsModel
+
+@using (Ajax.BeginForm("SearchDuplicateLeads", "Reports", new AjaxOptions { UpdateTargetId = "divTblDuplicateLeadsResults", OnSuccess = "REPORT.allowColumnFilterOnTblDuplicateRows();" }, new { id = "frmSearchDuplicateLeads" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="non-printable">
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SearchDuplicateLeads_I_ArrivalDate)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.SearchDuplicateLeads_I_ArrivalDate, new { data_uses_date_picker = "true" })
+                @Html.TextBoxFor(model => model.SearchDuplicateLeads_F_ArrivalDate, new { data_uses_date_picker = "true" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SearchDuplicateLeads_Resort)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.SearchDuplicateLeads_Resort, Model.SearchDuplicateLeads_DrpResorts, new { multiple = "multiple" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SearchDuplicateLeads_LeadSource)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.SearchDuplicateLeads_LeadSource, Model.SearchDuplicateLeads_DrpLeadSources, new { multiple = "multiple" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SearchDuplicateLeads_LeadStatus)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.SearchDuplicateLeads_LeadStatus, Model.SearchDuplicateLeads_DrpLeadStatus, new { multiple = "multiple"})
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SearchDuplicateLeads_AssignedToUser)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.SearchDuplicateLeads_AssignedToUser, Model.SearchDuplicateLeads_DrpAssignedToUsers, new { multiple = "multiple" })
+            </div>
+        </div>
+        <div class="editor-alignment align-from-top">
+            <div class="editor-field">
+                <input type="submit" class="button" value="get" />
+            </div>
+        </div>
+        <div class="editor-field align-from-bottom">
+            <input type="button" id="btnClearColumnFilter" class="button right" value="clear filter" />
+            <h4>Note: Click over a column to filter all coincidences of the clicked column value</h4>
+        </div>
+    </div>
+    <div id="divTblDuplicateLeadsResults" class="align-from-top"></div>
+}
+@Html.Action("RenderMassUpdate", "Reports")

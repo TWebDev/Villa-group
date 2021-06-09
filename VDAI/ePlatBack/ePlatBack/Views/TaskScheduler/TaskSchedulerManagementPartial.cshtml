@@ -1,0 +1,251 @@
+﻿@model ePlatBack.Models.ViewModels.TaskSchedulerViewModel.SaveTaskModel
+
+<fieldset id="fdsTaskSchedulerManagement" class="primary-selected-row-dependent">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        Task Scheduler Management
+    </legend>
+    <div id="divTaskSchedulerManagement" style="display:none" class="align-from-top">
+        @using (Ajax.BeginForm("SaveTask", "TaskScheduler", new AjaxOptions { OnSuccess = "TASKSCHEDULER.saveTaskScheduler(data)" }, new { id = "frmTaskSchedulerInfo", onSubmit = "return UI.showValidationSummary(this.id);" }))
+        {
+
+            <div class="editor-alignment">
+                @Html.HiddenFor(model => model.TaskSchedulerID)
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Description)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Description)
+                </div>
+            </div>
+
+            <div class=" editor-alignment">
+                <div class=" editor-label">
+                    @Html.LabelFor(model => model.Lapse)
+                </div>
+                <div class=" editor-field">
+                    @Html.DropDownListFor(model => model.Lapse, Model.DropDown_Lapse)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Url)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Url)
+                </div>
+            </div>
+            <div class="editor-alignment" style="min-width:5%">
+                <div id="oneTime" style="display:block">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Permanent)
+                    </div>
+                    <div class="editor-field">
+                        @Html.CheckBoxFor(model => model.Permanent)
+                    </div>
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.FromDate)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.FromDate, new { @Class = "DateFormat" })
+                </div>
+            </div>
+            <div class="editor-alignment" id="DatePermanent" style="display:block">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.ToDate)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.ToDate, new { @Class = "DateFormat" })
+                    </div>
+            </div>
+
+            <div class="editor-alignment">
+                <div id="MinutesAtDay" style="display:none">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.minutes)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.minutes)
+                    </div>
+                </div>
+            </div>
+
+            <div id="Months" style="display:none">
+                <h2>Select Days and Month</h2>
+                <div class="editor-alignment">
+                    <div class=" editor-label">
+                        @Html.LabelFor(model => model.DropDown_NumberDays)
+                    </div>
+                    <div class=" editor-field">
+                        @Html.DropDownListFor(model => model.NumberDays, Model.DropDown_NumberDays, new { multiple = "multiple" })
+                    </div>
+                </div>
+                <div class="editor-alignment" style="min-width:3%">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.January)
+                    </div>
+                    <div class=" editor-field">
+                        @Html.CheckBoxFor(model => model.January)
+                    </div>
+                </div>
+                <div class="editor-alignment" style="min-width:3%">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.February)
+                    </div>
+                    <div class=" editor-field">
+                        @Html.CheckBoxFor(model => model.February)
+                    </div>
+                </div>
+                <div class="editor-alignment" style="min-width:3%">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.March)
+                    </div>
+                    <div class=" editor-field">
+                        @Html.CheckBoxFor(model => model.March)
+                    </div>
+                </div>
+                <div class="editor-alignment" style="min-width:3%">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.April)
+                    </div>
+                    <div class=" editor-field">
+                        @Html.CheckBoxFor(model => model.April)
+                    </div>
+                </div>
+                <div class="editor-alignment" style="min-width:3%">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.May)
+                    </div>
+                    <div class=" editor-field">
+                        @Html.CheckBoxFor(model => model.May)
+                    </div>
+                </div>
+                <div class="editor-alignment" style="min-width:3%">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.June)
+                    </div>
+                    <div class=" editor-field">
+                        @Html.CheckBoxFor(model => model.June)
+                    </div>
+                </div>
+                <div class="editor-alignment" style="min-width:3%">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.July)
+                    </div>
+                    <div class=" editor-field">
+                        @Html.CheckBoxFor(model => model.July)
+                    </div>
+                </div>
+                <div class="editor-alignment" style="min-width:3%">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.August)
+                    </div>
+                    <div class=" editor-field">
+                        @Html.CheckBoxFor(model => model.August)
+                    </div>
+                </div>
+                <div class="editor-alignment" style="min-width:3%">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.September)
+                    </div>
+                    <div class=" editor-field">
+                        @Html.CheckBoxFor(model => model.September)
+                    </div>
+                </div>
+                <div class="editor-alignment" style="min-width:3%">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.October)
+                    </div>
+                    <div class=" editor-field">
+                        @Html.CheckBoxFor(model => model.October)
+                    </div>
+                </div>
+                <div class="editor-alignment" style="min-width:3%">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.November)
+                    </div>
+                    <div class=" editor-field">
+                        @Html.CheckBoxFor(model => model.November)
+                    </div>
+                </div>
+                <div class="editor-alignment" style="min-width:3%">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.December)
+                    </div>
+                    <div class=" editor-field">
+                        @Html.CheckBoxFor(model => model.December)
+                    </div>
+                </div>
+            </div>
+
+            <br />
+
+            <div id="days" style="display:none">
+                <h2>Select Days</h2>
+                <div class="editor-alignment" style="min-width:3%">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Monday)
+                    </div>
+                    <div class=" editor-field">
+                        @Html.CheckBoxFor(model => model.Monday)
+                    </div>
+                </div>
+                <div class=" editor-alignment" style="min-width:3%">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Tuesday)
+                    </div>
+                    <div class="editor-field">
+                        @Html.CheckBoxFor(model => model.Tuesday)
+                    </div>
+                </div>
+                <div class="editor-alignment" style="min-width:3%">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.WednesDay)
+                    </div>
+                    <div class="editor-field">
+                        @Html.CheckBoxFor(model => model.WednesDay)
+                    </div>
+                </div>
+                <div class=" editor-alignment" style="min-width:3%">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Thursday)
+                    </div>
+                    <div class="editor-field">
+                        @Html.CheckBoxFor(model => model.Thursday)
+                    </div>
+                </div>
+                <div class="editor-alignment" style="min-width:3%">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Friday)
+                    </div>
+                    <div class="editor-field">
+                        @Html.CheckBoxFor(model => model.Friday)
+                    </div>
+                </div>
+                <div class="editor-alignment" style="min-width:3%">
+                    <div class=" editor-label">
+                        @Html.LabelFor(model => model.Saturday)
+                    </div>
+                    <div class="editor-field">
+                        @Html.CheckBoxFor(model => model.Saturday)
+                    </div>
+                </div>
+                <div class="editor-alignment" style="min-width:3%">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Sunday)
+                    </div>
+                    <div class="editor-field">
+                        @Html.CheckBoxFor(model => model.Sunday)
+                    </div>
+                </div>
+            </div>
+
+            <div class="full-width">
+                <input id="btnSaveTask" type="submit" class="submit right" value="Save" />
+            </div>
+        }
+    </div>
+</fieldset>

@@ -1,0 +1,61 @@
+﻿@model ePlatBack.Models.ViewModels.EmailNotificationsSearchModel
+
+@{
+    
+}
+<span class="full-width">
+    <input type="button" id="btnNewEmailNotificationsInfo" class="submit right fieldset-expander" value="new" />
+</span>
+@using(Ajax.BeginForm("SearchEmailNotifications", "Emails", new AjaxOptions{ OnBegin = "UI.checkForPendingRequests(xhr)", OnSuccess = "EMAIL.searchNotificationsResultsTable(data)", OnComplete = "EMAIL.makeEmailNotificationsTableRowsSelectable()", UpdateTargetId = "divTblExistingNotifications"}, new { id = "frmSearchEmailNotifications" }))
+{
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EmailNotificationsSearch_Terminal)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.EmailNotificationsSearch_Terminal, Model.EmailNotificationsSearch_DrpTerminals, new { multiple = "multiple", @class = "terminal-dependent-list", data_route = "/Emails/GetDDLData", data_route_parameter = "activeTerminals" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EmailNotificationsSearch_Destination)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.EmailNotificationsSearch_Destination, Model.EmailNotificationsSearch_DrpDestinations, new { multiple = "multiple" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EmailNotificationsSearch_Resort)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.EmailNotificationsSearch_Resort, Model.EmailNotificationsSearch_DrpResorts, new { multiple = "multiple" })
+        </div>
+    </div>
+    <div class="full-width align-from-top">
+        <input type="submit" class="button right" value="search" />
+    </div>
+    <div id="divTblExistingNotifications">
+        <table id="tblSearchEmailNotificationsResults" class="table dataTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Terminal</th>
+                    <th>Point(s) Of Sale</th>
+                    <th>Description</th>
+                    <th>Resort(s)</th>
+                    <th>BCC Accounts</th>
+                    <th>Lead Source(s)</th>
+                    <th>Lead Status</th>
+                    <th>Broker Contract(s)</th>
+                    <th>Booking Status</th>
+                    <th>Is Active</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+    </div>
+         }

@@ -1,0 +1,70 @@
+﻿@model ePlatBack.Models.ViewModels.InvitationViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Head {
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/jquery-ui-timepicker-addon.css" rel="stylesheet" type="text/css" />
+}
+@section Scripts{
+    <script src="~/Scripts/jquery.dataTables.js" type="text/javascript"></script>
+    <script src="~/Scripts/ColReorder.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery-ui-timepicker-addon.js" type="text/javascript"></script>
+    <script src="/Scripts/crm/invitations/invitations.js"></script>
+}
+<div class="row">
+    <div class="col-sm-12">
+        <h1>@Model.Terminal</h1>
+    </div>
+    <div class="col-sm-12 text-center search-params">
+        <h3 style="display:inline-block;">Manifest for <input type="text" id="txtInvitationsDate" style="width: 100px; margin-top: -5px; vertical-align: middle; background-color: white; font-size: 1.1em;" /></h3>
+        <input type="button" id="btnGetInvitations" value="UPDATE" class="submit" />
+        <input type="button" id="btnNewInvitation" value="NEW INVITATION" class="pull-right submit" />
+    </div>
+    <div class="col-sm-12">
+        <div class="table-div">
+            <div class="table-row" id="divSummary">
+
+            </div>
+        </div>
+        <div style="display:none;" id="divSummaryTemplate">
+        </div>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-sm-12">
+        <table id="tblInvitations" class="table" style="width:100%">
+            <thead>
+                <tr>
+                    <th>VIP Guest</th>
+                    <th>Hotel</th>
+                    <th>From</th>
+                    <th>Invitation Sent</th>
+                    <th>Representative</th>
+                    <th>Department</th>
+                    <th>Show / No Show</th>
+                </tr>
+            </thead>
+            <tbody class="primary-selected-row-dependent"></tbody>
+            <tfoot>
+                <tr>
+                    <th>VIP Guest</th>
+                    <th>Hotel</th>
+                    <th>From</th>
+                    <th>Invitation Sent</th>
+                    <th>Representative</th>
+                    <th>Department</th>
+                    <th>Show / No Show</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        @Html.Partial("_InvitationInfoPartial", Model.InvitationForm)
+    </div>
+</div>

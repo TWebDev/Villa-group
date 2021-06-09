@@ -1,0 +1,68 @@
+﻿@model ePlatBack.Models.ViewModels.SurveyViewModel.SurveyFormField
+
+<div class="design-mode-panel">
+    @Html.HiddenFor(model => model.F_FieldID)
+    <input type="hidden" id="F_TemporalID" value="" />
+    <div class="editor-alignment">
+        <div class="editor-label design-mode">
+            @Html.LabelFor(model => model.F_Question)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.F_Question, new { @class = "design-mode", data_format="free-case" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label design-mode">
+            @Html.LabelFor(model => model.F_FieldName)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.F_FieldName, new { @class = "design-mode", data_format="free-case" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label design-mode">
+            @Html.LabelFor(model => model.F_FieldSubTypeID)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.F_FieldSubTypeID, Model.F_FieldSubTypes, new { @class = "design-mode" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label design-mode">
+            @Html.LabelFor(model => model.F_Visibility)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.F_Visibility, Model.F_VisibilityOptions, new { @class = "design-mode" })
+        </div>
+    </div>
+    <div id="divVisibleIf" class="editor-alignment" style="display:none;">
+        <div class="editor-label design-mode">
+            @Html.LabelFor(model => model.F_VisibleIf)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.F_VisibleIf, Model.F_VisibleIfFields, new { @class = "design-mode" })
+        </div>
+    </div>
+    <div id="divF_Options" style="display:none;" class="editor-alignment">
+        <div class="editor-label design-mode">
+            @Html.LabelFor(model => model.F_Options)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.F_Options, new { @class = "design-mode", data_format = "free-case" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label design-mode">
+            @Html.LabelFor(model => model.F_ParentFieldID)
+        </div>
+        <div class="editor-field">
+            <select id="F_ParentFieldID" class="design-mode">
+                <option value="">None</option>
+            </select>
+        </div>
+    </div>
+    <div class="align-from-top text-right">
+        <input id="btnClearFormField" type="button" class="mini-secondary-button" style="float:none;" value="RESET FORM" />
+        <input id="btnSaveFormField" type="button" class="mini-secondary-button" style="float:none;" value="SAVE FIELD" />
+    </div>    
+</div>

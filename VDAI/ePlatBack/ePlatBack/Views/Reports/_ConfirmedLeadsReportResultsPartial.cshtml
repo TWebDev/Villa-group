@@ -1,0 +1,42 @@
+﻿@model ePlatBack.Models.ViewModels.ConfirmedLeadsModel
+
+<table id="tblConfirmedLeadsReport" class="table">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Lead</th>
+                    <th>Arrival Date</th>
+                    <th>Booking Status</th>
+                    <th>Tour Status</th>
+                    <th>Final Tour Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.ListConfirmedLeadsReportModel != null)
+                {
+                    foreach (var i in Model.ListConfirmedLeadsReportModel)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(model => i.ConfirmedLeadsReport_UserName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.ConfirmedLeadsReport_FirstName) @Html.DisplayFor(model => i.ConfirmedLeadsReport_LastName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.ConfirmedLeadsReport_ArrivalDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.ConfirmedLeadsReport_BookingStatus)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.ConfirmedLeadsReport_TourStatus)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.ConfirmedLeadsReport_FinalTourStatus)
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>

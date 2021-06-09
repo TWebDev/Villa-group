@@ -1,0 +1,38 @@
+﻿@model ePlatBack.Models.ViewModels.PricesModel.SearchPricesCustomModel
+
+@using (Ajax.BeginForm("SearchPricesCustomReport", "Reports", new AjaxOptions { OnSuccess = "REPORT.searchResultsTable(data); REPORT.Prices.pricesLoaded();", UpdateTargetId = "divTblPrices" }, new { id = "frmSearchActivityPrices", @class = "non-printable" }))
+{
+    <div class="non-printable search-params">
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_Date)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Search_Date, new { data_uses_date_picker = "true", @class = "normal-width" })
+            </div>
+        </div>
+
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Search_Layout)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Search_Layout, Model.Search_DrpLayouts)
+            </div>
+        </div>
+
+        <div class="editor-alignment align-from-top">
+            <div class="editor-field">
+                <input type="submit" class="button" value="Get" />
+                <input id="btnEditLayout" type="button" class="button" value="Edit" />
+            </div>
+        </div>
+    </div>
+}
+
+<div id="divReportLayout" class="non-printable">
+    @Html.Partial("_PricesReportLayoutPartial", new ePlatBack.Models.ViewModels.PricesModel.PricesReportLayout())
+</div>
+
+<div class="align-from-top" id="divTblPrices">
+</div>

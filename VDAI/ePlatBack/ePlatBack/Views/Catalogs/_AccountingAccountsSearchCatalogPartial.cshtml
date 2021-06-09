@@ -1,0 +1,69 @@
+﻿@model ePlatBack.Models.ViewModels.AccountingAccountsModel.SearchAccountingAccountsModel
+
+<fieldset id="fdsAccountingAccountsManagement">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        Accounting Accounts Management
+    </legend>
+    <div class="align-from-top">
+        <p class="full-width">
+            <input type="button" id="btnNewAccountingAccountsInfo" class="submit fieldset-expander right" value="new" />
+        </p>
+        @using (Ajax.BeginForm("SearchAccountingAccounts", "Catalogs", new AjaxOptions { OnSuccess = "CATALOG.accountingAccountsResultsTable(data)", OnComplete = "CATALOG.makeAccountingAccountsSelectable()", UpdateTargetId = "divTblExistingAccountingAccounts" }, new { id = "frmAccountingAccountsSearch" }))
+        {
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SearchAccountingAccount_AccountingAccount)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.SearchAccountingAccount_AccountingAccount)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SearchAccountingAccount_AccountingAccountName)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.SearchAccountingAccount_AccountingAccountName)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SearchAccountingAccount_Companies)
+                </div>
+                <div class="editor-field">
+                    @Html.ListBoxFor(model => model.SearchAccountingAccount_Companies, Model.SearchAccountingAccount_DrpCompanies, new { @class = "company-dependent-list terminal-dependent-list", data_route = "/Catalogs/GetDDLData", data_route_parameter = "company" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SearchAccountingAccount_AccountType)
+                </div>
+                <div class="editor-field">
+                    @Html.ListBoxFor(model => model.SearchAccountingAccount_AccountType, Model.SearchAccountingAccount_DrpAccountTypes)
+                </div>
+            </div>
+            <div class="editor-alignment align-from-top">
+                <div class="editor-field">
+                    <input type="submit" id="btnSearchAccountingAccounts" class="button search" value="search" />
+                </div>
+            </div>
+            <div id="divTblExistingAccountingAccounts" class="align-from-top">
+                <table id="tblSearchAccountingAccountsResults" class="dataTable table search-results">
+                    <thead>
+                        <tr>
+                            <th>Accounting Account</th>
+                            <th>Account Name</th>
+                            <th>Account Type</th>
+                            <th>Company</th>
+                            <th>Price Type</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        }
+        @Html.Action("RenderAccountingAccountsManagement", "Catalogs")
+    </div>
+</fieldset>

@@ -1,0 +1,44 @@
+﻿@model ePlatBack.Models.ViewModels.SeoItemViewModel
+
+<table id="tblSearchSeoItemsResults" class="table dataTable">
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Culture</th>
+			<th>Terminal</th>
+            <th>Friendly Url</th>
+			<th>Url</th>
+            <th></th>
+		</tr>
+	</thead>
+	<tbody class="primary-selected-row-dependent">
+        @if (Model.SearchResultsModel != null)
+        {
+            foreach (var i in Model.SearchResultsModel)
+            {
+                var trID = "trItem" + i.SeoItemInfo_SeoItemID;
+                var tdID = "delI" + i.SeoItemInfo_SeoItemID;
+                <tr id="@trID" >
+                    <td>
+                        @Html.DisplayFor(model => i.SeoItemInfo_Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.SeoItemInfo_Culture)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.SeoItemInfo_TerminalName)
+                    </td>
+                    <td>        
+                        @Html.DisplayFor(model => i.SeoItemInfo_FriendlyUrl)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.SeoItemInfo_Url)
+                    </td>
+                    <td>
+                        <img class="right" src="~/Content/themes/base/images/trash.png" id="@tdID">
+                    </td>
+                </tr>
+            }
+        }
+	</tbody>
+</table>

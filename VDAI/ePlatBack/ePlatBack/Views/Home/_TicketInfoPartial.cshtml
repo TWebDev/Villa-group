@@ -1,0 +1,113 @@
+﻿@model ePlatBack.Models.ViewModels.TicketViewModel.TicketItem
+
+<fieldset id="fdsTicketInfo">
+    <legend><img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" /> Ticket Info</legend>
+    <div style="display:none" class="align-from-top">
+        @using (Ajax.BeginForm("SaveTicket", "Dashboard", new AjaxOptions { OnSuccess = "Tickets.saveTicketSuccess(data)" }, new { id = "frmTeamInfo", onSubmit = "return UI.showValidationSummary(this.id);" }))
+        {
+            <div id="frmTeamInfo_ErrorMessages" style="display:none">
+            </div>
+            @Html.HiddenFor(model => model.supportTicketID)
+            <div class="editor-alignment double-width">
+                <div class="editor-label">
+                    Subject
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.subject, new { maxlength = "500" })
+                </div>
+            </div>
+            <div class="editor-alignment double-width">
+                <div class="editor-label">
+                    Description
+                </div>
+                <div class="editor-field">
+                    @Html.TextAreaFor(model => model.body)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    Terminal
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.terminalID, Model.SelectedTerminals)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    Reference
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.reference, new { placeholder = "Coupon Folio, Invitation #, etc." })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    Assigned to
+                </div>
+                <div class="editor-field">
+                    @if (ePlatBack.Models.Utils.GeneralFunctions.IsUserInRole("Administrator", new ePlatBack.Models.UserSession().UserID, true))
+                    {
+                        @Html.DropDownListFor(model => model.assignedToUserID, Model.AdministratorUsers)
+                    }
+                    else
+                    {
+                        @Html.DropDownListFor(model => model.assignedToUserID, Model.AdministratorUsers, new { disabled = "disabled" })
+                    }
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    Change Set
+                </div>
+                <div class="editor-field">
+                    @if (ePlatBack.Models.Utils.GeneralFunctions.IsUserInRole("Administrator", new ePlatBack.Models.UserSession().UserID, false))
+                    {
+                        @Html.TextBoxFor(model => model.changeset)
+                    }
+                    else
+                    {
+                        @Html.TextBoxFor(model => model.changeset, new { disabled = "disabled" })
+                    }
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    Status
+                </div>
+                <div class="editor-field">
+                    @if (ePlatBack.Models.Utils.GeneralFunctions.IsUserInRole("Administrator", new ePlatBack.Models.UserSession().UserID, true))
+                    {
+                        @Html.DropDownListFor(model => model.SupportTicketStatusID, Model.TicketStatusList)
+                    }
+                    else
+                    {
+                        @Html.DropDownListFor(model => model.SupportTicketStatusID, Model.TicketStatusList, new { disabled = "disabled" })
+                    }
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    Status Comment
+                </div>
+                <div class="editor-field">
+                    @if (ePlatBack.Models.Utils.GeneralFunctions.IsUserInRole("Administrator", new ePlatBack.Models.UserSession().UserID, true))
+                    {
+                        @Html.TextBoxFor(model => model.StatusComment)
+                    }
+                    else
+                    {
+                        @Html.TextBoxFor(model => model.StatusComment, new { disabled = "disabled" })
+                    }
+                </div>
+            </div>
+            <div class="editor-alignment align-from-top" style="min-width: 160px;">
+                <div class="editor-field" style="text-align: right;">
+                    <input type="submit" class="button submit" value="SAVE TICKET" />
+                </div>
+            </div>
+            <div id="divStatusLog">
+
+            </div>
+        }
+    </div>
+</fieldset>

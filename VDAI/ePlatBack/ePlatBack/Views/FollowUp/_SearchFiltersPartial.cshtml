@@ -1,0 +1,57 @@
+﻿@model ePlatBack.Models.ViewModels.FollowUpViewModel.SearchFilters
+
+<div class="form-row">
+    <div class="col-12">
+        <h5>Search Leads</h5>
+    </div>
+    <div class="form-group col-md-3">
+        @Html.LabelFor(model => model.Search_FromDate)
+        @Html.TextBoxFor(model => model.Search_FromDate, new { @class = "form-control datetimepicker-input", placeholder = "yyyy-mm-dd", data_toggle = "datetimepicker", data_target = "#Search_FromDate", v_model = "Search.SearchLeads.Search_FromDate", autocomplete = "off" })
+    </div>
+    <div class="form-group col-md-3">
+        @Html.LabelFor(model => model.Search_ToDate)
+        @Html.TextBoxFor(model => model.Search_ToDate, new { @class = "form-control datetimepicker-input", placeholder = "yyyy-mm-dd", data_toggle = "datetimepicker", data_target = "#Search_ToDate", v_model = "Search.SearchLeads.Search_ToDate", autocomplete = "off" })
+    </div>
+    <div class="form-group col-md-3">
+        @Html.LabelFor(model => model.Search_GuestName)
+        @Html.TextBoxFor(model => model.Search_GuestName, new { @class = "form-control", v_model = "Search.SearchLeads.Search_GuestName", autocomplete = "off" })
+    </div>
+    <div class="form-group col-md-3">
+        @Html.LabelFor(model => model.Search_LeadStatusID)
+        <select id="Search_LeadStatusID" class="form-control" v-model="Search.SearchLeads.Search_LeadStatusID" multiple="multiple">
+            <option v-for="st in Lists.LeadStatus" v-bind:value="st.Value">{{ st.Text }}</option>
+        </select>
+    </div>
+    <div class="form-group col-md-3">
+        @Html.LabelFor(model => model.Search_BookingStatusID)
+        <select id="Search_BookingStatusID" class="form-control" v-model="Search.SearchLeads.Search_BookingStatusID" multiple="multiple">
+            <option v-for="bs in Lists.BookingStatus" v-bind:value="bs.Value">{{ bs.Text }}</option>
+        </select>
+    </div>
+    <div class="form-group col-md-3">
+        @Html.LabelFor(model => model.Search_LeadTypeID)
+        <select id="Search_LeadTypeID" class="form-control" v-model="Search.SearchLeads.Search_LeadTypeID" multiple="multiple">
+            <option v-for="lt in Lists.LeadTypes" v-bind:value="lt.Value">{{ lt.Text }}</option>
+        </select>
+    </div>
+    <div class="form-group col-md-3">
+        @Html.LabelFor(model => model.Search_LeadSourceChannelID)
+        <select id="Search_LeadSourceChannelID" class="form-control" v-model="Search.SearchLeads.Search_LeadSourceChannelID" multiple="multiple">
+            <optgroup v-for="ls in Lists.LeadSources" v-bind:label="ls.Text">
+                <option v-for="ch in getChannels(ls.Value)" v-bind:value="ch.Value">{{ ch.Text }}</option>
+            </optgroup>
+        </select>
+    </div>
+    <div class="form-group col-md-3">
+        @Html.LabelFor(model => model.Search_AssignedToUserID)
+        <select id="Search_AssignedToUserID" class="form-control" v-model="Search.SearchLeads.Search_AssignedToUserID">
+            <option v-for="ag in Lists.Agents" v-bind:value="ag.Value">{{ ag.Text }}</option>
+        </select>
+    </div>
+</div>
+<div class="form-row">
+    <div class="text-right col">
+        <input type="reset" class="btn" value="Clear" />
+        <input type="submit" id="btnSearchLeads" class="btn btn-primary" value="Search" v-on:click="searchLeads" />
+    </div>
+</div>

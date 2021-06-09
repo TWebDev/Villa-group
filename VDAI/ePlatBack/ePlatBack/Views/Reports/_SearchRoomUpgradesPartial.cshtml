@@ -1,0 +1,44 @@
+﻿@model ePlatBack.Models.ViewModels.RoomUpgradesModel.SearchRoomUpgradesModel
+
+@using (Ajax.BeginForm("SearchRoomUpgrades", "Reports", new AjaxOptions { OnSuccess = "REPORT.searchResultsTable(data)", UpdateTargetId = "divTblRoomUpgradesResults" }, new { id = "frmSearchRoomUpgrades" }))
+{
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SearchRoomUpgrades_I_ArrivalDate)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.SearchRoomUpgrades_I_ArrivalDate, new { data_uses_date_picker = "true" })
+            @Html.TextBoxFor(model => model.SearchRoomUpgrades_F_ArrivalDate, new { data_uses_date_picker = "true" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SearchRoomUpgrades_Resort)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.SearchRoomUpgrades_Resort, Model.SearchRoomUpgrades_DrpResorts, new { multiple = "multiple", @class = "terminal-dependent-list", data_route = "/crm/Reports/GetDDLData", data_route_parameter = "placeID" })
+        </div>
+    </div>
+    <div class="editor-alignment align-from-top">
+        <div class="editor-field">
+            <input type="submit" id="btnSearchRoomUpgrades" class="button" value="search" />
+        </div>
+    </div>
+    <div id="divTblRoomUpgradesResults" class="align-from-top">
+        <table id="tblSearchRoomUpgradesResults" class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Resort</th>
+                    <th>Arrival Date</th>
+                    <th>Assigned To User</th>
+                    <th>Booking Status</th>
+                    <th>Real Tour Date</th>
+                    <th>Final Tour Status</th>
+                    <th>Sales Volume</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+}

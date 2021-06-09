@@ -1,0 +1,28 @@
+﻿@model ePlatBack.Models.ViewModels.TransportationZonesModel.SearchTransportationZonesModel
+
+<table id="tblSearchTransportationZonesResults" class="table search-results">
+            <thead>
+                <tr>
+                    <th>Transportation Zone</th>
+                    <th>Destination</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.ListTransportationZones != null)
+                {
+                    foreach (var i in Model.ListTransportationZones)
+                    {
+                        var id = "transportationZone_" + i.TransportationZoneInfo_TransportationZoneID;
+                        <tr id="@id">
+                            <td>
+                                @Html.DisplayFor(model => i.TransportationZoneInfo_TransportationZone)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.TransportationZoneInfo_DestinationName)
+                                <img src="/Content/themes/base/images/cross.png" class="right delete-item" />
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>

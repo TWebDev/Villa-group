@@ -1,0 +1,317 @@
+﻿@using ePlatBack.Models.Utils;
+@model ePlatBack.Models.ViewModels.BillingInfoModel.Views.BillingInfo
+@{
+    var Privileges = ViewData["Privileges"] as List<ePlatBack.Models.ViewModels.SysComponentsPrivilegesModel>;
+}
+
+@if (Privileges.FirstOrDefault(m => m.Component == "frmBillingInfo") == null || Privileges.FirstOrDefault(m => m.Component == "frmBillingInfo").View)
+{
+    using (
+    Ajax.BeginForm(
+        "SaveBillingInfo",
+        "CRM/Masterchart",
+        new AjaxOptions { OnSuccess = "BILLING_INFO.RESPONSE_HANDLERS.saveBillingInfo(data);" },
+
+        new
+        {
+            id = "frmBillingInfo",
+            onsubmit = "return COMMON.beforeSubmit(this.id,event);",
+            style = "display:none",
+            data_related_to_form_id = "frmLeadGeneralInformation",
+            data_items_name = "BillingInfo",
+            data_on_show = "BILLING_INFO.show",
+            data_relationships = "{ \"BillingInfo_LeadID\":\"GeneralInformation_LeadID\"}",
+            @class = "non-printable"
+
+        }
+    )
+)
+    {
+        <input type="button" id="btnNewBillingInfo" onclick="BILLING_INFO.newBillingInfo()" class="submit-right" value="New Billing Info" />
+        <div id="frmBillingInfo_ErrorMessages" style="display: none">
+            @Html.ValidationSummary(false)
+        </div>
+        if (Privileges.FirstOrDefault(m => m.Component == "fdsBillingInfo") == null || Privileges.FirstOrDefault(m => m.Component == "fdsBillingInfo").View)
+        {
+            <fieldset data-on-collapse="closeSiblings" data-on-expand="closeBrothers" id="fdsBillingInfo">
+                <legend>
+                    <a href="javascript:void(0)" class="legendLink">
+                        <img class="fieldset-indicator" border="0" src="/Content/themes/base/images/eplat_show.jpg" />
+                        Billing Info
+                    </a>
+                </legend>
+                <div style="display: none">
+                    @if (Privileges.FirstOrDefault(m => m.Component == "fdsCurrentBillingInfo") == null || Privileges.FirstOrDefault(m => m.Component == "fdsCurrentBillingInfo").View)
+                    {
+                        <fieldset data-on-collapse="closeSiblings" data-on-expand="closeBrothers" id="fdsCurrentBillingInfo">
+                            <legend>
+                                <a href="javascript:void(0)" class="legendLink">
+                                    <img class="fieldset-indicator" border="0" src="/Content/themes/base/images/eplat_show.jpg" />
+                                    Current Billing Info
+                                </a>
+                            </legend>
+                            <div style="display: none">
+                                @if (Privileges.FirstOrDefault(m => m.Component == "tblBillingInfo") == null || Privileges.FirstOrDefault(m => m.Component == "tblBillingInfo").View)
+                                {
+                                    <table id="tblBillingInfo"
+                                           class="table"
+                                           data-table="true"
+                                           data-selected-row-index=""
+                                           data-items-name="billingInfo"
+                                           data-source-name="leadBillingInfo"
+                                           data-table-properties='{
+                                    "allowDuplicates":false
+                                }'
+                                           data-rows-properties='{
+                                    "showRemoveIcon":false,
+                                    "onRemoveCallBack":"UI.confirmRemoveFromTable",
+                                    "showEditIcon":true,
+                                    "onEditCallBack":"UI.editDataRow","rowID":"BillingInfoID"
+                                }'>
+                                        <thead>
+                                            <tr class="trheader">
+                                                <th colspan="4">
+                                                    <label for="tblBillingInfo">CURRENT BILLING INFO</label>
+                                                </th>
+                                            </tr>
+                                            <tr data-row-type="columns">
+                                                <th style="display: none" data-column-type="data"
+                                                    data-column-visible="false"
+                                                    data-column-properties='{
+                                    "name":"BillingInfoID",
+                                    "allowEmptyValues":true
+                                }'>
+                                                    BillingInfoID
+                                                </th>
+                                                <th style="display: none" data-column-type="data"
+                                                    data-column-visible="false"
+                                                    data-column-properties='{
+                                    "name":"BillingInfo_LeadID",
+                                    "allowEmptyValues":true
+                                }'>
+                                                    LeadID
+                                                </th>
+                                                <th style="width: 200px"
+                                                    data-column-type="data"
+                                                    data-column-properties='{
+                                    "name":"CardHolderName",
+                                    "allowEmptyValues":false
+                                }'>
+                                                    Card Holder Name
+                                                </th>
+                                                <th style="width: 200px"
+                                                    data-column-type="data"
+                                                    data-column-properties='{
+                                    "name":"CardNumber",
+                                    "allowEmptyValues":false
+                                }'>
+                                                    Card Number
+                                                </th>
+                                                <th style="width: 200px"
+                                                    data-column-type="data"
+                                                    data-column-properties='{
+                                    "name":"CardExpiry",
+                                    "allowEmptyValues":false
+                                }'>
+                                                    Card Expiry
+                                                </th>
+                                                <th style="width: 200px"
+                                                    data-column-type="data"
+                                                    data-column-properties='{
+                                    "name":"CardCVV",
+                                    "allowEmptyValues":false
+                                }'>
+                                                    Card CVV
+                                                </th>
+                                                @*<th data-column-type="action"
+                                                    data-action-type="remove"></th>*@
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                }
+                            </div>
+                        </fieldset>
+                    }
+                    @if (Privileges.FirstOrDefault(m => m.Component == "fdsBillingInfoDetails") == null || Privileges.FirstOrDefault(m => m.Component == "fdsBillingInfoDetails").View)
+                    {
+                        <fieldset data-on-collapse="closeSiblings" data-on-expand="closeBrothers" id="fdsBillingInfoDetails">
+                            <legend>
+                                <a href="javascript:void(0)" class="legendLink">
+                                    <img class="fieldset-indicator" border="0" src="/Content/themes/base/images/eplat_show.jpg" />
+                                    Billing Info Details
+                                </a>
+                            </legend>
+                            <div style="display: none">
+                                <div id="frmLeadGeneralInformation_ErrorMessages" style="display: none">
+                                    @Html.ValidationSummary(false)
+                                </div>
+                                @Html.HiddenFor(model => model.billingInfoID)
+                                @Html.HiddenFor(model => model.BillingInfo_LeadID)
+                                @if (Privileges.FirstOrDefault(m => m.Component == "btnPullInfo") == null || Privileges.FirstOrDefault(m => m.Component == "btnPullInfo").View)
+                                {
+                                    <div class="align-from-bottom align-from-top full-width">
+                                        <input type="button" id="btnPullInfo" value="pull info" class="button" />
+                                    </div>
+                                }
+                                @if (Privileges.FirstOrDefault(m => m.Component == "FirstName") == null || Privileges.FirstOrDefault(m => m.Component == "FirstName").View)
+                                {
+                                    <div class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.FirstName)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.TextBoxFor(model => model.FirstName)
+                                        </div>
+                                    </div>
+                                }
+                                @if (Privileges.FirstOrDefault(m => m.Component == "LastName") == null || Privileges.FirstOrDefault(m => m.Component == "LastName").View)
+                                {
+                                    <div class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.LastName)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.TextBoxFor(model => model.LastName)
+                                        </div>
+                                    </div>
+                                }
+                                @if (Privileges.FirstOrDefault(m => m.Component == "Address") == null || Privileges.FirstOrDefault(m => m.Component == "Address").View)
+                                {
+                                    <div class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.Address)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.TextBoxFor(model => model.Address)
+                                        </div>
+                                    </div>
+                                }
+                                @if (Privileges.FirstOrDefault(m => m.Component == "City") == null || Privileges.FirstOrDefault(m => m.Component == "City").View)
+                                {
+                                    <div class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.City)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.TextBoxFor(model => model.City)
+                                        </div>
+                                    </div>
+                                }
+                                @if (Privileges.FirstOrDefault(m => m.Component == "State") == null || Privileges.FirstOrDefault(m => m.Component == "State").View)
+                                {
+                                    <div class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.State)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.TextBoxFor(model => model.State, new { data_format = "free-case" })
+                                        </div>
+                                    </div>
+                                }
+                                @if (Privileges.FirstOrDefault(m => m.Component == "CountryID") == null || Privileges.FirstOrDefault(m => m.Component == "CountryID").View)
+                                {
+                                    <div class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.CountryID)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.DropDownListFor(model => model.CountryID, Model.Countries)
+                                        </div>
+                                    </div>
+                                }
+                                @if (Privileges.FirstOrDefault(m => m.Component == "Zipcode") == null || Privileges.FirstOrDefault(m => m.Component == "Zipcode").View)
+                                {
+                                    <div class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.Zipcode)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.TextBoxFor(model => model.Zipcode, new { data_format = "upper-case" })
+                                        </div>
+                                    </div>
+                                }
+                                @if (Privileges.FirstOrDefault(m => m.Component == "CardHolderName") == null || Privileges.FirstOrDefault(m => m.Component == "CardHolderName").View)
+                                {
+                                    <div class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.CardHolderName)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.TextBoxFor(model => model.CardHolderName)
+                                        </div>
+                                    </div>
+                                }
+                                @if (Privileges.FirstOrDefault(m => m.Component == "CardNumber") == null || Privileges.FirstOrDefault(m => m.Component == "CardNumber").View)
+                                {
+                                    <div class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.CardNumber)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.TextBoxFor(model => model.CardNumber, new { maxlength = "16", placeholder = "type only digits" })
+                                        </div>
+                                    </div>
+                                }
+                                @if (Privileges.FirstOrDefault(m => m.Component == "CardTypeID") == null || Privileges.FirstOrDefault(m => m.Component == "CardTypeID").View)
+                                {
+                                    <div class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.CardTypeID)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.DropDownListFor(model => model.CardTypeID, Model.CreditCardTypes)
+                                        </div>
+                                    </div>
+                                }
+                                @if (Privileges.FirstOrDefault(m => m.Component == "CardExpiry") == null || Privileges.FirstOrDefault(m => m.Component == "CardExpiry").View)
+                                {
+                                    <div class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.CardExpiry)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.TextBoxFor(model => model.CardExpiry, new { placeholder = "mm/yyyy" })
+                                        </div>
+                                    </div>
+                                }
+                                @if (Privileges.FirstOrDefault(m => m.Component == "CardCVV") == null || Privileges.FirstOrDefault(m => m.Component == "CardCVV").View)
+                                {
+                                    <div class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.CardCVV)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.TextBoxFor(model => model.CardCVV, new { maxlength = "4" })
+                                        </div>
+                                    </div>
+                                }
+                                @if (Privileges.FirstOrDefault(m => m.Component == "BillingComments") == null || Privileges.FirstOrDefault(m => m.Component == "BillingComments").View)
+                                {
+                                    <div class="editor-alignment">
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.BillingComments)
+                                        </div>
+                                        <div class="editor-field">
+                                            @Html.TextAreaFor(model => model.BillingComments, new { @class = "double-width" })
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <div class="editor-alignment">
+                                @if (Privileges.FirstOrDefault(m => m.Component == "btnSaveBillingInfo") == null || Privileges.FirstOrDefault(m => m.Component == "btnSaveBillingInfo").View)
+                                {
+                                    <input type="button" id="btnSaveBillingInfo" class="button" value="Save Billing Info" />
+                                }
+                                @if (Privileges.FirstOrDefault(m => m.Component == "btnSaveAndReturnBillingInfo") == null || Privileges.FirstOrDefault(m => m.Component == "btnSaveAndReturnBillingInfo").View)
+                                {
+                                    <input type="button" id="btnSaveAndReturnBillingInfo" class="button" value="save & return to purchase" />
+                                }
+                            </div>
+                        </fieldset>
+                    }
+                </div>
+            </fieldset>
+        }
+    }
+}

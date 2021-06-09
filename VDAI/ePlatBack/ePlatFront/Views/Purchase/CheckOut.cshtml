@@ -1,0 +1,269 @@
+﻿@model ePlatBack.Models.ViewModels.PurchaseProcessViewModel
+
+@{
+    ViewBag.Culture = Model.Page.Culture;
+    ViewBag.Title = Model.Page.Seo_Title;
+    ViewBag.Keywords = Model.Page.Seo_Keywords;
+    ViewBag.Description = Model.Page.Seo_Description;
+    ViewBag.Index = Model.Page.Seo_Index;
+    ViewBag.Follow = Model.Page.Seo_Follow;
+
+    ViewBag.FriendlyUrl = Model.Page.Seo_FriendlyUrl;
+    ViewBag.CanonicalDomain = Model.Page.CanonicalDomain;
+
+    ViewBag.OppositeLanguageUrl = "/Purchase/CheckOut";
+
+    ViewBag.Header = Model.Page.Template_Header;
+    ViewBag.Footer = Model.Page.Template_Footer;
+    ViewBag.Logo = Model.Page.Template_Logo;
+
+    ViewBag.Submenu1 = Model.Page.Submenu1;
+    ViewBag.Submenu2 = Model.Page.Submenu2;
+    ViewBag.Submenu3 = Model.Page.Submenu3;
+}
+
+@section header{
+    @Html.Raw(Model.Page.Scripts_Header)
+
+    <script src="https://banamex.dialectpayments.com/checkout/version/49/checkout.js"
+            data-error="errorCallback"
+            data-cancel="cancelCallback">
+    </script>
+
+    <script type="text/javascript">
+        function errorCallback(error) {
+            console.log('E:' + JSON.stringify(error));
+        }
+        function cancelCallback() {
+            console.log('Payment cancelled');
+        }
+    </script>
+}
+
+@section afterBody{
+    @Html.Raw(Model.Page.Scripts_AfterBody)
+}
+
+@section scripts{
+    @Html.Raw(Model.Page.Scripts_Footer)
+}
+
+@section featured {
+    @Html.Raw(Model.Page.Content_Header)
+}
+
+<div class="row container" id="CartStep2">
+    @using (Ajax.BeginForm("Save", new { Controller = "Purchase" }, new AjaxOptions { OnBegin = "UI.BookingEngine.CheckOut.onBegin()", OnSuccess = "UI.BookingEngine.CheckOut.onSuccess(data)", OnFailure = "UI.BookingEngine.CheckOut.onFailure({ResponseType : -1, ResponseMessage : '" + ePlatFront.Resources.Views.Home.FreeVacationStrings.Failure + "'})" }, new { id = "CheckOutForm", style = "display:inline-block", onSubmit = "return UI.BookingEngine.CheckOut.validateForm();" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <div class="col s12 m7 l8">
+            <h1>@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_CheckOut</h1>
+            <div id="divPurchaseValidation" class="row" style="display:none;">
+                <div class="col s12">
+                    <div class="card-panel yellow lighten-5">
+                        <h5>@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Validation_Issues</h5>
+                        <div class="row">
+                            <div class="col s12 l6">
+                                <strong>@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Checkout_Customer_Information</strong>
+                                @Html.ValidationMessageFor(model => model.FirstName)
+                                @Html.ValidationMessageFor(model => model.LastName)
+                                @Html.ValidationMessageFor(model => model.Email)
+                                @Html.ValidationMessageFor(model => model.ConfirmEmail)
+                                @Html.ValidationMessageFor(model => model.Phone)
+                                @Html.ValidationMessageFor(model => model.Mobile)
+                                @Html.ValidationMessageFor(model => model.Address)
+                                @Html.ValidationMessageFor(model => model.City)
+                                @Html.ValidationMessageFor(model => model.State)
+                                @Html.ValidationMessageFor(model => model.Country)
+                                @Html.ValidationMessageFor(model => model.ZipCode)
+                            </div>
+                            <div class="col s12 l6">
+                                <strong>@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Travel_Information</strong>
+                                @Html.ValidationMessageFor(model => model.StayingAtPlaceID)
+                                @Html.ValidationMessageFor(model => model.StayingAt)
+                                <br /><br />
+                                <span class="payment-info">
+                                    <strong>Payment Information</strong>
+                                </span>
+                                @Html.ValidationMessageFor(model => model.CCHolderName)
+                                @Html.ValidationMessageFor(model => model.CCType)
+                                @Html.ValidationMessageFor(model => model.CCNumber)
+                                @Html.ValidationMessageFor(model => model.CCExpirationMonth)
+                                @Html.ValidationMessageFor(model => model.CCExpirationYear)
+                                @Html.ValidationMessageFor(model => model.CCSecurityNumber)
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <a class="btn waves-effect waves-light grey lighten-4 black-text right" style="margin-top: 10px;" id="btnClearForm">@ePlatFront.Resources.Views.Shared.SharedStrings.Clear_Form</a>
+                    <h4>@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Checkout_Customer_Information</h4>
+                </div>
+                <div class="input-field col l6 s12">
+                    @Html.LabelFor(model => model.FirstName)
+                    @Html.TextBoxFor(model => model.FirstName, new { tabindex = 1 })
+                </div>
+                <div class="input-field col l6 s12">
+                    @Html.LabelFor(model => model.LastName)
+                    @Html.TextBoxFor(model => model.LastName, new { tabindex = 2 })
+                </div>
+                <div class="input-field col l6 s12">
+                    @Html.LabelFor(model => model.Email)
+                    @Html.TextBoxFor(model => model.Email, new { tabindex = 3 })
+                </div>
+                <div class="input-field col l6 s12">
+                    @Html.LabelFor(model => model.ConfirmEmail)
+                    @Html.TextBoxFor(model => model.ConfirmEmail, new { tabindex = 4 })
+                </div>
+                <div class="input-field col l6 s12">
+                    @Html.LabelFor(model => model.Phone)
+                    @Html.TextBoxFor(model => model.Phone, new { data_format = "phone", tabindex = 5, maxlength = "14" })
+                </div>
+                <div class="input-field col l6 s12">
+                    @Html.LabelFor(model => model.Mobile)
+                    @Html.TextBoxFor(model => model.Mobile, new { data_format = "phone", tabindex = 6, maxlength = "14" })
+                </div>
+                <div class="input-field col l6 s12">
+                    @Html.LabelFor(model => model.Address)
+                    @Html.TextBoxFor(model => model.Address, new { tabindex = 7 })
+                </div>
+                <div class="input-field col l6 s12">
+                    @Html.LabelFor(model => model.City)
+                    @Html.TextBoxFor(model => model.City, new { tabindex = 8 })
+                </div>
+                <div class="input-field col l6 s12">
+                    @Html.LabelFor(model => model.State)
+                    @Html.TextBoxFor(model => model.State, new { tabindex = 9 })
+                </div>
+                <div class="input-field col l6 s12">
+                    @Html.DropDownListFor(model => model.Country, Model.Countries, new { tabindex = 10 })
+                    @Html.LabelFor(model => model.Country)
+                </div>
+                <div class="input-field col l6 s12">
+                    @Html.LabelFor(model => model.ZipCode)
+                    @Html.TextBoxFor(model => model.ZipCode, new { tabindex = 11 })
+                </div>
+                <div class="input-field col s12">
+                    <h4>@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Travel_Information</h4>
+                </div>
+                <div class="input-field col l6 s12">
+                    @Html.DropDownListFor(model => model.StayingAtPlaceID, Model.StayingAtPlaces, new { tabindex = 12 })
+                    @Html.LabelFor(model => model.StayingAtPlaceID)
+                    <div id="divStayingAt" style="display:none;">
+                        @Html.EditorFor(model => model.StayingAt, new { tabindex = 13 })
+                    </div>
+                </div>
+                <div class="payment-info">
+                    <div class="input-field col s12">
+                        <h4>@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Checkout_Payment_Information</h4>
+                    </div>
+                    <div class="input-field col l6 s12">
+                        @Html.LabelFor(model => model.CCHolderName)
+                        @Html.EditorFor(model => model.CCHolderName)
+                    </div>
+                    <div class="input-field col l6 s12">
+                        @Html.DropDownListFor(model => model.CCType, Model.CCTypes)
+                        @Html.LabelFor(model => model.CCType)
+                    </div>
+                    <div class="input-field col l6 s12">
+                        @Html.LabelFor(model => model.CCNumber)
+                        @Html.TextBoxFor(model => model.CCNumber, new { data_format = "card-number", maxlength = "19" })
+                    </div>
+                    <div class="input-field col l3 s6">
+                        @Html.DropDownListFor(model => model.CCExpirationMonth, Model.CCExpirationMonths, new { @class = "quart-column" })
+                        @Html.LabelFor(model => model.CCExpirationMonth)
+                    </div>
+                    <div class="input-field col l3 s6">
+                        @Html.DropDownListFor(model => model.CCExpirationYear, Model.CCExpirationYears, new { @class = "quart-column" })
+                    </div>
+                    <div class="input-field col l6 s12">
+                        @Html.LabelFor(model => model.CCSecurityNumber)
+                        @Html.EditorFor(model => model.CCSecurityNumber)
+                    </div>
+                </div>
+                <div class="input-field col s12">
+                    <h4>@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Checkout_Special</h4>
+                </div>
+                <div class="input-field col s12">
+                    @Html.TextAreaFor(model => model.Comments, new { @class = "materialize-textarea" })
+                    @Html.LabelFor(model => model.Comments)
+                </div>
+            </div>
+            @Html.HiddenFor(model => model.ItemsJSON)
+            @Html.HiddenFor(model => model.Total)
+            @Html.HiddenFor(model => model.Savings)
+            @Html.HiddenFor(model => model.PromoID)
+            @Html.HiddenFor(model => model.CurrencyID)
+            @Html.HiddenFor(model => model.TerminalID)
+            @Html.HiddenFor(model => model.PointOfSaleID)
+            @Html.HiddenFor(model => model.CampaignTag)
+            @Html.HiddenFor(model => model.PurchaseID)
+        </div>
+        <div class="col s12 m5 l4">
+            <br />
+            <div id="divCartTotals" class="card-panel grey lighten-3">
+                <span class="cart-subtotal">
+                    <span class="right right-align" id="CartSubTotal"></span>
+                    <span>Subtotal</span>
+                </span>
+                <div id="divPromoCodeAdd">
+                    <p>
+                        <div class="switch right">
+                            <label>
+                                No
+                                <input id="btnOpenPromocodePanel" type="checkbox">
+                                <span class="lever"></span>
+                                @ePlatFront.Resources.Views.Shared.SharedStrings.Yes
+                            </label>
+                        </div>
+                        @ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Have_PromoCode
+                    </p>
+                </div>
+                <div id="divPromoCodeApplied" style="display:none;">
+                    <span class="right" id="PromoCodeTotal"></span>
+                    <p class="label">Promo Code</p>
+                    <p></p>
+                </div>
+                <div id="divPromoCode" style="display:none;">
+                    <input type="text" id="PromoCode" class="browser-default black-text" />
+                    <a id="btnApplyPromoCode" class="waves-effect waves-light btn amber black-text">@ePlatFront.Resources.Views.Shared.SharedStrings.Apply</a>
+                </div>
+                <div class="divider"></div>
+                <div class="section">
+                    <span class="right right-align" id="CartTotal"></span>
+                    <span>Total</span>
+                </div>
+                <div class="divider"></div>
+                <div class="section">
+                    <span>@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Click_Place_Order_1 <a class="modal-trigger" href="#divTerms">@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Terms_and_Conditions</a> @ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Click_Place_Order_2 <a href="/privacy-policy" target="_blank">@ePlatFront.Resources.Views.Shared.SharedStrings.Privacy_Policy</a>. </span><br /><br />
+                    <button type="submit" id="btnCheckOut" class="btn waves-effect waves-light btn-large amber black-text">@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Place_your_Order</button>
+                    <div class="status-bar">
+                        <div class="preloader-wrapper small interaction-loading">
+                            <div class="spinner-layer spinner-green-only">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div><div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div><div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="interaction-message"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div id="divTerms" class="modal">
+    <div class="modal-content">
+        <h3>@ePlatFront.Resources.Views.Shared.SharedStrings.Mex_Terms_and_Conditions</h3>
+
+        @Html.Raw(Model.Terms)
+    </div>
+</div>

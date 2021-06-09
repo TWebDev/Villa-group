@@ -1,0 +1,33 @@
+﻿@model ePlatBack.Models.ViewModels.NotificationsViewModel
+
+<table id="tblSearchFormsResults" class="table dataTable">
+    <thead>
+        <tr>
+            <th>ID</th>
+            @*<th colspan="2">Form Name</th>*@
+            <th>Form Name</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ListForms != null)
+        {
+            foreach (var i in Model.ListForms)
+            {
+                var id = i.FormInfo_FormID;
+                <tr id="@id" title="click to get history" data-formguid ="@i.FormInfo_FormGUID">
+                    <td>
+                        @Html.DisplayFor(model => i.FormInfo_FormID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.FormInfo_Name)
+                    </td>
+                    <td>
+                        @*<input type="button" class="button send-notification" value="send" title="click to send form"/>*@
+                        <i class="material-icons send-notification right" title="click to send form">email</i>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

@@ -1,0 +1,900 @@
+﻿@model ePlatBack.Models.ViewModels.CallsByLocationViewModel.CallsByLocationResults
+
+<div class="table-div">
+    <div class="table-row">
+        <div class="table-cell">
+            Dates Range<br />
+            From @Model.FromDate to @Model.ToDate
+            <br /><br />
+            Phone Labels
+            @Html.Raw(@Model.PhoneLabels)
+            <br /><br />
+            Total Inbound Records<br />
+            @Model.TotalRecords
+        </div>
+        <div class="table-cell">
+            Calls by Duration<br />
+            <div id="chartDuration" style="width: 300px; height: 250px;"></div>
+            Calls by State<br />
+            <div id="chartStateCalls" style="width: 300px; height: 250px;"></div>
+        </div>
+        <div class="table-cell">
+            Calls by Extension<br />
+            <div id="chartExtension" style="width: 300px; height: 250px;"></div>
+            Bookings by State<br />
+            <div id="chartStateBookings" style="width: 300px; height: 250px;"></div>
+        </div>
+        <div class="table-cell">
+            Calls by Label<br />
+            <div id="chartLabel" style="width: 300px; height: 250px;"></div>
+            Bookings by Destination<br />
+            <div id="chartDestinationBookings" style="width: 300px; height: 250px;"></div>
+        </div>
+    </div>
+</div>
+
+<div id="tabs">
+    <ul>
+        <li><a href="#tabs-0">By Code</a></li>
+        <li><a href="#tabs-1">By Area</a></li>
+        <li><a href="#tabs-2">By State</a></li>
+        <li><a href="#tabs-3">By Country</a></li>
+        <li><a href="#tabs-4">Calls</a></li>
+        <li><a href="#tabs-5">Bookings</a></li>
+    </ul>
+    <div id="tabs-0">
+        <div style="clear:both; margin-top: 25px;"></div>
+        <table class="table exportable non-editable sortable" style="font-size:.8em">
+            <thead>
+                <tr class="hover-footer">
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>@Model.Duration.MoreThanForty</th>
+                    <th></th>
+                    <th>@Model.Sales.Count()</th>
+                    <th>@Model.BookingRate.ToString("00.00")%</th>
+                    @foreach (var destination in Model.DestinationBookings)
+                    {
+                        <th>@destination.Calls</th>
+                        <th>@destination.Bookings</th>
+                        <th>@destination.DestinationPercentage.ToString("00.00")%</th>
+                    }
+                </tr>
+                <tr>
+                    <th rowspan="2">Country</th>
+                    <th rowspan="2">State</th>
+                    <th rowspan="2">Area</th>
+                    <th rowspan="2">Code</th>
+                    <th rowspan="2">Total</th>
+                    <th rowspan="2">%</th>
+                    <th rowspan="2">Bookings</th>
+                    <th rowspan="2">%</th>
+                    @foreach (var destination in Model.DestinationBookings)
+                    {
+                        <th colspan="3">@destination.DestinationInitials</th>
+                    }
+                </tr>
+                <tr>
+                    @foreach (var destination in Model.DestinationBookings)
+                    {
+                        <th>C</th>
+                        <th>B</th>
+                        <th>%</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var country in Model.CallsByCountry)
+                {
+                    foreach (var state in country.States)
+                    {
+                        foreach (var area in state.Areas)
+                        {
+                            foreach (var code in area.Codes)
+                            {
+                                <tr>
+                                    <td>@country.Country</td>
+                                    <td>@state.State</td>
+                                    <td>@area.Area</td>
+                                    <td>
+                                        <span style="font-size: 1.2em;">
+                                            @code.Code
+                                        </span>
+                                        <span style="color:#999; display:block; width: 150px; font-size: .8em;">
+                                            @code.Places
+                                        </span>
+                                    </td>
+                                    <td>
+                                        @code.TotalCodeCalls
+                                    </td>
+                                    <td>
+                                        @code.PercentageCodeCalls.ToString("00.00")%
+                                    </td>
+                                    <td>
+                                        @code.TotalCodeSales
+                                    </td>
+                                    <td>
+                                        @code.BookingRate.ToString("00.00")%
+                                    </td>
+                                    @foreach (var destination in Model.DestinationBookings)
+                                    {
+                                        if (code.DestinationBookings.Count(z => z.Destination == destination.Destination) > 0)
+                                        {
+                                            <td>@code.DestinationBookings.FirstOrDefault(z => z.Destination == destination.Destination).Calls</td>
+                                            <td>@code.DestinationBookings.FirstOrDefault(z => z.Destination == destination.Destination).Bookings</td>
+                                            <td>@code.DestinationBookings.FirstOrDefault(z => z.Destination == destination.Destination).DestinationPercentage.ToString("00.00")%</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="disabled-row">0</td>
+                                            <td class="disabled-row">0</td>
+                                            <td class="disabled-row">00.00%</td>
+                                        }
+                                    }
+                                </tr>
+                            }
+                        }
+                    }
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>@Model.Duration.MoreThanForty</th>
+                    <th></th>
+                    <th>@Model.Sales.Count()</th>
+                    <th>@Model.BookingRate.ToString("00.00")%</th>
+                    @foreach (var destination in Model.DestinationBookings)
+                    {
+                        <th>@destination.Calls</th>
+                        <th>@destination.Bookings</th>
+                        <th>@destination.DestinationPercentage.ToString("00.00")%</th>
+                    }
+                </tr>
+            </tfoot>
+        </table>
+        <div style="clear:both;"></div>
+    </div>
+    <div id="tabs-1">
+        <div style="clear:both; margin-top: 25px;"></div>
+        <table class="table exportable non-editable sortable" style="font-size:.8em">
+            <thead>
+                <tr class="hover-footer">
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>@Model.Duration.MoreThanForty</th>
+                    <th></th>
+                    <th>@Model.Sales.Count()</th>
+                    <th>@Model.BookingRate.ToString("00.00")%</th>
+                    @foreach (var destination in Model.DestinationBookings)
+                    {
+                        <th>@destination.Calls</th>
+                        <th>@destination.Bookings</th>
+                        <th>@destination.DestinationPercentage.ToString("00.00")%</th>
+                    }
+                </tr>
+                <tr>
+                    <th rowspan="2">Country</th>
+                    <th rowspan="2">State</th>
+                    <th rowspan="2">Area</th>
+                    <th rowspan="2">Total</th>
+                    <th rowspan="2">%</th>
+                    <th rowspan="2">Bookings</th>
+                    <th rowspan="2">%</th>
+                    @foreach (var destination in Model.DestinationBookings)
+                    {
+                        <th colspan="3">@destination.DestinationInitials</th>
+                    }
+                </tr>
+                <tr>
+                    @foreach (var destination in Model.DestinationBookings)
+                    {
+                        <th>C</th>
+                        <th>B</th>
+                        <th>%</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var country in Model.CallsByCountry)
+                {
+                    foreach (var state in country.States)
+                    {
+                        foreach (var area in state.Areas)
+                        {
+                            <tr>
+                                <td>@country.Country</td>
+                                <td>@state.State</td>
+                                <td>@area.Area</td>
+                                <td>
+                                    @area.TotalAreaCalls
+                                </td>
+                                <td>
+                                    @area.PercentageAreaCalls.ToString("00.00")%
+                                </td>
+                                <td>
+                                    @area.TotalAreaSales
+                                </td>
+                                <td>
+                                    @area.BookingRate.ToString("00.00")%
+                                </td>
+                                @foreach (var destination in Model.DestinationBookings)
+                                {
+                                    if (area.DestinationBookings.Count(z => z.Destination == destination.Destination) > 0)
+                                    {
+                                        <td>@area.DestinationBookings.FirstOrDefault(z => z.Destination == destination.Destination).Calls</td>
+                                        <td>@area.DestinationBookings.FirstOrDefault(z => z.Destination == destination.Destination).Bookings</td>
+                                        <td>@area.DestinationBookings.FirstOrDefault(z => z.Destination == destination.Destination).DestinationPercentage.ToString("00.00")%</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="disabled-row">0</td>
+                                        <td class="disabled-row">0</td>
+                                        <td class="disabled-row">00.00%</td>
+                                    }
+                                }
+                            </tr>
+                        }
+                    }
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>@Model.Duration.MoreThanForty</th>
+                    <th></th>
+                    <th>@Model.Sales.Count()</th>
+                    <th>@Model.BookingRate.ToString("00.00")%</th>
+                    @foreach (var destination in Model.DestinationBookings)
+                    {
+                        <th>@destination.Calls</th>
+                        <th>@destination.Bookings</th>
+                        <th>@destination.DestinationPercentage.ToString("00.00")%</th>
+                    }
+                </tr>
+            </tfoot>
+        </table>
+        <div style="clear:both;"></div>
+    </div>
+    <div id="tabs-2">
+        <div style="clear:both; margin-top: 25px;"></div>
+        <table class="table exportable non-editable sortable" style="font-size:.8em">
+            <thead>
+                <tr class="hover-footer">
+                    <th></th>
+                    <th>@Model.Duration.MoreThanForty</th>
+                    <th></th>
+                    <th>@Model.Sales.Count()</th>
+                    <th>@Model.BookingRate.ToString("00.00")%</th>
+                    @foreach (var destination in Model.DestinationBookings)
+                    {
+                        <th>@destination.Calls</th>
+                        <th>@destination.Bookings</th>
+                        <th>@destination.DestinationPercentage.ToString("00.00")%</th>
+                    }
+                </tr>
+                <tr>
+                    <th rowspan="2">State</th>
+                    <th rowspan="2">Total</th>
+                    <th rowspan="2">%</th>
+                    <th rowspan="2">Bookings</th>
+                    <th rowspan="2">%</th>
+                    @foreach (var destination in Model.DestinationBookings)
+                    {
+                        <th colspan="3">@destination.DestinationInitials</th>
+                    }
+                </tr>
+                <tr>
+                    @foreach (var destination in Model.DestinationBookings)
+                    {
+                        <th>C</th>
+                        <th>B</th>
+                        <th>%</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var country in Model.CallsByCountry)
+                {
+                    foreach (var state in country.States)
+                    {
+                        <tr>
+                            <td>
+                                <span style="font-size: 1.2em; display:block;">
+                                    @state.State
+                                </span>
+                                <span style="font-size: .8em; color: #999;">
+                                    @country.Country
+                                </span>
+                            </td>
+                            <td>@state.TotalStateCalls</td>
+                            <td>@state.PercentageStateCalls.ToString("00.00")%</td>
+                            <td>@state.TotalStateSales</td>
+                            <td>@state.BookingRate.ToString("00.00")%</td>
+                            @foreach (var destination in Model.DestinationBookings)
+                            {
+                                if (state.DestinationBookings.Count(z => z.Destination == destination.Destination) > 0)
+                                {
+                                    <td>@state.DestinationBookings.FirstOrDefault(z => z.Destination == destination.Destination).Calls</td>
+                                    <td>@state.DestinationBookings.FirstOrDefault(z => z.Destination == destination.Destination).Bookings</td>
+                                    <td>@state.DestinationBookings.FirstOrDefault(z => z.Destination == destination.Destination).DestinationPercentage.ToString("00.00")%</td>
+                                }
+                                else
+                                {
+                                    <td class="disabled-row">0</td>
+                                    <td class="disabled-row">0</td>
+                                    <td class="disabled-row">00.00%</td>
+                                }
+                            }
+                        </tr>
+                    }
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th>@Model.Duration.MoreThanForty</th>
+                    <th></th>
+                    <th>@Model.Sales.Count()</th>
+                    <th>@Model.BookingRate.ToString("00.00")%</th>
+                    @foreach (var destination in Model.DestinationBookings)
+                    {
+                        <th>@destination.Calls</th>
+                        <th>@destination.Bookings</th>
+                        <th>@destination.DestinationPercentage.ToString("00.00")%</th>
+                    }
+                </tr>
+            </tfoot>
+        </table>
+        <div style="clear:both;"></div>
+    </div>
+    <div id="tabs-3">
+        <div style="clear:both; margin-top: 25px;"></div>
+        <table id="tblCallsByCountry" class="table exportable non-editable non-stripable" style="width:100%; font-size: .8em;">
+            <thead>
+                <tr>
+                    <th>Country</th>
+                    <th>State</th>
+                    <th>Area</th>
+                    <th>Code</th>
+                    <th>Code Total</th>
+                    <th>Code %</th>
+                    <th>Code Bookings</th>
+                    <th>Booking %</th>
+                    <th>Area Total</th>
+                    <th>Area %</th>
+                    <th>Area Bookings</th>
+                    <th>Booking %</th>
+                    <th>State Total</th>
+                    <th>State %</th>
+                    <th>State Bookings</th>
+                    <th>Booking %</th>
+                    <th>Country Total</th>
+                    <th>Country %</th>
+                    <th>Country Bookings</th>
+                    <th>Booking %</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var country in Model.CallsByCountry)
+                {
+                    <tr>
+                        <td rowspan="@country.Span">
+                            @country.Country
+                        </td>
+                        <td rowspan="@country.States.FirstOrDefault().Span">
+                            @country.States.FirstOrDefault().State
+                        </td>
+                        <td rowspan="@country.States.FirstOrDefault().Areas.FirstOrDefault().Span">
+                            @country.States.FirstOrDefault().Areas.FirstOrDefault().Area
+                        </td>
+                        <td>
+                            @country.States.FirstOrDefault().Areas.FirstOrDefault().Codes.FirstOrDefault().Code
+                        </td>
+                        <td>
+                            @country.States.FirstOrDefault().Areas.FirstOrDefault().Codes.FirstOrDefault().TotalCodeCalls
+                        </td>
+                        <td>
+                            @country.States.FirstOrDefault().Areas.FirstOrDefault().Codes.FirstOrDefault().PercentageAreaCalls.ToString("0.00")%
+                        </td>
+                        <td>
+                            @country.States.FirstOrDefault().Areas.FirstOrDefault().Codes.FirstOrDefault().TotalCodeSales
+                        </td>
+                        <td>
+                            @country.States.FirstOrDefault().Areas.FirstOrDefault().Codes.FirstOrDefault().BookingRate.ToString("0.00")%
+                        </td>
+                        <td rowspan="@country.States.FirstOrDefault().Areas.FirstOrDefault().Span">
+                            @country.States.FirstOrDefault().Areas.FirstOrDefault().TotalAreaCalls
+                        </td>
+                        <td rowspan="@country.States.FirstOrDefault().Areas.FirstOrDefault().Span">
+                            @country.States.FirstOrDefault().Areas.FirstOrDefault().PercentageStateCalls.ToString("0.00")%
+                        </td>
+                        <td rowspan="@country.States.FirstOrDefault().Areas.FirstOrDefault().Span">
+                            @country.States.FirstOrDefault().Areas.FirstOrDefault().TotalAreaSales
+                        </td>
+                        <td rowspan="@country.States.FirstOrDefault().Areas.FirstOrDefault().Span">
+                            @country.States.FirstOrDefault().Areas.FirstOrDefault().BookingRate.ToString("0.00")%
+                        </td>
+                        <td rowspan="@country.States.FirstOrDefault().Span">
+                            @country.States.FirstOrDefault().TotalStateCalls
+                        </td>
+                        <td rowspan="@country.States.FirstOrDefault().Span">
+                            @country.States.FirstOrDefault().PercentageCountryCalls.ToString("0.00")%
+                        </td>
+                        <td rowspan="@country.States.FirstOrDefault().Span">
+                            @country.States.FirstOrDefault().TotalStateSales
+                        </td>
+                        <td rowspan="@country.States.FirstOrDefault().Span">
+                            @country.States.FirstOrDefault().BookingRate.ToString("0.00")%
+                        </td>
+                        <td rowspan="@country.Span">
+                            @country.TotalCountryCalls
+                        </td>
+                        <td rowspan="@country.Span">
+                            @country.PercentageCountryCalls.ToString("0.00")%
+                        </td>
+                        <td rowspan="@country.Span">
+                            @country.TotalCountrySales
+                        </td>
+                        <td rowspan="@country.Span">
+                            @country.BookingRate.ToString("0.00")%
+                        </td>
+                    </tr>
+                    foreach (var code in @country.States.FirstOrDefault().Areas.FirstOrDefault().Codes.Skip(1))
+                    {
+                        <tr>
+                            <td>
+                                @code.Code
+                            </td>
+                            <td>
+                                @code.TotalCodeCalls
+                            </td>
+                            <td>
+                                @code.PercentageAreaCalls.ToString("0.00")%
+                            </td>
+                            <td>
+                                @code.TotalCodeSales
+                            </td>
+                            <td>
+                                @code.BookingRate
+                            </td>
+                        </tr>
+                    }
+                    foreach (var area in @country.States.FirstOrDefault().Areas.Skip(1))
+                    {
+                        <tr>
+                            <td rowspan="@area.Span">
+                                @area.Area
+                            </td>
+                            <td>
+                                @area.Codes.FirstOrDefault().Code
+                            </td>
+                            <td>
+                                @area.Codes.FirstOrDefault().TotalCodeCalls
+                            </td>
+                            <td>
+                                @area.Codes.FirstOrDefault().PercentageAreaCalls.ToString("0.00")%
+                            </td>
+                            <td>
+                                @area.Codes.FirstOrDefault().TotalCodeSales
+                            </td>
+                            <td>
+                                @area.Codes.FirstOrDefault().BookingRate.ToString("0.00")%
+                            </td>
+                            <td rowspan="@area.Span">
+                                @area.TotalAreaCalls
+                            </td>
+                            <td rowspan="@area.Span">
+                                @area.PercentageStateCalls.ToString("0.00")%
+                            </td>
+                            <td rowspan="@area.Span">
+                                @area.TotalAreaSales
+                            </td>
+                            <td rowspan="@area.Span">
+                                @area.BookingRate.ToString("0.00")%
+                            </td>
+                        </tr>
+                        foreach (var code in @area.Codes.Skip(1))
+                        {
+                            <tr>
+                                <td>
+                                    @code.Code
+                                </td>
+                                <td>
+                                    @code.TotalCodeCalls
+                                </td>
+                                <td>
+                                    @code.PercentageAreaCalls.ToString("0.00")%
+                                </td>
+                                <td>
+                                    @code.TotalCodeSales
+                                </td>
+                                <td>
+                                    @code.BookingRate.ToString("0.00")%
+                                </td>
+                            </tr>
+                        }
+                    }
+                    foreach (var state in @country.States.Skip(1))
+                    {
+                        <tr>
+                            <td rowspan="@state.Span">
+                                @state.State
+                            </td>
+                            <td rowspan="@state.Areas.FirstOrDefault().Span">
+                                @state.Areas.FirstOrDefault().Area
+                            </td>
+                            <td>
+                                @state.Areas.FirstOrDefault().Codes.FirstOrDefault().Code
+                            </td>
+                            <td>
+                                @state.Areas.FirstOrDefault().Codes.FirstOrDefault().TotalCodeCalls
+                            </td>
+                            <td>
+                                @state.Areas.FirstOrDefault().Codes.FirstOrDefault().PercentageAreaCalls.ToString("0.00")%
+                            </td>
+                            <td>
+                                @state.Areas.FirstOrDefault().Codes.FirstOrDefault().TotalCodeSales
+                            </td>
+                            <td>
+                                @state.Areas.FirstOrDefault().Codes.FirstOrDefault().BookingRate.ToString("0.00")%
+                            </td>
+                            <td rowspan="@state.Areas.FirstOrDefault().Span">
+                                @state.Areas.FirstOrDefault().TotalAreaCalls
+                            </td>
+                            <td rowspan="@state.Areas.FirstOrDefault().Span">
+                                @state.Areas.FirstOrDefault().PercentageStateCalls.ToString("0.00")%
+                            </td>
+                            <td rowspan="@state.Areas.FirstOrDefault().Span">
+                                @state.Areas.FirstOrDefault().TotalAreaSales
+                            </td>
+                            <td rowspan="@state.Areas.FirstOrDefault().Span">
+                                @state.Areas.FirstOrDefault().BookingRate.ToString("0.00")%
+                            </td>
+                            <td rowspan="@state.Span">
+                                @state.TotalStateCalls
+                            </td>
+                            <td rowspan="@state.Span">
+                                @state.PercentageCountryCalls.ToString("0.00")%
+                            </td>
+                            <td rowspan="@state.Span">
+                                @state.TotalStateSales
+                            </td>
+                            <td rowspan="@state.Span">
+                                @state.BookingRate.ToString("0.00")%
+                            </td>
+                        </tr>
+                        foreach (var code in state.Areas.FirstOrDefault().Codes.Skip(1))
+                        {
+                            <tr>
+                                <td>
+                                    @code.Code
+                                </td>
+                                <td>
+                                    @code.TotalCodeCalls
+                                </td>
+                                <td>
+                                    @code.PercentageAreaCalls.ToString("0.00")%
+                                </td>
+                                <td>
+                                    @code.TotalCodeSales
+                                </td>
+                                <td>
+                                    @code.BookingRate.ToString("0.00")%
+                                </td>
+                            </tr>
+                        }
+                        foreach (var area in state.Areas.Skip(1))
+                        {
+                            <tr>
+                                <td rowspan="@area.Span">
+                                    @area.Area
+                                </td>
+                                <td>
+                                    @area.Codes.FirstOrDefault().Code
+                                </td>
+                                <td>
+                                    @area.Codes.FirstOrDefault().TotalCodeCalls
+                                </td>
+                                <td>
+                                    @area.Codes.FirstOrDefault().PercentageAreaCalls.ToString("0.00")%
+                                </td>
+                                <td>
+                                    @area.Codes.FirstOrDefault().TotalCodeSales
+                                </td>
+                                <td>
+                                    @area.Codes.FirstOrDefault().BookingRate.ToString("0.00")%
+                                </td>
+                                <td rowspan="@area.Span">
+                                    @area.TotalAreaCalls
+                                </td>
+                                <td rowspan="@area.Span">
+                                    @area.PercentageStateCalls.ToString("0.00")%
+                                </td>
+                                <td rowspan="@area.Span">
+                                    @area.TotalAreaSales
+                                </td>
+                                <td rowspan="@area.Span">
+                                    @area.BookingRate.ToString("0.00")%
+                                </td>
+                            </tr>
+                            foreach (var code in @area.Codes.Skip(1))
+                            {
+                                <tr>
+                                    <td>
+                                        @code.Code
+                                    </td>
+                                    <td>
+                                        @code.TotalCodeCalls
+                                    </td>
+                                    <td>
+                                        @code.PercentageAreaCalls.ToString("0.00")%
+                                    </td>
+                                    <td>
+                                        @code.TotalCodeSales
+                                    </td>
+                                    <td>
+                                        @code.BookingRate.ToString("0.00")%
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    <div id="tabs-4">
+        <div style="clear:both; margin-top: 25px;"></div>
+        <table class="table exportable non-editable sortable" style="width:100%;">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Source</th>
+                    <th>Label</th>
+                    <th>Extension</th>
+                    <th>Duration</th>
+                    <th>Code</th>
+                    <th>Area</th>
+                    <th>State</th>
+                    <th>Country</th>
+                    <th>Destination</th>
+                    <th>FC/FU</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var country in Model.CallsByCountry)
+                {
+                    foreach (var state in country.States)
+                    {
+                        foreach (var area in state.Areas)
+                        {
+                            foreach (var code in area.Codes)
+                            {
+                                foreach (var call in code.Calls)
+                                {
+                                    <tr class="@(call.Duplicated ? "disabled-row" : "")@(call.Booking ? " pre-booked" : "")">
+                                        <td>@call.CallDate</td>
+                                        <td>
+                                            @if (call.Source.Length == 10)
+                                            {
+                                                <span>@call.Source.Substring(0, 3) &bull; &bull; &bull; &bull; &bull;@call.Source.Substring(8, 2)</span>
+                                            }
+                                            else
+                                            {
+                                                @call.Source
+                                            }
+                                        </td>
+                                        <td>@call.Label</td>
+                                        <td>@call.Extension</td>
+                                        <td>@call.Duration</td>
+                                        <td><span title="@code.Places">@code.Code</span></td>
+                                        <td>@area.Area</td>
+                                        <td>@state.State</td>
+                                        <td>@country.Country</td>
+                                        <td>@call.Destination</td>
+                                        <td>@(call.Duplicated ? "Follow Up" : "First Contact")</td>
+                                    </tr>
+                                }
+                            }
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+        <div style="clear:both;"></div>
+    </div>
+    <div id="tabs-5">
+        <div style="clear:both; margin-top: 25px;"></div>
+        <table class="table exportable non-editable sortable" style="width:100%; font-size: .8em;">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Certificate</th>
+                    <th>Phone 1</th>
+                    <th>Phone 2</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Arrival</th>
+                    <th>Departure</th>
+                    <th>Destination</th>
+                    <th>Resort</th>
+                    <th>Status</th>
+                    <th>Code</th>
+                    <th>Area</th>
+                    <th>State</th>
+                    <th>Country</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var sale in Model.Sales)
+                {
+                    <tr class="@(!sale.Matched ? "disabled-row" : "pre-booked")">
+                        <td>@sale.SaleDate.Value.ToString("yyyy-MM-dd")</td>
+                        <td>@sale.Certificate</td>
+                        <td>
+                            @if (sale.Phone1.Length >= 10)
+                            {
+                                <span>
+                                    @sale.Phone1.Substring(0, 3)&bull; &bull; &bull; &bull; &bull;@sale.Phone1.Substring(8, 2)
+                                </span>
+                            }
+                        </td>
+                        <td>
+                            @if (sale.Phone2.Length >= 10)
+                            {
+                                <span>@sale.Phone2.Substring(0, 3)&bull;&bull;&bull;&bull;&bull;@sale.Phone2.Substring(8, 2)</span>
+                            }
+                        </td>
+                        <td>@sale.FirstName</td>
+                        <td>@sale.LastName</td>
+                        <td>@sale.Arrival</td>
+                        <td>@sale.Departure</td>
+                        <td>@sale.Destination</td>
+                        <td>@sale.Resort</td>
+                        <td>@sale.Status</td>
+                        <td>@sale.Code</td>
+                        <td>@sale.Area</td>
+                        <td>@sale.State</td>
+                        <td>@sale.Country</td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+        <div style="clear:both;"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    google.charts.load("current", { packages: ["corechart"] });
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+        //chartDuration
+        var dataChartDuration = google.visualization.arrayToDataTable([
+            ['Duration', 'Calls'],
+            ['<40', @Model.Duration.LessThanForty],
+            ['<40 FU', @Model.Duration.LessThanFortyDuplicated],
+            ['>40', @Model.Duration.MoreThanForty],
+            ['>40 FU', @Model.Duration.Duplicated]
+        ]);
+
+        var optionsChartDuration = {
+            title: '',
+            pieHole: 0.4,
+            chartArea: { top: 0, height: '80%' },
+            legend: { position: 'bottom' }
+        };
+
+        var chartDuration = new google.visualization.PieChart(document.getElementById('chartDuration'));
+        chartDuration.draw(dataChartDuration, optionsChartDuration);
+
+        //chartExtension
+        var dataChartExtension = google.visualization.arrayToDataTable([
+          ['Extension', 'Calls'],
+          @foreach (var ext in Model.ExtensionCalls)
+          {
+            @:['@ext.Extension', @ext.TotalCalls]@(ext.Extension != Model.ExtensionCalls.Last().Extension ? "," : "")
+              }
+        ]);
+
+        var optionsChartExtension = {
+            title: '',
+            pieHole: 0.4,
+            chartArea: { top: 0, height: '80%' },
+            legend: { position: 'bottom' }
+        };
+
+        var chartExtension = new google.visualization.PieChart(document.getElementById('chartExtension'));
+        chartExtension.draw(dataChartExtension, optionsChartExtension);
+
+        //chartLabel
+        var dataChartLabel = google.visualization.arrayToDataTable([
+          ['Label', 'Calls'],
+          @foreach (var label in Model.LabelCalls){
+              @:['@label.Label', @label.TotalCalls]@(label.Label != Model.LabelCalls.Last().Label ? "," : "")
+              }
+        ]);
+
+        var optionsChartLabel = {
+            title: '',
+            pieHole: 0.4,
+            chartArea: { top: 0, height: '80%' },
+            legend: { position: 'bottom' }
+        };
+
+        var chartLabel = new google.visualization.PieChart(document.getElementById('chartLabel'));
+        chartLabel.draw(dataChartLabel, optionsChartLabel);
+
+        //chartDestinationBookings
+        var dataChartDestinationBookings = google.visualization.arrayToDataTable([
+         ['Destination', 'Bookings'],
+         @foreach (var destination in Model.DestinationBookings){
+            @:['@destination.Destination', @destination.Bookings]@(destination.Destination != Model.DestinationBookings.Last().Destination ? "," : "")
+            }
+        ]);
+
+        var optionsChartDestinationBookings = {
+            title: '',
+            pieHole: 0.4,
+            chartArea: { top: 0, height: '80%' },
+            legend: { position: 'bottom' }
+        };
+
+        var chartDestinationBookings = new google.visualization.PieChart(document.getElementById('chartDestinationBookings'));
+        chartDestinationBookings.draw(dataChartDestinationBookings, optionsChartDestinationBookings);
+
+        //chartStateCalls
+        var dataChartStateCalls = google.visualization.arrayToDataTable([
+        ['State', 'Calls'],
+        @foreach (var country in Model.CallsByCountry)
+        {
+            foreach (var state in country.States)
+            {
+                @:['@state.State', @state.TotalStateCalls]@(state.State != Model.CallsByCountry.Last().States.Last().State ? "," : "")
+            }
+        }
+        ]);
+
+        var optionsChartStateCalls = {
+            title: '',
+            pieHole: 0.4,
+            chartArea: { top: 0, height: '80%' },
+            legend: { position: 'bottom' }
+        };
+
+        var chartStateCalls = new google.visualization.PieChart(document.getElementById('chartStateCalls'));
+        chartStateCalls.draw(dataChartStateCalls, optionsChartStateCalls);
+
+        //chartStateBookings
+        var dataChartStateBookings = google.visualization.arrayToDataTable([
+        ['State', 'Bookings'],
+        @foreach (var country in Model.CallsByCountry)
+        {
+            foreach (var state in country.States)
+            {
+                 @:['@state.State', @state.TotalStateSales]@(state.State != Model.CallsByCountry.Last().States.Last().State ? "," : "")
+            }
+        }
+        ]);
+
+        var optionsChartStateBookings = {
+            title: '',
+            pieHole: 0.4,
+            chartArea: { top: 0, height: '80%' },
+            legend: { position: 'bottom' }
+        };
+
+        var chartStateBookings = new google.visualization.PieChart(document.getElementById('chartStateBookings'));
+        chartStateBookings.draw(dataChartStateBookings, optionsChartStateBookings);
+
+    }
+</script>

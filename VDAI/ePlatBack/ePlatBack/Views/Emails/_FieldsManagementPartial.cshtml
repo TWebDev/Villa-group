@@ -1,0 +1,138 @@
+﻿@model ePlatBack.Models.ViewModels.FieldsInfoModel
+
+<fieldset id="fdsFieldsPerGroup">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        Fields Per Group
+    </legend>
+    <div class="align-from-top" style="display:none">
+        <div class="full-width align-from-bottom">
+            <input type="button" id="btnNewFieldInfo" class="submit right fieldset-expander" value="new" />
+        </div>
+        <div id="divTblExistingFields" class="full-width align-from-bottom align-from-top">
+            <table id="tblSearchFieldsResults" class="table dataTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Field</th>
+                        <th>Parent Field</th>
+                        <th>Field Type</th>
+                        <th>SubType</th>
+                        <th>Description</th>
+                        <th>Options</th>
+                        <th>Order</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <fieldset id="fdsFieldInfo" class="primary-selected-row-dependent">
+            <legend>
+                <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+                Field Info
+            </legend>
+            <div class="align-from-top" style="display:none">
+                @using (Ajax.BeginForm("SaveField", "Emails", new AjaxOptions { OnSuccess = "EMAIL.saveFieldSuccess(data)" }, new { id = "frmFieldInfo", onSubmit = "return UI.showValidationSummary(this.id);" }))
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.FieldsInfo_Field)
+                            @Html.HiddenFor(model => model.FieldsInfo_FieldID)
+                            @Html.HiddenFor(model => model.FieldsInfo_FieldGroup, new { @class = "primary-selected-row-dependent", data_keep_value = "true" })
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.FieldsInfo_Field, new { data_format = "free-case"})
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.FieldsInfo_Description)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.FieldsInfo_Description)
+                        </div>
+                    </div>
+                    @*<div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.FieldsInfo_FieldGuid)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.FieldsInfo_FieldGuid)
+                        </div>
+                    </div>*@
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.FieldsInfo_FieldType)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.FieldsInfo_FieldType, Model.FieldsInfo_DrpFieldTypes)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.FieldsInfo_FieldSubType)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.FieldsInfo_FieldSubType, Model.FieldsInfo_DrpFieldSubTypes)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.FieldsInfo_ParentField)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.FieldsInfo_ParentField, Model.FieldsInfo_DrpFields)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.FieldsInfo_Visibility)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.FieldsInfo_Visibility, new { @class = "numeric-field" })
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.FieldsInfo_VisibleIf)
+                        </div>
+                        <div class="editor-field">
+                            <label for="FieldsInfo_VisibleIf">Yes</label>
+                            @Html.RadioButtonFor(model => model.FieldsInfo_VisibleIf, true, new { data_keep_value = "" })
+                            <label for="FieldsInfo_VisibleIf">No</label>
+                            @Html.RadioButtonFor(model => model.FieldsInfo_VisibleIf, false, new { data_keep_value = "" })
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.FieldsInfo_VisibleIfGuid)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.FieldsInfo_VisibleIfGuid, Model.FieldsInfo_DrpFieldGuids)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.FieldsInfo_Options)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.FieldsInfo_Options)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.FieldsInfo_Order)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.FieldsInfo_Order, new { @class = "numeric-field" })
+                        </div>
+                    </div>
+                    <div class="full-width align-from-top">
+                        <input type="submit" class="submit right" value="save" />
+                    </div>
+                }
+            </div>
+        </fieldset>
+    </div>
+</fieldset>

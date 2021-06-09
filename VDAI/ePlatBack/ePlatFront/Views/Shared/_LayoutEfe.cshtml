@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+
+<html lang="@ViewBag.Culture">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>@ViewBag.Title</title>
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="keywords" content="@ViewBag.Keywords">
+    <meta name="description" content="@ViewBag.Description">
+    <meta name="robots" content="@ViewBag.Index, @ViewBag.Follow">
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    @Styles.Render("//fonts.googleapis.com/css?family=Open+Sans:400,700")
+    <link href="~/Content/themes/efe/css/main.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @RenderSection("header", required: false)
+</head>
+<body>
+    @RenderSection("afterBody", required: false)
+    @RenderSection("featured", required: false)
+    <div class="content">
+        @RenderBody()
+    </div>
+    @RenderSection("controls", required: false)
+    <script src="/Scripts/jquery.json-2.3.min.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

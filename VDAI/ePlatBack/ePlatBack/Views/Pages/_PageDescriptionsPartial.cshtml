@@ -1,0 +1,116 @@
+﻿@model ePlatBack.Models.ViewModels.PageDescriptionModel
+
+<fieldset id="fdsPageDescriptions" class="view-restricted" style="display: none">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" alt="" class="fieldset-indicator fds-indicator-separator">
+        Page Descriptions
+    </legend>
+    <div style="display: none">
+        <div class="full-width align-from-bottom">
+            <input type="button" id="btnNewPageDescriptionInfo" class="submit fieldset-expander right" value="new" />
+        </div>
+        <ul id="ulPageDescriptions" class="primary-selected-row-dependent half-width"></ul>
+        <fieldset id="fdsPageDescriptionInfo">
+            <legend>
+                <img src="/Content/themes/base/images/eplat_show.jpg" alt="" class="fieldset-indicator fds-indicator-separator">
+                Description Info
+            </legend>
+            <div style="display: none">
+                @using (Ajax.BeginForm("SavePageDescription", "Pages", new AjaxOptions { OnSuccess = "PAGE.savePageDescriptionSuccess(data)" }, new { id = "frmPageDescription", onSubmit = "return UI.showValidationSummary(this.id);" }))
+                {
+                    <div id="frmPageDescription_ErrorMessages" style="display: none">
+                        @Html.ValidationMessageFor(model => model.PageDescription_Culture)
+                        @Html.ValidationMessageFor(model => model.PageDescription_Header)
+                        @Html.ValidationMessageFor(model => model.PageDescription_Content)
+                        @Html.ValidationMessageFor(model => model.PageDescription_AfterBody)
+                        @Html.ValidationMessageFor(model => model.PageDescription_Footer)
+                        @Html.ValidationMessageFor(model => model.PageDescription_PageStructure)
+                        @Html.ValidationMessageFor(model => model.PageDescription_IsActive)
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.HiddenFor(model => model.PageDescription_PageID, new { @class = "primary-selected-row-dependent ignore-validation", data_keep_value = "" })
+                            @Html.HiddenFor(model => model.PageDescription_PageDescriptionID, new { @class = "secondary-selected-row-dependent ignore-validation" })
+                            @Html.LabelFor(model => model.PageDescription_Culture)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.PageDescription_Culture, Model.PageDescription_DrpCultures)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.PageDescription_PageStructure)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.PageDescription_PageStructure, Model.PageDescription_DrpPageStructures)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.PageDescription_IsActive)
+                        </div>
+                        <div class="editor-field">
+                            <label for="PageDescription_IsActiveTrue">Yes</label>
+                            @Html.RadioButtonFor(model => model.PageDescription_IsActive, true, new { data_keep_value = "" })
+                            <label for="PageDescription_IsActiveFalse">No</label>
+                            @Html.RadioButtonFor(model => model.PageDescription_IsActive, false, new { data_keep_value = "" })
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.PageDescription_Url)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.PageDescription_Url)
+                        </div>
+                    </div>
+                    <div class="editor-alignment full-width">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.PageDescription_Header)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextAreaFor(model => model.PageDescription_Header)
+                        </div>
+                    </div>
+                    <div class="editor-alignment full-width">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.PageDescription_ContentHeader)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextAreaFor(model => model.PageDescription_ContentHeader, new { @class = "ignore-validation"})
+                        </div>
+                    </div>
+                    <div class="editor-alignment full-width">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.PageDescription_Content)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextAreaFor(model => model.PageDescription_Content)
+                        </div>
+                    </div>
+                    <div class="editor-alignment full-width">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.PageDescription_AfterBody)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextAreaFor(model => model.PageDescription_AfterBody)
+                        </div>
+                    </div>
+                    <div class="editor-alignment full-width">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.PageDescription_Footer)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextAreaFor(model => model.PageDescription_Footer)
+                        </div>
+                    </div>
+                    <div class="editor-alignment full-width">
+                        <div class="editor-field right">
+                            <input type="button" id="btnSavePageDescription" class="submit" value="save" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </fieldset>
+    </div>
+</fieldset>

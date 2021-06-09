@@ -1,0 +1,78 @@
+﻿@model ePlatBack.Models.ViewModels.CategoryInfoModel
+
+<fieldset id="fdsCategoriesManagement" class="view-restricted" style="display: none">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        Categories Per Catalog
+    </legend>
+    <div style="display: none" class="align-from-top">
+        <div class="full-width">
+            <input type="button" id="btnNewCategoriesInfo" class="submit fieldset-expander right" value="New">
+        </div>
+        <div class="view-restricted" style="display: none">
+            <input type="checkbox" class="chk-parent" />Select All</div>
+        <ul id="ulCategories" class="secondary-selected-row-dependent align-from-bottom" style="list-style: none">
+        </ul>
+        <div class="full-width align-from-bottom">
+            <input type="button" id="btnSaveCategoriesPerCatalog" value="Save" class="submit right" title="save checked categories to selected catalog" />
+        </div>
+        @*<fieldset id="fdsCategoriesInfo" class="primary-selected-row-dependent">*@
+        <fieldset id="fdsCategoriesInfo" class="secondary-selected-row-dependent">
+            <legend>
+                <img src="/Content/themes/base/images/eplat_show.jpg" alt="" class="fieldset-indicator fds-indicator-separator">
+                Category Info
+            </legend>
+            <div style="display: none" class="align-from-top">
+                @using (Ajax.BeginForm("SaveCategory", "Terminals", new AjaxOptions { OnSuccess = "TERMINAL.saveCategorySuccess(data)" }, new { id = "frmCategory", onSubmit = "return UI.showValidationSummary(this.id);" }))
+                {
+                    <div id="frmCategory_ErrorMessages" style="display: none">
+                        @Html.ValidationMessageFor(model => model.CategoryInfo_Category)
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.HiddenFor(model => model.CategoryInfo_CategoryID, new { @class = "secondary-selected-row-dependent" })
+                            @Html.HiddenFor(model => model.CategoryInfo_CatalogID, new { @class = "secondary-selected-row-dependent skip-one-level", data_keep_value = "" })
+                            @Html.LabelFor(model => model.CategoryInfo_Category)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.CategoryInfo_Category)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.CategoryInfo_ParentCategory)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.CategoryInfo_ParentCategory, Model.CategoryInfo_DrpParentCategories)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.CategoryInfo_ShowOnWebsite)
+                        </div>
+                        <div class="editor-field">
+                            <label>Yes</label>
+                            @Html.RadioButtonFor(model => model.CategoryInfo_ShowOnWebsite, true)
+                            <label>No</label>
+                            @Html.RadioButtonFor(model => model.CategoryInfo_ShowOnWebsite, false)
+                        </div>
+                    </div>
+                    <div class="full-width align-from-bottom">
+                        <input type="button" class="submit right" id="btnSaveCategory" value="Save" />
+                    </div>
+                }
+                @Html.Partial("_CategoryDescriptionsPartial", Model.CategoryDescriptionInfoModel)
+                @*<fieldset id="fdsCategorySeoItems" class="view-restricted" style="display: none" data-close-siblings="true">
+                    <legend>
+                        <img class="fieldset-indicator fds-indicator-separator" src="/Content/themes/base/images/eplat_show.jpg" />
+                        Seo Items Management
+                    </legend>
+                    <div style="display: none">*@
+                        @Html.Action("RenderSeoItemsInCategories", "SeoItems")
+                        @*@Html.Action("RenderSeoItems", "SeoItems")*@
+                    @*</div>
+                </fieldset>*@
+            </div>
+        </fieldset>
+    </div>
+</fieldset>

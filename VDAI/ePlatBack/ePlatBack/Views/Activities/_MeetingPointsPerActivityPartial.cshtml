@@ -1,0 +1,132 @@
+﻿@model ePlatBack.Models.ViewModels.ActivityMeetingPointInfoModel
+@{
+    var Privileges = ViewData["Privileges"] as List<ePlatBack.Models.ViewModels.SysComponentsPrivilegesModel>;
+}
+@if (Privileges.FirstOrDefault(m => m.Component == "fdsActivityMeetingPoints") == null || Privileges.FirstOrDefault(m => m.Component == "fdsActivityMeetingPoints").View)
+{
+    <fieldset id="fdsActivityMeetingPoints" data-close-siblings="true" style="display: none" class="view-restricted">
+        <legend>
+            <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+            Meeting Points
+        </legend>
+        <div style="display: none">
+            <p class="full-width align-from-bottom">
+                <input type="button" class="submit fieldset-expander right" id="btnNewMeetingPointInfo" value="new" data-trigger-change-on-clear="true" />
+            </p>
+            <ul id="ulActivityMeetingPoints" class=""></ul>
+            @if (Privileges.FirstOrDefault(m => m.Component == "fdsMeetingPointInfo") == null || Privileges.FirstOrDefault(m => m.Component == "fdsMeetingPointInfo").View)
+            {
+                <fieldset id="fdsMeetingPointInfo">
+                    <legend>
+                        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+                        Meeting Point Info
+                    </legend>
+                    <div style="display: none">
+                        <input type="hidden" id="hdnItemType" />
+                        @if (Privileges.FirstOrDefault(m => m.Component == "frmMeetingPoint") == null || Privileges.FirstOrDefault(m => m.Component == "frmMeetingPoint").View)
+                        {
+                            using (Ajax.BeginForm("SaveMeetingPoint", "Activities", new AjaxOptions { OnSuccess = "ACTIVITY.saveMeetingPointSuccess(data)" }, new { id = "frmMeetingPoint", onSubmit = "return UI.showValidationSummary(this.id);" }))
+                            {
+                                <p>In order to save meeting points, each departure time and place must be added to table.</p>
+                                <div id="frmMeetingPoint_ErrorMessages" style="display: none">
+                                    @Html.ValidationMessageFor(model => model.ActivityMeetingPointInfo_DepartureTime)
+                                    @Html.ValidationMessageFor(model => model.ActivityMeetingPointInfo_AtYourHotel)
+                                    @Html.ValidationMessageFor(model => model.ActivityMeetingPointInfo_WeeklySchedule)
+                                    @Html.ValidationMessageFor(model => model.ActivityMeetingPointInfo_PlaceString)
+                                    @Html.ValidationMessageFor(model => model.ActivityMeetingPointInfo_Notes)
+                                    @Html.ValidationMessageFor(model => model.ActivityMeetingPointInfo_IsActive)
+                                </div>
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.ActivityMeetingPointInfo_WeeklySchedule)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.ActivityMeetingPointInfo_WeeklySchedule, Model.ActivityMeetingPointInfo_DrpWeeklySchedule)
+                                    </div>
+                                </div>
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.ActivityMeetingPointInfo_DepartureTime)
+                                        @Html.HiddenFor(model => model.ActivityMeetingPointInfo_DepartureTimes)
+                                        @Html.HiddenFor(model => model.ActivityMeetingPointInfo_ActivityMeetingPointID, new { @class = "secondary-selected-row-dependent ignore-validation" })
+                                        @Html.HiddenFor(model => model.ActivityMeetingPointInfo_ActivityID, new { @class = "primary-selected-row-dependent", data_keep_value = "" })
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.ActivityMeetingPointInfo_DepartureTime)
+                                    </div>
+                                </div>
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.ActivityMeetingPointInfo_AtYourHotel)
+                                    </div>
+                                    <div class="editor-field">
+                                        <label for="ActivityMeetingPointInfo_AtYourHotelTrue">Yes</label>
+                                        @Html.RadioButtonFor(model => model.ActivityMeetingPointInfo_AtYourHotel, true, new { data_keep_value = "" })
+                                        <label for="ActivityMeetingPointInfo_AtYourHotelFalse">No</label>
+                                        @Html.RadioButtonFor(model => model.ActivityMeetingPointInfo_AtYourHotel, false, new { data_keep_value = "" })
+                                    </div>
+                                </div>
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.ActivityMeetingPointInfo_PlaceString)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextBoxFor(model => model.ActivityMeetingPointInfo_PlaceString, new { placeholder = "type to show options" })
+                                    </div>
+                                </div>
+                                <div id="divButtonContainer" class="editor-alignment">
+                                    <div class="editor-field align-from-top">
+                                        <input type="button" id="btnAddMeetingPointToTable" class="button" value="add" />
+                                    </div>
+                                </div>
+                                <div class="editor-alignment" style="display: none">
+                                    <div class="editor-label">
+                                        @*@Html.LabelFor(model => model.ActivityMeetingPointInfo_Place)*@
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.DropDownListFor(model => model.ActivityMeetingPointInfo_Place, Model.ActivityMeetingPointInfo_DrpPlaces)
+                                    </div>
+                                </div>
+                                <div id="divTableContainer" class="editor-alignment double-width">
+                                    <table id="tblDepartureTimes" class="table" style="margin-top:24px">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="2">Meeting Points</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.ActivityMeetingPointInfo_IsActive)
+                                    </div>
+                                    <div class="editor-field">
+                                        <label for="ActivityMeetingPointInfo_IsActiveTrue">Yes</label>
+                                        @Html.RadioButtonFor(model => model.ActivityMeetingPointInfo_IsActive, true, new { data_keep_value = "" })
+                                        <label for="ActivityMeetingPointInfo_IsActiveFalse">No</label>
+                                        @Html.RadioButtonFor(model => model.ActivityMeetingPointInfo_IsActive, false, new { data_keep_value = "" })
+                                    </div>
+                                </div>
+                                <div class="editor-alignment">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(model => model.ActivityMeetingPointInfo_Notes)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.TextAreaFor(model => model.ActivityMeetingPointInfo_Notes)
+                                    </div>
+                                </div>
+                                if (Privileges.FirstOrDefault(m => m.Component == "btnSaveMeetingPoint") == null || Privileges.FirstOrDefault(m => m.Component == "btnSaveMeetingPoint").View)
+                                {
+                                    <div class="editor-alignment full-width">
+                                        <input type="button" class="submit right" id="btnSaveMeetingPoint" value="save">
+                                    </div>
+                                }
+                            }
+                        }
+                    </div>
+                </fieldset>
+            }
+        </div>
+    </fieldset>
+}

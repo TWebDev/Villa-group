@@ -1,0 +1,77 @@
+﻿@model ePlatBack.Models.ViewModels.PreBookedArrivalsModel
+@{
+    var privileges = Model.Privileges;
+    var _class = privileges.Count(m => m.Component == "btnExportToExcel") > 0 && privileges.FirstOrDefault(m => m.Component == "btnExportToExcel").View ? "exportable" : "";
+}
+<table id="tblSearchPreBookedArrivalsResults" class="table @_class">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Arrival Date</th>
+                    <th>Resort</th>
+                    <th>Confirmation Number</th>
+                    <th>Contract Number</th>
+                    <th>Pre Booking Status</th>
+                    <th>Stated By User</th>
+                    <th>Date Stated</th>
+                    <th>Lead Source</th>
+                    <th>User</th>
+                    <th>Status</th>
+                    <th>Presentation Date Time</th>
+                    <th>Total Paid</th>
+                    <th>Sales Volume</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.ListPreBookedArrivalsReportModel != null)
+                {
+                    foreach (var i in Model.ListPreBookedArrivalsReportModel)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(model => i.PreBookedArrivalsReport_FirstName) @Html.DisplayFor(model => i.PreBookedArrivalsReport_LastName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.PreBookedArrivalsReport_ArrivalDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.PreBookedArrivalsReport_Resort)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.PreBookedArrivalsReport_HotelConfirmationNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.PreBookedArrivalsReport_FrontOfficeCertificateNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.PreBookedArrivalsReport_BookingStatus)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.PreBookedArrivalsReport_PreBookedByUser)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.PreBookedArrivalsReport_PresentationDateTime)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model =>i.PreBookedArrivalsReport_LeadSource)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model =>i.PreBookedArrivalsReport_UserName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.PreBookedArrivalsReport_Status)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.PreBookedArrivalsReport_PresentationDateTime)
+                            </td>
+                            <td data-format="currency">
+                                @Html.DisplayFor(model => i.PreBookedArrivalsReport_TotalPaid)
+                            </td>
+                            <td data-format="currency">
+                                @Html.DisplayFor(model => i.PreBookedArrivalsReport_SalesVolume)
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>

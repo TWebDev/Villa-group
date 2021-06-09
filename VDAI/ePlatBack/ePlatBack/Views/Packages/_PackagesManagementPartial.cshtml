@@ -1,0 +1,202 @@
+﻿@model ePlatBack.Models.ViewModels.PackageInfoModel
+
+<fieldset id="fdsPackagesInfo" class="primary-selected-row-dependent">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" alt="" class="fieldset-indicator fds-indicator-separator">
+        Package Info
+    </legend>
+
+    <div style="display: none" class="align-from-top">
+        @using (Ajax.BeginForm("SavePackage", "Packages", new AjaxOptions { OnSuccess = "PACKAGE.savePackageSuccess(data)" }, new { id = "frmPackage", onSubmit = "return UI.showValidationSummary(this.id);" }))
+        {
+            <div id="frmPackage_ErrorMessages" style="display: none">
+                @Html.ValidationMessageFor(model => model.PackageInfo_Package)
+                @Html.ValidationMessageFor(model => model.PackageInfo_PlanType)
+                @Html.ValidationMessageFor(model => model.PackageInfo_Nights)
+                @Html.ValidationMessageFor(model => model.PackageInfo_Adults)
+                @Html.ValidationMessageFor(model => model.PackageInfo_Children)
+                @Html.ValidationMessageFor(model => model.PackageInfo_Relevance)
+                @Html.ValidationMessageFor(model => model.PackageInfo_Availability)
+                @Html.ValidationMessageFor(model => model.PackageInfo_Purchased)
+                @Html.ValidationMessageFor(model => model.PackageInfo_Terminal)
+                @Html.ValidationMessageFor(model => model.PackageInfo_Categories)
+                @Html.ValidationMessageFor(model => model.PackageInfo_IsActive)
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PackageInfo_Package)
+                    @Html.HiddenFor(model => model.PackageInfo_PackageID, new { @class = "primary-selected-row-dependent ignore-validation" })
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.PackageInfo_Package)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PackageInfo_PlanType)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.PackageInfo_PlanType, Model.PackageInfo_DrpPlanTypes)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PackageInfo_Nights)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.PackageInfo_Nights)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PackageInfo_Adults)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.PackageInfo_Adults)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PackageInfo_Children)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.PackageInfo_Children)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PackageInfo_IsActive)
+                </div>
+                <div class="editor-field">
+                    <label for="PackageInfo_IsActiveTrue">Yes</label>
+                    @Html.RadioButtonFor(model => model.PackageInfo_IsActive, true, new { data_keep_value = "" })
+                    <label for="PackageInfo_IsActiveFalse">No</label>
+                    @Html.RadioButtonFor(model => model.PackageInfo_IsActive, false, new { data_keep_value = "" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PackageInfo_Relevance)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.PackageInfo_Relevance, Model.PackageInfo_DrpRelevances)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PackageInfo_Availability)
+
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.PackageInfo_Availability)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PackageInfo_Purchased)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.PackageInfo_Purchased)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PackageInfo_Terminal)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.PackageInfo_Terminal, Model.PackageInfo_DrpTerminals, new { @class = "terminal-dependent-list onchange", data_route = "/cms/Packages/GetDDLData", data_route_parameter = "terminalsPerUser", data_onchange_route_parameter = "catalogs", data_dependent_list = "PackageInfo_Catalog" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PackageInfo_TermsBlock)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.PackageInfo_TermsBlock, Model.PackageInfo_DrpTermsBlocks)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PackageInfo_Catalog)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.PackageInfo_Catalog, Model.PackageInfo_DrpCatalogs, new { @class = "onchange", data_route = "/cms/Packages/GetDDLData", data_onchange_route_parameter = "categories", data_dependent_list = "PackageInfo_Category" })
+                </div>
+            </div>
+            <div class="editor-alignment select-add-button">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PackageInfo_Category)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.PackageInfo_Category, Model.PackageInfo_DrpCategories)
+                    <input type="button" id="btnAddCategory" class="button" value="add" />
+                </div>
+            </div>
+            <div class="editor-alignment">
+                @Html.HiddenFor(model => model.PackageInfo_Categories)
+                <table id="tblCategoriesSelected" class="table" style="display: none">
+                    <thead>
+                        <tr>
+                            <th colspan="2">Categories Selected</th>
+                        </tr>
+                    </thead>
+                    <tbody class="primary-selected-row-dependent"></tbody>
+                </table>
+            </div>
+            @*<div class="editor-alignment full-width">
+                    <div id="divUlCategoriesPerCatalog" class="editor-field left align-from-top" style="width: 28%">
+                        <p class="editor-label">
+                            @Html.LabelFor(model => model.PackageInfo_Categories)
+                            @Html.HiddenFor(model => model.PackageInfo_Categories, new { style = "display:none" })
+                        </p>
+                        <ul id="ulCategoriesPerCatalog">
+                        </ul>
+                    </div>
+                    <div id="divTblCategoriesSelected" class="right align-from-top" style="width: 58%">
+                        <table id="tblCategoriesSelected" class="table" style="display: none">
+                            <thead>
+                                <tr>
+                                    <th colspan="2">Categories Selected</th>
+                                </tr>
+                            </thead>
+                            <tbody class="primary-selected-row-dependent">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>*@
+            <div class="editor-alignment full-width">
+                <input type="button" class="submit right" value="Save" id="btnSavePackage" />
+            </div>
+        }
+        @Html.Partial("_PackageDescriptionsPartial", Model.PackageDescriptionInfoModel)
+        @*<fieldset id="fdsPrices" class="view-restricted primary-selected-row-dependent" style="display: none">
+            <legend>
+                <img class="fieldset-indicator fds-indicator-separator" src="/Content/themes/base/images/eplat_show.jpg" />
+                Prices Management
+            </legend>
+            <div style="display: none">*@
+        @Html.Action("RenderPricesInPackages", "Prices")
+        @*</div>
+            </fieldset>*@
+        @Html.Partial("_PackageSettingsPartial", Model.PackageSettingsInfoModel)
+        @*<fieldset id="fdsSeoItems" class="view-restricted primary-selected-row-dependent" style="display: none">
+            <legend>
+                <img class="fieldset-indicator fds-indicator-separator" src="/Content/themes/base/images/eplat_show.jpg" />
+                Seo Items Management
+            </legend>
+            <div style="display: none">*@
+        @Html.Action("RenderSeoItemsInPackages", "SeoItems")
+        @*</div>
+            </fieldset>*@
+        <fieldset id="fdsPictures" class="view-restricted primary-selected-row-dependent" style="display: none">
+            <legend>
+                <img class="fieldset-indicator fds-indicator-separator" src="/Content/themes/base/images/eplat_show.jpg" />
+                Pictures Management
+            </legend>
+            <div style="display: none">
+                @Html.Action("RenderPicturesInPackages", "Pictures")
+            </div>
+        </fieldset>
+
+    </div>
+</fieldset>

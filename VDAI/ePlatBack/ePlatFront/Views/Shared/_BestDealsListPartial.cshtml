@@ -1,0 +1,24 @@
+﻿@model IEnumerable<ePlatBack.Models.ViewModels.PackageItemViewModel>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+            <figure class="tile-package wow bounceInUp">
+                <a href="@item.Url" title="@item.Package">
+                    <img class="tile-image img-responsive" src="@item.PictureUrl?width=480" alt="@item.Package" />
+                </a>
+                <figcaption class="tile-text">
+                    <a href="@item.Url" title="@item.Package">
+                        <h2>@Html.DisplayFor(modelItem => item.Package)</h2>
+                        <span class="price">
+                            $@Html.DisplayFor(modelItem => item.Price)
+                        </span>
+                        @Html.DisplayFor(modelItem => item.Stay)<br />@ePlatFront.Resources.Views.Shared.SharedStrings._for @Html.DisplayFor(modelItem => item.Guests)
+                        <div class="tile-button">MORE DETAILS</div>
+                    </a>
+                </figcaption>
+            </figure>
+        </div>
+    }
+</div>

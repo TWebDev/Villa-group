@@ -1,0 +1,61 @@
+﻿@model ePlatBack.Models.ViewModels.TerminalInfoModel
+
+<fieldset id="fdsTerminalsInfo" class="primary-selected-row-dependent">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" alt="" class="fieldset-indicator fds-indicator-separator">
+        Terminal Info
+    </legend>
+    <div style="display: none" class="align-from-top">
+        @using (Ajax.BeginForm("SaveTerminal", "Terminals", new AjaxOptions { OnSuccess = "TERMINAL.saveTerminalSuccess(data)" }, new { id = "frmTerminal", onSubmit = "return UI.showValidationSummary(this.id);" }))
+        {
+            <div id="frmTerminal_ErrorMessages" style="display: none">
+                @Html.ValidationMessageFor(model => model.TerminalInfo_Prefix)
+                @Html.ValidationMessageFor(model => model.TerminalInfo_Terminal)
+            </div>
+            <div class="full-width">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.TerminalInfo_IsNew, "Uncheck if want to create a new terminal without copy, or want to update an existing terminal")
+                </div>
+                <div class="editor-field">
+                    <label for="chkCatalogs">Copy From Existing</label>
+                    @Html.CheckBoxFor(model => model.TerminalInfo_IsNew)
+                </div>
+            </div>
+            <div id="divPrefix" class="editor-alignment">
+                <div class="editor-label">
+                    @Html.HiddenFor(model => model.TerminalInfo_TerminalID, new { @class = "primary-selected-row-dependent" })
+                    @Html.LabelFor(model => model.TerminalInfo_Prefix)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.TerminalInfo_Prefix, new  { data_format = "upper-case" })
+                </div>
+            </div>
+            <div id="divTerminal" class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.TerminalInfo_Terminal)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.TerminalInfo_Terminal)
+                </div>
+            </div>
+            <div id="divCollections" class="editor-alignment" style="display:none">
+                <div class="editor-label">
+                    <label>Collections to Copy</label>
+                </div>
+                <div class="editor-field">
+                    <label for="chkCatalogs">Catalogs</label>
+                    @Html.CheckBoxFor(model => model.TerminalInfo_Catalogs)
+                    <label for="chkDomains">Domains</label>
+                    @Html.CheckBoxFor(model => model.TerminalInfo_Domains)
+                </div>
+            </div>
+            <div class="full-width align-from-bottom">
+                <input type="submit" class="submit right" id="btnSaveTerminal" value="Save"/>
+            </div>
+        }
+        @Html.Action("RenderCatalogs", "Terminals")
+        @Html.Partial("_DestinationsPerTerminalManagementPartial", Model.DestinationsPerTerminalInfoModel)
+        @Html.Action("RenderDomains", "Terminals")
+        @*@Html.Partial("_DomainsManagementPartial", Model.DomainInfoModel)*@
+    </div>
+</fieldset>

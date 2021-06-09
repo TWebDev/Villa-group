@@ -1,0 +1,35 @@
+﻿@model ePlatBack.Models.ViewModels.AuditCouponsModel
+
+<div class="non-printable">
+<h3>Invoices Search Results</h3>
+@if (Model.Invoices.Count() == 0)
+{
+    <h4>Search returned no results</h4>
+}
+else
+{
+    <table id="tblInvoices" class="table no-plugin" style="width:50%;">
+        <thead>
+            <tr>
+                <th>Invoice</th>
+                <th>Date</th>
+                <th>Saved By</th>
+                <th>Provider</th>
+                <th>Coupons</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var invoice in Model.Invoices)
+            {
+                <tr id="@invoice.ProviderInvoiceID">
+                    <td>@invoice.Invoice</td>
+                    <td>@invoice.DateString</td>
+                    <td>@invoice.SavedBy</td>
+                    <td>@invoice.Provider</td>
+                    <td>@invoice.NumberOfCoupons</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+</div>

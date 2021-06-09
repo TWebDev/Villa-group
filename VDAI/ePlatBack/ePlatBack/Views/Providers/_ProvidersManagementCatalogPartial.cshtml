@@ -1,0 +1,278 @@
+﻿@model ePlatBack.Models.ViewModels.ProvidersModel.ProviderInfoModel
+@{
+    var Privileges = ViewData["Privileges"] as List<ePlatBack.Models.ViewModels.SysComponentsPrivilegesModel>;
+}
+
+@*
+
+    @if (Privileges.FirstOrDefault(m => m.Component == "fdsProviderInfo") == null || Privileges.FirstOrDefault(m => m.Component == "fdsProviderInfo").View)
+    {*@
+    <fieldset id="fdsProviderInfo">
+        <legend>
+            <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+            Provider Info
+        </legend>
+        <div style="display: none" class="align-from-top>">
+           @* @if (Privileges.FirstOrDefault(m => m.Component == "frmProviderInfo") == null || Privileges.FirstOrDefault(m => m.Component == "frmProviderInfo").View)
+    {*@
+                @using (Ajax.BeginForm("SaveProvider", "Providers", new AjaxOptions { OnSuccess = "CATALOG.saveProviderSuccess(data)" }, new { id = "frmProviderInfo", onSubmit = "return UI.showValidationSummary(this.id);" }))
+                {
+                    <div id="frmProviderInfo_ErrorMessages" style="display: none">
+                        @Html.ValidationMessageFor(m => m.ProviderInfo_ComercialName)
+                        @Html.ValidationMessageFor(m => m.ProviderInfo_ProviderType)
+                        @Html.ValidationMessageFor(m => m.ProviderInfo_Destination)
+                    </div>
+                   @* if (Privileges.FirstOrDefault(m => m.Component == "ProviderInfo_Terminal") == null || Privileges.FirstOrDefault(m => m.Component == "ProviderInfo_Terminal").View)
+    {*@
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ProviderInfo_Terminal)
+                                @Html.HiddenFor(model => model.ProviderInfo_ProviderID)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.ProviderInfo_Terminal, Model.ProviderInfo_DrpTerminals, new { @class = "terminal-dependent-list", data_route = "/Catalogs/GetDDLData", data_route_parameter = "selectedTerminals" })
+                            </div>
+                        </div>
+                    @*}*@
+                   @* if (Privileges.FirstOrDefault(m => m.Component == "ProviderInfo_Destination") == null || Privileges.FirstOrDefault(m => m.Component == "ProviderInfo_Destination").View)
+    {*@
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ProviderInfo_Destination)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.ProviderInfo_Destination, Model.ProviderInfo_DrpDestinations, new { @class = "destination-dependent-list terminal-dependent-list", data_route = "/Catalogs/GetDDLData", data_route_parameter = "destination" })
+                            </div>
+                        </div>
+    @*}*@
+       @*             if (Privileges.FirstOrDefault(m => m.Component == "ProviderInfo_ComercialName") == null || Privileges.FirstOrDefault(m => m.Component == "ProviderInfo_ComercialName").View)
+    {*@
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ProviderInfo_ComercialName)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ProviderInfo_ComercialName)
+                            </div>
+                        </div>
+    @*}*@
+       @*             if (Privileges.FirstOrDefault(m => m.Component == "ProviderInfo_ShortName") == null || Privileges.FirstOrDefault(m => m.Component == "ProviderInfo_ShortName").View)
+    {*@
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ProviderInfo_ShortName)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ProviderInfo_ShortName, new { data_format = "upper-case" })
+                            </div>
+                        </div>
+    @*}*@
+       @*             if (Privileges.FirstOrDefault(m => m.Component == "ProviderInfo_RFC") == null || Privileges.FirstOrDefault(m => m.Component == "ProviderInfo_RFC").View)
+    {*@
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ProviderInfo_RFC)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ProviderInfo_RFC, new { data_format = "upper-case" })
+                            </div>
+                        </div>
+    @*}*@
+       @*             if (Privileges.FirstOrDefault(m => m.Component == "ProviderInfo_TaxesName") == null || Privileges.FirstOrDefault(m => m.Component == "ProviderInfo_TaxesName").View)
+    {*@
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ProviderInfo_TaxesName)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ProviderInfo_TaxesName)
+                            </div>
+                        </div>
+    @*}*@
+       @*             if (Privileges.FirstOrDefault(m => m.Component == "ProviderInfo_Phone1") == null || Privileges.FirstOrDefault(m => m.Component == "ProviderInfo_Phone1").View)
+    {*@
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ProviderInfo_Phone1)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ProviderInfo_Phone1)
+                            </div>
+                        </div>
+    @*}*@
+       @*             if (Privileges.FirstOrDefault(m => m.Component == "ProviderInfo_Ext1") == null || Privileges.FirstOrDefault(m => m.Component == "ProviderInfo_Ext1").View)
+    {*@
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ProviderInfo_Ext1)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ProviderInfo_Ext1)
+                            </div>
+                        </div>
+    @*}*@
+       @*             if (Privileges.FirstOrDefault(m => m.Component == "ProviderInfo_Phone2") == null || Privileges.FirstOrDefault(m => m.Component == "ProviderInfo_Phone2").View)
+    {*@
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ProviderInfo_Phone2)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ProviderInfo_Phone2)
+                            </div>
+                        </div>
+    @*}*@
+       @*             if (Privileges.FirstOrDefault(m => m.Component == "ProviderInfo_Ext2") == null || Privileges.FirstOrDefault(m => m.Component == "ProviderInfo_Ext2").View)
+    {*@
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ProviderInfo_Ext2)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ProviderInfo_Ext2)
+                            </div>
+                        </div>
+    @*}*@
+       @*             if (Privileges.FirstOrDefault(m => m.Component == "ProviderInfo_ContactName") == null || Privileges.FirstOrDefault(m => m.Component == "ProviderInfo_ContactName").View)
+    {
+    *@               <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ProviderInfo_ContactName)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ProviderInfo_ContactName)
+                            </div>
+                        </div>
+    @*}*@
+      @*              if (Privileges.FirstOrDefault(m => m.Component == "ProviderInfo_ContactEmail") == null || Privileges.FirstOrDefault(m => m.Component == "ProviderInfo_ContactEmail").View)
+    {
+    *@                <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ProviderInfo_ContactEmail)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ProviderInfo_ContactEmail, new { data_format = "lower-case" })
+                            </div>
+                        </div>
+    @*}*@
+      @*              if (Privileges.FirstOrDefault(m => m.Component == "ProviderInfo_ProviderType") == null || Privileges.FirstOrDefault(m => m.Component == "ProviderInfo_ProviderType").View)
+    {
+    *@                <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ProviderInfo_ProviderType)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.ProviderInfo_ProviderType, Model.ProviderInfo_DrpProviderTypes)
+                            </div>
+                        </div>
+    @*}*@
+      @*              if (Privileges.FirstOrDefault(m => m.Component == "ProviderInfo_ForCompany") == null || Privileges.FirstOrDefault(m => m.Component == "ProviderInfo_ForCompany").View)
+    {
+    *@                <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ProviderInfo_ForCompany)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.ProviderInfo_ForCompany, Model.ProviderInfo_DrpForCompanies, new { @class = "taCompany-dependent-list terminal-dependent-list", data_route = "/Catalogs/GetDDLData", data_route_parameter = "taCompany", data_autoselect_if_only_one = "" })
+                            </div>
+                        </div>
+    @*}*@
+      @*              if (Privileges.FirstOrDefault(m => m.Component == "ProviderInfo_ContractCurrency") == null || Privileges.FirstOrDefault(m => m.Component == "ProviderInfo_ContractCurrency").View)
+    {
+    *@                <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ProviderInfo_ContractCurrency)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.ProviderInfo_ContractCurrency, Model.ProviderInfo_DrpCurrencies)
+                            </div>
+                        </div>
+    @*}*@
+      @*              if (Privileges.FirstOrDefault(m => m.Component == "ProviderInfo_AvanceProvider") == null || Privileges.FirstOrDefault(m => m.Component == "ProviderInfo_AvanceProvider").View)
+    {
+    *@                <div id="divUSDAvanceProvider" class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ProviderInfo_AvanceProvider)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ProviderInfo_AvanceProvider)
+                            </div>
+                        </div>
+    @*}*@
+      @*              if (Privileges.FirstOrDefault(m => m.Component == "ProviderInfo_MXNAvanceProvider") == null || Privileges.FirstOrDefault(m => m.Component == "ProviderInfo_MXNAvanceProvider").View)
+    {
+    *@                <div id="divMXNAvanceProvider" class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ProviderInfo_MXNAvanceProvider)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ProviderInfo_MXNAvanceProvider)
+                            </div>
+                        </div>
+    @*}*@
+      @*              if (Privileges.FirstOrDefault(m => m.Component == "ProviderInfo_InvoiceCurrency") == null || Privileges.FirstOrDefault(m => m.Component == "ProviderInfo_InvoiceCurrency").View)
+    {
+    *@                <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ProviderInfo_InvoiceCurrency)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.ProviderInfo_InvoiceCurrency, Model.ProviderInfo_DrpInvoiceCurrencies)
+                            </div>
+                        </div>
+    @*}*@
+      @*              if (Privileges.FirstOrDefault(m => m.Component == "ProviderInfo_IsActive") == null || Privileges.FirstOrDefault(m => m.Component == "ProviderInfo_IsActive").View)
+    {
+    *@                <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ProviderInfo_IsActive)
+                            </div>
+                            <div class="editor-field">
+                                <label for="ProviderInfo_IsActiveTrue">Yes</label>
+                                @Html.RadioButtonFor(model => model.ProviderInfo_IsActive, true, new { data_keep_value = "" })
+                                <label for="ProviderInfo_IsActiveFalse">No</label>
+                                @Html.RadioButtonFor(model => model.ProviderInfo_IsActive, false, new { data_keep_value = "" })
+                            </div>
+                        </div>
+    @*}*@
+      @*              if (Privileges.FirstOrDefault(m => m.Component == "divFileUploaderContainer") == null || Privileges.FirstOrDefault(m => m.Component == "divFileUploaderContainer").View)
+    {
+    *@                 <div id="divFileUploaderContainer" class="view-restricted editor-alignment" style="display:none">
+                           <table id="tblFilesUploaded" class="left">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2">Files On Server</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                            <div id="fileUploader" class="half-width right align-from-top" title="10MB Max" style="position:relative"></div>
+                        </div>
+    @*}*@
+      @*              if (Privileges.FirstOrDefault(m => m.Component == "fileToUploadContainer") == null || Privileges.FirstOrDefault(m => m.Component == "fileToUploadContainer").View)
+    {
+    *@                <div id="fileToUploadContainer" class="view-allowed">
+                            <div class="editor-alignment">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.ProviderInfo_FileToUpload)
+                                </div>
+                                <div class="editor-field">
+                                    <img class="right-aligned-icon" src="/Content/themes/base/images/cross.png" id="imgClearFileToUpload" style="z-index:9999" />
+                                    @Html.TextBoxFor(model => model.ProviderInfo_FileToUpload, new { style = "position:absolute", placeholder = "click to load file (10MB Max)" })
+                                    <input type="file" id="fileToUpload" style="opacity:0; position:absolute; width: 200px; height: 30px;" />
+                                </div>
+                            </div>
+                        </div>
+    @*}*@
+      @*              if (Privileges.FirstOrDefault(m => m.Component == "btnSaveProvider") == null || Privileges.FirstOrDefault(m => m.Component == "btnSaveProvider").View)
+    {
+    *@                <div class="editor-alignment full-width">
+                            <input type="submit" class="submit right" value="save" id="btnSaveProvider" />
+                        </div>
+    @*}*@
+                }
+          @*  }*@
+        </div>
+    </fieldset>
+@*
+    }*@

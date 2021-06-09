@@ -1,0 +1,220 @@
+﻿@model ePlatBack.Models.ViewModels.ArrivalsViewModel.GlobalPenetrationReport
+
+<table class="table exportable non-editable" style="width:100%;">
+    <thead>
+        <tr>
+            <th rowspan="2">Date</th>
+            <th rowspan="2">Day of Week</th>
+            <th colspan="5">Members</th>
+            <th colspan="2">In House</th>
+            <th>Airport</th>
+            <th colspan="2">In House</th>
+            <th colspan="2">NetCenter</th>
+            <th colspan="2">Referral</th>
+            <th>In House + Airport</th>
+            <th rowspan="2">Global Summary</th>
+        </tr>
+        <tr>
+            <th>Q</th>
+            <th>NQ</th>
+            <th>Doubles</th>
+            <th>N/C</th>
+            <th>Total Real</th>
+            <th>Q</th>
+            <th>NQ</th>
+            <th>Q</th>
+            <th>N/C</th>
+            <th>Doubles</th>
+            <th>Q</th>
+            <th>NQ</th>
+            <th>Q</th>
+            <th>NQ</th>
+            <th>Total Real</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var day in Model.PenetrationPerDay)
+        {
+            <tr>
+                <td>@day.Date</td>
+                <td>@day.DayOfWeek</td>
+                <td class="text-center">@day.MembersQ</td>
+                <td class="text-center">@day.MembersNQ</td>
+                <td class="text-center">@day.MembersDoubles</td>
+                <td class="text-center">@day.MembersNotContacted</td>
+                <td class="text-center">@day.MembersArrivalsTotal</td>
+                <td class="text-center">@day.InHouseQ</td>
+                <td class="text-center">@day.InHouseNQ</td>
+                <td class="text-center">@day.AirportQ</td>
+                <td class="text-center">@day.InHouseNotContacted</td>
+                <td class="text-center">@day.InHouseDoubles</td>
+                <td class="text-center">@day.NetCenterQ</td>
+                <td class="text-center">@day.NetCenterNQ</td>
+                <td class="text-center">@day.ReferralQ</td>
+                <td class="text-center">@day.ReferralNQ</td>
+                <td class="text-center">@day.InHouseAirportArrivalsTotal</td>
+                <td class="text-center">@day.GlobalSummary</td>
+            </tr>
+        }
+        <tr>
+            <td colspan="2">Total</td>
+            <td class="text-center">@Model.Totals.MembersQ</td>
+            <td class="text-center">@Model.Totals.MembersNQ</td>
+            <td class="text-center">@Model.Totals.MembersDoubles</td>
+            <td class="text-center">@Model.Totals.MembersNotContacted</td>
+            <td class="text-center">@Model.Totals.MembersArrivalsTotal</td>
+            <td class="text-center">@Model.Totals.InHouseQ</td>
+            <td class="text-center">@Model.Totals.InHouseNQ</td>
+            <td class="text-center">@Model.Totals.AirportQ</td>
+            <td class="text-center">@Model.Totals.InHouseNotContacted</td>
+            <td class="text-center">@Model.Totals.InHouseDoubles</td>
+            <td class="text-center">@Model.Totals.NetCenterQ</td>
+            <td class="text-center">@Model.Totals.NetCenterNQ</td>
+            <td class="text-center">@Model.Totals.ReferralQ</td>
+            <td class="text-center">@Model.Totals.ReferralNQ</td>
+            <td class="text-center">@Model.Totals.InHouseAirportArrivalsTotal</td>
+            <td class="text-center">@Model.Totals.GlobalSummary</td>
+        </tr>
+        <tr>
+            <td colspan="2">Booked</td>
+            <td class="text-center">@Model.Booked.MembersQ</td>
+            <td class="text-center">@Model.Booked.MembersNQ</td>
+            <td class="text-center">@Model.Booked.MembersDoubles</td>
+            <td></td>
+            <td class="text-center">@Model.Booked.MembersArrivalsTotal</td>
+            <td class="text-center">@Model.Booked.InHouseQ</td>
+            <td class="text-center">@Model.Booked.InHouseNQ</td>
+            <td class="text-center">@Model.Booked.AirportQ</td>
+            <td></td>
+            <td class="text-center">@Model.Booked.InHouseDoubles</td>
+            <td class="text-center">@Model.Booked.NetCenterQ</td>
+            <td class="text-center">@Model.Booked.NetCenterNQ</td>
+            <td class="text-center">@Model.Booked.ReferralQ</td>
+            <td class="text-center">@Model.Booked.ReferralNQ</td>
+            <td class="text-center">@Model.Booked.InHouseAirportArrivalsTotal</td>
+            <td class="text-center">@Model.Booked.GlobalSummary</td>
+        </tr>
+        <tr>
+            <td colspan="2">Penetration</td>
+            <td class="text-center">@Model.PenetrationPercentages.MembersQ%</td>
+            <td class="text-center">@Model.PenetrationPercentages.MembersNQ%</td>
+            <td class="text-center">@Model.PenetrationPercentages.MembersDoubles%</td>
+            <td></td>
+            <td class="text-center">@Model.PenetrationPercentages.MembersArrivalsTotal%</td>
+            <td class="text-center">@Model.PenetrationPercentages.InHouseQ%</td>
+            <td class="text-center">@Model.PenetrationPercentages.InHouseNQ%</td>
+            <td class="text-center">@Model.PenetrationPercentages.AirportQ%</td>
+            <td></td>
+            <td class="text-center">@Model.PenetrationPercentages.InHouseDoubles%</td>
+            <td class="text-center">@Model.PenetrationPercentages.NetCenterQ%</td>
+            <td class="text-center">@Model.PenetrationPercentages.NetCenterNQ%</td>
+            <td class="text-center">@Model.PenetrationPercentages.ReferralQ%</td>
+            <td class="text-center">@Model.PenetrationPercentages.ReferralNQ%</td>
+            <td class="text-center">@Model.PenetrationPercentages.InHouseAirportArrivalsTotal%</td>
+            <td class="text-center">@Model.PenetrationPercentages.GlobalSummary%</td>
+        </tr>
+        <tr>
+            <td colspan="18"></td>
+        </tr>
+        <tr>
+            <td colspan="18"></td>
+        </tr>
+        <tr>
+            <td colspan="3" style="background-color: #b5b5b5; text-align: center;"><strong>Check In</strong></td>
+            <td></td>
+            <td colspan="3" style="background-color: #b5b5b5; text-align: center;"><strong>Members</strong></td>
+            <td></td>
+            <td colspan="3" style="background-color: #b5b5b5; text-align: center;"><strong>Booked</strong></td>
+            <td></td>
+            <td colspan="3" style="background-color: #b5b5b5; text-align: center;"><strong>Weekly Penetration</strong></td>
+        </tr>
+        <tr>
+            <td colspan="2">Total Check In Members</td>
+            <td class="text-center">@Model.TotalCheckInMembers</td>
+            <td></td>
+            <td colspan="2">Members</td>
+            <td class="text-center">@Model.Members</td>
+            <td></td>
+            <td colspan="2">Total Qs Members</td>
+            <td class="text-center">@Model.TotalQMembers</td>
+            <td></td>
+            <td colspan="2">Members Qs Penetration</td>
+            <td class="text-center">@Model.MembersQPenetration%</td>
+        </tr>
+        <tr>
+            <td colspan="2">Total Check In InHouse</td>
+            <td class="text-center">@Model.TotalCheckInInHouse</td>
+            <td></td>
+            <td colspan="2">Guest of Members</td>
+            <td class="text-center">@Model.GuestOfMembers</td>
+            <td></td>
+            <td colspan="2">Total Qs InHouse</td>
+            <td class="text-center">@Model.TotalQInHouse</td>
+            <td></td>
+            <td colspan="2">InHouse Qs Penetration</td>
+            <td class="text-center">@Model.InHouseQPenetration%</td>
+        </tr>
+        <tr>
+            <td colspan="2">Total Global Check In</td>
+            <td class="text-center">@Model.TotalGlobalCheckIn</td>
+            <td></td>
+            <td colspan="2">Exchange</td>
+            <td class="text-center">@Model.Exchange</td>
+            <td></td>
+            <td colspan="2">Global Qs Summary</td>
+            <td class="text-center">@Model.QGlobalSummary</td>
+            <td></td>
+            <td colspan="2">Global Qs Penetration</td>
+            <td class="text-center">@Model.GlobalQPenetration%</td>
+        </tr>
+        <tr>
+            <td colspan="18"></td>
+        </tr>
+        <tr>
+            <td colspan="18"></td>
+        </tr>
+        <tr>
+            <td colspan="2"><strong>Total InHouse</strong></td>
+            <td><strong>Booked</strong></td>
+        </tr>
+        @foreach (var ih in @Model.InHouseNQReasons)
+        {
+            <tr>
+                <td>@ih.NQReason</td>
+                <td class="text-center">@ih.NQReasonTotal</td>
+                <td class="text-center">@ih.NQReasonBooked</td>
+            </tr>
+        }
+        <tr>
+            <td>Total</td>
+            <td class="text-center">@Model.InHouseNQTotal</td>
+            <td class="text-center">@Model.InHouseNQBooked</td>
+        </tr>
+        <tr>
+            <td colspan="18"></td>
+        </tr>
+        <tr>
+            <td colspan="18"></td>
+        </tr>
+        <tr>
+            <td colspan="2"><strong>Total Members</strong></td>
+            <td><strong>Booked</strong></td>
+        </tr>
+        @foreach(var m in @Model.MembersNQReasons)
+        {
+            <tr>
+                <td>@m.NQReason</td>
+                <td class="text-center">@m.NQReasonTotal</td>
+                <td class="text-center">@m.NQReasonBooked</td>
+            </tr>
+        }
+        <tr>
+            <td>Total</td>
+            <td class="text-center">@Model.MembersNQTotal</td>
+            <td class="text-center">@Model.MembersNQBooked</td>
+        </tr>
+    </tbody>
+    <tfoot>
+
+    </tfoot>
+</table>

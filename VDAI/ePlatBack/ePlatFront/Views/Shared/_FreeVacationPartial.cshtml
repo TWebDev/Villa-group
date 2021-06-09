@@ -1,0 +1,49 @@
+﻿@model ePlatBack.Models.ViewModels.FreeVacationViewModel
+
+@using (Ajax.BeginForm("FreeVacationSave", new { Controller = "Controls" }, new AjaxOptions { OnBegin = "Controls.sendingInfo('FreeVacationForm')", OnSuccess = "Controls.showMessage(data,'FreeVacationForm')", OnFailure = "Controls.showMessage({ResponseType : -1, ResponseMessage : '" + ePlatFront.Resources.Views.Home.FreeVacationStrings.Failure + "'},'FreeVacationForm')" }, new { id = "FreeVacationForm" }))
+{
+    <div class="free-vacation">
+        <h3>@ePlatFront.Resources.Views.Home.FreeVacationStrings.Would_you_like_a <strong>@ePlatFront.Resources.Views.Home.FreeVacationStrings.Free_Vacation?</strong></h3>
+        <p>@ePlatFront.Resources.Views.Home.FreeVacationStrings.Register_to_win_a <strong>@ePlatFront.Resources.Views.Home.FreeVacationStrings.Free_Vacation</strong>, @ePlatFront.Resources.Views.Home.FreeVacationStrings.Offer</p><p class="draw-date"><em>Winner will be notified on @DateTime.Today.ToString("MMMM") @DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month)</em></p>
+    <fieldset id="free-vacation">
+        <legend>Free Vacation</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FreeVacation_FirstName)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.FreeVacation_FirstName, new { placeholder = ePlatBack.Models.Resources.Models.Controls.FreeVacationStrings.Your_First_Name, @class="form-control" })
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FreeVacation_LastName)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.FreeVacation_LastName, new { placeholder = ePlatBack.Models.Resources.Models.Controls.FreeVacationStrings.Your_Last_Name, @class = "form-control" })
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FreeVacation_Email)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.FreeVacation_Email, new { placeholder = ePlatBack.Models.Resources.Models.Controls.FreeVacationStrings.Your_Email, @class = "form-control" })
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FreeVacation_Phone)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.FreeVacation_Phone, new { placeholder = ePlatBack.Models.Resources.Models.Controls.FreeVacationStrings.Your_Phone, @class = "form-control" })
+        </div>
+        <div class="validation-errors">
+            @Html.ValidationSummary(true)
+            @Html.ValidationMessageFor(model => model.FreeVacation_FirstName)
+            @Html.ValidationMessageFor(model => model.FreeVacation_LastName)
+            @Html.ValidationMessageFor(model => model.FreeVacation_Email)
+            @Html.ValidationMessageFor(model => model.FreeVacation_Phone)
+        </div>
+        <input type="submit" value="@ePlatFront.Resources.Views.Home.FreeVacationStrings.Submit" class="btn btn-default" />
+        <div class="interaction-message"></div>
+    </fieldset>
+    </div>
+}

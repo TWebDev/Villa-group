@@ -1,0 +1,59 @@
+﻿@model ePlatBack.Models.ViewModels.ConciergesModel.SearchConciergesModel
+
+@using (Ajax.BeginForm("SearchConcierges", "Reports", new AjaxOptions { OnSuccess = "REPORT.searchResultsTable(data)", OnComplete = "UI.applyFormat('currency')", UpdateTargetId = "divTblConciergesResults" }, new { id = "frmSearchConcierges" }))
+{
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SearchConcierges_I_ArrivalDate)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.SearchConcierges_I_ArrivalDate, new { data_uses_date_picker = "true"})
+            @Html.TextBoxFor(model => model.SearchConcierges_F_ArrivalDate, new { data_uses_date_picker = "true" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SearchConcierges_Resort)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.SearchConcierges_Resort, Model.SearchConcierges_DrpResorts, new { multiple = "multiple", @class = "terminal-dependent-list", data_route = "/crm/Reports/GetDDLData", data_route_parameter = "placeID" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SearchConcierges_BookingStatus)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.SearchConcierges_BookingStatus, Model.SearchConcierges_DrpBookingStatus, new { @class = "workgroup-dependent-list", data_route = "/crm/Reports/GetDDLData", data_route_parameter = "bookingStatusID", multiple = "multiple" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SearchConcierges_LeadSources)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.SearchConcierges_LeadSources, Model.SearchConcierges_DrpLeadSources, new { multiple = "multiple", @class="workgroup-dependent-list terminal-dependent-list", data_route = "/crm/Reports/GetDDLData", data_route_parameter = "leadSourceID" })
+        </div>
+    </div>
+    <div class="editor-alignment align-from-top">
+        <div class="editor-field">
+            <input type="submit" class="button" value="search" />
+        </div>
+    </div>
+    <div class="align-from-top" id="divTblConciergesResults">
+        <table id="tblSearchConciergesResults" class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Arrival Date</th>
+                    <th>Assigned to User</th>
+                    <th>Booking Status</th>
+                    <th>Resort</th>
+                    <th>Total Paid</th>
+                    <th>Concierge Comments</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+}

@@ -1,0 +1,131 @@
+﻿@model ePlatBack.Models.ViewModels.PartiesSales.PartiesInfo
+
+    <fieldset id="fdsSalesRoomsManagement" class="primary-selected-row-dependent">
+        <legend>
+            <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+            Sales Room Parties Info
+        </legend>
+
+        <div id="divSalesRoomManagement" style="display:none" class="align-from-top">
+            @using (Ajax.BeginForm("SaveSalesRoomParties", "Catalogs", new AjaxOptions { OnSuccess = "CATALOG.saveSalesRoomsPartiesSuccess(data)" }, new { id = "frmSalesRoomPartiesInfo", onSubmit = "return UI.showValidationSummary(this.id);" }))
+              {
+                <div id="frmSalesRoomPartiesInfo_ErrorMessages" style="display:none">
+                </div>
+
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.HiddenFor(model => model.PartiesInfo_SalesPartyID)
+                        @Html.HiddenFor(model => model.PartiesInfo_DateSaved)
+                        @Html.HiddenFor(model => model.PartiesInfo_SavedByUser)
+                        @Html.LabelFor(model => model.PartiesInfo_FromDate)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.PartiesInfo_FromDate)
+                    </div>
+                </div>
+
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PartiesInfo_PlaceID)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.PartiesInfo_PlaceID, Model.PartiesInfo_PlacesDrpList, new
+                           {
+                               @class = "terminal-dependent-list onchange",
+                               data_route = "/Catalogs/GetDDLData",
+                               data_route_parameter = "SalesRoomPlaces",
+                               data_onchange_route_parameter = "RoomsList",
+                               data_dependent_list = "PartiesInfo_Room"
+                           })          
+                    </div>
+                </div>
+
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PartiesInfo_Room)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.PartiesInfo_Room, Model.PartiesInfo_RoomDrpList)
+                    </div>
+                </div>
+
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PartiesInfo_Allotment)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.PartiesInfo_Allotment)
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PartiesInfo_Terminal)
+                    </div>
+                    <div class="editor-alignment">
+                        @Html.DropDownListFor(mode => Model.PartiesInfo_Terminal, Model.PartiesInfo_Terminalist, new
+                             {
+                                 @class = "terminal-dependent-list onchange",
+                                 data_route = "/Catalogs/GetDDLData",
+                                 data_route_parameter = "selectedTerminals",
+                                 data_onchange_route_parameter = "SalesRoomsProgramByCompany",
+                                 data_dependent_list = "PartiesInfo_ProgramName"
+                             })          
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PartiesInfo_ProgramName)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.PartiesInfo_ProgramName, Model.PartiesInfo_ProgramsDrpList)
+                    </div>
+                </div>
+                              
+                <div class="full-width">
+                    <input id="btnSaveSalesRoomsParties" type="submit" class="submit right" value="Save" />
+                </div>
+             }
+        </div>
+</fieldset>
+
+    <fieldset id="fdsSalesRoomsManagementDuplicate" style="display:none">
+        <legend>
+            <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+            Duplicate Sales Room Parties
+        </legend>
+        <div id="divSalesRoomManagement"  class="align-from-top">
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        <label> From Date </label>
+                    </div>
+                    <div class="editor-field">
+                        <input id="DuplicateFromDate" class="TexBoxDate" type="text" />
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        <label> Copy To Date </label>
+                    </div>
+                    <div class="editor-field">
+                        <input id="DuplicateToDate" class="TexBoxDate" type="text" />
+                    </div>
+                </div>
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PartiesInfo_Terminal)
+                    </div>
+                    <div class="editor-alignment">
+                        @Html.DropDownListFor(mode => Model.PartiesInfo_Terminal, Model.PartiesInfo_Terminalist, new
+                                 {
+                                     id = "TerminalID",
+                                     @class = "terminal-dependent-list",
+                                     data_route = "/Catalogs/GetDDLData",
+                                     data_route_parameter = "selectedTerminals"
+                                 })
+                    </div>
+                </div>
+                <div class="full-width">
+                    <input id="btnSaveDuplicateSalesRoomsParties" type="submit" class="submit right" value="Save" />
+                </div>
+        </div>
+    </fieldset>

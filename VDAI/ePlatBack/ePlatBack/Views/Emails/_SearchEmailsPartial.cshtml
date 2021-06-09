@@ -1,0 +1,67 @@
+﻿@model ePlatBack.Models.ViewModels.EmailsSearchModel
+
+@{
+    var Privileges = ViewData["Privileges"] as List<ePlatBack.Models.ViewModels.SysComponentsPrivilegesModel>;
+}
+<span class="full-width">
+    <input type="button" id="btnNewEmailsInfo" class="submit right fieldset-expander" value="new" />
+</span>
+@using (Ajax.BeginForm("SearchEmails", "Emails", new AjaxOptions { OnBegin = "UI.checkForPendingRequests(xhr)", OnSuccess = "EMAIL.searchResultsTable(data)", OnComplete = "EMAIL.makeEmailsTableRowsSelectable()", UpdateTargetId = "divTblExistingEmails" }, new { id = "frmSearchEmails" }))
+{
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EmailSearch_Terminals)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.EmailSearch_Terminals, Model.EmailSearch_DrpTerminals, new { multiple = "multiple", @class = "terminal-dependent-list", data_route = "/Emails/GetDDLData", data_route_parameter = "activeTerminals" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EmailSearch_Culture)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.EmailSearch_Culture, Model.EmailSearch_DrpCultures, new { multiple = "multiple" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EmailSearch_Subject)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.EmailSearch_Subject)
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EmailSearch_Sender)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.EmailSearch_Sender)
+        </div>
+    </div>
+    @*<div class="full-width align-from-top">*@
+    <div class="editor-alignment">
+        <div class="editor-field">
+            <input type="submit" class="button right" value="search" />
+        </div>
+    </div>
+    <div id="divTblExistingEmails" class="align-from-top">
+        <table id="tblSearchEmailsResults" class="table dataTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Template</th>
+                    <th>Terminals</th>
+                    <th>Description</th>
+                    <th>Language</th>
+                    <th>Subject</th>
+                    <th>Sender</th>
+                    <th>Alias</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+}

@@ -1,0 +1,108 @@
+﻿#page {
+    width: 905px;
+    margin: 0 auto;
+    background-color: white;
+}
+
+img .large-coupon {
+    width: 230px;
+}
+
+.large-coupon {
+}
+
+img.large-coupon {
+    max-width: 230px;
+}
+
+.small-coupon {
+    display: none;
+}
+
+#container {
+    padding: 30px;
+}
+
+.print-counter {
+    /*display: none !important;*/
+    font-size: 25pt;
+    color: #ddd;
+}
+
+#coupon, #couponRoundTrip {
+    border: #ddd dashed 1px;
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.footer-column-1 {
+    display: inline-block;
+    margin-top: 12px;
+}
+
+.footer-column-2 {
+    display: inline-block;
+    width: 420px;
+    vertical-align: top;
+}
+
+.barcode {
+    margin-bottom: 12px;
+}
+
+#policies {
+    font-size: .8em;
+}
+
+    #policies .display-item {
+        margin-bottom: 30px;
+        width: 100%;
+    }
+
+    #policies .display-label {
+        text-transform: uppercase;
+    }
+
+    #policies .display-field {
+        font-weight: normal;
+    }
+
+.display-item {
+    display: inline-block;
+    width: 250px;
+    vertical-align: top;
+    margin-bottom: 10px;
+    min-height: 50px;
+}
+
+.display-field {
+    font-weight: bold;
+}
+
+.display-item-full {
+    width: 100%;
+    font-size: .8em;
+    text-align: center;
+    border-top: #eee solid 1px;
+    padding-top: 10px;
+}
+
+    .display-item-full ul li {
+        list-style: none;
+    }
+
+.policies-block {
+    margin-bottom: 20px;
+}
+
+.exchange-rate {
+    display: none;
+}
+
+.provider-phone {
+    display: none;
+}
+
+.modality {
+    display: none;
+}

@@ -1,0 +1,32 @@
+﻿@model ePlatBack.Models.ViewModels.PlaceClasificationsModel.SearchPlaceClasificationsModel
+
+<table id="tblSearchPlaceClasificationsResults" class="table search-results">
+            <thead>
+                <tr>
+                    <th>Place Clasification</th>
+                    <th>Place Type</th>
+                    <th>Hosting</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.ListPlaceClasifications != null)
+                {
+                    foreach (var i in Model.ListPlaceClasifications)
+                    {
+                        var id = "placeClasification_" + i.PlaceClasificationInfo_PlaceClasificationID;
+                        <tr id="@id">
+                            <td>
+                                @Html.DisplayFor(model => i.PlaceClasificationInfo_PlaceClasification)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => i.PlaceClasificationInfo_PlaceTypeName)
+                            </td>
+                            <td>
+                                @Html.DisplayTextFor(model => i.PlaceClasificationInfo_Hosting)
+                                <img src="/Content/themes/base/images/cross.png" class="right delete-item" />
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>

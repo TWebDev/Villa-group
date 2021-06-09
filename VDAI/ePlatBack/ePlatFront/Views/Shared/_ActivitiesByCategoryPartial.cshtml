@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ePlatBack.Models.ViewModels.ActivitiesByCategory>
+
+
+    @foreach (var category in Model)
+    {
+        foreach (var item in category.Activities)
+        {
+            <figure class="tile-activity" id="@item.ActivityID">
+                @*@if (@item.Tag != null && @item.Tag != "")
+                    {
+                        <div class="tile-activity-tag" style="background-color:@item.TagColor">@item.Tag</div>
+                    }*@
+                <a href="@item.Url" title="@item.Activity" class="tile-activity-images" target="_blank">
+                    @foreach (var picture in @item.Pictures)
+                    {
+                        <img alt="@item.Activity" src="//eplatfront.villagroup.com/@picture.Picture?width=392&height=220&mode=crop&quality=50" width="196" height="110" />
+                    }
+                    <span class="tile-progress"><span class="tile-progress-indicator"></span></span>
+                </a>
+                <figcaption class="tile-text">
+                    <a href="@item.Url" title="@item.Activity" target="_blank">
+                        <h2>@Html.DisplayFor(modelItem => item.Activity)</h2>
+                        <span class="retail-price">
+                            $@item.RetailPrice.ToString("0.00").Replace(",", ".")
+                        </span>
+                        <span class="offer-price">
+                            $@item.OfferPrice.ToString("0.00").Replace(",", ".")
+                        </span>
+                        <span class="rating">
+                            @if (item.Rating != null)
+                            {
+                                for (int s = 1; s <= Math.Floor(Math.Abs(item.Rating)); s++)
+                                {
+                                    <img src="~/Content/themes/mex/images/stars_full.png" />
+                                }
+                                if (item.Rating % 1 != 0)
+                                {
+                                    <img src="~/Content/themes/mex/images/stars_half.png" />
+                                }
+                                for (int v = 1; v <= Math.Floor(Math.Abs(5 - item.Rating)); v++)
+                                {
+                                    <img src="~/Content/themes/mex/images/stars_empty.png" />
+                                }
+                            }
+                        </span>
+                    </a>
+                    <a class="a-info" href="@item.Url" title="More Info about @item.Activity" style="margin: 10px 0 -7px -15px; width: 196px;" target="_blank">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.See_Details</a>@*<a class="a-book" href="#shopping-cart" onclick="BookingEngine.Service.book(@item.ActivityID,'@item.Activity.Replace("'", "")')" title="Book @item.Activity">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Book_This</a>*@
+                </figcaption>
+            </figure>
+        }
+    }

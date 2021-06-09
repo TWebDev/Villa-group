@@ -1,0 +1,381 @@
+﻿@model ePlatBack.Models.ViewModels.ActivityDetailViewModel
+
+@{
+    ViewBag.Culture = Model.Culture;
+    ViewBag.Title = Model.Seo_Title;
+    ViewBag.Keywords = Model.Seo_Keywords;
+    ViewBag.Description = Model.Seo_Description;
+    ViewBag.Index = Model.Seo_Index;
+    ViewBag.Follow = Model.Seo_Follow;
+    ViewBag.FriendlyUrl = Model.Seo_FriendlyUrl;
+    ViewBag.OppositeLanguageUrl = Model.Seo_OppositeLanguageUrl;
+    ViewBag.CanonicalDomain = Model.CanonicalDomain;
+
+    ViewBag.Header = Model.Template_Header;
+    ViewBag.Footer = Model.Template_Footer;
+    ViewBag.Logo = Model.Template_Logo;
+
+    ViewBag.Submenu1 = Model.Submenu1;
+    ViewBag.Submenu2 = Model.Submenu2;
+    ViewBag.Submenu3 = Model.Submenu3;
+}
+
+@section header{
+    @Html.Raw(Model.Scripts_Header)
+    <meta property="og:url" content="@Request.Url.AbsoluteUri" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="@Model.Seo_Title" />
+    <meta property="og:description" content="@Model.Seo_Description" />
+    @if (Model.Pictures.Count() > 0)
+    {
+        <meta property="og:image" content="//eplatfront.villagroup.com@(Model.Pictures.FirstOrDefault().Picture)" />
+    }
+    @if (Model.CanonicalDomain.IndexOf("my") >= 0)
+    {
+        <script> gtag('config', 'AW-1028948544/SowjCK_9tl8QwITS6gM', { 'phone_conversion_number': '@Model.Template_Phone_Desktop.Replace(" ", "-")' }); </script>
+    }
+}
+
+@section afterBody{
+    @Html.Raw(Model.Scripts_AfterBody)
+}
+
+@section scripts{
+    @Html.Raw(Model.Scripts_Footer)
+    <script>
+        UI.MarketingAssistant.alerts('@Model.Seo_Title');
+    </script>
+}
+
+@section controls{}
+
+@section featured {}
+
+@Html.HiddenFor(model => model.ActivityID)
+@Html.HiddenFor(model => model.ItemTypeID)
+
+<div class="row container">
+    <div class="col s12">
+        <h1>@Html.DisplayFor(model => model.Activity)</h1>
+    </div>
+    <div class="col s12 m8 l9">
+        <div class="carousel carousel-slider" data-indicators="true">
+            @foreach (var picture in Model.Pictures)
+            {
+                <span class="carousel-item"><img src="@("//eplatfront.villagroup.com" + @picture.Picture + "?width=920&height=520&mode=crop&autorotate=true")" alt="@(picture.Description != null ? picture.Description : Model.Activity)" class="responsive-img" /></span>
+            }
+        </div>
+
+        <div id="divFeatures" class="card-panel white-text light-green darker-1">
+            <h5>@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Features</h5>
+            <div style="display:none;">
+                @Html.DisplayFor(model => model.Features_MinimumAge)
+                @Html.DisplayFor(model => model.Features_MinimumHeight)
+            </div>
+            <div class="row">
+                <div class="col s12 m6 l4">
+                    <div id="divFriendlyWith">
+                        <span>@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Friendly_with:</span><br />
+                        <img src="~/Content/themes/mex/images/icon_baby.png" alt="" style="@(!Model.Features_BabiesAllowed ? "opacity:.2;" : "")" title="@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Babies" />
+                        <img src="~/Content/themes/mex/images/icon_children.png" alt="" style="@(!Model.Features_ChildrenAllowed ? "opacity:.2;" : "")" title="@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Children" />
+                        <img src="~/Content/themes/mex/images/icon_plus12.png" alt="" style="@(!Model.Features_AdultsAllowed ? "opacity:.2;" : "")" title="@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Adults" />
+                        <img src="~/Content/themes/mex/images/icon_pregnant.png" alt="" style="@(!Model.Features_PregnantsAllowed ? "opacity:.2;" : "")" title="@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Pregnant_Women" />
+                        <img src="~/Content/themes/mex/images/icon_oldies.png" alt="" style="@(!Model.Features_OldiesAllowed ? "opacity:.2;" : "")" title="@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Seniors" />
+                    </div>
+                </div>
+                <div class="col s12 m6 l4">
+                    <div id="divRanking" class="rating">
+                        <span>@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Guest_Ranking</span><br />
+                        @if (Model.Rating != null && Model.Rating > 0)
+                        {
+                            for (int s = 1; s <= Math.Floor(Math.Abs(Model.Rating)); s++)
+                            {
+                                <i class="material-icons">star</i>
+                            }
+                            if (Model.Rating % 1 != 0)
+                            {
+                                <i class="material-icons">star_half</i>
+                            }
+                            for (int v = 1; v <= Math.Floor(Math.Abs(5 - Model.Rating)); v++)
+                            {
+                                <i class="material-icons">star_border</i>
+                            }
+                            <a class="btn waves-effect waves-light light-green lighten-2 show-reviews">
+                                @ePlatFront.Resources.Views.Activities.ActivitiesStrings.Read_Reviews
+                            </a>
+                        }
+                        else
+                        {
+                            <span>
+                                <i class="material-icons">star_border</i>
+                                <i class="material-icons">star_border</i>
+                                <i class="material-icons">star_border</i>
+                                <i class="material-icons">star_border</i>
+                                <i class="material-icons">star_border</i><br />
+                                <a class="btn waves-effect waves-light light-green lighten-2 modal-trigger" href="#divSubmitReview">
+                                    @ePlatFront.Resources.Views.Activities.ActivitiesStrings.Rank_it_now!
+                                </a>
+                            </span>
+                        }
+                    </div>
+                </div>
+                <div class="col s12 m6 l4">
+                    <div id="divLength">
+                        <span>@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Activity_Length</span><br />
+                        <i class="material-icons tiny">alarm</i> <span>@Html.DisplayFor(model => model.Length)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @if (Model.Promo_MainTag != null && Model.Promo_MainTag != "")
+        {
+            <div id="divOffer" class="card-panel center" style="background-color: @Model.Promo_TagColor; color: @Model.Promo_TextColor;">
+                <h3>@Html.DisplayFor(model => model.Promo_MainTag)</h3>
+                <h5>
+                    @Html.DisplayFor(model => model.Promo_TitleTag)
+                </h5>
+                <p>@Html.Raw(Model.Promo_Description)</p>
+                <a class="waves-effect waves-light btn grey lighten-4 black-text modal-trigger" href="#divOfferInstructions">
+                    @ePlatFront.Resources.Views.Activities.ActivitiesStrings.How_to_Apply
+                </a>
+            </div>
+            <div id="divOfferInstructions" class="modal modal-fixed-footer">
+                <div class="modal-content">
+                    @Html.Raw(Model.Promo_Instructions)
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">OK</a>
+                </div>
+            </div>
+        }
+        <div id="divDescription" class="section">
+            <div class="right" style="margin-top: 7px;">
+                <div class="fb-like" data-href="@Request.Url.AbsoluteUri" data-layout="button_count" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
+            </div>
+            <h5>@ePlatFront.Resources.Views.Activities.ActivitiesStrings.What_is_this_about</h5>
+            @Html.Raw(Model.Description)
+        </div>
+        <div class="divider"></div>
+        @if (Model.Itinerary != null && Model.Itinerary != "")
+        {
+            <div id="divItinerary" class="section">
+                <h5>@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Itinerary</h5>
+                @Html.Raw(Model.Itinerary)
+            </div>
+            <div class="divider"></div>
+        }
+        @if (Model.Included != null && Model.Included != "")
+        {
+            <div id="divIncluded" style="@(Model.Itinerary != null && Model.Itinerary != "" ? "" : "width:100%")" class="section">
+                <h5>@ePlatFront.Resources.Views.Activities.ActivitiesStrings.What_is_included</h5>
+                @Html.Raw(Model.Included)
+            </div>
+            <div class="divider"></div>
+        }
+        <div id="divReviews" class="section">
+            <h5>@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Share_your_Experience</h5>
+            @if (Model.Reviews.Count() == 0)
+            {
+                <div class="review review-invitation">
+                    <div class="review-description">
+                        <p>
+                            @ePlatFront.Resources.Views.Activities.ActivitiesStrings.Not_Ranked
+                            <br /><br />
+                            <a class="btn waves-effect waves-light light-green modal-trigger" href="#divSubmitReview">
+                                @ePlatFront.Resources.Views.Activities.ActivitiesStrings.Add_a_Review_Now!
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <ul class="collection"></ul>
+            }
+            else
+            {
+                <ul class="collection">
+                    @foreach (var review in Model.Reviews)
+                    {
+                        <li class="collection-item row yellow lighten-5">
+                            <span class="review-info col s12 m3">
+                                @if (review.Picture != null)
+                                {
+                                    <img src="@review.Picture?w=320&h=240&mode=crop" class="responsive-img" />
+                                }
+                                @for (int s = 1; s <= Math.Floor(Math.Abs(review.Rating)); s++)
+                                {
+                                    <img src="~/Content/themes/mex/images/stars_full.png" />
+                                }
+                                @if (review.Rating % 1 != 0)
+                                {
+                                    <img src="~/Content/themes/mex/images/stars_half.png" />
+                                }
+                                @for (int v = 1; v <= Math.Floor(Math.Abs(5 - review.Rating)); v++)
+                                {
+                                    <img src="~/Content/themes/mex/images/stars_empty.png" />
+                                }
+                                <br />
+                                @review.Author
+                                <span class="review-info-from">
+                                    @review.From
+                                </span>
+                                <span class="review-info-saved">
+                                    @review.Saved
+                                </span>
+                            </span>
+                            <span class="review-description col s12 m9">
+                                @review.Review
+                            </span>
+                        </li>
+                    }
+                </ul>
+                <a class="btn waves-effect waves-light light-green modal-trigger" href="#divSubmitReview">
+                    @ePlatFront.Resources.Views.Activities.ActivitiesStrings.Share_My_Opinion
+                </a>
+            }
+            <div id="divSubmitReview" class="modal modal-fixed-footer">
+                @Html.Partial("_SubmitReviewPartialV2", Model.NewReview)
+            </div>
+        </div>
+    </div>
+
+    <div class="col s12 m4 l3">
+        <div id="divPrices" class="card-panel light-green darker-4 white-text">
+            <a href="/best-price-guaranteed">
+                <img class="right" src="/Content/themes/mex/images/icon_best_price.png" alt="" />
+            </a>
+            <h5>
+                @ePlatFront.Resources.Views.Activities.ActivitiesStrings.Prices
+                @if (Model.Culture == "es")
+                {
+                    <span style="color: #ffd600; font-weight: bold; text-shadow: 0 0 10px #252525;"><br />3 ó 6 MSI<span style="display:block; font-weight: normal; font-size: .75em; margin-top: -5px;">CitiBanamex</span></span>
+                }
+            </h5>
+            @if (!@Model.IsTransportation)
+            {
+                foreach (var price in Model.Prices.OrderByDescending(p => p.OfferPrice))
+                {
+                    if (price.DependingOnPriceID == null)
+                    {
+                        <div class="@(price.Highlight ? "highlight" : "")">
+                            <div>
+                                @price.Unit
+                                @if (@price.UnitMin != null)
+                                {
+                                    <text>
+                                        (@price.UnitMin - @price.UnitMax @ePlatFront.Resources.Views.Activities.ActivitiesStrings.Years)
+                                    </text>
+                                }
+                            </div>
+                            <div class="row">
+                                @if (price.RetailPrice > 0)
+                                {
+                                    <div class="col s6">
+                                        <div class="price-retail">$@price.RetailPrice.ToString("0.00").Replace(",", ".").Replace(".00", "") @price.Currency</div>
+                                        <div class="price-label">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Retail_Price</div>
+                                    </div>
+                                }
+                                <div class="col s6">
+                                    <div class="price-offer">$@price.OfferPrice.ToString("0.00").Replace(",", ".").Replace(".00", "") @price.Currency</div>
+                                    <div class="price-label">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Our_Price</div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            }
+
+            @if (Model.Prices.Count() > 0 || @Model.IsTransportation)
+            {
+                @*<a id="aBookNow" href="#shopping-cart" onclick="BookingEngine.Service.book(@Model.ActivityID, '@Model.Activity.Replace("'","")')">*@
+                <div class="center">
+                    @if (!@Model.IsTransportation && Model.Prices.OrderByDescending(x => x.Savings).FirstOrDefault().Savings > 0)
+                    {
+                        @ePlatFront.Resources.Views.Activities.ActivitiesStrings.Savings
+                        <h4 style="margin-top: 0;">
+                            @Html.DisplayFor(model => model.Prices.OrderByDescending(x => x.Savings).FirstOrDefault().Savings)%
+                        </h4>
+                    }
+                    <a class="waves-effect waves-light btn red" onclick="UI.BookingEngine.book(@Model.ActivityID,'@Model.Activity.Replace("'", "")')">
+                        <i class="left material-icons">add_shopping_cart</i>
+                        @ePlatFront.Resources.Views.Activities.ActivitiesStrings.Book_Now
+                    </a>
+                    <div class="fixed-action-btn">
+                        <a class="btn-floating btn-large red waves-effect waves-light pulse"
+                           onclick="UI.BookingEngine.book(@Model.ActivityID,'@Model.Activity.Replace("'", "")')">
+                            <i class="large material-icons">add_shopping_cart</i>
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+        @if (Model.Video_Url != null)
+        {
+            <div class="video-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/@Model.Video_Url?rel=0&amp;&amp;showinfo=0" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+            </div>
+        }
+        <div id="divAvailability" class="section">
+            <h5>@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Availability</h5>
+            <div class="day-button" data-day="Monday">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Mon</div>
+            <div class="day-button" data-day="Tuesday">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Tue</div>
+            <div class="day-button" data-day="Wednesday">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Wed</div>
+            <div class="day-button" data-day="Thursday">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Thu</div>
+            <div class="day-button" data-day="Friday">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Fri</div>
+            <div class="day-button" data-day="Saturday">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Sat</div>
+            <div class="day-button" data-day="Sunday">@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Sun</div>
+            <div id="divSchedules">
+                @foreach (var schedule in Model.Schedules)
+                {
+                    if (schedule.Time != "")
+                    {
+                        <span id="@schedule.Day" class="day-schedule" style="display:none;">
+                            @schedule.Time
+                        </span>
+                    }
+                }
+            </div>
+        </div>
+        <div id="divMeetingPoints">
+            <h5>@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Meeting_Points</h5>
+            <ul class="meeting-points">
+                @foreach (var place in Model.MeetingPoints)
+                {
+                    <li data-lat="@place.Lat" data-lng="@place.Lng"><i class="left tiny material-icons">location_searching</i><span class="place"><span class="name">@place.Place</span><span class="address">@Html.Raw(@place.Address)</span></span></li>
+                }
+            </ul>
+        </div>
+        @if (Model.Notes != null && Model.Notes != "")
+        {
+            <div id="divNotes" class="card-panel yellow lighten-5">
+                <h5>@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Notes</h5>
+                @Html.Raw(Model.Notes)
+            </div>
+        }
+        @if (Model.Restrictions != null && Model.Restrictions != "")
+        {
+            <div id="divRestrictions" class="section">
+                <h5>@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Restrictions</h5>
+                @Html.Raw(Model.Restrictions)
+            </div>
+        }
+        <div id="divRecommendations" class="section">
+            <h5>@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Recommendations</h5>
+            @Html.Raw(Model.Recommendations)
+        </div>
+        @if (Model.AlternativeActivities.Count() > 0)
+        {
+            <div id="divMoreOptions">
+                <h5>@ePlatFront.Resources.Views.Activities.ActivitiesStrings.Need_More_Options</h5>
+                @foreach (var activity in Model.AlternativeActivities)
+                {
+                    <a href="@activity.Url" title="@activity.Activity">
+                        <figure>
+                            <img src="//eplatfront.villagroup.com/@activity.Picture?width=126&height=76&mode=crop&quality=50" width="63" height="38" alt="@activity.Activity" />
+                            <figcaption>@activity.Activity</figcaption>
+                        </figure>
+                    </a>
+                }
+            </div>
+        }
+    </div>
+</div>

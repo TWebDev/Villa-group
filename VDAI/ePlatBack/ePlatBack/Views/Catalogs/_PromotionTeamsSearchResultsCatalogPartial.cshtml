@@ -1,0 +1,32 @@
+﻿@model ePlatBack.Models.ViewModels.PromotionTeamsModel.SearchPromotionTeamsModel
+
+<table id="tblSearchPromotionTeamsResults" class="table search-results">
+    <thead>
+        <tr>
+            <th>Promotion Team</th>
+            <th>Destination</th>
+            <th>Company</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ListPromotionTeams != null)
+        {
+            foreach (var i in Model.ListPromotionTeams)
+            {
+                var id = "promotionTeam_" + i.PromotionTeamsInfo_PromotionTeamID;
+                <tr id="@id">
+                    <td>
+                        @Html.DisplayFor(model => i.PromotionTeamsInfo_PromotionTeam)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.PromotionTeamsInfo_DestinationText)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.PromotionTeamsInfo_CompanyText)
+                        <img src="/Content/themes/base/images/cross.png" class="right delete-item" />
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

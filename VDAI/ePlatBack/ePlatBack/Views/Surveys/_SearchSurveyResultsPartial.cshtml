@@ -1,0 +1,30 @@
+﻿@model List<ePlatBack.Models.ViewModels.SurveyViewModel.SurveyItem>
+
+@if (Model.Count() > 0)
+{
+    <table class="table no-plugin" id="tblSurveys" style="width:100%;">
+        <thead>
+            <tr>
+                <th>Survey Name</th>
+                <th>Url</th>
+                <th>Created By</th>
+                <th>Created On</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var survey in Model)
+            {
+                <tr id="@survey.FieldGroupID">
+                    <td>@survey.FieldGroup</td>
+                    <td>@survey.Url</td>
+                    <td>@survey.CreatedBy</td>
+                    <td>@survey.CreatedOn</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>There are not Search Results</p>
+}

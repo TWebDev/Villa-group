@@ -1,0 +1,74 @@
+﻿@model ePlatBack.Models.ViewModels.PreArrivalImportHistory.Search
+
+@if (Model.Results != null)
+{
+    var perResort = Model.Results.GroupBy(m => m.Resort);
+    foreach (var resort in perResort)
+    {
+        <table id="tblPreArrivalImportHistory" class="dataTable non-editable exportable">
+            <thead>
+                <tr>
+                    <th colspan="4">
+                        @Html.DisplayFor(model => resort.Key)
+                    </th>
+                    <th>
+                        @{
+                            var byTeam = resort.GroupBy(m => m.TeamAssigned);
+                            var teamString = "";
+                            foreach (var a in byTeam)
+                            {
+                                teamString += (teamString != "" ? ", " : "") +  a.Key + ": " + a.Count();
+                            }
+                            @Html.DisplayFor(model => teamString)
+                        }
+                    </th>
+                </tr>
+                <tr>
+                    <th>Hotel Confirmation Number</th>
+                    <th>Certificate Number</th>
+                    <th>Arrival Date</th>
+                    <th>Assigned To User</th>
+                    <th>Input By User</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    var group = resort.GroupBy(m => m.TeamAssigned);
+                    foreach (var team in group)
+                    {
+                        var name = team.Key;
+                        var count = "Arrivals: " + team.Count();
+                        <tr>
+                            <th colspan="4">
+                                @Html.DisplayFor(model => name)
+                            </th>
+                            <th>
+                                @Html.DisplayFor(model => count)
+                            </th>
+                        </tr>
+                        foreach (var i in team)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(model => i.HotelConfirmationNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => i.FrontOfficeCertificateNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => i.ArrivalDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => i.AssignedToUser)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => i.InputByUser)
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+    }
+}

@@ -1,0 +1,86 @@
+﻿@model ePlatBack.Models.ViewModels.RedeemMyPackageViewModel
+
+@using (Ajax.BeginForm("RedeemMyPackageSave", new { Controller = "Controls" }, new AjaxOptions { OnBegin = "Controls.sendingInfo('RedeemMyPackageForm')", OnSuccess = "Controls.showMessage(data,'RedeemMyPackageForm', true, 2)", OnFailure = "Controls.showMessage({ResponseType : -1, ResponseMessage : 'Failure trying to send the information to the server, please try again.'},'RedeemMyPackageForm'); grecaptcha.reset(widgetRP);" }, new { id = "RedeemMyPackageForm" }))
+{
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseRedeemMyPackage"><span aria-hidden="true">&times;</span></button>
+                <h2 class="modal-title" id="redeemMyPackageLabel">Redeem my Package</h2>
+            </div>
+            <div class="modal-body">
+                <h3>Ready to book dates?</h3>
+                <p>
+                    Fill in the following information below and the reservation specialist will get back to you in the next 24 hours.
+                </p>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        @Html.LabelFor(model => model.Redeem_FirstName)
+                        <div>
+                            @Html.TextBoxFor(model => model.Redeem_FirstName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Redeem_FirstName)
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        @Html.LabelFor(model => model.Redeem_LastName)
+                        <div>
+                            @Html.TextBoxFor(model => model.Redeem_LastName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Redeem_LastName)
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        @Html.LabelFor(model => model.Redeem_Email)
+
+                        <div>
+                            @Html.TextBoxFor(model => model.Redeem_Email, new { @class = "form-control", type = "email" })
+                            @Html.ValidationMessageFor(model => model.Redeem_Email)
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        @Html.LabelFor(model => model.Redeem_Phone)
+
+                        <div>
+                            @Html.TextBoxFor(model => model.Redeem_Phone, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Redeem_Phone)
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        @Html.LabelFor(model => model.Redeem_CertificateNumber)
+
+                        <div>
+                            @Html.TextBoxFor(model => model.Redeem_CertificateNumber, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Redeem_CertificateNumber)
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        @Html.LabelFor(model => model.Redeem_Comments)
+
+                        <div>
+                            @Html.TextAreaFor(model => model.Redeem_Comments, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Redeem_Comments)
+                        </div>
+                    </div>
+                </div>
+                <div class="center-block" style="width:320px;">
+                    <div id="divRP_Recaptcha"></div>
+                </div>                    
+            </div>
+            <div class="modal-footer">
+                <div class="validation-errors">
+                    @Html.ValidationSummary(true)
+                </div>
+                <div class="interaction-message"></div>
+                <input type="submit" class="btn btn-default" value="Send Request" />
+            </div>
+        </div>
+    </div>
+}

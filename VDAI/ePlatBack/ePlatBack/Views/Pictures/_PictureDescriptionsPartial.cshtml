@@ -1,0 +1,55 @@
+﻿@model ePlatBack.Models.ViewModels.PictureDescriptionInfoModel
+
+<fieldset id="fdsPicturesContainer">
+    <legend style="display:none"></legend>
+    <div>
+        <div class="full-width align-from-bottom">
+            <input type="button" class="submit fieldset-expander right" value="new" id="btnNewPictureDescription" />
+        </div>
+        <ul id="ulPictureDescriptions" class="ul-picture-descriptions"></ul>
+        <fieldset id="fdsPictureDescription" class="fds-picture-description">
+            <legend>
+                <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+                Picture Descriptions
+            </legend>
+            <div style="display: none">
+                @using (Ajax.BeginForm("SavePictureDescription", "Pictures", new AjaxOptions { OnSuccess = "PICTURE.savePictureDescriptionSuccess(data)" }, new { id = "frmPictureDescription", onSubmit = "return UI.showValidationSummary(this.id);", @class = "frm-picture-description" }))
+                {
+                    <div id="frmPictureDescription_ErrorMessages" style="display: none">
+                        @Html.ValidationMessageFor(model => model.PictureDescriptionInfo_Alt)
+                        @Html.ValidationMessageFor(model => model.PictureDescriptionInfo_Culture)
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.PictureDescriptionInfo_Alt)
+                            @Html.HiddenFor(model => model.PictureDescriptionInfo_PictureID, new { data_keep_value = "", @class = "picture-description-info-picture-id" })
+                            @Html.HiddenFor(model => model.PictureDescriptionInfo_PictureDescriptionID, new { @class = "secondary-selected-row-dependent ignore-validation picture-description-info-picture-description-id" })
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.PictureDescriptionInfo_Alt, new { @class = "picture-description-info-alt" })
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.PictureDescriptionInfo_Description)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.PictureDescriptionInfo_Description, new { @class = "picture-description-info-description" })
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.PictureDescriptionInfo_Culture)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.PictureDescriptionInfo_Culture, Model.PictureDescriptionInfo_DrpCultures, new { @class = "picture-description-info-culture" })
+                        </div>
+                    </div>
+                    <div class="full-width align-from-top">
+                        <input type="button" class="submit right btn-save-picture-description" id="btnSavePictureDescription" value="save" />
+                    </div>
+                }
+            </div>
+        </fieldset>
+    </div>
+</fieldset>

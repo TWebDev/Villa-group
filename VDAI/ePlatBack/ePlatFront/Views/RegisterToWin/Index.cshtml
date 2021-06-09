@@ -1,0 +1,213 @@
+﻿@model ePlatBack.Models.ViewModels.LeadsGenerationViewModel
+
+@{
+    ViewBag.Title = "Register to Receive a Vacation Deal";
+}
+
+<div id="divLeftBar">
+    <div id="destinations">
+        <div id="PuertoVallarta" class="destination selected">
+            Puerto Vallarta
+        </div>
+        ·
+        <div id="Loreto" class="destination">
+            Loreto
+        </div>
+        ·
+        <div id="Orlando" class="destination">
+            Orlando
+        </div>
+    </div>
+    <h1>Register to Receive!</h1>
+    <h2>
+        Four Nights & Five Days in
+        one of our exclusive
+        5 star Mexico resorts
+    </h2>
+    <p>
+        Please enter the following information to participate in our sweepstake and be elegible to receive this vacation deal. If you are selected in the contest, you will be notified by phone and/or email.
+    </p>
+    <div id="divRegistered" style="display:none;">
+        Thank You and Good Luck!
+    </div>
+    <div id="divForm">
+        @using (Ajax.BeginForm("SaveInfo", "RegisterToWin", new AjaxOptions { OnSuccess = "DMV.onSuccess(data)", OnBegin = "DMV.onBegin()" }, new { id = "frmRegisterToWin" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            @Html.HiddenFor(model => model.TransactionID)
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.FirstName)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.FirstName)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.LastName)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.LastName)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Email)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Email)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Country)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Country, Model.Countries)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.State)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.State)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.MobilePhone)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.MobilePhone, new { data_format = "phone", maxlength = "14" })
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.HomePhone)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.HomePhone, new { data_format = "phone", maxlength = "14" })
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.TimeToReach, new { style = "font-size: .95em;" })
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.TimeToReach)
+            </div>
+            <div>
+                @Html.ValidationMessageFor(model => model.FirstName)
+                @Html.ValidationMessageFor(model => model.LastName)
+                @Html.ValidationMessageFor(model => model.Email)
+                @Html.ValidationMessageFor(model => model.Country)
+                @Html.ValidationMessageFor(model => model.State)
+                @Html.ValidationMessageFor(model => model.MobilePhone)
+                @Html.ValidationMessageFor(model => model.HomePhone)
+            </div>
+            <div class="align-right">
+                <input id="btnRegisterNow" type="submit" value="Register Now" />
+            </div>
+        }
+    </div>
+    <div id="offerInfo">
+        <a id="openTerms" href="#TermsAndConditions">Terms and Conditions</a>
+        ·
+        <a id="openPolicy" href="#PrivacyPolicy">Privacy Policy</a>
+    </div>
+</div>
+<a id="openOfferDescription" href="#OpenOfferDescription" style="display:none;">
+    <img src="/Content/themes/dmv/images/push-right-black.png" alt="Open Offer Description" width="30" />
+</a>
+<div id="divContent">
+    @*<a id="closeOfferDescription" href="#CloseOfferDescription">
+            <img src="/Content/themes/dmv/images/push-left-black.png" alt="Close Offer Description" width="30" />
+        </a>*@
+    <div id="includes">
+        <a id="enlargeRoomPicture" href="#EnlargeRoomsPictures">
+            <img src="/Content/themes/dmv/images/zoom-in.png" alt="Enlarge Rooms Pictures" width="30" />
+        </a>
+        <a id="contractRoomPicture" href="#ContractRoomsPictures" style="display:none;">
+            <img src="/Content/themes/dmv/images/zoom-out.png" alt="Contract Rooms Pictures" width="30" />
+        </a>
+        <h2>This is the best opportunity ever!</h2>
+        <ul>
+            <li>Ocean front resorts of your choice to Puerto Vallarta or Loreto</li>
+            <li>Deluxe studio villa for up to 2 adults & 2 children 12 and under</li>
+            <li>FREE city & tequila tours (Vallarta)</li>
+            <li>Discounts on flights from LAX (Loreto)</li>
+            <li>Discounts on more tours & activities</li>
+            <li>Choose an optional Upgrade to All Inclusive for a great rate</li>
+            <li>Ask about our Orlando Theme Park Packages</li>
+        </ul>
+    </div>
+    <div id="rooms">
+    </div>
+</div>
+<div id="policy" class="board">
+    <span class="close">x</span>
+    <h3>Privacy Policy</h3>
+    <div class="board-content">
+        <p>
+            These are the privacy policies from discountedmexicovacation.com regarding to input and use of personal information
+
+            from our "Customers" in our website and telemarketing center.
+        </p>
+        <p>
+            discountedmexicovacation.com repects the privacy of all our "Customers"; that's why we use techniques and procedures
+
+            through a SSL(Secure Sockets Layer) certificate. Those digital certificates protect the data from your computer to
+
+            the server using encryption.
+        </p>
+        <p>
+            All our credit card operations are protected with this security process (encryption) to assure your privacy when you
+
+            realize your online payment or through our international agents.
+        </p>
+        <p>
+            discountedmexicovacation.com is committed to a policy of confidentiality and data protection, in order to protect the
+
+            privacy of personal information collected from the "Customer".
+        </p>
+        <p>
+            discountedmexicovacation.com won't reveal data from "Customer's" credit or debit card, except to the company that
+
+            process the payments.
+        </p>
+        <p>
+            discountedmexicovacation.com undertakes NOT use the personal data of users to trade with others.
+        </p>
+        <p>
+            discountedmexicovacation.com informs to the "Customer" that information given can be used to be in contact with him
+
+            by discountedmexicovacation personnel or a third person designated by the company.
+        </p>
+        <p>
+            discountedmexicovacation.com recommends to the "Customer" to protect the security of name and other credit card
+
+            information. Don't write that information in any paper when you do an online payment. Contact your bank if you
+
+            suspect that someone has stolen information from your credit card or if detect any anomaly in your reservation.
+        </p>
+        <p>
+            discountedmexicovacation.com for security reasons does not save information from "Customer's" credit cards, that's
+
+            why every time you do a transaction, you will need to type credit or debit card information again.
+        </p>
+        <p>
+            discountedmexicovacation.com informs that all minors (less than 21 years old) wanting to purchase any of our vacation
+
+            packages, will need to have parents authorization before giving information to our reps. We verify identity and age
+
+            of our "Clients".
+        </p>
+        <p>
+            discountedmexicovacation.com reserves the right to make changes to its Privacy Policy at any time in order to adapt to new requirements. So we recommend to our "customers" to periodically check these terms of use each time our website is made.
+        </p>
+    </div>
+</div>
+<div id="terms" class="board">
+    <span class="close">x</span>
+    <h3>Terms and Conditions</h3>
+    <p>This is an Offer to Sell Travel</p>
+    <p>
+        To participate in this promotion you must be between 30-70 years old. You must have a major credit card at the time of check-in. Debit cards are NOT accepted. All recorded information will be kept in our secure and confidential database. When you enter your data, Discounted Mexico Vacation and its affiliates warrant that the information provided will not be shared or sold to third parties for marketing purposes. This information is used only to contact you to verify your personal data. This offer is not a free vacation package. The vacation plans are promotional prices and do not include applicable taxes for hotel or ports. Promotions to Orlando destination include daily continental breakfast, complimentary transportation to theme parks and a gift two (2) tickets to Universal Studios. To claim tickets, you must attend a complimentary breakfast that includes an special hotel or resort presentation. Due to inventory and availability of rooms, suites and villas, vacation properties, they can be replaced by one of equal or higher category. Universal Studios Tickets are offered at no additional cost.
+    </p>
+</div>

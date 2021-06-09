@@ -1,0 +1,95 @@
+﻿@model ePlatBack.Models.ViewModels.PageInfoModel
+
+<fieldset id="fdsPagesInfo" class="primary-selected-row-dependent">
+	<legend><img src="/Content/themes/base/images/eplat_show.jpg" alt="" class="fieldset-indicator">
+        Page Info
+	</legend>
+    <div class="align-from-top" style="display:none">
+        @using (Ajax.BeginForm("SavePage", "Pages", new AjaxOptions { OnSuccess = "PAGE.savePageSuccess(data)" }, new { id = "frmPage", onSubmit = "return UI.showValidationSummary(this.id);" }))
+        {
+            <div id="frmPage_ErrorMessages" style="display:none">
+                @Html.ValidationMessageFor(model => model.PageInfo_Page)
+                @Html.ValidationMessageFor(model => model.PageInfo_ShowInMenu)
+                @Html.ValidationMessageFor(model => model.PageInfo_Order)
+                @Html.ValidationMessageFor(model => model.PageInfo_PageType)
+                @Html.ValidationMessageFor(model => model.PageInfo_Clickable)
+            </div>
+            <div class="editor-alignment">
+            	<div class="editor-label">
+                    @Html.HiddenFor(model => model.PageInfo_PageID, new { @class = "primary-selected-row-dependent" })
+                    @Html.LabelFor(model => model.PageInfo_Page)
+            	</div>
+            	<div class="editor-field">
+                    @Html.TextBoxFor(model => model.PageInfo_Page)
+            	</div>
+            </div>
+            <div class="editor-alignment">
+            	<div class="editor-label">
+                    @Html.LabelFor(model => model.PageInfo_Terminal)
+            	</div>
+            	<div class="editor-field">
+                    @Html.DropDownListFor(model => model.PageInfo_Terminal, Model.PageInfo_DrpTerminals, new { @class = "terminal-dependent-list onchange", data_route = "/Pages/GetDDLData", data_route_parameter = "selectedTerminals", data_onchange_route_parameter = "pages", data_dependent_list = "PageInfo_ParentPage" })
+            	</div>
+            </div>
+            <div class="editor-alignment">
+            	<div class="editor-label">
+                    @Html.LabelFor(model => model.PageInfo_ShowInMenu)
+            	</div>
+            	<div class="editor-field">
+                    <label for="PageInfo_ShowInMenuTrue">Yes</label>
+                    @Html.RadioButtonFor(model => model.PageInfo_ShowInMenu, true, new { data_keep_value = "" })
+                    <label for="PageInfo_ShowInMenuFalse">No</label>
+                    @Html.RadioButtonFor(model => model.PageInfo_ShowInMenu, false, new { data_keep_value = "" })
+            	</div>
+            </div>
+            <div class="editor-alignment">
+            	<div class="editor-label">
+                    @Html.LabelFor(model => model.PageInfo_Order)
+            	</div>
+            	<div class="editor-field">
+                    @Html.TextBoxFor(model => model.PageInfo_Order)
+            	</div>
+            </div>
+            <div class="editor-alignment">
+            	<div class="editor-label">
+                    @Html.LabelFor(model => model.PageInfo_ParentPage)
+            	</div>
+            	<div class="editor-field">
+                    @Html.DropDownListFor(model => model.PageInfo_ParentPage, Model.PageInfo_DrpPages)
+            	</div>
+            </div>
+            <div class="editor-alignment">
+            	<div class="editor-label">
+                    @Html.LabelFor(model => model.PageInfo_PageType)
+            	</div>
+            	<div class="editor-field">
+                    @Html.DropDownListFor(model => model.PageInfo_PageType, Model.PageInfo_DrpPageTypes)
+            	</div>
+            </div>
+            <div class="editor-alignment">
+            	<div class="editor-label">
+                    @Html.LabelFor(model => model.PageInfo_Clickable)
+            	</div>
+            	<div class="editor-field">
+                    <label for="PageInfo_ClickableTrue">Yes</label>
+                    @Html.RadioButtonFor(model => model.PageInfo_Clickable, true, new { data_keep_value = "" })
+                    <label for="PageInfo_ClickableFalse">No</label>
+                    @Html.RadioButtonFor(model => model.PageInfo_Clickable, false, new { data_keep_value = "" })
+            	</div>
+            </div>
+            <div class="editor-alignment full-width">
+            	<input type="button" class="submit right" id="btnSavePage" value="save" />
+            </div>
+        }
+        @Html.Partial("_PageDescriptionsPartial", Model.PageDescriptionModel)
+        @*<fieldset id="fdsSeoItems" class="view-restricted primary-selected-row-dependent" style="display: none">
+            <legend>
+                <img class="fieldset-indicator fds-indicator-separator" src="/Content/themes/base/images/eplat_show.jpg" />
+                Seo Items Management
+            </legend>
+            <div style="display: none">*@
+                @Html.Action("RenderSeoItemsInPages", "SeoItems")
+            @*</div>
+        </fieldset>*@
+    </div>
+</fieldset>

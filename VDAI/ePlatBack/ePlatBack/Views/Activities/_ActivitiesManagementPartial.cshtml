@@ -1,0 +1,429 @@
+﻿@model ePlatBack.Models.ViewModels.ActivityInfoModel
+@{
+    var Privileges = ViewData["Privileges"] as List<ePlatBack.Models.ViewModels.SysComponentsPrivilegesModel>;
+}
+
+@if (Privileges.FirstOrDefault(m => m.Component == "fdsImportActivities") == null || Privileges.FirstOrDefault(m => m.Component == "fdsImportActivities").View)
+{
+    <fieldset data-close-siblings="true" id="fdsImportActivities" class="view-restricted" style="display: none">
+        <legend>
+            <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+            Activity Import
+        </legend>
+        <div style="display: none">
+            @Html.Partial("_PrevSearchActivitiesPartial", Model.PrevActivitySearchModel)
+            @Html.Partial("_ActivitiesImportationPartial", Model.ActivityImportInfoModel)
+        </div>
+    </fieldset>
+}
+@if (Privileges.FirstOrDefault(m => m.Component == "fdsActivitiesInfo") == null || Privileges.FirstOrDefault(m => m.Component == "fdsActivitiesInfo").View)
+{
+    <fieldset id="fdsActivitiesInfo" class="primary-selected-row-dependent">
+        <legend>
+            <img src="/Content/themes/base/images/eplat_show.jpg" alt="" class="fieldset-indicator fds-indicator-separator">
+            Activity Info
+        </legend>
+        <div style="display: none" class="align-from-top">
+            @if (Privileges.FirstOrDefault(m => m.Component == "frmActivity") == null || Privileges.FirstOrDefault(m => m.Component == "frmActivity").View)
+            {
+                using (Ajax.BeginForm("SaveActivity", "Activities", new AjaxOptions { OnSuccess = "ACTIVITY.saveActivitySuccess(data)" }, new { id = "frmActivity", onSubmit = "return UI.showValidationSummary(this.id);" }))
+                {
+                    <div id="frmActivity_ErrorMessages" style="display: none">
+                        @Html.ValidationMessageFor(model => model.ActivityInfo_Activity)
+                        @Html.ValidationMessageFor(model => model.ActivityInfo_ApplyWholeStay)
+                        @Html.ValidationMessageFor(model => model.ActivityInfo_Length)
+                        @Html.ValidationMessageFor(model => model.ActivityInfo_OriginalTerminal)
+                        @Html.ValidationMessageFor(model => model.ActivityInfo_Destination)
+                        @Html.ValidationMessageFor(model => model.ActivityInfo_Provider)
+                        @Html.ValidationMessageFor(model => model.ActivityInfo_TransportationService)
+                    </div>
+                    if (Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_ItemType") == null || Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_ItemType").View)
+                    {
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ActivityInfo_ItemType)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.ActivityInfo_ItemType, Model.ActivityInfo_DrpItemTypes)
+                            </div>
+                        </div>
+                    }
+                    if (Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_Activity") == null || Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_Activity").View)
+                    {
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ActivityInfo_Activity)
+                                @Html.HiddenFor(model => model.ActivityInfo_ActivityID, new { @class = "primary-selected-row-dependent ignore-validation" })
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ActivityInfo_Activity, new { data_format = "free-case" })
+                            </div>
+                        </div>
+                    }
+                    if (Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_OriginalTerminal") == null || Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_OriginalTerminal").View)
+                    {
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ActivityInfo_OriginalTerminal)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.ActivityInfo_OriginalTerminal, Model.ActivityInfo_DrpTerminals, new { data_keep_value = "", @class = "terminal-dependent-list", data_route = "/Activities/GetDDLData", data_route_parameter = "terminal" })
+                            </div>
+                        </div>
+                    }
+                    if (Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_Destination") == null || Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_Destination").View)
+                    {
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ActivityInfo_Destination)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.ActivityInfo_Destination, Model.ActivityInfo_DrpDestinations)
+                            </div>
+                        </div>
+                    }
+                    if (Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_Provider") == null || Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_Provider").View)
+                    {
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ActivityInfo_Provider)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.ActivityInfo_Provider, Model.ActivityInfo_DrpProviders, new { @class = "providers-related" })
+                            </div>
+                        </div>
+                    }
+                    if (Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_ApplyWholeStay") == null || Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_ApplyWholeStay").View)
+                    {
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ActivityInfo_ApplyWholeStay)
+                            </div>
+                            <div class="editor-field">
+                                <label for="ActivityInfo_ApplyWholeStayTrue">Yes</label>
+                                @Html.RadioButtonFor(model => model.ActivityInfo_ApplyWholeStay, true, new { data_keep_value = "" })
+                                <label for="ActivityInfo_ApplyWholeStayFalse">No</label>
+                                @Html.RadioButtonFor(model => model.ActivityInfo_ApplyWholeStay, false, new { data_keep_value = "" })
+                            </div>
+                        </div>
+                    }
+                    if (Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_Length") == null || Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_Length").View)
+                    {
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ActivityInfo_Length)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ActivityInfo_Length)
+                            </div>
+                        </div>
+                    }
+                    if (Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_Zone") == null || Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_Zone").View)
+                    {
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ActivityInfo_Zone)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.ActivityInfo_Zone, Model.ActivityInfo_DrpZones)
+                            </div>
+                        </div>
+                    }
+                    if (Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_TransportationService") == null || Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_TransportationService").View)
+                    {
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.Label("Transportation Service")
+                            </div>
+                            <div class="editor-field">
+                                <label>Yes</label>
+                                @Html.RadioButtonFor(model => model.ActivityInfo_TransportationService, true, new { data_keep_value = "" })
+                                <label>No</label>
+                                @Html.RadioButtonFor(model => model.ActivityInfo_TransportationService, false, new { data_keep_value = "" })
+                            </div>
+                        </div>
+                    }
+                    if (Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_OffersRoundTrip") == null || Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_OffersRoundTrip").View)
+                    {
+                        <div id="divRoundTrip" class="editor-alignment" style="display: none">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ActivityInfo_OffersRoundTrip)
+                            </div>
+                            <div class="editor-field">
+                                <label for="ActivityInfo_OffersRoundTripTrue">Yes</label>
+                                @Html.RadioButtonFor(model => model.ActivityInfo_OffersRoundTrip, true, new { data_keep_value = "" })
+                                <label for="ActivityInfo_OffersRoundTripFalse">No</label>
+                                @Html.RadioButtonFor(model => model.ActivityInfo_OffersRoundTrip, false, new { data_keep_value = "" })
+                            </div>
+                        </div>
+                    }
+                    if (Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_MinimumAge") == null || Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_MinimumAge").View)
+                    {
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ActivityInfo_MinimumAge)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ActivityInfo_MinimumAge)
+                            </div>
+                        </div>
+                    }
+                    if (Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_MinimumHeight") == null || Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_MinimumHeight").View)
+                    {
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ActivityInfo_MinimumHeight)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ActivityInfo_MinimumHeight)
+                            </div>
+                        </div>
+                    }
+                    if (Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_MaximumWeight") == null || Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_MaximumWeight").View)
+                    {
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ActivityInfo_MaximumWeight)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ActivityInfo_MaximumWeight)
+                            </div>
+                        </div>
+                    }
+                    if (Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_BabiesAllowed") == null || Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_BabiesAllowed").View)
+                    {
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ActivityInfo_BabiesAllowed)
+                            </div>
+                            <div class="editor-field">
+                                <label for="ActivityInfo_BabiesAllowedTrue">Yes</label>
+                                @Html.RadioButtonFor(model => model.ActivityInfo_BabiesAllowed, true, new { data_keep_value = "" })
+                                <label for="ActivityInfo_BabiesAllowedFalse">No</label>
+                                @Html.RadioButtonFor(model => model.ActivityInfo_BabiesAllowed, false, new { data_keep_value = "" })
+                            </div>
+                        </div>
+                    }
+                    if (Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_ChildrenAllowed") == null || Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_ChildrenAllowed").View)
+                    {
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ActivityInfo_ChildrenAllowed)
+                            </div>
+                            <div class="editor-field">
+                                <label for="ActivityInfo_ChildrenAllowedTrue">Yes</label>
+                                @Html.RadioButtonFor(model => model.ActivityInfo_ChildrenAllowed, true, new { data_keep_value = "" })
+                                <label for="ActivityInfo_ChildrenAllowedFalse">No</label>
+                                @Html.RadioButtonFor(model => model.ActivityInfo_ChildrenAllowed, false, new { data_keep_value = "" })
+                            </div>
+                        </div>
+                    }
+                    if (Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_AdultsAllowed") == null || Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_AdultsAllowed").View)
+                    {
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ActivityInfo_AdultsAllowed)
+                            </div>
+                            <div class="editor-field">
+                                <label for="ActivityInfo_AdultsAllowedTrue">Yes</label>
+                                @Html.RadioButtonFor(model => model.ActivityInfo_AdultsAllowed, true, new { data_keep_value = "" })
+                                <label for="ActivityInfo_AdultsAllowedFalse">No</label>
+                                @Html.RadioButtonFor(model => model.ActivityInfo_AdultsAllowed, false, new { data_keep_value = "" })
+                            </div>
+                        </div>
+                    }
+                    if (Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_PregnantsAllowed") == null || Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_PregnantsAllowed").View)
+                    {
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ActivityInfo_PregnantsAllowed)
+                            </div>
+                            <div class="editor-field">
+                                <label for="ActivityInfo_PregnantsAllowedTrue">Yes</label>
+                                @Html.RadioButtonFor(model => model.ActivityInfo_PregnantsAllowed, true, new { data_keep_value = "" })
+                                <label for="ActivityInfo_PregnantsAllowedFalse">No</label>
+                                @Html.RadioButtonFor(model => model.ActivityInfo_PregnantsAllowed, false, new { data_keep_value = "" })
+                            </div>
+                        </div>
+                    }
+                    if (Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_OldiesAllowed") == null || Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_OldiesAllowed").View)
+                    {
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ActivityInfo_OldiesAllowed)
+                            </div>
+                            <div class="editor-field">
+                                <label for="ActivityInfo_OldiesAllowedTrue">Yes</label>
+                                @Html.RadioButtonFor(model => model.ActivityInfo_OldiesAllowed, true, new { data_keep_value = "" })
+                                <label for="ActivityInfo_OldiesAllowedFalse">No</label>
+                                @Html.RadioButtonFor(model => model.ActivityInfo_OldiesAllowed, false, new { data_keep_value = "" })
+                            </div>
+                        </div>
+                    }
+                    if (Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_Video") == null || Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_Video").View)
+                    {
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ActivityInfo_Video)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ActivityInfo_Video)
+                            </div>
+                        </div>
+                    }
+                    if (Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_VideoURL") == null || Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_VideoURL").View)
+                    {
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ActivityInfo_VideoURL)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.ActivityInfo_VideoURL, new { data_format = "free-case" })
+                            </div>
+                        </div>
+                    }
+                    if (Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_ExcludeForCommission") == null || Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_ExcludeForCommission").View)
+                    {
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ActivityInfo_ExcludeForCommission)
+                            </div>
+                            <div class="editor-field">
+                                @Html.CheckBoxFor(model => model.ActivityInfo_ExcludeForCommission)
+                            </div>
+                        </div>
+                    }
+                    if (Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_JobPositions") == null || Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_JobPositions").View)
+                    {
+                        <div id="divJobPositions" class="editor-alignment" style="display:none">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ActivityInfo_JobPositions)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.ActivityInfo_JobPositions, Model.ActivityInfo_DrpJobPositions, new { multiple = "multiple"})
+                            </div>
+                        </div>
+                    }
+                    if (Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_AvoidRouding") == null || Privileges.FirstOrDefault(m => m.Component == "ActivityInfo_AvoidRounding").View)
+                    {
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ActivityInfo_AvoidRounding)
+                            </div>
+                            <div class="editor-field">
+                                @Html.CheckBoxFor(model => model.ActivityInfo_AvoidRounding)
+                            </div>
+                        </div>
+                    }
+                    if (Privileges.FirstOrDefault(m => m.Component == "btnSaveActivity") == null || Privileges.FirstOrDefault(m => m.Component == "btnSaveActivity").View)
+                    {
+                        <div class="editor-alignment full-width">
+                            <input type="submit" class="submit right" id="btnSaveActivity" value="save" />
+                        </div>
+                    }
+
+                }
+            }
+            @Html.Partial("_CategoriesPerActivityPartial", Model.ActivityCategoryInfoModel)
+
+            @Html.Partial("_ActivityDescriptionsPartial", Model.ActivityDescriptionInfoModel)
+
+            @Html.Partial("_SchedulesPerActivityPartial", Model.ActivityScheduleInfoModel)
+
+            @*@Html.Partial("_MeetingPointsPerActivityPartial", Model.ActivityMeetingPointInfoModel)*@
+            @Html.Partial("_MeetingPointsPerServicePartial", Model.ActivityMeetingPointInfoModel)
+
+            @Html.Partial("_AccountingAccountsPerActivityPartial", Model.ActivityAccountingAccountInfoModel)
+
+            @Html.Partial("_SearchPriceTypesRulesPartial", Model.PriceTypeRulesInfoModel)
+
+            @Html.Action("RenderPricesInActivities", "Prices")
+
+            @Html.Partial("_PricesEditorPartial", Model.PricesEditorModel)
+
+            @Html.Action("RenderSeoItemsInActivities", "SeoItems")
+
+            @Html.Partial("_SearchStockTransactionsPartial", Model.StockInfoModel)
+
+            @if (Privileges.FirstOrDefault(m => m.Component == "fdsPictures") == null || Privileges.FirstOrDefault(m => m.Component == "fdsPictures").View)
+            {
+                <fieldset id="fdsPictures" data-close-siblings="true" class="view-restricted primary-selected-row-dependent">
+                    <legend>
+                        <img class="fieldset-indicator fds-indicator-separator" src="/Content/themes/base/images/eplat_show.jpg" />
+                        Pictures Management
+                    </legend>
+                    <div style="display: none">
+                        @Html.Action("RenderPicturesInActivities", "Pictures")
+                    </div>
+                </fieldset>
+            }
+        </div>
+    </fieldset>
+}
+    @*<div id="divPriceTypeRuleClosing">
+        <div class="non-printable">
+            <section>
+                <h3>Select the termination date for the selected rule</h3>
+            </section>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PriceTypeRulesInfo_ToDate)
+                    @Html.HiddenFor(model => model.PriceTypeRulesInfo_PriceTypeRuleID)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.PriceTypeRulesInfo_ToDate, new { placeholder = "empty = now", data_uses_date_picker="true" })
+                </div>
+            </div>
+            <div class="full-width align-from-top">
+                <input id="btnCancelClosing" type="button" class="button right marg-left" value="cancel" />
+                <input id="btnCloseRule" type="button" class="submit right alert-dblclick" value="save & continue" />
+            </div>
+        </div>
+    </div>*@
+@if (Privileges.FirstOrDefault(m => m.Component == "fdsRelatedItems") == null || Privileges.FirstOrDefault(m => m.Component == "fdsRelatedItems").View)
+{
+    @*<fieldset id="fdsRelatedItems" data-close-siblings="true">
+        <legend>
+            <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+            Related Items
+        </legend>
+        <div style="display: none">
+            @if (Privileges.FirstOrDefault(m => m.Component == "fdsAccountingAccount") == null || Privileges.FirstOrDefault(m => m.Component == "fdsAccountingAccount").View)
+            {
+            <fieldset id="fdsAccountingAccount" data-close-siblings="true">
+                <legend>
+                    <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+                    Accounting Accounts
+                </legend>
+                <div style="display: none">
+                    @Html.Action("RenderAccountingAccountsInActivities", "AccountingAccounts")
+                </div>
+            </fieldset>
+            }
+            @if (Privileges.FirstOrDefault(m => m.Component == "fdsPointsOfSale") == null || Privileges.FirstOrDefault(m => m.Component == "fdsPointsOfSale").View)
+            {
+            <fieldset id="fdsPointsOfSale" data-close-siblings="true">
+                <legend>
+                    <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+                    Points Of Sale
+                </legend>
+                <div style="display: none">
+                    @Html.Action("RenderPointsOfSaleInActivities", "PointsOfSale")
+                </div>
+            </fieldset>
+            }
+            @if (Privileges.FirstOrDefault(m => m.Component == "fdsProviders") == null || Privileges.FirstOrDefault(m => m.Component == "fdsProviders").View)
+            {
+            <fieldset id="fdsProviders" data-close-siblings="true" class="">
+                <legend>
+                    <img class="fieldset-indicator fds-indicator-separator" src="/Content/themes/base/images/eplat_show.jpg" />
+                    Providers
+                </legend>
+                <div style="display: none">
+                    @Html.Action("RenderProvidersInActivities", "Providers")
+                </div>
+            </fieldset>
+            }
+        </div>
+    </fieldset>*@
+}

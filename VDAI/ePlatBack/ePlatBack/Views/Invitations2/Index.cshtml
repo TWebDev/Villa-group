@@ -1,0 +1,26 @@
+﻿@model ePlatBack.Models.ViewModels.spiInvitation
+
+@{
+    ViewBag.Title = "ePlat > CRM > Invitations2 ";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    Html.EnableClientValidation(true);
+}
+@section Head
+{
+
+
+}
+@section Scripts{
+
+    <script src="~/Content/plugins/fine-uploader5.16.2/fine-uploader.min.js"></script>
+
+    <!-- Google Maps -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXoJHEOgj8zop9tUl-mOrpneZKlfhHpBM">
+    </script>
+
+    <script src="~/ViewModels/eplat.local.crm.invitations.js"></script>
+}
+
+
+    @Html.Partial("_InvitationSearchPartialSPI", Model.Invitation)
+

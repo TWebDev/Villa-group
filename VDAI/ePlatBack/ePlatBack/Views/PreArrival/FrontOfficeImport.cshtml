@@ -1,0 +1,175 @@
+﻿@model ePlatBack.Models.ViewModels.SearchToImportModel
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+@section Scripts{
+    <script src="~/ViewModels/eplat.local.crm.prearrival.import.js?ts=@DateTime.Now" type="text/javascript"></script>
+}
+
+<h3>Import From Front</h3>
+<section id="app" class="container-fluid" style="border-top:1px solid #dddddd;margin-top:20px;">
+    @using (Ajax.BeginForm("GetArrivalsToImport", "PreArrival", new AjaxOptions { OnBegin = "vArrival.clearTables();", OnSuccess = "IMPORT.searchToImport(data)", OnComplete = "IMPORT.applyFilters()", UpdateTargetId = "divImportSearchResults" }, new { id = "frmSearchToImport" }))
+    {
+        <div class="form-row">
+            <div class="form-group col-lg-4">
+                @Html.HiddenFor(model => model.ListResults, new { v_model = "Arrivals" })
+                @Html.LabelFor(model => model.SearchToImport_ImportResort)
+                @Html.DropDownListFor(model => model.SearchToImport_ImportResort, Model.Resorts, new { @class = "form-control" })
+            </div>
+            <div class="form-group col-lg-4">
+                <div class="d-block">
+                    @Html.LabelFor(model => model.Search_I_ImportArrivalDate)
+                </div>
+                <div class="d-block">
+                    @Html.TextBoxFor(model => model.Search_I_ImportArrivalDate, new { @class = "form-control date-picker d-inline col-lg-5", data_toggle = "datetimepicker", data_target = "#Search_I_ImportArrivalDate", @v_model = "Search_I_ImportArrivalDate" })
+                    @Html.TextBoxFor(model => model.Search_F_ImportArrivalDate, new { @class = "form-control date-picker d-inline col-lg-5", data_toggle = "datetimepicker", data_target = "#Search_F_ImportArrivalDate", @v_model = "Search_F_ImportArrivalDate" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="text-right">
+                <button type="submit" id="btnGetArrivalsToImport" class="btn btn-primary">Get Arrivals</button>
+                <button type="button" class="btn btn-secondary float-left" v-on:click="automaticAssignation()">Pre Assignment</button>
+            </div>
+        </div>
+        <span class="h5">In order to import, all visible arrivals must have lead source assigned</span>
+        <div class="table-responsive mt-2">
+            <table id="tblArrivalsToImport" class="table table-striped" v-if="Arrivals.length > 0">
+                <thead class="thead-dark">
+                    <tr>
+                        <th colspan="3"></th>
+                        <th>
+                            @*<select v-on:change="filterByCertificate()" class="form-control" v-model="source">
+                                <option v-for="opt in ListSources" v-bind:value="opt.Value">{{opt.Text}}</option>
+                            </select>*@
+                        </th>
+                        <th colspan="5"></th>
+                        <th width="120">
+                            <select v-on:change="filterByLeadSource()" class="form-control" v-model="source">
+                                <option v-for="opt in ListSources" v-bind:value="opt.Value">{{opt.Text}}</option>
+                            </select>
+                        </th>
+                        <th></th>
+                        <th width="120">
+                            <select v-on:change="filterByStatus()" class="form-control" v-model="status">
+                                <option v-for="status in Statuses" v-bind:value="status.Value">{{status.Text}}</option>
+                            </select>
+                        </th>
+                    </tr>
+                    <tr class="text-center">
+                        <th>Date</th>
+                        <th>Guest Name<i class="material-icons float-right" v-on:click="orderArrivals('Huesped')" title="sort">reorder</i></th>
+                        <th width="75">Hotel Confirmation</th>
+                        <th width="150">Certificate<i class="material-icons float-right" v-on:click="orderArrivals('CRS')" title="sort">reorder</i></th>
+                        <th width="150">Contract<i class="material-icons float-right" v-on:click="orderArrivals('Contrato')" title="sort">reorder</i></th>
+                        <th>Agency</th>
+                        <th>Market Code</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th width="120">
+                            Lead Source
+                        </th>
+                        <th width="120">
+                            Assignment
+                        </th>
+                        <th width="120">
+                            Status<i class="material-icons float-right" v-on:click="orderArrivals('Status')" title="sort">reorder</i>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @*<tr v-for="(row, key) in filteredArrivals()">*@
+                    <tr v-for="(row, key) in filteredArrivals()">
+                        <td>
+                            {{row.Arrival }}
+                        </td>
+                        <td>
+                            {{row.Huesped}}
+                        </td>
+                        <td>
+                            {{row.numconfirmacion}}
+                        </td>
+                        <td>
+                            {{row.CRS}}
+                        </td>
+                        <td>
+                            {{row.Contrato}}
+                        </td>
+                        <td>
+                            {{row.Procedencia}}
+                        </td>
+                        <td>
+                            {{row.CodigoMerc}}
+                        </td>
+                        <td>
+                            {{row.Correo | boolToText}}
+                        </td>
+                        <td>
+                            {{row.Phone | boolToText}}
+                        </td>
+                        <td>
+                            <select v-model="row.LeadSource" v-on:change="preselectSource($event, row)" class="form-control lead-source">
+                                <option v-for="option in ListSources" v-bind:value="option.Value">{{option.Text}}</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select v-model="row.AssignedToUserID" class="form-control assign-user">
+                                <option v-for="option in Users" v-bind:value="option.Value">{{option.Text}}</option>
+                            </select>
+                        </td>
+                        <td v-bind:class="{'bg-warning':row.Status==null, 'bg-success': row.Status, 'bg-danger': row.Status==false}" v-bind:title="row.Message">
+                            <i class="material-icons" title="import row" v-on:click="importRow(row, key)" v-if="row.Status==null">archive</i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table id="tblArrivalsToImport" class="table table-striped" v-else>
+                <thead class="thead-dark">
+                    <tr class="text-center">
+                        <th>Date</th>
+                        <th>Guest</th>
+                        <th>Hotel Confirmation</th>
+                        <th>Certificate</th>
+                        <th>Contract</th>
+                        <th>Agency</th>
+                        <th>Market Code</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Lead Source</th>
+                        <th>Assignment</th>
+                        <th></th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div>
+            <div v-if="Arrivals.length > 0" class="mt-5">
+                <h5 class="text-center">Pre Assignment Summary <br />Imported: {{ImportedArrivals}}   Non-Imported: {{PendingToImport}}</h5>
+                <table class="table table-striped">
+                    <tbody>
+                        <tr v-for="(row,key) in Assigned">
+                            <td>
+                                {{row.User}}
+                            </td>
+                            <td colspan="2">
+                                <table class="table">
+                                    <tr v-for="(rrow,kkey) in row.Data">
+                                        <td>{{rrow.Source}}</td>
+                                        <td>{{rrow.Count}}</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="form-group" v-if="NonImportable == 0">
+            <div class="text-right">
+                <button type="button" class="btn btn-primary" v-on:click="importArrivals()">Import</button>
+            </div>
+        </div>
+    }
+
+</section>

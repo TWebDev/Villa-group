@@ -1,0 +1,27 @@
+﻿@model ePlatBack.Models.ViewModels.ArrivalsViewModel.SearchInArrivals
+<div class="search-filters-over-datatable">
+    <div class="editor-alignment" style="min-width: 130px;">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SearchInArrivals_ProgramID)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.SearchInArrivals_ProgramID, Model.Programs, new { style = "width: 130px;" })
+        </div>
+    </div>
+    <div class="editor-alignment" style="min-width: 130px;">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SearchInArrivals_ReservationStatus)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.SearchInArrivals_ReservationStatus, Model.ReservationStatuses, new { style = "width: 130px;" })
+        </div>
+    </div>
+    <div class="editor-alignment" style="min-width: 130px;">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SearchInArrivals_BookingStatusID)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.SearchInArrivals_BookingStatusID, Model.BookingStatuses, new { style = "width: 130px;" })
+        </div>
+    </div>
+</div>

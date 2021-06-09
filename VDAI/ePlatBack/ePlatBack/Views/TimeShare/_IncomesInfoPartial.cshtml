@@ -1,0 +1,115 @@
+﻿@model ePlatBack.Models.ViewModels.IncomeInfoModel
+@{
+    var Privileges = ViewData["Privileges"] as List<ePlatBack.Models.ViewModels.SysComponentsPrivilegesModel>;
+}
+<fieldset id="fdsIncomeInfo">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        Income Info
+    </legend>
+    <div class="align-from-top" style="display:none">
+        @using (Ajax.BeginForm("SaveIncome", "TimeShare", new AjaxOptions { OnSuccess = "ACCOUNT.saveIncomeSuccess(data)" }, new { id = "frmIncomeInfo", onSubmit = "return UI.showValidationSummary(this.id);" }))
+        {
+            <div id="frmIncomeInfo_ErrorMessages" style="display:none">
+                @Html.ValidationMessageFor(model => model.IncomeInfo_Amount)
+            </div>
+            if (Privileges.FirstOrDefault(m => m.Component == "IncomeInfo_IncomeConcept") != null && Privileges.FirstOrDefault(m => m.Component == "IncomeInfo_IncomeConcept").View)
+            {
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.IncomeInfo_IncomeConcept)
+                        @Html.HiddenFor(model => model.IncomeInfo_IncomeID, new { @class = "secondary-selected-row-dependent" })
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.IncomeInfo_IncomeConcept, Model.IncomeInfo_DrpIncomeConcepts)
+                    </div>
+                </div>
+            }
+            if (Privileges.FirstOrDefault(m => m.Component == "IncomeInfo_Company") != null && Privileges.FirstOrDefault(m => m.Component == "IncomeInfo_Company").View)
+            {
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.IncomeInfo_Company)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.IncomeInfo_Company, Model.IncomeInfo_DrpCompanies, new { @class = "terminal-dependent-list", data_route = "/crm/TimeShare/GetDDLData", data_route_parameter = "companiesPerSelectedTerminals" })
+                    </div>
+                </div>
+            }
+            if (Privileges.FirstOrDefault(m => m.Component == "IncomeInfo_Amount") != null && Privileges.FirstOrDefault(m => m.Component == "IncomeInfo_Amount").View)
+            {
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.IncomeInfo_Amount)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.IncomeInfo_Amount)
+                    </div>
+                </div>
+            }
+            if (Privileges.FirstOrDefault(m => m.Component == "IncomeInfo_Currency") != null && Privileges.FirstOrDefault(m => m.Component == "IncomeInfo_Currency").View)
+            {
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.IncomeInfo_Currency)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.IncomeInfo_Currency, Model.IncomeInfo_DrpCurrencies, new { @class = "terminal-dependent-list", data_route = "/crm/MasterChart/GetDDLData", data_route_parameter = "currenciesAllowedPerSession" })
+                    </div>
+                </div>
+            }
+            @*if (Privileges.FirstOrDefault(m => m.Component == "IncomeInfo_ReceiverUser") != null && Privileges.FirstOrDefault(m => m.Component == "IncomeInfo_ReceiverUser").View)
+                {
+                    <div class="editor-alignment">
+                        <p class="editor-label">
+                            @Html.LabelFor(model => model.IncomeInfo_ReceiverUser)
+                        </p>
+                        <p class="editor-field">
+                            @Html.DropDownListFor(model => model.IncomeInfo_ReceiverUser, Model.IncomeInfo_DrpReceivers)
+                        </p>
+                    </div>
+                }*@
+            if (Privileges.FirstOrDefault(m => m.Component == "IncomeInfo_Fund") != null && Privileges.FirstOrDefault(m => m.Component == "IncomeInfo_Fund").View)
+            {
+                <div class="editor-alignment">
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.IncomeInfo_Fund)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.IncomeInfo_Fund, Model.IncomeInfo_DrpFunds, new { @class = "terminal-dependent-list", data_route = "/crm/TimeShare/GetDDLData", data_route_parameter = "fundsPerSelectedTerminals" })
+                    </div>
+                </div>
+            }
+            if (Privileges.FirstOrDefault(m => m.Component == "btnSaveIncome") != null && Privileges.FirstOrDefault(m => m.Component == "btnSaveIncome").View)
+            {
+                <div class="full-width align-from-bottom">
+                    <input type="submit" id="btnSaveIncome" class="submit right" value="save" />
+                </div>
+            }
+            if (Privileges.FirstOrDefault(m => m.Component == "sectionCorrectFunds") != null && Privileges.FirstOrDefault(m => m.Component == "sectionCorrectFunds").View)
+            {
+                <section id="sectionCorrectFunds" style="border-top:1px solid #DDDDDD; margin-top:20px;" class="full-width" >
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.IncomeInfo_ResetFund)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.IncomeInfo_ResetFund, Model.IncomeInfo_DrpFunds, new { @class = "terminal-dependent-list", data_route = "/crm/TimeShare/GetDDLData", data_route_parameter = "fundsPerSelectedTerminals" })
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.IncomeInfo_ResetAmount)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.IncomeInfo_ResetAmount)
+                        </div>
+                    </div>
+                    <div class="full-width">
+                        <input type="button" id="btnResetVarApp" class="submit right marg-left" value="reset var" />
+                    </div>
+                </section>
+            }
+        }
+    </div>
+</fieldset>

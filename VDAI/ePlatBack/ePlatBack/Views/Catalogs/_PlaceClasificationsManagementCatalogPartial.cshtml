@@ -1,0 +1,49 @@
+﻿@model ePlatBack.Models.ViewModels.PlaceClasificationsModel.PlaceClasificationsInfoModel
+
+<fieldset id="fdsPlaceClasificationsInfo" class="primary-selected-row-dependent">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" alt="" class="fieldset-indicator fds-indicator-separator">
+        Place Clasification Info
+    </legend>
+
+    <div style="display: none" class="align-from-top">
+        @using (Ajax.BeginForm("SavePlaceClasification", "Catalogs", new AjaxOptions { OnSuccess = "CATALOG.savePlaceClasificationSuccess(data)" }, new { id = "frmPlaceClasificationInfo", onSubmit = "return UI.showValidationSummary(this.id);" }))
+        {
+            <div id="frmPlaceClasificationInfo_ErrorMessages" style="display: none">
+                @Html.ValidationMessageFor(model => model.PlaceClasificationInfo_PlaceClasification)                
+                @Html.ValidationMessageFor(model => model.PlaceClasificationInfo_PlaceType)
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PlaceClasificationInfo_PlaceClasification)
+                    @Html.HiddenFor(model => model.PlaceClasificationInfo_PlaceClasificationID, new { @class = "secondary-selected-row-dependent" })
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.PlaceClasificationInfo_PlaceClasification)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PlaceClasificationInfo_PlaceType)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.PlaceClasificationInfo_PlaceType, Model.PlaceClasificationInfo_DrpPlaceTypes, new { @class = "placeType-dependent-list" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PlaceClasificationInfo_Hosting)
+                </div>
+                <div class="editor-field">
+                    <label for="PlaceClasificationInfo_HostingTrue">Yes</label>
+                    @Html.RadioButtonFor(model => model.PlaceClasificationInfo_Hosting, true, new { data_keep_value = "" })
+                    <label for="PlaceClasificationInfo_HostingFalse">No</label>
+                    @Html.RadioButtonFor(model => model.PlaceClasificationInfo_Hosting, false, new { data_keep_value = "" })
+                </div>
+            </div>
+            <div class="editor-alignment full-width">
+                <input type="submit" class="submit right" value="Save" id="btnSavePlaceClasification"/>
+            </div>
+        }
+    </div>
+</fieldset>

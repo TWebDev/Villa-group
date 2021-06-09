@@ -1,0 +1,82 @@
+﻿@model ePlatBack.Models.ViewModels.PlaceDescriptionModel
+
+<fieldset id="fdsPlaceDescriptions" data-close-siblings="true" class="primary-selected-row-dependent view-restricted" style="display:none">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator"/>
+        Place Descriptions
+    </legend>
+    <div style="display:none">
+        <div class="full-width align-from-bottom">
+            <input type="button" class="submit fieldset-expander right" id="btnNewPlaceDescriptionInfo" value ="New"/>
+        </div>
+        <ul id="ulPlaceDescriptions" class="primary-selected-row-dependent">
+        </ul>
+        <fieldset id="fdsPlaceDescriptionInfo">
+            <legend>
+                <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator"/>
+                Description Info
+            </legend>
+            <div style="display:none">
+                @using (Ajax.BeginForm("SavePlaceDescription", "Places", new AjaxOptions { OnSuccess = "PLACE.savePlaceDescriptionSuccess(data)" }, new { id="frmPlaceDescription", onSubmit="UI.showValidationSummary(this.id);" }))
+                {
+                    <div id="frmPlaceDescription_ErrorMessages" style="display:none">
+                        @Html.ValidationMessageFor(model => model.PlaceDescription_Culture)
+                    </div>
+                    <div class="editor-alignment">
+                    	<div class="editor-label">
+                            @Html.LabelFor(model => model.PlaceDescription_Culture)
+                            @Html.HiddenFor(model => model.PlaceDescription_PlaceID, new { @class = "primary-selected-row-dependent", data_keep_value="" })
+                            @Html.HiddenFor(model => model.PlaceDescription_PlaceDescriptionID, new { @class = "secondary-selected-row-dependent ignore-validation" })
+                    	</div>
+                    	<div class="editor-field">
+                            @Html.DropDownListFor(model => model.PlaceDescription_Culture, Model.PlaceDescription_DrpCultures)
+                    	</div>
+                    </div>
+                    <div class="full-width">
+                    	<div class="editor-label">
+                            @Html.LabelFor(model => model.PlaceDescription_ShortDescription)
+                    	</div>
+                    	<div class="editor-field">
+                            @Html.TextAreaFor(model => model.PlaceDescription_ShortDescription)
+                    	</div>
+                    </div>
+                    <div class="full-width">
+                    	<div class="editor-label">
+                            @Html.LabelFor(model => model.PlaceDescription_FullDescription)
+                    	</div>
+                    	<div class="editor-field">
+                            @Html.TextAreaFor(model => model.PlaceDescription_FullDescription)
+                    	</div>
+                    </div>
+                    <div class="full-width">
+                    	<div class="editor-label">
+                            @Html.LabelFor(model => model.PlaceDescription_FAQ)
+                    	</div>
+                    	<div class="editor-field">
+                            @Html.TextAreaFor(model => model.PlaceDescription_FAQ)
+                    	</div>
+                    </div>
+                    <div class="full-width">
+                    	<div class="editor-label">
+                            @Html.LabelFor(model => model.PlaceDescription_Amenities)
+                    	</div>
+                    	<div class="editor-field">
+                            @Html.TextAreaFor(model => model.PlaceDescription_Amenities)
+                    	</div>
+                    </div>
+                    <div class="full-width" id="divAllInclusive" style="display:none">
+                    	<div class="editor-label">
+                            @Html.LabelFor(model => model.PlaceDescription_AllInclusive)
+                    	</div>
+                    	<div class="editor-field">
+                            @Html.TextAreaFor(model => model.PlaceDescription_AllInclusive)
+                    	</div>
+                    </div>
+                    <div class="full-width align-from-top">
+                        <input type="button" class="submit right" id="btnSavePlaceDescription" value="Save"/>
+                    </div>
+                }
+            </div>
+        </fieldset>
+    </div>
+</fieldset>

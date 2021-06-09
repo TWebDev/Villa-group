@@ -1,0 +1,24 @@
+﻿@model ePlatBack.Models.ViewModels.BlockInfoViewModel
+
+<input type="button" id="btnNewBlockItem" class="submit fieldset-expander right" value="New">
+<table id="tblBlocks" style="width: auto;" class="table dataTable">
+    <thead>
+        <tr>
+            <th>Terminal</th>
+            <th>Block</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var block in Model.BlocksList)
+    {
+        <tr id="@("blockID" + block.BlockItem_BlockID)">
+            <td class="edit-block">@block.BlockItem_TerminalName</td>
+            <td class="edit-block">@block.BlockItem_Block</td>
+            <td class="delete-block"><span class="" style="margin-right: 0px; display: inline-block;"><img src="/Content/themes/base/images/cross.png" class="right"></span></td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@Html.Partial("_BlockItemPartial", Model.BlockItem)

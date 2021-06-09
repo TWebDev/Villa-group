@@ -1,0 +1,58 @@
+﻿@model ePlatBack.Models.ViewModels.PromotionTeamsModel.SearchPromotionTeamsModel
+
+<fieldset id="fdsPromotionTeamsManagement">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        Promotion Teams Management
+    </legend>
+    <div class="align-from-top">
+        <div class="full-width">
+            <input type="button" id="btnNewPromotionTeamInfo" class="submit fieldset-expander right" value="new" />
+        </div>
+        @using (Ajax.BeginForm("SearchPromotionTeams", "Catalogs", new AjaxOptions { OnSuccess = "CATALOG.promotionTeamsResultsTable(data)", OnComplete = "CATALOG.makePromotionTeamsSelectable()", UpdateTargetId = "divTblExistingPromotionTeams" }, new { id = "frmPromotionTeamsSearch" }))
+        {
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SearchPromotionTeams_PromotionTeam)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.SearchPromotionTeams_PromotionTeam)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SearchPromotionTeams_Destinations)
+                </div>
+                <div class="editor-field">
+                    @Html.ListBoxFor(model => model.SearchPromotionTeams_Destinations, Model.SearchPromotionTeams_DrpDestinations, new { @class = "destination-dependent-list terminal-dependent-list", style = "height:68px", data_route = "/Catalogs/GetDDLData", data_route_parameter = "destination" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SearchPromotionTeams_Companies)
+                </div>
+                <div class="editor-field">
+                    @Html.ListBoxFor(model => model.SearchPromotionTeams_Companies, Model.SearchPromotionTeams_DrpCompanies, new { @class = "mktCompanySearch-dependent-list terminal-dependent-list", style = "height:68px", data_route = "/Catalogs/GetDDLData", data_route_parameter = "mktCompanySearch" })
+                </div>
+            </div>
+            <div class="editor-alignment align-from-top">
+                <div class="editor-field">
+                    <input type="submit" class="button search" value="search" />
+                </div>
+            </div>
+            <div id="divTblExistingPromotionTeams" class="align-from-top">
+                <table id="tblSearchPromotionTeamsResults" class="dataTable table search-results">
+                    <thead>
+                        <tr>
+                            <th>Promotion Team</th>
+                            <th>Destination</th>
+                            <th>Company</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        }
+        @Html.Action("RenderPromotionTeamsManagement", "Catalogs")
+    </div>
+</fieldset>

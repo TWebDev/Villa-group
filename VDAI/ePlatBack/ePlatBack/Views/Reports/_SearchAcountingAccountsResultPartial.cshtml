@@ -1,0 +1,55 @@
+﻿@model ePlatBack.Models.ViewModels.AccountingAccountsViewModel
+        <div class="table-div">
+            <div class="table-row">
+                <div class="table-cell">
+                    @Html.DisplayNameFor(model => model.Terminals)<br />
+                    @Html.Raw(Model.Terminals)
+                </div>
+                <div class=" table-cell">
+                    @Html.DisplayNameFor(model => model.Category)<br />
+                    @Html.Raw(Model.Category)
+                </div>
+                <div class=" table-cell">
+                    @Html.DisplayNameFor(model => model.Provider)<br />
+                    @Html.Raw(Model.Provider)
+                </div>
+               @* <div class="table-cell">
+                    @Html.DisplayNameFor(model => model.Company)<br />
+                    @Html.Raw(Model.Company)
+                </div>*@                
+            </div>
+        </div>
+
+ <h2> Accouting Accounts </h2>   
+       @if (Model.Summary.Count() > 0)
+       {
+        <table id="tblAccoutingAccounts" class="dataTable exportable">
+            <thead>
+                <tr>
+                    <th>Service ID</th>
+                    <th>Terminal</th>
+                    <th>Category</th>
+                    <th>Provider</th>
+                    <th>Service </th>
+                    <th>Account Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var Accounts in Model.Summary)
+                {
+                    <tr id="@Accounts.AccountAccountsServiceID " @(Accounts.AccountAccountsName.IndexOf(",") > 0 || Accounts.AccountAccountsName == "" ? "class=pre-booked" : "")>
+                        <td>@Accounts.AccountAccountsServiceID</td>
+                        <td>@Accounts.AccountAccountsTerminals</td>
+                        <td>@Accounts.AccountAccountsCategories</td>
+                        <td>@Accounts.AccountAccountsProvider</td>
+                        <td>@Accounts.AccountAccountsServiceName</td>
+                        <td>@Accounts.AccountAccountsName</td>
+
+                    </tr>
+                    
+                }
+            </tbody>
+        </table>
+       }
+            
+

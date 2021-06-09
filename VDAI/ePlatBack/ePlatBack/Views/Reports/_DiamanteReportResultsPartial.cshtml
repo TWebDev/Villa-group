@@ -1,0 +1,126 @@
+﻿@model ePlatBack.Models.ViewModels.DiamanteModel
+
+<table id="tblSearchDiamanteResults" class="table non-editable">
+    <thead>
+        <tr>
+            <th>Agent Name</th>
+            <th>Total Leads</th>
+            <th># Opportunities</th>
+            <th># Tours Booked</th>
+            <th>Booking Percentage</th>
+            <th>Tours</th>
+            <th>Tours Percentage</th>
+            <th>Options Volume</th>
+            <th>Timeshare Volume</th>
+            <th>Qualified Tours</th>
+            <th>Q Factor</th>
+            <th>Capture Percentage</th>
+        </tr>
+    </thead>
+    @if (Model.ListDiamanteReportModel != null)
+    {
+        var lastRow = Model.ListDiamanteReportModel.Last();
+        <tbody>
+            @foreach (var i in Model.ListDiamanteReportModel)
+            {
+            if (i.DiamanteReport_AssignedToUser != "Total")
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => i.DiamanteReport_AssignedToUser)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.DiamanteReport_TotalLeads)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.DiamanteReport_NumberOpportunities)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.DiamanteReport_NumberToursBooked)
+                </td>
+                <td data-format="percentage">
+                    @Html.DisplayFor(model => i.DiamanteReport_BookingPercentage)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.DiamanteReport_NumberToursShowed)
+                </td>
+                <td data-format="percentage">
+                    @Html.DisplayFor(model => i.DiamanteReport_ToursPercentage)
+                </td>
+                <td data-format="currency">
+                    @Html.DisplayFor(model => i.DiamanteReport_OptionsVolume)
+                </td>
+                <td data-format="currency">
+                    @Html.DisplayFor(model => i.DiamanteReport_TimeshareVolume)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.DiamanteReport_QualifiedTours)
+                    @*@Html.DisplayFor(model => i.DiamanteReport_MissedTours)*@
+                </td>
+                <td data-format="percentage">
+                    @Html.DisplayFor(model => i.DiamanteReport_QFactor)
+                    @*@Html.DisplayFor(model => i.DiamanteReport_MissedSales)*@
+                </td>
+                <td data-format="percentage">
+                    @Html.DisplayFor(model => i.DiamanteReport_CapturePercentage)
+                    @*@Html.DisplayFor(model => i.DiamanteReport_MissedSalesVolume)*@
+                </td>
+            </tr>
+            }
+            }
+
+        </tbody>
+        <tfoot>
+            <tr id="totalRow">
+                <td>
+                    @Html.DisplayFor(model => lastRow.DiamanteReport_AssignedToUser)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => lastRow.DiamanteReport_TotalLeads)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => lastRow.DiamanteReport_NumberOpportunities)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => lastRow.DiamanteReport_NumberToursBooked)
+                </td>
+                <td data-format="percentage">
+                    @Html.DisplayFor(model => lastRow.DiamanteReport_BookingPercentage)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => lastRow.DiamanteReport_NumberToursShowed)
+                </td>
+                <td data-format="percentage">
+                    @Html.DisplayFor(model => lastRow.DiamanteReport_ToursPercentage)
+                </td>
+                <td data-format="currency">
+                    @Html.DisplayFor(model => lastRow.DiamanteReport_OptionsVolume)
+                </td>
+                <td data-format="currency">
+                    @Html.DisplayFor(model => lastRow.DiamanteReport_TimeshareVolume)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => lastRow.DiamanteReport_QualifiedTours)
+                    @*@Html.DisplayFor(model => i.DiamanteReport_MissedTours)*@
+                </td>
+                <td data-format="percentage">
+                    @Html.DisplayFor(model => lastRow.DiamanteReport_QFactor)
+                    @*@Html.DisplayFor(model => i.DiamanteReport_MissedSales)*@
+                </td>
+                <td data-format="percentage">
+                    @Html.DisplayFor(model => lastRow.DiamanteReport_CapturePercentage)
+                    @*@Html.DisplayFor(model => i.DiamanteReport_MissedSalesVolume)*@
+                </td>
+                @*<td>
+                    @Html.DisplayFor(model => lastRow.DiamanteReport_MissedTours)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => lastRow.DiamanteReport_MissedSales)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => lastRow.DiamanteReport_MissedSalesVolume)
+                </td>*@
+            </tr>
+        </tfoot>
+    }
+</table>

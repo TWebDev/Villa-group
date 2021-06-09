@@ -1,0 +1,44 @@
+﻿@model ePlatBack.Models.UserViewModel_
+
+           
+<table id="searchResultsTable" style="display:none" class="table">
+    <thead>
+    <tr>
+    <th>First Name</th><th>Last Name</th><th>SPIUser Name</th><th>Job Position</th><th>WorkGroup</th><th>E-mail</th><th>Is Active</th><th>Last Date Activity</th>
+    </tr>
+    </thead>
+        <tbody>
+        @if(Model.Results != null)
+        {
+            foreach (var i in Model.Results)
+            {
+            <tr id="@i.SRUserName" >
+                <td>
+                @Html.DisplayFor(m => i.SRFirstName)
+                </td>
+                <td>
+                @Html.DisplayFor(m => i.SRLastName)
+                </td>
+                <td>
+                @Html.DisplayFor(m => i.SRSPIUserName)
+                </td>
+                <td>
+                @Html.DisplayFor(m => i.SRJobPosition)
+                </td>
+                <td>
+                @Html.DisplayFor(m => i.SRWorkGroup)
+                </td>
+                <td>
+                @Html.DisplayFor(m => i.SREmail)
+                </td>
+                <td>
+                @Html.DisplayFor(m => i.SRIsApproved)
+                </td>
+                <td>
+                @Html.DisplayFor(m => i.SRLastActivity)
+                </td>
+            </tr>
+            }
+        }
+        </tbody>
+    </table>

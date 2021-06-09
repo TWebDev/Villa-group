@@ -1,0 +1,225 @@
+﻿@model ePlatBack.Models.ViewModels.PlaceInfoModel
+
+<fieldset id="fdsPlacesInfo" class="primary-selected-row-dependent">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" alt="" class="fieldset-indicator fds-indicator-separator">
+        Place Info
+    </legend>
+    <div style="display: none" class="align-from-top">
+        @using (Ajax.BeginForm("SavePlace", "Places", new AjaxOptions { OnSuccess = "PLACE.savePlaceSuccess(data)" }, new { id = "frmPlace", onSubmit = "return UI.showValidationSummary(this.id);" }))
+        {
+            <div id="frmPlace_ErrorMessages" style="display: none">
+                @Html.ValidationMessageFor(model => model.PlaceInfo_Place)
+                @Html.ValidationMessageFor(model => model.PlaceInfo_Address)
+                @*@Html.ValidationMessageFor(model => model.PlaceInfo_Phone)*@
+                @Html.ValidationMessageFor(model => model.PlaceInfo_Latitude)
+                @Html.ValidationMessageFor(model => model.PlaceInfo_Longitude)
+                @Html.ValidationMessageFor(model => model.PlaceInfo_Destination)
+                @Html.ValidationMessageFor(model => model.PlaceInfo_Zone)
+                @Html.ValidationMessageFor(model => model.PlaceInfo_PlaceType)
+                @*@Html.ValidationMessageFor(model => model.PlaceInfo_CheckInTime)
+                    @Html.ValidationMessageFor(model => model.PlaceInfo_CheckOutTime)*@
+                @Html.ValidationMessageFor(model => model.PlaceInfo_TaxesPercentage)
+                @Html.ValidationMessageFor(model => model.PlaceInfo_IsVillaGroup)
+                @Html.ValidationMessageFor(model => model.PlaceInfo_IsForSale)
+                @Html.ValidationMessageFor(model => model.PlaceInfo_Prospectation)
+                @Html.ValidationMessageFor(model => model.PlaceInfo_Terminal)
+            </div>
+            <div class="editor-alignment left map-alignment">
+                <div id="gMap">
+                    Loading Map....
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PlaceInfo_Latitude)
+                    @Html.HiddenFor(model => model.PlaceInfo_PlaceID, new { @class = "primary-selected-row-dependent" })
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.PlaceInfo_Latitude, new { placeholder = "Drag marker on map" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PlaceInfo_Longitude)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.PlaceInfo_Longitude, new { placeholder = "Drag marker on map" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PlaceInfo_Place)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.PlaceInfo_Place)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PlaceInfo_PlaceLabel)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.PlaceInfo_PlaceLabel)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PlaceInfo_Address)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.PlaceInfo_Address)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PlaceInfo_Phone)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.PlaceInfo_Phone, new { placeholder = "00-000-000-0000" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PlaceInfo_Destination)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.PlaceInfo_Destination, Model.PlaceInfo_DrpDestinations)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PlaceInfo_Zone)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.PlaceInfo_Zone, Model.PlaceInfo_DrpZones)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PlaceInfo_IsVillaGroup)
+                </div>
+                <div class="editor-field">
+                    <label for="Info_IsVillaGroupTrue">Yes</label>
+                    @Html.RadioButtonFor(model => model.PlaceInfo_IsVillaGroup, true, new { data_keep_value = "" })
+                    <label for="Info_IsVillagroupFalse">No</label>
+                    @Html.RadioButtonFor(model => model.PlaceInfo_IsVillaGroup, false, new { data_keep_value = "" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PlaceInfo_PlaceType)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.PlaceInfo_PlaceType, Model.PlaceInfo_DrpPlaceTypes)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PlaceInfo_PlaceClasification)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.PlaceInfo_PlaceClasification, Model.PlaceInfo_DrpPlaceClasifications)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PlaceInfo_Prospectation)
+                </div>
+                <div class="editor-field">
+                    <label for="Info_ProspectationTrue">Yes</label>
+                    @Html.RadioButtonFor(model => model.PlaceInfo_Prospectation, true, new { data_keep_value = "" })
+                    <label for="Info_ProspectationFalse">No</label>
+                    @Html.RadioButtonFor(model => model.PlaceInfo_Prospectation, false, new { data_keep_value = "" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PlaceInfo_IsForSale)
+                </div>
+                <div class="editor-field">
+                    <label for="Info_IsForSaleTrue">Yes</label>
+                    @Html.RadioButtonFor(model => model.PlaceInfo_IsForSale, true, new { data_keep_value = "" })
+                    <label for="Info_IsForSaleFalse">No</label>
+                    @Html.RadioButtonFor(model => model.PlaceInfo_IsForSale, false, new { data_keep_value = "" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PlaceInfo_CheckInTime)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.PlaceInfo_CheckInTime)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PlaceInfo_CheckOutTime)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.PlaceInfo_CheckOutTime)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PlaceInfo_TaxesPercentage)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.PlaceInfo_TaxesPercentage)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PlaceInfo_TransportationZone)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.PlaceInfo_TransportationZone, Model.PlaceInfo_DrpTransportationZones)
+                </div>
+            </div>
+            <div class="editor-alignment select-add-button">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PlaceInfo_Terminal)
+                    @Html.HiddenFor(model => model.PlaceInfo_Terminal)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.PlaceInfo_Terminal, Model.PlaceInfo_DrpTerminals, new { id = "PlaceInfo_DrpTerminal" })
+                    <input type="button" class="button" value="add" id="btnAddTerminalToPlace" />
+                </div>
+            </div>
+            @*<div class="editor-field align-from-map">
+                    @Html.DropDownListFor(model => model.PlaceInfo_Terminal, Model.PlaceInfo_DrpTerminals, new { id = "PlaceInfo_DrpTerminal" })
+                    <input type="button" class="button" value="add" id="btnAddTerminalToPlace" />
+                </div>*@
+
+            <div id="divTerminalsPerPlace" class="editor-alignment">
+                <table class="table" id="tblTerminalsPerPlace">
+                    <thead>
+                        <tr>
+                            <th colspan="2">
+                                TERMINALS
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="primary-selected-row-dependent"></tbody>
+                </table>
+            </div>
+
+            <div class="full-width align-from-bottom">
+                <input type="button" class="submit right" id="btnSavePlace" value="Save" />
+            </div>
+        }
+        @Html.Partial("_PlaceDescriptionsPartial", Model.PlaceDescriptionModel)
+        @Html.Partial("_PlacesPlanTypesPartial", Model.PlacePlanTypeModel)
+        @Html.Action("RenderRoomTypes", "Places")
+
+        <fieldset id="fdsPlacesPictures" class="view-restricted primary-selected-row-dependent" data-close-siblings="true" style="display: none">
+            <legend>
+                <img class="fieldset-indicator fds-indicator-separator" src="/Content/themes/base/images/eplat_show.jpg" />
+                Pictures Management
+            </legend>
+            <div style="display: none" class="places-pictures">
+                @Html.Action("RenderPicturesInPlaces", "Pictures")
+            </div>
+        </fieldset>
+    </div>
+</fieldset>

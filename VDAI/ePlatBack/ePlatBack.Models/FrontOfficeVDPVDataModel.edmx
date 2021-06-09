@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FrontOfficeVDPVModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <Function Name="spLlegadas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fechaInicial" Type="datetime" Mode="In" />
+          <Parameter Name="fechafinal" Type="datetime" Mode="In" />
+        </Function>
+        <EntityContainer Name="FrontOfficeVDPVModelStoreContainer" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FrontOfficeVDPVModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="FrontOfficeVDPVEntities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="spLlegadas" ReturnType="Collection(FrontOfficeVDPVModel.spLlegadas_Result)">
+            <Parameter Name="fechaInicial" Mode="In" Type="DateTime" />
+            <Parameter Name="fechafinal" Mode="In" Type="DateTime" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="spLlegadas_Result">
+          <Property Type="Decimal" Name="idReservacion" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="CuartosNoche" Nullable="true" />
+          <Property Type="String" Name="TipoHab" Nullable="true" MaxLength="10" />
+          <Property Type="DateTime" Name="llegada" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="salida" Nullable="true" Precision="23" />
+          <Property Type="String" Name="NumHab" Nullable="true" MaxLength="6" />
+          <Property Type="String" Name="numconfirmacion" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Procedencia" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="CodigoMerc" Nullable="true" MaxLength="10" />
+          <Property Type="Decimal" Name="idresort" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Boolean" Name="Split" Nullable="true" />
+          <Property Type="String" Name="CRS" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="codeagencia" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="nameagencia" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Huesped" Nullable="true" MaxLength="160" />
+          <Property Type="Int32" Name="cuartos" Nullable="true" />
+          <Property Type="Int32" Name="Adultos" Nullable="true" />
+          <Property Type="Int32" Name="Ninos" Nullable="true" />
+          <Property Type="String" Name="apellidopaterno" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="apellidomaterno" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="nombres" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="codepais" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="namepais" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="codigostatusreservacion" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="X" Nullable="false" />
+          <Property Type="String" Name="Titulo" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="Infantes" Nullable="true" />
+          <Property Type="String" Name="HLlegada" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="HSalida" Nullable="false" MaxLength="1" />
+          <Property Type="Decimal" Name="idhuesped" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="DistintivoPrecheckin" Nullable="true" MaxLength="10" />
+          <Property Type="DateTime" Name="FechaHoraCheckin" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Contrato" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="TipoPlan" Nullable="true" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FrontOfficeVDPVModelStoreContainer" CdmEntityContainer="FrontOfficeVDPVEntities" >
+          <FunctionImportMapping FunctionImportName="spLlegadas" FunctionName="FrontOfficeVDPVModel.Store.spLlegadas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FrontOfficeVDPVModel.spLlegadas_Result">
+                <ScalarProperty Name="idReservacion" ColumnName="idReservacion" />
+                <ScalarProperty Name="CuartosNoche" ColumnName="CuartosNoche" />
+                <ScalarProperty Name="TipoHab" ColumnName="TipoHab" />
+                <ScalarProperty Name="llegada" ColumnName="llegada" />
+                <ScalarProperty Name="salida" ColumnName="salida" />
+                <ScalarProperty Name="NumHab" ColumnName="NumHab" />
+                <ScalarProperty Name="numconfirmacion" ColumnName="numconfirmacion" />
+                <ScalarProperty Name="Procedencia" ColumnName="Procedencia" />
+                <ScalarProperty Name="CodigoMerc" ColumnName="CodigoMerc" />
+                <ScalarProperty Name="idresort" ColumnName="idresort" />
+                <ScalarProperty Name="Split" ColumnName="Split" />
+                <ScalarProperty Name="CRS" ColumnName="CRS" />
+                <ScalarProperty Name="codeagencia" ColumnName="codeagencia" />
+                <ScalarProperty Name="nameagencia" ColumnName="nameagencia" />
+                <ScalarProperty Name="Huesped" ColumnName="Huesped" />
+                <ScalarProperty Name="cuartos" ColumnName="cuartos" />
+                <ScalarProperty Name="Adultos" ColumnName="Adultos" />
+                <ScalarProperty Name="Ninos" ColumnName="Ninos" />
+                <ScalarProperty Name="apellidopaterno" ColumnName="apellidopaterno" />
+                <ScalarProperty Name="apellidomaterno" ColumnName="apellidomaterno" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="codepais" ColumnName="codepais" />
+                <ScalarProperty Name="namepais" ColumnName="namepais" />
+                <ScalarProperty Name="codigostatusreservacion" ColumnName="codigostatusreservacion" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Infantes" ColumnName="Infantes" />
+                <ScalarProperty Name="HLlegada" ColumnName="HLlegada" />
+                <ScalarProperty Name="HSalida" ColumnName="HSalida" />
+                <ScalarProperty Name="idhuesped" ColumnName="idhuesped" />
+                <ScalarProperty Name="DistintivoPrecheckin" ColumnName="DistintivoPrecheckin" />
+                <ScalarProperty Name="FechaHoraCheckin" ColumnName="FechaHoraCheckin" />
+                <ScalarProperty Name="Contrato" ColumnName="Contrato" />
+                <ScalarProperty Name="TipoPlan" ColumnName="TipoPlan" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Default" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,32 @@
+﻿@model ePlatBack.Models.ViewModels.DestinationsSearchModel
+
+<div class="full-width">
+    <input type="button" id="btnNewDestinationsInfo" class="submit fieldset-expander right" value="New">
+</div>
+@using (Ajax.BeginForm("SearchPlacesRelatedItems", "Places", new AjaxOptions { OnSuccess = "", OnComplete = "", UpdateTargetId = "" }, new { id = "frmDestinationsSearch" }))
+{
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Search_Destinations)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Search_Destinations)
+        </div>
+    </div>
+    <div class="editor-alignment align-from-top">
+        <div class="editor-field">
+            <input type="button" id="btnSearchDestinations" class="button search" value="Search" />
+        </div>
+    </div>
+    <div id="divTblExistingDestinations" class="align-from-top">
+        <table id="tblSearchDestinationsResults" class="table search-results">
+            <thead>
+                <tr>
+                    <th colspan="2">Destinations</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>   
+}

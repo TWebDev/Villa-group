@@ -1,0 +1,28 @@
+﻿@model ePlatBack.Models.ViewModels.ActivityViewModel
+
+<span>Active and Non-Imported Activities Displayed</span>
+<table id="tblPrevSearchActivitiesResults" class="table">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Activity</th>
+		</tr>
+	</thead>
+	<tbody>
+        @if (Model.SearchImportResults != null)
+        {
+            foreach (var i in Model.SearchImportResults)
+            {
+                var trID = "trPrevActivity" + i.ActivityID;
+                <tr id="@trID">
+                    <td>
+                        @Html.DisplayFor(model => i.ActivityID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.Activity)
+                    </td>
+                </tr>
+            }
+        }
+	</tbody>
+</table>

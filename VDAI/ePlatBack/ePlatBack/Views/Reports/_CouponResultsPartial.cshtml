@@ -1,0 +1,130 @@
+﻿@model ePlatBack.Models.ViewModels.CouponsList
+
+<table id="tblCouponsReport" class="table no-plugin" style="width: 100%">
+    <thead>
+        <tr>
+            <th>
+                Coupon
+            </th>
+            <th>
+                Terminal
+            </th>
+            <th>
+                Guest
+            </th>
+            <th>Purchase Date</th>
+            <th>
+                Service
+            </th>
+            <th>
+                Activity Date
+            </th>
+            <th>
+                Units
+            </th>
+            <th>
+                Confirmation
+            </th>
+            <th>
+                Sales Agent
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Payment
+            </th>
+            <th>
+                Close Out
+            </th>
+            <th>
+                Cost
+            </th>
+            <th>
+                Audit
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in @Model.Coupons)
+    {
+        <tr id="@item.ItemID" data-purchaseid="@item.PurchaseID">
+            <td>
+                <a title="Open Coupon" href="http://@item.WebsiteUrl/coupons/@item.PurchaseID-@item.ItemID" target="_blank">@item.CouponNumber</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Website)
+            </td>
+            <td>
+                <a title="Open Purchase Details" href="/crm/masterchart#purchaseid=@item.PurchaseID" target="_blank">
+                @Html.DisplayFor(modelItem => item.GuestName)
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PurchaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Provider)<br />
+                @Html.DisplayFor(modelItem => item.ActivityName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActivityDateAndSchedule)
+            </td>
+            <td>
+                @Html.Raw(item.Units)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConfirmationNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SalesAgent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.Raw(item.Payment)
+            </td>
+            <td>
+                @Html.Raw(item.CloseOut)
+            </td>
+            <td>
+                @*@if(item.Cost >= 0){
+                    <span>$@item.Cost MXN</span>
+                } else {
+                    <span class="mb-error">Undefined</span>
+                }*@                
+            </td>
+            <td>
+                @if (item.Audited)
+                {
+                    <span class="block">@Html.DisplayFor(modelItem => item.Audit)</span>
+                }
+                else if (item.StatusID == 4 || item.StatusID == 5)
+                {
+                    <span class="block">Non Payable</span>
+                }
+                else
+                {
+                    <span style="display:block; width: 105px;">
+                        <input type="button" value="Audit" class="mini-button" id="btnaudit_@item.ItemID" onclick="REPORT.Audit.showForm(@item.ItemID)"/>
+                        <span style="display:none;" id="divaudit_@item.ItemID">
+                            <span class="close"></span>
+                            Invoice:<br />
+                            <input type="text" id="invoice_@item.ItemID" style="width:100px;" />
+                            <input type="button" value="Save" class="mini-button" onclick="REPORT.Audit.save(@item.ItemID)" />
+                        </span>
+                    </span>
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="12"></td>
+            <td>$@Model.TotalCost MXN</td>
+            <td></td>
+        </tr>
+    </tfoot>
+</table>

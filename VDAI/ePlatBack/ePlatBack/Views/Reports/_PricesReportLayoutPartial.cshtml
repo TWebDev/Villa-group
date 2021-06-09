@@ -1,0 +1,110 @@
+﻿@model ePlatBack.Models.ViewModels.PricesModel.PricesReportLayout
+
+@using (Ajax.BeginForm("SetCustomLayout", "Reports", new AjaxOptions { OnSuccess = "REPORT.addOption(data, 'Search_Layout')" }, new { id = "frmCustomLayout" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset id="fdsLayoutInfo" style="display:none;">
+        <legend>Layout Info</legend>
+
+        @Html.HiddenFor(model => model.LayoutID)
+        @Html.HiddenFor(model => model.UserID)
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Layout)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Layout)
+                @Html.ValidationMessageFor(model => model.Layout)
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.TerminalID)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.TerminalID, Model.Terminals, new { @class = "terminal-dependent-list onchange", data_route = "/crm/Reports/GetDDLData", data_route_parameter = "selectedTerminals", data_onchange_route_parameter = "servicesByTerminal,priceTypesByTerminal,rolesByTerminal,categories,pointOfSale", data_dependent_list = "SelectedServices,SelectedPriceTypes,SelectedRoles,SelectedCategories,PointOfSaleID" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.CategoryID)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.CategoryID, Model.Categories, new { @class = "terminal-dependent-list onchange", data_route = "/crm/Reports/GetDDLData", data_route_parameter = "categoriesByTerminal", data_onchange_route_parameter = "servicesByCategory", data_dependent_list = "SelectedServices" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SelectedServices)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.SelectedServices, Model.Services, new { multiple = "multiple" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SelectedPriceTypes)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.SelectedPriceTypes, Model.PriceTypes, new { multiple = "multiple" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SelectedRoles)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.SelectedRoles, Model.Roles, new { multiple = "multiple" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SelectedCurrencies)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.SelectedCurrencies, Model.Currencies, new { multiple = "multiple" })
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Culture)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Culture, Model.Cultures)
+            </div>
+        </div>
+        <div class="editor-alignment">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.PointOfSaleID)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.PointOfSaleID, Model.PointsOfSale)
+            </div>
+        </div>
+        <div class="editor-alignment" style="display:none;">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.User)
+            </div>
+            <div class="editor-field">
+                <span id="LayoutUser">@Html.DisplayFor(model => model.User)</span>
+            </div>
+        </div>
+        <div class="editor-alignment" style="display:none;">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.DateSaved)
+            </div>
+            <div class="editor-field">
+                <span id="LayoutDate">@Html.DisplayFor(model => model.DateSaved)</span>
+            </div>
+        </div>
+        <div class="editor-alignment align-from-top">
+            <div class="editor-field">
+                <input type="submit" id="btnSubmitLayout" class="submit" value="Save" />
+                <input type="button" id="btnCloseLayout" class="button" value="Close" />
+                <input type="button" id="btnDeleteLayout" class="submit-refund" value="Delete" />
+            </div>
+        </div>
+</fieldset>
+}

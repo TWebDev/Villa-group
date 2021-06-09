@@ -1,0 +1,31 @@
+﻿@model ePlatBack.Models.ViewModels.PageSearchModel
+
+<div class="full-width">
+    <input type="button" id="btnNewPagesInfo" class="submit fieldset-expander right" value="new" />
+</div>
+@using (Ajax.BeginForm("", "", new AjaxOptions { }, new { id = "frmPagesSearch" }))
+{
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.HiddenFor(model => model.Search_Terminals)
+            @Html.LabelFor(model => model.Search_Page)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Search_Page)
+        </div>
+    </div>
+    <div class="editor-alignment align-from-top">
+        <div class="editor-field">
+            <input type="button" id="btnPages" class="button terminals-dependent" value="search" style="display: none" />
+            <input type="button" id="btnSearchPages" class="button" value="search" />
+            <input type="button" id="btnClearSearch" class="button" value="clear" />
+        </div>
+    </div>
+    <div class="align-from-top">
+        @*<div class="partial-width">
+            <span class="right"><span>Clickable</span><span style="padding-left: 50px">Show In Menu</span></span>
+        </div>*@
+        <div id="divPagesTree" class="align-from-top">
+        </div>
+    </div>
+} 

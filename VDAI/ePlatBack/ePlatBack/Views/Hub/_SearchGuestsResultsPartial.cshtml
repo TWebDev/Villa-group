@@ -1,0 +1,50 @@
+﻿@model IEnumerable<ePlatBack.Models.ViewModels.GuestSearchModel>
+
+<table id="tblSearchGuestsResults" class="table">
+    
+        <thead>
+            <tr>
+               
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().LastName)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.FirstOrDefault().Country)
+    </th>
+                    <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().RoomNumber)
+                </th>
+
+    </tr>
+    </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr id="@item.GuestHubID">
+                    
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Country)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RoomNumber)
+                    </td>
+
+
+
+                </tr>
+            }
+
+        </tbody>
+</table>
+
+

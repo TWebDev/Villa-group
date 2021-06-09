@@ -1,0 +1,52 @@
+﻿@model ePlatBack.Models.ViewModels.PurchasesModel
+
+<table id="tblPurchases" class="table">
+    <thead>
+        <tr>
+            <th>Coupons</th>
+            <th>Status</th>
+            <th>Purchase Date</th>
+            <th>Total</th>
+            <th>Currency</th>
+            <th>Sales Agent</th>
+            <th>Point Of Sale</th>
+            <th>Terminal</th>
+        </tr>
+    </thead>
+    <tbody class="primary-selected-row-dependent">
+        @if (Model.ListPurchases != null)
+        {
+            foreach (var i in Model.ListPurchases)
+            {
+                var id = "purchase_" + i.PurchaseInfo_PurchaseID;
+                var coupons = i.PurchaseInfo_PurchaseServicesQuantity + " Coupons";
+            <tr id="@id">
+                <td>
+                    @Html.DisplayFor(model => coupons)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.PurchaseInfo_PurchaseStatusString)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.PurchaseInfo_PurchaseDateTime)
+                </td>
+                <td class="format-currency">
+                    @Html.DisplayFor(model => i.PurchaseInfo_Total)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.PurchaseInfo_Currency)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.PurchaseInfo_User)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.PurchaseInfo_PointOfSaleString)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.PurchaseInfo_TerminalString)
+                </td>
+            </tr>
+            }
+        }
+    </tbody>
+</table>

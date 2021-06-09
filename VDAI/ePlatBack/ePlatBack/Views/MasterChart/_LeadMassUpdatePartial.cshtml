@@ -1,0 +1,161 @@
+﻿@model ePlatBack.Models.ViewModels.LeadModel.Views.MassUpdate
+@{
+    var Privileges = ViewData["Privileges"] as List<ePlatBack.Models.ViewModels.SysComponentsPrivilegesModel>;
+}
+@if (Privileges.FirstOrDefault(m => m.Component == "fdsMassUpdate") == null || Privileges.FirstOrDefault(m => m.Component == "fdsMassUpdate").View)
+{
+    <fieldset id="fdsMassUpdate" class="non-printable">
+        <legend>
+            <a href="javascript:void(0)" class="legendLink">
+                <img class="fieldset-indicator" border="0" src="/Content/themes/base/images/eplat_show.jpg" />
+                Lead Mass Update
+            </a>
+        </legend>
+        <div style="display: none">
+            @using (Ajax.BeginForm("MassUpdate", "MasterChart", new AjaxOptions { OnSuccess = "LEAD_MASS_UPDATE.massUpdateSuccess(data)" }, new { id = "frmMassUpdate" }))
+            {
+                <div class="editor-alignment full-width">
+                    <div class="editor-label">
+                        @Html.HiddenFor(model => model.MassUpdate_Coincidences, new { @class = "mass-update-coincidences" })
+                        @Html.LabelFor(model => model.MassUpdate_Terminal)
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.MassUpdate_Terminal, Model.MassUpdate_DrpTerminals)
+                    </div>
+                </div>
+                <h5>Fields To Update</h5>
+                <section style="border: 1px solid #DDDDDD; clear: both; margin: 20px 0px 0px 0; padding: 40px 15px 12px; border-radius: 0px 0px 7px 7px; width: auto">
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.MassUpdate_BookingStatus)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.MassUpdate_BookingStatus, Model.MassUpdate_DrpBookingStatus)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.MassUpdate_LeadSource)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.MassUpdate_LeadSource, Model.MassUpdate_DrpLeadSources)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.MassUpdate_LeadStatus)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.MassUpdate_LeadStatus, Model.MassUpdate_DrpLeadStatus)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.MassUpdate_AssignedToUser)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.MassUpdate_AssignedToUser, Model.MassUpdate_DrpUsers)
+                        </div>
+                    </div>
+                    <div class="editor-alignment full-width">
+                        <input type="button" id="btnMassUpdate" class="submit-right" value="save" />
+                    </div>
+                </section>
+            }
+            @using (Ajax.BeginForm("MassInsert", "MasterChart", new AjaxOptions { OnSuccess = "LEAD_MASS_UPDATE.massInsertSuccess(data)" }, new { id = "frmMassInsert" }))
+            {
+                <h5>Fields To Insert</h5>
+                <section style="border: 1px solid #DDDDDD; clear: both; margin: 20px 0px 0px 0; padding: 40px 15px 12px; border-radius: 0px 0px 7px 7px; width: auto">
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.HiddenFor(model => model.MassUpdate_Coincidences, new { @class = "mass-update-coincidences" })
+                            @Html.LabelFor(model => model.InteractionTypeID)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.InteractionTypeID, Model.InteractionTypes)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.BookingStatusID)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.BookingStatusID, Model.BookingStatus)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.InteractedWithUserID)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.InteractedWithUserID, Model.Users)
+                        </div>
+                    </div>
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.InteractionComments)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextAreaFor(model => model.InteractionComments)
+                        </div>
+                    </div>
+                    <div class="editor-alignment full-width">
+                        <input type="button" id="btnMassInsert" class="submit-right" value="save" />
+                    </div>
+                </section>
+            }
+            @using (Ajax.BeginForm("MassSending", "MasterChart", new AjaxOptions { OnSuccess = "LEAD_MASS_UPDATE.massSendingSuccess(data)" }, new { id = "frmMassSending" }))
+            {
+                <h5>Mass Confirmation Letter Send</h5>
+                <section style="border: 1px solid #DDDDDD; clear: both; margin: 20px 0px 0px 0; padding: 40px 15px 12px; border-radius: 0px 0px 7px 7px; width: auto">
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.HiddenFor(model => model.MassUpdate_Coincidences, new { @class = "mass-update-coincidences" })
+                            @Html.HiddenFor(model => model.MassUpdate_SendingEvent)
+                        </div>
+                    </div>
+                    <div class="editor-alignment full-width" style="text-align:center">
+                        <span class="editor-label" style="text-transform:uppercase">Confirmation Letters</span>
+                        <div class="editor-field">
+                            <input type="button" class="button send-confirmation mass-sending" value="member update" data-sysevent="13" />
+                            <input type="button" class="button send-confirmation mass-sending" value="guest member" data-sysevent="14" />
+                            <input type="button" class="button send-confirmation mass-sending" value="exchange tour" data-sysevent="15" />
+                            @if (Privileges.FirstOrDefault(m => m.Component == "btnMassDiamanteEmail") != null && Privileges.FirstOrDefault(m => m.Component == "btnMassDiamanteEmail").View == true)
+                            {
+                                <input type="button" class="button send-confirmation mass-sending" value="diamante" data-sysevent="27" />
+                            }
+                        </div>
+                    </div>
+                </section>
+            }
+            @*@using (Ajax.BeginForm("DuplicateLeads", "MasterChart", new AjaxOptions { OnSuccess = "LEAD_MASS_UPDATE.duplicateLeadsSuccess(data)" }, new { id = "frmDuplicateLeads" }))
+                {
+                    <h5>Duplicate Leads</h5>
+                    <section style="border: 1px solid #DDDDDD; clear: both; margin: 20px 0px 0px 0; padding: 40px 15px 12px; border-radius: 0px 0px 7px 7px; width: auto">
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.HiddenFor(model => model.MassUpdate_Coincidences, new { @class = "mass-update-coincidences" })
+                                @Html.LabelFor(model => model.DuplicateLeadsModel.DuplicateLeads_LeadStatus)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.DuplicateLeadsModel.DuplicateLeads_LeadStatus, Model.DuplicateLeadsModel.DuplicateLeads_DrpLeadStatus)
+                            </div>
+                        </div>
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.DuplicateLeadsModel.DuplicateLeads_AssignToUser)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.DuplicateLeadsModel.DuplicateLeads_AssignToUser, Model.DuplicateLeadsModel.DuplicateLeads_DrpAssignToUser)
+                            </div>
+                        </div>
+                        <div class="editor-alignment full-width">
+                            <p>
+                                <input type="button" id="btnDuplicateLeads" class="submit right" value="save" />
+                            </p>
+                        </div>
+                    </section>
+                }*@
+        </div>
+    </fieldset>
+}

@@ -1,0 +1,41 @@
+﻿@model ePlatBack.Models.ViewModels.TimeShareViewModel
+
+<table id="tblIncomesSearchResults" class="dataTable table">
+    <thead>
+        <tr>
+            <th>Date Saved</th>
+            <th>Company</th>
+            <th>Amount</th>
+            <th>Receiver</th>
+            <th>Concept</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.AccountancyModel_SearchIncomeResults != null)
+        {
+            foreach (var i in Model.AccountancyModel_SearchIncomeResults)
+            {
+                var id = "income_" + i.IncomeInfo_IncomeID;
+                var amount = i.IncomeInfo_Amount + " " + i.IncomeInfo_Currency;
+                <tr id="@id">
+                    <td>
+                        @Html.DisplayFor(model => i.IncomeInfo_DateSaved)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.IncomeInfo_Company)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => amount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.IncomeInfo_ReceiverUser)
+                        @*<img src="/Content/themes/base/images/cross.png" class="delete-row right" />*@
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.IncomeInfo_IncomeConceptText)
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

@@ -1,0 +1,145 @@
+﻿@model ePlatBack.Models.ViewModels.ActivityViewModel
+
+<h3>Active Rules</h3>
+<span>Rules are selectable ONLY for closing.</span>
+<table id="tblPriceTypeRules" class="table dataTable">
+    <thead>
+        <tr>
+            <th>Rule From</th>
+            <th>Rule For</th>
+            <th>Base Price</th>
+            <th>Formula</th>
+            @*<th>%</th>
+            <th>><</th>
+            <th>Than Price Type</th>*@
+            <th>Level</th>
+            <th>Date Saved</th>
+            @*<th>Terminate Date</th>*@
+            <th>Vigency</th>
+            <th>Saved By</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.PriceTypeRulesResults != null)
+        {
+            foreach (var i in Model.PriceTypeRulesResults)
+            {
+                var id = "rule_" + i.Service_PriceTypeID;
+                //var moreOrLess = i.IsBasePrice ? "" : (bool)i.MoreOrLess ? "More" : "Less";
+                var date = i.SavedOn.ToString("yyyy-MM-dd hh:mm:ss tt");
+                var fromDate = i.FromDate.ToString("yyyy-MM-dd hh:mm:ss tt");
+                var toDate = i.ToDate != null ? ((DateTime)i.ToDate).ToString("yyyy-MM-dd hh:mm:ss tt") : "Permanent";
+                var rule = i.RuleFor + " (P" + i.PriceTypeID + ")";
+                <tr id="@id">
+                    <td>
+                        @Html.DisplayFor(model => i.RuleFrom)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => rule)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(model => i.IsBasePrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.FormulaText)
+                    </td>
+                    @*<td>
+                        @Html.DisplayFor(model => i.Percentage)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(model => moreOrLess)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.ThanPriceType)
+                    </td>*@
+                    <td data-rule-level="">
+                        @Html.DisplayFor(model => i.Level)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => fromDate) - @Html.DisplayFor(model => toDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.SavedBy)
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<h3>Future Rules</h3>
+<table id="tblFuturePriceTypeRules" class="table dataTable">
+    <thead>
+    <th>Rule From</th>
+    <th>Rule For</th>
+    <th>Base Price</th>
+    <th>Formula</th>
+    @*<th>%</th>
+    <th>><</th>
+    <th>Than Price Type</th>*@
+    <th>Level</th>
+    <th>Start Date</th>
+    <th>Terminate Date</th>
+    <th>Date Saved</th>
+    <th>Saved By</th>
+    <th></th>
+    </thead>
+    <tbody>
+        @if (Model.NewPriceTypeRulesResults != null)
+        {
+            foreach (var i in Model.NewPriceTypeRulesResults)
+            {
+                var id = "rule_" + i.Service_PriceTypeID;
+                //var moreOrLess = i.IsBasePrice ? "" : (bool)i.MoreOrLess ? "More" : "Less";
+                var fromDate = i.FromDate.ToString("yyyy-MM-dd hh:mm:ss tt");
+                var dateSaved = i.SavedOn.ToString("yyyy-MM-dd hh:mm:ss tt");
+                var toDate = i.IsPermanent ? "Permanent" : ((DateTime)i.ToDate).ToString("yyyy-MM-dd");
+                var rule = i.RuleFor + " (P" + i.PriceTypeID + ")";
+                <tr id="@id">
+                    <td>
+                        @Html.DisplayFor(model => i.RuleFrom)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => rule)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(model => i.IsBasePrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.FormulaText)
+                    </td>
+                    @*<td>
+                        @Html.DisplayFor(model => i.Percentage)
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(model => moreOrLess)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => i.ThanPriceType)
+                    </td>*@
+                    <td data-rule-level="">
+                        @Html.DisplayFor(model => i.Level)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => fromDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => toDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => dateSaved)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => i.SavedBy)
+                </td>
+                    <td>
+                        <img src="~/Content/themes/base/images/trash.png" class="delete-rule">
+                    </td>
+            </tr>
+            }
+        }
+    </tbody>
+</table>

@@ -1,0 +1,26 @@
+﻿@model ePlatBack.Models.ViewModels.LeadModel.Views.LeadGeneralInformation
+
+@{
+    ViewBag.Title = "CRM - MasterChart - Add Referral : ePlat";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+}
+
+@section Head {
+    <link href="/Content/fineuploader.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+}
+
+@section Scripts{
+    <script src="/Scripts/jquery.fineuploader-3.0.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.fineuploader-3.0.min.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.dataTables.js" type="text/javascript"></script>
+    <script src="/Scripts/Common.js" type="text/javascript"></script>
+    <script src="/Scripts/crm/masterchart/leads.js" type="text/javascript"></script>
+    <script src="/Scripts/Common.js" type="text/javascript"></script>
+    <script src="/Scripts/crm/masterchart/referrals.js" type="text/javascript"></script>
+}
+
+<h1>Add Referrals</h1>
+
+@Html.Partial("_LeadGeneralInformationPartial",Model)

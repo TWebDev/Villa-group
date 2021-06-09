@@ -1,0 +1,47 @@
+﻿@model ePlatBack.Models.ViewModels.PreArrivalViewModel
+@{
+    ViewBag.Title = "ePlat > CRM > Pre Arrival";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+    var Privileges = Model.Privileges;
+}
+
+@section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+    <script src="/Scripts/jquery.dataTables.js" type="text/javascript"></script>
+    <script src="/Scripts/crm/interactions.js" type="text/javascript"></script>
+    <script src="/Scripts/crm/prearrival/prearrival.js?ts=@DateTime.Now" type="text/javascript"></script>
+}
+
+<h1>Pre Arrival</h1>
+<div class="align-from-top">
+    <div style="text-align:right">
+        <span class="block">
+            @if (Privileges.Count(m => m.Component == "btnImportFromFront") > 0 && Privileges.FirstOrDefault(m => m.Component == "btnImportFromFront").View)
+            {
+                <input type="button" id="btnImportFromFront" class="submit" value="import" title="import data from Front" />
+            }
+        </span>
+        @*<span class="block">
+            <input type="button" id="btnToMassActions" class="submit" value="test" />
+        </span>
+        <span class="block">
+            <input type="button" id="btnNewLead" class="submit" value="new" />
+        </span>*@
+    </div>
+    <section>
+        <h3 class="text-center">Import Results <span id="importRange"></span></h3>
+        <div class="import-results table-div"></div>
+    </section>
+    <fieldset id="fdsPreArrivalManagement">
+        <legend>
+            <i class="material-icons fieldset-indicator fds-indicator-separator">remove_circle_outline</i>
+            Pre Arrival Management
+        </legend>
+        <div class="align-from-top">
+            @Html.Partial("_SearchPreArrivalPartial", Model.PreArrivalSearchModel)
+            @*@Html.Action("RenderPreArrival", "PreArrival")*@
+            @Html.Partial("_PreArrivalManagementPartial", Model.PreArrivalInfoModel)
+        </div>
+    </fieldset>
+</div>

@@ -1,0 +1,80 @@
+﻿
+@model ePlatBack.Models.ViewModels.IndicatorsModel.SearchIndicatorsModel
+
+@using (Ajax.BeginForm("SearchIndicatorsPerResort", "Reports", new AjaxOptions { OnComplete = "REPORT.totalRow('tblIndicatorsReport')", OnSuccess = "REPORT.searchResultsTable(data)", UpdateTargetId = "divTblIndicatorsResults" }, new { id = "frmSearchIndicators", onSubmit = "return UI.showValidationSummary(this.id);" }))
+{
+    <div style="display: none" id="frmSearchIndicators_ErrorMessages">
+        @Html.ValidationMessageFor(model => model.SearchIndicator_I_ArrivalDate)
+        @Html.ValidationMessageFor(model => model.SearchIndicator_I_TourDate)
+        @Html.ValidationMessageFor(model => model.SearchIndicator_LeadSource)
+        @Html.ValidationMessageFor(model => model.SearchIndicator_Resort)
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SearchIndicator_I_ArrivalDate)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.SearchIndicator_I_ArrivalDate, new { @class = "prevent-default", data_uses_date_picker = "true" })
+            @Html.TextBoxFor(model => model.SearchIndicator_F_ArrivalDate, new { @class = "prevent-default", data_uses_date_picker = "true" })
+            <input type="button" class="button" id="btnClearArrivalDates" value="clear" />
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SearchIndicator_I_TourDate)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.SearchIndicator_I_TourDate, new { @class = "prevent-default", data_uses_date_picker = "true" })
+            @Html.TextBoxFor(model => model.SearchIndicator_F_TourDate, new { @class = "prevent-default", data_uses_date_picker = "true" })
+            <input type="button" class="button" id="btnClearTourDates" value="clear" />
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SearchIndicator_LeadSource)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.SearchIndicator_LeadSource, Model.SearchIndicator_DrpLeadSources, new { style = "height:86px", multiple = "multiple", @class = "workgroup-dependent-list", data_route = "/crm/Reports/GetDDLData", data_route_parameter = "leadSourceID" })
+        </div>
+    </div>
+    <div class="editor-alignment">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SearchIndicator_Resort)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.SearchIndicator_Resort, Model.SearchIndicator_DrpResorts, new { style = "height:86px", multiple = "multiple", @class = "terminal-dependent-list", data_route = "/crm/Reports/GetDDLData", data_route_parameter = "placeID" })
+        </div>
+    </div>
+    <div class="editor-alignment align-from-top">
+        <div class="editor-field">
+            <input type="reset" value="reset" class="button" />
+            <input type="submit" id="btnSearchIndicators" class="button align-from-left" value="search" />
+        </div>
+    </div>
+    <div class="download-file" style="display:none">
+        <a href="/content/files/data/Indicators_Report.csv" target="_blank">Download File</a>
+    </div>
+    <div id="divTblIndicatorsResults" class="align-from-top">
+        <table id="tblIndicatorsReport" class="table dataTable">
+            <thead>
+                <tr>
+                    <th>Resort</th>
+                    <th>Arrivals</th>
+                    <th>Bookings</th>
+                    <th>Booking %</th>
+                    <th>Tours</th>
+                    <th>Tour %</th>
+                    <th>Capture %</th>
+                    <th>Qualified</th>
+                    <th>Q Factor</th>
+                    <th>Volume</th>
+                    <th>VPG</th>
+                    <th>Missed Sales</th>
+                    <th>Missed Sales Volume</th>
+                    <th>M-VPG</th>
+                    <th>Total Paid %</th>
+                    <th>Total Paid Volume</th>
+                    <th>Total Paid Per Arrival</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+}

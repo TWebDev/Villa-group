@@ -1,0 +1,159 @@
+﻿@model ePlatBack.Models.ViewModels.DestinationPackagesViewModel
+
+@{
+    ViewBag.Culture = Model.Culture;
+    ViewBag.Title = Model.Seo_Title;
+    ViewBag.Keywords = Model.Seo_Keywords;
+    ViewBag.Description = Model.Seo_Description;
+    ViewBag.Index = Model.Seo_Index;
+    ViewBag.Follow = Model.Seo_Follow;
+
+    ViewBag.Header = Model.Template_Header;
+    ViewBag.Footer = Model.Template_Footer;
+    ViewBag.Logo = Model.Template_Logo;
+}
+
+@section header{
+    @Html.Raw(Model.Scripts_Header)
+}
+
+@section afterBody{
+    @Html.Raw(Model.Scripts_AfterBody)
+}
+
+@section scripts{
+    @Html.Raw(Model.Scripts_Footer)
+    @*@Scripts.Render("~/bundles/dvh/slider")*@
+    <script src="~/Content/themes/dvh/js/dvh-slider2.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            Slider.play();
+        });
+    </script>
+}
+
+@section controls{
+    <div id="freeGetaway" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="freeGetawayLabel">@Html.Partial("_FreeGetawayPartialV2", Model.FreeGetawayControl)</div>
+    <div id="quoteRequest" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="quoteRequestLabel">@Html.Partial("_QuoteRequestPartialV2", Model.QuoteRequestControl)</div>
+
+    <div id="redeemMyPackage" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="redeemMyPackageLabel">@Html.Partial("_RedeemMyPackage", Model.RedeemMyPackageControl)</div>
+
+}
+
+@section featured {
+    <div class="featured home @Model.Destination.ToLower().Replace(" ","-")">
+        @if (Model.Pictures != null)
+        {
+            <div id="divCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    @for (int i = 0; i < Model.Pictures.Count(); i++)
+                    {
+                        <li data-target="#divCarousel" data-slide-to="i" class="@(i==0 ? "active" : "")"></li>
+                    }
+                </ol>
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    @{
+                        var j = 0;
+                    }
+                    @foreach (var item in Model.Pictures)
+                    {
+                        <div class="item @(j == 0 ? "active" : "")">
+                            <img src="@item.Picture_Url" alt="@item.Picture_Alt">
+                            @*<div class="carousel-caption"></div>*@
+                        </div>
+                        j++;
+                    }
+                </div>
+                <!-- Controls -->
+                <a class="left carousel-control" href="#divCarousel" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#divCarousel" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        }
+    </div>
+}
+
+<section id="packages" class="black-box first-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>@Html.DisplayFor(model => model.PageTitle)</h1>
+            </div>
+        </div>
+        <div class="row">
+            @if (Model.Packages != null)
+            {
+                foreach (var item in Model.Packages)
+                {
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                        <figure class="tile-package wow bounceInUp" data-packageid="@item.PackageID">
+                            <a href="@item.Url" title="@item.Package">
+                                <img class="tile-image img-responsive" src="@("//eplatfront.villagroup.com" + item.PictureUrl + "?width=480")" alt="@item.Package" />
+                            </a>
+                            <figcaption class="tile-text">
+                                <a href="@item.Url" title="@item.Package">
+                                    <h2>@Html.DisplayFor(modelItem => item.Package)</h2>
+                                    <span class="tile-package-price">
+                                        <span class="retail-price">$@Html.DisplayFor(modelItem => item.RetailPrice)</span>
+                                        <span class="price">
+                                            $@Html.DisplayFor(modelItem => item.Price)
+                                        </span><br />
+                                        PER COUPLE
+                                        @*<br />
+                                            @Html.DisplayFor(modelItem => item.Stay)*@
+                                    </span>
+                                    <span class="tile-package-description">
+                                        <span class="reviews-rate">
+                                            <img src="/content/themes/mex/images/stars_full.png" alt="star" />
+                                            <img src="/content/themes/mex/images/stars_full.png" alt="star" />
+                                            <img src="/content/themes/mex/images/stars_full.png" alt="star" />
+                                            <img src="/content/themes/mex/images/stars_full.png" alt="star" />
+                                            <img src="/content/themes/mex/images/stars_full.png" alt="star" />
+                                        </span>
+                                        <span class="tile-destination">@item.Destination @item.PlanType</span>
+                                        <span class="tile-wash">@Html.DisplayFor(modelItem => item.Stay) @ePlatFront.Resources.Views.Shared.SharedStrings._for @Html.DisplayFor(modelItem => item.Guests)</span>
+                                        <span class="tile-includes">@Html.Raw(item.Includes)</span>
+                                        <span class="tile-button">MORE DETAILS</span>
+                                    </span>
+                                </a>
+                            </figcaption>
+                        </figure>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>
+<section id="destination" class="white-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <span id="spnGoPackages">@Model.Destination Packages</span>
+                <h2>About @Model.Destination</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+
+                @Html.Raw(Model.Content)
+            </div>
+            <div class="col-md-6 big-header-right">
+                @if (Model.VideoUrl != null)
+                {
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="//www.youtube.com/embed/@Model.VideoUrl?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                }
+            </div>
+        </div>
+        @Html.Raw(Model.Content2)
+    </div>
+</section>
+

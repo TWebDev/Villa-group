@@ -1,0 +1,166 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPublic.cshtml";
+}
+<link href='//fonts.googleapis.com/css?family=Just+Another+Hand|Sue+Ellen+Francisco|Reenie+Beanie|Alex+Brush|Shadows+Into+Light|Loved+by+the+King|Annie+Use+Your+Telescope|Dawning+of+a+New+Day|Architects+Daughter' rel='stylesheet' type='text/css'>
+
+@section Scripts{
+
+    <script src="/Scripts/signature.js?ts=@DateTime.Now" type="text/javascript"></script>
+    <script src="/ViewModels/eplat.local.public.paymentconfirmation.js?ts=@DateTime.Now" type="text/javascript"></script>
+}
+<div class="row">
+    <div class="col"></div>
+    <div class="col-lg-8 col-12">
+        <div class="signature-indications text-center mt-3" style="color:white;">
+            <h4>Electronic Signature Application</h4>
+            <span class="px-3 d-block">Please review the document below and e-sign it to finalize the process.</span>
+        </div>
+        <div class="card mt-3">
+            <div>
+                <div class="card-body p-5">
+                    <div class="progress my-5">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%"></div>
+                    </div>
+                    <div v-show="response" v-if="transactionInfo">
+                        <h1 class="h2 text-center mb-3">Payment Confirmation</h1>
+                        <p>Hello <strong>{{transactionInfo.FirstName}} {{transactionInfo.LastName}},</strong></p>
+                        <p>This is {{transactionInfo.UserFirstName}} to inform you that you have purchased:</p>
+
+                        <table class="table mb-5" v-if="OptionsToJson != null">
+                            <thead>
+                                <tr>
+                                    <th>Qty</th>
+                                    <th>Option</th>
+                                    <th>Date</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="(row, key) in OptionsToJson">
+                                    <td>
+                                        {{row.quantity}}
+                                    </td>
+                                    <td>
+                                        {{row.option}}
+                                    </td>
+                                    <td>
+                                        {{row.date | dateYYYYMMDD}}
+                                    </td>
+                                    <td>
+                                        {{(row.cost * row.quantity) | currency}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p v-else v-html="transactionInfo.OptionsSold">
+                        </p>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    @*<th class="text-center" colspan="2">PURCHASE INFORMATION</th>*@
+                                    <th class="text-center" colspan="2">ALL PURCHASED SERVICES MUST BE VALIDATED BY YOUR ON-SITE CONCIERGE AFTER CHECK-IN!</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-right w-50">
+                                        Resort
+                                    </td>
+                                    <td>{{transactionInfo.Resort}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right w-50">
+                                        Hotel Conf. Number
+                                    </td>
+                                    <td>{{transactionInfo.ConfirmationNumber}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right w-50">
+                                        Arrival Date
+                                    </td>
+                                    <td>{{transactionInfo.ArrivalDate}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right w-50">
+                                        Departure Date
+                                    </td>
+                                    <td>{{transactionInfo.DepartureDate}}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="text-align:center;font-weight:bold;" align="center">
+                                        TRANSACTION(S) INFORMATION
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" v-html="transactionInfo.PaymentInformation">
+                                    </td>
+                                </tr>
+                                @*<tr>
+            <td class="text-right w-50">
+                Amount
+            </td>
+            <td>{{transactionInfo.Amount}}</td>
+        </tr>
+        <tr>
+            <td class="text-right w-50">
+                Invoice
+            </td>
+            <td>{{transactionInfo.Invoice}}</td>
+        </tr>
+        <tr>
+            <td class="text-right w-50">
+                Payment(s) Date(s)
+            </td>
+            <td>{{transactionInfo.PaymentDate}}</td>
+        </tr>
+        <tr>
+            <td class="text-right w-50">
+                Card Holder
+            </td>
+            <td>{{transactionInfo.CardHolder}}</td>
+        </tr>
+        <tr>
+            <td class="text-right w-50">
+                Card Type
+            </td>
+            <td>{{transactionInfo.CardType}}</td>
+        </tr>
+        <tr>
+            <td class="text-right w-50">
+                Card Number
+            </td>
+            <td>{{transactionInfo.CardNumber}}</td>
+        </tr>*@
+                            </tbody>
+                        </table>
+
+                        <p class="mt-3">
+                            <span v-html="transactionInfo.MerchantAccount"></span>
+                            <div class="mt-3 mb-5">
+                                <span class="text-center"><strong>Cancelation &amp; Refund Policy</strong></span><br />
+                                <ul>
+                                    <li>Cancelations within 7 days of arrival cannot be refunded.</li>
+                                    <li>Cancelations 8 to 15 days prior to arrival will incur a 50% penalty fee.</li>
+                                    <li>Cancelations 16 days or more before arrival date will be fully refunded.</li>
+                                </ul>
+                            </div>
+                            @*<span>Please be aware that your card has been charged under the merchant account name: {{transactionInfo.MerchantAccount}}</span>*@
+                        </p>
+                        <p class="mt-3">
+                            <div>
+                                <div id="signature"></div>
+                            </div>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col"></div>
+</div>

@@ -1,0 +1,69 @@
+﻿@model ePlatBack.Models.ViewModels.PreArrivalSearchResultsModel
+@{
+    var columns = ViewData["Columns"] as string;
+}
+<h4 class="span-selected-leads" style="font-weight:bold;"></h4>
+<table id="tblSearchPreArrivalResults" class="table dataTable">
+    <thead>
+        <tr>
+            @if (Model.Results.Count > 0)
+            {
+            <th class="align-center">
+                <a id="lblSelectAll" class="chk-parent">All(<span id="lblAllLeads"></span>)</a>
+                <br /><a class="chk-visible">Visible(<span id="lblVisible"></span>)</a>
+            </th>
+                foreach (var i in Model.Results.FirstOrDefault().GetRange(1, Model.Results.FirstOrDefault().Count() - 1))
+                {
+                    <th>
+                        @Html.DisplayFor(model => i.Key)
+                    </th>
+                }
+            }
+            else
+            {
+                var _columns = columns.Split(',');
+                for (var i = 0; i < _columns.Length; i++)
+                {
+
+                    <th>
+                        @Html.DisplayFor(model => _columns[i].Split('/')[1])
+                    </th>
+                }
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Results.Count > 0)
+        {
+            foreach (var i in Model.Results)
+            {
+                var id = i.FirstOrDefault().Value;
+                var x = i.Where(m => m.Key != i.FirstOrDefault().Key);
+                <tr id="@id">
+                    <td class="align-center">
+                        <input type="checkbox" data-id="@id" class="chk-son" style="width:25px;height:25px;" />
+                    </td>
+                    @foreach (var a in x)
+                    {
+                        if (a.Key != x.Last().Key)
+                        {
+                            <td>
+                                @Html.DisplayFor(model => a.Value)
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="comments">
+                                <div class="comment-square"></div>
+                                <div class="comment-triangle"></div>
+                                <span class="comment">
+                                    @Html.DisplayFor(model => a.Value)
+                                </span>
+                            </td>
+                        }
+                    }
+                </tr>
+            }
+        }
+    </tbody>
+</table>

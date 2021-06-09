@@ -1,0 +1,283 @@
+﻿@model ePlatBack.Models.ViewModels.OutcomeInfoModel
+@{
+    var Privileges = ViewData["Privileges"] as List<ePlatBack.Models.ViewModels.SysComponentsPrivilegesModel>;
+}
+@if (Privileges.FirstOrDefault(m => m.Component == "fdsEgressInfo") != null && Privileges.FirstOrDefault(m => m.Component == "fdsEgressInfo").View)
+{
+    <fieldset id="fdsEgressInfo" class="non-printable">
+        <legend>
+            <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+            Gifting Info
+        </legend>
+        <div style="display: none" class="align-from-top">
+            @using (Ajax.BeginForm("SaveEgress", "TimeShare", new AjaxOptions { OnSuccess = "ACCOUNT.saveEgressSuccess(data)" }, new { id = "frmEgressInfo", onSubmit = "return UI.showValidationSummary(this.id);" }))
+            {
+                <div id="frmEgressInfo_ErrorMessages" style="display: none">
+                    @Html.ValidationMessageFor(model => model.OutcomeInfo_EgressType)
+                    @Html.ValidationMessageFor(model => model.OutcomeInfo_EgressConcept)
+                    @Html.ValidationMessageFor(model => model.OutcomeInfo_Customer)
+                    @Html.ValidationMessageFor(model => model.OutcomeInfo_Amount)
+                    @Html.ValidationMessageFor(model => model.OutcomeInfo_Opc)
+                    @Html.ValidationMessageFor(model => model.OutcomeInfo_Invitation)
+                    @Html.ValidationMessageFor(model => model.OutcomeInfo_CurrencyOfSale)
+                </div>
+                if (Privileges.FirstOrDefault(m => m.Component == "OutcomeInfo_Terminal") != null && Privileges.FirstOrDefault(m => m.Component == "OutcomeInfo_Terminal").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.OutcomeInfo_Terminal)
+                            @Html.HiddenFor(model => model.OutcomeInfo_EgressID, new { @class = "secondary-selected-row-dependent" })
+                            @Html.HiddenFor(model => model.OutcomeInfo_SaveAndPrint)
+                            @Html.HiddenFor(model => model.OutcomeInfo_Fund, new { @class = "secondary-selected-row-dependent" })
+                            @Html.HiddenFor(model => model.CustomerID, new { @class = "secondary-selected-row-dependent" })
+                            @Html.HiddenFor(model => model.Country, new { @class = "secondary-selected-row-dependent" })
+                            @Html.HiddenFor(model => model.MarketingProgram, new { @class = "secondary-selected-row-dependent" })
+                            @Html.HiddenFor(model => model.Subdivision, new { @class = "secondary-selected-row-dependent" })
+                            @Html.HiddenFor(model => model.Source, new { @class = "secondary-selected-row-dependent" })
+                            @Html.HiddenFor(model => model.OPCID, new { @class = "secondary-selected-row-dependent" })
+                            @Html.HiddenFor(model => model.OPC, new { @class = "secondary-selected-row-dependent" })
+                            @Html.HiddenFor(model => model.FrontOfficeGuestID, new { @class = "secondary-selected-row-dependent" })
+                            @Html.HiddenFor(model => model.FrontOfficeResortID, new { @class = "secondary-selected-row-dependent" })
+                            @Html.HiddenFor(model => model.TourID, new { @class = "secondary-selected-row-dependent" })
+                            @Html.HiddenFor(model => model.TourDate, new { @class = "secondary-selected-row-dependent" })
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.OutcomeInfo_Terminal, Model.OutcomeInfo_DrpTerminals, new { data_keep_value = "", @class = "terminal-dependent-list", data_route = "/crm/TimeShare/GetDDLData", data_route_parameter = "selectedTerminals" })
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "OutcomeInfo_EgressType") != null && Privileges.FirstOrDefault(m => m.Component == "OutcomeInfo_EgressType").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.OutcomeInfo_EgressType)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.OutcomeInfo_EgressType, Model.OutcomeInfo_DrpEgressTypes)
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "OutcomeInfo_EgressConcept") != null && Privileges.FirstOrDefault(m => m.Component == "OutcomeInfo_EgressConcept").View)
+                {
+                    <div id="divShowInChargeBack" class="editor-alignment">
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.OutcomeInfo_EgressConcept)
+                                <input type="hidden" id="hdnConceptAllowsBudget" />
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.OutcomeInfo_EgressConcept, Model.OutcomeInfo_DrpEgressConcepts)
+                            </div>
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "OutcomeInfo_Invitation") != null && Privileges.FirstOrDefault(m => m.Component == "OutcomeInfo_Invitation").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.OutcomeInfo_Invitation)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.OutcomeInfo_Invitation)
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "OutcomeInfo_Customer") != null && Privileges.FirstOrDefault(m => m.Component == "OutcomeInfo_Customer").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.OutcomeInfo_Customer)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.OutcomeInfo_Customer)
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "OutcomeInfo_AmountOfSale") != null && Privileges.FirstOrDefault(m => m.Component == "OutcomeInfo_AmountOfSale").View)
+                {
+                    <div class="editor-alignment amount-of-sale">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.OutcomeInfo_AmountOfSale)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.OutcomeInfo_AmountOfSale)
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "OutcomeInfo_CurrencyOfSale") != null && Privileges.FirstOrDefault(m => m.Component == "OutcomeInfo_CurrencyOfSale").View)
+                {
+                    <div class="editor-alignment amount-of-sale">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.OutcomeInfo_CurrencyOfSale)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.OutcomeInfo_CurrencyOfSale, Model.OutcomeInfo_DrpCurrenciesOfSale, new { @class = "terminal-dependent-list", data_route = "/crm/MasterChart/GetDDLData", data_route_parameter = "saleCurrenciesAllowedPerSession" })
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "OutcomeInfo_Amount") != null && Privileges.FirstOrDefault(m => m.Component == "OutcomeInfo_Amount").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.OutcomeInfo_Amount)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.OutcomeInfo_Amount)
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "OutcomeInfo_Currency") != null && Privileges.FirstOrDefault(m => m.Component == "OutcomeInfo_Currency").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.OutcomeInfo_Currency)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.OutcomeInfo_Currency, Model.OutcomeInfo_DrpCurrencies, new { @class = "terminal-dependent-list", data_route = "/crm/MasterChart/GetDDLData", data_route_parameter = "currenciesAllowedPerSession" })
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "OutcomeInfo_AdminFee") != null && Privileges.FirstOrDefault(m => m.Component == "OutcomeInfo_AdminFee").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.OutcomeInfo_AdminFee)
+                        </div>
+                        <div class="editor-field">
+                            <label class="right-aligned-icon">%</label>
+                            @Html.TextBoxFor(model => model.OutcomeInfo_AdminFee)
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "OutcomeInfo_Opc") != null && Privileges.FirstOrDefault(m => m.Component == "OutcomeInfo_Opc").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.OutcomeInfo_Opc)
+                            <i class="material-icons right update-opc-list">refresh</i>
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.OutcomeInfo_Opc, Model.OutcomeInfo_DrpOpcs, new { @class = "", data_route = "/crm/TimeShare/GetDDLData", data_onchange_route_parameter = "opcTeam,opc", data_dependent_list = "OutcomeInfo_PromotionTeam,OutcomeInfo_ChargedToCompany" })
+                        </div>
+                    </div>
+                    <div id="divOtherOpc" class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.OutcomeInfo_OtherOpc)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.OutcomeInfo_OtherOpc)
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "OutcomeInfo_PromotionTeam") != null && Privileges.FirstOrDefault(m => m.Component == "OutcomeInfo_PromotionTeam").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.OutcomeInfo_PromotionTeam)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.OutcomeInfo_PromotionTeam, Model.OutcomeInfo_DrpPromotionTeams)
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "OutcomeInfo_Budget") != null && Privileges.FirstOrDefault(m => m.Component == "OutcomeInfo_Budget").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.OutcomeInfo_Budget)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.OutcomeInfo_Budget, Model.OutcomeInfo_DrpBudgets)
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "OutcomeInfo_ChargedToCompany") != null && Privileges.FirstOrDefault(m => m.Component == "OutcomeInfo_ChargedToCompany").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.OutcomeInfo_ChargedToCompany)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.OutcomeInfo_ChargedToCompany, Model.OutcomeInfo_DrpCompanies, new { @class = "" })
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "OutcomeInfo_Location") != null && Privileges.FirstOrDefault(m => m.Component == "OutcomeInfo_Location").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.OutcomeInfo_Location)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.OutcomeInfo_Location, Model.OutcomeInfo_DrpLocations)
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "OutcomeInfo_PointOfSale") != null && Privileges.FirstOrDefault(m => m.Component == "OutcomeInfo_PointOfSale").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.OutcomeInfo_PointOfSale)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.OutcomeInfo_PointOfSale, Model.OutcomeInfo_DrpPointsOfSale, new { data_keep_value = "" })
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "OutcomeInfo_DateSaved") != null && Privileges.FirstOrDefault(m => m.Component == "OutcomeInfo_DateSaved").View)
+                {
+                    <div class="editor-alignment">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.OutcomeInfo_DateSaved)
+                        </div>
+                        <div class="editor-field">
+                            @if (!Privileges.FirstOrDefault(m => m.Component == "OutcomeInfo_DateSaved").Edit)
+                            {
+                                @*@Html.HiddenFor(model => model.OutcomeInfo_DateSaved)*@
+                                @Html.TextBoxFor(model => model.OutcomeInfo_DateSaved, new { @readonly = "readonly" })
+                            }
+                            else
+                            {
+                                @Html.TextBoxFor(model => model.OutcomeInfo_DateSaved, new { @readonly = "readonly", data_uses_date_picker = "true", @class = "visible-on-update" })
+                                @*@Html.TextBoxFor(model => model.OutcomeInfo_DateSaved, new { @readonly = "readonly", data_uses_date_picker = "true" })*@
+                            }
+                        </div>
+                    </div>
+                }
+                if (Privileges.FirstOrDefault(m => m.Component == "OutcomeInfo_AgentComments") != null && Privileges.FirstOrDefault(m => m.Component == "OutcomeInfo_AgentComments").View)
+                {
+                    <div class="full-width editor-alignment" style="border-top: 1px solid #DDDDDD; margin-top: 20px">
+                        <div class="editor-alignment">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.OutcomeInfo_AgentComments)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextAreaFor(model => model.OutcomeInfo_AgentComments, new { @class = "double-width" })
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="full-width">
+                    <div id="divCreatePrintEgress">
+                        @if (Privileges.FirstOrDefault(m => m.Component == "btnSaveAndPrintEgress") != null && Privileges.FirstOrDefault(m => m.Component == "btnSaveAndPrintEgress").View)
+                        {
+                            <input type="button" id="btnSaveAndPrintEgress" class="submit right marg-left" value="save & print" />
+                        }
+                    </div>
+                    <div id="divCreateEgress" class="egress-saving">
+                        @if (Privileges.FirstOrDefault(m => m.Component == "btnSaveEgress") != null && Privileges.FirstOrDefault(m => m.Component == "btnSaveEgress").View)
+                        {
+                            <input type="button" id="btnSaveEgress" class="submit right" value="save" />
+                        }
+                    </div>
+                    <div id="divEditEgress" class="egress-saving" style="display:none">
+                        @if (Privileges.FirstOrDefault(m => m.Component == "btnSaveEgress") != null && Privileges.FirstOrDefault(m => m.Component == "btnSaveEgress").Edit)
+                        {
+                            <input type="button" id="btnEditEgress" class="submit right" value="update" />
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </fieldset>
+}

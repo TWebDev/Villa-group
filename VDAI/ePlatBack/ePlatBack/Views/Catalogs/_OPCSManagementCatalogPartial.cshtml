@@ -1,0 +1,161 @@
+﻿@model ePlatBack.Models.ViewModels.OPCSModel.OPCSInfoModel
+
+@{var Privileges = ViewData["Privileges"] as List<ePlatBack.Models.ViewModels.SysComponentsPrivilegesModel>;}
+
+<fieldset id="fdsOPCSInfo" class="primary-selected-row-dependent">
+    <legend>
+        <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+        OPC / Employee Info
+    </legend>
+    <div style="display:none" class="align-from-top">
+        @using (Ajax.BeginForm("SaveOPC", "Catalogs", new AjaxOptions { OnSuccess = "CATALOG.saveOPCSuccess(data)" }, new { id = "frmOPCInfo", onSubmit = "return UI.showValidationSummary(this.id);" }))
+        {
+            <div id="frmOPCInfo_ErrorMessages" style="display:none">
+            </div>
+
+            <div id="divEditingOPC" style="font-size: 14pt;"></div>
+
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.OPCSInfo_Credential)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.OPCSInfo_Credential, new { maxlength = "8" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.OPCSInfo_FirstName)
+                    @Html.HiddenFor(model => model.OPCSInfo_OpcID, new { @class = "secondary-selected-row-dependent" })
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.OPCSInfo_FirstName)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.OPCSInfo_MiddleName)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.OPCSInfo_MiddleName)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.OPCSInfo_LastName)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.OPCSInfo_LastName)
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.OPCSInfo_SecondSurname)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.OPCSInfo_SecondSurname)
+                </div>
+            </div>
+
+
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.OPCSInfo_Phone1)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.OPCSInfo_Phone1, new { data_format = "phone" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.OPCSInfo_Phone2)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.OPCSInfo_Phone2, new { data_format = "phone" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.OPCSInfo_Company)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.OPCSInfo_Company, Model.OPCSInfo_DrpCompanies, new { @class = "mktCompany-dependent-list terminal-dependent-list", data_route = "/Catalogs/GetDDLData", data_route_parameter = "mktCompany" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.OPCSInfo_PayingCompany)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.OPCSInfo_PayingCompany, Model.OPCSInfo_DrpPayingCompanies, new { @class = "terminal-dependent-list", data_route = "/Catalogs/GetDDLData", data_route_parameter = "payingCompany" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.OPCSInfo_LegacyKey)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.OPCSInfo_LegacyKey, new { maxlength = "8" })
+                </div>
+            </div>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.OPCSInfo_AvanceID)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.OPCSInfo_AvanceID, new { maxlength = "6" })
+                </div>
+            </div>
+            @*<div class="editor-alignment" style="display:none">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.OPCSInfo_User)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.OPCSInfo_User, Model.OPCSInfo_DrpUsers)
+                </div>
+            </div>*@
+    @*<input type="hidden" id="OPCSInfo_User" name="OPCSInfo_User" value="0" />*@
+            <input type="hidden" id="OPCSInfo_User" name="OPCSInfo_User"/>
+            <div class="editor-alignment">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.OPCSInfo_EnlistDate)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.OPCSInfo_EnlistDate)
+                </div>
+            </div>
+            <div>
+                <span style="width: 0; height: 0; display: block; overflow: hidden;">
+                    @Html.TextBoxFor(model => model.OPCSInfo_TeamsStr)
+                    @Html.TextBoxFor(model => model.OPCSInfo_TeamInfoEditing)
+                </span>
+                <table id="tblOPCTeams" class="table" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Team / Room / Department</th>
+                            <th>Job Position</th>
+                            <th>Reporting to</th>
+                            <th>Team Start Date</th>
+                            <th>Status</th>
+                            <th>Termination Date</th>
+                            <th>Termination Reason</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <input id="btnOPCAddTeam" class="button" type="button" value="Add Team" /> @Html.ValidationMessageFor(model => model.OPCSInfo_TeamsStr) @Html.ValidationMessageFor(model => model.OPCSInfo_TeamInfoEditing)
+                <div id="divTeamInfo" style="display:none;">
+                    @Html.Partial("_OPCSTeamInfoPartial", Model.OPCSInfo_Team)
+                </div>
+            </div>
+
+            <div class="editor-alignment full-width">
+               @if (Model.Privileges.FirstOrDefault(m => m.Component == "btnSaveOPCInfo" && m.Edit == true && m.View==true) != null)
+               {
+                        <input type="submit" id="btnSaveOPCInfo" class="submit right" value="save" />
+                }
+            </div>
+        }
+    </div>
+</fieldset>

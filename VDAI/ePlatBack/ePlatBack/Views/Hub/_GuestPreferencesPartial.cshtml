@@ -1,0 +1,64 @@
+﻿@model ePlatBack.Models.ViewModels.GuestInfoModel
+  
+
+    <fieldset id="fdsGuestPreferences">
+        <legend>
+            <img src="/Content/themes/base/images/eplat_show.jpg" class="fieldset-indicator fds-indicator-separator" />
+            GUEST PREFERENCES
+        </legend>
+        @using (Ajax.BeginForm("", "", new AjaxOptions { OnSuccess = "", OnComplete = "", UpdateTargetId = "" }, new { id = "" }))
+        {
+
+
+            
+               
+                    <div >
+                        <br>
+                        <table style ="width:100%;">
+
+
+                            <tr>
+                                <td><label>Activities Preferences:</label></td>
+                                <td id="Preference1"></td>
+                            </tr>
+
+
+                            <tr>
+                                <td><label>Special Sleeping Needs:</label></td>
+                                <td id="Preference2"></td>
+
+                            </tr>
+
+
+                            <tr>
+                                <td><label>Preferred Beverages:</label></td>
+                                <td id="Preference3"> </td>
+
+                            </tr>
+
+                            <tr>
+                                <td><label>Dinning Preferences:</label></td>
+                                <td id="Preference4"></td>
+
+                            </tr>
+                            <tr>
+                                <td><label>Dietary Requirements:</label></td>
+                                <td id="Preference5"></td>
+                            </tr>
+                            <tr>
+                                <td><label>Favorite Hotels and Resorts:</label></td>
+                                <td id="Preference6"> </td>
+                            </tr>
+                            <tr>
+                                <td><label>Special Dates:</label></td>
+                                <td id="Preference7"></td>
+                            </tr>
+                            </table>
+</div>
+
+                <br /><br />
+               
+         
+        }
+        @Html.Partial("_PreferenceRegistrationPartial", Model.PreferenceRegistration)
+    </fieldset>

@@ -1,0 +1,1007 @@
+﻿@model ePlatBack.Models.ViewModels.ProductionModel.CouponSales
+
+<div class="table-div">
+    <div class="table-row">
+        <div class="table-cell">
+            From<br />
+            @Model.FromDate
+        </div>
+        <div class="table-cell">
+            To<br />
+            @Model.ToDate
+        </div>
+        <div class="table-cell">
+            Point of Sale<br />
+            @Html.Raw(@Model.PointsOfSale)
+        </div>
+        <div class="table-cell">
+            Terminal<br />
+            @Model.Terminal
+        </div>
+        <div class="table-cell">
+            Number of Purchases<br />
+            @Model.NumberOfPurchases
+        </div>
+        <div class="table-cell">
+            Number of Coupons<br />
+            @Model.NumberOfCoupons
+        </div>
+    </div>
+</div>
+
+<table class="table no-plugin exportable non-editable" style="width: 100%;">
+    <thead>
+        <tr>
+            @if (Model.Columns == null || Model.Columns.Contains("Folio"))
+            {
+                <th>Folio</th>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("CouponReference"))
+            {
+                <th>Coupon Reference</th>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("DateSaved"))
+            {
+                <th>Saved On</th>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("ConfirmationDate"))
+            {
+                <th>Confirmation Date</th>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("CancelationDate"))
+            {
+                <th>Cancelation Date</th>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("SalesAgent"))
+            {
+                <th>Sales Agent</th>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("ReservationsAgent"))
+            {
+                <th>Reservations Agent</th>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("UnitsQty"))
+            {
+                <th>Pax/Qty</th>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("PointOfSale"))
+            {
+                <th>PoS</th>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Category"))
+            {
+                <th>Category</th>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Provider"))
+            {
+                <th>Provider</th>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Service"))
+            {
+                <th>Activity</th>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("ServiceDate"))
+            {
+                <th>Activity Date</th>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Units"))
+            {
+                <th>Units</th>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("ProviderAvanceID"))
+            {
+                <th>Avance Provider ID</th>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Customer"))
+            {
+                <th>Customer</th>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Culture"))
+            {
+                <th>Language</th>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("PriceType"))
+            {
+                <th>Price Type</th>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Total"))
+            {
+                <th>Total</th>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("TotalNoIVA"))
+            {
+                <th>Total b/ IVA</th>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Cost"))
+            {
+                <th>Cost</th>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("CostNoIVA"))
+            {
+                <th>Cost b/ IVA</th>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Utility"))
+            {
+                <th>Profit</th>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("UtilityNoIVA"))
+            {
+                <th>Profit b/ IVA</th>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Total") || Model.Columns.Contains("TotalNoIVA") || Model.Columns.Contains("Cost") || Model.Columns.Contains("CostNoIVA") || Model.Columns.Contains("Utility") || Model.Columns.Contains("UtilityNoIVA"))
+            {
+                <th>Currency</th>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Status"))
+            {
+                <th>Status</th>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Promo"))
+            {
+                <th>Promo</th>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("AuthCode"))
+            {
+                <th>Transaction</th>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Location"))
+            {
+                <th>Location</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Coupons.Count() > 0)
+        {
+            foreach (var coupon in Model.Coupons)
+            {
+                <tr>
+                    @if (Model.Columns == null || Model.Columns.Contains("Folio"))
+                    {
+                        <td><a href="/crm/masterchart/#purchaseid=@coupon.PurchaseID" target="_blank">@coupon.Folio</a></td>
+                    }
+                    @if (Model.Columns == null || Model.Columns.Contains("CouponReference"))
+                    {
+                        <td>@coupon.CouponReference</td>
+                    }
+                    @if (Model.Columns == null || Model.Columns.Contains("DateSaved"))
+                    {
+                        <td>@coupon.DateSaved</td>
+                    }
+                    @if (Model.Columns == null || Model.Columns.Contains("ConfirmationDate"))
+                    {
+                        <td>@coupon.ConfirmationDate</td>
+                    }
+                    @if (Model.Columns == null || Model.Columns.Contains("CancelationDate"))
+                    {
+                        <td>@coupon.CancelationDate</td>
+                    }
+                    @if (Model.Columns == null || Model.Columns.Contains("SalesAgent"))
+                    {
+                        <td>@coupon.SalesAgent</td>
+                    }
+                    @if (Model.Columns == null || Model.Columns.Contains("ReservationsAgent"))
+                    {
+                        <td>@coupon.ReservationsAgent</td>
+                    }
+                    @if (Model.Columns == null || Model.Columns.Contains("UnitsQty"))
+                    {
+                        <td>@coupon.UnitsQty.ToString().Replace(".00", "")</td>
+                    }
+                    @if (Model.Columns == null || Model.Columns.Contains("PointOfSale"))
+                    {
+                        <td>@coupon.PointOfSale</td>
+                    }
+                    @if (Model.Columns == null || Model.Columns.Contains("Category"))
+                    {
+                        <td>@coupon.Category</td>
+                    }
+                    @if (Model.Columns == null || Model.Columns.Contains("Provider"))
+                    {
+                        <td>@coupon.Provider</td>
+                    }
+                    @if (Model.Columns == null || Model.Columns.Contains("Service"))
+                    {
+                        <td>@coupon.Service</td>
+                    }
+                    @if (Model.Columns == null || Model.Columns.Contains("ServiceDate"))
+                    {
+                        <td>@coupon.ServiceDate.Replace("12:00:00 AM", "")</td>
+                    }
+                    @if (Model.Columns == null || Model.Columns.Contains("Units"))
+                    {
+                        <td>@Html.Raw(coupon.Units)</td>
+                    }
+                    @if (Model.Columns == null || Model.Columns.Contains("ProviderAvanceID"))
+                    {
+                        <td>@coupon.ProviderAvanceID</td>
+                    }
+                    @if (Model.Columns == null || Model.Columns.Contains("Customer"))
+                    {
+                        <td>@coupon.Customer</td>
+                    }
+                    @if (Model.Columns == null || Model.Columns.Contains("Culture"))
+                    {
+                        <td>@coupon.Culture</td>
+                    }
+                    @if (Model.Columns == null || Model.Columns.Contains("PriceType"))
+                    {
+                        <td>@coupon.PriceType</td>
+                    }
+                    @if (Model.Columns == null || Model.Columns.Contains("Total"))
+                    {
+                        <td data-format="currency">@coupon.Total.Amount</td>
+                    }
+                    @if (Model.Columns == null || Model.Columns.Contains("TotalNoIVA"))
+                    {
+                        <td data-format="currency">@coupon.TotalNoIVA.Amount</td>
+                    }
+                    @if (Model.Columns == null || Model.Columns.Contains("Cost"))
+                    {
+                        <td data-format="currency" class="@(coupon.CustomCost ? "custom-cost" : "")">@coupon.Cost.Amount</td>
+                    }
+                    @if (Model.Columns == null || Model.Columns.Contains("CostNoIVA"))
+                    {
+                        <td data-format="currency" class="@(coupon.CustomCost ? "custom-cost" : "")">@coupon.CostNoIVA.Amount</td>
+                    }
+                    @if (Model.Columns == null || Model.Columns.Contains("Utility"))
+                    {
+                        <td data-format="currency">@coupon.Utility.Amount</td>
+                    }
+                    @if (Model.Columns == null || Model.Columns.Contains("UtilityNoIVA"))
+                    {
+                        <td data-format="currency">@coupon.UtilityNoIVA.Amount</td>
+                    }
+                    @if (Model.Columns == null || Model.Columns.Contains("Total") || Model.Columns.Contains("TotalNoIVA") || Model.Columns.Contains("Cost") || Model.Columns.Contains("CostNoIVA") || Model.Columns.Contains("Utility") || Model.Columns.Contains("UtilityNoIVA"))
+                    {
+                        <td>@coupon.Total.Currency</td>
+                    }
+                    @if (Model.Columns == null || Model.Columns.Contains("Status"))
+                    {
+                        <td>@Html.Raw(coupon.Status)</td>
+                    }
+                    @if (Model.Columns == null || Model.Columns.Contains("Promo"))
+                    {
+                        <td>@coupon.Promo</td>
+                    }
+                    @if (Model.Columns == null || Model.Columns.Contains("AuthCode"))
+                    {
+                        <td>@coupon.AuthCode</td>
+                    }
+                    @if (Model.Columns == null || Model.Columns.Contains("Location"))
+                    {
+                        <td>@coupon.Location</td>
+                    }
+                </tr>
+            }
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            @if (Model.Columns == null || Model.Columns.Contains("Folio"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("CouponReference"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("DateSaved"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("ConfirmationDate"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("CancelationDate"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("SalesAgent"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("ReservationsAgent"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("UnitsQty"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("PointOfSale"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Category"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Provider"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Service"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("ServiceDate"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Units"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("ProviderAvanceID"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Customer"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Culture"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("PriceType"))
+            {
+                <td rowspan="2">
+                    Grand Total
+                </td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Total"))
+            {
+                <td data-format="currency">@Model.GrandTotal.FirstOrDefault(x => x.Currency == "USD").Amount</td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("TotalNoIVA"))
+            {
+                <td data-format="currency">@Model.GrandTotalNoIVA.FirstOrDefault(x => x.Currency == "USD").Amount</td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Cost"))
+            {
+                <td data-format="currency">@Model.TotalCost.FirstOrDefault(x => x.Currency == "USD").Amount</td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("CostNoIVA"))
+            {
+                <td data-format="currency">@Model.TotalCostNoIVA.FirstOrDefault(x => x.Currency == "USD").Amount</td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Utility"))
+            {
+                <td data-format="currency">@Model.TotalUtility.FirstOrDefault(x => x.Currency == "USD").Amount</td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("UtilityNoIVA"))
+            {
+                <td data-format="currency">@Model.TotalUtilityNoIVA.FirstOrDefault(x => x.Currency == "USD").Amount</td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Total") || Model.Columns.Contains("TotalNoIVA") || Model.Columns.Contains("Cost") || Model.Columns.Contains("CostNoIVA") || Model.Columns.Contains("Utility") || Model.Columns.Contains("UtilityNoIVA"))
+            {
+                <td>USD</td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Status"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Promo"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("AuthCode"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Location"))
+            {
+                <td></td>
+            }
+        </tr>
+        <tr>
+            @if (Model.Columns == null || Model.Columns.Contains("Folio"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("CouponReference"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("DateSaved"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("ConfirmationDate"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("CancelationDate"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("SalesAgent"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("ReservationsAgent"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("UnitsQty"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("PointOfSale"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Category"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Provider"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Service"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("ServiceDate"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Units"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("ProviderAvanceID"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Customer"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Culture"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Total"))
+            {
+                <td data-format="currency">@Model.GrandTotal.FirstOrDefault(x => x.Currency == "MXN").Amount</td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("TotalNoIVA"))
+            {
+                <td data-format="currency">@Model.GrandTotalNoIVA.FirstOrDefault(x => x.Currency == "MXN").Amount</td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Cost"))
+            {
+                <td data-format="currency">@Model.TotalCost.FirstOrDefault(x => x.Currency == "MXN").Amount</td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("CostNoIVA"))
+            {
+                <td data-format="currency">@Model.TotalCostNoIVA.FirstOrDefault(x => x.Currency == "MXN").Amount</td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Utility"))
+            {
+                <td data-format="currency">@Model.TotalUtility.FirstOrDefault(x => x.Currency == "MXN").Amount</td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("UtilityNoIVA"))
+            {
+                <td data-format="currency">@Model.TotalUtilityNoIVA.FirstOrDefault(x => x.Currency == "MXN").Amount</td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Total") || Model.Columns.Contains("TotalNoIVA") || Model.Columns.Contains("Cost") || Model.Columns.Contains("CostNoIVA") || Model.Columns.Contains("Utility") || Model.Columns.Contains("UtilityNoIVA"))
+            {
+                <td>MXN</td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Status"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Promo"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("AuthCode"))
+            {
+                <td></td>
+            }
+            @if (Model.Columns == null || Model.Columns.Contains("Location"))
+            {
+                <td></td>
+            }
+        </tr>
+    </tfoot>
+</table>
+
+@if (Model.Summaries.Count(x => x.SummaryID == 1) > 0)
+{
+    <h3>Points of Sale Summary</h3>
+    <table class="exportable">
+        <thead>
+            <tr>
+                <th>Point of Sale</th>
+                <th>Coupons</th>
+                <th>Total</th>
+                <th>Total b/ IVA</th>
+                <th>Cost</th>
+                <th>Cost b/ IVA</th>
+                <th>Profit</th>
+                <th>Profit b/IVA</th>
+                <th>Currency</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var pos in Model.Summaries.Where(x => x.SummaryID == 1).OrderBy(x => x.Concept))
+            {
+                <tr>
+                    <td rowspan="2">@pos.Concept</td>
+                    <td rowspan="2">@pos.Quantity @pos.QuantityConcept</td>
+                    <td><span data-format="currency">@pos.GrandTotal.FirstOrDefault(x => x.Currency == "USD").Amount</span></td>
+                    <td><span data-format="currency">@pos.GrandTotalNoIVA.FirstOrDefault(x => x.Currency == "USD").Amount</span></td>
+                    <td><span data-format="currency">@pos.TotalCost.FirstOrDefault(x => x.Currency == "USD").Amount</span></td>
+                    <td><span data-format="currency">@pos.TotalCostNoIVA.FirstOrDefault(x => x.Currency == "USD").Amount</span></td>
+                    <td><span data-format="currency">@pos.TotalUtility.FirstOrDefault(x => x.Currency == "USD").Amount</span></td>
+                    <td>
+                        <span data-format="currency">
+                            @pos.TotalUtilityNoIVA.FirstOrDefault(x => x.Currency == "USD").Amount
+                    </span>
+                </td>
+                <td>USD</td>
+            </tr>
+            <tr>
+                <td><span data-format="currency">@pos.GrandTotal.FirstOrDefault(x => x.Currency == "MXN").Amount</span></td>
+                <td><span data-format="currency">@pos.GrandTotalNoIVA.FirstOrDefault(x => x.Currency == "MXN").Amount</span></td>
+                <td><span data-format="currency">@pos.TotalCost.FirstOrDefault(x => x.Currency == "MXN").Amount</span></td>
+                <td><span data-format="currency">@pos.TotalCostNoIVA.FirstOrDefault(x => x.Currency == "MXN").Amount</span></td>
+                <td><span data-format="currency">@pos.TotalUtility.FirstOrDefault(x => x.Currency == "MXN").Amount</span></td>
+                <td>
+                    <span data-format="currency">
+                        @pos.TotalUtilityNoIVA.FirstOrDefault(x => x.Currency == "MXN").Amount
+                    </span>
+                </td>
+                <td>MXN</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@if (Model.Summaries.Count(x => x.SummaryID == 2) > 0)
+{
+    <h3>Agents Summary</h3>
+    <table class="exportable">
+        <thead>
+            <tr>
+                <th>Agent</th>
+                <th>Coupons</th>
+                <th>Total</th>
+                <th>Total b/ IVA</th>
+                <th>Cost</th>
+                <th>Cost b/ IVA</th>
+                <th>Profit</th>
+                <th>Profit b/IVA</th>
+                <th>Currency</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var agt in Model.Summaries.Where(x => x.SummaryID == 2).OrderBy(x => x.Concept))
+            {
+                <tr>
+                    <td rowspan="2">@agt.Concept</td>
+                    <td rowspan="2">@agt.Quantity @agt.QuantityConcept</td>
+                    <td><span data-format="currency">@agt.GrandTotal.FirstOrDefault(x => x.Currency == "USD").Amount</span></td>
+                    <td><span data-format="currency">@agt.GrandTotalNoIVA.FirstOrDefault(x => x.Currency == "USD").Amount</span></td>
+                    <td><span data-format="currency">@agt.TotalCost.FirstOrDefault(x => x.Currency == "USD").Amount</span></td>
+                    <td><span data-format="currency">@agt.TotalCostNoIVA.FirstOrDefault(x => x.Currency == "USD").Amount</span></td>
+                    <td><span data-format="currency">@agt.TotalUtility.FirstOrDefault(x => x.Currency == "USD").Amount</span></td>
+                    <td>
+                        <span data-format="currency">
+                            @agt.TotalUtilityNoIVA.FirstOrDefault(x => x.Currency == "USD").Amount
+                        </span>
+                    </td>
+                    <td>USD</td>
+                </tr>
+                <tr>
+                    <td><span data-format="currency">@agt.GrandTotal.FirstOrDefault(x => x.Currency == "MXN").Amount</span></td>
+                    <td><span data-format="currency">@agt.GrandTotalNoIVA.FirstOrDefault(x => x.Currency == "MXN").Amount</span></td>
+                    <td><span data-format="currency">@agt.TotalCost.FirstOrDefault(x => x.Currency == "MXN").Amount</span></td>
+                    <td><span data-format="currency">@agt.TotalCostNoIVA.FirstOrDefault(x => x.Currency == "MXN").Amount</span></td>
+                    <td><span data-format="currency">@agt.TotalUtility.FirstOrDefault(x => x.Currency == "MXN").Amount</span></td>
+                    <td>
+                        <span data-format="currency">
+                            @agt.TotalUtilityNoIVA.FirstOrDefault(x => x.Currency == "MXN").Amount
+                        </span>
+                    </td>
+                    <td>MXN</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@if (Model.Summaries.Count(x => x.SummaryID == 3) > 0)
+{
+    <h3>Units Summary</h3>
+    <table class="exportable">
+        <thead>
+            <tr>
+                <th>Unit</th>
+                <th>PriceType</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var unit in Model.Summaries.Where(x => x.SummaryID == 3).OrderBy(x => x.Concept))
+            {
+                <tr>
+                    <td>@unit.Concept</td>
+                    <td>@unit.QuantityConcept</td>
+                    <td>@unit.Quantity</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@if (Model.Summaries.Count(x => x.SummaryID == 4) > 0)
+{
+    <h3>Language Summary</h3>
+    <table class="exportable">
+        <thead>
+            <tr>
+                <th>Culture</th>
+                <th>Coupons</th>
+                <th>Total</th>
+                <th>Total b/ IVA</th>
+                <th>Cost</th>
+                <th>Cost b/ IVA</th>
+                <th>Profit</th>
+                <th>Profit b/IVA</th>
+                <th>Currency</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var clt in Model.Summaries.Where(x => x.SummaryID == 4).OrderBy(x => x.Concept))
+            {
+                <tr>
+                    <td rowspan="2">@clt.Concept</td>
+                    <td rowspan="2">@clt.Quantity @clt.QuantityConcept</td>
+                    <td><span data-format="currency">@clt.GrandTotal.FirstOrDefault(x => x.Currency == "USD").Amount</span></td>
+                    <td><span data-format="currency">@clt.GrandTotalNoIVA.FirstOrDefault(x => x.Currency == "USD").Amount</span></td>
+                    <td><span data-format="currency">@clt.TotalCost.FirstOrDefault(x => x.Currency == "USD").Amount</span></td>
+                    <td><span data-format="currency">@clt.TotalCostNoIVA.FirstOrDefault(x => x.Currency == "USD").Amount</span></td>
+                    <td><span data-format="currency">@clt.TotalUtility.FirstOrDefault(x => x.Currency == "USD").Amount</span></td>
+                    <td>
+                        <span data-format="currency">
+                            @clt.TotalUtilityNoIVA.FirstOrDefault(x => x.Currency == "USD").Amount
+                        </span>
+                    </td>
+                    <td>USD</td>
+                </tr>
+                <tr>
+                    <td><span data-format="currency">@clt.GrandTotal.FirstOrDefault(x => x.Currency == "MXN").Amount</span></td>
+                    <td><span data-format="currency">@clt.GrandTotalNoIVA.FirstOrDefault(x => x.Currency == "MXN").Amount</span></td>
+                    <td><span data-format="currency">@clt.TotalCost.FirstOrDefault(x => x.Currency == "MXN").Amount</span></td>
+                    <td><span data-format="currency">@clt.TotalCostNoIVA.FirstOrDefault(x => x.Currency == "MXN").Amount</span></td>
+                    <td><span data-format="currency">@clt.TotalUtility.FirstOrDefault(x => x.Currency == "MXN").Amount</span></td>
+                    <td>
+                        <span data-format="currency">
+                            @clt.TotalUtilityNoIVA.FirstOrDefault(x => x.Currency == "MXN").Amount
+                        </span>
+                    </td>
+                    <td>MXN</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@if (Model.Summaries2.Count(z => z.SummaryID == 5) > 0)
+{
+    <h3>Price Type by Point of Sale</h3>
+
+    <table class="exportable">
+        <thead>
+            <tr>
+                <th></th>
+
+                @foreach (var x in Model.Summaries2.FirstOrDefault(x => x.SummaryID == 5).GroupsList)
+                {
+                    <th colspan="@(Model.Summaries2.FirstOrDefault(y => y.SummaryID == 5).PriceTypes.Count()+1)"> @x.GroupName</th>
+                }
+                <th colspan="@(Model.Summaries2.FirstOrDefault(y => y.SummaryID == 5).PriceTypes.Count())">Total By Price Type</th>
+                <th colspan="2"></th>
+            </tr>
+            <tr>
+                <th>Date</th>
+
+                @for (int num = 0; num < Model.Summaries2.FirstOrDefault(x => x.SummaryID == 5).GroupsList.Count(); num++)
+                {
+                    foreach (var x in Model.Summaries2.FirstOrDefault(x => x.SummaryID == 5).PriceTypes)
+                    {
+                        <th>@x.Type</th>
+
+                    }
+                    <th>Subtotal</th>
+                }
+                @foreach (var x in Model.Summaries2.FirstOrDefault(x => x.SummaryID == 5).PriceTypes)
+                {
+                    <th>@x.Type</th>
+                }
+                <th>Total</th>
+                <th> Currency </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var day in Model.Summaries2.FirstOrDefault(x => x.SummaryID == 5).SalesbyDay)
+            { //Total por Dia
+                <tr>
+                    <td rowspan="2">@day.Date.ToString("yyyy-MM-dd")</td>
+                    @foreach (var group in day.Groups)
+                    {//Total por Group
+
+                        foreach (var type in group.PriceTypeSales)
+                        {//Total por Tipo de Precio
+                            <td><span data-format="currency">@type.TotalSales.FirstOrDefault(x => x.Currency == "USD").Amount</span></td>
+                        }
+                        <td><span data-format="currency">@group.TotalGroup.FirstOrDefault(x => x.Currency == "USD").Amount</span></td>
+                    }
+
+                    @foreach (var TotalPriceTypes in day.TotalDayPriceType)
+                    {
+                        <td><span data-format="currency">@TotalPriceTypes.TotalSales.FirstOrDefault(x => x.Currency == "USD").Amount </span></td>
+                    }
+
+                    <td><span data-format="currency">@day.TotalByDay.FirstOrDefault(x => x.Currency == "USD").Amount</span></td>
+                    <td>USD</td>
+
+                </tr>
+                <tr>
+                    @foreach (var group in day.Groups)
+                    {//Total por Group
+
+                        foreach (var tipo in group.PriceTypeSales)
+                        {//Total por Tipo de Precio
+                            <td><span data-format="currency">@tipo.TotalSales.FirstOrDefault(x => x.Currency == "MXN").Amount</span></td>
+                        }
+                        <td><span data-format="currency">@group.TotalGroup.FirstOrDefault(x => x.Currency == "MXN").Amount</span></td>
+                    }
+
+
+                    @foreach (var TotalPriceTypes in day.TotalDayPriceType)
+                    {
+                        <td><span data-format="currency">@TotalPriceTypes.TotalSales.FirstOrDefault(x => x.Currency == "MXN").Amount </span></td>
+                    }
+                    <td><span data-format="currency">@day.TotalByDay.FirstOrDefault(x => x.Currency == "MXN").Amount</span></td>
+                    <td>MXN</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td rowspan="2">Grand Total</td>
+                @foreach (var Total in Model.Summaries2.FirstOrDefault(Total => Total.SummaryID == 5).GrandTotalByGroups)
+                {//Grand totales sub totales
+                    foreach (var Group in Total.PriceTypeSales)
+                    {//Grand totales Tipos de precio
+                        <td><span data-format="currency">@Group.TotalSales.FirstOrDefault(x => x.Currency == "USD").Amount</span></td>
+                    }
+                    <td><span data-format="currency">@Total.TotalGroup.FirstOrDefault(x => x.Currency == "USD").Amount</span></td>
+                }
+
+                @foreach (var Total in Model.Summaries2.FirstOrDefault(x => x.SummaryID == 5).TotalType)
+                {
+                    <td><span data-format="currency">@Total.TotalSales.FirstOrDefault(x => x.Currency == "USD").Amount</span></td>
+                }
+                <td><span data-format="currency">@Model.Summaries2.FirstOrDefault(Total => Total.SummaryID == 5).GrandTotal.FirstOrDefault(x => x.Currency == "USD").Amount</span></td>
+                <td>USD</td>
+
+            </tr>
+            <tr>
+                @foreach (var Total in Model.Summaries2.FirstOrDefault(Total => Total.SummaryID == 5).GrandTotalByGroups)
+                {
+                    foreach (var Group in Total.PriceTypeSales)
+                    {
+                        <td><span data-format="currency">@Group.TotalSales.FirstOrDefault(x => x.Currency == "MXN").Amount</span></td>
+                    }
+                    <td><span data-format="currency">@Total.TotalGroup.FirstOrDefault(x => x.Currency == "MXN").Amount</span></td>
+                }
+
+                @foreach (var Total in Model.Summaries2.FirstOrDefault(x => x.SummaryID == 5).TotalType)
+                {
+                    <td><span data-format="currency">@Total.TotalSales.FirstOrDefault(x => x.Currency == "MXN").Amount</span></td>
+                }
+                <td><span data-format="currency">@Model.Summaries2.FirstOrDefault(Total => Total.SummaryID == 5).GrandTotal.FirstOrDefault(x => x.Currency == "MXN").Amount</span></td>
+                <td>MXN</td>
+            </tr>
+        </tfoot>
+    </table>
+}
+
+
+
+@if (Model.Summaries2.Count(z => z.SummaryID == 6) > 0)
+{
+    <h3>Price Type by Agent</h3>
+
+    <table class="exportable">
+        <thead>
+            <tr>
+                <th></th>
+
+                @foreach (var x in Model.Summaries2.FirstOrDefault(x => x.SummaryID == 6).GroupsList)
+                {
+                    <th colspan="@(Model.Summaries2.FirstOrDefault(y => y.SummaryID == 6).PriceTypes.Count()+1)">@x.GroupName</th>
+                }
+
+                <th colspan="@(Model.Summaries2.FirstOrDefault(y => y.SummaryID == 6).PriceTypes.Count())">Total By Price Type</th>
+                <th colspan="2"></th>
+
+            </tr>
+            <tr>
+                <th>Date</th>
+
+                @for (int num = 0; num < Model.Summaries2.FirstOrDefault(x => x.SummaryID == 6).GroupsList.Count(); num++)
+                {
+                    foreach (var x in Model.Summaries2.FirstOrDefault(x => x.SummaryID == 6).PriceTypes)
+                    {
+                        <th>@x.Type</th>
+
+                    }
+                    <th>Subtotal</th>
+                }
+                @foreach (var x in Model.Summaries2.FirstOrDefault(x => x.SummaryID == 6).PriceTypes)
+                {
+                    <th>@x.Type</th>
+                }
+
+                <th>Total</th>
+                <th> Currency </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var day in Model.Summaries2.FirstOrDefault(x => x.SummaryID == 6).SalesbyDay)
+            { //Total por Dia
+                <tr>
+                    <td rowspan="2">@day.Date.ToString("yyyy-MM-dd")</td>
+                    @foreach (var group in day.Groups)
+                    {//Total por Group
+
+                        foreach (var type in group.PriceTypeSales)
+                        {//Total por Tipo de Precio
+                            <td><span data-format="currency">@type.TotalSales.FirstOrDefault(x => x.Currency == "USD").Amount</span></td>
+                        }
+
+                        <td><span data-format="currency">@group.TotalGroup.FirstOrDefault(x => x.Currency == "USD").Amount</span></td>
+                    }
+
+                    @foreach (var TotalPriceTypes in day.TotalDayPriceType)
+                    {
+                        <td><span data-format="currency">@TotalPriceTypes.TotalSales.FirstOrDefault(x => x.Currency == "USD").Amount </span></td>
+                    }
+
+                    <td><span data-format="currency">@day.TotalByDay.FirstOrDefault(x => x.Currency == "USD").Amount</span></td>
+                    <td>USD</td>
+                </tr>
+                <tr>
+                    @foreach (var group in day.Groups)
+                    {//Total por Group
+
+                        foreach (var tipo in group.PriceTypeSales)
+                        {//Total por Tipo de Precio
+                            <td><span data-format="currency">@tipo.TotalSales.FirstOrDefault(x => x.Currency == "MXN").Amount</span></td>
+                        }
+
+                        <td><span data-format="currency">@group.TotalGroup.FirstOrDefault(x => x.Currency == "MXN").Amount</span></td>
+                    }
+
+                    @foreach (var TotalPriceTypes in day.TotalDayPriceType)
+                    {
+                        <td><span data-format="currency">@TotalPriceTypes.TotalSales.FirstOrDefault(x => x.Currency == "MXN").Amount </span></td>
+                    }
+                    <td><span data-format="currency">@day.TotalByDay.FirstOrDefault(x => x.Currency == "MXN").Amount</span></td>
+                    <td>MXN</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td rowspan="2">Grand Total</td>
+                @foreach (var Total in Model.Summaries2.FirstOrDefault(Total => Total.SummaryID == 6).GrandTotalByGroups)
+                {//Grand totales sub totales
+                    foreach (var Group in Total.PriceTypeSales)
+                    {//Grand totales Tipos de precio
+                        <td><span data-format="currency">@Group.TotalSales.FirstOrDefault(x => x.Currency == "USD").Amount</span></td>
+                    }
+                    <td><span data-format="currency">@Total.TotalGroup.FirstOrDefault(x => x.Currency == "USD").Amount</span></td>
+
+                }
+
+
+                @foreach (var Total in Model.Summaries2.FirstOrDefault(x => x.SummaryID == 6).TotalType)
+                {
+                    <td><span data-format="currency">@Total.TotalSales.FirstOrDefault(x => x.Currency == "USD").Amount</span></td>
+                }
+
+                <td><span data-format="currency">@Model.Summaries2.FirstOrDefault(Total => Total.SummaryID == 6).GrandTotal.FirstOrDefault(x => x.Currency == "USD").Amount</span></td>
+
+                <td>USD</td>
+            </tr>
+            <tr>
+                @foreach (var Total in Model.Summaries2.FirstOrDefault(Total => Total.SummaryID == 6).GrandTotalByGroups)
+                {
+                    foreach (var Group in Total.PriceTypeSales)
+                    {
+                        <td><span data-format="currency">@Group.TotalSales.FirstOrDefault(x => x.Currency == "MXN").Amount</span></td>
+                    }
+                    <td><span data-format="currency">@Total.TotalGroup.FirstOrDefault(x => x.Currency == "MXN").Amount</span></td>
+
+                }
+
+                @foreach (var Total in Model.Summaries2.FirstOrDefault(x => x.SummaryID == 6).TotalType)
+                {
+                    <td><span data-format="currency">@Total.TotalSales.FirstOrDefault(x => x.Currency == "MXN").Amount</span></td>
+                }
+
+                <td><span data-format="currency">@Model.Summaries2.FirstOrDefault(Total => Total.SummaryID == 6).GrandTotal.FirstOrDefault(x => x.Currency == "MXN").Amount</span></td>
+
+                <td>MXN</td>
+            </tr>
+        </tfoot>
+    </table>
+
+}
+
+@if (Model.Summaries.Count(x => x.SummaryID == 7) > 0)
+{
+    <h3>Location Summary</h3>
+    <table class="exportable">
+        <thead>
+            <tr>
+                <th>Location</th>
+                <th>Coupons</th>
+                <th>Total</th>
+                <th>Total b/ IVA</th>
+                <th>Cost</th>
+                <th>Cost b/ IVA</th>
+                <th>Profit</th>
+                <th>Profit b/IVA</th>
+                <th>Currency</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var clt in Model.Summaries.Where(x => x.SummaryID == 7).OrderBy(x => x.Concept))
+            {
+                <tr>
+                    <td rowspan="2">@clt.Concept</td>
+                    <td rowspan="2">@clt.Quantity @clt.QuantityConcept</td>
+                    <td><span data-format="currency">@clt.GrandTotal.FirstOrDefault(x => x.Currency == "USD").Amount</span></td>
+                    <td><span data-format="currency">@clt.GrandTotalNoIVA.FirstOrDefault(x => x.Currency == "USD").Amount</span></td>
+                    <td><span data-format="currency">@clt.TotalCost.FirstOrDefault(x => x.Currency == "USD").Amount</span></td>
+                    <td><span data-format="currency">@clt.TotalCostNoIVA.FirstOrDefault(x => x.Currency == "USD").Amount</span></td>
+                    <td><span data-format="currency">@clt.TotalUtility.FirstOrDefault(x => x.Currency == "USD").Amount</span></td>
+                    <td>
+                        <span data-format="currency">
+                            @clt.TotalUtilityNoIVA.FirstOrDefault(x => x.Currency == "USD").Amount
+                        </span>
+                    </td>
+                    <td>USD</td>
+                </tr>
+                <tr>
+                    <td><span data-format="currency">@clt.GrandTotal.FirstOrDefault(x => x.Currency == "MXN").Amount</span></td>
+                    <td><span data-format="currency">@clt.GrandTotalNoIVA.FirstOrDefault(x => x.Currency == "MXN").Amount</span></td>
+                    <td><span data-format="currency">@clt.TotalCost.FirstOrDefault(x => x.Currency == "MXN").Amount</span></td>
+                    <td><span data-format="currency">@clt.TotalCostNoIVA.FirstOrDefault(x => x.Currency == "MXN").Amount</span></td>
+                    <td><span data-format="currency">@clt.TotalUtility.FirstOrDefault(x => x.Currency == "MXN").Amount</span></td>
+                    <td>
+                        <span data-format="currency">
+                            @clt.TotalUtilityNoIVA.FirstOrDefault(x => x.Currency == "MXN").Amount
+                        </span>
+                    </td>
+                    <td>MXN</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
