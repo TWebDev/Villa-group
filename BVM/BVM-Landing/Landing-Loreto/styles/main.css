@@ -1,0 +1,419 @@
+﻿body {
+    font-family: 'Roboto', sans-serif;
+}
+
+
+/*
+font-family: 'Montserrat', sans-serif;
+font-family: 'Roboto', sans-serif;
+*/
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.bolt-regular {
+    overflow: visible;
+    position: center;
+    width: 18.515px;
+    height: 24.689px;
+    left: 0px;
+    top: 0px;
+    transform: matrix(1, 0, 0, 1, 0, 0);
+}
+
+.timer-counters {
+    vertical-align: middle;
+    margin-left: 10px;
+}
+
+.timer-group {
+    display: inline-block;
+}
+
+.timer-group>.timer-counter {
+    display: block;
+    margin-bottom: -10px;
+    font-size: 1.4em;
+}
+
+.bg-1 {
+    background-color: #d8941e;
+}
+
+.text-1 {
+    color: #d8941e;
+}
+
+.bg-2 {
+    background-color: #42C0C4;
+}
+
+.text-2 {
+    color: #004e6c;
+}
+
+.cancun {
+    font-family: 'Montserrat', sans-serif;
+    position: absolute;
+    right: 60px;
+    font-size: 58px;
+    line-height: 70px;
+    text-align: right;
+}
+
+.bg-3 {
+    background-color: #ffc861;
+}
+
+.bg-4 {
+    background-color: #42C0C4;
+}
+
+.text-4 {
+    color: #42C0C4;
+}
+
+.site-hero-b {
+    height: 640px;
+    background-image: url(../images/Loreto19.jpg);
+    background-size: cover;
+    background-position: initial;
+}
+
+.card-form {
+    font-family: 'Roboto', sans-serif;
+}
+
+img.save-now {
+    width: 150px;
+    position: absolute;
+    margin-top: -115px;
+    margin-left: 210px;
+}
+
+.package-price-only {
+    width: 80px;
+}
+
+.package-price {
+    width: 140px;
+}
+
+.package-price-couple {}
+
+.lightbulb_on_light {
+    overflow: visible;
+    width: 34.81px;
+    height: 27.848px;
+    margin-top: 10px;
+}
+
+.step {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.btn.rounded-pill {
+    border-radius: 20px;
+}
+
+.btn-large.rounded-pill {
+    border-radius: 30px;
+}
+
+.btn.rounded-pill>span {
+    font-size: 1.2em;
+}
+
+.btn.btn-large.rounded-pill>span {
+    font-size: 1.5em;
+}
+
+.lock {
+    overflow: visible;
+    width: 12.138px;
+    height: 13.872px;
+}
+
+.owl-carousel .owl-item img {
+    overflow: hidden;
+    height: 139px;
+}
+
+section.luxury {
+    background-image: url(../images/Loreto12.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 600px;
+}
+
+section.experience {
+    margin-top: 150px;
+}
+
+section.all-inclusive {
+    background-image: url(../images/Loreto8.jpg);
+    background-position: center;
+    background-size: cover;
+    height: 350px;
+}
+
+section.confirmation {
+    background-image: url('../images/Loreto6.JPG');
+    background-size: cover;
+    background-position: center;
+}
+
+.bg-trip {
+    background-color: #00A680;
+}
+
+.text-trip {
+    color: #00A680;
+}
+
+.bg-black {
+    background-color: black;
+}
+
+.dark-shadow {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.Line_228 {
+    overflow: visible;
+    position: absolute;
+    width: 45.073px;
+    height: 33.923px;
+    transform: matrix(1, 0, 0, 1, 0, 0);
+}
+
+.Line_229 {
+    overflow: visible;
+    position: absolute;
+    width: 45.073px;
+    height: 33.923px;
+    transform: matrix(1, 0, 0, 1, 0, 0);
+}
+
+.site-hero {
+    height: 640px;
+    background-image: url(../images/Loreto19.jpg);
+    background-size: cover;
+    background-position: initial;
+}
+
+.great-comment {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+
+/*MEDIA QUERIES*/
+
+@media (max-width: 575.98px) {
+    .mtop {
+        margin-bottom: -33px;
+    }
+    .mtop2 {
+        margin-bottom: -43px;
+        font-size: 45px;
+    }
+    .cancun {
+        font-family: 'Montserrat', sans-serif;
+        position: absolute;
+        /* left: 15px; */
+        font-size: 29px;
+        line-height: 70px;
+        text-align: right;
+        right: 15px !important;
+    }
+    .percouple {
+        font-size: 11px;
+        margin-top: -17px;
+    }
+    .site-hero {
+        height: 640px;
+        background-image: url(../images/Principal-AC.jpg);
+        background-size: cover;
+        background-position: center;
+    }
+    section.all-inclusive {
+        background-image: url(../images/Loreto8.jpg);
+        background-position: right;
+        background-size: cover;
+        height: 495px;
+    }
+    section.luxury {
+        background-image: url(../images/ISLA-CONTOY-62.jpg);
+        background-size: cover;
+        background-position: center;
+        height: 600px;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .mtop {
+        margin-bottom: -33px;
+    }
+    .mtop2 {
+        margin-bottom: -43px;
+        font-size: 45px;
+    }
+    section.luxury {
+        background-image: url(../images/ISLA-CONTOY-62.jpg);
+        background-size: cover;
+        background-position: center;
+        height: 600px;
+    }
+    .percouple {
+        font-size: 11px;
+        margin-top: -17px;
+    }
+    .cancun {
+        font-family: 'Montserrat', sans-serif;
+        position: absolute;
+        /* left: 15px; */
+        font-size: 29px;
+        line-height: 70px;
+        text-align: right;
+        right: 15px !important;
+    }
+    .site-hero {
+        height: 640px;
+        background-image: url(../images/Principal-AC.jpg);
+        background-size: cover;
+        background-position: center;
+    }
+    section.all-inclusive {
+        background-image: url(../images/Loreto8.jpg);
+        background-position: right;
+        background-size: cover;
+        height: 495px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .mtop {
+        margin-bottom: -15px;
+    }
+    .mtop2 {
+        margin-bottom: -20px;
+    }
+    section.luxury {
+        background-image: url(../images/ISLA-CONTOY-62.jpg);
+        background-size: cover;
+        background-position: center;
+        height: 600px;
+    }
+    .percouple {
+        font-size: 15px;
+        margin-top: -15px;
+    }
+    .cancun {
+        font-family: 'Montserrat', sans-serif;
+        position: absolute;
+        left: 15px;
+        font-size: 58px;
+        line-height: 70px;
+        text-align: left;
+    }
+    .site-hero {
+        height: 640px;
+        background-image: url(../images/Loreto19.jpg);
+        background-size: cover;
+        background-position: initial;
+    }
+    section.all-inclusive {
+        background-image: url(../images/Lore);
+        background-position: bottom;
+        background-size: cover;
+        height: 495px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .mtop {
+        margin-bottom: -15px;
+    }
+    .mtop2 {
+        margin-bottom: -20px;
+    }
+    section.luxury {
+        background-image: url(../images/Loreto6.jpg); /*Imagen para versión móvil*/
+        background-size: cover;
+        background-position: center;
+        height: 600px;
+    }
+    .percouple {
+        font-size: 15px;
+        margin-top: -15px;
+    }
+    .cancun {
+        font-family: 'Montserrat', sans-serif;
+        position: absolute;
+        right: 71px;
+        font-size: 58px;
+        line-height: 70px;
+        text-align: right;
+    }
+    .site-hero {
+        height: 640px;
+        background-image: url(../images/Loreto19.jpg);
+        background-size: cover;
+        background-position: center;
+    }
+    section.all-inclusive {
+        background-image: url(../images/Loreto8.jpg);
+        background-position: center;
+        background-size: cover;
+        height: 350px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .mtop {
+        margin-bottom: -15px;
+    }
+    .mtop2 {
+        margin-bottom: -20px;
+    }
+    section.luxury {
+        background-image: url(../images/Loreto5.jpg);
+        background-size: cover;
+        background-position: center;
+        height: 600px;
+    }
+    .percouple {
+        font-size: 15px;
+        margin-top: -15px;
+    }
+    .cancun {
+        font-family: 'Montserrat', sans-serif;
+        position: absolute;
+        right: 71px;
+        font-size: 58px;
+        line-height: 70px;
+        text-align: right;
+    }
+    .site-hero {
+        height: 640px;
+        background-image: url(../images/Loreto19.jpg);
+        background-size: cover;
+        background-position: center;
+    }
+    section.all-inclusive {
+        background-image: url(../images/Loreto8.jpg);
+        background-position: center;
+        background-size: cover;
+        height: 350px;
+    }
+}
+
+@media (min-width: 768px) {
+    background-position: center top;
+}
