@@ -1,0 +1,143 @@
+<!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;600&display=swap" rel="stylesheet">
+    <style>
+        body, h1{
+            font-family: 'Oswald', sans-serif;
+        }
+        p, h2{
+            font-family: 'Oswald', sans-serif;
+        }
+    </style>
+</head>
+<body style="margin: 0; padding: 0;">
+    <table align="center" cellpadding="0" cellspacing="0" width="600">
+        <tr>
+            <td align="center"style="padding: 40px 0 30px 0;">
+                <img src="https://i.postimg.cc/kgg1HVcg/BV-Mail-Assets-01.png" alt="Beach Vibes" width="200px">
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="#41AAAA" style="color: white; font-size: 1.5em; text-align: center; font-family: 'Oswald', sans-serif;">
+                Villa del Palmar Beach Resort & Spa Cabo San Lucas
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="https://i.postimg.cc/YqJCkqMN/BV-Mail-Assets-09.png" alt="Beach Vibes" style="max-width: 600px;">
+                <p style="margin-top: -80px; font-size: 1.5em; color: white; text-align: right; margin-right: 15px; text-shadow: 1px 1px black;">All Inclusive and Room Only <br> Beachfront Resort <br> in Los Cabos, México</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p style="text-align: center; color: #2F3239; margin-top:20px;">Welcome to Villa del Palmar Beach Resort & Spa, a luxury escape for travelers looking for an optional all inclusive resort in Cabo San Lucas.
+                     With its idyllic location on Medano Beach, Villa del Palmar has everything guests need for the ultimate Cabo vacation. In addition to luxury suites, sublime services, and a variety of 
+                    onsite dining options, Villa del Palmar Cabo San Lucas has a 
+                    plethora of extra amenities, daily activities, and nightly entertainment. Book your Cabo vacation now and begin enjoying truly luxurious living.
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h1 style="color: #F78A1C; font-size: 2.5em;">Junior Suite</h1>
+                <table  cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                   <td width="270" valign="top">
+                       <p>
+                        The Junior Suite at Villa del Palmar Cabo San Lucas offers all the room you need to kick back and relax. There are two double beds or one queen-size bed 
+                        and one bathroom with Travertine marble accents along with a kitchenette, breakfast bar, a sofa and balcony or terrace with furniture. At this Los Cabos all 
+                        inclusive resort, you’ll find the comfort, style, and privacy you need in our luxury suites. 
+
+                       </p>
+                   </td>
+                   <td style="font-size: 0; line-height: 0;" width="10">
+                    &nbsp;
+                   </td>
+                   <td width="260" valign="top">
+                       <img src="https://i.postimg.cc/6pn5QJpk/BV-Mail-Assets-10.png" alt="Beach Vibes" style="max-width: 312px;;">
+                   </td>
+                    </tr>
+                   </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h1 style="color: #41AAAA;">Amenities</h1>
+                <table  cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                   <td width="260" valign="top">
+                    <ul style="list-style-type: circle;">
+                        <li>Gourmet restaurants and snack bar</li>
+                        <li>Palmita Market Deli</li>
+                        <li>24-Hour room service (*)</li>
+                        <li>24-Hour front desk</li>
+                        <li>Bilingual staff</li>
+                        <li>Wireless internet (*)</li>
+                        <li>Garden view and ocean view hotel suites</li>
+                        <li>Outdoor swimming pools and Jacuzzi</li>
+                        <li>Swimming pool for kids</li>
+                        <li>Non motorized water activities (Kayaks, Paddle Boards, Snorkel, Boogies)</li>
+                    </ul>
+                   </td>
+                   <td style="font-size: 0; line-height: 0;" width="20">
+                    &nbsp;
+                   </td>
+                   <td width="260" valign="top">
+                    <ul style="list-style-type: circle;">
+                        <li>Daytime beach and pool activities</li>
+                        <li>Nightly, live entertainment and theme nights</li>
+                        <li>Spa (*)</li>
+                        <li>Fitness Center and Hydrotherapy areas</li>
+                        <li>Outdoor tennis courts</li>
+                        <li>Kids Club (*)</li>
+                        <li>Hospitality Suite (for early arrivals and late departures)</li>
+                        <li>Secure parking and valet</li>
+                        <li>Meeting/Banquet facilities</li>
+                        <li>Babysitting (*)</li>
+                        <li>Daily housekeeping service</li>
+                        <li>Wheelchair accessibility</li>
+                        <li>ATM</li>
+                    </ul>
+                   </td>
+                    </tr>
+                   </table>
+                   
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #41AAAA;">
+                    <tr>
+                        <td width="166" valing="top" >
+                            <img src="https://i.postimg.cc/GhKdWSWJ/BV-Mail-Assets-02.png" alt="+521 213-275-5624" style="max-width: 30px; "> 
+                            <h2 style="font-size: 1em; color: white; display: inline-block; vertical-align: baseline;">+521 213-275-5624</h2>
+                            <img src="https://i.postimg.cc/CL5wV4S3/BV-Mail-Assets-03.png" alt="Facebook" style="max-width: 40px;">
+                            <img src="https://i.postimg.cc/hPNRRWCm/BV-Mail-Assets-04.png" alt="WhatsApp" style="max-width: 40px;">
+                            <img src="https://i.postimg.cc/pdYwj9PQ/BV-Mail-Assets-05.png" alt="Instagram" style="max-width: 40px;">
+                        </td>
+                        <td style="font-size: 0; line-height: 0; width: 5;">
+                            &nbsp; 
+                        </td>
+                        <td width="166" valing="top"> 
+                            <img src="https://i.postimg.cc/0NTzzB2K/BV-Mail-Assets-06.png" alt="Beach Vibes" style="max-width: 120px;">
+                        <td style="font-size: 0; line-height: 0; width: 5;">
+                            &nbsp;
+                        </td>
+                        <td width="166" valing="top"> 
+                            <p style="color: white; margin-right: 10px;">Calle Lerdo de Tejada 2112, Colonia Americana 44158 Guadalajara, Jalisco, Mexico</p>
+                            
+                        </td>
+
+                    </tr> 
+
+                </table>
+            </td>
+        </tr>
+
+    </table>
+    
+</body>
+</html>
