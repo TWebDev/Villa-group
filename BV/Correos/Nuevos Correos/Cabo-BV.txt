@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;600&display=swap" rel="stylesheet">
+    <style>
+        body, h1{
+            font-family: 'Oswald', sans-serif;
+        }
+        p, h2{
+            font-family: 'Oswald', sans-serif;
+        }
+    </style>
+</head>
+<body style="margin: 0; padding: 0;">
+    <table align="center"  cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
+        <!--Logo-->
+        <tr>
+            <td align="center"style="padding: 40px 0 30px 0;">
+                <img src="https://i.postimg.cc/kgg1HVcg/BV-Mail-Assets-01.png" alt="Beach Vibes" width="200px">
+           </td> 
+        </tr>
+        <tr>
+            <!--Línea de color azul-->
+            <td bgcolor="#41AAAA" style="color: white; font-size: 1.5em; text-align: center; font-family: 'Oswald', sans-serif;">
+                Villa del Palmar Beach Resort & Spa Cabo San Lucas 
+            </td>
+        </tr>
+        <tr>
+            <!--Imagen con texto en medio-->
+            <td>
+                <img src="https://i.postimg.cc/J7gQggLd/BV-Mail-Assets-18.png" alt="Beach Vibes" style="max-width: 600px;">
+                <p style="margin-top: -90px; font-size: 1.5em; color: white; text-align: right; margin-right: 15px; text-shadow: 1px 1px black;">All Inclusive and Room Only Beachfront Resort <br> in Los
+                    Cabos, México </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <!--Descripción-->
+                <p style="text-align: center; color: #2F3239; margin-top:50px;">Welcome to Villa del Palmar Beach Resort & Spa, a luxury escape for travelers
+                    looking for an optional all inclusive resort in Cabo San Lucas. With its idyllic
+                    location on Medano Beach, Villa del Palmar has everything guests need for the
+                    ultimate Cabo vacation. 
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <!--Junior Suite-->
+                <h1 style="color: #F78A1C; font-size: 2.5em;">Junior Suite</h1>
+                <table  cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                   <td width="270" valign="top">
+                       <p>
+                        The Junior Suite at Villa del Palmar Cabo San Lucas offers all the room you need
+                        to kick back and relax. There are two double beds or one queen-size bed and one
+                        bathroom with Travertine marble accents along with a kitchenette, breakfast bar, a
+                        sofa and balcony or terrace with furniture.
+                       </p>
+                   </td>
+                   <td style="font-size: 0; line-height: 0;" width="10">
+                    &nbsp;
+                   </td>
+                   <td width="260" valign="top">
+                       <img src="https://i.postimg.cc/DZ0qpQYT/BV-Mail-Assets-19.png" alt="Beach Vibes" style="max-width: 312px; max-height: 312px;">
+                   </td>
+                    </tr>
+                   </table>
+            </td>
+        </tr>
+        
+                <!--Amenites-->
+      <tr>
+        <td>
+          <h1 style="color: #41AAAA; font-size: 2.5em;">Amenities</h1>
+          <table  cellpadding="0" cellspacing="0" width="100%">
+              <tr>
+             <td width="270" valign="top">
+              <img src="https://i.postimg.cc/sgBPJ4qC/BV-Mail-Assets-Personalizado-21.png" alt="Beach Vibes" style="max-width: 312px; max-height: 312px;">
+             </td>
+             <td style="font-size: 0; line-height: 0;" width="10">
+              &nbsp;
+             </td>
+             <td width="260" valign="top">
+              <ul style= "list-style-type: circle; color: #41AAAA; margin-top: -5px;">
+                  <li><b>Garden view and ocean view hotel suites</b> </li>
+                  <li><b>Outdoor swimming pools and Jacuzzi</b></li>
+                  <li><b>Swimming pool for kids</b> </li>
+                </ul>
+                 
+             </td>
+              </tr>
+             </table> 
+        </td>
+    </tr>
+    <!--Segundo-->
+    <tr>
+        <td>
+          <table  cellpadding="0" cellspacing="0" width="100%">
+              <tr>
+             <td width="270" valign="top">
+              <img src="https://i.postimg.cc/DZhqnkZ7/BV-Mail-Assets-Personalizado-22.png" alt="Beach Vibes" style="max-width: 312px; max-height: 312px; ">
+             </td>
+             <td style="font-size: 0; line-height: 0;" width="10">
+              &nbsp;
+             </td>
+             <td width="260" valign="top">
+              <ul style= "list-style-type: circle; color: #41AAAA; margin-top: 30px;">
+                  <li><b>Gourmet restaurants and snack bar</b> </li>
+                  <li><b>Palmita Market Deli</b></li>
+                  <li><b>24-Hour front desk</b></li>
+                </ul>
+                 
+             </td>
+              </tr>
+             </table> 
+        </td>
+    </tr>
+    <!--Tercero-->
+    <tr>
+        <td>
+          <table  cellpadding="0" cellspacing="0" width="100%">
+              <tr>
+             <td width="270" valign="top">
+              <img src="https://i.postimg.cc/fLvYb2tm/BV-Mail-Assets-Personalizado-23.png" alt="Beach Vibes" style="max-width: 312px; max-height: 312px; margin-top: 15px;">
+             </td>
+             <td style="font-size: 0; line-height: 0;" width="10">
+              &nbsp;
+             </td>
+             <td width="260" valign="top">
+              <ul style= "list-style-type: circle; color: #41AAAA; margin-top: 30px;">
+                  <li><b>Spa (*)</b> </li>
+                  <li><b>Fitness Center and Hydrotherapy areas</b></li>
+                  <li><b>Outdoor tennis courts</b> </li>
+                </ul>
+                 
+             </td>
+              </tr>
+             </table> 
+        </td>
+    </tr>
+    <!--Cuarto-->
+    <tr>
+        <td>
+          <table  cellpadding="0" cellspacing="0" width="100%">
+              <tr>
+             <td width="270" valign="top">
+              <img src="https://i.postimg.cc/J06JNsQh/BV-Mail-Assets-Personalizado-24.png" alt="Beach Vibes" style="max-width: 312px; max-height: 312px; margin-top: 15px;">
+             </td>
+             <td style="font-size: 0; line-height: 0;" width="10">
+              &nbsp;
+             </td>
+             <td width="260" valign="top">
+              <ul style= "list-style-type: circle; color: #41AAAA; margin-top: 20px;">
+                  <li><b>Non motorized water activities</b> </li>
+                  <li><b>Daytime beach and pool activities</b></li>
+                  <li><b>Nightly, live entertainment abd theme nights</b> </li>
+                </ul>
+                 
+             </td>
+              </tr>
+             </table> 
+        </td>
+    </tr>
+    <!--Quinto-->
+    <tr>
+        <td>
+          <table  cellpadding="0" cellspacing="0" width="100%">
+              <tr>
+             <td width="270" valign="top">
+              <img src="https://i.postimg.cc/dVTdCtZq/BV-Mail-Assets-Personalizado-25.png" alt="Beach Vibes" style="max-width: 312px; max-height: 312px; margin-top: 15px;">
+             </td>
+             <td style="font-size: 0; line-height: 0;" width="10">
+              &nbsp;
+             </td>
+             <td width="260" valign="top">
+              <ul style= "list-style-type: circle; color: #41AAAA; margin-top: 40px;">
+                  <li><b>Wheelchair accesibility</b> </li>
+                  <li><b>Bilingual staff</b></li>
+                  <li><b>ATM</b> </li>
+                </ul>
+                 
+             </td>
+              </tr>
+             </table> 
+        </td>
+    </tr>
+
+    <!--Footer-->
+        <tr>
+            <td style="padding: 30px 0 0 0">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #41AAAA;">
+                    <tr>
+                        <td width="166" valing="top" >
+                            <img src="https://i.postimg.cc/GhKdWSWJ/BV-Mail-Assets-02.png" alt="+521 213-275-5624" style="max-width: 30px; "> 
+                            <h2 style="font-size: 1em; color: white; display: inline-block; vertical-align: baseline;">+521 213-275-5624</h2>
+                            <img src="https://i.postimg.cc/CL5wV4S3/BV-Mail-Assets-03.png" alt="Facebook" style="max-width: 40px;">
+                            <img src="https://i.postimg.cc/hPNRRWCm/BV-Mail-Assets-04.png" alt="WhatsApp" style="max-width: 40px;">
+                            <img src="https://i.postimg.cc/pdYwj9PQ/BV-Mail-Assets-05.png" alt="Instagram" style="max-width: 40px;">
+                        </td>
+                        <td style="font-size: 0; line-height: 0; width: 5;">
+                            &nbsp; 
+                        </td>
+                        <td width="166" valing="top"> 
+                            <img src="https://i.postimg.cc/0NTzzB2K/BV-Mail-Assets-06.png" alt="Beach Vibes" style="max-width: 120px;">
+                        <td style="font-size: 0; line-height: 0; width: 5;">
+                            &nbsp;
+                        </td>
+                        <td width="166" valing="top"> 
+                            <p style="color: white; margin-right: 10px;">Calle Lerdo de Tejada 2112, Colonia Americana 44158 Guadalajara, Jalisco, Mexico</p>
+                            
+                        </td>
+
+                    </tr> 
+
+                </table>
+            </td>
+        </tr>
+      
+    </table>
+    
+</body>
+</html>
