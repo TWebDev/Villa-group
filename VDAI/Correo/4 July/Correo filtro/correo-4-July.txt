@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap" rel="stylesheet"/>
+</head>
+<body>
+    <table align="center"  cellpadding="0" cellspacing="0" width="600" style="background-image: url('https://i.postimg.cc/bYKwCPYB/VDAI-MAILING-CONFETI-Mesa-de-trabajo-1.png');">
+        <tr>
+            <td>
+                <img src="https://i.postimg.cc/R0G9Q5qq/Logo-VDAI-azul.png" alt="VDAI" style="max-width: 150px; margin-left: 200px; margin-top: 40px;"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="https://i.postimg.cc/QNF9tSnc/HEADER.png" alt="" style="max-width: 600px; margin-top: 30px;"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+               <h1 style="text-align: center; color: #B50D0D; font-family: 'Inter', sans-serif; font-size: 1.5em; margin-top: 2px;">ENJOY AN EXTRA BONUS</h1>
+               
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p style="text-align: center; font-family: 'Inter', sans-serif; margin-bottom: 2px;">We want you to save more this vacations; <br/>
+                if you use our Instagram filter, you'll have <br/>
+                an extra bonus! It's easy to <br/>
+                participate.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="https://i.postimg.cc/85836Zms/VDAI-CARRUSEL-PROMOS-Mesa-de-trabajo-1-copia-6.png" alt="4 July promotion $399USD" style="max-width: 400px; margin-left: 100px; margin-bottom: 2px;"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h1 style="text-align: center; color: white; background-color: #B50D0D; width: 500px; font-family: 'Inter', sans-serif; margin-left: 50px; font-size: 1.5em; ">
+                    HOW TO DO IT:</h1>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h4 style="text-align: center; font-family: 'Inter', sans-serif; margin-top: 2px;">1. Click on the link and open in your <br/> 
+                    phone our Instagram profile:</h4>
+                    <a href="https://www.instagram.com/vacationdealsallinclusive/" style="text-align: center; text-decoration: none; color: #B50D0D; font-family: 'Inter', sans-serif;">
+                        <h4 style="text-align: center;">www.instagram.com/vacationdealsallinclusive</h4>
+                    </a>
+                    <h4 style="text-align: center; font-family: 'Inter', sans-serif; margin-bottom: 2px;">2. Follow us </h4>
+                    <h4 style="text-align: center; font-family: 'Inter', sans-serif;">3. Select the filter section, and choose <br/>
+                    <b>"IndependenceSaleVDAI"</b> <br/>
+                    <b>Filter</b></h4>
+                
+                    <h4 style="text-align: center; font-family: 'Inter', sans-serif; margin-bottom: 2px;">4. Upload a story using the filter and send <br/> 
+                        us a screenshot via DM along with your <br/>
+                        contact info, and that's all!</h4>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h1 style="color: white; text-align: center; background-color: #B50D0D; width: 450px; font-family: 'Inter', sans-serif; margin-left: 80px; font-size: 1.5em;">
+                    LOOK FOR US:</h1>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="https://www.facebook.com/VacationDealsAllInclusive" style="text-decoration: none; color: #B50D0D; text-align: center; font-family: 'Inter', sans-serif; font-size: 0.8em;">
+                    <h2 style="text-align: center;">
+                        <img src="https://i.postimg.cc/GtMJRpMG/FB.png" alt="" style="max-width: 40px; vertical-align: middle;"/>
+                        @VacationDealsAllInclusive
+                    </h2>
+                </a>
+                
+                <a href="https://www.instagram.com/vacationdealsallinclusive/" style="text-decoration: none; color: #B50D0D; text-align: center; font-family: 'Inter', sans-serif; font-size: 0.8em;">
+                    <h2 style="text-align: center;">
+                        <img src="https://i.postimg.cc/43bcZdyy/IG.png" alt="" style="max-width: 40px; vertical-align: middle;"/>
+                        @vacationdealsallinclusive
+                    </h2>
+                </a>
+               
+                <a href="https://www.vacationdealsallinclusive.com/" style="text-decoration: none; color: #B50D0D; text-align: center; font-family: 'Inter', sans-serif; font-size: 0.8em;">
+                    <h2 style="text-align: center;">
+                        <img src="https://i.postimg.cc/MH4MtfPP/Grupo-355.png" alt="" style="max-width: 50px; vertical-align: middle;"/>
+                        www.vacationdealsallinclusive.com
+                    </h2>
+                </a>
+                
+               
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h1 style="text-align: center; color: #B50D0D; font-family: 'Inter', sans-serif; font-size: 1em; margin-bottom: 40px;">ENJOY YOUR COUPOND AND </h1>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table  cellpadding="0" cellspacing="0" width="100%">
+                    <tr style="background-color: #B50D0D;">
+                        <td width="180" valign="top">
+                            <img src="https://i.postimg.cc/Z56BFRrH/BBB.png" alt="BBB" style="max-width: 90px; padding: 30px 10px 20px 30px;"/>
+                        </td>
+                        <td style="font-size: 0; line-height: 0;" width="20">
+                            &nbsp;
+                        </td>
+                        <td width="180" valign="top">
+                            <img src="https://i.postimg.cc/VsTdxMg4/Logo-VDAI-Bco.png" alt="VacationDealsAllInclusive" style="max-width: 150px; padding: 20px 10px 10px 0px;"/>
+                        </td>
+                        <td style="font-size: 0; line-height: 0;" width="20">
+                            &nbsp;
+                        </td>
+                        <td width="180" valign="top">
+                            
+                            <img src="https://i.postimg.cc/tTvYCVjq/SCAMDIVISER.png" alt="SCAMADVISER" style="max-width: 100px; padding: 40px 10px 20px 0px;"/>
+                        </td>
+                    </tr>
+                </table>
+                   
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
