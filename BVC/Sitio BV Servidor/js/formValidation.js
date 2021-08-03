@@ -166,10 +166,15 @@ function sendToEplat () {
   var email = document.getElementById('mce-EMAIL'); 
   var phone = document.getElementById('mce-PHONE');
   var comments = document.getElementById('mce-MMERGE3');
-  let notes = "Comments: " +comments.value ;
+  var destination = document.getElementById('destination');
+  var adults = document.getElementById('Adults');
+  var kids = document.getElementById('Kids');
+  var arrival = document.getElementById('check-in');
+  var departure = document.getElementById('check-out');
+  let notes = notes = "Adults: " + adults.value + "<br />Children: " + kids.value + "<br /> Comments: " +comments.value;
   
   //var timeToReach = timeZone.value;
-  var data = JSON.stringify({"webhookID": "2ed17cb6-809e-72cc-3834-766b7b9b8bb2", "firstName": fname.value, "lastName": lname.value, "phone": phone.value, "email": email.value,  "notes": notes});
+  var data = JSON.stringify({"webhookID": "2ed17cb6-809e-72cc-3834-766b7b9b8bb2", "firstName": fname.value, "lastName": lname.value, "phone": phone.value, "email": email.value, "destination": destination.value, "timeToReach": timeToReach.value, "arrivalDate": arrival.value, "departureDate": departure.value, "notes": notes});
   var xhr = new XMLHttpRequest();
   var url = "https://developers.eplat.com/api/webhooks/incoming/genericjson/newlead?code=80f32f6123104d09a72c000047564e51";
   xhr.open("POST", url, true);

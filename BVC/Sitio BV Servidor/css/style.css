@@ -197,23 +197,22 @@ footer{
     border-radius: 20px;
     margin-bottom: 20px;
     font-family: 'Oswald', sans-serif;
-
   }
-  .faq{
+.faq{
     background-color: transparent;
     width: 100%;
     height: auto;
     text-align: center;
     border: white;
     font-family: 'Oswald', sans-serif;
-  }
-  .title{
+}
+.title{
     color: #02C0D1;
     font-size: 3em;
     margin-bottom: 20px;
     font-family: "Oh Golds";
-  }
-  @media(max-width:767px){
+}
+@media(max-width:767px){
     .title{
         font-size: 1.5em;
     }
@@ -229,50 +228,49 @@ footer{
     outline: none;
     font-size: 15px;
     font-family: 'Oswald', sans-serif; 
-  }
-  .collapsible:after {
+}
+.collapsible:after {
     content: '\002B';
     color: white;
     font-weight: bold;
     float: right;
     margin-left: 5px;
     font-family: 'Oswald', sans-serif;
-  }
-  .content {
+}
+.content {
     padding: 0 18px;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
     background-color:white;
     font-family: 'Oswald', sans-serif;
-  }
-  .content p{
+}
+.content p{
       margin-top: 10px;
       color: #1F1F1F;
       font-family: 'Oswald', sans-serif;
-  }
-  .content a{
+}
+.content a{
       text-decoration: none;
       color: #83bc9e;
       font-family: 'Oswald', sans-serif;
-  }
-  .col-8{
+}
+.col-8{
     border-radius: 10px;
     font-family: 'Oswald', sans-serif; 
-  }
-  #clima{
+}
+#clima{
       padding: 25px 25px 25px 25px;
-  }
- 
-  #clima h3{
+}
+ #clima h3{
       text-align: center;
       font-size: 3.5em;
-  }
-  #clima h6{
+}
+#clima h6{
     color: #1F1F1F;
     font-size: 0.8em;
-  }
-  #barraInicio{
+}
+#barraInicio{
       color: #3f4c72;
       background: white;
       border-radius: 20px;
@@ -280,37 +278,37 @@ footer{
       font-weight: bold;
       padding: 20px 10px 10px 10px;
       text-align: left;
-  }
-  #barraInicio input{
+}
+#barraInicio input{
       background: none;
       border: none;
       font-size: 0.8em;
-  }
+}
 input #disabled{
     color: #3f4c72;
     font-weight: bold;
 }
-  #barraInicio select{
+#barraInicio select{
     color: #1F1F1F;
       background: none;
       border: none;
       font-family: 'Montserrat', sans-serif;
-  }
-  #search{
+}
+#search{
     background: linear-gradient(rgba(28, 49, 79), rgba(136, 103, 189));
     font-family: 'Montserrat', sans-serif;
     padding: 5px 20px 10px 10px;
     border-radius: 10px;
-  }
+}
 
-  #search i{
+#search i{
     padding-left: 20px;
-  }
-  .btn-primary {
+}
+.btn-primary {
     background: linear-gradient(rgba(222, 163, 42), rgba(228, 186, 110));
     border: #dea32a;
     font-family: 'Oswald', sans-serif; 
-  }
+}
 /*DESTINOS INDEX*/  
 .card img{
     padding: 0px -10px 20px 10px;
@@ -458,4 +456,9 @@ input #disabled{
     font-family: 'Oswald', sans-serif;
     margin-bottom: 50px;
 }
-
+/*Request*/
+.text-muted{
+    color: #1F1F1F!important;
+}#red{
+    color: red;
+}
